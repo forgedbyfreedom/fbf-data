@@ -44,6 +44,11 @@ jobs:
           mkdir -p _site
           cp -v *.json _site/ || echo "No JSON files found to copy."
 
+      - name: Log success
+        run: |
+          echo "[✅] Deployment complete at $(date -u)" > _site/cron.log
+          cat _site/cron.log
+
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
@@ -51,7 +56,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-
-      - name: Log success
-
 
