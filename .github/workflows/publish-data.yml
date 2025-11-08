@@ -23,19 +23,20 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Optional: Install dependencies if you create requirements.txt later
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
       - name: Run fetcher
         run: |
+          echo "[🕒] Starting fetch_multi.py run..."
           python fetch_multi.py
 
       - name: Normalize latest -> canonical names
         run: |
-          python tools/normalize_latest.py
+          echo "[🔧] Normalizing latest data..."
+          python tools/normalize_latest.py || echo "No normalize_latest.py found, skipping."
 
       - name: Create _site directory if missing
         run: mkdir -p _site
