@@ -30,57 +30,90 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
+      # --------------- FETCH ODDS ---------------
       - name: Run fetcher
         run: |
           echo "[🕒] Running fetch_multi.py..."
           if [ -f fetch_multi.py ]; then
             python fetch_multi.py
           else
-            echo "⚠️ fetch_multi.py not found, skipping fetch step."
+            echo "⚠️ fetch_multi.py not found, skipping odds fetch."
           fi
 
+      # --------------- FETCH ROSTERS (NEW) ---------------
+      - name: Run roster fetcher
+        run: |
+          echo "[👥] Fetching DraftKings & FanDuel rosters..."
+          if [ -f fetch_rosters.py ]; then
+            python fetch_rosters.py || echo "⚠️ Roster fetch failed, continuing."
+          else
+            echo "⚠️ fetch_rosters.py not found, skipping."
+          fi
+
+      # --------------- NORMALIZE DATA (OPTIONAL) ---------------
+      - name: Normalize latest -> canonical names
+        run: |
+          echo "[🔧] Normalizing latest data..."
+          if [ -f tools/normalize_latest.py ]; then
+            python tools/normalize_latest.py
+          else
+            echo "No normalize_latest.py found, skipping normalization."
+          fi
+
+      # --------------- PREPARE DEPLOYMENT ---------------
       - name: Prepare deployment folder
         run: |
           echo "[📦] Preparing deployment folder..."
           mkdir -p _site archive
 
-          # Create daily folder
           TODAY=$(date -u +"%Y-%m-%d")
           mkdir -p "_site/archive/$TODAY"
 
-          # Copy all JSON files
+          # Copy JSON data files
           find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
           find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
 
-          # Create 'latest.json' as alias for combined.json
-          if [ -f _site/combined.json ]; then
-            cp _site/combined.json _site/latest.json
+          # Copy roster data
+          if [ -d "rosters" ]; then
+            mkdir -p _site/rosters "_site/archive/$TODAY/rosters"
+            cp -v rosters/*.json _site/rosters/ 2>/dev/null || true
+            cp -v rosters/*.json "_site/archive/$TODAY/rosters/" 2>/dev/null || true
           fi
 
-          # Add CNAME and index.html
+          # CNAME for custom domain
           echo "data.forgedbyfreedom.org" > _site/CNAME
-          echo "<html><body><h1>FBF Data API</h1><p>Data auto-updated every 15 minutes.</p>" > _site/index.html
-          echo "<h2>Available Data Files:</h2><ul>" >> _site/index.html
 
-          for f in $(ls _site/*.json 2>/dev/null); do
-            fname=$(basename "$f")
-            echo "<li><a href='$fname'>$fname</a></li>" >> _site/index.html
-          done
+          # Build index.html dynamically
+          {
+            echo "<html><body><h1>Forged by Freedom Data API</h1>"
+            echo "<p>Auto-updates every 15 minutes (UTC).</p>"
 
-          echo "</ul><h2>Archive:</h2><ul>" >> _site/index.html
-          for d in $(ls -d _site/archive/* 2>/dev/null | sort -r); do
-            dname=$(basename "$d")
-            echo "<li><a href='archive/$dname/'>$dname</a></li>" >> _site/index.html
-          done
-          echo "</ul></body></html>" >> _site/index.html
+            echo "<h2>Latest Files</h2><ul>"
+            for f in $(ls _site/*.json 2>/dev/null); do
+              echo "<li><a href='$(basename "$f")'>$(basename "$f")</a></li>"
+            done
+            echo "</ul>"
 
-          echo "[✅] Deployment content built."
+            if [ -d _site/rosters ]; then
+              echo "<h2>Rosters</h2><ul>"
+              for f in $(ls _site/rosters/*.json 2>/dev/null); do
+                base=$(basename "$f")
+                echo "<li><a href='rosters/$base'>$base</a></li>"
+              done
+              echo "</ul>"
+            fi
 
-      - name: Verify files
-        run: |
-          echo "[🔍] Final structure:"
-          tree _site || ls -R _site
+            echo "<h2>Archive</h2><ul>"
+            for d in $(ls -d _site/archive/* 2>/dev/null | sort -r); do
+              dn=$(basename "$d")
+              echo "<li><a href='archive/$dn/'>$dn</a></li>"
+            done
+            echo "</ul></body></html>"
+          } > _site/index.html
 
+          echo "[✅] Deployment folder ready."
+
+      # --------------- UPLOAD + DEPLOY ---------------
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
