@@ -10,24 +10,15 @@ permissions:
   pages: write
   id-token: write
 
-environment:
-  name: github-pages
-  url: ${{ steps.deployment.outputs.page_url }}
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages   # ✅ moved inside the job where it belongs
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false  # avoid token conflicts
-
-      - name: Set up Git identity
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -49,38 +40,16 @@ jobs:
           echo "[🔧] Normalizing latest data..."
           python tools/normalize_latest.py || echo "No normalize_latest.py found, skipping."
 
-      - name: Build combined.json
-        run: |
-          echo "[🔗] Combining JSON files..."
-          python - <<'EOF'
-          import json, glob
-          data = {}
-          for file in glob.glob("*.json"):
-              if file == "combined.json": continue
-              try:
-                  with open(file) as f:
-                      data[file.replace(".json","")] = json.load(f)
-              except Exception as e:
-                  print(f"⚠️ Skipping {file}: {e}")
-          with open("combined.json","w") as f:
-              json.dump(data, f, indent=2)
-          print("[✅] combined.json built successfully.")
-          EOF
-
-      - name: Commit updated data
-        run: |
-          echo "[💾] Committing new data to repo..."
-          git add *.json || true
-          git commit -m "Auto-update combined.json [skip ci]" || echo "No changes to commit."
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }} HEAD:main || echo "Push skipped."
-
-      - name: Prepare site files
+      - name: Move JSON files into _site
         run: |
           echo "[📦] Preparing files for deployment..."
           mkdir -p _site
           cp -v *.json _site/ || echo "No JSON files found to copy."
-          echo "data.forgedbyfreedom.org" > _site/CNAME
-          echo "[✅] Deployment ready."
+
+      - name: Log success
+        run: |
+          echo "[✅] Deployment complete at $(date -u)" > _site/cron.log
+          cat _site/cron.log
 
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
@@ -88,5 +57,4 @@ jobs:
           path: _site
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
