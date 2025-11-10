@@ -32,23 +32,54 @@ jobs:
 
       - name: Run fetcher
         run: |
-          echo "[🕒] Starting fetch_multi.py run..."
-          python fetch_multi.py
-
-      - name: Normalize latest -> canonical names
-        run: |
-          echo "[🔧] Normalizing latest data..."
-          python tools/normalize_latest.py || echo "No normalize_latest.py found, skipping."
+          echo "[🕒] Running fetch_multi.py..."
+          if [ -f fetch_multi.py ]; then
+            python fetch_multi.py
+          else
+            echo "⚠️ fetch_multi.py not found, skipping fetch step."
+          fi
 
       - name: Prepare deployment folder
         run: |
-          echo "[📦] Copying data files..."
-          mkdir -p _site
-          cp -v ./*.json _site/ || echo "No JSON files found to copy."
-          cp -v ./CNAME _site/ || echo "No CNAME file found, creating new one..."
+          echo "[📦] Preparing deployment folder..."
+          mkdir -p _site archive
+
+          # Create daily folder
+          TODAY=$(date -u +"%Y-%m-%d")
+          mkdir -p "_site/archive/$TODAY"
+
+          # Copy all JSON files
+          find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
+          find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
+
+          # Create 'latest.json' as alias for combined.json
+          if [ -f _site/combined.json ]; then
+            cp _site/combined.json _site/latest.json
+          fi
+
+          # Add CNAME and index.html
           echo "data.forgedbyfreedom.org" > _site/CNAME
-          echo "<html><body><h1>FBF Data API</h1><p>Data updated every 15 minutes.<br><a href='combined.json'>View Combined Data</a></p></body></html>" > _site/index.html
-          echo "[✅] Deployment ready."
+          echo "<html><body><h1>FBF Data API</h1><p>Data auto-updated every 15 minutes.</p>" > _site/index.html
+          echo "<h2>Available Data Files:</h2><ul>" >> _site/index.html
+
+          for f in $(ls _site/*.json 2>/dev/null); do
+            fname=$(basename "$f")
+            echo "<li><a href='$fname'>$fname</a></li>" >> _site/index.html
+          done
+
+          echo "</ul><h2>Archive:</h2><ul>" >> _site/index.html
+          for d in $(ls -d _site/archive/* 2>/dev/null | sort -r); do
+            dname=$(basename "$d")
+            echo "<li><a href='archive/$dname/'>$dname</a></li>" >> _site/index.html
+          done
+          echo "</ul></body></html>" >> _site/index.html
+
+          echo "[✅] Deployment content built."
+
+      - name: Verify files
+        run: |
+          echo "[🔍] Final structure:"
+          tree _site || ls -R _site
 
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
