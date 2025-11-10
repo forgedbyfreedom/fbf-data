@@ -14,7 +14,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages   # ✅ moved inside the job where it belongs
+      name: github-pages
 
     steps:
       - name: Checkout repo
@@ -40,16 +40,13 @@ jobs:
           echo "[🔧] Normalizing latest data..."
           python tools/normalize_latest.py || echo "No normalize_latest.py found, skipping."
 
-      - name: Move JSON files into _site
+      - name: Prepare deployment folder
         run: |
-          echo "[📦] Preparing files for deployment..."
+          echo "[📦] Copying data files..."
           mkdir -p _site
           cp -v *.json _site/ || echo "No JSON files found to copy."
-
-      - name: Log success
-        run: |
-          echo "[✅] Deployment complete at $(date -u)" > _site/cron.log
-          cat _site/cron.log
+          echo "data.forgedbyfreedom.org" > _site/CNAME
+          echo "[✅] Deployment ready."
 
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
