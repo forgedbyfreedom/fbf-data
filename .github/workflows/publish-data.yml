@@ -10,10 +10,13 @@ permissions:
   pages: write
   id-token: write
 
+# 👇 REQUIRED for GitHub Pages environment
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}
+
 jobs:
   build-and-deploy:
-    environment:
-      name: github-pages
     runs-on: ubuntu-latest
 
     steps:
@@ -79,5 +82,6 @@ jobs:
           path: _site
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
 
