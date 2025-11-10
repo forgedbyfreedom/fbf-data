@@ -44,8 +44,10 @@ jobs:
         run: |
           echo "[📦] Copying data files..."
           mkdir -p _site
-          cp -v *.json _site/ || echo "No JSON files found to copy."
+          cp -v ./*.json _site/ || echo "No JSON files found to copy."
+          cp -v ./CNAME _site/ || echo "No CNAME file found, creating new one..."
           echo "data.forgedbyfreedom.org" > _site/CNAME
+          echo "<html><body><h1>FBF Data API</h1><p>Data updated every 15 minutes.<br><a href='combined.json'>View Combined Data</a></p></body></html>" > _site/index.html
           echo "[✅] Deployment ready."
 
       - name: Upload artifact for Pages
