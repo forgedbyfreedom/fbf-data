@@ -38,6 +38,24 @@ jobs:
           echo "[🔧] Normalizing latest data..."
           python tools/normalize_latest.py || echo "No normalize_latest.py found, skipping."
 
+      - name: Build combined.json
+        run: |
+          echo "[🔗] Combining JSON files..."
+          python - <<'EOF'
+          import json, glob
+          data = {}
+          for file in glob.glob("*.json"):
+              if file == "combined.json": continue
+              try:
+                  with open(file) as f:
+                      data[file.replace(".json","")] = json.load(f)
+              except Exception as e:
+                  print(f"⚠️ Skipping {file}: {e}")
+          with open("combined.json","w") as f:
+              json.dump(data, f, indent=2)
+          print("[✅] combined.json built successfully.")
+          EOF
+
       - name: Move JSON files into _site
         run: |
           echo "[📦] Preparing files for deployment..."
@@ -49,6 +67,10 @@ jobs:
           echo "[✅] Deployment complete at $(date -u)" > _site/cron.log
           cat _site/cron.log
 
+      - name: Add CNAME file for custom domain
+        run: |
+          echo "data.forgedbyfreedom.org" > _site/CNAME
+
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
@@ -56,4 +78,3 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-
