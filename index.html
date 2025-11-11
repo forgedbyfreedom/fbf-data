@@ -3,77 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forged by Freedom — NFL Statistical Summary</title>
+  <title>Forged by Freedom — Sports Intelligence Dashboard</title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    body {
-      background-color: #f9fafb;
-      color: #1f2937;
-      font-family: 'Inter', sans-serif;
-    }
+    body { background-color: #0f0f0f; color: #fefefe; font-family: 'Inter', sans-serif; }
+    .divider { border-bottom: 4px solid #d4af37; width: 140px; margin: 0.5rem auto 1.5rem; }
+    .section-header { background-color: #1a1a1a; color: #d4af37; font-weight: 700; padding: 0.5rem 1rem; border-radius: 0.5rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 2rem; }
+    .fav { color: #22c55e; font-weight: 600; }
+    .conf-high { color: #22c55e; font-weight: 600; }
+    .conf-med { color: #eab308; font-weight: 600; }
+    .conf-low { color: #ef4444; font-weight: 600; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center py-10 px-4">
 
-  <!-- HEADER -->
+<body class="min-h-screen flex flex-col items-center py-10 px-4">
   <header class="text-center mb-8">
-    <h1 class="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight uppercase">
-      Forged by Freedom — NFL Statistical Summary
+    <h1 class="text-4xl font-extrabold text-gray-100 mb-2 uppercase tracking-wide">
+      Forged by Freedom — Sports Intelligence Dashboard
     </h1>
-    <div class="text-lg text-gray-700 font-medium italic">
-      <p class="mb-1">Forged by Freedom Strength and Nutrition</p>
-      <p class="text-sm text-gray-600">Strength • Discipline • Freedom</p>
-      <p class="text-sm font-semibold text-gray-700 mt-1">
+    <div class="divider"></div>
+    <div class="text-lg text-gray-300 font-medium italic">
+      <p>Forged by Freedom Strength and Nutrition</p>
+      <p class="text-sm text-gray-400">Strength • Discipline • Freedom</p>
+      <p class="text-sm font-semibold text-gray-300 mt-1">
         We make your fitness goals realities!
       </p>
     </div>
   </header>
 
-  <!-- MAIN TABLE -->
-  <main class="w-full max-w-6xl bg-white shadow-lg rounded-2xl p-6">
-    <h2 class="text-xl font-semibold text-gray-800 mb-4">Live Game Odds & Picks</h2>
-
-    <div class="overflow-x-auto">
-      <table class="min-w-full border border-gray-200 divide-y divide-gray-200 text-sm">
-        <thead class="bg-gray-50">
-          <tr>
-            <th class="px-3 py-2 text-left font-semibold">Matchup</th>
-            <th class="px-3 py-2 text-right font-semibold">Favorite</th>
-            <th class="px-3 py-2 text-right font-semibold">Spread</th>
-            <th class="px-3 py-2 text-right font-semibold">Straight Up</th>
-            <th class="px-3 py-2 text-right font-semibold">ATS</th>
-            <th class="px-3 py-2 text-right font-semibold">O/U</th>
-            <th class="px-3 py-2 text-right font-semibold">Confidence</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody" class="divide-y divide-gray-100">
-          <tr><td colspan="7" class="text-center py-4 text-gray-500">Loading data...</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <main class="w-full max-w-7xl bg-[#1b1b1b] shadow-2xl rounded-2xl p-6 border border-gray-800">
+    <h2 class="text-xl font-semibold text-gray-200 mb-6">Live Game Odds & Picks</h2>
+    <div id="timestamp" class="text-right text-sm text-gray-400 mb-4"></div>
+    <div id="contentArea" class="space-y-10"></div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="mt-10 text-gray-500 text-xs">
     <p>&copy; 2025 Forged by Freedom. All rights reserved.</p>
   </footer>
 
-  <!-- JAVASCRIPT -->
   <script>
+    function confClass(value) {
+      if (value >= 80) return 'conf-high';
+      if (value >= 60) return 'conf-med';
+      return 'conf-low';
+    }
+
     async function loadData() {
       const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json?cachebust=" + Date.now();
-      const tbody = document.getElementById("tableBody");
+      const content = document.getElementById("contentArea");
+      const timestampDiv = document.getElementById("timestamp");
 
       try {
         const res = await fetch(url);
         if (!res.ok) throw new Error(res.statusText);
         const json = await res.json();
         const data = json.data || [];
+        timestampDiv.textContent = `Last updated: ${json.timestamp || 'Unknown'}`;
 
-        // Filter for next 8 days
         const now = new Date();
         const in8days = new Date();
         in8days.setDate(now.getDate() + 8);
@@ -82,50 +69,79 @@
           const t = new Date(g.commence_time);
           return t >= now && t <= in8days;
         });
-
-        // ✅ Auto fallback: if nothing in 8 days, show all games
         if (filtered.length === 0 && data.length > 0) {
           filtered = data;
-          console.warn("No games within 8 days — showing all available games instead.");
         }
 
-        // Sort by sport_key then by spread
-        filtered.sort((a, b) => {
-          if (a.sport_key < b.sport_key) return -1;
-          if (a.sport_key > b.sport_key) return 1;
-          return Math.abs(a.spread) - Math.abs(b.spread);
+        const grouped = {};
+        filtered.forEach(g => {
+          const sport = g.sport_key || "other";
+          if (!grouped[sport]) grouped[sport] = [];
+          grouped[sport].push(g);
         });
 
-        // Clear table
-        tbody.innerHTML = "";
+        content.innerHTML = "";
+        const sportNames = {
+          "americanfootball_nfl": "🏈 NFL Football",
+          "americanfootball_ncaaf": "🎓 NCAA Football",
+          "basketball_ncaab": "🏀 NCAA Men's Basketball",
+          "basketball_ncaaw": "🏀 NCAA Women's Basketball",
+          "baseball_mlb": "⚾ MLB Baseball",
+          "icehockey_nhl": "🏒 NHL Hockey",
+          "mma_mixedmartialarts": "🥊 UFC / MMA"
+        };
 
-        if (filtered.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-gray-500">No games found.</td></tr>`;
-          return;
-        }
+        for (const [sport, games] of Object.entries(grouped)) {
+          const section = document.createElement("div");
+          section.innerHTML = `
+            <h3 class="section-header">${sportNames[sport] || sport}</h3>
+            <div class="overflow-x-auto mt-3">
+              <table class="min-w-full border border-gray-700 divide-y divide-gray-700 text-sm">
+                <thead class="bg-[#2a2a2a] text-gray-200">
+                  <tr>
+                    <th class="px-3 py-2 text-left">Matchup</th>
+                    <th class="px-3 py-2 text-right">Favorite</th>
+                    <th class="px-3 py-2 text-right">Spread</th>
+                    <th class="px-3 py-2 text-right">Straight Up</th>
+                    <th class="px-3 py-2 text-right">ATS</th>
+                    <th class="px-3 py-2 text-right">O/U</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-800">
+                  ${games.map(game => {
+                    const [away, home] = (game.matchup || "").split("@");
+                    const fav = game.spread < 0 ? away : home;
+                    const spread = (game.spread > 0 ? "+" : "") + game.spread.toFixed(1);
 
-        // Render table rows
-        filtered.forEach(game => {
-          const [away, home] = (game.matchup || "").split("@");
-          const fav = game.spread < 0 ? away : home;
-          const spread = (game.spread > 0 ? "+" : "") + game.spread.toFixed(1);
-          const conf = (Math.random() * 10 + 90).toFixed(1) + "%";
+                    // Basic simulated confidence model (can tie into model data later)
+                    const su_conf = (100 - Math.abs((game.ml_fav - 1) * 10)).toFixed(1);
+                    const ats_conf = (100 - Math.abs(game.spread) * 4).toFixed(1);
+                    const ou_conf = (100 - Math.abs((game.total - 45)) * 1.2).toFixed(1);
 
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="px-3 py-2">${game.matchup}</td>
-            <td class="px-3 py-2 text-green-700 font-semibold text-right">${fav}</td>
-            <td class="px-3 py-2 text-right">${spread}</td>
-            <td class="px-3 py-2 text-right">${game.pred_straight || "-"}</td>
-            <td class="px-3 py-2 text-right">${game.pred_ats || "-"}</td>
-            <td class="px-3 py-2 text-right">${game.pred_ou || "-"}</td>
-            <td class="px-3 py-2 text-right font-medium">${conf}</td>
+                    return `
+                      <tr>
+                        <td class="px-3 py-2">${game.matchup}</td>
+                        <td class="px-3 py-2 text-right fav">${fav}</td>
+                        <td class="px-3 py-2 text-right">${spread}</td>
+                        <td class="px-3 py-2 text-right ${confClass(su_conf)}">${su_conf}%</td>
+                        <td class="px-3 py-2 text-right ${confClass(ats_conf)}">${ats_conf}%</td>
+                        <td class="px-3 py-2 text-right ${confClass(ou_conf)}">${ou_conf}%</td>
+                      </tr>
+                    `;
+                  }).join("")}
+                </tbody>
+              </table>
+            </div>
           `;
-          tbody.appendChild(tr);
-        });
+          content.appendChild(section);
+        }
+
+        if (Object.keys(grouped).length === 0) {
+          content.innerHTML = `<p class="text-gray-400 text-center">No current games available.</p>`;
+        }
       } catch (err) {
         console.error("Error loading JSON:", err);
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-red-500">⚠️ Error loading data (check JSON source)</td></tr>`;
+        content.innerHTML = `<p class="text-red-500 text-center mt-10">⚠️ Error loading data (check JSON source)</p>`;
       }
     }
 
