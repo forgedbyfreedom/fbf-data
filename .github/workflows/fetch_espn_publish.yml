@@ -1,4 +1,4 @@
-name: Fetch ESPN Data and Publish
+name: Fetch ESPN Data and Publish (Failsafe)
 
 on:
   workflow_dispatch:
@@ -30,6 +30,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
+      - name: Backup last combined.json
+        run: |
+          echo "[💾] Backing up previous combined.json..."
+          if [ -f combined.json ]; then
+            cp combined.json combined_backup_$(date -u +"%Y%m%d_%H%M").json
+          fi
+
       - name: Fetch ESPN Odds
         run: |
           echo "[🏈] Running ESPN odds fetcher..."
@@ -38,6 +45,22 @@ jobs:
           else
             echo "⚠️ fetch_espn_all.py not found!"
             exit 1
+          fi
+
+      - name: Failsafe check (restore backup if no games)
+        run: |
+          echo "[🔍] Checking combined.json integrity..."
+          if grep -q '"data": \[\]' combined.json; then
+            echo "⚠️  No games found! Restoring most recent backup."
+            latest_backup=$(ls -t combined_backup_*.json | head -n 1)
+            if [ -n "$latest_backup" ]; then
+              cp "$latest_backup" combined.json
+              echo "[✅] Restored $latest_backup as active combined.json"
+            else
+              echo "[❌] No backup found; leaving combined.json as-is."
+            fi
+          else
+            echo "[✅] combined.json contains valid data."
           fi
 
       - name: Prepare deployment folder
@@ -50,7 +73,7 @@ jobs:
           find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
           echo "data.forgedbyfreedom.org" > _site/CNAME
 
-          echo "<html><body><h1>Forged by Freedom — ESPN Odds Feed</h1><p>Auto-updated every 15 minutes.</p><ul>" > _site/index.html
+          echo "<html><body><h1>Forged by Freedom — ESPN Odds Feed (Failsafe)</h1><p>Auto-updated every 15 minutes (UTC).</p><ul>" > _site/index.html
           for f in $(ls _site/*.json); do
             echo "<li><a href='$(basename "$f")'>$(basename "$f")</a></li>" >> _site/index.html
           done
