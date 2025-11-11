@@ -1,179 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forged by Freedom — Live Game Odds & Picks</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: #0f172a;
-      color: #f8fafc;
-      font-family: 'Inter', sans-serif;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      padding: 0.5rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid #1e293b;
-    }
-    th {
-      background-color: #1e293b;
-      font-weight: 700;
-    }
-    tr:hover {
-      background-color: #334155;
-    }
-    .sport-header {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      font-weight: bold;
-      color: #22d3ee;
-    }
-  </style>
-</head>
+name: Publish Data to GitHub Pages
 
-<body class="p-6">
-  <header class="text-center mb-6">
-    <h1 class="text-4xl font-bold text-emerald-400">
-      Forged by Freedom — Live Game Odds & Picks
-    </h1>
-    <p class="text-gray-400 mt-2">
-      Strength · Discipline · Freedom · We make your fitness goals realities!
-    </p>
-    <p class="text-gray-500 mt-1 text-sm italic">
-      forgedbyfreedom.org
-    </p>
-    <p id="timestamp" class="text-gray-500 mt-2 text-xs"></p>
-  </header>
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"  # every 15 minutes UTC
 
-  <div id="content" class="space-y-10 text-sm md:text-base"></div>
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
-  <script>
-    async function loadData() {
-      const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json";
-      try {
-        const res = await fetch(url + "?v=" + Date.now());
-        if (!res.ok) throw new Error(res.statusText);
-        const json = await res.json();
-        const games = json.data || json || [];
-        renderDashboard(games);
-        updateTimestamp(json.timestamp);
-      } catch (err) {
-        document.getElementById("content").innerHTML = `
-          <div class="text-center text-red-400 mt-10">
-            ⚠️ Error loading data: ${err.message}<br>
-            <a href="${url}" class="underline text-blue-400" target="_blank">Check combined.json</a>
-          </div>`;
-      }
-    }
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
-    function updateTimestamp(ts) {
-      const el = document.getElementById("timestamp");
-      if (ts) {
-        el.innerText = "Last updated: " + ts.replace(/_/g, " ").replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3 UTC");
-      } else {
-        el.innerText = "Last updated: " + new Date().toISOString().split(".")[0] + " UTC";
-      }
-    }
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-    function resolveFavorite(game) {
-      const away = game.away_team || (game.matchup || "").split("@")[0]?.trim() || "";
-      const home = game.home_team || (game.matchup || "").split("@")[1]?.trim() || "";
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      if (game.favorite_team && typeof game.fav_spread === "number") {
-        const spread = game.fav_spread > 0 ? `(+${game.fav_spread})` : `(${game.fav_spread})`;
-        return {
-          favorite: `${game.favorite_team} ${spread}`,
-          dog: game.dog_team || (game.favorite_team === home ? away : home),
-          away, home
-        };
-      }
-      return { favorite: "— Missing Spread Data —", dog: "", away, home };
-    }
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    function renderDashboard(games) {
-      const now = new Date();
-      const cutoff = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000);
-      const upcoming = games.filter(g => {
-        const t = new Date(g.commence_time);
-        return !isNaN(t) && t >= now && t <= cutoff;
-      });
-      const show = upcoming.length ? upcoming : games;
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-      if (!show.length) {
-        document.getElementById("content").innerHTML = "<p class='text-center mt-10 text-gray-400'>No games available.</p>";
-        return;
-      }
+      # --------------- FETCH ODDS ---------------
+      - name: Run fetcher
+        run: |
+          echo "[🕒] Running fetch_multi.py..."
+          if [ -f fetch_multi.py ]; then
+            python fetch_multi.py || echo "⚠️ fetch_multi.py failed, continuing."
+          else
+            echo "⚠️ fetch_multi.py not found, skipping odds fetch."
+          fi
 
-      const sports = {};
-      for (const g of show) {
-        if (!sports[g.sport_key]) sports[g.sport_key] = [];
-        sports[g.sport_key].push(g);
-      }
+      # --------------- FETCH ROSTERS (OPTIONAL) ---------------
+      - name: Run roster fetcher
+        run: |
+          echo "[👥] Fetching DraftKings & FanDuel rosters..."
+          if [ -f fetch_rosters.py ]; then
+            python fetch_rosters.py || echo "⚠️ Roster fetch failed, continuing."
+          else
+            echo "⚠️ fetch_rosters.py not found, skipping."
+          fi
 
-      const sportLabels = {
-        "americanfootball_nfl": "🏈 NFL Football",
-        "americanfootball_ncaaf": "🎓 NCAA Football",
-        "basketball_ncaab": "🏀 NCAA Men’s Basketball",
-        "basketball_ncaaw": "🏀 NCAA Women’s Basketball",
-        "baseball_mlb": "⚾ MLB Baseball",
-        "icehockey_nhl": "🏒 NHL Hockey",
-        "mma_mixedmartialarts": "🥊 UFC / MMA"
-      };
+      # --------------- NORMALIZE DATA (OPTIONAL) ---------------
+      - name: Normalize latest data
+        run: |
+          echo "[🔧] Normalizing latest data..."
+          if [ -f tools/normalize_latest.py ]; then
+            python tools/normalize_latest.py || echo "⚠️ Normalization failed, continuing."
+          else
+            echo "⚠️ normalize_latest.py not found, skipping normalization."
+          fi
 
-      let html = "";
-      for (const [sport, games] of Object.entries(sports)) {
-        html += `<div><div class="sport-header">${sportLabels[sport] || sport}</div>
-          <table>
-            <thead>
-              <tr>
-                <th>Matchup</th>
-                <th>Favorite (Spread)</th>
-                <th>Straight Up</th>
-                <th>ATS</th>
-                <th>O/U</th>
-              </tr>
-            </thead>
-            <tbody>`;
-
-        for (const g of games) {
-          const f = resolveFavorite(g);
-          const su = g.conf_straight ?? Math.random() * 25 + 65;
-          const ats = g.conf_ats ?? Math.random() * 25 + 65;
-          const ou = g.conf_ou ?? Math.random() * 25 + 65;
-
-          html += `
-            <tr>
-              <td>${g.matchup}</td>
-              <td>${f.favorite}</td>
-              <td>${su.toFixed(1)}%</td>
-              <td>${ats.toFixed(1)}%</td>
-              <td>${ou.toFixed(1)}%</td>
-            </tr>`;
-        }
-
-        html += `</tbody></table></div>`;
-      }
-
-      document.getElementById("content").innerHTML = html;
-    }
-
-    loadData();
-  </script>
-</body>      # ✅ Tag favorites BEFORE deployment
+      # ✅ --------------- TAG FAVORITES BEFORE DEPLOY ---------------
       - name: Tag favorites
         run: |
-          echo "[🏈] Tagging favorites with negative spreads..."
+          echo "[🏈] Tagging favorites with correct negative spreads..."
           if [ -f tag_favorites.py ]; then
             python tag_favorites.py || echo "⚠️ tag_favorites.py failed, continuing."
           else
             echo "⚠️ tag_favorites.py not found, skipping."
           fi
 
-</html>
+      # --------------- PREPARE DEPLOYMENT ---------------
+      - name: Prepare deployment folder
+        run: |
+          echo "[📦] Preparing deployment folder..."
+          rm -rf _site
+          mkdir -p _site archive
+
+          TODAY=$(date -u +"%Y-%m-%d")
+          mkdir -p "_site/archive/$TODAY"
+
+          # Copy JSON data files
+          find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
+          find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
+
+          # Copy roster data
+          if [ -d "rosters" ]; then
+            mkdir -p _site/rosters "_site/archive/$TODAY/rosters"
+            cp -v rosters/*.json _site/rosters/ 2>/dev/null || true
+            cp -v rosters/*.json "_site/archive/$TODAY/rosters/" 2>/dev/null || true
+          fi
+
+          # Add CNAME for custom domain
+          echo "data.forgedbyfreedom.org" > _site/CNAME
+
+          # Build index.html dynamically
+          {
+            echo "<html><body style='font-family:Arial;text-align:center;background:#fafafa;color:#222;'>"
+            echo "<h1>Forged by Freedom Strength & Nutrition</h1>"
+            echo "<h3>Strength – Discipline – Freedom</h3>"
+            echo "<p>We make your fitness goals realities!</p>"
+            echo "<p><b>forgedbyfreedom.org</b></p>"
+            echo "<hr>"
+            echo "<h2>Forged Data API</h2>"
+            echo "<p>Auto-updates every 15 minutes (UTC)</p>"
+            echo "<h3>Latest JSON Files</h3><ul style='list-style:none;padding:0;'>"
+            for f in $(ls _site/*.json 2>/dev/null); do
+              base=$(basename "$f")
+              echo "<li><a href='$base'>$base</a></li>"
+            done
+            echo "</ul>"
+            echo "<p style='margin-top:40px;font-size:smaller;color:#777;'>Last updated: $(date -u)</p>"
+            echo "</body></html>"
+          } > _site/index.html
+
+          echo "[✅] Deployment folder ready."
+
+      # --------------- UPLOAD + DEPLOY ---------------
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
 
