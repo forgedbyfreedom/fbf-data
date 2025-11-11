@@ -1,0 +1,66 @@
+name: Fetch ESPN Data and Publish
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"  # every 15 minutes UTC
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  fetch-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Fetch ESPN Odds
+        run: |
+          echo "[🏈] Running ESPN odds fetcher..."
+          if [ -f fetch_espn_all.py ]; then
+            python fetch_espn_all.py
+          else
+            echo "⚠️ fetch_espn_all.py not found!"
+            exit 1
+          fi
+
+      - name: Prepare deployment folder
+        run: |
+          echo "[📦] Preparing deployment folder..."
+          mkdir -p _site archive
+          TODAY=$(date -u +"%Y-%m-%d")
+          mkdir -p "_site/archive/$TODAY"
+          find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
+          find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
+          echo "data.forgedbyfreedom.org" > _site/CNAME
+
+          echo "<html><body><h1>Forged by Freedom — ESPN Odds Feed</h1><p>Auto-updated every 15 minutes.</p><ul>" > _site/index.html
+          for f in $(ls _site/*.json); do
+            echo "<li><a href='$(basename "$f")'>$(basename "$f")</a></li>" >> _site/index.html
+          done
+          echo "</ul></body></html>" >> _site/index.html
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
