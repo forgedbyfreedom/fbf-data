@@ -11,21 +11,32 @@
 <script>
 async function loadData() {
   try {
-    // ✅ Use the exact confirmed working URL
-    const res = await fetch("https://forgedbyfreedom.github.io/fbf-data/combined.json");
+    // ✅ Direct raw GitHub URL (no redirect, no CORS issue)
+    const res = await fetch("https://raw.githubusercontent.com/forgedbyfreedom/fbf-data/main/combined.json");
     const raw = await res.json();
-    const data = raw.data || []; // unwrap your JSON
+    const data = raw.data || []; // unwrap JSON array
 
-    // Sort by favorite implied probability (lower ml_fav = stronger favorite)
+    // Sort by strongest favorite (lower ml_fav)
     data.sort((a, b) => (a.ml_fav || 999) - (b.ml_fav || 999));
 
     const tbody = document.getElementById("tableBody");
     tbody.innerHTML = "";
 
     data.forEach(row => {
-      // Filter for NFL only
       if (!row.matchup || !row.sport_key || !row.sport_key.includes("nfl")) return;
 
       // Calculate implied probabilities from moneyline odds
       const favProb = row.ml_fav ? (100 / (row.ml_fav + 100)) * 100 : "";
-      const dogProb
+      const dogProb = row.ml_dog ? (100 / (row.ml_dog + 100)) * 100 : "";
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="px-3 py-2 text-sm text-left">${row.matchup}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.spread ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.total ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${favProb ? favProb.toFixed(1) + "%" : ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${dogProb ? dogProb.toFixed(1) + "%" : ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.ml_fav ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.ml_dog ?? ""}</td>
+        <td c
+
