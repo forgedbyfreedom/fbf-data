@@ -17,14 +17,17 @@ jobs:
       name: github-pages
 
     steps:
+      # --------------- CHECKOUT REPO ---------------
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # --------------- PYTHON SETUP ---------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      # --------------- DEPENDENCIES ---------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -40,7 +43,7 @@ jobs:
             echo "⚠️ fetch_multi.py not found, skipping odds fetch."
           fi
 
-      # --------------- FETCH ROSTERS (NEW) ---------------
+      # --------------- FETCH ROSTERS ---------------
       - name: Run roster fetcher
         run: |
           echo "[👥] Fetching DraftKings & FanDuel rosters..."
@@ -58,6 +61,16 @@ jobs:
             python tools/normalize_latest.py
           else
             echo "No normalize_latest.py found, skipping normalization."
+          fi
+
+      # --------------- FIX FAVORITES / SPREADS (NEW) ---------------
+      - name: Fix per-team spreads and favorites
+        run: |
+          echo "[🏈] Running fix_combined_from_league_files.py..."
+          if [ -f fix_combined_from_league_files.py ]; then
+            python fix_combined_from_league_files.py || echo "⚠️ Favorite fixer failed, continuing."
+          else
+            echo "⚠️ fix_combined_from_league_files.py not found, skipping."
           fi
 
       # --------------- PREPARE DEPLOYMENT ---------------
@@ -121,3 +134,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+
