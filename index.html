@@ -3,24 +3,61 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Forged by Freedom — NFL SU / ATS / O/U (10k Sims)</title>
+<title>Forged by Freedom — NFL Simulation Dashboard</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  .badge { padding: .15rem .45rem; border-radius: .5rem; font-weight: 600; }
+  body { background: #0f172a; color: #f1f5f9; }
+  .badge { padding: .2rem .45rem; border-radius: .4rem; font-weight: 600; }
   .fav { background: rgba(34,197,94,.18); color: #86efac; border: 1px solid #22c55e44; }
   .dog { background: rgba(239,68,68,.18); color: #fca5a5; border: 1px solid #ef444444; }
   .lean { background: rgba(59,130,246,.18); color:#93c5fd; border:1px solid #3b82f644; }
 </style>
+</head>
+
+<body>
+  <div class="max-w-7xl mx-auto p-4">
+    <h1 class="text-2xl sm:text-3xl font-bold text-center mb-2">
+      Forged by Freedom — NFL Simulation Dashboard (10k Sims)
+    </h1>
+    <p id="status" class="text-center text-sm text-gray-400 mb-4">
+      Initializing…
+    </p>
+
+    <div class="overflow-x-auto shadow-lg rounded-lg">
+      <table class="min-w-full text-xs sm:text-sm border border-gray-700 rounded-lg">
+        <thead class="bg-gray-800 text-gray-200">
+          <tr>
+            <th class="px-3 py-2 text-left">Matchup</th>
+            <th class="px-3 py-2 text-left">Favorite / Dog</th>
+            <th class="px-3 py-2 text-right">Spread</th>
+            <th class="px-3 py-2 text-right">Total</th>
+            <th class="px-3 py-2 text-left">Straight-Up (Pick • %)</th>
+            <th class="px-3 py-2 text-left">ATS (Pick • %)</th>
+            <th class="px-3 py-2 text-left">Total (Pick • %)</th>
+            <th class="px-3 py-2 text-right">Kickoff</th>
+            <th class="px-3 py-2 text-right">Book</th>
+          </tr>
+        </thead>
+        <tbody id="tbody" class="divide-y divide-gray-700 bg-gray-900"></tbody>
+      </table>
+    </div>
+
+    <footer class="text-center text-xs text-gray-500 mt-6">
+      Results are probabilistic and informational only.
+    </footer>
+  </div>
 
 <script>
-/* =============================== */
-/* CONFIG                          */
-/* =============================== */
+/* ---------- CONFIG ---------- */
 const N_SIM = 10000;            // Monte Carlo sims per matchup
-const TEAM_SD_POINTS = 13;      // Points standard deviation per team
-const DATA_PATH = "./combined.json"; // same directory as index.html
+const TEAM_SD_POINTS = 13;      // Points SD per team
 
-/* ===== RNG: Normal(mean, sd) ===== */
+/* Fetch from GitHub via CORS-safe AllOrigins proxy */
+const DATA_URL =
+  "https://api.allorigins.win/raw?url=" +
+  encodeURIComponent("https://forgedbyfreedom.github.io/fbf-data/combined.json");
+
+/* ---------- RNG Helpers ---------- */
 function randn_bm() {
   let u = 0, v = 0;
   while (u === 0) u = Math.random();
@@ -31,29 +68,25 @@ function rnorm(mean, sd) {
   return mean + randn_bm() * sd;
 }
 
-/* ===== Simulate one matchup ===== */
+/* ---------- Simulation ---------- */
 function simulateMatchup(total, spread, nSim = N_SIM, sd = TEAM_SD_POINTS) {
   const favMean = (total / 2) + (spread / 2);
   const dogMean = (total / 2) - (spread / 2);
 
   let favSU = 0, dogSU = 0;
-  let favATS = 0, dogATS = 0, atsPush = 0;
+  let favATS = 0, dogATS = 0;
   let over = 0, under = 0;
 
   for (let i = 0; i < nSim; i++) {
     const favScore = rnorm(favMean, sd);
     const dogScore = rnorm(dogMean, sd);
 
-    // SU
     if (favScore > dogScore) favSU++; else dogSU++;
 
-    // ATS (favorite - spread)
     const margin = favScore - dogScore;
     if (margin > -spread) favATS++;
     else if (margin < -spread) dogATS++;
-    else atsPush++;
 
-    // Total
     const totPts = favScore + dogScore;
     if (totPts > total) over++;
     else if (totPts < total) under++;
@@ -73,14 +106,82 @@ function simulateMatchup(total, spread, nSim = N_SIM, sd = TEAM_SD_POINTS) {
   };
 }
 
-/* ===== Load JSON and Simulate All Games ===== */
+/* ---------- Load + Render ---------- */
 async function loadData() {
+  const status = document.getElementById("status");
   try {
-    document.getElementById("status").textContent = "Running 10k simulations per game…";
-    const res = await fetch(DATA_PATH, { cache: "no-cache" });
+    status.textContent = "Fetching live data…";
+    const res = await fetch(DATA_URL, { cache: "no-cache" });
     if (!res.ok) throw new Error("HTTP " + res.status);
-
     const json = await res.json();
-    const data = json.data.filter(d => d.sport_key && d.sport_key.includes("nfl"));
+    const data = (json.data || json).filter(d => d.sport_key?.includes("nfl"));
+    status.textContent = `Running ${N_SIM.toLocaleString()} simulations per game…`;
 
-    const games = data.map(row
+    const games = data.map(row => {
+      const [teamA, teamB] = row.matchup.split("@").map(x => x.trim());
+      const favTeam = row.ml_fav < row.ml_dog ? teamA : teamB;
+      const dogTeam = row.ml_fav < row.ml_dog ? teamB : teamA;
+      const spread = Math.abs(row.spread);
+      const total = row.total;
+
+      const sim = simulateMatchup(total, spread);
+
+      const suWinner = sim.favSU > sim.dogSU ? favTeam : dogTeam;
+      const suConf = Math.max(sim.favSU, sim.dogSU);
+
+      const atsWinner = sim.favATS > sim.dogATS
+        ? `${favTeam} -${spread}`
+        : `${dogTeam} +${spread}`;
+      const atsConf = Math.max(sim.favATS, sim.dogATS);
+
+      const totalPick = sim.over > sim.under ? "Over" : "Under";
+      const totalConf = Math.max(sim.over, sim.under);
+
+      return {
+        matchup: `${teamA} @ ${teamB}`,
+        favTeam, dogTeam,
+        spread, total,
+        suWinner, suConf,
+        atsWinner, atsConf,
+        totalPick, totalConf,
+        kickoff: new Date(row.commence_time).toLocaleString(),
+        book: row.book
+      };
+    });
+
+    games.sort((a, b) => b.suConf - a.suConf);
+
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
+    games.forEach(g => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="px-3 py-2 text-left">${g.matchup}</td>
+        <td class="px-3 py-2 text-left">
+          <span class="badge fav">${g.favTeam}</span> /
+          <span class="badge dog">${g.dogTeam}</span>
+        </td>
+        <td class="px-3 py-2 text-right">-${g.spread.toFixed(1)}</td>
+        <td class="px-3 py-2 text-right">${g.total.toFixed(1)}</td>
+        <td class="px-3 py-2 text-left"><span class="badge lean">${g.suWinner}</span>
+          <span class="ml-2 text-xs text-gray-300">${g.suConf.toFixed(1)}%</span></td>
+        <td class="px-3 py-2 text-left"><span class="badge lean">${g.atsWinner}</span>
+          <span class="ml-2 text-xs text-gray-300">${g.atsConf.toFixed(1)}%</span></td>
+        <td class="px-3 py-2 text-left"><span class="badge lean">${g.totalPick}</span>
+          <span class="ml-2 text-xs text-gray-300">${g.totalConf.toFixed(1)}%</span></td>
+        <td class="px-3 py-2 text-right">${g.kickoff}</td>
+        <td class="px-3 py-2 text-right">${g.book ?? ""}</td>`;
+      tbody.appendChild(tr);
+    });
+
+    status.textContent =
+      `✅ Simulated ${N_SIM.toLocaleString()} runs • ${games.length} NFL games`;
+  } catch (err) {
+    console.error(err);
+    status.textContent = "⚠️ " + err.message;
+  }
+}
+window.onload = loadData;
+</script>
+</body>
+</html>
