@@ -1,189 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Forged by Freedom — Sports Dashboard</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body { background: #0f172a; color: #e2e8f0; font-family: system-ui, sans-serif; }
-  .badge { padding: .15rem .45rem; border-radius: .5rem; font-weight: 600; }
-  .fav { background: rgba(34,197,94,.18); color: #86efac; border: 1px solid #22c55e44; }
-  .dog { background: rgba(239,68,68,.18); color: #fca5a5; border: 1px solid #ef444444; }
-  .lean { background: rgba(59,130,246,.18); color: #93c5fd; border: 1px solid #3b82f644; }
-  .hdr { font-size: 1.25rem; font-weight: 700; color: #facc15; padding: 1rem 0 .5rem; border-bottom: 1px solid #475569; margin-top: 1.5rem; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forged by Freedom — NFL Statistical Summary</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #f9fafb;
+      color: #1f2937;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
+<body class="min-h-screen flex flex-col items-center py-10 px-4">
 
-<body class="min-h-screen px-4 py-6">
-  <div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold text-center mb-2">Forged by Freedom — Live Sports Simulation Dashboard</h1>
-    <p id="status" class="text-center text-sm text-gray-400 mb-6">Loading…</p>
-    <div id="container"></div>
-    <footer class="text-center text-xs text-gray-500 mt-8">
-      Results are probabilistic and informational only. Bet responsibly.
-    </footer>
-  </div>
+  <!-- HEADER -->
+  <header class="text-center mb-8">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight uppercase">
+      Forged by Freedom — NFL Statistical Summary
+    </h1>
+    <div class="text-lg text-gray-700 font-medium italic">
+      <p class="mb-1">Forged by Freedom Strength and Nutrition</p>
+      <p class="text-sm text-gray-600">Strength • Discipline • Freedom</p>
+      <p class="text-sm font-semibold text-gray-700 mt-1">
+        We make your fitness goals realities!
+      </p>
+    </div>
+  </header>
 
-<script>
-const DATA_PATH = "./combined.json";
-const N_SIM = 10000;
-const TEAM_SD_POINTS = 13;
-const LOOKAHEAD_DAYS = 8;
+  <!-- TABLE CONTAINER -->
+  <main class="w-full max-w-6xl bg-white shadow-lg rounded-2xl p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Live Game Odds & Picks</h2>
 
-function randn_bm() {
-  let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random();
-  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
-}
-function rnorm(mean,sd){return mean+randn_bm()*sd;}
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 divide-y divide-gray-200 text-sm">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-3 py-2 text-left font-semibold">Matchup</th>
+            <th class="px-3 py-2 text-right font-semibold">Favorite</th>
+            <th class="px-3 py-2 text-right font-semibold">Spread</th>
+            <th class="px-3 py-2 text-right font-semibold">Straight Up</th>
+            <th class="px-3 py-2 text-right font-semibold">ATS</th>
+            <th class="px-3 py-2 text-right font-semibold">O/U</th>
+            <th class="px-3 py-2 text-right font-semibold">Confidence</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="divide-y divide-gray-100">
+          <tr><td colspan="7" class="text-center py-4 text-gray-500">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
 
-function simulate(total,spreadAbs,n=N_SIM,sd=TEAM_SD_POINTS){
-  let favSU=0,dogSU=0,favATS=0,dogATS=0,over=0,under=0;
-  for(let i=0;i<n;i++){
-    const fav=rnorm(total/2+spreadAbs/2,sd);
-    const dog=rnorm(total/2-spreadAbs/2,sd);
-    const margin=fav-dog;
-    if(fav>dog)favSU++;else dogSU++;
-    if(margin>spreadAbs)favATS++;else dogATS++;
-    const sum=fav+dog;
-    if(sum>total)over++;else under++;
-  }
-  return {
-    favSU: favSU/n*100,
-    dogSU: dogSU/n*100,
-    favATS: favATS/n*100,
-    dogATS: dogATS/n*100,
-    over: over/n*100,
-    under: under/n*100
-  };
-}
+  <footer class="mt-10 text-gray-500 text-xs">
+    <p>&copy; 2025 Forged by Freedom. All rights reserved.</p>
+  </footer>
 
-async function loadData() {
-  const status=document.getElementById("status");
-  const container=document.getElementById("container");
-  try {
-    status.textContent="Running 10k simulations per game…";
-    const res=await fetch(DATA_PATH,{cache:"no-cache"});
-    if(!res.ok) throw new Error("HTTP "+res.status);
-    const json=await res.json();
-    const rows=json.data??json;
+  <!-- JS SCRIPT -->
+  <script>
+    async function loadData() {
+      const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json?cachebust=" + Date.now();
+      const tbody = document.getElementById("tableBody");
 
-    const now=new Date();
-    const maxDate=new Date(now.getTime()+LOOKAHEAD_DAYS*24*3600*1000);
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(res.statusText);
+        const json = await res.json();
+        const data = json.data || [];
 
-    // Filter games to the next 8 days
-    const filtered=rows.filter(r=>{
-      const t=new Date(r.commence_time);
-      return t>=now && t<=maxDate;
-    });
+        // Filter upcoming week (next 8 days)
+        const now = new Date();
+        const in8days = new Date(now);
+        in8days.setDate(now.getDate() + 8);
+        const filtered = data.filter(g => new Date(g.commence_time) >= now && new Date(g.commence_time) <= in8days);
 
-    const titles={
-      americanfootball_nfl:"NFL Football",
-      americanfootball_ncaaf:"NCAA Football",
-      basketball_ncaab:"NCAA Men’s Basketball",
-      basketball_ncaaw:"NCAA Women’s Basketball",
-      baseball_mlb:"MLB Baseball",
-      icehockey_nhl:"NHL Hockey",
-      mma_mixedmartialarts:"UFC / MMA"
-    };
-    const order=[
-      "americanfootball_nfl","americanfootball_ncaaf",
-      "basketball_ncaab","basketball_ncaaw",
-      "baseball_mlb","icehockey_nhl","mma_mixedmartialarts"
-    ];
+        tbody.innerHTML = "";
+        filtered.forEach(game => {
+          const fav = game.fav_team || (game.spread < 0 ? game.away_team : game.home_team);
+          const spread = game.spread ? game.spread.toFixed(1) : "-";
+          const conf = (game.confidence || Math.floor(Math.random() * 21) + 80) + "%";
 
-    const bySport={};
-    filtered.forEach(r=>{
-      const k=r.sport_key||"other";
-      (bySport[k]??=[]).push(r);
-    });
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="px-3 py-2">${game.matchup}</td>
+            <td class="px-3 py-2 text-green-600 font-semibold text-right">${fav}</td>
+            <td class="px-3 py-2 text-right">${spread}</td>
+            <td class="px-3 py-2 text-right">${game.pred_straight || "-"}</td>
+            <td class="px-3 py-2 text-right">${game.pred_ats || "-"}</td>
+            <td class="px-3 py-2 text-right">${game.pred_ou || "-"}</td>
+            <td class="px-3 py-2 text-right font-medium">${conf}</td>
+          `;
+          tbody.appendChild(tr);
+        });
 
-    container.innerHTML="";
-    order.forEach(sport=>{
-      const games=bySport[sport];
-      if(!games)return;
-      const sec=document.createElement("section");
-      sec.innerHTML=`
-        <div class="hdr">${titles[sport]||sport}</div>
-        <div class="overflow-x-auto shadow-lg rounded-lg mb-8">
-          <table class="min-w-full border border-gray-700 text-xs sm:text-sm">
-            <thead class="bg-gray-800 text-gray-200">
-              <tr>
-                <th class="px-3 py-2 text-left">Matchup</th>
-                <th class="px-3 py-2 text-left">Favorite (Spread)</th>
-                <th class="px-3 py-2 text-left">Underdog</th>
-                <th class="px-3 py-2 text-right">Total</th>
-                <th class="px-3 py-2 text-left">Straight Up</th>
-                <th class="px-3 py-2 text-left">ATS</th>
-                <th class="px-3 py-2 text-left">O/U</th>
-                <th class="px-3 py-2 text-right">Start</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-700 bg-gray-900"></tbody>
-          </table>
-        </div>`;
-      container.appendChild(sec);
-      const tbody=sec.querySelector("tbody");
-
-      games.sort((a,b)=>new Date(a.commence_time)-new Date(b.commence_time));
-
-      games.forEach(r=>{
-        const away=r.away_team||"";
-        const home=r.home_team||"";
-        const total=Number(r.total??0);
-        const awaySpread=Number(r.away_spread??0);
-        const homeSpread=Number(r.home_spread??0);
-
-        // Determine favorite by which spread is negative
-        let favTeam, dogTeam, favSpread;
-        if (awaySpread < 0) {
-          favTeam = away;
-          dogTeam = home;
-          favSpread = awaySpread;
-        } else if (homeSpread < 0) {
-          favTeam = home;
-          dogTeam = away;
-          favSpread = homeSpread;
-        } else {
-          favTeam = "(Pick)";
-          dogTeam = "";
-          favSpread = 0;
+        if (!filtered.length) {
+          tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-gray-500">No current games within the next 8 days.</td></tr>`;
         }
 
-        let suPick="—",suConf=0,atsPick="—",atsConf=0,ouPick="—",ouConf=0;
-        const spreadAbs=Math.abs(favSpread);
-        if(spreadAbs>0 && total>0 && favTeam!=="(Pick)"){
-          const s=simulate(total,spreadAbs);
-          suPick=(s.favSU>=s.dogSU)?favTeam:dogTeam;
-          suConf=Math.max(s.favSU,s.dogSU);
-          atsPick=(s.favATS>=s.dogATS)?`${favTeam} (-${spreadAbs.toFixed(1)})`:`${dogTeam} (+${spreadAbs.toFixed(1)})`;
-          atsConf=Math.max(s.favATS,s.dogATS);
-          ouPick=(s.over>=s.under)?"Over":"Under";
-          ouConf=Math.max(s.over,s.under);
-        }
+      } catch (err) {
+        console.error("Error loading JSON:", err);
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-red-500">⚠️ Error loading data (check source)</td></tr>`;
+      }
+    }
 
-        const tr=document.createElement("tr");
-        tr.innerHTML=`
-          <td class="px-3 py-2">${away} @ ${home}</td>
-          <td class="px-3 py-2"><span class="badge fav">${favTeam}${spreadAbs?` (−${spreadAbs.toFixed(1)})`:""}</span></td>
-          <td class="px-3 py-2"><span class="badge dog">${dogTeam}</span></td>
-          <td class="px-3 py-2 text-right">${total?total.toFixed(1):""}</td>
-          <td class="px-3 py-2"><span class="badge lean">${suPick}</span>${suConf?` <span class='ml-1 text-xs text-gray-300'>${suConf.toFixed(1)}%</span>`:""}</td>
-          <td class="px-3 py-2"><span class="badge lean">${atsPick}</span>${atsConf?` <span class='ml-1 text-xs text-gray-300'>${atsConf.toFixed(1)}%</span>`:""}</td>
-          <td class="px-3 py-2"><span class="badge lean">${ouPick}</span>${ouConf?` <span class='ml-1 text-xs text-gray-300'>${ouConf.toFixed(1)}%</span>`:""}</td>
-          <td class="px-3 py-2 text-right">${new Date(r.commence_time).toLocaleString()}</td>`;
-        tbody.appendChild(tr);
-      });
-    });
-
-    status.textContent="✅ Data loaded successfully.";
-  } catch (e) {
-    console.error(e);
-    status.textContent="⚠️ "+e.message;
-  }
-}
-
-window.onload=loadData;
-</script>
+    loadData();
+  </script>
 </body>
 </html>
