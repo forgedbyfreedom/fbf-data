@@ -11,20 +11,20 @@
 <script>
 async function loadData() {
   try {
-    // Use raw.githubusercontent.com to avoid redirects/CORS issues
+    // ✅ jsDelivr mirror avoids GitHub CORS problems
     const res = await fetch(
-      "https://raw.githubusercontent.com/forgedbyfreedom/fbf-data/main/combined.json"
+      "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json"
     );
 
     if (!res.ok) throw new Error("HTTP " + res.status);
 
     const raw = await res.json();
-    console.log("RAW JSON:", raw);  // <-- check this in the console
+    console.log("RAW JSON:", raw);
 
     const data = raw.data || [];
     if (!Array.isArray(data)) throw new Error("Unexpected JSON format");
 
-    // sort by favorite moneyline (lowest number = strongest favorite)
+    // Sort by strongest favorite (lowest ml_fav)
     data.sort((a, b) => (a.ml_fav || 9999) - (b.ml_fav || 9999));
 
     const tbody = document.getElementById("tableBody");
@@ -39,27 +39,3 @@ async function loadData() {
         : null;
       const dogProb = row.ml_dog
         ? (100 / (row.ml_dog + 100)) * 100
-        : null;
-
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td class="px-3 py-2 text-sm text-left">${row.matchup}</td>
-        <td class="px-3 py-2 text-sm text-right">${row.spread ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${row.total ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${
-          favProb ? favProb.toFixed(1) + "%" : ""
-        }</td>
-        <td class="px-3 py-2 text-sm text-right">${
-          dogProb ? dogProb.toFixed(1) + "%" : ""
-        }</td>
-        <td class="px-3 py-2 text-sm text-right">${row.ml_fav ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${row.ml_dog ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${row.book ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${new Date(
-          row.commence_time
-        ).toLocaleString()}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-
-    document.getElementById("status").textContent =
