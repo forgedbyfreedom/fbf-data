@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Forged by Freedom — Live Sims (SU / ATS / O/U)</title>
+<title>Forged by Freedom — Sports Betting Dashboard</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body { background:#0f172a; color:#e2e8f0; }
-  .badge{ padding:.15rem .45rem; border-radius:.5rem; font-weight:600; }
+  .badge { padding:.15rem .45rem; border-radius:.5rem; font-weight:600; }
   .fav { background:rgba(34,197,94,.18); color:#86efac; border:1px solid #22c55e44; }
   .dog { background:rgba(239,68,68,.18); color:#fca5a5; border:1px solid #ef444444; }
-  .lean{ background:rgba(59,130,246,.18); color:#93c5fd; border:1px solid #3b82f644; }
+  .lean { background:rgba(59,130,246,.18); color:#93c5fd; border:1px solid #3b82f644; }
   .hdr { font-size:1.25rem; font-weight:700; color:#facc15; padding:1rem 0 .5rem; border-bottom:1px solid #475569; margin-top:1.5rem; }
 </style>
 </head>
@@ -20,117 +20,80 @@
     <p id="status" class="text-center text-sm text-gray-400 mb-6">Loading…</p>
     <div id="container"></div>
     <footer class="text-center text-xs text-gray-500 mt-8">
-      Results are probabilistic and informational only. Bet responsibly.
+      Results are probabilistic and informational only.
     </footer>
   </div>
 
 <script>
-/* ================= Simulation settings ================= */
-const N_SIM = 10000;          // sims per matchup
-const TEAM_SD_POINTS = 13;    // per-team scoring SD
-const DATA_PATH = "./combined.json"; // same folder as index.html
+const N_SIM = 10000;
+const TEAM_SD_POINTS = 13;
+const DATA_PATH = "./combined.json";
+const LOOKAHEAD_DAYS = 8;
 
-/* ================= RNG (normal) ================= */
-function randn_bm(){ let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
-function rnorm(mean, sd){ return mean + randn_bm()*sd; }
+function randn_bm(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function rnorm(mean,sd){return mean+randn_bm()*sd;}
 
-/* ========== Simulate one game using favorite spread ==========
-   We treat the spread magnitude as the favorite's line (always positive here).
-   favMean  = total/2 + spreadAbs/2
-   dogMean  = total/2 - spreadAbs/2
-   ATS is tested against favorite -spreadAbs
-*/
-function simulate(total, spreadAbs, n=N_SIM, sd=TEAM_SD_POINTS){
-  let favSU=0, dogSU=0, favATS=0, dogATS=0, over=0, under=0;
+function simulate(total,spreadAbs,n=N_SIM,sd=TEAM_SD_POINTS){
+  let favSU=0,dogSU=0,favATS=0,dogATS=0,over=0,under=0;
   for(let i=0;i<n;i++){
-    const favScore = rnorm(total/2 + spreadAbs/2, sd);
-    const dogScore = rnorm(total/2 - spreadAbs/2, sd);
-
-    if (favScore > dogScore) favSU++; else dogSU++;
-
-    const margin = favScore - dogScore;     // >0 means favorite wins by X
-    // favorite's line is -spreadAbs
-    if (margin > spreadAbs * 0) { /* just for clarity */ }
-    if (margin > -(-spreadAbs)) favATS++; else dogATS++; // margin > spreadAbs? No: compare to -(-spreadAbs) == +spreadAbs? Careful:
-    // Correct ATS check: favorite covers if margin > spreadAbs? No—line is -spreadAbs, so cover if margin > spreadAbs?
+    const fav=rnorm(total/2+spreadAbs/2,sd);
+    const dog=rnorm(total/2-spreadAbs/2,sd);
+    const margin=fav-dog;
+    if(fav>dog)favSU++;else dogSU++;
+    if(margin>spreadAbs)favATS++;else dogATS++;
+    const sum=fav+dog;
+    if(sum>total)over++;else under++;
   }
-  // The above got messy—implement cleanly:
-}
-
-/* Clean ATS check helper */
-function simulateClean(total, spreadAbs, n=N_SIM, sd=TEAM_SD_POINTS){
-  let favSU=0, dogSU=0, favATS=0, dogATS=0, over=0, under=0;
-  for(let i=0;i<n;i++){
-    const favScore = rnorm(total/2 + spreadAbs/2, sd);
-    const dogScore = rnorm(total/2 - spreadAbs/2, sd);
-
-    // SU
-    if (favScore > dogScore) favSU++; else dogSU++;
-
-    // ATS: favorite -spreadAbs covers if (favScore - dogScore) > spreadAbs?  NO.
-    // Line favorite -s. Bet on favorite -s wins when margin > s.
-    const margin = favScore - dogScore;
-    if (margin > spreadAbs) favATS++; else dogATS++;
-
-    // Total
-    const sum = favScore + dogScore;
-    if (sum > total) over++; else under++;
-  }
-  return {
-    favSU: favSU/n*100, dogSU: dogSU/n*100,
-    favATS: favATS/n*100, dogATS: dogATS/n*100,
-    over: over/n*100, under: under/n*100
+  return{
+    favSU:favSU/n*100,dogSU:dogSU/n*100,
+    favATS:favATS/n*100,dogATS:dogATS/n*100,
+    over:over/n*100,under:under/n*100
   };
 }
 
-/* ========== Load data and render (favorite from spread sign) ==========
-   RULE (per your clarification):
-   spread < 0  => HOME (second team) is favorite
-   spread > 0  => AWAY (first team) is favorite
-   Favorite display: TeamName (−|spread|)
-*/
 async function loadData(){
-  const status = document.getElementById("status");
-  const container = document.getElementById("container");
+  const status=document.getElementById("status");
+  const container=document.getElementById("container");
   try{
-    status.textContent = "Running 10k simulations per game…";
-    const res = await fetch(DATA_PATH, { cache:"no-cache" });
-    if(!res.ok) throw new Error("HTTP "+res.status);
-    const json = await res.json();
-    const rows = (json.data ?? json);
+    status.textContent="Running 10k simulations per game…";
+    const res=await fetch(DATA_PATH,{cache:"no-cache"});
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const json=await res.json();
+    const rows=json.data??json;
 
-    const title = {
-      americanfootball_nfl:  "NFL Football",
+    const now=new Date();
+    const maxDate=new Date(now.getTime()+LOOKAHEAD_DAYS*24*3600*1000);
+
+    const filtered=rows.filter(r=>{
+      const t=new Date(r.commence_time);
+      return t>=now&&t<=maxDate;
+    });
+
+    const titles={
+      americanfootball_nfl:"NFL Football",
       americanfootball_ncaaf:"NCAA Football",
-      basketball_ncaab:      "NCAA Men’s Basketball",
-      basketball_ncaaw:      "NCAA Women’s Basketball",
-      baseball_mlb:          "MLB Baseball",
-      icehockey_nhl:         "NHL Hockey",
-      mma_mixedmartialarts:  "UFC / MMA"
+      basketball_ncaab:"NCAA Men’s Basketball",
+      basketball_ncaaw:"NCAA Women’s Basketball",
+      baseball_mlb:"MLB Baseball",
+      icehockey_nhl:"NHL Hockey",
+      mma_mixedmartialarts:"UFC / MMA"
     };
-    const order = [
-      "americanfootball_nfl",
-      "americanfootball_ncaaf",
-      "basketball_ncaab",
-      "basketball_ncaaw",
-      "baseball_mlb",
-      "icehockey_nhl",
-      "mma_mixedmartialarts"
+    const order=[
+      "americanfootball_nfl","americanfootball_ncaaf",
+      "basketball_ncaab","basketball_ncaaw",
+      "baseball_mlb","icehockey_nhl","mma_mixedmartialarts"
     ];
 
-    // group by sport
-    const bySport = {};
-    rows.forEach(r => { const k=r.sport_key||"other"; (bySport[k] ||= []).push(r); });
+    const bySport={};
+    filtered.forEach(r=>{const k=r.sport_key||"other";(bySport[k]??=[]).push(r);});
 
-    container.innerHTML = "";
-
+    container.innerHTML="";
     order.forEach(sport=>{
-      const games = bySport[sport];
-      if (!games || games.length===0) return;
-
-      const sec = document.createElement("section");
-      sec.innerHTML = `
-        <div class="hdr">${title[sport] || sport}</div>
+      const games=bySport[sport];
+      if(!games)return;
+      const sec=document.createElement("section");
+      sec.innerHTML=`
+        <div class="hdr">${titles[sport]||sport}</div>
         <div class="overflow-x-auto shadow-lg rounded-lg mb-8">
           <table class="min-w-full border border-gray-700 text-xs sm:text-sm">
             <thead class="bg-gray-800 text-gray-200">
@@ -149,75 +112,62 @@ async function loadData(){
           </table>
         </div>`;
       container.appendChild(sec);
-      const tbody = sec.querySelector("tbody");
+      const tbody=sec.querySelector("tbody");
 
-      games.sort((a,b)=> new Date(a.commence_time) - new Date(b.commence_time));
+      games.sort((a,b)=>new Date(a.commence_time)-new Date(b.commence_time));
 
       games.forEach(r=>{
-        const parts = (r.matchup||"").split("@").map(s=>s.trim());
-        if (parts.length!==2) return;
-        const away = parts[0], home = parts[1];
+        const [away,home]=(r.matchup||"").split("@").map(s=>s.trim());
+        const spread=Number(r.spread??0);
+        const spreadAbs=Math.abs(spread);
+        const total=Number(r.total??0);
 
-        const spread = Number(r.spread ?? 0);         // can be negative or positive
-        const spreadAbs = Math.abs(spread);           // favorite's line magnitude
-        const total = Number(r.total ?? 0);
-
-        // Determine favorite strictly by spread sign (no ML reliance)
-        // spread < 0 => HOME favorite ; spread > 0 => AWAY favorite ; 0 => unknown
+        // 🧠 Correct favorite logic based on away@home convention
         let favTeam, dogTeam;
-        if (spread < 0) { favTeam = home; dogTeam = away; }
-        else if (spread > 0) { favTeam = away; dogTeam = home; }
-        else { favTeam = "(Pick)"; dogTeam = (spread === 0 ? (home || "") : ""); }
-
-        // Run sims if both spread & total exist
-        let suPick="—", suConf=0, atsPick="—", atsConf=0, ouPick="—", ouConf=0;
-        if (spreadAbs > 0 && total > 0 && favTeam !== "(Pick)"){
-          const s = simulateClean(total, spreadAbs);
-          suPick  = (s.favSU >= s.dogSU) ? favTeam : dogTeam;
-          suConf  = Math.max(s.favSU, s.dogSU);
-
-          atsPick = (s.favATS >= s.dogATS) ? `${favTeam} (-${spreadAbs.toFixed(1)})`
-                                           : `${dogTeam} (+${spreadAbs.toFixed(1)})`;
-          atsConf = Math.max(s.favATS, s.dogATS);
-
-          ouPick  = (s.over >= s.under) ? "Over" : "Under";
-          ouConf  = Math.max(s.over, s.under);
+        if(spread<0){ // away favored
+          favTeam=away;
+          dogTeam=home;
+        } else if(spread>0){ // home favored
+          favTeam=home;
+          dogTeam=away;
+        } else {
+          favTeam="(Pick)";
+          dogTeam="";
         }
 
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
+        let suPick="—",suConf=0,atsPick="—",atsConf=0,ouPick="—",ouConf=0;
+        if(spreadAbs>0&&total>0&&favTeam!=="(Pick)"){
+          const s=simulate(total,spreadAbs);
+          suPick=(s.favSU>=s.dogSU)?favTeam:dogTeam;
+          suConf=Math.max(s.favSU,s.dogSU);
+          atsPick=(s.favATS>=s.dogATS)?`${favTeam} (-${spreadAbs.toFixed(1)})`:`${dogTeam} (+${spreadAbs.toFixed(1)})`;
+          atsConf=Math.max(s.favATS,s.dogATS);
+          ouPick=(s.over>=s.under)?"Over":"Under";
+          ouConf=Math.max(s.over,s.under);
+        }
+
+        const tr=document.createElement("tr");
+        tr.innerHTML=`
           <td class="px-3 py-2">${away} @ ${home}</td>
-          <td class="px-3 py-2">
-            <span class="badge fav">${favTeam}${spreadAbs ? ` (−${spreadAbs.toFixed(1)})` : ""}</span>
-          </td>
+          <td class="px-3 py-2"><span class="badge fav">${favTeam}${spreadAbs?` (−${spreadAbs.toFixed(1)})`:""}</span></td>
           <td class="px-3 py-2"><span class="badge dog">${dogTeam}</span></td>
-          <td class="px-3 py-2 text-right">${total ? total.toFixed(1) : ""}</td>
-          <td class="px-3 py-2">
-            <span class="badge lean">${suPick}</span>
-            ${suConf ? `<span class="ml-2 text-xs text-gray-300">${suConf.toFixed(1)}%</span>` : ""}
-          </td>
-          <td class="px-3 py-2">
-            <span class="badge lean">${atsPick}</span>
-            ${atsConf ? `<span class="ml-2 text-xs text-gray-300">${atsConf.toFixed(1)}%</span>` : ""}
-          </td>
-          <td class="px-3 py-2">
-            <span class="badge lean">${ouPick}</span>
-            ${ouConf ? `<span class="ml-2 text-xs text-gray-300">${ouConf.toFixed(1)}%</span>` : ""}
-          </td>
-          <td class="px-3 py-2 text-right">${new Date(r.commence_time).toLocaleString()}</td>
-        `;
+          <td class="px-3 py-2 text-right">${total?total.toFixed(1):""}</td>
+          <td class="px-3 py-2"><span class="badge lean">${suPick}</span>${suConf?` <span class="ml-1 text-xs text-gray-300">${suConf.toFixed(1)}%</span>`:""}</td>
+          <td class="px-3 py-2"><span class="badge lean">${atsPick}</span>${atsConf?` <span class="ml-1 text-xs text-gray-300">${atsConf.toFixed(1)}%</span>`:""}</td>
+          <td class="px-3 py-2"><span class="badge lean">${ouPick}</span>${ouConf?` <span class="ml-1 text-xs text-gray-300">${ouConf.toFixed(1)}%</span>`:""}</td>
+          <td class="px-3 py-2 text-right">${new Date(r.commence_time).toLocaleString()}</td>`;
         tbody.appendChild(tr);
       });
     });
 
-    status.textContent = "Data loaded successfully.";
-  }catch(err){
-    console.error(err);
-    document.getElementById("status").textContent = "⚠️ " + err.message;
+    status.textContent="✅ Data loaded successfully.";
+  }catch(e){
+    console.error(e);
+    status.textContent="⚠️ "+e.message;
   }
 }
 
-window.onload = loadData;
+window.onload=loadData;
 </script>
 </body>
 </html>
