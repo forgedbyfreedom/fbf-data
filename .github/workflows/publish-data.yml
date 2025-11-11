@@ -3,7 +3,7 @@ name: Publish Data to GitHub Pages
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"  # every 15 minutes UTC
+    - cron: "*/15 * * * *" # every 15 minutes UTC
 
 permissions:
   contents: write
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -32,7 +32,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      # --------------- FETCH ODDS ---------------
+      # 🏈 Fetch odds
       - name: Run fetcher
         run: |
           echo "[🕒] Running fetch_multi.py..."
@@ -42,27 +42,27 @@ jobs:
             echo "⚠️ fetch_multi.py not found, skipping odds fetch."
           fi
 
-      # --------------- FETCH ROSTERS (OPTIONAL) ---------------
+      # 👥 Fetch rosters (optional)
       - name: Run roster fetcher
         run: |
-          echo "[👥] Fetching DraftKings & FanDuel rosters..."
+          echo "[👥] Fetching rosters..."
           if [ -f fetch_rosters.py ]; then
             python fetch_rosters.py || echo "⚠️ Roster fetch failed, continuing."
           else
             echo "⚠️ fetch_rosters.py not found, skipping."
           fi
 
-      # --------------- NORMALIZE DATA (OPTIONAL) ---------------
+      # 🔧 Normalize data
       - name: Normalize latest data
         run: |
           echo "[🔧] Normalizing latest data..."
           if [ -f tools/normalize_latest.py ]; then
             python tools/normalize_latest.py || echo "⚠️ Normalization failed, continuing."
           else
-            echo "⚠️ normalize_latest.py not found, skipping normalization."
+            echo "⚠️ normalize_latest.py not found, skipping."
           fi
 
-      # ✅ --------------- TAG FAVORITES BEFORE DEPLOY ---------------
+      # ✅ Tag favorites before deploy
       - name: Tag favorites
         run: |
           echo "[🏈] Tagging favorites with correct negative spreads..."
@@ -72,7 +72,7 @@ jobs:
             echo "⚠️ tag_favorites.py not found, skipping."
           fi
 
-      # --------------- PREPARE DEPLOYMENT ---------------
+      # 📦 Prepare deployment folder
       - name: Prepare deployment folder
         run: |
           echo "[📦] Preparing deployment folder..."
@@ -86,14 +86,14 @@ jobs:
           find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
           find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
 
-          # Copy roster data
+          # Copy roster data if present
           if [ -d "rosters" ]; then
             mkdir -p _site/rosters "_site/archive/$TODAY/rosters"
             cp -v rosters/*.json _site/rosters/ 2>/dev/null || true
             cp -v rosters/*.json "_site/archive/$TODAY/rosters/" 2>/dev/null || true
           fi
 
-          # Add CNAME for custom domain
+          # CNAME for custom domain
           echo "data.forgedbyfreedom.org" > _site/CNAME
 
           # Build index.html dynamically
@@ -118,7 +118,7 @@ jobs:
 
           echo "[✅] Deployment folder ready."
 
-      # --------------- UPLOAD + DEPLOY ---------------
+      # 🚀 Upload artifact for Pages
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
@@ -133,4 +133,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-
