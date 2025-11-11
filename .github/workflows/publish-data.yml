@@ -165,6 +165,15 @@
 
     loadData();
   </script>
-</body>
+</body>      # ✅ Tag favorites BEFORE deployment
+      - name: Tag favorites
+        run: |
+          echo "[🏈] Tagging favorites with negative spreads..."
+          if [ -f tag_favorites.py ]; then
+            python tag_favorites.py || echo "⚠️ tag_favorites.py failed, continuing."
+          else
+            echo "⚠️ tag_favorites.py not found, skipping."
+          fi
+
 </html>
 
