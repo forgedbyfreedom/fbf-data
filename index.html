@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Forged by Freedom — Sports Data Dashboard</title>
+<title>Forged by Freedom — NFL Statistical Summary</title>
 
 <!-- Tailwind via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -11,7 +11,8 @@
 <script>
 async function loadData() {
   try {
-    const res = await fetch("combined.json?cachebust=" + Date.now());
+    // ✅ Use absolute path to your GitHub Pages URL so it always works
+    const res = await fetch("https://forgedbyfreedom.github.io/fbf-data/combined.json?cachebust=" + Date.now());
     const data = await res.json();
 
     // Sort by favorite win probability descending
@@ -21,68 +22,11 @@ async function loadData() {
     tbody.innerHTML = "";
 
     data.forEach(row => {
-      // ignore non-NFL rows if dataset mixes sports
+      // Display NFL games only
       if (!row.matchup || !row.league || row.league !== "NFL") return;
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td class="px-2 py-1 text-sm">${row.matchup}</td>
         <td class="px-2 py-1 text-sm text-right">${row.spread ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${row.total ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-right font-semibold">${row.fav_prob?.toFixed?.(1) ?? ""}%</td>
-        <td class="px-2 py-1 text-sm text-right">${row.dog_prob?.toFixed?.(1) ?? ""}%</td>
-        <td class="px-2 py-1 text-sm text-right">${row.cover_prob ?? ""}%</td>
-        <td class="px-2 py-1 text-sm text-right">${row.over_prob ?? ""}%</td>
-        <td class="px-2 py-1 text-sm text-right">${row.under_prob ?? ""}%</td>
-        <td class="px-2 py-1 text-sm text-center">${row.likely_winner ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-center">${row.likely_total ?? ""}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } catch (err) {
-    console.error("Error loading JSON:", err);
-    document.getElementById("status").textContent =
-      "⚠️ Error loading combined.json";
-  }
-}
-
-window.onload = loadData;
-</script>
-</head>
-
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-  <div class="max-w-6xl mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-2 text-center">
-      Forged by Freedom — NFL Statistical Summary
-    </h1>
-    <p id="status" class="text-center text-sm text-gray-400 mb-4">
-      Data auto-loads from <code>combined.json</code> (hourly update)
-    </p>
-
-    <div class="overflow-x-auto shadow rounded-lg">
-      <table class="min-w-full text-xs sm:text-sm text-right">
-        <thead class="bg-gray-800">
-          <tr>
-            <th class="px-2 py-1 text-left">Matchup</th>
-            <th class="px-2 py-1">Spread</th>
-            <th class="px-2 py-1">Total</th>
-            <th class="px-2 py-1">Fav %</th>
-            <th class="px-2 py-1">Dog %</th>
-            <th class="px-2 py-1">Cover %</th>
-            <th class="px-2 py-1">Over %</th>
-            <th class="px-2 py-1">Under %</th>
-            <th class="px-2 py-1">SU Lean</th>
-            <th class="px-2 py-1">Total Lean</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody" class="divide-y divide-gray-700"></tbody>
-      </table>
-    </div>
-
-    <footer class="text-center text-xs text-gray-500 mt-6">
-      <p>Results are probabilistic and informational only.</p>
-      <p>© Forged by Freedom Data Platform</p>
-    </footer>
-  </div>
-</body>
-</html>
+        <td class="px-2 py-1 text-sm text-right">${row.total ??
