@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forged by Freedom — Sports Intelligence Dashboard</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #0f0f0f; color: #fefefe; font-family: 'Inter', sans-serif; }
     .divider { border-bottom: 4px solid #d4af37; width: 140px; margin: 0.5rem auto 1.5rem; }
     .section-header { background-color: #1a1a1a; color: #d4af37; font-weight: 700; padding: 0.5rem 1rem; border-radius: 0.5rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 2rem; }
-    .fav { color: #22c55e; font-weight: 600; }
-    .conf-high { color: #22c55e; font-weight: 600; }
-    .conf-med { color: #eab308; font-weight: 600; }
-    .conf-low { color: #ef4444; font-weight: 600; }
+    .fav { color: #22c55e; font-weight: 700; }
+    .pick { font-weight: 600; }
+    .conf-high { color: #22c55e; }
+    .conf-med { color: #eab308; }
+    .conf-low { color: #ef4444; }
   </style>
 </head>
 
@@ -69,9 +69,7 @@
           const t = new Date(g.commence_time);
           return t >= now && t <= in8days;
         });
-        if (filtered.length === 0 && data.length > 0) {
-          filtered = data;
-        }
+        if (filtered.length === 0 && data.length > 0) filtered = data;
 
         const grouped = {};
         filtered.forEach(g => {
@@ -100,32 +98,43 @@
                 <thead class="bg-[#2a2a2a] text-gray-200">
                   <tr>
                     <th class="px-3 py-2 text-left">Matchup</th>
-                    <th class="px-3 py-2 text-right">Favorite</th>
-                    <th class="px-3 py-2 text-right">Spread</th>
-                    <th class="px-3 py-2 text-right">Straight Up</th>
-                    <th class="px-3 py-2 text-right">ATS</th>
-                    <th class="px-3 py-2 text-right">O/U</th>
+                    <th class="px-3 py-2 text-right">Favorite (Spread)</th>
+                    <th class="px-3 py-2 text-right">Straight Up Pick</th>
+                    <th class="px-3 py-2 text-right">ATS Pick</th>
+                    <th class="px-3 py-2 text-right">O/U Pick</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-800">
                   ${games.map(game => {
                     const [away, home] = (game.matchup || "").split("@");
-                    const fav = game.spread < 0 ? away : home;
-                    const spread = (game.spread > 0 ? "+" : "") + game.spread.toFixed(1);
+                    const spread = Number(game.spread);
+                    const fav = spread < 0 ? away : home;
+                    const dog = spread < 0 ? home : away;
+                    const absSpread = Math.abs(spread).toFixed(1);
 
-                    // Basic simulated confidence model (can tie into model data later)
+                    // Confidence models
                     const su_conf = (100 - Math.abs((game.ml_fav - 1) * 10)).toFixed(1);
-                    const ats_conf = (100 - Math.abs(game.spread) * 4).toFixed(1);
+                    const ats_conf = (100 - Math.abs(spread) * 4).toFixed(1);
                     const ou_conf = (100 - Math.abs((game.total - 45)) * 1.2).toFixed(1);
+
+                    // Picks
+                    const su_pick = fav;
+                    const ats_pick =
+                      Math.abs(spread) <= 3
+                        ? `${dog} +${absSpread}`
+                        : `${fav} -${absSpread}`;
+                    const ou_pick =
+                      game.total > 46
+                        ? `Over ${game.total}`
+                        : `Under ${game.total}`;
 
                     return `
                       <tr>
-                        <td class="px-3 py-2">${game.matchup}</td>
-                        <td class="px-3 py-2 text-right fav">${fav}</td>
-                        <td class="px-3 py-2 text-right">${spread}</td>
-                        <td class="px-3 py-2 text-right ${confClass(su_conf)}">${su_conf}%</td>
-                        <td class="px-3 py-2 text-right ${confClass(ats_conf)}">${ats_conf}%</td>
-                        <td class="px-3 py-2 text-right ${confClass(ou_conf)}">${ou_conf}%</td>
+                        <td class="px-3 py-2">${away.trim()} @ ${home.trim()}</td>
+                        <td class="px-3 py-2 text-right fav">${fav} (${spread < 0 ? '-' : '+'}${absSpread})</td>
+                        <td class="px-3 py-2 text-right pick ${confClass(su_conf)}">${su_pick} (${su_conf}%)</td>
+                        <td class="px-3 py-2 text-right pick ${confClass(ats_conf)}">${ats_pick} (${ats_conf}%)</td>
+                        <td class="px-3 py-2 text-right pick ${confClass(ou_conf)}">${ou_pick} (${ou_conf}%)</td>
                       </tr>
                     `;
                   }).join("")}
