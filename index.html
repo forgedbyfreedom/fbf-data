@@ -11,12 +11,12 @@
 <script>
 async function loadData() {
   try {
-    // ✅ Fetch the wrapped JSON
-    const res = await fetch("https://forgedbyfreedom.github.io/fbf-data/combined.json?cachebust=" + Date.now());
+    // ✅ Use the exact confirmed working URL
+    const res = await fetch("https://forgedbyfreedom.github.io/fbf-data/combined.json");
     const raw = await res.json();
-    const data = raw.data || []; // <-- unwrap
+    const data = raw.data || []; // unwrap your JSON
 
-    // Sort by absolute favorite moneyline (lower ml_fav means higher favorite odds)
+    // Sort by favorite implied probability (lower ml_fav = stronger favorite)
     data.sort((a, b) => (a.ml_fav || 999) - (b.ml_fav || 999));
 
     const tbody = document.getElementById("tableBody");
@@ -26,65 +26,6 @@ async function loadData() {
       // Filter for NFL only
       if (!row.matchup || !row.sport_key || !row.sport_key.includes("nfl")) return;
 
-      // Calculate implied win probability from moneyline
+      // Calculate implied probabilities from moneyline odds
       const favProb = row.ml_fav ? (100 / (row.ml_fav + 100)) * 100 : "";
-      const dogProb = row.ml_dog ? (100 / (row.ml_dog + 100)) * 100 : "";
-
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td class="px-2 py-1 text-sm">${row.matchup}</td>
-        <td class="px-2 py-1 text-sm text-right">${row.spread ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${row.total ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${favProb ? favProb.toFixed(1) + "%" : ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${dogProb ? dogProb.toFixed(1) + "%" : ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${row.ml_fav ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${row.ml_dog ?? ""}</td>
-        <td class="px-2 py-1 text-sm text-right">${row.book ?? ""}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } catch (err) {
-    console.error("Error loading JSON:", err);
-    document.getElementById("status").textContent =
-      "⚠️ Error loading combined.json (check file path or permissions)";
-  }
-}
-
-window.onload = loadData;
-</script>
-</head>
-
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-  <div class="max-w-6xl mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-2 text-center">
-      Forged by Freedom — NFL Statistical Summary
-    </h1>
-    <p id="status" class="text-center text-sm text-gray-400 mb-4">
-      Data auto-loads from <code>combined.json</code> (hourly update)
-    </p>
-
-    <div class="overflow-x-auto shadow rounded-lg">
-      <table class="min-w-full text-xs sm:text-sm text-right">
-        <thead class="bg-gray-800">
-          <tr>
-            <th class="px-2 py-1 text-left">Matchup</th>
-            <th class="px-2 py-1">Spread</th>
-            <th class="px-2 py-1">Total</th>
-            <th class="px-2 py-1">Fav %</th>
-            <th class="px-2 py-1">Dog %</th>
-            <th class="px-2 py-1">ML Fav</th>
-            <th class="px-2 py-1">ML Dog</th>
-            <th class="px-2 py-1">Book</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody" class="divide-y divide-gray-700"></tbody>
-      </table>
-    </div>
-
-    <footer class="text-center text-xs text-gray-500 mt-6">
-      <p>Results are probabilistic and informational only.</p>
-      <p>© Forged by Freedom Data Platform</p>
-    </footer>
-  </div>
-</body>
-</html>
+      const dogProb
