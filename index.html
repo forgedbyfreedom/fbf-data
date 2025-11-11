@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Forged by Freedom — Sports Betting Dashboard</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forged by Freedom — Sports Dashboard</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { background:#0f172a; color:#e2e8f0; }
-  .badge { padding:.15rem .45rem; border-radius:.5rem; font-weight:600; }
-  .fav { background:rgba(34,197,94,.18); color:#86efac; border:1px solid #22c55e44; }
-  .dog { background:rgba(239,68,68,.18); color:#fca5a5; border:1px solid #ef444444; }
-  .lean { background:rgba(59,130,246,.18); color:#93c5fd; border:1px solid #3b82f644; }
-  .hdr { font-size:1.25rem; font-weight:700; color:#facc15; padding:1rem 0 .5rem; border-bottom:1px solid #475569; margin-top:1.5rem; }
+  body { background: #0f172a; color: #e2e8f0; font-family: system-ui, sans-serif; }
+  .badge { padding: .15rem .45rem; border-radius: .5rem; font-weight: 600; }
+  .fav { background: rgba(34,197,94,.18); color: #86efac; border: 1px solid #22c55e44; }
+  .dog { background: rgba(239,68,68,.18); color: #fca5a5; border: 1px solid #ef444444; }
+  .lean { background: rgba(59,130,246,.18); color: #93c5fd; border: 1px solid #3b82f644; }
+  .hdr { font-size: 1.25rem; font-weight: 700; color: #facc15; padding: 1rem 0 .5rem; border-bottom: 1px solid #475569; margin-top: 1.5rem; }
 </style>
 </head>
+
 <body class="min-h-screen px-4 py-6">
   <div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold text-center mb-2">Forged by Freedom — Live Simulation Dashboard</h1>
+    <h1 class="text-3xl font-bold text-center mb-2">Forged by Freedom — Live Sports Simulation Dashboard</h1>
     <p id="status" class="text-center text-sm text-gray-400 mb-6">Loading…</p>
     <div id="container"></div>
     <footer class="text-center text-xs text-gray-500 mt-8">
-      Results are probabilistic and informational only.
+      Results are probabilistic and informational only. Bet responsibly.
     </footer>
   </div>
 
 <script>
+const DATA_PATH = "./combined.json";
 const N_SIM = 10000;
 const TEAM_SD_POINTS = 13;
-const DATA_PATH = "./combined.json";
 const LOOKAHEAD_DAYS = 8;
 
-function randn_bm(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function randn_bm() {
+  let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random();
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+}
 function rnorm(mean,sd){return mean+randn_bm()*sd;}
 
 function simulate(total,spreadAbs,n=N_SIM,sd=TEAM_SD_POINTS){
@@ -44,29 +48,33 @@ function simulate(total,spreadAbs,n=N_SIM,sd=TEAM_SD_POINTS){
     const sum=fav+dog;
     if(sum>total)over++;else under++;
   }
-  return{
-    favSU:favSU/n*100,dogSU:dogSU/n*100,
-    favATS:favATS/n*100,dogATS:dogATS/n*100,
-    over:over/n*100,under:under/n*100
+  return {
+    favSU: favSU/n*100,
+    dogSU: dogSU/n*100,
+    favATS: favATS/n*100,
+    dogATS: dogATS/n*100,
+    over: over/n*100,
+    under: under/n*100
   };
 }
 
-async function loadData(){
+async function loadData() {
   const status=document.getElementById("status");
   const container=document.getElementById("container");
-  try{
+  try {
     status.textContent="Running 10k simulations per game…";
     const res=await fetch(DATA_PATH,{cache:"no-cache"});
-    if(!res.ok)throw new Error("HTTP "+res.status);
+    if(!res.ok) throw new Error("HTTP "+res.status);
     const json=await res.json();
     const rows=json.data??json;
 
     const now=new Date();
     const maxDate=new Date(now.getTime()+LOOKAHEAD_DAYS*24*3600*1000);
 
+    // Filter games to the next 8 days
     const filtered=rows.filter(r=>{
       const t=new Date(r.commence_time);
-      return t>=now&&t<=maxDate;
+      return t>=now && t<=maxDate;
     });
 
     const titles={
@@ -85,7 +93,10 @@ async function loadData(){
     ];
 
     const bySport={};
-    filtered.forEach(r=>{const k=r.sport_key||"other";(bySport[k]??=[]).push(r);});
+    filtered.forEach(r=>{
+      const k=r.sport_key||"other";
+      (bySport[k]??=[]).push(r);
+    });
 
     container.innerHTML="";
     order.forEach(sport=>{
@@ -105,7 +116,7 @@ async function loadData(){
                 <th class="px-3 py-2 text-left">Straight Up</th>
                 <th class="px-3 py-2 text-left">ATS</th>
                 <th class="px-3 py-2 text-left">O/U</th>
-                <th class="px-3 py-2 text-right">Kickoff</th>
+                <th class="px-3 py-2 text-right">Start</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-700 bg-gray-900"></tbody>
@@ -117,26 +128,31 @@ async function loadData(){
       games.sort((a,b)=>new Date(a.commence_time)-new Date(b.commence_time));
 
       games.forEach(r=>{
-        const [away,home]=(r.matchup||"").split("@").map(s=>s.trim());
-        const spread=Number(r.spread??0);
-        const spreadAbs=Math.abs(spread);
+        const away=r.away_team||"";
+        const home=r.home_team||"";
         const total=Number(r.total??0);
+        const awaySpread=Number(r.away_spread??0);
+        const homeSpread=Number(r.home_spread??0);
 
-        // 🧠 Correct favorite logic based on away@home convention
-        let favTeam, dogTeam;
-        if(spread<0){ // away favored
-          favTeam=away;
-          dogTeam=home;
-        } else if(spread>0){ // home favored
-          favTeam=home;
-          dogTeam=away;
+        // Determine favorite by which spread is negative
+        let favTeam, dogTeam, favSpread;
+        if (awaySpread < 0) {
+          favTeam = away;
+          dogTeam = home;
+          favSpread = awaySpread;
+        } else if (homeSpread < 0) {
+          favTeam = home;
+          dogTeam = away;
+          favSpread = homeSpread;
         } else {
-          favTeam="(Pick)";
-          dogTeam="";
+          favTeam = "(Pick)";
+          dogTeam = "";
+          favSpread = 0;
         }
 
         let suPick="—",suConf=0,atsPick="—",atsConf=0,ouPick="—",ouConf=0;
-        if(spreadAbs>0&&total>0&&favTeam!=="(Pick)"){
+        const spreadAbs=Math.abs(favSpread);
+        if(spreadAbs>0 && total>0 && favTeam!=="(Pick)"){
           const s=simulate(total,spreadAbs);
           suPick=(s.favSU>=s.dogSU)?favTeam:dogTeam;
           suConf=Math.max(s.favSU,s.dogSU);
@@ -152,16 +168,16 @@ async function loadData(){
           <td class="px-3 py-2"><span class="badge fav">${favTeam}${spreadAbs?` (−${spreadAbs.toFixed(1)})`:""}</span></td>
           <td class="px-3 py-2"><span class="badge dog">${dogTeam}</span></td>
           <td class="px-3 py-2 text-right">${total?total.toFixed(1):""}</td>
-          <td class="px-3 py-2"><span class="badge lean">${suPick}</span>${suConf?` <span class="ml-1 text-xs text-gray-300">${suConf.toFixed(1)}%</span>`:""}</td>
-          <td class="px-3 py-2"><span class="badge lean">${atsPick}</span>${atsConf?` <span class="ml-1 text-xs text-gray-300">${atsConf.toFixed(1)}%</span>`:""}</td>
-          <td class="px-3 py-2"><span class="badge lean">${ouPick}</span>${ouConf?` <span class="ml-1 text-xs text-gray-300">${ouConf.toFixed(1)}%</span>`:""}</td>
+          <td class="px-3 py-2"><span class="badge lean">${suPick}</span>${suConf?` <span class='ml-1 text-xs text-gray-300'>${suConf.toFixed(1)}%</span>`:""}</td>
+          <td class="px-3 py-2"><span class="badge lean">${atsPick}</span>${atsConf?` <span class='ml-1 text-xs text-gray-300'>${atsConf.toFixed(1)}%</span>`:""}</td>
+          <td class="px-3 py-2"><span class="badge lean">${ouPick}</span>${ouConf?` <span class='ml-1 text-xs text-gray-300'>${ouConf.toFixed(1)}%</span>`:""}</td>
           <td class="px-3 py-2 text-right">${new Date(r.commence_time).toLocaleString()}</td>`;
         tbody.appendChild(tr);
       });
     });
 
     status.textContent="✅ Data loaded successfully.";
-  }catch(e){
+  } catch (e) {
     console.error(e);
     status.textContent="⚠️ "+e.message;
   }
