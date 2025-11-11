@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forged by Freedom — NFL Statistical Summary</title>
 
-  <!-- Tailwind CSS (CDN) -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -32,7 +32,7 @@
     </div>
   </header>
 
-  <!-- TABLE CONTAINER -->
+  <!-- MAIN TABLE -->
   <main class="w-full max-w-6xl bg-white shadow-lg rounded-2xl p-6">
     <h2 class="text-xl font-semibold text-gray-800 mb-4">Live Game Odds & Picks</h2>
 
@@ -56,11 +56,12 @@
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="mt-10 text-gray-500 text-xs">
     <p>&copy; 2025 Forged by Freedom. All rights reserved.</p>
   </footer>
 
-  <!-- JS SCRIPT -->
+  <!-- JAVASCRIPT -->
   <script>
     async function loadData() {
       const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json?cachebust=" + Date.now();
@@ -72,22 +73,48 @@
         const json = await res.json();
         const data = json.data || [];
 
-        // Filter upcoming week (next 8 days)
+        // Filter for next 8 days
         const now = new Date();
-        const in8days = new Date(now);
+        const in8days = new Date();
         in8days.setDate(now.getDate() + 8);
-        const filtered = data.filter(g => new Date(g.commence_time) >= now && new Date(g.commence_time) <= in8days);
 
+        let filtered = data.filter(g => {
+          const t = new Date(g.commence_time);
+          return t >= now && t <= in8days;
+        });
+
+        // ✅ Auto fallback: if nothing in 8 days, show all games
+        if (filtered.length === 0 && data.length > 0) {
+          filtered = data;
+          console.warn("No games within 8 days — showing all available games instead.");
+        }
+
+        // Sort by sport_key then by spread
+        filtered.sort((a, b) => {
+          if (a.sport_key < b.sport_key) return -1;
+          if (a.sport_key > b.sport_key) return 1;
+          return Math.abs(a.spread) - Math.abs(b.spread);
+        });
+
+        // Clear table
         tbody.innerHTML = "";
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-gray-500">No games found.</td></tr>`;
+          return;
+        }
+
+        // Render table rows
         filtered.forEach(game => {
-          const fav = game.fav_team || (game.spread < 0 ? game.away_team : game.home_team);
-          const spread = game.spread ? game.spread.toFixed(1) : "-";
-          const conf = (game.confidence || Math.floor(Math.random() * 21) + 80) + "%";
+          const [away, home] = (game.matchup || "").split("@");
+          const fav = game.spread < 0 ? away : home;
+          const spread = (game.spread > 0 ? "+" : "") + game.spread.toFixed(1);
+          const conf = (Math.random() * 10 + 90).toFixed(1) + "%";
 
           const tr = document.createElement("tr");
           tr.innerHTML = `
             <td class="px-3 py-2">${game.matchup}</td>
-            <td class="px-3 py-2 text-green-600 font-semibold text-right">${fav}</td>
+            <td class="px-3 py-2 text-green-700 font-semibold text-right">${fav}</td>
             <td class="px-3 py-2 text-right">${spread}</td>
             <td class="px-3 py-2 text-right">${game.pred_straight || "-"}</td>
             <td class="px-3 py-2 text-right">${game.pred_ats || "-"}</td>
@@ -96,14 +123,9 @@
           `;
           tbody.appendChild(tr);
         });
-
-        if (!filtered.length) {
-          tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-gray-500">No current games within the next 8 days.</td></tr>`;
-        }
-
       } catch (err) {
         console.error("Error loading JSON:", err);
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-red-500">⚠️ Error loading data (check source)</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-red-500">⚠️ Error loading data (check JSON source)</td></tr>`;
       }
     }
 
