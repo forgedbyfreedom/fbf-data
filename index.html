@@ -4,56 +4,79 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Forged by Freedom — NFL Statistical Summary</title>
-
-<!-- Tailwind via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script>
 async function loadData() {
   try {
-    // ✅ CORS-friendly proxy that relays JSON from jsDelivr
-    const res = await fetch(
-      "https://api.allorigins.win/raw?url=" +
-      encodeURIComponent("https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json")
-    );
-
+    // ✅ local same-origin JSON — works on GitHub Pages
+    const res = await fetch("./combined.json", { cache: "no-cache" });
     if (!res.ok) throw new Error("HTTP " + res.status);
 
     const raw = await res.json();
-    console.log("RAW JSON:", raw);
-
     const data = raw.data || [];
-    if (!Array.isArray(data)) throw new Error("Unexpected JSON format");
-
-    // Sort by strongest favorite (lowest ml_fav)
     data.sort((a, b) => (a.ml_fav || 9999) - (b.ml_fav || 9999));
 
     const tbody = document.getElementById("tableBody");
     tbody.innerHTML = "";
+    data.forEach(row => {
+      if (!row.matchup || !row.sport_key || !row.sport_key.includes("nfl")) return;
 
-    data.forEach((row) => {
-      if (!row.matchup || !row.sport_key || !row.sport_key.includes("nfl"))
-        return;
-
-      const favProb = row.ml_fav
-        ? (100 / (row.ml_fav + 100)) * 100
-        : null;
-      const dogProb = row.ml_dog
-        ? (100 / (row.ml_dog + 100)) * 100
-        : null;
+      const favProb = row.ml_fav ? (100 / (row.ml_fav + 100)) * 100 : null;
+      const dogProb = row.ml_dog ? (100 / (row.ml_dog + 100)) * 100 : null;
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td class="px-3 py-2 text-sm text-left">${row.matchup}</td>
         <td class="px-3 py-2 text-sm text-right">${row.spread ?? ""}</td>
         <td class="px-3 py-2 text-sm text-right">${row.total ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${
-          favProb ? favProb.toFixed(1) + "%" : ""
-        }</td>
-        <td class="px-3 py-2 text-sm text-right">${
-          dogProb ? dogProb.toFixed(1) + "%" : ""
-        }</td>
+        <td class="px-3 py-2 text-sm text-right">${favProb ? favProb.toFixed(1) + "%" : ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${dogProb ? dogProb.toFixed(1) + "%" : ""}</td>
         <td class="px-3 py-2 text-sm text-right">${row.ml_fav ?? ""}</td>
         <td class="px-3 py-2 text-sm text-right">${row.ml_dog ?? ""}</td>
         <td class="px-3 py-2 text-sm text-right">${row.book ?? ""}</td>
-        <td class="px-3 py-2 text-sm text-right">${new
+        <td class="px-3 py-2 text-sm text-right">${new Date(row.commence_time).toLocaleString()}</td>`;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById("status").textContent = `✅ Loaded ${data.length} matchups`;
+  } catch (err) {
+    console.error(err);
+    document.getElementById("status").textContent = "⚠️ " + err.message;
+  }
+}
+window.onload = loadData;
+</script>
+</head>
+
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <div class="max-w-7xl mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-2 text-center">Forged by Freedom — NFL Statistical Summary</h1>
+    <p id="status" class="text-center text-sm text-gray-400 mb-4">Fetching local data…</p>
+
+    <div class="overflow-x-auto shadow-lg rounded-lg">
+      <table class="min-w-full text-xs sm:text-sm text-right border border-gray-700 rounded-lg">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="px-3 py-2 text-left">Matchup</th>
+            <th class="px-3 py-2">Spread</th>
+            <th class="px-3 py-2">Total</th>
+            <th class="px-3 py-2">Fav %</th>
+            <th class="px-3 py-2">Dog %</th>
+            <th class="px-3 py-2">ML Fav</th>
+            <th class="px-3 py-2">ML Dog</th>
+            <th class="px-3 py-2">Book</th>
+            <th class="px-3 py-2">Kickoff</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="divide-y divide-gray-700 bg-gray-900"></tbody>
+      </table>
+    </div>
+
+    <footer class="text-center text-xs text-gray-500 mt-6">
+      <p>Results are probabilistic and informational only.</p>
+      <p>© Forged by Freedom Data Platform</p>
+    </footer>
+  </div>
+</body>
+</html>
