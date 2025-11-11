@@ -3,25 +3,57 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Forged by Freedom — Diagnostic</title>
+<title>Forged by Freedom — NFL Statistical Summary</title>
 
+<!-- Tailwind via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script>
 async function loadData() {
   try {
-    console.log("Step 1: script started");
+    // ✅ CORS-friendly proxy that relays JSON from jsDelivr
+    const res = await fetch(
+      "https://api.allorigins.win/raw?url=" +
+      encodeURIComponent("https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json")
+    );
 
-    const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json";
-    console.log("Step 2: fetching", url);
+    if (!res.ok) throw new Error("HTTP " + res.status);
 
-    const res = await fetch(url);
-    console.log("Step 3: fetch completed, status:", res.status);
+    const raw = await res.json();
+    console.log("RAW JSON:", raw);
 
-    const text = await res.text();
-    console.log("Step 4: first 200 characters of response:", text.slice(0,200));
+    const data = raw.data || [];
+    if (!Array.isArray(data)) throw new Error("Unexpected JSON format");
 
-    const raw = JSON.parse(text);
-    console.log("Step 5: parsed keys:", Object.keys(raw));
+    // Sort by strongest favorite (lowest ml_fav)
+    data.sort((a, b) => (a.ml_fav || 9999) - (b.ml_fav || 9999));
 
-    const data = ra
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = "";
+
+    data.forEach((row) => {
+      if (!row.matchup || !row.sport_key || !row.sport_key.includes("nfl"))
+        return;
+
+      const favProb = row.ml_fav
+        ? (100 / (row.ml_fav + 100)) * 100
+        : null;
+      const dogProb = row.ml_dog
+        ? (100 / (row.ml_dog + 100)) * 100
+        : null;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="px-3 py-2 text-sm text-left">${row.matchup}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.spread ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.total ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${
+          favProb ? favProb.toFixed(1) + "%" : ""
+        }</td>
+        <td class="px-3 py-2 text-sm text-right">${
+          dogProb ? dogProb.toFixed(1) + "%" : ""
+        }</td>
+        <td class="px-3 py-2 text-sm text-right">${row.ml_fav ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.ml_dog ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${row.book ?? ""}</td>
+        <td class="px-3 py-2 text-sm text-right">${new
