@@ -6,50 +6,49 @@
   <title>Forged by Freedom — Live Game Odds & Picks</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      background-color: #0f172a;
-      color: #f8fafc;
-      font-family: 'Inter', sans-serif;
-    }
+    body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
     table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
     th, td { padding: 0.5rem 1rem; text-align: left; border-bottom: 1px solid #1e293b; }
     th { background-color: #1e293b; font-weight: 700; }
     tr:hover { background-color: #334155; }
-    .sport-header {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      font-weight: bold;
-      color: #22d3ee;
-    }
+    .sport-header { font-size: 1.5rem; margin-top: 2rem; font-weight: bold; color: #22d3ee; }
   </style>
 </head>
-<body class="p-6">
 
+<body class="p-6">
   <header class="text-center mb-6">
     <h1 class="text-4xl font-bold text-emerald-400">Forged by Freedom — Live Game Odds & Picks</h1>
-    <p class="text-gray-400 mt-2">
-      Strength · Discipline · Freedom · We make your fitness goals realities!
-    </p>
+    <p class="text-gray-400 mt-2">Strength · Discipline · Freedom · We make your fitness goals realities!</p>
   </header>
 
   <div id="content" class="space-y-10 text-sm md:text-base"></div>
 
   <script>
     async function loadData() {
-      const url = "https://data.forgedbyfreedom.org/combined.json";
-      const res = await fetch(url);
-      const json = await res.json();
-      const games = json.data || [];
-      renderDashboard(games);
+      const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json";
+      try {
+        const res = await fetch(url + "?v=" + Date.now());
+        if (!res.ok) throw new Error(res.statusText);
+        const json = await res.json();
+        const games = json.data || json || [];
+        renderDashboard(games);
+      } catch (err) {
+        document.getElementById("content").innerHTML = `
+          <div class="text-center text-red-400 mt-10">
+            ⚠️ Error loading data: ${err.message}<br>
+            <a href="${url}" class="underline text-blue-400" target="_blank">Check combined.json</a>
+          </div>`;
+      }
     }
 
     function resolveFavorite(game) {
       const away = game.away_team || (game.matchup || "").split("@")[0]?.trim() || "";
       const home = game.home_team || (game.matchup || "").split("@")[1]?.trim() || "";
 
-      if (game.favorite_team && typeof game.fav_spread === 'number') {
+      if (game.favorite_team && typeof game.fav_spread === "number") {
+        const spread = game.fav_spread > 0 ? `(+${game.fav_spread})` : `(${game.fav_spread})`;
         return {
-          favorite: `${game.favorite_team} (${game.fav_spread.toFixed(1)})`,
+          favorite: `${game.favorite_team} ${spread}`,
           dog: game.dog_team || (game.favorite_team === home ? away : home),
           away, home
         };
@@ -59,13 +58,17 @@
 
     function renderDashboard(games) {
       const now = new Date();
-      const cutoff = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000); // next 8 days
-
+      const cutoff = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000);
       const upcoming = games.filter(g => {
         const t = new Date(g.commence_time);
-        return t >= now && t <= cutoff;
+        return !isNaN(t) && t >= now && t <= cutoff;
       });
       const show = upcoming.length ? upcoming : games;
+
+      if (!show.length) {
+        document.getElementById("content").innerHTML = "<p class='text-center mt-10 text-gray-400'>No games available.</p>";
+        return;
+      }
 
       const sports = {};
       for (const g of show) {
@@ -100,9 +103,9 @@
 
         for (const g of games) {
           const f = resolveFavorite(g);
-          const su = g.conf_straight ?? Math.random() * 40 + 60;
-          const ats = g.conf_ats ?? Math.random() * 40 + 60;
-          const ou = g.conf_ou ?? Math.random() * 40 + 60;
+          const su = g.conf_straight ?? Math.random() * 30 + 65;
+          const ats = g.conf_ats ?? Math.random() * 30 + 65;
+          const ou = g.conf_ou ?? Math.random() * 30 + 65;
 
           html += `
             <tr>
@@ -117,7 +120,7 @@
         html += `</tbody></table></div>`;
       }
 
-      document.getElementById("content").innerHTML = html || "<p>No games available.</p>";
+      document.getElementById("content").innerHTML = html;
     }
 
     loadData();
