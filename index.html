@@ -124,9 +124,9 @@
   </header>
 
   <div class="legend">
-    <div class="legend-item"><div class="color-box" style="background:#4CAF50"></div> High Confidence (90–100%)</div>
-    <div class="legend-item"><div class="color-box" style="background:#FFC107"></div> Medium (75–89%)</div>
-    <div class="legend-item"><div class="color-box" style="background:#FF5722"></div> Low (below 75%)</div>
+    <div class="legend-item"><div class="color-box" style="background:#4CAF50"></div> High Confidence (85–100%)</div>
+    <div class="legend-item"><div class="color-box" style="background:#FFC107"></div> Moderate (65–84%)</div>
+    <div class="legend-item"><div class="color-box" style="background:#FF5722"></div> Low (<65%)</div>
   </div>
 
   <div id="performance">Loading weekly performance...</div>
@@ -141,16 +141,25 @@
 
   <script>
     function confidenceColor(conf) {
-      if (conf >= 90) return '#4CAF50';
-      if (conf >= 75) return '#FFC107';
+      if (conf >= 85) return '#4CAF50';
+      if (conf >= 65) return '#FFC107';
       return '#FF5722';
+    }
+
+    function normalize(value, min, max) {
+      return Math.max(min, Math.min(max, value));
     }
 
     async function loadData() {
       try {
-        const res = await fetch('combined.json');
-        const json = await res.json();
-        const games = json.data || [];
+        const [resOdds, resPerf] = await Promise.all([
+          fetch('combined.json'),
+          fetch('performance_log.json')
+        ]);
+        const data = await resOdds.json();
+        const perf = await resPerf.json();
+        const recent = perf.length ? perf[perf.length - 1] : {SU_accuracy: 65, ATS_accuracy: 55, OU_accuracy: 50};
+        const games = data.data || [];
         const container = document.getElementById('oddsContainer');
         container.innerHTML = '';
 
@@ -159,7 +168,7 @@
           return;
         }
 
-        // Group by date
+        // Group games by date
         const groupedByDay = {};
         games.forEach(g => {
           const day = new Date(g.commence_time).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
@@ -169,31 +178,25 @@
 
         const sportOrder = ["americanfootball_nfl", "americanfootball_ncaaf"];
 
-        Object.keys(groupedByDay).sort((a, b) => {
-          const dA = new Date(a);
-          const dB = new Date(b);
-          return dA - dB;
-        }).forEach(day => {
+        Object.keys(groupedByDay).sort((a,b) => new Date(a) - new Date(b)).forEach(day => {
           const daySection = document.createElement('div');
           daySection.className = 'day-section';
           daySection.innerHTML = `<h2 style="color:#00c6ff;">${day}</h2>`;
           container.appendChild(daySection);
 
-          // Group by sport
           const bySport = {};
           groupedByDay[day].forEach(g => {
             if (!bySport[g.sport_key]) bySport[g.sport_key] = [];
             bySport[g.sport_key].push(g);
           });
 
-          Object.keys(bySport).sort((a,b) => {
+          Object.keys(bySport).sort((a,b)=>{
             const orderA = sportOrder.indexOf(a);
             const orderB = sportOrder.indexOf(b);
             if (orderA !== orderB) return orderB - orderA;
             return a.localeCompare(b);
           }).forEach(sport => {
-            const gamesList = bySport[sport];
-            const sportTitle = sport.replace('americanfootball_', '').toUpperCase().replace('BASKETBALL_','').replace('BASEBALL_','');
+            const sportTitle = sport.replace('americanfootball_','').toUpperCase();
             const sportHeader = document.createElement('div');
             sportHeader.className = 'sport-header';
             sportHeader.innerText = sportTitle;
@@ -214,17 +217,21 @@
             `;
             const tbody = table.querySelector('tbody');
 
-            gamesList.forEach(g => {
-              const suConf = Math.floor(70 + Math.random()*30);
-              const atsConf = Math.floor(70 + Math.random()*30);
-              const ouConf = Math.floor(70 + Math.random()*30);
-              const ouPick = Math.random()>0.5 ? 'Over' : 'Under';
+            bySport[sport].forEach(g => {
+              const spread = Math.abs(g.fav_spread ?? 0);
+              const total = g.total ?? 50;
+
+              const suConf = normalize(100 - spread * 5, 40, 95) * (recent.SU_accuracy / 100);
+              const atsConf = normalize(100 - spread * 7, 35, 90) * (recent.ATS_accuracy / 100);
+              const ouConf = normalize(100 - Math.abs(total - 50) * 1.5, 40, 85) * (recent.OU_accuracy / 100);
+
+              const ouPick = Math.random() > 0.5 ? 'Over' : 'Under';
               const tr = document.createElement('tr');
               tr.innerHTML = `
                 <td>${g.matchup}</td>
-                <td style="color:${confidenceColor(suConf)}">${g.favorite_team || '-'} (${suConf}%)</td>
-                <td style="color:${confidenceColor(atsConf)}">${g.favorite_team || '-'} (${g.fav_spread ?? '-'} / ${atsConf}%)</td>
-                <td style="color:${confidenceColor(ouConf)}">${ouPick} (${g.total ?? '-'} / ${ouConf}%)</td>
+                <td style="color:${confidenceColor(suConf)}">${g.favorite_team || '-'} (${suConf.toFixed(1)}%)</td>
+                <td style="color:${confidenceColor(atsConf)}">${g.favorite_team || '-'} (${g.fav_spread ?? '-'} / ${atsConf.toFixed(1)}%)</td>
+                <td style="color:${confidenceColor(ouConf)}">${ouPick} (${g.total ?? '-'} / ${ouConf.toFixed(1)}%)</td>
                 <td>${g.book}</td>
               `;
               tbody.appendChild(tr);
