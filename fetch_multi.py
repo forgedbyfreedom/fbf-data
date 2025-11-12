@@ -1,70 +1,111 @@
 #!/usr/bin/env python3
-# ==========================================================
-# Timestamp & Run-History Logger for cron + manual runs
-# ==========================================================
-import datetime, sys, time, os
+"""
+fetch_multi.py
+Rebuilds odds for all major leagues (NFL, NCAAF, NCAAM, NCAAW, MLB, NHL, UFC)
+from ESPN public APIs — writes each to its own JSON and a combined.json file.
+"""
 
-# Define log file path (same folder as this script)
-LOG_DIR = os.path.dirname(os.path.abspath(__file__))
-RUN_HISTORY_PATH = os.path.join(LOG_DIR, "run_history.log")
+import json, requests, os
+from datetime import datetime, timezone
 
-# Record start time
-start_time = time.time()
-timestamp_start = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+# ----------------------------
+# ESPN API endpoints
+# ----------------------------
+SPORTS = {
+    "americanfootball_nfl": "football/nfl",
+    "americanfootball_ncaaf": "football/college-football",
+    "basketball_ncaab": "basketball/mens-college-basketball",
+    "basketball_ncaaw": "basketball/womens-college-basketball",
+    "baseball_mlb": "baseball/mlb",
+    "icehockey_nhl": "hockey/nhl",
+    "mma_mixedmartialarts": "mma"
+}
 
-# Header printed to console + cron log
-sys.stdout.write(f"\n{timestamp_start} 🕒 Starting fetch_multi.py run...\n")
-sys.stdout.flush()
+BASE_URL = "https://site.api.espn.com/apis/site/v2/sports"
 
-# Also append header to persistent run_history.log
-with open(RUN_HISTORY_PATH, "a") as rh:
-    rh.write(f"{timestamp_start} 🕒 Starting fetch_multi.py run...\n")
+OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ==========================================================
-# ↓↓↓ Your existing imports and main logic go below ↓↓↓
-# ==========================================================
-# Example:
-import os, json, requests, datetime as dt, pathlib, sys, shutil, glob, csv
+def fetch_league(sport_key, espn_path):
+    url = f"{BASE_URL}/{espn_path}/scoreboard"
+    print(f"[⏱️] Fetching {sport_key} → {url}")
 
-error = None
-try:
-    # === Your existing code starts here ===
-    # e.g., fetch NFL/NCAAF/weather/referees/injuries/power_ratings
-    # write combined.json, etc.
-    # --------------------------------------
-    # (leave your full logic intact)
-    # --------------------------------------
-    pass  # <-- remove this placeholder once you paste around real code
-    # === Your existing code ends here ===
+    try:
+        r = requests.get(url, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+    except Exception as e:
+        print(f"⚠️  Failed {sport_key}: {e}")
+        return []
 
-except Exception as e:
-    error = e
-    # print to console/cron
-    err_time = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
-    sys.stdout.write(f"{err_time} ❌ Error: {e}\n")
-    sys.stdout.flush()
-    # mirror to persistent log
-    with open(RUN_HISTORY_PATH, "a") as rh:
-        rh.write(f"{err_time} ❌ Error: {e}\n")
+    events = data.get("events", [])
+    results = []
+    for ev in events:
+        comp = ev.get("competitions", [{}])[0]
+        oddslist = comp.get("odds", [])
+        if not oddslist:
+            continue
 
-# ==========================================================
-# Completion logger (always runs, even if error)
-# ==========================================================
-end_time = time.time()
-runtime_sec = round(end_time - start_time, 2)
-timestamp_end = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+        odds = oddslist[0]
+        details = odds.get("details", "")
+        teams = comp.get("competitors", [])
 
-if error:
-    status_msg = f"{timestamp_end} ⚠️  Fetch finished with errors. Runtime: {runtime_sec}s.\n\n"
-else:
-    status_msg = f"{timestamp_end} ✅ Fetch complete. Runtime: {runtime_sec}s.\n\n"
+        if len(teams) != 2:
+            continue
 
-# Print to console + cron log
-sys.stdout.write(status_msg)
-sys.stdout.flush()
+        home = next((t["team"]["displayName"] for t in teams if t.get("homeAway") == "home"), "")
+        away = next((t["team"]["displayName"] for t in teams if t.get("homeAway") == "away"), "")
 
-# Append to persistent run_history.log
-with open(RUN_HISTORY_PATH, "a") as rh:
-    rh.write(status_msg)
-# ==========================================================
+        spread = None
+        favorite = None
+        dog = None
+
+        # Detect favorite from ESPN's "details" field (e.g., "NE -3.5")
+        if details:
+            parts = details.split()
+            for i, p in enumerate(parts):
+                if p.startswith("-") or p.startswith("+"):
+                    try:
+                        spread_val = float(p.replace("+", ""))
+                        spread = -abs(spread_val) if "-" in p else abs(spread_val)
+                        favorite = parts[i - 1] if i > 0 else None
+                    except Exception:
+                        continue
+
+        result = {
+            "sport_key": sport_key,
+            "matchup": f"{away}@{home}",
+            "commence_time": ev.get("date"),
+            "home_team": home,
+            "away_team": away,
+            "favorite_team": favorite or "unknown",
+            "fav_spread": spread,
+            "book": "ESPN",
+            "fetched_at": datetime.now(timezone.utc).isoformat()
+        }
+        results.append(result)
+
+    print(f"   → {len(results)} games found.")
+    return results
+
+
+def main():
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+    combined = []
+
+    for key, path in SPORTS.items():
+        data = fetch_league(key, path)
+        combined.extend(data)
+        out_path = os.path.join(OUT_DIR, f"{key.split('_')[-1]}.json")
+        with open(out_path, "w") as f:
+            json.dump({"timestamp": timestamp, "data": data}, f, indent=2)
+
+    combined_path = os.path.join(OUT_DIR, "combined.json")
+    with open(combined_path, "w") as f:
+        json.dump({"timestamp": timestamp, "data": combined}, f, indent=2)
+
+    print(f"[✅] Wrote {len(combined)} total games → {combined_path}")
+
+
+if __name__ == "__main__":
+    main()
 

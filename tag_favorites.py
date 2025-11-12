@@ -1,115 +1,89 @@
 #!/usr/bin/env python3
 """
 tag_favorites.py
---------------------------------------
-Determines favorite and underdog teams from line data
-and tags them explicitly in combined.json and league files.
-
-- The favorite ALWAYS carries the NEGATIVE spread.
-- Uses Moneyline odds when spreads are ambiguous.
-- Works across NFL, NCAAF, NCAAB, NCAAW, MLB, NHL, UFC, etc.
+Cleans and finalizes favorite/dog/spread info for ESPN data.
 """
 
-import json, os, math
-from datetime import datetime
+import json, os, re
+from datetime import datetime, timezone
 
-def load_json(path):
-    if not os.path.exists(path):
-        return []
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            if isinstance(data, dict) and "data" in data:
-                return data["data"]
-            elif isinstance(data, list):
-                return data
-            else:
-                return []
-    except Exception as e:
-        print(f"⚠️  Error loading {path}: {e}")
-        return []
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LEAGUES = ["nfl", "ncaaf", "ncaab", "ncaaw", "mlb", "nhl"]
 
-def save_json(path, data):
-    try:
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump({"timestamp": datetime.utcnow().strftime("%Y%m%d_%H%M"), "data": data}, f, indent=2)
-        print(f"[💾] Saved → {path} ({len(data)} games)")
-    except Exception as e:
-        print(f"❌ Error saving {path}: {e}")
-
-def determine_favorite(row):
+def extract_spread_from_details(details: str):
     """
-    Determines favorite and underdog based on spread and ML.
-    The negative spread team is always the favorite.
+    Parse ESPN 'details' strings like 'NE -3.5' or 'BUF +7' and return team and spread.
     """
-    matchup = row.get("matchup", "")
-    if "@" not in matchup:
-        return row
+    if not details:
+        return None, None
+    parts = details.split()
+    for i, p in enumerate(parts):
+        if p.startswith("-") or p.startswith("+"):
+            try:
+                spread = float(p)
+                team = parts[i - 1] if i > 0 else None
+                return team, spread
+            except:
+                continue
+    return None, None
 
-    away, home = [t.strip() for t in matchup.split("@", 1)]
 
-    spread = row.get("spread", None)
-    ml_fav = row.get("ml_fav", None)
-    ml_dog = row.get("ml_dog", None)
+def process_league(file_path):
+    if not os.path.exists(file_path):
+        return []
 
-    # Default to home as favorite if unknown
-    favorite_team = home
-    dog_team = away
-    fav_spread = None
-
-    # Logic: negative spread = favorite
-    if isinstance(spread, (int, float)):
-        if spread < 0:
-            favorite_team, dog_team = away, home
-            fav_spread = spread
-        elif spread > 0:
-            favorite_team, dog_team = home, away
-            fav_spread = -abs(spread)
-
-    # Fallback: moneyline odds
-    elif ml_fav and ml_dog:
+    with open(file_path, "r") as f:
         try:
-            if ml_fav < ml_dog:
-                favorite_team, dog_team = away, home
-                fav_spread = row.get("spread", -1.5)
+            raw = json.load(f)
+        except:
+            return []
+
+    data = raw.get("data", [])
+    for g in data:
+        details = g.get("details") or ""
+        team, spread = extract_spread_from_details(details)
+
+        # Set favorite and dog teams based on the sign of the spread
+        if team:
+            g["favorite_team"] = team
+            g["fav_spread"] = spread
+            # Determine dog
+            if g.get("home_team") == team:
+                g["dog_team"] = g.get("away_team")
             else:
-                favorite_team, dog_team = home, away
-                fav_spread = row.get("spread", -1.5)
-        except Exception:
-            pass
+                g["dog_team"] = g.get("home_team")
+        else:
+            # Default fallback — keep home/away structure
+            g["favorite_team"] = g.get("home_team")
+            g["dog_team"] = g.get("away_team")
+            g["fav_spread"] = None
 
-    row.update({
-        "away_team": away,
-        "home_team": home,
-        "favorite_team": favorite_team,
-        "dog_team": dog_team,
-        "fav_spread": fav_spread
-    })
-    return row
+    # Save back
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+    out = {"timestamp": timestamp, "data": data}
+    with open(file_path, "w") as f:
+        json.dump(out, f, indent=2)
 
-def tag_all_files():
-    files = [f for f in os.listdir(".") if f.endswith(".json") and not f.startswith("combined_backup")]
-    all_rows = []
+    print(f"[💾] Saved → {os.path.basename(file_path)} ({len(data)} games)")
+    return data
 
-    for file in files:
-        data = load_json(file)
-        if not data:
-            continue
 
-        fixed = [determine_favorite(row) for row in data]
-        save_json(file, fixed)
+def main():
+    print(f"[🏈] Tagging favorites and underdogs at {datetime.now(timezone.utc).isoformat()}Z...")
+    combined = []
 
-        if "combined" not in file:
-            all_rows.extend(fixed)
+    for league in LEAGUES:
+        path = os.path.join(BASE_DIR, f"{league}.json")
+        combined.extend(process_league(path))
 
-    # Update combined.json
-    if all_rows:
-        save_json("combined.json", all_rows)
-    else:
-        print("⚠️  No data found to tag.")
+    combined_out = os.path.join(BASE_DIR, "combined.json")
+    with open(combined_out, "w") as f:
+        json.dump({"timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"), "data": combined}, f, indent=2)
+
+    print(f"[💾] Saved → combined.json ({len(combined)} games)")
+    print("[✅] Tagging complete.")
+
 
 if __name__ == "__main__":
-    print(f"[🏈] Tagging favorites and underdogs at {datetime.utcnow().isoformat()}Z...")
-    tag_all_files()
-    print("[✅] Tagging complete.")
+    main()
 
