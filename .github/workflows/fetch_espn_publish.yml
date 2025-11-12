@@ -1,23 +1,15 @@
-name: Fetch ESPN Data and Publish (Failsafe)
+name: Auto Fetch & Publish ESPN Odds
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"  # every 15 minutes UTC
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
 
 jobs:
-  fetch-and-deploy:
+  fetch-and-publish:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -30,60 +22,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Backup last combined.json
+      - name: Fetch ESPN Core API Odds
+        run: python3 fetch_espn_core_odds.py
+
+      - name: Tag favorites and underdogs
+        run: python3 tag_favorites.py
+
+      - name: Track weekly accuracy
+        run: python3 track_accuracy.py
+
+      - name: Commit and push updated data
         run: |
-          echo "[💾] Backing up previous combined.json..."
-          if [ -f combined.json ]; then
-            cp combined.json combined_backup_$(date -u +"%Y%m%d_%H%M").json
-          fi
-
-      - name: Fetch ESPN Odds
-        run: |
-          echo "[🏈] Running ESPN odds fetcher..."
-          if [ -f fetch_espn_all.py ]; then
-            python fetch_espn_all.py
-          else
-            echo "⚠️ fetch_espn_all.py not found!"
-            exit 1
-          fi
-
-      - name: Failsafe check (restore backup if no games)
-        run: |
-          echo "[🔍] Checking combined.json integrity..."
-          if grep -q '"data": \[\]' combined.json; then
-            echo "⚠️  No games found! Restoring most recent backup."
-            latest_backup=$(ls -t combined_backup_*.json | head -n 1)
-            if [ -n "$latest_backup" ]; then
-              cp "$latest_backup" combined.json
-              echo "[✅] Restored $latest_backup as active combined.json"
-            else
-              echo "[❌] No backup found; leaving combined.json as-is."
-            fi
-          else
-            echo "[✅] combined.json contains valid data."
-          fi
-
-      - name: Prepare deployment folder
-        run: |
-          echo "[📦] Preparing deployment folder..."
-          mkdir -p _site archive
-          TODAY=$(date -u +"%Y-%m-%d")
-          mkdir -p "_site/archive/$TODAY"
-          find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
-          find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
-          echo "data.forgedbyfreedom.org" > _site/CNAME
-
-          echo "<html><body><h1>Forged by Freedom — ESPN Odds Feed (Failsafe)</h1><p>Auto-updated every 15 minutes (UTC).</p><ul>" > _site/index.html
-          for f in $(ls _site/*.json); do
-            echo "<li><a href='$(basename "$f")'>$(basename "$f")</a></li>" >> _site/index.html
-          done
-          echo "</ul></body></html>" >> _site/index.html
-
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add combined.json performance_log.json *.json || true
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git push origin main || echo "Nothing to push"
