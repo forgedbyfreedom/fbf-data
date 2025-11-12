@@ -4,126 +4,139 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forged by Freedom — Live Game Odds & Picks</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { padding: 0.5rem 1rem; text-align: left; border-bottom: 1px solid #1e293b; }
-    th { background-color: #1e293b; font-weight: 700; }
-    tr:hover { background-color: #334155; }
-    .sport-header { font-size: 1.5rem; margin-top: 2rem; font-weight: bold; color: #22d3ee; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #101820;
+      color: #f4f4f4;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 1.5rem;
+      font-size: 2rem;
+      color: #feca1b;
+    }
+    h2, h3 {
+      color: #00c6ff;
+    }
+    table {
+      width: 90%;
+      margin: 1.5rem auto;
+      border-collapse: collapse;
+      background: #18222d;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background: #243447;
+      color: #feca1b;
+    }
+    tr:nth-child(even) {
+      background: #1c2833;
+    }
+    #performance {
+      background: #141a22;
+      border: 1px solid #333;
+      margin: 20px auto;
+      width: 80%;
+      border-radius: 10px;
+      padding: 10px;
+      color: #feca1b;
+    }
+    footer {
+      margin: 2rem 0;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
+<body>
+  <h1>Forged by Freedom — Live Game Odds & Picks</h1>
+  <h3>Strength · Discipline · Freedom · We make your fitness goals realities!</h3>
+  <h3><a href="https://forgedbyfreedom.org" style="color:#00c6ff;">forgedbyfreedom.org</a></h3>
 
-<body class="p-6">
-  <header class="text-center mb-6">
-    <h1 class="text-4xl font-bold text-emerald-400">Forged by Freedom — Live Game Odds & Picks</h1>
-    <p class="text-gray-400 mt-2">Strength · Discipline · Freedom · We make your fitness goals realities!</p>
-  </header>
+  <div id="performance">Loading weekly performance...</div>
 
-  <div id="content" class="space-y-10 text-sm md:text-base"></div>
+  <table id="oddsTable">
+    <thead>
+      <tr>
+        <th>Sport</th>
+        <th>Matchup</th>
+        <th>Favorite (Spread)</th>
+        <th>O/U</th>
+        <th>Book</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5">Loading odds...</td></tr>
+    </tbody>
+  </table>
+
+  <footer>
+    Updated automatically every 15 minutes · Forged by Freedom Data API
+  </footer>
 
   <script>
     async function loadData() {
-      const url = "https://cdn.jsdelivr.net/gh/forgedbyfreedom/fbf-data@main/combined.json";
       try {
-        const res = await fetch(url + "?v=" + Date.now());
-        if (!res.ok) throw new Error(res.statusText);
-        const json = await res.json();
-        const games = json.data || json || [];
-        renderDashboard(games);
-      } catch (err) {
-        document.getElementById("content").innerHTML = `
-          <div class="text-center text-red-400 mt-10">
-            ⚠️ Error loading data: ${err.message}<br>
-            <a href="${url}" class="underline text-blue-400" target="_blank">Check combined.json</a>
-          </div>`;
-      }
-    }
+        const res = await fetch('combined.json');
+        const data = await res.json();
+        const tbody = document.querySelector('#oddsTable tbody');
+        tbody.innerHTML = '';
 
-    function resolveFavorite(game) {
-      const away = game.away_team || (game.matchup || "").split("@")[0]?.trim() || "";
-      const home = game.home_team || (game.matchup || "").split("@")[1]?.trim() || "";
-
-      if (game.favorite_team && typeof game.fav_spread === "number") {
-        const spread = game.fav_spread > 0 ? `(+${game.fav_spread})` : `(${game.fav_spread})`;
-        return {
-          favorite: `${game.favorite_team} ${spread}`,
-          dog: game.dog_team || (game.favorite_team === home ? away : home),
-          away, home
-        };
-      }
-      return { favorite: "— Missing Spread Data —", dog: "", away, home };
-    }
-
-    function renderDashboard(games) {
-      const now = new Date();
-      const cutoff = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000);
-      const upcoming = games.filter(g => {
-        const t = new Date(g.commence_time);
-        return !isNaN(t) && t >= now && t <= cutoff;
-      });
-      const show = upcoming.length ? upcoming : games;
-
-      if (!show.length) {
-        document.getElementById("content").innerHTML = "<p class='text-center mt-10 text-gray-400'>No games available.</p>";
-        return;
-      }
-
-      const sports = {};
-      for (const g of show) {
-        if (!sports[g.sport_key]) sports[g.sport_key] = [];
-        sports[g.sport_key].push(g);
-      }
-
-      const sportLabels = {
-        "americanfootball_nfl": "🏈 NFL Football",
-        "americanfootball_ncaaf": "🎓 NCAA Football",
-        "basketball_ncaab": "🏀 NCAA Men’s Basketball",
-        "basketball_ncaaw": "🏀 NCAA Women’s Basketball",
-        "baseball_mlb": "⚾ MLB Baseball",
-        "icehockey_nhl": "🏒 NHL Hockey",
-        "mma_mixedmartialarts": "🥊 UFC / MMA"
-      };
-
-      let html = "";
-      for (const [sport, games] of Object.entries(sports)) {
-        html += `<div><div class="sport-header">${sportLabels[sport] || sport}</div>
-          <table>
-            <thead>
-              <tr>
-                <th>Matchup</th>
-                <th>Favorite (Spread)</th>
-                <th>Straight Up</th>
-                <th>ATS</th>
-                <th>O/U</th>
-              </tr>
-            </thead>
-            <tbody>`;
-
-        for (const g of games) {
-          const f = resolveFavorite(g);
-          const su = g.conf_straight ?? Math.random() * 30 + 65;
-          const ats = g.conf_ats ?? Math.random() * 30 + 65;
-          const ou = g.conf_ou ?? Math.random() * 30 + 65;
-
-          html += `
-            <tr>
-              <td>${g.matchup}</td>
-              <td>${f.favorite}</td>
-              <td>${su.toFixed(1)}%</td>
-              <td>${ats.toFixed(1)}%</td>
-              <td>${ou.toFixed(1)}%</td>
-            </tr>`;
+        if (!data.data || data.data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5">No games available.</td></tr>';
+          return;
         }
 
-        html += `</tbody></table></div>`;
+        data.data.forEach(g => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${g.sport_key.replace('americanfootball_', '').toUpperCase()}</td>
+            <td>${g.matchup}</td>
+            <td>${g.favorite_team || '—'} (${g.fav_spread ?? '-'})</td>
+            <td>${g.total ?? '-'}</td>
+            <td>${g.book}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error(err);
+        document.querySelector('#oddsTable tbody').innerHTML = '<tr><td colspan="5">Failed to load odds data.</td></tr>';
       }
+    }
 
-      document.getElementById("content").innerHTML = html;
+    async function loadPerformance() {
+      try {
+        const res = await fetch('performance_log.json');
+        const logs = await res.json();
+        const latest = logs[logs.length - 1];
+        const div = document.getElementById('performance');
+        if (latest) {
+          div.innerHTML = `
+            <h2>📊 Weekly Accuracy</h2>
+            <p>Straight Up (SU): ${latest.SU_accuracy}%</p>
+            <p>Against the Spread (ATS): ${latest.ATS_accuracy}%</p>
+            <p>Over/Under (O/U): ${latest.OU_accuracy}%</p>
+            <p><small>Games Checked: ${latest.games_checked}</small></p>
+          `;
+        } else {
+          div.innerHTML = '<p>No accuracy data logged yet.</p>';
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById('performance').innerText = 'Error loading performance data.';
+      }
     }
 
     loadData();
+    loadPerformance();
   </script>
 </body>
 </html>
