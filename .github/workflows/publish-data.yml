@@ -1,23 +1,13 @@
-name: Publish Data to GitHub Pages
+name: Auto Fetch & Publish ESPN Odds
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *" # every 15 minutes UTC
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    - cron: "*/15 * * * *"  # every 15 minutes
+  workflow_dispatch:
 
 jobs:
-  build:
+  fetch-and-publish:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,104 +22,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      # 🏈 Fetch odds
-      - name: Run fetcher
+      - name: Fetch ESPN Core API Odds
         run: |
-          echo "[🕒] Running fetch_multi.py..."
-          if [ -f fetch_multi.py ]; then
-            python fetch_multi.py || echo "⚠️ fetch_multi.py failed, continuing."
-          else
-            echo "⚠️ fetch_multi.py not found, skipping odds fetch."
-          fi
+          echo "🏈 Starting ESPN Core Odds Fetch..."
+          python3 fetch_espn_core_odds.py
 
-      # 👥 Fetch rosters (optional)
-      - name: Run roster fetcher
+      - name: Tag favorites and underdogs
         run: |
-          echo "[👥] Fetching rosters..."
-          if [ -f fetch_rosters.py ]; then
-            python fetch_rosters.py || echo "⚠️ Roster fetch failed, continuing."
-          else
-            echo "⚠️ fetch_rosters.py not found, skipping."
-          fi
+          echo "🏷️ Running tag_favorites.py..."
+          python3 tag_favorites.py
 
-      # 🔧 Normalize data
-      - name: Normalize latest data
+      - name: Commit and push updated data
         run: |
-          echo "[🔧] Normalizing latest data..."
-          if [ -f tools/normalize_latest.py ]; then
-            python tools/normalize_latest.py || echo "⚠️ Normalization failed, continuing."
-          else
-            echo "⚠️ normalize_latest.py not found, skipping."
-          fi
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add combined.json *.json || true
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git push origin main || echo "Nothing to push"
 
-      # ✅ Tag favorites before deploy
-      - name: Tag favorites
-        run: |
-          echo "[🏈] Tagging favorites with correct negative spreads..."
-          if [ -f tag_favorites.py ]; then
-            python tag_favorites.py || echo "⚠️ tag_favorites.py failed, continuing."
-          else
-            echo "⚠️ tag_favorites.py not found, skipping."
-          fi
-
-      # 📦 Prepare deployment folder
-      - name: Prepare deployment folder
-        run: |
-          echo "[📦] Preparing deployment folder..."
-          rm -rf _site
-          mkdir -p _site archive
-
-          TODAY=$(date -u +"%Y-%m-%d")
-          mkdir -p "_site/archive/$TODAY"
-
-          # Copy JSON data files
-          find . -maxdepth 1 -name "*.json" -exec cp {} _site/ \;
-          find . -maxdepth 1 -name "*.json" -exec cp {} "_site/archive/$TODAY/" \;
-
-          # Copy roster data if present
-          if [ -d "rosters" ]; then
-            mkdir -p _site/rosters "_site/archive/$TODAY/rosters"
-            cp -v rosters/*.json _site/rosters/ 2>/dev/null || true
-            cp -v rosters/*.json "_site/archive/$TODAY/rosters/" 2>/dev/null || true
-          fi
-
-          # CNAME for custom domain
-          echo "data.forgedbyfreedom.org" > _site/CNAME
-
-          # Build index.html dynamically
-          {
-            echo "<html><body style='font-family:Arial;text-align:center;background:#fafafa;color:#222;'>"
-            echo "<h1>Forged by Freedom Strength & Nutrition</h1>"
-            echo "<h3>Strength – Discipline – Freedom</h3>"
-            echo "<p>We make your fitness goals realities!</p>"
-            echo "<p><b>forgedbyfreedom.org</b></p>"
-            echo "<hr>"
-            echo "<h2>Forged Data API</h2>"
-            echo "<p>Auto-updates every 15 minutes (UTC)</p>"
-            echo "<h3>Latest JSON Files</h3><ul style='list-style:none;padding:0;'>"
-            for f in $(ls _site/*.json 2>/dev/null); do
-              base=$(basename "$f")
-              echo "<li><a href='$base'>$base</a></li>"
-            done
-            echo "</ul>"
-            echo "<p style='margin-top:40px;font-size:smaller;color:#777;'>Last updated: $(date -u)</p>"
-            echo "</body></html>"
-          } > _site/index.html
-
-          echo "[✅] Deployment folder ready."
-
-      # 🚀 Upload artifact for Pages
-      - name: Upload artifact for Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
