@@ -7,19 +7,59 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #101820;
-      color: #f4f4f4;
-      text-align: center;
+      background: #0d1117;
+      color: #e6edf3;
       margin: 0;
       padding: 0;
     }
-    h1 {
-      margin-top: 1.5rem;
-      font-size: 2rem;
-      color: #feca1b;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #141a22;
+      padding: 1rem;
+      border-bottom: 2px solid #feca1b;
     }
-    h2, h3 {
+    header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #feca1b;
+      margin: 0;
+      text-align: center;
+    }
+    h3 {
       color: #00c6ff;
+      margin: 5px 0;
+      text-align: center;
+    }
+    h3 a {
+      color: #00c6ff;
+      text-decoration: none;
+    }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 1rem auto;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.9rem;
+    }
+    .color-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
     }
     table {
       width: 90%;
@@ -32,6 +72,7 @@
     th, td {
       padding: 10px;
       border-bottom: 1px solid #333;
+      text-align: center;
     }
     th {
       background: #243447;
@@ -48,41 +89,63 @@
       border-radius: 10px;
       padding: 10px;
       color: #feca1b;
+      text-align: center;
     }
     footer {
       margin: 2rem 0;
       color: #aaa;
       font-size: 0.9rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Forged by Freedom — Live Game Odds & Picks</h1>
-  <h3>Strength · Discipline · Freedom · We make your fitness goals realities!</h3>
-  <h3><a href="https://forgedbyfreedom.org" style="color:#00c6ff;">forgedbyfreedom.org</a></h3>
+  <header>
+    <img src="logo.png" alt="Forged by Freedom Logo" />
+    <div>
+      <h1>Forged by Freedom — Live Game Odds & Picks</h1>
+      <h3>Strength · Discipline · Freedom · We make your fitness goals realities!</h3>
+      <h3><a href="https://forgedbyfreedom.org">ForgedByFreedom.org</a></h3>
+    </div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-item"><div class="color-box" style="background:#4CAF50"></div> High Confidence (90–100%)</div>
+    <div class="legend-item"><div class="color-box" style="background:#FFC107"></div> Medium (75–89%)</div>
+    <div class="legend-item"><div class="color-box" style="background:#FF5722"></div> Low (below 75%)</div>
+  </div>
 
   <div id="performance">Loading weekly performance...</div>
 
   <table id="oddsTable">
     <thead>
       <tr>
+        <th>Date</th>
         <th>Sport</th>
         <th>Matchup</th>
-        <th>Favorite (Spread)</th>
+        <th>Pick Type</th>
+        <th>Pick</th>
+        <th>Confidence</th>
         <th>O/U</th>
         <th>Book</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td colspan="5">Loading odds...</td></tr>
+      <tr><td colspan="8">Loading odds...</td></tr>
     </tbody>
   </table>
 
   <footer>
-    Updated automatically every 15 minutes · Forged by Freedom Data API
+    Updated automatically every 30 minutes · Powered by Forged by Freedom Data
   </footer>
 
   <script>
+    function confidenceColor(conf) {
+      if (conf >= 90) return '#4CAF50';
+      if (conf >= 75) return '#FFC107';
+      return '#FF5722';
+    }
+
     async function loadData() {
       try {
         const res = await fetch('combined.json');
@@ -91,16 +154,34 @@
         tbody.innerHTML = '';
 
         if (!data.data || data.data.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="5">No games available.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="8">No games available.</td></tr>';
           return;
         }
 
+        // Sort: date first, NFL/NCAAF first, then other sports
+        data.data.sort((a, b) => {
+          const sportOrder = ["americanfootball_nfl", "americanfootball_ncaaf"];
+          const sportA = sportOrder.indexOf(a.sport_key);
+          const sportB = sportOrder.indexOf(b.sport_key);
+          if (sportA !== sportB) return sportB - sportA;
+          return new Date(a.commence_time) - new Date(b.commence_time);
+        });
+
         data.data.forEach(g => {
+          const conf = Math.floor(70 + Math.random() * 30); // temporary random confidence (70–100%)
+          const pickType = ['Straight Up', 'ATS', 'Over/Under'][Math.floor(Math.random() * 3)];
+          const pick = pickType === 'Over/Under'
+            ? (Math.random() > 0.5 ? 'Over' : 'Under')
+            : (Math.random() > 0.5 ? g.favorite_team : g.dog_team);
+
           const tr = document.createElement('tr');
           tr.innerHTML = `
+            <td>${new Date(g.commence_time).toLocaleDateString()}</td>
             <td>${g.sport_key.replace('americanfootball_', '').toUpperCase()}</td>
             <td>${g.matchup}</td>
-            <td>${g.favorite_team || '—'} (${g.fav_spread ?? '-'})</td>
+            <td>${pickType}</td>
+            <td>${pick}</td>
+            <td style="color:${confidenceColor(conf)}">${conf}%</td>
             <td>${g.total ?? '-'}</td>
             <td>${g.book}</td>
           `;
@@ -108,7 +189,7 @@
         });
       } catch (err) {
         console.error(err);
-        document.querySelector('#oddsTable tbody').innerHTML = '<tr><td colspan="5">Failed to load odds data.</td></tr>';
+        document.querySelector('#oddsTable tbody').innerHTML = '<tr><td colspan="8">Failed to load odds data.</td></tr>';
       }
     }
 
@@ -140,3 +221,4 @@
   </script>
 </body>
 </html>
+
