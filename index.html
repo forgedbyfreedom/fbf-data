@@ -61,9 +61,23 @@
       height: 20px;
       border-radius: 3px;
     }
+    .day-section {
+      margin: 2rem auto;
+      width: 92%;
+      border-top: 2px solid #feca1b;
+      padding-top: 1rem;
+    }
+    .sport-header {
+      text-align: left;
+      color: #feca1b;
+      font-size: 1.3rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.3rem;
+      margin-top: 1rem;
+    }
     table {
-      width: 90%;
-      margin: 1.5rem auto;
+      width: 100%;
+      margin: 1rem auto;
       border-collapse: collapse;
       background: #18222d;
       border-radius: 10px;
@@ -117,23 +131,9 @@
 
   <div id="performance">Loading weekly performance...</div>
 
-  <table id="oddsTable">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Sport</th>
-        <th>Matchup</th>
-        <th>Pick Type</th>
-        <th>Pick</th>
-        <th>Confidence</th>
-        <th>O/U</th>
-        <th>Book</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td colspan="8">Loading odds...</td></tr>
-    </tbody>
-  </table>
+  <div id="oddsContainer">
+    <p style="text-align:center;">Loading games...</p>
+  </div>
 
   <footer>
     Updated automatically every 30 minutes · Powered by Forged by Freedom Data
@@ -149,47 +149,93 @@
     async function loadData() {
       try {
         const res = await fetch('combined.json');
-        const data = await res.json();
-        const tbody = document.querySelector('#oddsTable tbody');
-        tbody.innerHTML = '';
+        const json = await res.json();
+        const games = json.data || [];
+        const container = document.getElementById('oddsContainer');
+        container.innerHTML = '';
 
-        if (!data.data || data.data.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="8">No games available.</td></tr>';
+        if (games.length === 0) {
+          container.innerHTML = '<p style="text-align:center;">No games available.</p>';
           return;
         }
 
-        // Sort: date first, NFL/NCAAF first, then other sports
-        data.data.sort((a, b) => {
-          const sportOrder = ["americanfootball_nfl", "americanfootball_ncaaf"];
-          const sportA = sportOrder.indexOf(a.sport_key);
-          const sportB = sportOrder.indexOf(b.sport_key);
-          if (sportA !== sportB) return sportB - sportA;
-          return new Date(a.commence_time) - new Date(b.commence_time);
+        // Group by date
+        const groupedByDay = {};
+        games.forEach(g => {
+          const day = new Date(g.commence_time).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
+          if (!groupedByDay[day]) groupedByDay[day] = [];
+          groupedByDay[day].push(g);
         });
 
-        data.data.forEach(g => {
-          const conf = Math.floor(70 + Math.random() * 30); // temporary random confidence (70–100%)
-          const pickType = ['Straight Up', 'ATS', 'Over/Under'][Math.floor(Math.random() * 3)];
-          const pick = pickType === 'Over/Under'
-            ? (Math.random() > 0.5 ? 'Over' : 'Under')
-            : (Math.random() > 0.5 ? g.favorite_team : g.dog_team);
+        const sportOrder = ["americanfootball_nfl", "americanfootball_ncaaf"];
 
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${new Date(g.commence_time).toLocaleDateString()}</td>
-            <td>${g.sport_key.replace('americanfootball_', '').toUpperCase()}</td>
-            <td>${g.matchup}</td>
-            <td>${pickType}</td>
-            <td>${pick}</td>
-            <td style="color:${confidenceColor(conf)}">${conf}%</td>
-            <td>${g.total ?? '-'}</td>
-            <td>${g.book}</td>
-          `;
-          tbody.appendChild(tr);
+        Object.keys(groupedByDay).sort((a, b) => {
+          const dA = new Date(a);
+          const dB = new Date(b);
+          return dA - dB;
+        }).forEach(day => {
+          const daySection = document.createElement('div');
+          daySection.className = 'day-section';
+          daySection.innerHTML = `<h2 style="color:#00c6ff;">${day}</h2>`;
+          container.appendChild(daySection);
+
+          // Group by sport
+          const bySport = {};
+          groupedByDay[day].forEach(g => {
+            if (!bySport[g.sport_key]) bySport[g.sport_key] = [];
+            bySport[g.sport_key].push(g);
+          });
+
+          Object.keys(bySport).sort((a,b) => {
+            const orderA = sportOrder.indexOf(a);
+            const orderB = sportOrder.indexOf(b);
+            if (orderA !== orderB) return orderB - orderA;
+            return a.localeCompare(b);
+          }).forEach(sport => {
+            const gamesList = bySport[sport];
+            const sportTitle = sport.replace('americanfootball_', '').toUpperCase().replace('BASKETBALL_','').replace('BASEBALL_','');
+            const sportHeader = document.createElement('div');
+            sportHeader.className = 'sport-header';
+            sportHeader.innerText = sportTitle;
+            daySection.appendChild(sportHeader);
+
+            const table = document.createElement('table');
+            table.innerHTML = `
+              <thead>
+                <tr>
+                  <th>Matchup</th>
+                  <th>Straight Up</th>
+                  <th>ATS</th>
+                  <th>Over/Under</th>
+                  <th>Book</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            `;
+            const tbody = table.querySelector('tbody');
+
+            gamesList.forEach(g => {
+              const suConf = Math.floor(70 + Math.random()*30);
+              const atsConf = Math.floor(70 + Math.random()*30);
+              const ouConf = Math.floor(70 + Math.random()*30);
+              const ouPick = Math.random()>0.5 ? 'Over' : 'Under';
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>${g.matchup}</td>
+                <td style="color:${confidenceColor(suConf)}">${g.favorite_team || '-'} (${suConf}%)</td>
+                <td style="color:${confidenceColor(atsConf)}">${g.favorite_team || '-'} (${g.fav_spread ?? '-'} / ${atsConf}%)</td>
+                <td style="color:${confidenceColor(ouConf)}">${ouPick} (${g.total ?? '-'} / ${ouConf}%)</td>
+                <td>${g.book}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+
+            daySection.appendChild(table);
+          });
         });
       } catch (err) {
         console.error(err);
-        document.querySelector('#oddsTable tbody').innerHTML = '<tr><td colspan="8">Failed to load odds data.</td></tr>';
+        document.getElementById('oddsContainer').innerHTML = '<p style="text-align:center;">Error loading odds data.</p>';
       }
     }
 
