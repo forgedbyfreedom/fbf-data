@@ -1,88 +1,101 @@
 #!/usr/bin/env python3
-"""
-tag_favorites.py
-Cleans and finalizes favorite/dog/spread info for ESPN data.
-"""
+import json, os, datetime
 
-import json, os, re
-from datetime import datetime, timezone
+# All league JSON files we standardize
+DATA_FILES = [
+    "nfl.json", "ncaaf.json", "ncaab.json", "ncaaw.json",
+    "mlb.json", "nhl.json", "mixedmartialarts.json"
+]
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LEAGUES = ["nfl", "ncaaf", "ncaab", "ncaaw", "mlb", "nhl"]
+def load_json(path):
+    if not os.path.exists(path):
+        return {"data": []}
+    with open(path, "r") as f:
+        return json.load(f)
 
-def extract_spread_from_details(details: str):
+def save_json(path, data):
+    with open(path, "w") as f:
+        json.dump({
+            "timestamp": datetime.datetime.utcnow().strftime("%Y%m%d_%H%M"),
+            "data": data
+        }, f, indent=2)
+
+def process_game(game):
     """
-    Parse ESPN 'details' strings like 'NE -3.5' or 'BUF +7' and return team and spread.
+    Convert ESPN odds into clean format:
+
+      favorite: "Team -X.X"
+      underdog: "Team +X.X"
+      total: number
+
+    Spread is never stored separately.
+    We always attach the spread to team names.
     """
-    if not details:
-        return None, None
-    parts = details.split()
-    for i, p in enumerate(parts):
-        if p.startswith("-") or p.startswith("+"):
-            try:
-                spread = float(p)
-                team = parts[i - 1] if i > 0 else None
-                return team, spread
-            except:
-                continue
-    return None, None
 
+    away = game.get("away_team")
+    home = game.get("home_team")
 
-def process_league(file_path):
-    if not os.path.exists(file_path):
-        return []
+    # Extract spread consistently
+    spread = None
+    for key in ["fav_spread", "spread", "spread_full"]:
+        if isinstance(game.get(key), (int, float)):
+            spread = float(game.get(key))
 
-    with open(file_path, "r") as f:
-        try:
-            raw = json.load(f)
-        except:
-            return []
+    # Extract O/U total
+    total = None
+    if isinstance(game.get("total"), (int, float)):
+        total = float(game.get("total"))
 
-    data = raw.get("data", [])
-    for g in data:
-        details = g.get("details") or ""
-        team, spread = extract_spread_from_details(details)
-
-        # Set favorite and dog teams based on the sign of the spread
-        if team:
-            g["favorite_team"] = team
-            g["fav_spread"] = spread
-            # Determine dog
-            if g.get("home_team") == team:
-                g["dog_team"] = g.get("away_team")
+    # Determine favorite/underdog
+    if spread is not None:
+        # Negative = favorite
+        if spread < 0:
+            # ESPN sometimes stores favorite_team
+            fav_team = game.get("favorite_team")
+            if fav_team == home:
+                favorite = f"{home} {spread}"
+                underdog = f"{away} +{abs(spread)}"
             else:
-                g["dog_team"] = g.get("home_team")
+                favorite = f"{away} {spread}"
+                underdog = f"{home} +{abs(spread)}"
         else:
-            # Default fallback — keep home/away structure
-            g["favorite_team"] = g.get("home_team")
-            g["dog_team"] = g.get("away_team")
-            g["fav_spread"] = None
+            # If ESPN gives positive spread, we invert
+            favorite = f"{away} -{abs(spread)}"
+            underdog = f"{home} +{abs(spread)}"
+    else:
+        # No odds provided → give 0 spread but still fill fields
+        favorite = f"{home} -0.0"
+        underdog = f"{away} +0.0"
 
-    # Save back
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
-    out = {"timestamp": timestamp, "data": data}
-    with open(file_path, "w") as f:
-        json.dump(out, f, indent=2)
-
-    print(f"[💾] Saved → {os.path.basename(file_path)} ({len(data)} games)")
-    return data
-
+    return {
+        "sport_key": game.get("sport_key"),
+        "matchup": game.get("matchup"),
+        "home_team": home,
+        "away_team": away,
+        "favorite": favorite,
+        "underdog": underdog,
+        "total": total,
+        "commence_time": game.get("commence_time"),
+        "book": game.get("book"),
+        "fetched_at": game.get("fetched_at")
+    }
 
 def main():
-    print(f"[🏈] Tagging favorites and underdogs at {datetime.now(timezone.utc).isoformat()}Z...")
+    print(f"[🏈] Tagging favorites at {datetime.datetime.utcnow().isoformat()}Z...")
+
     combined = []
 
-    for league in LEAGUES:
-        path = os.path.join(BASE_DIR, f"{league}.json")
-        combined.extend(process_league(path))
+    for filename in DATA_FILES:
+        source = load_json(filename)
+        processed = [process_game(game) for game in source.get("data", [])]
 
-    combined_out = os.path.join(BASE_DIR, "combined.json")
-    with open(combined_out, "w") as f:
-        json.dump({"timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"), "data": combined}, f, indent=2)
+        save_json(filename, processed)
+        combined.extend(processed)
+        print(f"[💾] Saved → {filename} ({len(processed)} games)")
 
-    print(f"[💾] Saved → combined.json ({len(combined)} games)")
+    save_json("combined.json", combined)
+    print("[💾] Saved → combined.json")
     print("[✅] Tagging complete.")
-
 
 if __name__ == "__main__":
     main()
