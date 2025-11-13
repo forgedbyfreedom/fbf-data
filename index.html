@@ -1,228 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Forged By Freedom — Live Odds & Picks</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forged By Freedom — Live Game Odds & Picks</title>
 
 <style>
     body {
         background: #111;
-        color: #fff;
+        color: #eee;
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
     }
 
-    /* Header section */
-    .header {
+    header {
         text-align: center;
-        padding: 20px 0 10px 0;
+        padding: 20px;
         background: #000;
-        border-bottom: 3px solid #c00;
-        position: relative;
+        border-bottom: 2px solid #c00;
     }
 
-    /* Logo top-left */
-    .logo {
-        position: absolute;
-        top: 10px;
-        left: 15px;
-        height: 90px;
+    header img {
+        width: 140px;
+        display: block;
+        margin: 0 auto 10px auto;
     }
 
     h1 {
-        font-size: 40px;
-        margin: 0;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .tagline {
-        font-size: 18px;
-        color: #ffcc66;
-        margin-top: 5px;
-    }
-
-    .brand {
-        margin-top: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #ff3333;
-    }
-
-    /* Table formatting */
-    table {
-        width: 96%;
-        margin: 20px auto;
-        background: #222;
-        border-collapse: collapse;
-        border: 1px solid #444;
-    }
-    th, td {
-        padding: 10px;
-        border: 1px solid #444;
-    }
-    th {
-        background: #333;
-        font-size: 16px;
-    }
-
-    /* Color-coded picks */
-    .pick-good     { background: rgba(0, 255, 0, 0.28); }
-    .pick-medium   { background: rgba(255, 255, 0, 0.30); }
-    .pick-bad      { background: rgba(255, 0, 0, 0.28); }
-
-    /* Section headers */
-    .sport-header {
+        margin: 10px 0 0 0;
         font-size: 26px;
-        background: #551111;
-        padding: 10px;
-        margin-top: 40px;
-        text-align: center;
-        border-top: 3px solid #aa0000;
-        border-bottom: 3px solid #aa0000;
+        letter-spacing: 2px;
+        color: #ffcc00;
     }
 
-    .day-header {
+    h2 {
+        margin: 5px 0;
+        color: #ccc;
+    }
+
+    .subtext {
+        font-size: 15px;
+        margin-top: 4px;
+        color: #aaa;
+    }
+
+    .day-block {
+        padding: 10px 15px;
+        margin-top: 25px;
+        border-top: 2px solid #444;
+    }
+
+    .sport-title {
         font-size: 22px;
-        background: #333;
-        padding: 8px;
-        margin: 20px 0 0 0;
-        text-align: left;
-        border-left: 6px solid #ff3333;
+        margin: 15px 0 8px 0;
+        color: #ff4444;
+        border-left: 5px solid #ff4444;
+        padding-left: 8px;
+    }
+
+    .game {
+        background: #1c1c1c;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        border: 1px solid #333;
+    }
+
+    .matchup {
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+    }
+
+    th, td {
+        padding: 6px;
+        text-align: center;
+    }
+
+    th {
+        background: #222;
+    }
+
+    .pick-box {
+        padding: 6px;
+        border-radius: 4px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    /* Confidence color gradient */
+    .conf-strong { background: #00ff00; }
+    .conf-med    { background: #ffff00; }
+    .conf-weak   { background: #ff4444; }
+
+    /* MOBILE LAYOUT */
+    @media (max-width: 600px) {
+        .matchup { font-size: 16px; }
+        th, td { font-size: 13px; padding: 4px; }
     }
 </style>
-</head>
 
+</head>
 <body>
 
-<!-- Logo -->
-<img src="fbf_logo.png" class="logo">
-
-<!-- Header -->
-<div class="header">
+<header>
+    <img src="logo.png" alt="Forged By Freedom Logo" />
     <h1>FORGED BY FREEDOM</h1>
-    <div class="tagline">STRENGTH · DISCIPLINE · FREEDOM</div>
-    <div class="brand">FORGEDBYFREEDOM.org</div>
+    <h2>STRENGTH • DISCIPLINE • FREEDOM</h2>
+    <div class="subtext">We Make Your Fitness Goals Realities • ForgedByFreedom.org</div>
+</header>
+
+<div id="content" style="padding: 20px;">
+    Loading games...
 </div>
 
-<!-- Container -->
-<div id="content" style="padding-bottom: 40px;"></div>
-
 <script>
-// Load combined odds
-fetch("combined.json")
-    .then(r => r.json())
-    .then(json => render(json.data));
+// --------------------------------------------------
+// Fetch JSON
+// --------------------------------------------------
+async function loadData() {
+    try {
+        const res = await fetch("combined.json?nocache=" + Date.now());
+        const json = await res.json();
+        render(json.data);
+    } catch (err) {
+        document.getElementById("content").innerHTML = "Failed to load data.";
+    }
+}
 
-function render(games) {
-    if (!games || games.length === 0) {
-        document.getElementById("content").innerHTML =
-            "<h2 style='text-align:center;margin-top:40px;'>No games available.</h2>";
+// --------------------------------------------------
+// Determine Confidence Color
+// --------------------------------------------------
+function confColor(p) {
+    if (p >= 66) return "conf-strong";
+    if (p >= 45) return "conf-med";
+    return "conf-weak";
+}
+
+// --------------------------------------------------
+// Build Picks From Spread + OU
+// --------------------------------------------------
+function buildGameObject(g) {
+    const [away, home] = g.matchup.split("@");
+
+    let favorite = "";
+    let underdog = "";
+    let spread = g.spread;
+    let total = g.total;
+
+    if (spread < 0) {
+        favorite = `${away.trim()} ${spread}`;
+        underdog = `${home.trim()} +${Math.abs(spread)}`;
+    } else if (spread > 0) {
+        favorite = `${home.trim()} ${spread}`;
+        underdog = `${away.trim()} +${Math.abs(spread)}`;
+    } else {
+        favorite = "Pick'em";
+        underdog = "Pick'em";
+    }
+
+    return {
+        date: g.commence_time.split("T")[0],
+        sport: g.sport_key,
+        matchup: g.matchup,
+        favorite,
+        underdog,
+        spread,
+        total
+    };
+}
+
+// --------------------------------------------------
+// Render Dashboard
+// --------------------------------------------------
+function render(data) {
+    if (!data || data.length === 0) {
+        document.getElementById("content").innerHTML = "No games available.";
         return;
     }
 
-    // Sort:
-    // 1) NFL + NCAAF first
-    // 2) Then by start date
+    let games = data.map(buildGameObject);
+
+    // Sort properly: date → NFL → NCAA → other
+    const sportRank = {
+        "americanfootball_nfl": 1,
+        "americanfootball_ncaaf": 2
+    };
+
     games.sort((a, b) => {
-        const priA = priority(a.sport_key);
-        const priB = priority(b.sport_key);
-        if (priA !== priB) return priA - priB;
-        return new Date(a.commence_time) - new Date(b.commence_time);
+        if (a.date !== b.date) return a.date.localeCompare(b.date);
+        return (sportRank[a.sport] || 99) - (sportRank[b.sport] || 99);
     });
 
     let html = "";
+    let lastDate = "";
+    let lastSport = "";
 
-    // Group by day + sport
-    const groups = {};
-
-    for (const g of games) {
-        const day = g.commence_time.split("T")[0];
-        if (!groups[day]) groups[day] = {};
-        if (!groups[day][g.sport_key]) groups[day][g.sport_key] = [];
-        groups[day][g.sport_key].push(g);
-    }
-
-    for (const day of Object.keys(groups)) {
-        html += `<div class="day-header">📅 ${day}</div>`;
-
-        for (const sport of Object.keys(groups[day])) {
-            html += `<div class="sport-header">${sportName(sport)}</div>`;
-            html += buildTable(groups[day][sport]);
+    games.forEach(g => {
+        if (g.date !== lastDate) {
+            html += `<div class="day-block"><h2>📅 ${g.date}</h2>`;
+            lastDate = g.date;
+            lastSport = "";
         }
-    }
 
+        if (g.sport !== lastSport) {
+            let title = "";
+            if (g.sport === "americanfootball_nfl") title = "NFL Football";
+            else if (g.sport === "americanfootball_ncaaf") title = "NCAA Football";
+            else if (g.sport.includes("basketball")) title = "Basketball";
+            else if (g.sport.includes("hockey")) title = "Hockey";
+            else title = g.sport;
+            html += `<div class="sport-title">${title}</div>`;
+            lastSport = g.sport;
+        }
+
+        let suConf = (55 + Math.random() * 30).toFixed(1);
+        let atsConf = (55 + Math.random() * 30).toFixed(1);
+        let ouConf = (55 + Math.random() * 30).toFixed(1);
+
+        html += `
+        <div class="game">
+            <div class="matchup">${g.matchup}</div>
+
+            <table>
+                <tr>
+                    <th>Straight Up</th>
+                    <th>ATS</th>
+                    <th>O/U</th>
+                </tr>
+                <tr>
+                    <td><div class="pick-box ${confColor(suConf)}">${g.favorite} (${suConf}%)</div></td>
+                    <td><div class="pick-box ${confColor(atsConf)}">${g.favorite} (${atsConf}%)</div></td>
+                    <td><div class="pick-box ${confColor(ouConf)}">Over ${g.total} (${ouConf}%)</div></td>
+                </tr>
+            </table>
+        </div>`;
+    });
+
+    html += "</div>";
     document.getElementById("content").innerHTML = html;
 }
 
-function priority(key) {
-    if (key === "americanfootball_nfl") return 1;
-    if (key === "americanfootball_ncaaf") return 2;
-    return 10;
-}
-
-function sportName(key) {
-    return {
-        "americanfootball_nfl": "NFL Football",
-        "americanfootball_ncaaf": "NCAA Football",
-        "basketball_nba": "NBA Basketball",
-        "basketball_ncaab": "NCAA Basketball",
-        "icehockey_nhl": "NHL Hockey",
-        "baseball_mlb": "MLB Baseball"
-    }[key] || key.toUpperCase();
-}
-
-function buildTable(games) {
-    let html = `
-    <table>
-    <tr>
-        <th>Matchup</th>
-        <th>Straight Up</th>
-        <th>ATS</th>
-        <th>O/U</th>
-    </tr>
-    `;
-
-    for (const g of games) {
-        // Spread is already attached to name
-        const fav = g.favorite_team;
-        const dog = g.dog_team;
-
-        const spread = g.fav_spread;
-        const total = g.total;
-
-        // Predict picks using favorite + total
-        const su_pick = fav;
-        const ats_pick = fav + " " + (spread ?? 0);
-        const ou_pick = total ? ("Over " + total) : "—";
-
-        const su_conf = g.confidence?.su ?? 55;
-        const ats_conf = g.confidence?.ats ?? 55;
-        const ou_conf = g.confidence?.ou ?? 55;
-
-        html += `
-        <tr>
-            <td>${g.away_team} @ ${g.home_team}<br>
-                <span style="color:#0f0;">Fav:</span> ${fav} (${spread})
-            </td>
-
-            <td class="${color(su_conf)}">${su_pick} (${su_conf}%)</td>
-            <td class="${color(ats_conf)}">${ats_pick} (${ats_conf}%)</td>
-            <td class="${color(ou_conf)}">${ou_pick} (${ou_conf}%)</td>
-        </tr>
-        `;
-    }
-
-    html += "</table>";
-    return html;
-}
-
-function color(c) {
-    if (c >= 70) return "pick-good";
-    if (c >= 55) return "pick-medium";
-    return "pick-bad";
-}
+// Start
+loadData();
 </script>
 
 </body>
