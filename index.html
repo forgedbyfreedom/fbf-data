@@ -35,9 +35,9 @@
 </header>
 
 <div class="legend">
-  <div class="legend-item"><div class="color-box" style="background:#4CAF50"></div> High (≥80%)</div>
-  <div class="legend-item"><div class="color-box" style="background:#FFC107"></div> Moderate (65–79%)</div>
-  <div class="legend-item"><div class="color-box" style="background:#FF5722"></div> Low (<65%)</div>
+  <div class="legend-item"><div class="color-box" style="background:#00e676"></div> Strong (≥70%)</div>
+  <div class="legend-item"><div class="color-box" style="background:#ffeb3b"></div> Solid (55–69%)</div>
+  <div class="legend-item"><div class="color-box" style="background:#ff5722"></div> Weak (<55%)</div>
 </div>
 
 <div id="performance">Loading weekly performance…</div>
@@ -45,19 +45,23 @@
 <footer>Updated automatically · Powered by Forged by Freedom Data</footer>
 
 <script>
-function confidenceColor(v){return v>=80?'#4CAF50':v>=65?'#FFC107':'#FF5722'}
+function confidenceColor(v){
+  if(v>=70) return '#00e676';
+  if(v>=55) return '#ffeb3b';
+  return '#ff5722';
+}
 function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
 
 const SPORT_BASE_TOTAL={americanfootball_nfl:45,americanfootball_ncaaf:55,basketball_nba:225,icehockey_nhl:6,baseball_mlb:9};
-const SPORT_MULTIPLIER={americanfootball_nfl:1.05,americanfootball_ncaaf:1.00,basketball_nba:0.95,baseball_mlb:0.9,icehockey_nhl:0.9};
+const SPORT_MULTIPLIER={americanfootball_nfl:1.08,americanfootball_ncaaf:1.04,basketball_nba:1.0,baseball_mlb:0.95,icehockey_nhl:0.9};
 
 async function loadAll(){
   const [oddsRes,perfRes]=await Promise.allSettled([
     fetch("combined.json"),fetch("performance_log.json")
   ]);
-  const odds = oddsRes.status==="fulfilled" ? await oddsRes.value.json() : {data:[]};
-  const perf = perfRes.status==="fulfilled" ? await perfRes.value.json() : [];
-  const latest = perf.length ? perf.at(-1) : {SU_accuracy:70,ATS_accuracy:65,OU_accuracy:60};
+  const odds=oddsRes.status==="fulfilled"?await oddsRes.value.json():{data:[]};
+  const perf=perfRes.status==="fulfilled"?await perfRes.value.json():[];
+  const latest=perf.length?perf.at(-1):{SU_accuracy:68,ATS_accuracy:62,OU_accuracy:58};
   const games=odds.data||[];
   const cont=document.getElementById("oddsContainer");
   cont.innerHTML="";
@@ -102,29 +106,27 @@ async function loadAll(){
 
       const baseTot=SPORT_BASE_TOTAL[sport]||50;
       const mult=SPORT_MULTIPLIER[sport]||1.0;
+      const suAcc=latest.SU_accuracy||68, atsAcc=latest.ATS_accuracy||62, ouAcc=latest.OU_accuracy||58;
 
       for(const g of bySport[sport]){
-        const sp=Math.abs(g.fav_spread??0);
+        const sp=(typeof g.fav_spread==="number")?g.fav_spread:0;
         const tot=g.total??baseTot;
-        // ensure valid accuracy defaults (avoid 0)
-        const suAcc = latest.SU_accuracy>0?latest.SU_accuracy:70;
-        const atsAcc = latest.ATS_accuracy>0?latest.ATS_accuracy:65;
-        const ouAcc = latest.OU_accuracy>0?latest.OU_accuracy:60;
 
-        const su=clamp((100-(sp*5))*mult*(suAcc/100),35,95);
-        const ats=clamp((100-(sp*7))*mult*(atsAcc/100),30,90);
-        const ou=clamp((100-(Math.abs(tot-baseTot)*1.5))*mult*(ouAcc/100),30,85);
+        const su=clamp((100-(Math.abs(sp)*4))*mult*(suAcc/100),45,98);
+        const ats=clamp((100-(Math.abs(sp)*6))*mult*(atsAcc/100),40,95);
+        const ou=clamp((100-(Math.abs(tot-baseTot)*1.2))*mult*(ouAcc/100),40,90);
 
         const ouPick=Math.random()>0.5?"Over":"Under";
-        const spreadTxt = g.fav_spread!=null ? (g.fav_spread>0?`+${g.fav_spread}`:g.fav_spread) : "—";
+        const spreadTxt=sp===0?"PK":(sp>0?`+${sp}`:sp.toString());
 
-        tb.innerHTML+=`<tr>
-          <td>${g.matchup}</td>
-          <td style="color:${confidenceColor(su)}">${g.favorite_team??'-'} (${su.toFixed(1)}%)</td>
-          <td style="color:${confidenceColor(ats)}">${g.favorite_team??'-'} ${spreadTxt} (${ats.toFixed(1)}%)</td>
-          <td style="color:${confidenceColor(ou)}">${ouPick} ${g.total??'-'} (${ou.toFixed(1)}%)</td>
-          <td>${g.book}</td>
-        </tr>`;
+        tb.innerHTML+=`
+          <tr>
+            <td>${g.matchup}</td>
+            <td style="color:${confidenceColor(su)}">${g.favorite_team??'-'} (${su.toFixed(1)}%)</td>
+            <td style="color:${confidenceColor(ats)}">${g.favorite_team??'-'} ${spreadTxt} (${ats.toFixed(1)}%)</td>
+            <td style="color:${confidenceColor(ou)}">${ouPick} ${g.total??'-'} (${ou.toFixed(1)}%)</td>
+            <td>${g.book}</td>
+          </tr>`;
       }
       daySec.appendChild(table);
     }
@@ -147,7 +149,8 @@ async function loadPerformance(){
   }catch(e){console.error(e);}
 }
 
-loadAll();loadPerformance();
+loadAll();
+loadPerformance();
 </script>
 </body>
 </html>
