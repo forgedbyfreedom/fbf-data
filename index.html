@@ -11,19 +11,17 @@
   h1{color:#feca1b;font-size:1.8rem;margin:0;text-align:center}
   h3{color:#00c6ff;margin:4px 0;text-align:center}
   h3 a{color:#00c6ff;text-decoration:none}
-  .legend{display:flex;justify-content:center;gap:20px;margin:1rem auto;flex-wrap:wrap}
+  .legend{display:flex;justify-content:center;gap:20px;margin-top:1rem;flex-wrap:wrap}
   .legend-item{display:flex;align-items:center;gap:6px;font-size:.9rem}
   .color-box{width:20px;height:20px;border-radius:3px}
-  .day-section{margin:2rem auto;width:92%;border-top:2px solid #feca1b;padding-top:1rem}
-  .sport-header{text-align:left;color:#feca1b;font-size:1.3rem;border-bottom:1px solid #444;padding-bottom:.3rem;margin-top:1rem}
-  table{width:100%;margin:1rem auto;border-collapse:collapse;background:#18222d;border-radius:10px;overflow:hidden}
-  th,td{padding:10px;border-bottom:1px solid #333;text-align:center}
+  table{width:95%;margin:1.5rem auto;border-collapse:collapse;background:#18222d;border-radius:10px;overflow:hidden}
+  th,td{padding:8px 10px;border-bottom:1px solid #333;text-align:center;font-size:.9rem}
   th{background:#243447;color:#feca1b}
   tr:nth-child(even){background:#1c2833}
-  #performance{background:#141a22;border:1px solid #333;margin:20px auto;width:80%;border-radius:10px;padding:10px;color:#feca1b;text-align:center}
-  footer{margin:2rem 0;color:#aaa;font-size:.9rem;text-align:center}
+  footer{text-align:center;color:#999;margin:2rem 0;font-size:.85rem}
 </style>
 </head>
+
 <body>
 <header>
   <img src="logo.png" alt="Forged by Freedom Logo">
@@ -37,120 +35,192 @@
 <div class="legend">
   <div class="legend-item"><div class="color-box" style="background:#00e676"></div> Strong (≥70%)</div>
   <div class="legend-item"><div class="color-box" style="background:#ffeb3b"></div> Solid (55–69%)</div>
-  <div class="legend-item"><div class="color-box" style="background:#ff5722"></div> Weak (<55%)</div>
+  <div class="legend-item"><div class="color-box" style="background:#ff5722"></div> Weak (&lt;55%)</div>
 </div>
 
-<div id="performance">Loading weekly performance…</div>
-<div id="oddsContainer"><p style="text-align:center;">Loading games…</p></div>
-<footer>Updated automatically · Powered by Forged by Freedom Data</footer>
+<div id="oddsContainer" style="margin-top:1rem;text-align:center;">Loading games…</div>
+
+<footer>Auto-updating from ESPN odds — Powered by Forged by Freedom Data</footer>
 
 <script>
 function confidenceColor(v){
-  if(v>=70) return '#00e676';
-  if(v>=55) return '#ffeb3b';
-  return '#ff5722';
+  if(v>=70) return "#00e676";
+  if(v>=55) return "#ffeb3b";
+  return "#ff5722";
 }
-function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
 
-const SPORT_BASE_TOTAL={americanfootball_nfl:45,americanfootball_ncaaf:55,basketball_nba:225,icehockey_nhl:6,baseball_mlb:9};
-const SPORT_MULTIPLIER={americanfootball_nfl:1.08,americanfootball_ncaaf:1.04,basketball_nba:1.0,baseball_mlb:0.95,icehockey_nhl:0.9};
+// Baseline totals by sport for O/U logic
+const BASE_TOTALS={
+  americanfootball_nfl:45,
+  americanfootball_ncaaf:55,
+  basketball_ncaab:140,
+  basketball_nba:225,
+  baseball_mlb:8.5,
+  icehockey_nhl:6
+};
 
-async function loadAll(){
-  const [oddsRes,perfRes]=await Promise.allSettled([
-    fetch("combined.json"),fetch("performance_log.json")
-  ]);
-  const odds=oddsRes.status==="fulfilled"?await oddsRes.value.json():{data:[]};
-  const perf=perfRes.status==="fulfilled"?await perfRes.value.json():[];
-  const latest=perf.length?perf.at(-1):{SU_accuracy:68,ATS_accuracy:62,OU_accuracy:58};
-  const games=odds.data||[];
-  const cont=document.getElementById("oddsContainer");
-  cont.innerHTML="";
+// sport priority: NFL and NCAAF on top
+const SPORT_PRIORITY=["americanfootball_nfl","americanfootball_ncaaf"];
 
-  if(!games.length){
-    cont.innerHTML="<p style='text-align:center;'>No games available.</p>";
-    return;
-  }
+function resolveTeams(game){
+  const matchup = game.matchup || "";
+  const parts = matchup.split("@");
+  let away = game.away_team || (parts[0] ? parts[0].trim() : null);
+  let home = game.home_team || (parts[1] ? parts[1].trim() : null);
 
-  const byDay={};
-  for(const g of games){
-    const d=new Date(g.commence_time).toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});
-    (byDay[d]??=[]).push(g);
-  }
+  let fav = game.favorite_team || null;
+  let dog = game.dog_team || null;
 
-  const sportOrder=["americanfootball_nfl","americanfootball_ncaaf"];
+  // Use either fav_spread or spread field
+  let rawSpread = null;
+  if (typeof game.fav_spread === "number") rawSpread = game.fav_spread;
+  else if (typeof game.spread === "number") rawSpread = game.spread;
 
-  for(const day of Object.keys(byDay).sort((a,b)=>new Date(a)-new Date(b))){
-    const daySec=document.createElement("div");
-    daySec.className="day-section";
-    daySec.innerHTML=`<h2 style="color:#00c6ff;">${day}</h2>`;
-    cont.appendChild(daySec);
-
-    const bySport={};
-    for(const g of byDay[day]) (bySport[g.sport_key]??=[]).push(g);
-
-    for(const sport of Object.keys(bySport).sort((a,b)=>{
-      const A=sportOrder.indexOf(a),B=sportOrder.indexOf(b);
-      return (B-A)||(a>b?1:-1);
-    })){
-      const sportTitle=sport.replace("americanfootball_","").toUpperCase();
-      const sportHeader=document.createElement("div");
-      sportHeader.className="sport-header";
-      sportHeader.textContent=sportTitle;
-      daySec.appendChild(sportHeader);
-
-      const table=document.createElement("table");
-      table.innerHTML=`<thead><tr>
-        <th>Matchup</th><th>Straight Up</th><th>ATS</th><th>Over/Under</th><th>Book</th>
-      </tr></thead><tbody></tbody>`;
-      const tb=table.querySelector("tbody");
-
-      const baseTot=SPORT_BASE_TOTAL[sport]||50;
-      const mult=SPORT_MULTIPLIER[sport]||1.0;
-      const suAcc=latest.SU_accuracy||68, atsAcc=latest.ATS_accuracy||62, ouAcc=latest.OU_accuracy||58;
-
-      for(const g of bySport[sport]){
-        const sp=(typeof g.fav_spread==="number")?g.fav_spread:0;
-        const tot=g.total??baseTot;
-
-        const su=clamp((100-(Math.abs(sp)*4))*mult*(suAcc/100),45,98);
-        const ats=clamp((100-(Math.abs(sp)*6))*mult*(atsAcc/100),40,95);
-        const ou=clamp((100-(Math.abs(tot-baseTot)*1.2))*mult*(ouAcc/100),40,90);
-
-        const ouPick=Math.random()>0.5?"Over":"Under";
-        const spreadTxt=sp===0?"PK":(sp>0?`+${sp}`:sp.toString());
-
-        tb.innerHTML+=`
-          <tr>
-            <td>${g.matchup}</td>
-            <td style="color:${confidenceColor(su)}">${g.favorite_team??'-'} (${su.toFixed(1)}%)</td>
-            <td style="color:${confidenceColor(ats)}">${g.favorite_team??'-'} ${spreadTxt} (${ats.toFixed(1)}%)</td>
-            <td style="color:${confidenceColor(ou)}">${ouPick} ${g.total??'-'} (${ou.toFixed(1)}%)</td>
-            <td>${g.book}</td>
-          </tr>`;
-      }
-      daySec.appendChild(table);
+  // If favorite_team not supplied, infer from spread when possible
+  if (!fav && rawSpread !== null && home && away){
+    // By convention: negative spread is the favorite
+    if (rawSpread < 0){
+      // We don't know which side the spread was attached to in raw feed,
+      // but if tags aren't present, alternate to avoid "always home":
+      // favor home for even-numbered games, away for odd-numbered games index.
+      // Here we simply choose home if negative, away if positive as a fallback.
+      fav = home;
+      dog = away;
+    } else if (rawSpread > 0){
+      fav = away;
+      dog = home;
+      rawSpread = -Math.abs(rawSpread); // normalize so favorite's spread is negative
     }
   }
+
+  if (!fav){
+    // Absolute last resort: assume home is favorite, but mark as "guessed"
+    fav = home || away || "Unknown favorite";
+    dog = (fav === home ? away : home) || "";
+  }
+
+  return { home, away, fav, dog, rawSpread };
 }
 
-async function loadPerformance(){
+async function loadGames(){
   try{
-    const r=await fetch("performance_log.json");
-    const logs=await r.json();
-    const last=logs.at(-1);
-    const div=document.getElementById("performance");
-    div.innerHTML=last?`
-      <h2>📊 Weekly Accuracy</h2>
-      <p>Straight Up (SU): ${last.SU_accuracy}%</p>
-      <p>Against the Spread (ATS): ${last.ATS_accuracy}%</p>
-      <p>Over/Under (O/U): ${last.OU_accuracy}%</p>
-      <p><small>Games Checked: ${last.games_checked}</small></p>`:
-      "<p>No accuracy data logged yet.</p>";
-  }catch(e){console.error(e);}
+    const res = await fetch("combined.json");
+    const json = await res.json();
+    const games = json.data || [];
+    const container = document.getElementById("oddsContainer");
+
+    if(!games.length){
+      container.innerHTML = "<h2>No games available.</h2>";
+      return;
+    }
+
+    // sort: NFL/NCAAF first, then by date/time
+    games.sort((a,b)=>{
+      const pa = SPORT_PRIORITY.indexOf(a.sport_key);
+      const pb = SPORT_PRIORITY.indexOf(b.sport_key);
+      if (pa !== pb) return (pa === -1 ? 1 : pa) - (pb === -1 ? 1 : pb);
+      const ta = new Date(a.commence_time || 0).getTime();
+      const tb = new Date(b.commence_time || 0).getTime();
+      return ta - tb;
+    });
+
+    let html = `
+      <table>
+        <thead>
+          <tr>
+            <th>Sport</th>
+            <th>Matchup</th>
+            <th>Straight Up</th>
+            <th>ATS</th>
+            <th>Over / Under</th>
+            <th>Spread</th>
+            <th>Total</th>
+            <th>Book</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    for(const g of games){
+      const { home, away, fav, dog, rawSpread } = resolveTeams(g);
+
+      // baseline total
+      const baseTotal = BASE_TOTALS[g.sport_key] ?? 50;
+      const total = (typeof g.total === "number") ? g.total : baseTotal;
+
+      // SU confidence based mostly on spread magnitude (if no spread, low but not zero)
+      const spreadAbs = (typeof rawSpread === "number") ? Math.abs(rawSpread) : 0;
+      const suConf = (spreadAbs > 0)
+        ? clamp(55 + spreadAbs * 5, 55, 92)
+        : 52; // no spread => slight lean only
+
+      // ATS pick logic:
+      let atsTeam = null;
+      let atsConf = 50;
+      if (typeof rawSpread === "number" && spreadAbs > 0){
+        // Simple rule:
+        // small/medium spreads -> lean favorite
+        // large spreads (>=7)  -> lean dog with points
+        if (spreadAbs >= 7){
+          atsTeam = dog || fav;
+          atsConf = clamp(55 + (spreadAbs-6)*3, 55, 88);
+        } else {
+          atsTeam = fav;
+          atsConf = clamp(56 + (6-spreadAbs)*2, 56, 86);
+        }
+      } else {
+        atsTeam = fav; // no line, mild lean to fav
+        atsConf = 52;
+      }
+
+      let spreadText = "N/A";
+      if (typeof rawSpread === "number"){
+        const favSpread = rawSpread; // negative for favorite
+        spreadText = favSpread > 0 ? `+${favSpread}` : favSpread.toString();
+      }
+
+      // O/U pick: compare to baseTotal
+      let ouSide = "Over";
+      if (total < baseTotal - 1.5) ouSide = "Under";
+      else if (total > baseTotal + 1.5) ouSide = "Over";
+      else ouSide = "Over"; // neutral but choose one side
+
+      const diff = Math.abs(total - baseTotal);
+      const ouConf = clamp(55 + diff * 2.5, 55, 85);
+
+      const sportLabel = (g.sport_key || "").replace("americanfootball_","").toUpperCase();
+
+      html += `
+        <tr>
+          <td>${sportLabel || "-"}</td>
+          <td>${g.matchup || `${away || "TBD"} @ ${home || "TBD"}`}</td>
+          <td style="color:${confidenceColor(suConf)}">
+            ${fav} (${suConf.toFixed(1)}%)
+          </td>
+          <td style="color:${confidenceColor(atsConf)}">
+            ${atsTeam || "-"} ${spreadText !== "N/A" ? spreadText : ""} (${atsConf.toFixed(1)}%)
+          </td>
+          <td style="color:${confidenceColor(ouConf)}">
+            ${ouSide} ${total} (${ouConf.toFixed(1)}%)
+          </td>
+          <td>${spreadText}</td>
+          <td>${typeof total === "number" ? total : "N/A"}</td>
+          <td>${g.book || "-"}</td>
+        </tr>
+      `;
+    }
+
+    html += "</tbody></table>";
+    container.innerHTML = html;
+  }catch(err){
+    console.error(err);
+    document.getElementById("oddsContainer").innerHTML =
+      "<p>Error loading combined.json</p>";
+  }
 }
 
-loadAll();
-loadPerformance();
+loadGames();
 </script>
 </body>
 </html>
