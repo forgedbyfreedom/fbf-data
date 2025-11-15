@@ -1,6 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forged By Freedom — Live Odds & Picks</title>
+
+<!-- Main Styles -->
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #0d0d0d;
+        color: #e4e4e4;
+    }
+
+    /* === TOP NAVIGATION BAR === */
+    .topbar {
+        background: #131313;
+        border-bottom: 2px solid #ff0000;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .topbar h1 {
+        margin: 0;
+        font-size: 34px;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .topbar h2 {
+        margin: 6px 0 0 0;
+        font-size: 16px;
+        font-weight: 400;
+        color: #d1d1d1;
+        font-style: italic;
+    }
+
+    /* === CONTAINER === */
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 20px auto;
+    }
+
+    /* === INFO PANEL === */
+    .info-box {
+        background: #1a1a1a;
+        padding: 12px;
+        border-left: 4px solid #ff0000;
+        margin-bottom: 25px;
+    }
+
+    .info-box strong {
+        color: #ffffff;
+    }
+
+    /* === GAME CARD === */
+    .game-box {
+        background: #141414;
+        border: 1px solid #2a2a2a;
+        padding: 18px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        transition: 0.2s;
+    }
+
+    .game-box:hover {
+        background: #1e1e1e;
+    }
+
+    .matchup {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+
+    /* === TABLE === */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+    }
+
+    th {
+        text-align: left;
+        padding-bottom: 6px;
+        font-size: 14px;
+        color: #e4e4e4;
+    }
+
+    td {
+        padding: 6px 0;
+        font-size: 16px;
+    }
+
+    /* === CONFIDENCE COLORS === */
+    .conf-box {
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 6px;
+        display: inline-block;
+        min-width: 95px;
+        text-align: center;
+        color: #000;
+    }
+
+    .green {
+        background: #33ff57;
+    }
+
+    .yellow {
+        background: #fff724;
+    }
+
+    .red {
+        background: #ff4242;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="topbar">
+    <h1>Forged By Freedom</h1>
+    <h2>Live Sports Odds — No Politics. No Bullshit. Just Data.</h2>
+</div>
+
+<div class="container">
+
+    <!-- Confidence Legend -->
+    <div class="info-box">
+        <strong>Confidence Levels:</strong><br>
+        <span class="conf-box red">0–55%</span> Low &nbsp;
+        <span class="conf-box yellow">56–69%</span> Medium &nbsp;
+        <span class="conf-box green">70%+</span> High
+    </div>
+
+    <div id="games"></div>
+
+</div>
+
+<!-- === SCRIPT SECTION === -->
+<script>
+async function loadData() {
+    try {
+        const response = await fetch("combined.json");
+        const data = await response.json();
+        displayGames(data.data);
+    } catch (err) {
+        console.error("Error loading combined.json:", err);
+    }
+}
+
+function confColor(num) {
+    if (num >= 70) return "green";
+    if (num >= 56) return "yellow";
+    return "red";
+}
+
+function format(num) {
+    return (num === null || num === undefined)
+        ? "--"
+        : num.toFixed(1) + "%";
+}
+
+function displayGames(games) {
+    const container = document.getElementById("games");
+    container.innerHTML = "";
+
+    games.forEach(g => {
+        const su = g.su_conf ?? null;
+        const ats = g.ats_conf ?? null;
+        const ou = g.ou_conf ?? null;
+
+        const box = document.createElement("div");
+        box.className = "game-box";
+
+        box.innerHTML = `
+            <div class="matchup">${g.matchup}</div>
+
+            <table>
+                <tr>
+                    <th>Straight Up</th>
+                    <th>ATS</th>
+                    <th>O/U</th>
+                </tr>
+                <tr>
+                    <td><span class="conf-box ${confColor(su)}">${format(su)}</span></td>
+                    <td><span class="conf-box ${confColor(ats)}">${format(ats)}</span></td>
+                    <td><span class="conf-box ${confColor(ou)}">${format(ou)}</span></td>
+                </tr>
+            </table>
+        `;
+
+        container.appendChild(box);
+    });
+}
+
+loadData();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <title>Forged By Freedom — Live Odds & Picks</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
