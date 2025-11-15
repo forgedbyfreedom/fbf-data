@@ -1,4 +1,1382 @@
 <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Forged By Freedom — Live Odds & Picks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bg: #050608;
+  --bg-elevated: #0b0f19;
+  --bg-card: #111827;
+  --bg-card-soft: #020617;
+  --text: #e5e7eb;
+  --text-soft: #9ca3af;
+  --accent: #f97316;
+  --accent-soft: #fed7aa;
+  --border-subtle: #1f2933;
+  --pill-bg: #111827;
+  --pill-border: #4b5563;
+  --pill-active-bg: #f97316;
+  --pill-active-text: #0b0f19;
+  --conf-low-bg: #7f1d1d;
+  --conf-low-text: #fecaca;
+  --conf-med-bg: #854d0e;
+  --conf-med-text: #fef3c7;
+  --conf-high-bg: #14532d;
+  --conf-high-text: #bbf7d0;
+  --conf-none-bg: #111827;
+  --conf-none-text: #6b7280;
+  --card-shadow: 0 14px 40px rgba(0,0,0,0.65);
+  --card-radius: 18px;
+  --badge-radius: 999px;
+  --logo-bg: #020617;
+  --logo-border: #1f2937;
+  --sport-nfl: #38bdf8;
+  --sport-ncaaf: #22c55e;
+  --sport-nba: #f97316;
+  --sport-ncaab: #a855f7;
+  --sport-nhl: #e5e7eb;
+  --sport-ufc: #ef4444;
+}
+html[data-theme="light"] {
+  --bg: #f3f4f6;
+  --bg-elevated: #e5e7eb;
+  --bg-card: #ffffff;
+  --bg-card-soft: #f9fafb;
+  --text: #020617;
+  --text-soft: #4b5563;
+  --accent: #ea580c;
+  --accent-soft: #fed7aa;
+  --border-subtle: #d1d5db;
+  --pill-bg: #e5e7eb;
+  --pill-border: #9ca3af;
+  --pill-active-bg: #ea580c;
+  --pill-active-text: #f9fafb;
+  --conf-low-bg: #fee2e2;
+  --conf-low-text: #b91c1c;
+  --conf-med-bg: #fef3c7;
+  --conf-med-text: #92400e;
+  --conf-high-bg: #dcfce7;
+  --conf-high-text: #166534;
+  --conf-none-bg: #e5e7eb;
+  --conf-none-text: #6b7280;
+  --card-shadow: 0 10px 28px rgba(15,23,42,0.18);
+  --logo-bg: #e5e7eb;
+  --logo-border: #cbd5f5;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #111827 0, var(--bg) 52%);
+  color: var(--text);
+  min-height: 100vh;
+}
+.page-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #020617, #0b1220);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.7);
+  border: 1px solid rgba(148,163,184,0.25);
+}
+html[data-theme="light"] header {
+  background: linear-gradient(135deg, #ffffff, #e5e7eb);
+  box-shadow: 0 14px 45px rgba(15,23,42,0.15);
+}
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-logo-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 25% 0, #f97316 0, #ea580c 32%, #020617 68%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f9fafb;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  text-transform: uppercase;
+  box-shadow: 0 0 24px rgba(248,113,113,0.45), 0 18px 40px rgba(0,0,0,0.8);
+}
+.brand-text-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.brand-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.brand-subtitle {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent-soft);
+}
+.brand-tagline {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+.brand-link {
+  color: var(--accent-soft);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.theme-toggle {
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.55);
+  background: rgba(15,23,42,0.8);
+  color: var(--text);
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(12px);
+}
+html[data-theme="light"] .theme-toggle {
+  background: rgba(255,255,255,0.85);
+}
+.theme-toggle span.mode-label {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.theme-toggle span.mode-sub {
+  font-size: 0.7rem;
+  color: var(--text-soft);
+}
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+.meta-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #22c55e;
+}
+.filters-bar {
+  margin-top: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+.filters-row-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.filters-row-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.filter-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-soft);
+}
+.filter-pill {
+  border-radius: 999px;
+  border: 1px solid var(--pill-border);
+  padding: 5px 11px;
+  font-size: 0.8rem;
+  background: var(--pill-bg);
+  color: var(--text-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-pill span.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--pill-border);
+}
+.filter-pill.active {
+  background: var(--pill-active-bg);
+  color: var(--pill-active-text);
+  border-color: transparent;
+}
+.filter-pill.active span.dot {
+  background: #fefce8;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-soft);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+.legend-swatch.low {
+  background: var(--conf-low-bg);
+}
+.legend-swatch.med {
+  background: var(--conf-med-bg);
+}
+.legend-swatch.high {
+  background: var(--conf-high-bg);
+}
+.legend-swatch.none {
+  background: var(--conf-none-bg);
+}
+.main-panel {
+  margin-top: 6px;
+  background: radial-gradient(circle at top, rgba(15,23,42,0.6), var(--bg-elevated));
+  border-radius: 20px;
+  padding: 18px 14px 18px;
+  border: 1px solid rgba(55,65,81,0.75);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.8);
+}
+html[data-theme="light"] .main-panel {
+  background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+  border-color: rgba(148,163,184,0.6);
+  box-shadow: 0 10px 30px rgba(15,23,42,0.2);
+}
+.date-header {
+  margin: 18px 4px 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(75,85,99,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.date-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.date-sub {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+.sport-header {
+  margin: 12px 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sport-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  border: 1px solid rgba(75,85,99,0.9);
+  background: rgba(15,23,42,0.9);
+}
+html[data-theme="light"] .sport-pill {
+  background: rgba(255,255,255,0.95);
+}
+.sport-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+.sport-pill span.label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+}
+.sport-subtext {
+  font-size: 0.72rem;
+  color: var(--text-soft);
+}
+.sport-nfl .sport-dot {
+  background: var(--sport-nfl);
+}
+.sport-ncaaf .sport-dot {
+  background: var(--sport-ncaaf);
+}
+.sport-nba .sport-dot {
+  background: var(--sport-nba);
+}
+.sport-ncaab .sport-dot {
+  background: var(--sport-ncaab);
+}
+.sport-nhl .sport-dot {
+  background: var(--sport-nhl);
+}
+.sport-ufc .sport-dot {
+  background: var(--sport-ufc);
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+}
+.game-card {
+  position: relative;
+  border-radius: var(--card-radius);
+  padding: 12px 11px 11px;
+  background: radial-gradient(circle at top left, var(--bg-card) 0, var(--bg-card-soft) 52%);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(31,41,55,0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s ease-out, background 0.12s ease-out, opacity 0.12s ease-out;
+}
+html[data-theme="light"] .game-card {
+  background: radial-gradient(circle at top left, #ffffff 0, #e5e7eb 60%);
+  border-color: rgba(148,163,184,0.7);
+}
+.game-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+  border-color: rgba(248,113,113,0.55);
+}
+html[data-theme="light"] .game-card:hover {
+  box-shadow: 0 16px 42px rgba(15,23,42,0.25);
+}
+.game-card.no-confidence {
+  opacity: 0.6;
+  border-style: dashed;
+}
+.game-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.teams-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.matchup-line {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.matchup-line span.separator {
+  margin: 0 2px;
+  color: var(--text-soft);
+}
+.teams-line {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+.time-line {
+  font-size: 0.76rem;
+  color: var(--text-soft);
+}
+.time-line span {
+  margin-right: 6px;
+}
+.logo-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.team-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+}
+.team-logo-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 0, #1f2937 0, var(--logo-bg) 70%);
+  border: 1px solid var(--logo-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+html[data-theme="light"] .team-logo-wrap {
+  background: radial-gradient(circle at 30% 0, #e5e7eb 0, #f3f4f6 70%);
+}
+.team-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+.team-logo-fallback {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+html[data-theme="light"] .team-logo-fallback {
+  color: #0f172a;
+}
+.team-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.team-role-tag {
+  font-size: 0.7rem;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(55,65,81,0.7);
+  color: var(--text-soft);
+}
+.odds-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+.odds-line span.key {
+  font-weight: 600;
+  color: var(--accent-soft);
+}
+.odds-line span.value {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.pick-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 4px;
+}
+.pick-pill {
+  border-radius: 14px;
+  padding: 4px 5px 5px;
+  font-size: 0.72rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pick-pill.low {
+  background: var(--conf-low-bg);
+  color: var(--conf-low-text);
+}
+.pick-pill.med {
+  background: var(--conf-med-bg);
+  color: var(--conf-med-text);
+}
+.pick-pill.high {
+  background: var(--conf-high-bg);
+  color: var(--conf-high-text);
+  box-shadow: 0 0 14px rgba(34,197,94,0.55);
+}
+.pick-pill.none {
+  background: var(--conf-none-bg);
+  color: var(--conf-none-text);
+}
+.pick-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+.pick-type {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.64rem;
+  opacity: 0.9;
+}
+.pick-conf {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.pick-main {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pick-main span.line {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+.book-tag {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(15,23,42,0.95);
+  border: 1px solid rgba(55,65,81,0.9);
+  color: var(--text-soft);
+}
+html[data-theme="light"] .book-tag {
+  background: rgba(255,255,255,0.95);
+}
+@media (max-width: 720px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-right {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .filters-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .main-panel {
+    padding: 14px 10px 16px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <header>
+    <div class="brand-block">
+      <div class="brand-logo-mark">FBF</div>
+      <div class="brand-text-main">
+        <div class="brand-title">Forged By Freedom Strength and Nutrition</div>
+        <div class="brand-subtitle">Strength · Discipline · Freedom</div>
+        <div class="brand-tagline">For all your training, supplementation and nutrition needs</div>
+        <a href="https://forgedbyfreedom.org" class="brand-link" target="_blank" rel="noopener noreferrer">ForgedByFreedom.org</a>
+      </div>
+    </div>
+    <div class="header-right">
+      <button id="theme-toggle" class="theme-toggle" type="button">
+        <span class="emoji">🔥</span>
+        <span class="mode-label">Black Ops</span>
+        <span class="mode-sub">Tactical Dark Mode</span>
+      </button>
+      <div class="meta-row">
+        <div class="meta-dot"></div>
+        <span id="last-updated">Last updated: --</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="filters-bar">
+    <div class="filters-row-left">
+      <span class="filter-label">Filter sports</span>
+      <button class="filter-pill active" data-sport-filter="all" type="button">
+        <span class="dot"></span><span>All</span>
+      </button>
+      <button class="filter-pill" data-sport-filter="americanfootball_nfl" type="button">
+        <span class="dot"></span><span>NFL</span>
+      </button>
+      <button class="filter-pill" data-sport-filter="americanfootball_ncaaf" type="button">
+        <span class="dot"></span><span>NCAAF</span>
+      </button>
+      <button class="filter-pill" data-sport-filter="basketball_nba" type="button">
+        <span class="dot"></span><span>NBA</span>
+      </button>
+      <button class="filter-pill" data-sport-filter="basketball_ncaab" type="button">
+        <span class="dot"></span><span>NCAAB</span>
+      </button>
+      <button class="filter-pill" data-sport-filter="icehockey_nhl" type="button">
+        <span class="dot"></span><span>NHL</span>
+      </button>
+      <button class="filter-pill" data-sport-filter="mma_mixed_martial_arts" type="button">
+        <span class="dot"></span><span>UFC</span>
+      </button>
+    </div>
+    <div class="filters-row-right">
+      <div class="legend">
+        <div class="legend-item"><span class="legend-swatch low"></span><span>Low 0–55%</span></div>
+        <div class="legend-item"><span class="legend-swatch med"></span><span>Med 56–69%</span></div>
+        <div class="legend-item"><span class="legend-swatch high"></span><span>High 70%+</span></div>
+        <div class="legend-item"><span class="legend-swatch none"></span><span>No data</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <div id="game-container"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const SPORT_META = {
+    "americanfootball_nfl": { label: "NFL", order: 1, tag: "Pro Football Sunday Slate" },
+    "americanfootball_ncaaf": { label: "NCAAF", order: 2, tag: "College Football Board" },
+    "basketball_nba": { label: "NBA", order: 3, tag: "Pro Hoops Card" },
+    "basketball_ncaab": { label: "NCAAB", order: 4, tag: "College Hoops Board" },
+    "icehockey_nhl": { label: "NHL", order: 5, tag: "NHL Slate" },
+    "mma_mixed_martial_arts": { label: "UFC", order: 6, tag: "Fight Card" }
+  };
+
+  let allGames = [];
+  let activeSportFilter = "all";
+
+  function initTheme() {
+    const stored = localStorage.getItem("fbf-theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    let theme = stored || (prefersDark ? "dark" : "dark");
+    setTheme(theme);
+    const btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      theme = (document.documentElement.getAttribute("data-theme") === "dark") ? "light" : "dark";
+      setTheme(theme);
+      localStorage.setItem("fbf-theme", theme);
+    });
+  }
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    const btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+    const emoji = btn.querySelector(".emoji");
+    const label = btn.querySelector(".mode-label");
+    const sub = btn.querySelector(".mode-sub");
+    if (theme === "dark") {
+      emoji.textContent = "🔥";
+      label.textContent = "Black Ops";
+      sub.textContent = "Tactical Dark Mode";
+    } else {
+      emoji.textContent = "🌤️";
+      label.textContent = "Light Patrol";
+      sub.textContent = "Clean Light Mode";
+    }
+  }
+
+  function initFilters() {
+    document.querySelectorAll(".filter-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sport = btn.getAttribute("data-sport-filter");
+        if (!sport) return;
+        activeSportFilter = sport;
+        document.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderGames();
+      });
+    });
+  }
+
+  function loadData() {
+    fetch("combined.json?_=" + Date.now())
+      .then(r => r.json())
+      .then(j => {
+        allGames = Array.isArray(j.data) ? j.data.slice() : [];
+        const tsEl = document.getElementById("last-updated");
+        if (tsEl && j.timestamp) {
+          tsEl.textContent = "Last updated: " + formatTimestampReadable(j.timestamp);
+        }
+        renderGames();
+      })
+      .catch(err => {
+        console.error(err);
+        const container = document.getElementById("game-container");
+        if (container) {
+          container.innerHTML = "<div style=\"padding:8px 6px;font-size:0.8rem;color:#fca5a5;\">Failed to load combined.json</div>";
+        }
+      });
+  }
+
+  function formatTimestampReadable(ts) {
+    if (!ts) return "--";
+    if (/^\d{12}$/.test(ts)) {
+      const year = ts.slice(0,4);
+      const month = ts.slice(4,6);
+      const day = ts.slice(6,8);
+      const hour = ts.slice(8,10);
+      const minute = ts.slice(10,12);
+      return year + "-" + month + "-" + day + " " + hour + ":" + minute + " UTC";
+    }
+    return ts;
+  }
+
+  function parseDateSafe(iso) {
+    if (!iso) return null;
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return null;
+    return d;
+  }
+
+  function dateKey(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return y + "-" + m + "-" + day;
+  }
+
+  function formatDateHuman(d) {
+    const wd = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()];
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const month = months[d.getMonth()];
+    const day = d.getDate();
+    const year = d.getFullYear();
+    return wd + " · " + month + " " + day + ", " + year;
+  }
+
+  function formatTime(d) {
+    let h = d.getHours();
+    const m = String(d.getMinutes()).padStart(2,"0");
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if (h === 0) h = 12;
+    return h + ":" + m + " " + ampm;
+  }
+
+  function sportOrder(key) {
+    return SPORT_META[key] ? SPORT_META[key].order : 99;
+  }
+
+  function sportLabel(key) {
+    return SPORT_META[key] ? SPORT_META[key].label : key || "Other";
+  }
+
+  function sportTag(key) {
+    return SPORT_META[key] ? SPORT_META[key].tag : "";
+  }
+
+  function teamSlug(name) {
+    if (!name) return "";
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g,"");
+  }
+
+  function teamInitials(name) {
+    if (!name) return "";
+    const parts = name.split(/\s+/).filter(Boolean);
+    if (!parts.length) return "";
+    if (parts.length === 1) {
+      return parts[0].slice(0,2).toUpperCase();
+    }
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  function computeConfidence(game) {
+    const spread = typeof game.spread === "number" ? game.spread : null;
+    const total = typeof game.total === "number" ? game.total : null;
+    let su = null;
+    let ats = null;
+    let ou = null;
+    if (spread !== null) {
+      const abs = Math.abs(spread);
+      const suBoost = Math.min(abs * 3.2, 18);
+      su = 50 + suBoost;
+      if (su > 70) su = 70;
+      if (su < 52) su = 52;
+      const atsAdj = Math.max(0, 4 - abs);
+      ats = 53 + atsAdj * 1.5;
+      if (ats > 60) ats = 60;
+    }
+    if (total !== null) {
+      const mid = 45;
+      const diff = Math.abs(total - mid);
+      const ouBoost = Math.min(diff * 0.25, 7);
+      ou = 53 + ouBoost;
+      if (ou > 60) ou = 60;
+    }
+    return {
+      su: su ? Math.round(su) : null,
+      ats: ats ? Math.round(ats) : null,
+      ou: ou ? Math.round(ou) : null
+    };
+  }
+
+  function confClass(val) {
+    if (val === null || val === undefined) return "none";
+    if (val <= 55) return "low";
+    if (val <= 69) return "med";
+    return "high";
+  }
+
+  function hasAnyConfidence(obj) {
+    return !!(obj.su || obj.ats || obj.ou);
+  }
+
+  function renderGames() {
+    const container = document.getElementById("game-container");
+    if (!container) return;
+    container.innerHTML = "";
+    const filtered = allGames.filter(g => {
+      if (activeSportFilter === "all") return true;
+      return g.sport_key === activeSportFilter;
+    });
+    const withDates = filtered.map(g => {
+      const d = parseDateSafe(g.commence_time);
+      return { game: g, date: d };
+    }).filter(x => x.date !== null);
+
+    withDates.sort((a,b) => {
+      const dkA = dateKey(a.date);
+      const dkB = dateKey(b.date);
+      if (dkA < dkB) return -1;
+      if (dkA > dkB) return 1;
+      const soA = sportOrder(a.game.sport_key);
+      const soB = sportOrder(b.game.sport_key);
+      if (soA !== soB) return soA - soB;
+      return a.date - b.date;
+    });
+
+    if (!withDates.length) {
+      container.innerHTML = "<div style=\"padding:10px 6px;font-size:0.82rem;color:var(--text-soft);\">No games available for this filter.</div>";
+      return;
+    }
+
+    let currentDateKey = "";
+    let currentSportKey = "";
+    let currentCardsGrid = null;
+
+    withDates.forEach(item => {
+      const g = item.game;
+      const dt = item.date;
+      const dk = dateKey(dt);
+      if (dk !== currentDateKey) {
+        currentDateKey = dk;
+        currentSportKey = "";
+        currentCardsGrid = null;
+        const dh = document.createElement("div");
+        dh.className = "date-header";
+        const title = document.createElement("div");
+        title.className = "date-title";
+        title.textContent = formatDateHuman(dt);
+        const sub = document.createElement("div");
+        sub.className = "date-sub";
+        sub.textContent = "Sorted by sport, then kickoff";
+        dh.appendChild(title);
+        dh.appendChild(sub);
+        container.appendChild(dh);
+      }
+
+      if (g.sport_key !== currentSportKey) {
+        currentSportKey = g.sport_key;
+        currentCardsGrid = null;
+        const sh = document.createElement("div");
+        sh.className = "sport-header";
+        const pill = document.createElement("div");
+        const sportLabelText = sportLabel(g.sport_key);
+        const sportTagText = sportTag(g.sport_key);
+        pill.className = "sport-pill sport-" + sportLabelText.toLowerCase();
+        const dot = document.createElement("div");
+        dot.className = "sport-dot";
+        const lab = document.createElement("span");
+        lab.className = "label";
+        lab.textContent = sportLabelText;
+        pill.appendChild(dot);
+        pill.appendChild(lab);
+        const st = document.createElement("div");
+        st.className = "sport-subtext";
+        st.textContent = sportTagText;
+        sh.appendChild(pill);
+        sh.appendChild(st);
+        container.appendChild(sh);
+      }
+
+      if (!currentCardsGrid) {
+        currentCardsGrid = document.createElement("div");
+        currentCardsGrid.className = "cards-grid";
+        container.appendChild(currentCardsGrid);
+      }
+
+      currentCardsGrid.appendChild(buildGameCard(g, dt));
+    });
+  }
+
+  function buildGameCard(game, dt) {
+    const card = document.createElement("div");
+    const conf = computeConfidence(game);
+    const anyConf = hasAnyConfidence(conf);
+    card.className = "game-card" + (anyConf ? "" : " no-confidence");
+
+    const bookTag = document.createElement("div");
+    bookTag.className = "book-tag";
+    bookTag.textContent = (game.book || "book").toUpperCase();
+    card.appendChild(bookTag);
+
+    const header = document.createElement("div");
+    header.className = "game-card-header";
+
+    const teamsStack = document.createElement("div");
+    teamsStack.className = "teams-stack";
+
+    const matchupLine = document.createElement("div");
+    matchupLine.className = "matchup-line";
+    const awayName = game.away_team || "Away";
+    const homeName = game.home_team || "Home";
+    const sportLbl = sportLabel(game.sport_key);
+    matchupLine.textContent = awayName + " @ " + homeName;
+
+    const teamsLine = document.createElement("div");
+    teamsLine.className = "teams-line";
+    teamsLine.textContent = sportLbl;
+
+    const timeLine = document.createElement("div");
+    timeLine.className = "time-line";
+    const timeSpan = document.createElement("span");
+    timeSpan.textContent = formatTime(dt);
+    const zoneSpan = document.createElement("span");
+    zoneSpan.textContent = "Local Time";
+    timeLine.appendChild(timeSpan);
+    timeLine.appendChild(zoneSpan);
+
+    teamsStack.appendChild(matchupLine);
+    teamsStack.appendChild(teamsLine);
+    teamsStack.appendChild(timeLine);
+
+    const logoRow = document.createElement("div");
+    logoRow.className = "logo-row";
+    logoRow.appendChild(buildTeamRow(awayName, "Away"));
+    logoRow.appendChild(buildTeamRow(homeName, "Home"));
+
+    header.appendChild(teamsStack);
+    header.appendChild(logoRow);
+    card.appendChild(header);
+
+    const oddsLine = document.createElement("div");
+    oddsLine.className = "odds-line";
+    const spreadPart = document.createElement("span");
+    spreadPart.className = "value";
+    const favorite = game.favorite || "";
+    const underdog = game.underdog || "";
+    const totalVal = typeof game.total === "number" ? game.total : null;
+    let spreadLabel = "";
+    if (favorite && underdog) {
+      spreadLabel = favorite + " / " + underdog;
+    } else if (favorite) {
+      spreadLabel = favorite;
+    } else if (underdog) {
+      spreadLabel = underdog;
+    } else {
+      spreadLabel = "No line";
+    }
+    spreadPart.textContent = spreadLabel;
+    const totalPart = document.createElement("span");
+    totalPart.className = "value";
+    totalPart.textContent = totalVal ? "Total " + totalVal.toFixed(1) : "Total --";
+    oddsLine.appendChild(spreadPart);
+    oddsLine.appendChild(totalPart);
+    card.appendChild(oddsLine);
+
+    const pickRow = document.createElement("div");
+    pickRow.className = "pick-row";
+    pickRow.appendChild(buildPickPill("SU", buildSUPick(game), conf.su));
+    pickRow.appendChild(buildPickPill("ATS", buildATSPick(game), conf.ats));
+    pickRow.appendChild(buildPickPill("O/U", buildOUPick(game), conf.ou));
+    card.appendChild(pickRow);
+
+    return card;
+  }
+
+  function buildTeamRow(name, role) {
+    const row = document.createElement("div");
+    row.className = "team-row";
+    const wrap = document.createElement("div");
+    wrap.className = "team-logo-wrap";
+    const img = document.createElement("img");
+    img.className = "team-logo-img";
+    const slug = teamSlug(name);
+    if (slug) {
+      img.src = "logos/" + slug + ".png";
+      img.onload = function() {
+        img.style.display = "block";
+        fallback.style.display = "none";
+      };
+      img.onerror = function() {
+        img.style.display = "none";
+        fallback.style.display = "flex";
+      };
+    }
+    const fallback = document.createElement("div");
+    fallback.className = "team-logo-fallback";
+    fallback.textContent = teamInitials(name);
+    wrap.appendChild(img);
+    wrap.appendChild(fallback);
+
+    const nameSpan = document.createElement("div");
+    nameSpan.className = "team-name";
+    nameSpan.textContent = name;
+
+    const roleTag = document.createElement("div");
+    roleTag.className = "team-role-tag";
+    roleTag.textContent = role;
+
+    row.appendChild(wrap);
+    row.appendChild(nameSpan);
+    row.appendChild(roleTag);
+    return row;
+  }
+
+  function buildSUPick(game) {
+    const fav = game.fav_team || null;
+    const dog = game.dog_team || null;
+    if (fav) {
+      return fav + " ML";
+    }
+    if (dog) {
+      return dog + " ML";
+    }
+    return null;
+  }
+
+  function buildATSPick(game) {
+    const fav = game.fav_team;
+    const dog = game.dog_team;
+    const favSpread = typeof game.fav_spread === "number" ? game.fav_spread : null;
+    const dogSpread = typeof game.dog_spread === "number" ? game.dog_spread : null;
+    if (fav && favSpread !== null) {
+      const line = favSpread > 0 ? "+" + favSpread : favSpread;
+      return fav + " " + line;
+    }
+    if (dog && dogSpread !== null) {
+      const line = dogSpread > 0 ? "+" + dogSpread : dogSpread;
+      return dog + " " + line;
+    }
+    return null;
+  }
+
+  function buildOUPick(game) {
+    const total = typeof game.total === "number" ? game.total : null;
+    if (!total) return null;
+    const base = sportLabel(game.sport_key);
+    const overLean = total >= 46;
+    return (overLean ? "Over " : "Under ") + total.toFixed(1);
+  }
+
+  function buildPickPill(type, pickText, confVal) {
+    const pill = document.createElement("div");
+    const cls = confClass(confVal);
+    pill.className = "pick-pill " + cls;
+    const labelRow = document.createElement("div");
+    labelRow.className = "pick-label-row";
+    const typeSpan = document.createElement("div");
+    typeSpan.className = "pick-type";
+    typeSpan.textContent = type;
+    const confSpan = document.createElement("div");
+    confSpan.className = "pick-conf";
+    confSpan.textContent = confVal ? confVal + "%" : "--";
+    labelRow.appendChild(typeSpan);
+    labelRow.appendChild(confSpan);
+    const main = document.createElement("div");
+    main.className = "pick-main";
+    main.textContent = pickText || "--";
+    pill.appendChild(labelRow);
+    pill.appendChild(main);
+    return pill;
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    initTheme();
+    initFilters();
+    loadData();
+    setInterval(function() {
+      window.location.reload();
+    }, 30 * 60 * 1000);
+  });
+})();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forged By Freedom — Live Odds & Picks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f0f0f;
+        color: #f2f2f2;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    /* LIGHT MODE */
+    body.light {
+        background: #f7f7f7;
+        color: #111;
+    }
+
+    /* HEADER */
+    header {
+        padding: 20px;
+        text-align: center;
+        background: #131313;
+        border-bottom: 2px solid #222;
+    }
+
+    body.light header {
+        background: #e8e8e8;
+        border-bottom: 2px solid #ccc;
+    }
+
+    h1 { margin: 0; font-size: 32px; }
+    h2 { margin: 8px 0; font-size: 18px; font-weight: 300; }
+
+    .subline { opacity: 0.75; font-size: 15px; }
+
+    /* TOGGLE BUTTON */
+    #modeToggle {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        padding: 8px 14px;
+        background: #222;
+        color: #fff;
+        border: 1px solid #555;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+
+    body.light #modeToggle {
+        background: #ddd;
+        color: #000;
+        border: 1px solid #aaa;
+    }
+
+    /* FILTER BAR */
+    #filters {
+        display: flex;
+        gap: 10px;
+        padding: 12px 20px;
+        background: #1a1a1a;
+        border-bottom: 2px solid #222;
+    }
+
+    body.light #filters {
+        background: #ececec;
+        border-bottom: 2px solid #cfcfcf;
+    }
+
+    select {
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid #444;
+        background: #222;
+        color: #fff;
+    }
+    body.light select {
+        background: #fff;
+        border: 1px solid #bbb;
+        color: #111;
+    }
+
+    /* SECTION HEADERS */
+    .date-header, .sport-header {
+        font-size: 22px;
+        margin: 25px 20px 5px;
+        opacity: 0.85;
+        border-bottom: 1px solid #444;
+        padding-bottom: 4px;
+    }
+
+    body.light .date-header, body.light .sport-header {
+        border-color: #ccc;
+    }
+
+    /* GRID */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+        gap: 15px;
+        padding: 20px;
+    }
+
+    /* GAME CARD */
+    .card {
+        background: #161616;
+        border: 1px solid #222;
+        padding: 12px;
+        border-radius: 10px;
+        transition: 0.25s;
+    }
+
+    body.light .card {
+        background: #fff;
+        border: 1px solid #ccc;
+    }
+
+    .card.grey {
+        opacity: 0.35;
+        filter: grayscale(100%);
+    }
+
+    /* CONFIDENCE COLORS */
+    .conf-low { background: rgba(200,40,40,0.25); }
+    .conf-med { background: rgba(240,200,0,0.25); }
+    .conf-high { background: rgba(0,180,60,0.25); box-shadow: 0 0 8px #00ff7f; }
+
+    /* MATCHUP + LOGO */
+    .matchup {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+    .team-logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 5px;
+        background: #333;
+    }
+
+    .row-labels {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        opacity: 0.7;
+        margin-top: 4px;
+    }
+
+    .row-values {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        font-weight: bold;
+        margin-top: 4px;
+    }
+</style>
+
+</head>
+<body>
+
+<header>
+    <button id="modeToggle">🌙 Dark</button>
+    <h1>Forged By Freedom Strength and Nutrition</h1>
+    <h2>Strength - Discipline - Freedom</h2>
+    <div class="subline">For all your training, supplementation and nutrition needs — ForgedByFreedom.org</div>
+</header>
+
+<!-- FILTERS -->
+<div id="filters">
+    <select id="filterDate"></select>
+    <select id="filterSport"></select>
+    <select id="filterConfidence">
+        <option value="all">All Confidence</option>
+        <option value="high">High (70%+)</option>
+        <option value="med">Medium (56–69%)</option>
+        <option value="low">Low (0–55%)</option>
+    </select>
+</div>
+
+<div id="content"></div>
+
+<script>
+// ========= AUTO MODE TOGGLE =========
+const toggle = document.getElementById("modeToggle");
+toggle.onclick = () => {
+    document.body.classList.toggle("light");
+    toggle.textContent = document.body.classList.contains("light") ? "🌤️ Light" : "🌙 Dark";
+};
+
+// ========== LOAD DATA ==========
+async function loadData() {
+    const res = await fetch("combined.json");
+    const json = await res.json();
+    render(json.data);
+}
+
+function render(data) {
+    const container = document.getElementById("content");
+    container.innerHTML = "";
+
+    // sort by date → sport → commence
+    data.sort((a,b)=> {
+        if (a.commence_time !== b.commence_time)
+            return a.commence_time.localeCompare(b.commence_time);
+        if (a.sport_key !== b.sport_key)
+            return a.sport_key.localeCompare(b.sport_key);
+        return 0;
+    });
+
+    let lastDate = "";
+    let lastSport = "";
+
+    data.forEach(game => {
+        const date = game.commence_time.split("T")[0];
+        if (date !== lastDate) {
+            container.innerHTML += `<div class="date-header">${date}</div>`;
+            lastDate = date;
+            lastSport = "";
+        }
+        if (game.sport_key !== lastSport) {
+            container.innerHTML += `<div class="sport-header">${game.sport_key.toUpperCase()}</div>`;
+            lastSport = game.sport_key;
+        }
+
+        // pick card color class
+        let confClass = "grey";
+        const conf = 60; // placeholder until your model gives confidence
+
+        if (conf >= 70) confClass = "conf-high";
+        else if (conf >= 56) confClass = "conf-med";
+        else confClass = "conf-low";
+
+        container.innerHTML += `
+            <div class="grid">
+                <div class="card ${confClass}">
+                    <div class="matchup">
+                        <img class="team-logo" src="logo.png">
+                        ${game.matchup}
+                    </div>
+
+                    <div class="row-labels">
+                        <div>Straight Up</div>
+                        <div>ATS</div>
+                        <div>O/U</div>
+                    </div>
+
+                    <div class="row-values">
+                        <div>${game.fav_team || "--"}</div>
+                        <div>${game.spread || "--"}</div>
+                        <div>${game.total || "--"}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Auto reload every 30 min
+setInterval(loadData, 30 * 60 * 1000);
+
+loadData();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
