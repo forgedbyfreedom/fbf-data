@@ -2,6 +2,278 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Forged By Freedom — Live Odds & Picks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    background: #0e0e0e;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    color: #fff;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 32px;
+  }
+  .logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    height: 110px;
+  }
+  .confidence-box {
+    padding: 14px;
+    margin-bottom: 25px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    border: 1px solid #333;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .sport-section {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #58a6ff;
+    border-bottom: 2px solid #333;
+    padding-bottom: 6px;
+  }
+  .game {
+    background: #161616;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 6px solid #444;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  }
+  .title {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+  }
+  th, td {
+    padding: 7px;
+    text-align: center;
+    border: 1px solid #333;
+  }
+  th {
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+  }
+  /* FIXED yellow — cleaner, bright, no brown */
+  .red    { background-color: #8a0000; }
+  .yellow { background-color: #d6c400; color: #000; }
+  .green  { background-color: #0f7d0f; }
+</style>
+<script>
+async function loadData() {
+  const response = await fetch("combined.json?cache=" + Math.random());
+  const json = await response.json();
+  const data = json.data || [];
+  const container = document.getElementById("games");
+  container.innerHTML = "";
+
+  const sportsOrder = {
+    "americanfootball_nfl": "NFL",
+    "americanfootball_ncaaf": "NCAA Football",
+    "basketball_nba": "NBA",
+    "basketball_ncaab": "NCAA Basketball",
+    "icehockey_nhl": "NHL",
+    "mma_mixed_martial_arts": "UFC"
+  };
+
+  const grouped = {};
+  data.forEach(game => {
+    if (!grouped[game.sport_key]) grouped[game.sport_key] = [];
+    grouped[game.sport_key].push(game);
+  });
+
+  Object.keys(sportsOrder).forEach(sportKey => {
+    if (!grouped[sportKey]) return;
+
+    container.innerHTML += `<div class="sport-section">${sportsOrder[sportKey]}</div>`;
+
+    grouped[sportKey].forEach(game => {
+      const su = game.su_confidence;
+      const ats = game.ats_confidence;
+      const ou = game.ou_confidence;
+
+      function cc(v){
+        if (v === null || v === undefined) return "";
+        if (v >= 70) return "green";
+        if (v >= 56) return "yellow";
+        return "red";
+      }
+
+      container.innerHTML += `
+        <div class="game ${cc(su)}">
+          <div class="title">${game.matchup}</div>
+          <table>
+            <tr>
+              <th>Straight Up</th>
+              <th>ATS (${game.fav_spread !== null ? game.fav_spread : "--"})</th>
+              <th>O/U (${game.total !== null ? game.total : "--"})</th>
+            </tr>
+            <tr>
+              <td>${game.su_pick || "--"} (${su || "--"}%)</td>
+              <td>${game.ats_pick || "--"} (${ats || "--"}%)</td>
+              <td>${game.ou_pick || "--"} (${ou || "--"}%)</td>
+            </tr>
+          </table>
+        </div>
+      `;
+    });
+  });
+}
+</script>
+</head>
+<body onload="loadData()">
+<img src="logo.png" class="logo">
+<h1>Forged By Freedom — Live Odds & Picks</h1>
+<div class="confidence-box">
+  <strong>Low Confidence (0–55%)</strong> — Red<br>
+  <strong>Medium Confidence (56–69%)</strong> — Yellow<br>
+  <strong>High Confidence (70%+)</strong> — Green
+</div>
+<div id="games"></div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forged By Freedom — Live Odds & Picks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        background: #111;
+        color: #ddd;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        color: #fff;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .logo {
+        display: block;
+        margin: 0 auto 20px auto;
+        height: 100px;
+    }
+    .confidence-box {
+        padding: 10px;
+        margin-bottom: 20px;
+        background: #222;
+        border-radius: 8px;
+    }
+    .game {
+        background: #1c1c1c;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border-left: 5px solid #444;
+    }
+    .title {
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 6px;
+    }
+    th, td {
+        padding: 6px;
+        text-align: center;
+        border: 1px solid #333;
+    }
+    th {
+        background: #333;
+        color: #fff;
+    }
+    .red    { background-color: #7a0000; }
+    .yellow { background-color: #7a6a00; }
+    .green  { background-color: #005f00; }
+</style>
+
+<script>
+async function loadData() {
+    const response = await fetch("combined.json?cache=" + Math.random());
+    const json = await response.json();
+    const data = json.data || [];
+
+    const container = document.getElementById("games");
+    container.innerHTML = "";
+
+    data.forEach(game => {
+        const su_conf = game.su_confidence || null;
+        const ats_conf = game.ats_confidence || null;
+        const ou_conf = game.ou_confidence || null;
+
+        function colorClass(val) {
+            if (val === null || val === undefined) return "";
+            if (val >= 70) return "green";
+            if (val >= 56) return "yellow";
+            return "red";
+        }
+
+        const html = `
+        <div class="game ${colorClass(su_conf)}">
+            <div class="title">${game.matchup}</div>
+            <table>
+                <tr>
+                    <th>Straight Up</th>
+                    <th>ATS</th>
+                    <th>O/U</th>
+                </tr>
+                <tr>
+                    <td>${game.su_pick || "--"} (${su_conf || "--"}%)</td>
+                    <td>${game.ats_pick || "--"} (${ats_conf || "--"}%)</td>
+                    <td>${game.ou_pick || "--"} (${ou_conf || "--"}%)</td>
+                </tr>
+            </table>
+        </div>`;
+        container.innerHTML += html;
+    });
+}
+</script>
+
+</head>
+<body onload="loadData()">
+
+<img src="logo.png" class="logo">
+
+<h1>Forged By Freedom — Live Game Odds & Picks</h1>
+
+<div class="confidence-box">
+    <strong>Low Confidence (0–55%)</strong> — Red<br>
+    <strong>Medium Confidence (56–69%)</strong> — Yellow<br>
+    <strong>High Confidence (70%+)</strong> — Green
+</div>
+
+<div id="games"></div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <title>Forged By Freedom — Live Game Odds & Picks</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
