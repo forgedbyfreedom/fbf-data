@@ -2,126 +2,127 @@
 """
 build_fbs_stadiums.py
 
-Builds a full FBS stadium list from ESPN Core API.
-Outputs fbs_stadiums.json with:
-- team_name
-- venue_name
-- latitude / longitude
-- indoor (True/False)
+Builds a full FBS stadium list with lat/lon + indoor/outdoor flag.
+Output: fbs_stadiums.json
 
-Safe on API failures.
+Strategy:
+- Pull current FBS teams from ESPN college-football API
+- For each team, get venue/stadium data (name, address, capacity, geo)
+- Mark indoor based on venue.indoor boolean if present, else False
+- Safe if ESPN changes fields — script degrades gracefully.
+
+Requires: requests
 """
 
-import json, os, re
+import json
+import os
 from datetime import datetime, timezone
 import requests
 
-TIMEOUT = 12
 OUTFILE = "fbs_stadiums.json"
+TIMEOUT = 15
 
-CF_TEAMS_URL = "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/teams?limit=400"
+TEAMS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams"
+TEAM_URL_TMPL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/{team_id}"
 
-INDOOR_KEYWORDS = [
-    "dome", "indoor", "covered", "stadium at the dome",
-    "superdome", "allegiant", "mercedes-benz stadium"
-]
-
-# Extra known indoor/roofed venues (best-effort)
-KNOWN_INDOOR = {
-    "carrier dome",
-    "allegiant stadium",
-    "mercedes-benz stadium",
-    "caesars superdome",
-    "at&t stadium",
-    "ford field",
-    "u.s. bank stadium",
-    "lucas oil stadium",
-    "state farm stadium",
-}
-
-def get_json(url):
-    r = requests.get(url, timeout=TIMEOUT)
+def get_json(url, params=None):
+    r = requests.get(url, params=params, timeout=TIMEOUT)
     r.raise_for_status()
     return r.json()
 
-def safe(o, path, default=None):
-    cur = o
+def utc_ts():
+    return datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+
+def safe_get(d, path, default=None):
+    cur = d
     for p in path:
-        if isinstance(cur, dict) and p in cur:
-            cur = cur[p]
-        else:
+        if not isinstance(cur, dict) or p not in cur:
             return default
+        cur = cur[p]
     return cur
 
-def is_indoor(venue_name: str) -> bool:
-    vn = (venue_name or "").lower()
-    if vn in KNOWN_INDOOR:
-        return True
-    for kw in INDOOR_KEYWORDS:
-        if kw in vn:
-            return True
-    return False
-
 def main():
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+    try:
+        teams_payload = get_json(TEAMS_URL)
+    except Exception as e:
+        payload = {"timestamp": utc_ts(), "count": 0, "data": [], "error": str(e)}
+        with open(OUTFILE, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2)
+        print(f"❌ Failed to fetch teams: {e}")
+        return
+
+    # ESPN structure: sports -> leagues -> teams (varies). We'll scan.
+    teams = []
+    for block in teams_payload.get("sports", []):
+        for league in block.get("leagues", []):
+            for t in league.get("teams", []):
+                team_obj = t.get("team", t)
+                tid = team_obj.get("id")
+                if tid:
+                    teams.append({"id": tid, "name": team_obj.get("displayName")})
+
+    seen = set()
     out = []
     errors = []
 
-    try:
-        teams_list = get_json(CF_TEAMS_URL).get("items", [])
-    except Exception as e:
-        payload = {"timestamp": ts, "data": [], "errors": [str(e)]}
-        with open(OUTFILE, "w") as f:
-            json.dump(payload, f, indent=2)
-        print(f"⚠️ Wrote empty {OUTFILE} (teams fetch failed)")
-        return
-
-    for t in teams_list:
-        ref = t.get("$ref")
-        if not ref:
+    for t in teams:
+        tid = t["id"]
+        if tid in seen:
             continue
+        seen.add(tid)
+
         try:
-            team = get_json(ref)
-            team_name = safe(team, ["displayName"], "") or safe(team, ["name"], "")
-            venue_ref = safe(team, ["venue", "$ref"], None)
-            if not venue_ref:
-                continue
-            venue = get_json(venue_ref)
-            venue_name = venue.get("fullName") or venue.get("name") or ""
-            lat = venue.get("address", {}).get("latitude")
-            lon = venue.get("address", {}).get("longitude")
+            team_payload = get_json(TEAM_URL_TMPL.format(team_id=tid))
+            team_name = safe_get(team_payload, ["team", "displayName"], t.get("name"))
+            venue = safe_get(team_payload, ["team", "venue"], {}) or {}
 
-            if lat is None or lon is None:
-                # sometimes nested differently
-                lat = venue.get("location", {}).get("latitude")
-                lon = venue.get("location", {}).get("longitude")
+            venue_name = venue.get("fullName") or venue.get("name")
+            address = venue.get("address", {}) or {}
+            city = address.get("city")
+            state = address.get("state")
+            country = address.get("country")
 
-            if lat is None or lon is None:
-                errors.append({"team": team_name, "reason": "missing lat/lon"})
-                continue
+            geo = venue.get("geoCoordinates") or venue.get("location") or {}
+            lat = geo.get("latitude")
+            lon = geo.get("longitude")
 
-            out.append({
-                "team_name": team_name,
-                "venue_name": venue_name,
-                "latitude": float(lat),
-                "longitude": float(lon),
-                "indoor": is_indoor(venue_name),
-                "source": "espn-core",
-            })
+            indoor = bool(venue.get("indoor", False))
+
+            if venue_name and lat is not None and lon is not None:
+                out.append({
+                    "team_id": tid,
+                    "team_name": team_name,
+                    "venue_name": venue_name,
+                    "city": city,
+                    "state": state,
+                    "country": country,
+                    "latitude": float(lat),
+                    "longitude": float(lon),
+                    "capacity": venue.get("capacity"),
+                    "indoor": indoor,
+                    "source": "espn-site-api"
+                })
+            else:
+                errors.append({
+                    "team_id": tid,
+                    "team_name": team_name,
+                    "reason": "missing venue_name or lat/lon"
+                })
+
         except Exception as e:
-            errors.append({"team_ref": ref, "reason": str(e)})
+            errors.append({"team_id": tid, "team_name": t.get("name"), "reason": str(e)})
 
     payload = {
-        "timestamp": ts,
+        "timestamp": utc_ts(),
         "count": len(out),
-        "data": out,
+        "data": sorted(out, key=lambda x: (x.get("team_name") or "")),
         "errors": errors or None
     }
 
     with open(OUTFILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
-    print(f"✅ Wrote {OUTFILE} with {len(out)} FBS venues")
+    print(f"✅ Wrote {OUTFILE} with {len(out)} FBS stadiums")
 
 if __name__ == "__main__":
     main()
