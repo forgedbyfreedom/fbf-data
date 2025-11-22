@@ -1,240 +1,116 @@
 #!/usr/bin/env python3
 """
-build_venues_from_combined.py
+build_fbs_stadiums.py
+Auto-build COMPLETE FBS stadium database from ESPN Core API.
 
-Reads combined.json, extracts UNIQUE home teams,
-queries Wikidata for each team’s home venue + GPS coords,
-and classifies venue_type as:
-  - "outdoor"
-  - "indoor"
-  - "retractable"
+Generates:
+    stadiums_fbs.json  (ALL stadiums)
+    stadiums_outdoor.json (ONLY outdoor stadiums)
 
-Rule B for retractable is applied downstream in weather script
-(assume indoor unless open status is verified).
-
-Output:
-  venues.json
-
-Structure:
+Output format example:
 {
-  "timestamp": "...",
-  "venues": {
-     "Team Name": {
-        "venue": "Stadium Name",
-        "lat": 00.0000,
-        "lon": -00.0000,
-        "venue_type": "outdoor|indoor|retractable",
-        "source": "wikidata",
-        "wikidata_team_qid": "Q....",
-        "wikidata_venue_qid": "Q....",
-        "updated_at": "..."
-     },
-     ...
-  },
-  "misses": ["Team no match", ...]
+  "NCAAF": {
+      "Michigan Wolverines": {
+          "stadium": "Michigan Stadium",
+          "lat": 42.2658,
+          "lon": -83.7487,
+          "indoor": false
+      },
+      ...
+  }
 }
 """
 
 import json
-import os
-import re
-import time
 import requests
 from datetime import datetime, timezone
 
-WIKIDATA_SPARQL = "https://query.wikidata.org/sparql"
-HEADERS = {
-    "Accept": "application/sparql+json",
-    "User-Agent": "fbf-venues-bot/1.0 (forgedbyfreedom)"
-}
-TIMEOUT = 18
+TIMEOUT = 10
 
-OUTFILE = "venues.json"
+# ESPN FBS team list
+TEAMS_URL = "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/teams?limit=300"
 
-
-INDOOR_KEYWORDS = [
-    "dome", "indoor", "enclosed", "roofed", "covered stadium",
-    "arena", "fieldhouse", "coliseum (indoor)", "ice arena"
-]
-
-RETRACTABLE_KEYWORDS = [
-    "retractable", "convertible", "sliding roof", "movable roof",
-    "retractable roof", "roof can open"
-]
-
-
-def safe_get(d, *keys, default=None):
-    cur = d
-    for k in keys:
-        if not isinstance(cur, dict) or k not in cur:
-            return default
-        cur = cur[k]
-    return cur
-
-
-def normalize_team_name(name: str) -> str:
-    """Basic cleanup to help Wikidata matching."""
-    if not name:
-        return name
-    name = name.strip()
-    # remove rankings / seed patterns if they ever show up
-    name = re.sub(r"^\#\d+\s+", "", name)
-    name = re.sub(r"\s+\(\d+\)$", "", name)
-    return name
-
-
-def classify_venue_type(venue_label: str, venue_type_label: str, instance_label: str) -> str:
-    """
-    Determine outdoor/indoor/retractable using labels.
-    If retractable keywords found => "retractable"
-    Else if indoor keywords found => "indoor"
-    Else => "outdoor"
-    """
-    blob = " ".join(filter(None, [venue_label, venue_type_label, instance_label])).lower()
-
-    for kw in RETRACTABLE_KEYWORDS:
-        if kw in blob:
-            return "retractable"
-
-    for kw in INDOOR_KEYWORDS:
-        if kw in blob:
-            return "indoor"
-
-    return "outdoor"
-
-
-def sparql_team_venue_query(team_label: str) -> str:
-    """
-    Try to find a team entity with exact English label.
-    Get:
-      - team QID
-      - venue QID + label
-      - coordinates (P625)
-      - venue type (P2775) label
-      - instance of (P31) label
-    """
-    return f"""
-    SELECT ?team ?venue ?venueLabel ?coord ?venueTypeLabel ?instanceLabel WHERE {{
-      ?team rdfs:label "{team_label}"@en .
-      OPTIONAL {{ ?team wdt:P115 ?venue . }}           # home venue
-      OPTIONAL {{ ?team wdt:P276 ?venue . }}           # location (fallback for some clubs)
-      OPTIONAL {{ ?venue wdt:P625 ?coord . }}          # coordinates
-      OPTIONAL {{ ?venue wdt:P2775 ?venueType . }}     # type of venue
-      OPTIONAL {{ ?venue wdt:P31 ?instance . }}        # instance of
-      SERVICE wikibase:label {{
-        bd:serviceParam wikibase:language "en".
-        ?venue rdfs:label ?venueLabel .
-        ?venueType rdfs:label ?venueTypeLabel .
-        ?instance rdfs:label ?instanceLabel .
-      }}
-    }}
-    LIMIT 1
-    """
-
-
-def run_sparql(query: str):
-    r = requests.get(
-        WIKIDATA_SPARQL,
-        params={"query": query, "format": "json"},
-        headers=HEADERS,
-        timeout=TIMEOUT
-    )
+def get_json(url):
+    r = requests.get(url, timeout=TIMEOUT)
     r.raise_for_status()
     return r.json()
 
 
-def parse_coord(coord_str: str):
-    """
-    Wikidata coord format: "Point(-83.7487 42.2658)"
-    Returns (lat, lon)
-    """
-    if not coord_str:
-        return (None, None)
-    m = re.search(r"Point\(([-\d\.]+)\s+([-\d\.]+)\)", coord_str)
-    if not m:
-        return (None, None)
-    lon = float(m.group(1))
-    lat = float(m.group(2))
-    return (lat, lon)
+def fetch_team_objects():
+    print("📡 Fetching FBS team list…")
+    data = get_json(TEAMS_URL)
+    teams = data.get("items", [])
+    print(f"   → {len(teams)} teams found.")
+    return teams
 
 
-def qid_from_uri(uri: str):
-    if not uri:
-        return None
-    return uri.split("/")[-1]
-
-
-def lookup_team_venue(team_name: str):
-    query = sparql_team_venue_query(team_name)
-    data = run_sparql(query)
-    bindings = safe_get(data, "results", "bindings", default=[])
-    if not bindings:
+def fetch_team_details(team_ref):
+    url = team_ref.get("$ref")
+    if not url:
         return None
 
-    b = bindings[0]
-    team_uri = safe_get(b, "team", "value")
-    venue_uri = safe_get(b, "venue", "value")
-    venue_label = safe_get(b, "venueLabel", "value")
-    coord_str = safe_get(b, "coord", "value")
-    venue_type_label = safe_get(b, "venueTypeLabel", "value")
-    instance_label = safe_get(b, "instanceLabel", "value")
+    try:
+        team = get_json(url)
+    except Exception:
+        return None
 
-    lat, lon = parse_coord(coord_str)
+    name = team.get("displayName") or team.get("name")
+    venue_ref = team.get("venue", {}).get("$ref")
 
-    venue_type = classify_venue_type(venue_label, venue_type_label, instance_label)
+    if not venue_ref:
+        return {"name": name, "stadium": None, "lat": None, "lon": None, "indoor": None}
+
+    try:
+        venue = get_json(venue_ref)
+    except Exception:
+        return {"name": name, "stadium": None, "lat": None, "lon": None, "indoor": None}
+
+    # Parse location
+    lat = venue.get("location", {}).get("latitude")
+    lon = venue.get("location", {}).get("longitude")
+    indoor = venue.get("indoor")  # boolean
+    stadium = venue.get("fullName") or venue.get("shortName")
 
     return {
-        "venue": venue_label,
+        "name": name,
+        "stadium": stadium,
         "lat": lat,
         "lon": lon,
-        "venue_type": venue_type,
-        "source": "wikidata",
-        "wikidata_team_qid": qid_from_uri(team_uri),
-        "wikidata_venue_qid": qid_from_uri(venue_uri),
-        "updated_at": datetime.now(timezone.utc).isoformat()
+        "indoor": bool(indoor) if indoor is not None else None
     }
 
 
 def main():
-    if not os.path.exists("combined.json"):
-        raise SystemExit("❌ combined.json not found.")
+    teams = fetch_team_objects()
+    out = {"timestamp": datetime.now(timezone.utc).isoformat(), "NCAAF": {}}
 
-    with open("combined.json", "r", encoding="utf-8") as f:
-        combined = json.load(f)
+    for t in teams:
+        details = fetch_team_details(t)
+        if not details:
+            continue
 
-    games = combined.get("data", [])
-    home_teams = sorted({normalize_team_name(g.get("home_team")) for g in games if g.get("home_team")})
+        nm = details.pop("name")
+        out["NCAAF"][nm] = details
+        print(f"✓ {nm}: {details['stadium']}")
 
-    venues = {}
-    misses = []
+    # Write full list
+    with open("stadiums_fbs.json", "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=2)
 
-    print(f"[🏟️] Looking up venues for {len(home_teams)} unique home teams...")
-
-    for i, team in enumerate(home_teams, 1):
-        try:
-            print(f"  ({i}/{len(home_teams)}) {team} ...", end="", flush=True)
-            rec = lookup_team_venue(team)
-            if not rec or not rec.get("venue") or rec.get("lat") is None:
-                print(" miss")
-                misses.append(team)
-                continue
-            venues[team] = rec
-            print(f" ok → {rec['venue']} ({rec['venue_type']})")
-            time.sleep(0.4)  # be nice to Wikidata
-        except Exception as e:
-            print(f" error: {e}")
-            misses.append(team)
-
-    payload = {
-        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S"),
-        "venues": venues,
-        "misses": misses
+    # Extract OUTDOOR ONLY
+    outdoor = {
+        "NCAAF": {
+            team: info
+            for team, info in out["NCAAF"].items()
+            if info.get("indoor") is False
+        }
     }
 
-    with open(OUTFILE, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
+    with open("stadiums_outdoor.json", "w", encoding="utf-8") as f:
+        json.dump(outdoor, f, indent=2)
 
-    print(f"[✅] Saved {OUTFILE} with {len(venues)} venues, {len(misses)} misses.")
+    print(f"\n[✅] Done! Wrote {len(out['NCAAF'])} total FBS stadiums")
+    print(f"[🌤️] Wrote {len(outdoor['NCAAF'])} OUTDOOR stadiums → stadiums_outdoor.json")
 
 
 if __name__ == "__main__":
