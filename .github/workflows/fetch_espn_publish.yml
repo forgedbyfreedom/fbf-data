@@ -1,8 +1,8 @@
-name: Auto Fetch • ESPN Odds + Weather + Ref Trends + Predictions
+name: Auto Fetch - ESPN Odds Weather Ref Trends Predictions
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # every 15 minutes
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 jobs:
