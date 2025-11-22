@@ -2,33 +2,18 @@
 """
 referee_trends.py
 
-Builds referee_trends.json from labeled historical results.
+Builds referee_trends.json from historical_results.json (if present).
+Tracks:
+- ATS bias (fav cover %)
+- O/U bias (over %)
+- Home win %
 
-Inputs (if present):
-- historical_results.json  (YOU add this later)
-  Format expected:
-  [
-    {
-      "sport_key":"americanfootball_nfl",
-      "referees":["John Doe","Jane Roe"],
-      "favorite_team":"Team A",
-      "underdog_team":"Team B",
-      "fav_spread":-3.5,
-      "total": 44.5,
-      "fav_score":24,
-      "dog_score":20
-    }, ...
-  ]
-
-If file missing, writes empty trends w/ note.
-
-Outputs:
-- referee_trends.json
+Safe if no history yet.
 """
 
-import json, os, math
-from datetime import datetime, timezone
+import json, os
 from collections import defaultdict
+from datetime import datetime, timezone
 
 HIST_FILE = "historical_results.json"
 OUTFILE = "referee_trends.json"
@@ -40,78 +25,51 @@ def load_json(path, default):
         return json.load(f)
 
 def main():
-    hist = load_json(HIST_FILE, [])
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+
+    hist = load_json(HIST_FILE, {}).get("data", [])
     if not hist:
         payload = {
-            "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
+            "timestamp": ts,
             "count": 0,
             "data": [],
-            "note": "historical_results.json missing — trends will populate once labels exist",
+            "note": "No historical_results.json yet. Trends will populate after games finish."
         }
         with open(OUTFILE, "w") as f:
             json.dump(payload, f, indent=2)
-        print(f"⚠️ {OUTFILE} empty (no history)")
+        print(f"⚠️ Wrote empty {OUTFILE} (no history)")
         return
 
-    agg = defaultdict(lambda: {
-        "games": 0,
-        "fav_covers": 0,
-        "overs": 0,
-        "dog_wins": 0
-    })
+    agg = defaultdict(lambda: {"games":0, "home_wins":0, "fav_covers":0, "overs":0})
 
-    for row in hist:
-        refs = row.get("referees") or []
-        if not refs:
-            continue
+    for g in hist:
+        ref = g.get("referee") or g.get("ref_crew") or "UNKNOWN"
+        a = agg[ref]
 
-        fav_score = row.get("fav_score")
-        dog_score = row.get("dog_score")
-        spread = row.get("fav_spread") or 0
-        total = row.get("total") or 0
-
-        if fav_score is None or dog_score is None:
-            continue
-
-        fav_margin = fav_score - dog_score
-        fav_cover = fav_margin > abs(spread)
-        dog_win = dog_score > fav_score
-        over = (fav_score + dog_score) > total if total else None
-
-        for rname in refs:
-            a = agg[rname]
-            a["games"] += 1
-            a["fav_covers"] += int(fav_cover)
-            a["dog_wins"] += int(dog_win)
-            if over is not None:
-                a["overs"] += int(over)
+        a["games"] += 1
+        if g.get("home_win"):
+            a["home_wins"] += 1
+        if g.get("fav_cover"):
+            a["fav_covers"] += 1
+        if g.get("over"):
+            a["overs"] += 1
 
     out = []
-    for rname, a in agg.items():
-        g = a["games"]
-        if g < 3:
-            continue
-
+    for ref, a in agg.items():
+        games = a["games"] or 1
         out.append({
-            "referee": rname,
-            "games": g,
-            "fav_cover_rate": round(a["fav_covers"]/g, 4),
-            "dog_win_rate": round(a["dog_wins"]/g, 4),
-            "over_rate": round(a["overs"]/g, 4),
-            "bias_fav": round((a["fav_covers"]/g) - 0.5, 4),
-            "bias_over": round((a["overs"]/g) - 0.5, 4),
+            "referee": ref,
+            "games": a["games"],
+            "home_win_pct": round(a["home_wins"]/games*100, 2),
+            "fav_cover_pct": round(a["fav_covers"]/games*100, 2),
+            "over_pct": round(a["overs"]/games*100, 2),
         })
 
-    payload = {
-        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
-        "count": len(out),
-        "data": sorted(out, key=lambda x: (-x["games"], x["referee"])),
-    }
+    payload = {"timestamp": ts, "count": len(out), "data": out}
+    with open(OUTFILE, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
 
-    with open(OUTFILE, "w") as f:
-        json.dump(payload, f, indent=2)
-
-    print(f"✅ Wrote {OUTFILE} with {len(out)} ref trend rows")
+    print(f"✅ Wrote {OUTFILE} ({len(out)} crews)")
 
 if __name__ == "__main__":
     main()
