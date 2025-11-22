@@ -2,123 +2,116 @@
 """
 referee_trends.py
 
-Builds referee crew trend stats.
+Builds referee_trends.json from labeled historical results.
 
-Inputs (optional):
-- combined.json  (current slate, may include referee fields)
-- historical_results.json (future labeled outcomes)
+Inputs (if present):
+- historical_results.json  (YOU add this later)
+  Format expected:
+  [
+    {
+      "sport_key":"americanfootball_nfl",
+      "referees":["John Doe","Jane Roe"],
+      "favorite_team":"Team A",
+      "underdog_team":"Team B",
+      "fav_spread":-3.5,
+      "total": 44.5,
+      "fav_score":24,
+      "dog_score":20
+    }, ...
+  ]
+
+If file missing, writes empty trends w/ note.
 
 Outputs:
 - referee_trends.json
-
-Safe if inputs missing.
 """
 
-import json, os
+import json, os, math
 from datetime import datetime, timezone
 from collections import defaultdict
 
-COMBINED_FILE = "combined.json"
-HISTORICAL_FILE = "historical_results.json"   # add later
+HIST_FILE = "historical_results.json"
 OUTFILE = "referee_trends.json"
 
 def load_json(path, default):
     if not os.path.exists(path):
         return default
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return default
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 def main():
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
-
-    combined = load_json(COMBINED_FILE, {}).get("data", [])
-    hist = load_json(HISTORICAL_FILE, {}).get("data", [])
-
-    # If no historical data yet, write empty safe file
+    hist = load_json(HIST_FILE, [])
     if not hist:
         payload = {
-            "timestamp": stamp,
+            "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
             "count": 0,
             "data": [],
-            "note": "historical_results.json not found yet. Add labeled results to enable trends.",
+            "note": "historical_results.json missing — trends will populate once labels exist",
         }
-        with open(OUTFILE, "w", encoding="utf-8") as f:
+        with open(OUTFILE, "w") as f:
             json.dump(payload, f, indent=2)
-        print(f"⚠️  Wrote empty {OUTFILE} (no historical results yet)")
+        print(f"⚠️ {OUTFILE} empty (no history)")
         return
 
-    # Expected historical schema per game (you’ll build this later):
-    # {
-    #   "sport_key": "...",
-    #   "matchup": "...",
-    #   "commence_time": "...",
-    #   "referees": ["Name A","Name B",...],
-    #   "home_team": "...",
-    #   "away_team": "...",
-    #   "home_score": 0,
-    #   "away_score": 0,
-    #   "total_line": 0,
-    #   "spread": 0,
-    #   "su_fav_correct": true/false,
-    #   "ats_fav_correct": true/false,
-    #   "ou_over": true/false,
-    #   "penalties_total": 0
-    # }
-
-    stats = defaultdict(lambda: {
+    agg = defaultdict(lambda: {
         "games": 0,
-        "SU_fav_hit": 0,
-        "ATS_fav_hit": 0,
-        "OU_over_hit": 0,
-        "penalties_avg": 0.0,
+        "fav_covers": 0,
+        "overs": 0,
+        "dog_wins": 0
     })
 
-    for g in hist:
-        refs = g.get("referees") or []
+    for row in hist:
+        refs = row.get("referees") or []
         if not refs:
             continue
 
-        su = bool(g.get("su_fav_correct"))
-        ats = bool(g.get("ats_fav_correct"))
-        over = bool(g.get("ou_over"))
+        fav_score = row.get("fav_score")
+        dog_score = row.get("dog_score")
+        spread = row.get("fav_spread") or 0
+        total = row.get("total") or 0
 
-        pens = g.get("penalties_total")
-        pens = float(pens) if pens is not None else 0.0
+        if fav_score is None or dog_score is None:
+            continue
 
-        for r in refs:
-            s = stats[r]
-            s["games"] += 1
-            s["SU_fav_hit"] += int(su)
-            s["ATS_fav_hit"] += int(ats)
-            s["OU_over_hit"] += int(over)
-            # running average penalties
-            s["penalties_avg"] = ((s["penalties_avg"] * (s["games"] - 1)) + pens) / s["games"]
+        fav_margin = fav_score - dog_score
+        fav_cover = fav_margin > abs(spread)
+        dog_win = dog_score > fav_score
+        over = (fav_score + dog_score) > total if total else None
+
+        for rname in refs:
+            a = agg[rname]
+            a["games"] += 1
+            a["fav_covers"] += int(fav_cover)
+            a["dog_wins"] += int(dog_win)
+            if over is not None:
+                a["overs"] += int(over)
 
     out = []
-    for ref_name, s in stats.items():
-        gcount = s["games"]
+    for rname, a in agg.items():
+        g = a["games"]
+        if g < 3:
+            continue
+
         out.append({
-            "referee": ref_name,
-            "games": gcount,
-            "SU_fav_pct": round(100 * s["SU_fav_hit"] / gcount, 2) if gcount else 0,
-            "ATS_fav_pct": round(100 * s["ATS_fav_hit"] / gcount, 2) if gcount else 0,
-            "Over_pct": round(100 * s["OU_over_hit"] / gcount, 2) if gcount else 0,
-            "penalties_avg": round(s["penalties_avg"], 2),
+            "referee": rname,
+            "games": g,
+            "fav_cover_rate": round(a["fav_covers"]/g, 4),
+            "dog_win_rate": round(a["dog_wins"]/g, 4),
+            "over_rate": round(a["overs"]/g, 4),
+            "bias_fav": round((a["fav_covers"]/g) - 0.5, 4),
+            "bias_over": round((a["overs"]/g) - 0.5, 4),
         })
 
     payload = {
-        "timestamp": stamp,
+        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
         "count": len(out),
-        "data": sorted(out, key=lambda x: x["games"], reverse=True),
+        "data": sorted(out, key=lambda x: (-x["games"], x["referee"])),
     }
 
-    with open(OUTFILE, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
+    with open(OUTFILE, "w") as f:
+        json.dump(payload, f, indent=2)
 
-    print(f"✅ Wrote {OUTFILE} with {len(out)} referee trend rows")
+    print(f"✅ Wrote {OUTFILE} with {len(out)} ref trend rows")
 
 if __name__ == "__main__":
     main()
