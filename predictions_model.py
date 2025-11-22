@@ -2,42 +2,43 @@
 """
 predictions_model.py
 
-Machine-learning training layer.
-Safe on a fresh repo:
-- If no labeled historical data exists, writes models/model_meta.json and exits.
+Trains ML models for SU / ATS / OU once labeled history exists.
 
-Expected future labeled data file:
-historical_results.json
-[
-  {
-    "sport_key": "...",
-    "fav_team": "...",
-    "dog_team": "...",
-    "spread": -3.5,
-    "total": 47.5,
-    "fav_score": 24,
-    "dog_score": 17
-  },
-  ...
-]
+Inputs:
+- historical_results.json (YOU add builder later)
+- power_ratings.json (optional)
+- referee_trends.json (optional)
+- weather.json (optional)
 
 Outputs:
 - models/su_model.pkl
 - models/ats_model.pkl
 - models/ou_model.pkl
 - models/model_meta.json
+
+Safe if historical_results.json missing.
+
+Dependencies:
+- pandas, numpy, scikit-learn, joblib
 """
 
-import json, os, pickle
+import json, os
 from datetime import datetime, timezone
 
 import numpy as np
+import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+import joblib
 
 HIST_FILE = "historical_results.json"
-MODELS_DIR = "models"
-META_FILE = os.path.join(MODELS_DIR, "model_meta.json")
+PR_FILE   = "power_ratings.json"
+REF_FILE  = "referee_trends.json"
+WX_FILE   = "weather.json"
+
+MODEL_DIR = "models"
+META_FILE = os.path.join(MODEL_DIR, "model_meta.json")
 
 def load_json(path, default):
     if not os.path.exists(path):
@@ -45,103 +46,109 @@ def load_json(path, default):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def ensure_dir(p):
-    if not os.path.exists(p):
-        os.makedirs(p, exist_ok=True)
-
-def build_features(rows):
-    X_su, y_su = [], []
-    X_ats, y_ats = [], []
-    X_ou, y_ou = [], []
-
-    for r in rows:
-        spread = r.get("spread")
-        total = r.get("total")
-        fav_score = r.get("fav_score")
-        dog_score = r.get("dog_score")
-
-        if spread is None or total is None or fav_score is None or dog_score is None:
-            continue
-
-        spread = float(spread)
-        total = float(total)
-        fav_score = float(fav_score)
-        dog_score = float(dog_score)
-
-        # features
-        feat = [spread, total]
-
-        # labels
-        su = 1 if fav_score > dog_score else 0
-        ats = 1 if (fav_score - dog_score) > abs(spread) else 0
-        ou = 1 if (fav_score + dog_score) > total else 0
-
-        X_su.append(feat); y_su.append(su)
-        X_ats.append(feat); y_ats.append(ats)
-        X_ou.append(feat); y_ou.append(ou)
-
-    return (
-        np.array(X_su), np.array(y_su),
-        np.array(X_ats), np.array(y_ats),
-        np.array(X_ou), np.array(y_ou),
-    )
-
-def train_one(X, y):
-    if len(X) < 50:
-        return None, "insufficient_samples"
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = LogisticRegression(max_iter=200)
-    model.fit(X_train, y_train)
-    acc = float(model.score(X_test, y_test))
-    return model, acc
+def power_by_team(payload):
+    out = {}
+    for r in payload.get("data", []):
+        tn = (r.get("team_name") or r.get("team") or "").lower()
+        if tn:
+            out[tn] = float(r.get("rating", 0))
+    return out
 
 def main():
-    ensure_dir(MODELS_DIR)
     hist = load_json(HIST_FILE, [])
-
-    if not hist or len(hist) < 50:
+    if not hist:
+        os.makedirs(MODEL_DIR, exist_ok=True)
         meta = {
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "trained": False,
-            "reason": "historical_results.json missing or too small (need 50+ labeled games).",
-            "games_available": len(hist) if hist else 0,
-            "features": ["spread", "total"],
+            "note": "historical_results.json missing; no training performed"
         }
         with open(META_FILE, "w") as f:
             json.dump(meta, f, indent=2)
-        print("⚠️  No ML training performed:", meta["reason"])
+        print("⚠️ No historical_results.json — skipping ML training")
         return
 
-    X_su, y_su, X_ats, y_ats, X_ou, y_ou = build_features(hist)
+    pr = power_by_team(load_json(PR_FILE, {}))
 
-    su_model, su_acc = train_one(X_su, y_su)
-    ats_model, ats_acc = train_one(X_ats, y_ats)
-    ou_model, ou_acc = train_one(X_ou, y_ou)
+    rows = []
+    for r in hist:
+        fav = (r.get("favorite_team") or "").lower()
+        dog = (r.get("underdog_team") or "").lower()
+        spread = float(r.get("fav_spread") or 0)
+        total = float(r.get("total") or 0)
+        fav_score = r.get("fav_score")
+        dog_score = r.get("dog_score")
 
-    if su_model:
-        with open(os.path.join(MODELS_DIR, "su_model.pkl"), "wb") as f:
-            pickle.dump(su_model, f)
-    if ats_model:
-        with open(os.path.join(MODELS_DIR, "ats_model.pkl"), "wb") as f:
-            pickle.dump(ats_model, f)
-    if ou_model:
-        with open(os.path.join(MODELS_DIR, "ou_model.pkl"), "wb") as f:
-            pickle.dump(ou_model, f)
+        if fav_score is None or dog_score is None:
+            continue
+
+        pr_edge = pr.get(fav, 0) - pr.get(dog, 0)
+
+        su_label = int(fav_score > dog_score)
+        ats_label = int((fav_score - dog_score) > abs(spread))
+        ou_label = int((fav_score + dog_score) > total) if total else None
+
+        rows.append({
+            "spread": spread,
+            "total": total,
+            "pr_edge": pr_edge,
+            "su_label": su_label,
+            "ats_label": ats_label,
+            "ou_label": ou_label
+        })
+
+    df = pd.DataFrame(rows).dropna(subset=["su_label","ats_label"])
+    if df.empty:
+        print("⚠️ Not enough labeled rows to train")
+        return
+
+    os.makedirs(MODEL_DIR, exist_ok=True)
+
+    features = ["spread","total","pr_edge"]
+
+    # --- SU model ---
+    X = df[features]
+    y = df["su_label"]
+    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=7)
+    su_model = RandomForestClassifier(n_estimators=300, random_state=7)
+    su_model.fit(Xtr, ytr)
+    su_acc = accuracy_score(yte, su_model.predict(Xte))
+    joblib.dump(su_model, os.path.join(MODEL_DIR, "su_model.pkl"))
+
+    # --- ATS model ---
+    y = df["ats_label"]
+    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=7)
+    ats_model = RandomForestClassifier(n_estimators=300, random_state=7)
+    ats_model.fit(Xtr, ytr)
+    ats_acc = accuracy_score(yte, ats_model.predict(Xte))
+    joblib.dump(ats_model, os.path.join(MODEL_DIR, "ats_model.pkl"))
+
+    # --- OU model ---
+    df_ou = df.dropna(subset=["ou_label"])
+    ou_acc = None
+    if not df_ou.empty:
+        X = df_ou[features]
+        y = df_ou["ou_label"]
+        Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=7)
+        ou_model = RandomForestClassifier(n_estimators=300, random_state=7)
+        ou_model.fit(Xtr, ytr)
+        ou_acc = accuracy_score(yte, ou_model.predict(Xte))
+        joblib.dump(ou_model, os.path.join(MODEL_DIR, "ou_model.pkl"))
 
     meta = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "trained": True,
-        "games_used": int(len(X_su)),
-        "features": ["spread", "total"],
-        "su_accuracy": su_acc if su_model else None,
-        "ats_accuracy": ats_acc if ats_model else None,
-        "ou_accuracy": ou_acc if ou_model else None,
+        "rows": len(df),
+        "features": features,
+        "su_accuracy": round(float(su_acc), 4),
+        "ats_accuracy": round(float(ats_acc), 4),
+        "ou_accuracy": round(float(ou_acc), 4) if ou_acc is not None else None
     }
 
     with open(META_FILE, "w") as f:
         json.dump(meta, f, indent=2)
 
-    print("✅ ML training complete:", meta)
+    print("✅ ML models trained & saved to models/")
 
 if __name__ == "__main__":
     main()
