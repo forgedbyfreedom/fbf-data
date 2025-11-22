@@ -1,0 +1,17 @@
+# --------------------------------------
+# FBF Engine - GPU Optional Extras (LOCAL ONLY)
+# Do NOT install in GitHub Actions.
+# --------------------------------------
+
+# GPU NumPy drop-in (CUDA only)
+cupy-cuda12x==13.3.0
+
+# GPU ML equivalents (CUDA only)
+cuml-cu12==24.10.0
+cudf-cu12==24.10.0
+
+# Gradient boosting GPU
+xgboost==2.1.2
+
+# Deep learning GPU (optional later)
+torch==2.5.1
