@@ -2,19 +2,32 @@ name: Auto Fetch - ESPN Odds Weather Ref Trends Predictions
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/15 * * * *"   # every 15 minutes
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-and-publish
+  cancel-in-progress: true
 
 jobs:
   fetch-and-publish:
     runs-on: ubuntu-latest
 
     steps:
+      # ------------------------------------------------------
+      # CHECKOUT
+      # ------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # ------------------------------------------------------
+      # PYTHON SETUP
+      # ------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -25,28 +38,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # -----------------------------
-      # 1) ESPN ODDS → combined.json
-      # -----------------------------
+      # ---------------------------------------
+      # 1) FETCH ODDS (creates combined.json)
+      # ---------------------------------------
       - name: Fetch ESPN Odds (All Sports)
         run: python3 fetch_espn_all.py
 
       - name: Tag favorites and dogs
         run: python3 tag_favorites.py
 
-      # -----------------------------
-      # 2) SUPPORTING DATA BUILDERS
-      # -----------------------------
-      - name: Build FBS stadium list
+      # ---------------------------------------
+      # 2) STADIUMS / VENUES / WEATHER
+      # ---------------------------------------
+      - name: Build full FBS stadium list
         run: python3 build_fbs_stadiums.py
 
-      - name: Build outdoor weather for games
-        run: python3 build_weather_for_games.py
+      - name: Build venues from combined
+        run: python3 build_venues_from_combined.py
+        continue-on-error: true
 
+      - name: Build weather for games (outdoor only)
+        run: python3 build_weather_for_games.py
+        continue-on-error: true
+
+      # ---------------------------------------
+      # 3) REF TRENDS
+      # ---------------------------------------
       - name: Build referee trends
         run: python3 referee_trends.py
+        continue-on-error: true
 
-      - name: Fetch injury data (from API)
+      # ---------------------------------------
+      # 4) INJURIES
+      # ---------------------------------------
+      - name: Fetch injuries
         run: python3 fetch_injuries.py
         continue-on-error: true
 
@@ -54,26 +79,31 @@ jobs:
         run: python3 merge_injuries.py
         continue-on-error: true
 
-      # -----------------------------
-      # 3) HISTORICAL + TRAINING
-      # -----------------------------
+      # ---------------------------------------
+      # 5) HISTORICAL LABELS + TRAINING
+      # ---------------------------------------
       - name: Build historical results
         run: python3 build_historical_results.py
         continue-on-error: true
 
-      - name: Train ML models
+      - name: Train ML models (safe if no labels yet)
         run: python3 train_model.py
         continue-on-error: true
 
-      # -----------------------------
-      # 4) PREDICTIONS FILE
-      # -----------------------------
+      # ---------------------------------------
+      # 6) PREDICTIONS
+      # ---------------------------------------
       - name: Build predictions file
         run: python3 build_predictions.py
 
-      # -----------------------------
-      # 5) COMMIT + PUSH
-      # -----------------------------
+      # Optional accuracy tracking if you want it:
+      - name: Track accuracy (safe)
+        run: python3 track_accuracy.py
+        continue-on-error: true
+
+      # ---------------------------------------
+      # 7) COMMIT + PUSH
+      # ---------------------------------------
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
@@ -82,7 +112,5 @@ jobs:
           git pull --rebase origin main || true
 
           git add -A
-
-          git commit -m "Auto update $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
-
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
           git push origin main || echo "Nothing to push"
