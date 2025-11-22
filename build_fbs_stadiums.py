@@ -2,58 +2,39 @@
 """
 build_fbs_stadiums.py
 
-Builds a full FBS stadium list from ESPN Core API:
-- Pulls all FBS teams (group 80)
-- Follows venue refs for GPS + roof/indoor info
-- Applies manual indoor overrides for known domes/retractables
-- Output: fbs_stadiums.json
+Builds a full FBS stadium list automatically from ESPN Core API.
+Output: fbs_stadiums.json
 
-Safe if ESPN endpoints fail.
+- Pulls all FBS teams (NCAAF FBS)
+- Resolves each team's venue, gps, capacity, etc.
+- Classifies indoor/outdoor:
+    * If ESPN flags "isIndoor"/roofType -> trust it
+    * Else uses a small known-dome override list
+    * Else defaults to outdoor
+
+Safe if ESPN is down; writes empty file with note.
+
+No API keys required.
 """
 
-import json, os, sys, time
+import json, os, sys
 from datetime import datetime, timezone
 import requests
 
 OUTFILE = "fbs_stadiums.json"
 TIMEOUT = 15
 
-# ESPN Core API base
-BASE = "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football"
+FBS_TEAMS_URL = (
+    "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/"
+    "seasons/2025/types/2/groups/80/teams?limit=400"
+)
 
-# Group 80 = FBS in ESPN structure
-FBS_TEAMS_URL = f"{BASE}/groups/80/teams?limit=500"
-
-# Known indoor / retractable FBS teams (team displayName -> indoor True)
-# This keeps "outdoor only weather" accurate even if ESPN venue metadata is missing.
-INDOOR_TEAM_OVERRIDES = {
-    # ACC / Big 12 / Big Ten etc.
-    "Syracuse Orange": True,          # JMA Wireless Dome
-    "Duke Blue Devils": False,
-    "Pittsburgh Panthers": False,
-    "Miami Hurricanes": False,
-    "SMU Mustangs": False,
-    "Houston Cougars": False,
-    "UTSA Roadrunners": True,         # Alamodome
-    "Tulsa Golden Hurricane": False,
-
-    # SEC / others
-    "Alabama Crimson Tide": False,
-    "Georgia Bulldogs": False,
-    "LSU Tigers": False,
-
-    # Big Ten
-    "Northwestern Wildcats": False,
-    "Illinois Fighting Illini": False,
-
-    # Pac / west
-    "UNLV Rebels": True,              # Allegiant Stadium (retractable but roofed)
-    "Arizona State Sun Devils": False,
-
-    # Independents / AAC / CUSA / MWC / Sun Belt etc.
-    "Liberty Flames": False,
-    "Boise State Broncos": False,
-    "Hawai'i Rainbow Warriors": False,
+# Known FBS indoor / dome venues (failsafe if ESPN doesn't expose roofType)
+KNOWN_INDOOR_VENUES = {
+    "carrier dome", "jma wireless dome", "allegiant stadium", "ford field",
+    "lucas oil stadium", "mercedes-benz stadium", "at&t stadium",
+    "nrg stadium", "caesars superdome", "u.s. bank stadium",
+    "boa stadium (indoor)", "tropicana field", "astrodome",
 }
 
 def get_json(url):
@@ -61,138 +42,127 @@ def get_json(url):
     r.raise_for_status()
     return r.json()
 
-def deref(ref_obj):
-    """ESPN core often returns {$ref: url}."""
-    if isinstance(ref_obj, dict) and "$ref" in ref_obj:
-        return get_json(ref_obj["$ref"])
-    return ref_obj
+def load_items(url):
+    data = get_json(url)
+    return data.get("items", [])
 
-def safe(val, default=None):
-    return val if val is not None else default
+def safe_ref(ref):
+    if isinstance(ref, dict) and "$ref" in ref:
+        return ref["$ref"]
+    return None
 
-def infer_indoor_from_venue(venue):
-    """
-    Attempt to infer indoor/retractable from ESPN venue metadata.
-    Defaults to False if unknown.
-    """
-    if not isinstance(venue, dict):
-        return False
+def to_bool(v):
+    return True if str(v).lower() == "true" else False if str(v).lower() == "false" else None
 
-    # ESPN sometimes exposes 'indoor' or roofType
-    if venue.get("indoor") is True:
-        return True
+def classify_indoor(venue):
+    """Best-effort indoor/outdoor classification."""
+    # ESPN sometimes provides "isIndoor"
+    if "isIndoor" in venue:
+        b = to_bool(venue.get("isIndoor"))
+        if b is not None:
+            return b
 
+    # Sometimes provides roofType
     roof = (venue.get("roofType") or venue.get("roof") or "").lower()
-    surface = (venue.get("surface") or "").lower()
-
-    # Common roof keywords
-    if any(k in roof for k in ["dome", "indoor", "retract", "covered"]):
+    if roof in {"dome", "indoor", "closed"}:
         return True
-
-    # If venue explicitly says outdoor
-    if "outdoor" in roof:
+    if roof in {"open", "outdoor"}:
         return False
 
-    # If still unknown, assume outdoor (safer for "outdoor only weather")
-    return False
+    name = (venue.get("fullName") or venue.get("name") or "").lower()
+    if name in KNOWN_INDOOR_VENUES:
+        return True
+
+    return False  # default outdoor
 
 def main():
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
-
-    try:
-        teams_payload = get_json(FBS_TEAMS_URL)
-        items = teams_payload.get("items", [])
-    except Exception as e:
-        payload = {
-            "timestamp": stamp,
-            "count": 0,
-            "data": [],
-            "errors": [f"Failed to fetch FBS teams: {e}"],
-        }
-        with open(OUTFILE, "w", encoding="utf-8") as f:
-            json.dump(payload, f, indent=2)
-        print(f"❌ {OUTFILE} wrote empty list (teams fetch failed)")
-        return
-
     out = []
     errors = []
 
-    for it in items:
-        try:
-            team = deref(it)
-            if not isinstance(team, dict):
+    try:
+        teams_items = load_items(FBS_TEAMS_URL)
+        if not teams_items:
+            raise ValueError("No teams returned from ESPN FBS endpoint")
+
+        for t_ref in teams_items:
+            t_url = safe_ref(t_ref)
+            if not t_url:
                 continue
 
-            team_id = team.get("id")
-            team_name = team.get("displayName")
-            abbr = team.get("abbreviation")
-            short_name = team.get("shortDisplayName")
-
-            # conference (best effort)
-            conf_name = None
             try:
-                conf = deref(team.get("conference"))
-                conf_name = conf.get("name") or conf.get("shortName")
-            except Exception:
-                conf_name = None
+                team = get_json(t_url)
+                team_name = team.get("displayName") or team.get("name")
+                team_id = team.get("id")
 
-            venue = None
-            try:
-                venue = deref(team.get("venue"))
-            except Exception:
-                venue = None
+                venue_ref = safe_ref(team.get("venue"))
+                if not venue_ref:
+                    errors.append({"team": team_name, "reason": "no venue ref"})
+                    continue
 
-            if not isinstance(venue, dict):
-                errors.append({"team": team_name, "reason": "venue missing"})
+                venue = get_json(venue_ref)
+
+                addr = venue.get("address", {}) or {}
+                geo = venue.get("location", {}) or {}
+                lat = geo.get("latitude")
+                lon = geo.get("longitude")
+
+                if lat is None or lon is None:
+                    # sometimes embedded in venue["address"]["coordinates"]
+                    coords = addr.get("coordinates", {}) or {}
+                    lat = lat or coords.get("latitude")
+                    lon = lon or coords.get("longitude")
+
+                if lat is None or lon is None:
+                    errors.append({"team": team_name, "reason": "no gps"})
+                    continue
+
+                indoor = classify_indoor(venue)
+
+                out.append({
+                    "team_id": team_id,
+                    "team_name": team_name,
+                    "abbrev": team.get("abbreviation"),
+                    "conference": (team.get("groups", {}) or {}).get("shortName"),
+                    "venue_id": venue.get("id"),
+                    "venue_name": venue.get("fullName") or venue.get("name"),
+                    "city": addr.get("city"),
+                    "state": addr.get("state"),
+                    "country": addr.get("country"),
+                    "capacity": venue.get("capacity"),
+                    "latitude": float(lat),
+                    "longitude": float(lon),
+                    "indoor": bool(indoor),
+                    "source": "espn-core",
+                })
+
+            except Exception as e:
+                errors.append({"team_ref": t_url, "reason": str(e)})
                 continue
 
-            venue_id = venue.get("id")
-            venue_name = venue.get("fullName") or venue.get("name")
-            address = venue.get("address") or {}
-            city = address.get("city")
-            state = address.get("state")
-            country = address.get("country")
-
-            lat = venue.get("latitude")
-            lon = venue.get("longitude")
-
-            indoor = infer_indoor_from_venue(venue)
-
-            # Manual override by team name if present
-            if team_name in INDOOR_TEAM_OVERRIDES:
-                indoor = INDOOR_TEAM_OVERRIDES[team_name]
-
-            out.append({
-                "team_id": team_id,
-                "team_name": team_name,
-                "abbreviation": abbr,
-                "short_name": short_name,
-                "conference": conf_name,
-                "venue_id": venue_id,
-                "venue_name": venue_name,
-                "latitude": lat,
-                "longitude": lon,
-                "city": city,
-                "state": state,
-                "country": country,
-                "indoor": indoor,
-                "source": "espn-core",
-            })
-
-        except Exception as e:
-            errors.append({"item": str(it)[:120], "reason": str(e)})
+    except Exception as e:
+        payload = {
+            "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
+            "count": 0,
+            "data": [],
+            "errors": [{"fatal": str(e)}],
+            "note": "Failed to build stadium list from ESPN",
+        }
+        with open(OUTFILE, "w") as f:
+            json.dump(payload, f, indent=2)
+        print(f"❌ {OUTFILE} written empty: {e}")
+        return
 
     payload = {
-        "timestamp": stamp,
+        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
         "count": len(out),
-        "data": out,
+        "data": sorted(out, key=lambda x: (x["team_name"] or "")),
         "errors": errors or None,
     }
 
-    with open(OUTFILE, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
+    with open(OUTFILE, "w") as f:
+        json.dump(payload, f, indent=2)
 
-    print(f"✅ Wrote {OUTFILE} with {len(out)} FBS stadium entries")
+    print(f"✅ Wrote {OUTFILE} with {len(out)} FBS venues")
 
 if __name__ == "__main__":
     main()
