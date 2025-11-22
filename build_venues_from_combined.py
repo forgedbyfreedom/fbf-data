@@ -2,159 +2,240 @@
 """
 build_venues_from_combined.py
 
-Creates venues.json by:
-1) reading combined.json
-2) pulling unique (sport_key, home_team)
-3) querying Wikidata (WDQS SPARQL) for home venue + coordinates
-4) adding timezone via tz-lookup fallback rule (rough but works)
+Reads combined.json, extracts UNIQUE home teams,
+queries Wikidata for each team’s home venue + GPS coords,
+and classifies venue_type as:
+  - "outdoor"
+  - "indoor"
+  - "retractable"
 
-No API keys required.
+Rule B for retractable is applied downstream in weather script
+(assume indoor unless open status is verified).
 
 Output:
   venues.json
+
+Structure:
+{
+  "timestamp": "...",
+  "venues": {
+     "Team Name": {
+        "venue": "Stadium Name",
+        "lat": 00.0000,
+        "lon": -00.0000,
+        "venue_type": "outdoor|indoor|retractable",
+        "source": "wikidata",
+        "wikidata_team_qid": "Q....",
+        "wikidata_venue_qid": "Q....",
+        "updated_at": "..."
+     },
+     ...
+  },
+  "misses": ["Team no match", ...]
+}
 """
 
-import json, time, requests, re
-from pathlib import Path
+import json
+import os
+import re
+import time
+import requests
 from datetime import datetime, timezone
 
-COMBINED_PATH = Path("combined.json")
-OUT_PATH = Path("venues.json")
-WDQS_URL = "https://query.wikidata.org/sparql"
-HEADERS = {"Accept": "application/sparql-results+json", "User-Agent": "fbf-data-bot/1.0"}
+WIKIDATA_SPARQL = "https://query.wikidata.org/sparql"
+HEADERS = {
+    "Accept": "application/sparql+json",
+    "User-Agent": "fbf-venues-bot/1.0 (forgedbyfreedom)"
+}
+TIMEOUT = 18
 
-# --- very small timezone heuristic by longitude (good enough for US leagues)
-# If you want perfect tz, swap this with a tz-lookup library or API later.
-def rough_timezone(lat, lon):
-    if lon is None:
-        return None
-    # US timezones approx
-    if lon < -125: return "America/Anchorage"
-    if lon < -115: return "America/Los_Angeles"
-    if lon < -100: return "America/Denver"
-    if lon < -85:  return "America/Chicago"
-    return "America/New_York"
+OUTFILE = "venues.json"
 
-def safe_get(d, *keys):
+
+INDOOR_KEYWORDS = [
+    "dome", "indoor", "enclosed", "roofed", "covered stadium",
+    "arena", "fieldhouse", "coliseum (indoor)", "ice arena"
+]
+
+RETRACTABLE_KEYWORDS = [
+    "retractable", "convertible", "sliding roof", "movable roof",
+    "retractable roof", "roof can open"
+]
+
+
+def safe_get(d, *keys, default=None):
     cur = d
     for k in keys:
-        if not isinstance(cur, dict): return None
-        cur = cur.get(k)
+        if not isinstance(cur, dict) or k not in cur:
+            return default
+        cur = cur[k]
     return cur
 
-def wdqs_team_home_venue(team_name):
-    """
-    SPARQL strategy:
-    - find an entity with label == team_name (en)
-    - try home venue properties:
-        P115 (home venue), P131 (located in?), P276 (location)
-    - take coordinate P625 from venue.
-    """
-    team_escaped = team_name.replace('"', '\\"')
 
-    query = f"""
-    SELECT ?team ?teamLabel ?venue ?venueLabel ?coord WHERE {{
-      ?team rdfs:label "{team_escaped}"@en .
-      OPTIONAL {{ ?team wdt:P115 ?venue . }}   # home venue
-      OPTIONAL {{ ?team wdt:P131 ?venue . }}   # located in (fallback)
-      OPTIONAL {{ ?team wdt:P276 ?venue . }}   # location (fallback)
+def normalize_team_name(name: str) -> str:
+    """Basic cleanup to help Wikidata matching."""
+    if not name:
+        return name
+    name = name.strip()
+    # remove rankings / seed patterns if they ever show up
+    name = re.sub(r"^\#\d+\s+", "", name)
+    name = re.sub(r"\s+\(\d+\)$", "", name)
+    return name
 
-      FILTER(BOUND(?venue))
-      OPTIONAL {{ ?venue wdt:P625 ?coord . }}
-      SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
+
+def classify_venue_type(venue_label: str, venue_type_label: str, instance_label: str) -> str:
+    """
+    Determine outdoor/indoor/retractable using labels.
+    If retractable keywords found => "retractable"
+    Else if indoor keywords found => "indoor"
+    Else => "outdoor"
+    """
+    blob = " ".join(filter(None, [venue_label, venue_type_label, instance_label])).lower()
+
+    for kw in RETRACTABLE_KEYWORDS:
+        if kw in blob:
+            return "retractable"
+
+    for kw in INDOOR_KEYWORDS:
+        if kw in blob:
+            return "indoor"
+
+    return "outdoor"
+
+
+def sparql_team_venue_query(team_label: str) -> str:
+    """
+    Try to find a team entity with exact English label.
+    Get:
+      - team QID
+      - venue QID + label
+      - coordinates (P625)
+      - venue type (P2775) label
+      - instance of (P31) label
+    """
+    return f"""
+    SELECT ?team ?venue ?venueLabel ?coord ?venueTypeLabel ?instanceLabel WHERE {{
+      ?team rdfs:label "{team_label}"@en .
+      OPTIONAL {{ ?team wdt:P115 ?venue . }}           # home venue
+      OPTIONAL {{ ?team wdt:P276 ?venue . }}           # location (fallback for some clubs)
+      OPTIONAL {{ ?venue wdt:P625 ?coord . }}          # coordinates
+      OPTIONAL {{ ?venue wdt:P2775 ?venueType . }}     # type of venue
+      OPTIONAL {{ ?venue wdt:P31 ?instance . }}        # instance of
+      SERVICE wikibase:label {{
+        bd:serviceParam wikibase:language "en".
+        ?venue rdfs:label ?venueLabel .
+        ?venueType rdfs:label ?venueTypeLabel .
+        ?instance rdfs:label ?instanceLabel .
+      }}
     }}
-    LIMIT 5
+    LIMIT 1
     """
 
-    r = requests.get(WDQS_URL, params={"query": query}, headers=HEADERS, timeout=20)
+
+def run_sparql(query: str):
+    r = requests.get(
+        WIKIDATA_SPARQL,
+        params={"query": query, "format": "json"},
+        headers=HEADERS,
+        timeout=TIMEOUT
+    )
     r.raise_for_status()
-    data = r.json()
-    bindings = data.get("results", {}).get("bindings", [])
+    return r.json()
+
+
+def parse_coord(coord_str: str):
+    """
+    Wikidata coord format: "Point(-83.7487 42.2658)"
+    Returns (lat, lon)
+    """
+    if not coord_str:
+        return (None, None)
+    m = re.search(r"Point\(([-\d\.]+)\s+([-\d\.]+)\)", coord_str)
+    if not m:
+        return (None, None)
+    lon = float(m.group(1))
+    lat = float(m.group(2))
+    return (lat, lon)
+
+
+def qid_from_uri(uri: str):
+    if not uri:
+        return None
+    return uri.split("/")[-1]
+
+
+def lookup_team_venue(team_name: str):
+    query = sparql_team_venue_query(team_name)
+    data = run_sparql(query)
+    bindings = safe_get(data, "results", "bindings", default=[])
     if not bindings:
         return None
 
-    # pick first with coord if possible
-    for b in bindings:
-        coord = safe_get(b, "coord", "value")
-        venue_label = safe_get(b, "venueLabel", "value")
-        if coord and venue_label:
-            latlon = parse_wkt_point(coord)
-            if latlon:
-                lat, lon = latlon
-                return {"venue_name": venue_label, "lat": lat, "lon": lon}
+    b = bindings[0]
+    team_uri = safe_get(b, "team", "value")
+    venue_uri = safe_get(b, "venue", "value")
+    venue_label = safe_get(b, "venueLabel", "value")
+    coord_str = safe_get(b, "coord", "value")
+    venue_type_label = safe_get(b, "venueTypeLabel", "value")
+    instance_label = safe_get(b, "instanceLabel", "value")
 
-    # otherwise return first venue label
-    b0 = bindings[0]
-    venue_label = safe_get(b0, "venueLabel", "value")
-    return {"venue_name": venue_label, "lat": None, "lon": None}
+    lat, lon = parse_coord(coord_str)
 
-def parse_wkt_point(wkt):
-    # expects "Point(lon lat)"
-    if not wkt: return None
-    m = re.search(r"Point\(([-\d\.]+)\s+([-\d\.]+)\)", wkt)
-    if not m: return None
-    lon = float(m.group(1))
-    lat = float(m.group(2))
-    return lat, lon
+    venue_type = classify_venue_type(venue_label, venue_type_label, instance_label)
+
+    return {
+        "venue": venue_label,
+        "lat": lat,
+        "lon": lon,
+        "venue_type": venue_type,
+        "source": "wikidata",
+        "wikidata_team_qid": qid_from_uri(team_uri),
+        "wikidata_venue_qid": qid_from_uri(venue_uri),
+        "updated_at": datetime.now(timezone.utc).isoformat()
+    }
+
 
 def main():
-    if not COMBINED_PATH.exists():
-        raise SystemExit("combined.json not found")
+    if not os.path.exists("combined.json"):
+        raise SystemExit("❌ combined.json not found.")
 
-    combined = json.loads(COMBINED_PATH.read_text())
+    with open("combined.json", "r", encoding="utf-8") as f:
+        combined = json.load(f)
+
     games = combined.get("data", [])
-
-    pairs = {}
-    for g in games:
-        sport_key = g.get("sport_key")
-        home = g.get("home_team")
-        if sport_key and home:
-            pairs[(sport_key, home)] = True
+    home_teams = sorted({normalize_team_name(g.get("home_team")) for g in games if g.get("home_team")})
 
     venues = {}
-    for (sport_key, home_team) in pairs.keys():
-        if home_team in venues:
-            continue
+    misses = []
 
+    print(f"[🏟️] Looking up venues for {len(home_teams)} unique home teams...")
+
+    for i, team in enumerate(home_teams, 1):
         try:
-            print(f"[WDQS] {home_team} ...")
-            info = wdqs_team_home_venue(home_team)
-            if not info:
-                venues[home_team] = {
-                    "venue_name": None, "lat": None, "lon": None,
-                    "tz": None, "sport_key": sport_key,
-                    "source": "wikidata-miss"
-                }
+            print(f"  ({i}/{len(home_teams)}) {team} ...", end="", flush=True)
+            rec = lookup_team_venue(team)
+            if not rec or not rec.get("venue") or rec.get("lat") is None:
+                print(" miss")
+                misses.append(team)
                 continue
-
-            lat, lon = info.get("lat"), info.get("lon")
-            tz = rough_timezone(lat, lon)
-
-            venues[home_team] = {
-                "venue_name": info.get("venue_name"),
-                "lat": lat, "lon": lon,
-                "tz": tz,
-                "sport_key": sport_key,
-                "source": "wikidata"
-            }
-
-            # be nice to WDQS
-            time.sleep(0.2)
-
+            venues[team] = rec
+            print(f" ok → {rec['venue']} ({rec['venue_type']})")
+            time.sleep(0.4)  # be nice to Wikidata
         except Exception as e:
-            venues[home_team] = {
-                "venue_name": None, "lat": None, "lon": None,
-                "tz": None, "sport_key": sport_key,
-                "source": f"error:{e}"
-            }
+            print(f" error: {e}")
+            misses.append(team)
 
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "count": len(venues),
-        "venues": venues
+        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S"),
+        "venues": venues,
+        "misses": misses
     }
-    OUT_PATH.write_text(json.dumps(payload, indent=2))
-    print(f"[✅] Wrote {OUT_PATH} with {len(venues)} venues.")
+
+    with open(OUTFILE, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
+    print(f"[✅] Saved {OUTFILE} with {len(venues)} venues, {len(misses)} misses.")
+
 
 if __name__ == "__main__":
     main()
