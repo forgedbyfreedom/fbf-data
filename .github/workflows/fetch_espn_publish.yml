@@ -23,25 +23,45 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Fetch ESPN Core API Odds
+      - name: Fetch ALL ESPN odds
         run: |
-          echo "🏈 Fetching ESPN odds..."
+          echo "🏈 Fetching ESPN odds…"
           python3 fetch_espn_all.py
 
-      - name: Tag favorites and underdogs
-        run: |
-          echo "🏷️ Running tag_favorites.py..."
-          python3 tag_favorites.py
+      - name: Tag Favorites/Dogs
+        run: python3 tag_favorites.py
 
-      - name: Build predictions JSON
-        run: |
-          echo "📊 Building predictions..."
-          python3 build_predictions.py
+      - name: Build FBS Stadiums
+        run: python3 build_fbs_stadiums.py
+
+      - name: Fetch Weather
+        run: python3 fetch_weather.py
+
+      - name: Build Weather For Games
+        run: python3 build_weather_for_games.py
+
+      - name: Build Referee Trends
+        run: python3 referee_trends.py
+
+      - name: Fetch Injuries
+        run: python3 fetch_injuries.py
+
+      - name: Merge Injuries
+        run: python3 merge_injuries.py
+
+      - name: Build Historical Results
+        run: python3 build_historical_results.py
+
+      - name: Train ML Models
+        run: python3 train_model.py
+
+      - name: Build Predictions
+        run: python3 build_predictions.py
 
       - name: Commit and push updates
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add *.json
+          git add *.json */*.json || true
           git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
           git push origin main || echo "Nothing to push"
