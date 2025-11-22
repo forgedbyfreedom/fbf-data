@@ -24,7 +24,6 @@
       --badge-bg: #111827;
     }
 
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 12px;
@@ -35,35 +34,41 @@
 
     #app { max-width: 1400px; margin: 0 auto; }
 
-    /* Header */
     header {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 6px 2px 10px;
-      border-bottom: 1px solid var(--border-soft);
+      gap: 10px;
       margin-bottom: 10px;
-    }
-    .brand {
-      display: flex; align-items: center; gap: 10px;
-    }
-    .logo {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: radial-gradient(circle at top left, #ffb266, #ff7a1a 60%, #7a2b00);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-    }
-    .brand h1 {
-      font-size: 18px; margin: 0; letter-spacing: 0.4px;
-    }
-    .brand .sub {
-      font-size: 12px; color: var(--muted); margin-top: 2px;
+      padding: 8px 10px;
+      background: rgba(12,16,24,0.9);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 8px;
+      z-index: 5;
+      backdrop-filter: blur(5px);
     }
 
-    .top-actions {
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
     }
-    .pill {
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0.3px;
+    }
+    .brand .sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .chip {
       background: var(--chip-bg);
       border: 1px solid var(--border-soft);
       color: var(--text);
@@ -72,55 +77,28 @@
       font-size: 12px;
       cursor: pointer;
       user-select: none;
-      transition: transform .08s ease, background .15s ease, border .15s ease;
+      transition: 120ms ease;
+      white-space: nowrap;
     }
-    .pill:hover { transform: translateY(-1px); }
-    .pill.active {
+    .chip.active {
       background: var(--chip-active-bg);
       color: var(--chip-active-text);
       border-color: transparent;
       font-weight: 700;
+      box-shadow: 0 0 0 2px rgba(255,122,26,0.15);
     }
 
-    .search {
-      display: flex; align-items: center; gap: 6px;
-      background: var(--chip-bg);
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 6px 10px;
-    }
-    .search input {
-      background: transparent; border: none; outline: none;
-      color: var(--text); font-size: 12px; width: 180px;
-    }
-
-    /* Meta row */
-    .meta-row {
-      display: flex; align-items: center; justify-content: space-between;
-      margin: 6px 2px 10px;
-      color: var(--muted);
-      font-size: 12px;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .meta-left, .meta-right { display: flex; gap: 10px; align-items: center; }
-
-    .badge {
-      background: var(--badge-bg);
-      border: 1px solid var(--border-soft);
-      padding: 3px 8px;
-      border-radius: 999px;
+    .statusline {
       font-size: 11px;
       color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
-    .dot {
-      width: 8px; height: 8px; border-radius: 999px; display: inline-block;
-      background: var(--success);
-      box-shadow: 0 0 10px rgba(34,197,94,0.75);
-      margin-right: 6px;
-    }
+    .statusline .warn { color: var(--warning); }
+    .statusline .ok { color: var(--success); }
 
-    /* Grid — always 3 across on desktop */
+    /* Always 3 across */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -128,15 +106,14 @@
       width: 100%;
       margin-top: 10px;
     }
-    @media (max-width: 1100px) {
+
+    @media (max-width: 1000px) {
       .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-    @media (max-width: 700px) {
+    @media (max-width: 640px) {
       .cards-grid { grid-template-columns: 1fr; }
-      .search input { width: 120px; }
     }
 
-    /* Card */
     .game-card {
       background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
       border-radius: 14px;
@@ -145,113 +122,112 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      min-height: 160px;
+      gap: 6px;
+      min-height: 175px;
     }
 
     .card-top-row {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 11px; color: var(--muted);
-      text-transform: uppercase; letter-spacing: .6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .sport-badge {
+      background: var(--badge-bg);
+      border: 1px solid var(--border-soft);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 10px;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .matchup-line {
       font-size: 13px;
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.25;
       word-break: break-word;
       margin-top: 2px;
     }
 
-    .teams {
-      display: grid; gap: 4px;
-    }
     .team-line {
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      color: var(--text);
+      font-size: 11px;
+      color: var(--muted);
       line-height: 1.2;
       gap: 8px;
     }
-    .team-name {
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 75%;
-    }
-    .team-odd {
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .kick {
-      font-size: 11px; color: var(--muted);
-      display: flex; justify-content: space-between;
-    }
+    .team-line strong { color: var(--text); font-weight: 700; }
 
     .picks-block {
       border-top: 1px dashed #1f2937;
-      padding-top: 8px;
+      padding-top: 6px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 6px;
     }
-
     .pick {
-      background: #0b0f17;
+      background: rgba(17,24,39,0.85);
       border: 1px solid var(--border-soft);
       border-radius: 10px;
-      padding: 6px 8px;
-      display: grid;
-      gap: 4px;
-      min-height: 56px;
+      padding: 6px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-height: 48px;
     }
     .pick-label {
       font-size: 9px;
       color: var(--muted);
+      letter-spacing: .3px;
       text-transform: uppercase;
-      letter-spacing: .7px;
     }
     .pick-main {
-      font-size: 12px; font-weight: 700; line-height: 1.2;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
       word-break: break-word;
     }
-    .pick-sub {
-      font-size: 11px; color: var(--muted);
-      display: flex; align-items: center; gap: 6px;
-      font-variant-numeric: tabular-nums;
-    }
-
     .conf {
-      padding: 1px 6px;
-      border-radius: 999px;
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: .3px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-left: 4px;
     }
-    .conf.low { background: rgba(255,75,92,.12); color: var(--danger); }
-    .conf.med { background: rgba(250,204,21,.12); color: var(--warning); }
-    .conf.high { background: rgba(34,197,94,.12); color: var(--success); }
+    .conf.low { background: rgba(255,75,92,0.16); color: var(--danger); }
+    .conf.med { background: rgba(250,204,21,0.16); color: var(--warning); }
+    .conf.high { background: rgba(34,197,94,0.16); color: var(--success); }
+
+    .meta-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .meta-pill {
+      background: rgba(21,26,36,0.75);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 2px 6px;
+      white-space: nowrap;
+    }
 
     .empty {
+      margin-top: 30px;
       text-align: center;
-      padding: 26px 8px;
       color: var(--muted);
-      border: 1px dashed var(--border-soft);
-      border-radius: 12px;
-      background: rgba(10,12,18,.6);
+      font-size: 14px;
     }
-
-    footer {
-      margin: 18px 4px 6px;
-      font-size: 11px; color: var(--muted);
-      text-align: center;
-      opacity: 0.9;
-    }
-    a { color: var(--accent-soft); text-decoration: none; }
   </style>
 </head>
 
@@ -259,49 +235,23 @@
   <div id="app">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Forged By Freedom</h1>
-          <div class="sub">Live Odds • Picks • Weather • Ref Trends</div>
-        </div>
+        <h1>Forged By Freedom</h1>
+        <div class="sub">Live odds, picks, weather & ref trends</div>
       </div>
 
-      <div class="top-actions">
-        <div id="sport-chips" class="top-actions"></div>
+      <div class="controls" id="sport-filters"></div>
 
-        <div class="search">
-          <span style="font-size:12px; color:var(--muted)">Search</span>
-          <input id="search-input" placeholder="team, matchup…" />
-        </div>
-
-        <button class="pill" id="refresh-btn">Refresh</button>
+      <div class="statusline" id="statusline">
+        <div>Loading…</div>
       </div>
     </header>
 
-    <div class="meta-row">
-      <div class="meta-left">
-        <span class="badge"><span class="dot"></span>Auto-updating</span>
-        <span id="games-count" class="badge">Games: —</span>
-      </div>
-      <div class="meta-right">
-        <span id="last-updated" class="badge">Updated: —</span>
-        <span id="data-status" class="badge">Status: loading…</span>
-      </div>
-    </div>
-
     <main class="cards-grid" id="cards-grid"></main>
-
-    <footer>
-      Data from ESPN Core API • Forecasts from Open-Meteo • Models in /models  
-    </footer>
+    <div class="empty" id="empty" style="display:none;">No upcoming games found.</div>
   </div>
 
   <script>
-    // -------------------------------
-    // Config
-    // -------------------------------
-    const COMBINED_URL = "combined.json";
-    const PREDICTIONS_URL = "predictions.json";
+    const CACHE_BUST = () => "?cb=" + Date.now();
 
     const SPORT_LABELS = {
       "americanfootball_nfl": "NFL",
@@ -310,171 +260,146 @@
       "basketball_ncaab": "NCAAB",
       "icehockey_nhl": "NHL",
       "baseball_mlb": "MLB",
-      "mma_mixed_martial_arts": "UFC",
+      "mma_mixed_martial_arts": "UFC"
     };
 
-    let ALL_GAMES = [];
-    let ACTIVE_SPORT = "all";
-    let SEARCH_TERM = "";
+    let ACTIVE_SPORT = "ALL";
 
-    // cache buster
-    const bust = () => "?_=" + Date.now();
-
-    // -------------------------------
-    // Helpers
-    // -------------------------------
+    function toDate(x) {
+      try { return new Date(x); } catch { return null; }
+    }
     function formatTime(iso) {
-      if (!iso) return "TBD";
-      const d = new Date(iso);
-      if (isNaN(d.getTime())) return iso;
+      const d = toDate(iso);
+      if (!d) return "—";
       return d.toLocaleString("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
+        month: "short", day: "numeric",
+        hour: "numeric", minute: "2-digit"
       });
     }
 
-    function sportName(key) {
-      return SPORT_LABELS[key] || key || "Unknown";
+    async function loadJsonSafe(path) {
+      try {
+        const r = await fetch(path + CACHE_BUST());
+        if (!r.ok) throw new Error(path + " " + r.status);
+        return await r.json();
+      } catch (e) {
+        console.warn("missing/failed", path, e);
+        return null;
+      }
     }
 
-    function safeNum(x) {
-      const n = Number(x);
-      return Number.isFinite(n) ? n : null;
-    }
-
-    function byKickoffAsc(a,b) {
-      const ta = new Date(a.commence_time || 0).getTime();
-      const tb = new Date(b.commence_time || 0).getTime();
-      return ta - tb;
-    }
-
-    function mergeGamesAndPicks(games, picks) {
-      const pickById = new Map();
-      const pickByMatchup = new Map();
-
-      (picks || []).forEach(p => {
-        if (p.event_id) pickById.set(String(p.event_id), p);
-        if (p.matchup) pickByMatchup.set(String(p.matchup).toLowerCase(), p);
+    function buildIndexByIdOrMatchup(list) {
+      const byId = new Map();
+      const byMatch = new Map();
+      (list || []).forEach(x => {
+        if (x && x.event_id) byId.set(String(x.event_id), x);
+        if (x && x.matchup) byMatch.set(String(x.matchup).toLowerCase(), x);
       });
-
-      return (games || []).map(g => {
-        const idKey = g.event_id ? String(g.event_id) : null;
-        const mKey = g.matchup ? String(g.matchup).toLowerCase() : null;
-
-        const p = (idKey && pickById.get(idKey)) || (mKey && pickByMatchup.get(mKey)) || null;
-        return { ...g, pick: p };
-      });
+      return { byId, byMatch };
     }
 
-    // -------------------------------
-    // UI: sport chips
-    // -------------------------------
-    function buildSportChips(games) {
-      const wrap = document.getElementById("sport-chips");
-      wrap.innerHTML = "";
+    function mergeGame(game, idx) {
+      const id = game.event_id ? String(game.event_id) : null;
+      const m  = game.matchup ? String(game.matchup).toLowerCase() : null;
 
-      const counts = {};
-      games.forEach(g => {
-        counts[g.sport_key] = (counts[g.sport_key] || 0) + 1;
-      });
+      const pick = (id && idx.picks.byId.get(id)) || (m && idx.picks.byMatch.get(m)) || null;
+      const wx   = (id && idx.weather.byId.get(id)) || (m && idx.weather.byMatch.get(m)) || null;
+      const ref  = (id && idx.refs.byId.get(id)) || (m && idx.refs.byMatch.get(m)) || null;
+      const inj  = (id && idx.inj.byId.get(id)) || (m && idx.inj.byMatch.get(m)) || null;
 
-      const chips = [
-        { key: "all", label: "All", count: games.length },
-        ...Object.keys(counts).sort().map(k => ({
-          key: k, label: sportName(k), count: counts[k]
-        }))
-      ];
+      return { ...game, pick, wx, ref, inj };
+    }
 
-      chips.forEach(c => {
-        const el = document.createElement("button");
-        el.className = "pill" + (ACTIVE_SPORT === c.key ? " active" : "");
-        el.textContent = `${c.label} (${c.count})`;
-        el.onclick = () => {
-          ACTIVE_SPORT = c.key;
-          buildSportChips(games);
-          render();
+    function buildFilters(games) {
+      const filters = document.getElementById("sport-filters");
+      filters.innerHTML = "";
+
+      const sports = Array.from(new Set(games.map(g => g.sport_key))).filter(Boolean);
+      const buttons = ["ALL", ...sports];
+
+      buttons.forEach(sk => {
+        const b = document.createElement("div");
+        b.className = "chip" + (ACTIVE_SPORT === sk ? " active" : "");
+        b.textContent = sk === "ALL" ? "All Sports" : (SPORT_LABELS[sk] || sk);
+        b.onclick = () => {
+          ACTIVE_SPORT = sk;
+          render(games);
+          buildFilters(games);
         };
-        wrap.appendChild(el);
+        filters.appendChild(b);
       });
     }
 
-    // -------------------------------
-    // Render cards
-    // -------------------------------
-    function render() {
+    function render(gamesMerged) {
       const grid = document.getElementById("cards-grid");
+      const empty = document.getElementById("empty");
       grid.innerHTML = "";
 
-      let filtered = ALL_GAMES.slice();
+      const now = new Date();
+      const tenDays = 10 * 24 * 60 * 60 * 1000;
 
-      if (ACTIVE_SPORT !== "all") {
-        filtered = filtered.filter(g => g.sport_key === ACTIVE_SPORT);
-      }
+      let games = gamesMerged
+        .filter(g => {
+          const t = toDate(g.commence_time);
+          if (!t) return false;
+          // upcoming within next 10 days, and not started yet
+          return (t - now) > -2*60*60*1000 && (t - now) < tenDays;
+        })
+        .filter(g => ACTIVE_SPORT === "ALL" ? true : g.sport_key === ACTIVE_SPORT)
+        .sort((a,b) => new Date(a.commence_time) - new Date(b.commence_time));
 
-      if (SEARCH_TERM) {
-        const t = SEARCH_TERM.toLowerCase();
-        filtered = filtered.filter(g =>
-          (g.matchup || "").toLowerCase().includes(t) ||
-          (g.home_team || "").toLowerCase().includes(t) ||
-          (g.away_team || "").toLowerCase().includes(t)
-        );
-      }
-
-      filtered.sort(byKickoffAsc);
-
-      document.getElementById("games-count").textContent = `Games: ${filtered.length}`;
-
-      if (!filtered.length) {
-        const empty = document.createElement("div");
-        empty.className = "empty";
-        empty.textContent = "No games match your filters yet.";
-        grid.appendChild(empty);
+      if (!games.length) {
+        empty.style.display = "block";
         return;
       }
+      empty.style.display = "none";
 
-      filtered.forEach(g => {
+      games.forEach(g => {
         const c = document.createElement("div");
         c.className = "game-card";
 
         const p = g.pick || {};
+        const wx = g.wx || {};
+        const ref = g.ref || {};
+        const inj = g.inj || {};
 
-        const spread = safeNum(g.spread);
-        const total = safeNum(g.total);
-
-        const favStr = g.favorite || (g.fav_team && spread != null ? `${g.fav_team} ${spread:+g}` : "—");
-        const dogStr = g.underdog || (g.dog_team && spread != null ? `${g.dog_team} ${(-spread):+g}` : "—");
-
-        const mlPick = p.SU_pick || "—";
+        const suPick = p.SU_pick || "—";
         const atsPick = p.ATS_pick || "—";
         const ouPick = p.OU_pick || "—";
 
-        const suConf = p.SU_conf != null ? `${p.SU_conf}%` : "—";
-        const atsConf = p.ATS_conf != null ? `${p.ATS_conf}%` : "—";
-        const ouConf = p.OU_conf != null ? `${p.OU_conf}%` : null;
+        const suConf = p.SU_conf != null ? `${p.SU_conf}%` : "";
+        const atsConf = p.ATS_conf != null ? `${p.ATS_conf}%` : "";
+        const ouConf = p.OU_conf != null ? `${p.OU_conf}%` : "";
+
+        const suGrade = p.SU_grade || "low";
+        const atsGrade = p.ATS_grade || "low";
+        const ouGrade = p.OU_grade || "low";
+
+        const tempStr = wx.temperature_c != null ? `${wx.temperature_c}°C` : null;
+        const windStr = wx.wind_kph != null ? `${wx.wind_kph} kph wind` : null;
+        const precipStr = wx.precip_mm != null ? `${wx.precip_mm} mm precip` : null;
+
+        const refHome = ref.ref_home_win_pct != null ? `${Math.round(ref.ref_home_win_pct*100)}% home` : null;
+        const refOver = ref.ref_over_pct != null ? `${Math.round(ref.ref_over_pct*100)}% over` : null;
+        const refFav = ref.ref_fav_cover_pct != null ? `${Math.round(ref.ref_fav_cover_pct*100)}% fav cover` : null;
 
         c.innerHTML = `
           <div class="card-top-row">
-            <span>${sportName(g.sport_key)}</span>
+            <span class="sport-badge">${SPORT_LABELS[g.sport_key] || g.sport_key}</span>
             <span>${(g.book || "ESPN").toUpperCase()}</span>
           </div>
 
-          <div class="matchup-line">${g.matchup || `${g.away_team}@${g.home_team}`}</div>
+          <div class="matchup-line">${g.matchup}</div>
 
-          <div class="teams">
-            <div class="team-line">
-              <span class="team-name">${g.fav_team || g.home_team || "Favorite"}</span>
-              <span class="team-odd">${favStr}</span>
-            </div>
-            <div class="team-line">
-              <span class="team-name">${g.dog_team || g.away_team || "Underdog"}</span>
-              <span class="team-odd">${dogStr}</span>
-            </div>
+          <div class="team-line">
+            <span>Fav</span>
+            <strong>${g.fav_team || (g.favorite || "—")}</strong>
           </div>
-
-          <div class="kick">
+          <div class="team-line">
+            <span>Dog</span>
+            <strong>${g.dog_team || (g.underdog || "—")}</strong>
+          </div>
+          <div class="team-line">
             <span>Kickoff</span>
             <span>${formatTime(g.commence_time)}</span>
           </div>
@@ -482,27 +407,40 @@
           <div class="picks-block">
             <div class="pick">
               <div class="pick-label">Moneyline</div>
-              <div class="pick-main">${mlPick}</div>
-              <div class="pick-sub">
-                <span class="conf ${(p.SU_grade || "low")}">${suConf}</span>
+              <div class="pick-main">
+                ${suPick}
+                ${suConf ? `<span class="conf ${suGrade}">(${suConf})</span>` : ""}
               </div>
             </div>
 
             <div class="pick">
-              <div class="pick-label">ATS</div>
-              <div class="pick-main">${atsPick}</div>
-              <div class="pick-sub">
-                <span class="conf ${(p.ATS_grade || "low")}">${atsConf}</span>
+              <div class="pick-label">Against Spread</div>
+              <div class="pick-main">
+                ${atsPick}
+                ${atsConf ? `<span class="conf ${atsGrade}">(${atsConf})</span>` : ""}
               </div>
             </div>
 
             <div class="pick">
               <div class="pick-label">Total</div>
-              <div class="pick-main">${ouPick}</div>
-              <div class="pick-sub">
-                ${ouConf ? `<span class="conf ${(p.OU_grade || "low")}">${ouConf}</span>` : `<span style="color:var(--muted)">—</span>`}
+              <div class="pick-main">
+                ${ouPick}
+                ${ouConf ? `<span class="conf ${ouGrade}">(${ouConf})</span>` : ""}
               </div>
             </div>
+          </div>
+
+          <div class="meta-row">
+            ${tempStr ? `<div class="meta-pill">🌤 ${tempStr}</div>` : ""}
+            ${windStr ? `<div class="meta-pill">💨 ${windStr}</div>` : ""}
+            ${precipStr ? `<div class="meta-pill">🌧 ${precipStr}</div>` : ""}
+
+            ${refHome ? `<div class="meta-pill">👨‍⚖️ ${refHome}</div>` : ""}
+            ${refOver ? `<div class="meta-pill">OU ${refOver}</div>` : ""}
+            ${refFav ? `<div class="meta-pill">ATS ${refFav}</div>` : ""}
+
+            ${inj.home_injuries != null || inj.away_injuries != null
+              ? `<div class="meta-pill">🏥 Inj: ${inj.home_injuries||0}-${inj.away_injuries||0}</div>` : ""}
           </div>
         `;
 
@@ -510,64 +448,63 @@
       });
     }
 
-    // -------------------------------
-    // Load data
-    // -------------------------------
-    async function loadAll() {
-      const status = document.getElementById("data-status");
-      status.textContent = "Status: loading…";
+    async function boot() {
+      const status = document.getElementById("statusline");
+      status.innerHTML = `<div>Loading data…</div>`;
 
-      let combined = null;
-      let predictions = null;
+      const [combined, predictions, weather, refs, injuries] = await Promise.all([
+        loadJsonSafe("combined.json"),
+        loadJsonSafe("predictions.json"),
+        loadJsonSafe("weather.json"),
+        loadJsonSafe("referee_trends.json"),
+        loadJsonSafe("injuries.json"),
+      ]);
 
+      const games = (combined && combined.data) ? combined.data : [];
+      const picksList = (predictions && predictions.data) ? predictions.data : [];
+      const wxList = (weather && weather.data) ? weather.data : [];
+      const refList = (refs && refs.data) ? refs.data : [];
+      const injList = (injuries && injuries.data) ? injuries.data : [];
+
+      const idx = {
+        picks: buildIndexByIdOrMatchup(picksList),
+        weather: buildIndexByIdOrMatchup(wxList),
+        refs: buildIndexByIdOrMatchup(refList),
+        inj: buildIndexByIdOrMatchup(injList),
+      };
+
+      const merged = games.map(g => mergeGame(g, idx));
+
+      buildFilters(merged);
+      render(merged);
+
+      // timestamps & freshness note
+      const cTS = combined?.timestamp || "—";
+      const pTS = predictions?.timestamp || "—";
+      const wTS = weather?.timestamp || "—";
+      const rTS = refs?.timestamp || "—";
+
+      let freshnessNote = "";
       try {
-        const r = await fetch(COMBINED_URL + bust());
-        combined = await r.json();
-      } catch (e) {
-        console.error("combined.json load failed", e);
-      }
+        const cTime = cTS !== "—" ? new Date(cTS.replace("_", "T") + "Z") : null;
+        const pTime = pTS !== "—" ? new Date(pTS.replace("_", "T") + "Z") : null;
+        if (cTime && pTime && (cTime - pTime) > 6*60*60*1000) {
+          freshnessNote = `<div class="warn">Predictions older than odds — check workflow</div>`;
+        } else {
+          freshnessNote = `<div class="ok">Picks synced</div>`;
+        }
+      } catch {}
 
-      try {
-        const r2 = await fetch(PREDICTIONS_URL + bust());
-        predictions = await r2.json();
-      } catch (e) {
-        console.error("predictions.json load failed", e);
-      }
-
-      const games = (combined && combined.data) || [];
-      const picks = (predictions && predictions.data) || [];
-
-      ALL_GAMES = mergeGamesAndPicks(games, picks);
-
-      buildSportChips(ALL_GAMES);
-      render();
-
-      // updated stamps
-      const ts = (predictions && predictions.timestamp) || (combined && combined.timestamp) || null;
-      document.getElementById("last-updated").textContent =
-        "Updated: " + (ts ? ts : new Date().toISOString());
-
-      if (!games.length) {
-        status.textContent = "Status: combined.json empty/missing";
-      } else if (!picks.length) {
-        status.textContent = "Status: picks missing (rules still show odds)";
-      } else {
-        status.textContent = "Status: OK";
-      }
+      status.innerHTML = `
+        <div>Odds: ${cTS}</div>
+        <div>Picks: ${pTS}</div>
+        <div>Weather: ${wTS}</div>
+        <div>Refs: ${rTS}</div>
+        ${freshnessNote}
+      `;
     }
 
-    // -------------------------------
-    // Wire controls
-    // -------------------------------
-    document.getElementById("refresh-btn").onclick = loadAll;
-    document.getElementById("search-input").addEventListener("input", (e) => {
-      SEARCH_TERM = e.target.value.trim();
-      render();
-    });
-
-    // auto refresh every 2 minutes
-    loadAll();
-    setInterval(loadAll, 120000);
+    boot();
   </script>
 </body>
 </html>
