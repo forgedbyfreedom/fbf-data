@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """
-build_predictions.py  (FINAL CLEAN VERSION)
+build_predictions.py  (ADVANCED + FIXED)
 
-Generates predictions.json using:
+Creates predictions.json with:
 - Rule-based baseline (always available)
-- ML overlay if models exist
-- Weather + referee + injuries + spread/total features from feature_engineering.py
-- Explainability for LR models
-- Safe against missing data
+- ML overlay if models exist in /models
+- Confidence grades (low/med/high)
+- Explainability for LR-style models (coef * value)
+- Debug snapshot of feature inputs per game
 
-ABSOLUTELY SAFE & INDENTATION-CORRECT.
+Inputs (best-effort):
+- combined.json (required for games via feature_engineering)
+- weather.json
+- referee_trends.json
+- injuries.json
+- models/su.joblib, models/ats.joblib, models/ou.joblib (optional)
+
+Safe if any inputs/models missing.
 """
 
 import os
@@ -21,10 +28,9 @@ from typing import Optional, List, Dict, Any
 import numpy as np
 from joblib import load
 
-# ---------------------------------------------------------
-# Import feature engineering
-# ---------------------------------------------------------
-
+# feature_engineering.py must define:
+# - FEATURES: list of feature names in correct order
+# - build_feature_rows(): list of dict rows
 try:
     from feature_engineering import build_feature_rows, FEATURES
 except Exception:
@@ -32,9 +38,8 @@ except Exception:
     def build_feature_rows():
         return []
 
-
-MODELS_DIR = "models"
 OUTFILE = "predictions.json"
+MODELS_DIR = "models"
 
 
 # ---------------------------------------------------------
@@ -42,6 +47,7 @@ OUTFILE = "predictions.json"
 # ---------------------------------------------------------
 
 def load_model(name: str):
+    """Load a model from models/{name}.joblib if present."""
     path = os.path.join(MODELS_DIR, f"{name}.joblib")
     if not os.path.exists(path):
         return None
@@ -50,14 +56,19 @@ def load_model(name: str):
     except Exception:
         return None
 
-def safe_float(x, default=None):
+
+def clamp(x: float, lo: float = 0.0, hi: float = 100.0) -> float:
+    return max(lo, min(hi, x))
+
+
+def safe_float(x, default: Optional[float] = None) -> Optional[float]:
     try:
+        if x is None:
+            return default
         return float(x)
     except Exception:
         return default
 
-def clamp(x: float, lo=0.0, hi=100.0) -> float:
-    return max(lo, min(hi, x))
 
 def grade(conf: Optional[float]) -> Optional[str]:
     if conf is None:
@@ -69,15 +80,14 @@ def grade(conf: Optional[float]) -> Optional[str]:
     return "high"
 
 
-# ---------------------------------------------------------
-# Explainability (Logistic Regression)
-# ---------------------------------------------------------
-
 def model_explain_lr(model, X_row: np.ndarray, feature_names: List[str]):
+    """
+    If model is LogisticRegression or Pipeline ending with LR,
+    return top +/- contributions by coef * value.
+    """
     try:
         clf = model
-
-        # Unwrap pipeline if needed
+        # unwrap sklearn Pipeline if present
         if hasattr(model, "named_steps") and "clf" in model.named_steps:
             clf = model.named_steps["clf"]
 
@@ -88,15 +98,14 @@ def model_explain_lr(model, X_row: np.ndarray, feature_names: List[str]):
         vals = X_row[0]
         contrib = coefs * vals
 
-        idx = np.argsort(np.abs(contrib))[::-1][:6]  # top features
-
+        idx = np.argsort(np.abs(contrib))[::-1][:6]
         out = []
         for i in idx:
             out.append({
                 "feature": feature_names[i],
                 "value": float(vals[i]),
                 "coef": float(coefs[i]),
-                "contribution": float(contrib[i])
+                "contribution": float(contrib[i]),
             })
         return out
     except Exception:
@@ -108,13 +117,22 @@ def model_explain_lr(model, X_row: np.ndarray, feature_names: List[str]):
 # ---------------------------------------------------------
 
 def rule_baseline_su(spread: Optional[float], is_home_fav: Optional[float]) -> float:
+    """
+    SU baseline:
+      - logistic-ish curve on abs(spread)
+      - slight home favorite bump
+    Assumes spread is from favorite POV (negative for favorite).
+    """
     if spread is None:
         return 50.0
 
     s = abs(spread)
+
+    # 0 -> 50%, 7 -> ~64%, 14 -> ~74%
     base = 50.0 + (24.0 * (1.0 - math.exp(-s / 6.5)))
 
-    if spread > 0:  # dog-favored in normalized schema
+    # If spread positive, that means dog is favored in our schema
+    if spread > 0:
         base = 100.0 - base
 
     if is_home_fav:
@@ -122,30 +140,47 @@ def rule_baseline_su(spread: Optional[float], is_home_fav: Optional[float]) -> f
 
     return clamp(base)
 
+
 def rule_baseline_ats(spread: Optional[float]) -> float:
+    """
+    ATS baseline:
+      - closer spreads slightly favor chalk
+      - big spreads reduce confidence
+    """
     if spread is None:
         return 52.0
     s = abs(spread)
     base = 54.0 - min(6.0, s * 0.35)
     return clamp(base)
 
-def rule_baseline_ou(total: Optional[float], temp: float, wind: float, precip: float):
+
+def rule_baseline_ou(
+    total: Optional[float],
+    temp: Optional[float],
+    wind: Optional[float],
+    precip: Optional[float],
+) -> Optional[float]:
+    """
+    OU baseline:
+      - wind/precip lower over likelihood
+      - warm temps slightly help overs
+    """
     if total is None:
         return None
 
     base = 52.0
 
-    if wind not in (None,):
-        base -= min(5, wind * 0.08)
+    if wind is not None:
+        base -= min(5.0, wind * 0.08)
 
-    if precip not in (None,):
-        base -= min(4, precip * 0.9)
+    if precip is not None:
+        base -= min(4.0, precip * 0.9)
 
-    if temp not in (None,):
+    if temp is not None:
         if temp >= 18:
-            base += 2
+            base += 2.0
         elif temp <= 2:
-            base -= 2
+            base -= 2.0
 
     return clamp(base)
 
@@ -159,105 +194,112 @@ def main():
 
     rows = build_feature_rows()
     if not rows:
+        payload = {
+            "timestamp": ts,
+            "count": 0,
+            "features_used": FEATURES,
+            "models_present": {"su": False, "ats": False, "ou": False},
+            "data": [],
+            "note": "No feature rows produced (combined.json empty or missing)."
+        }
         with open(OUTFILE, "w", encoding="utf-8") as f:
-            json.dump({"timestamp": ts, "count": 0, "data": []}, f, indent=2)
-        print("⚠️ No feature rows produced — wrote empty predictions.json")
+            json.dump(payload, f, indent=2)
+        print("⚠️ No feature rows → empty predictions.json")
         return
 
     su_m = load_model("su")
     ats_m = load_model("ats")
     ou_m = load_model("ou")
 
-    data = []
+    data: List[Dict[str, Any]] = []
 
     for r in rows:
-
         # -------------------------
         # Extract features safely
         # -------------------------
         spread = safe_float(r.get("spread"))
         total = safe_float(r.get("total"))
-        is_home_fav = safe_float(r.get("is_home_fav"), 0)
 
-        temp = safe_float(r.get("temp_c"))
-        wind = safe_float(r.get("wind_kph"))
-        precip = safe_float(r.get("precip_mm"))
+        is_home_fav = safe_float(r.get("is_home_fav"), 0.0) or 0.0
 
-        fav_team = r.get("fav_team")
-        dog_team = r.get("dog_team")
+        temp_c = safe_float(r.get("temp_c"))
+        wind_kph = safe_float(r.get("wind_kph"))
+        precip_mm = safe_float(r.get("precip_mm"))
 
         # -------------------------
         # RULE BASELINES
         # -------------------------
         rule_su = rule_baseline_su(spread, is_home_fav)
         rule_ats = rule_baseline_ats(spread)
-        rule_ou = rule_baseline_ou(total, temp, wind, precip)
+        rule_ou = rule_baseline_ou(total, temp_c, wind_kph, precip_mm)
 
         # -------------------------
-        # ML OVERLAY
+        # ML OVERLAY (if models exist)
         # -------------------------
         ml_su = ml_ats = ml_ou = None
-        su_ex = ats_ex = ou_ex = None
+        su_explain = ats_explain = ou_explain = None
 
         if FEATURES:
-            X = np.array([[safe_float(r.get(f), 0) for f in FEATURES]], dtype=float)
+            X = np.array([[safe_float(r.get(f), 0.0) for f in FEATURES]], dtype=float)
 
             if su_m:
                 try:
-                    ml_su = float(su_m.predict_proba(X)[0, 1]) * 100
-                    su_ex = model_explain_lr(su_m, X, FEATURES)
+                    ml_su = float(su_m.predict_proba(X)[0, 1]) * 100.0
+                    su_explain = model_explain_lr(su_m, X, FEATURES)
                 except Exception:
-                    pass
+                    ml_su = None
 
             if ats_m:
                 try:
-                    ml_ats = float(ats_m.predict_proba(X)[0, 1]) * 100
-                    ats_ex = model_explain_lr(ats_m, X, FEATURES)
+                    ml_ats = float(ats_m.predict_proba(X)[0, 1]) * 100.0
+                    ats_explain = model_explain_lr(ats_m, X, FEATURES)
                 except Exception:
-                    pass
+                    ml_ats = None
 
             if ou_m and total is not None:
                 try:
-                    ml_ou = float(ou_m.predict_proba(X)[0, 1]) * 100
-                    ou_ex = model_explain_lr(ou_m, X, FEATURES)
+                    ml_ou = float(ou_m.predict_proba(X)[0, 1]) * 100.0
+                    ou_explain = model_explain_lr(ou_m, X, FEATURES)
                 except Exception:
-                    pass
+                    ml_ou = None
 
         # -------------------------
-        # Final blend (70/30 ML→rule)
+        # ENSEMBLE / FINAL
+        # If ML exists, blend 70/30 ML/rule.
         # -------------------------
-        def blend(rule_v, ml_v):
+        def blend(rule_v: Optional[float], ml_v: Optional[float]) -> Optional[float]:
+            if rule_v is None and ml_v is None:
+                return None
             if ml_v is None:
                 return rule_v
+            if rule_v is None:
+                return ml_v
             return clamp(0.7 * ml_v + 0.3 * rule_v)
 
-        su_final = blend(rule_su, ml_su)
-        ats_final = blend(rule_ats, ml_ats)
+        su_final = blend(rule_su, ml_su) or rule_su
+        ats_final = blend(rule_ats, ml_ats) or rule_ats
         ou_final = blend(rule_ou, ml_ou) if rule_ou is not None else None
 
+        fav_team = r.get("fav_team")
+        dog_team = r.get("dog_team")
+
         # -------------------------
-        # PICKS
+        # Picks
         # -------------------------
         su_pick = f"{fav_team} ML" if su_final >= 50 else f"{dog_team} ML"
 
+        ats_pick = None
         if spread is not None:
-            ats_pick = (
-                f"{fav_team} {spread:+g}"
-                if ats_final >= 50
-                else f"{dog_team} {(-spread):+g}"
-            )
-        else:
-            ats_pick = None
+            if ats_final >= 50:
+                ats_pick = f"{fav_team} {spread:+g}"
+            else:
+                ats_pick = f"{dog_team} {(-spread):+g}"
 
+        ou_pick = None
         if total is not None and ou_final is not None:
             ou_pick = ("Over" if ou_final >= 50 else "Under") + f" {total:g}"
-        else:
-            ou_pick = None
 
-        # -------------------------
-        # Final entry
-        # -------------------------
-        entry = {
+        entry: Dict[str, Any] = {
             "event_id": r.get("event_id"),
             "matchup": r.get("matchup"),
             "sport_key": r.get("sport_key"),
@@ -268,6 +310,7 @@ def main():
             "spread": spread,
             "total": total,
 
+            # Final outputs
             "SU_conf": round(su_final, 1),
             "ATS_conf": round(ats_final, 1),
             "OU_conf": round(ou_final, 1) if ou_final is not None else None,
@@ -280,34 +323,31 @@ def main():
             "ATS_pick": ats_pick,
             "OU_pick": ou_pick,
 
+            # Source breakdown
             "source_rule": {
                 "SU_conf": round(rule_su, 1),
                 "ATS_conf": round(rule_ats, 1),
-                "OU_conf": round(rule_ou, 1) if rule_ou is not None else None
+                "OU_conf": round(rule_ou, 1) if rule_ou is not None else None,
             },
             "source_ml": {
                 "SU_conf": round(ml_su, 1) if ml_su is not None else None,
                 "ATS_conf": round(ml_ats, 1) if ml_ats is not None else None,
-                "OU_conf": round(ml_ou, 1) if ml_ou is not None else None
+                "OU_conf": round(ml_ou, 1) if ml_ou is not None else None,
             },
 
+            # Explainability (if LR)
             "explain": {
-                "SU_top_features": su_ex,
-                "ATS_top_features": ats_ex,
-                "OU_top_features": ou_ex,
+                "SU_top_features": su_explain,
+                "ATS_top_features": ats_explain,
+                "OU_top_features": ou_explain,
             },
 
-            "debug_features": (
-                {f: safe_float(r.get(f), 0) for f in FEATURES}
-                if FEATURES else None
-            )
+            # Debug snapshot
+            "debug_features": {f: safe_float(r.get(f), 0.0) for f in FEATURES} if FEATURES else None,
         }
 
         data.append(entry)
 
-    # -------------------------
-    # Write output
-    # -------------------------
     payload = {
         "timestamp": ts,
         "count": len(data),
@@ -315,9 +355,9 @@ def main():
         "models_present": {
             "su": bool(su_m),
             "ats": bool(ats_m),
-            "ou": bool(ou_m)
+            "ou": bool(ou_m),
         },
-        "data": data
+        "data": data,
     }
 
     with open(OUTFILE, "w", encoding="utf-8") as f:
@@ -328,4 +368,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
