@@ -1,4 +1,4 @@
-name: Auto Fetch - ESPN Odds + Stadiums + Weather + Ref Trends + Injuries + Predictions
+name: Auto Fetch - ESPN Odds + Stadiums + Weather + Ref Trends + Predictions
 
 on:
   schedule:
@@ -10,17 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ------------------------------------------------------
-      # CHECKOUT
-      # ------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ------------------------------------------------------
-      # PYTHON SETUP
-      # ------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -29,57 +23,55 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install requests pandas numpy scikit-learn joblib python-dateutil pytz
+          pip install -r requirements.txt
 
-      # ------------------------------------------------------
-      # FETCH ODDS FIRST (creates combined.json)
-      # ------------------------------------------------------
-      - name: Fetch ESPN Odds (All Sports)
-        run: python3 fetch_espn_all.py
-
-      - name: Tag favorites and dogs
-        run: python3 tag_favorites.py
-
-      # ------------------------------------------------------
-      # BUILD SUPPORTING DATA
-      # ------------------------------------------------------
-      - name: Build full FBS stadium list (outdoor/indoor)
+      # -------------------------------
+      # Build / Fetch core data
+      # -------------------------------
+      - name: Build full FBS stadium list
         run: python3 build_fbs_stadiums.py
 
-      - name: Build weather data (outdoor only)
-        run: python3 build_weather.py
+      - name: Fetch ESPN Odds (all sports)
+        run: python3 fetch_espn_all.py
+
+      - name: Tag favorites / dogs
+        run: python3 tag_favorites.py
 
       - name: Build referee trends
         run: python3 referee_trends.py
 
-      - name: Build injuries file
-        run: python3 build_injuries.py
+      - name: Fetch injuries
+        run: python3 fetch_injuries.py
 
-      # ------------------------------------------------------
-      # HISTORICAL RESULTS (for ML labels)
-      # ------------------------------------------------------
-      - name: Build/update historical results
-        run: python3 build_historical_results.py
+      - name: Merge injuries into injuries.json
+        run: python3 merge_injuries.py
 
-      # ------------------------------------------------------
-      # TRAIN + PREDICT
-      # ------------------------------------------------------
-      - name: Train ML models (ATS/SU/OU)
+      - name: Build weather for games (outdoor only)
+        run: python3 build_weather_for_games.py
+
+      # -------------------------------
+      # Feature engineering + ML + predictions
+      # -------------------------------
+      - name: Build features
+        run: python3 feature_engineering.py
+
+      - name: Train ML model(s)
         run: python3 train_model.py
 
-      - name: Build predictions.json (rule-based + ML hybrid)
+      - name: Build predictions
         run: python3 build_predictions.py
 
-      # ------------------------------------------------------
-      # COMMIT / PUSH
-      # ------------------------------------------------------
+      # -------------------------------
+      # Commit + push results
+      # -------------------------------
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+
           git pull --rebase origin main || true
 
           git add *.json models/* || true
           git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+
           git push origin main || echo "Nothing to push"
