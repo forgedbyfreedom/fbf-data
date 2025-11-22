@@ -1,6 +1,3866 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <title>Forged By Freedom — Live Game Odds & Picks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05070b;
+      --card-bg: #0c1018;
+      --card-bg-alt: #0f141e;
+      --accent: #ff7a1a;
+      --accent-soft: #ffb266;
+      --text: #f5f7ff;
+      --muted: #9ba3b8;
+      --border-soft: #252b3a;
+      --danger: #ff4b5c;
+      --warning: #facc15;
+      --success: #22c55e;
+      --chip-bg: #151a24;
+      --chip-active-bg: #ff7a1a;
+      --chip-active-text: #05070b;
+      --badge-bg: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #111827, #020308 55%)
+        fixed;
+      color: var(--text);
+    }
+
+    #app {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header panel */
+
+    .top-panel {
+      background: radial-gradient(circle at top left, #1f2937, #020617 65%);
+      border-radius: 18px;
+      border: 1px solid #1f2937;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+      padding: 18px 20px 16px 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .logo-circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ffecd5, #f97316 45%, #7f1d1d 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #111827;
+      font-size: 18px;
+      box-shadow: 0 0 30px rgba(248, 113, 113, 0.7);
+      flex-shrink: 0;
+    }
+
+    .brand-text-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      white-space: nowrap;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .brand-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .brand-link:hover {
+      text-decoration: underline;
+    }
+
+    .mode-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      text-align: right;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .mode-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #020617, #1f2937);
+      border: 1px solid #1f2937;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+      font-size: 11px;
+    }
+
+    .mode-pill span.label {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .mode-pill span.sub {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .last-updated {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Filter row */
+
+    .filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      margin-bottom: 2px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .sport-chip {
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      background: var(--chip-bg);
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .sport-chip span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #4b5563;
+    }
+
+    .sport-chip.active {
+      background: var(--chip-active-bg);
+      color: var(--chip-active-text);
+      border-color: #f97316;
+    }
+
+    .sport-chip.active span.dot {
+      background: #111827;
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .legend span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .dot-low {
+      background: var(--danger);
+    }
+
+    .dot-med {
+      background: var(--warning);
+    }
+
+    .dot-high {
+      background: var(--success);
+    }
+
+    /* Group headers + grid */
+
+    .board-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 2px 4px 2px;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .board-meta-left {
+      opacity: 0.75;
+    }
+
+    .board-meta-right {
+      opacity: 0.75;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    /* Group header spans full width */
+    .group-header {
+      grid-column: 1 / -1;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #111827;
+      padding: 6px 2px;
+    }
+
+    .group-date {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .group-sport {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      opacity: 0.85;
+    }
+
+    /* Responsive columns: 1 / 2 / 3 max */
+
+    @media (min-width: 700px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* Game cards */
+
+    .game-card {
+      background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      padding: 10px 11px 10px 11px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .game-card.conf-low {
+      box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.2),
+        0 10px 30px rgba(127, 29, 29, 0.7);
+    }
+
+    .game-card.conf-med {
+      box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.18),
+        0 10px 30px rgba(120, 53, 15, 0.7);
+    }
+
+    .game-card.conf-high {
+      box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.22),
+        0 10px 30px rgba(6, 95, 70, 0.7);
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .sport-tag {
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .book-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+    }
+
+    .matchup-block {
+      margin-top: 2px;
+    }
+
+    .matchup-line {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .team-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .team-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 10px;
+      opacity: 0.85;
+    }
+
+    .team-name {
+      font-size: 11px;
+      font-weight: 500;
+      text-align: right;
+      margin-left: 8px;
+    }
+
+    .kickoff-row {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .kickoff-row span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+    }
+
+    .kickoff-row span.value {
+      font-size: 11px;
+    }
+
+    .lines-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .line-col {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 8px;
+      padding: 4px 6px;
+      border: 1px solid #111827;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .line-label {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .line-value {
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .picks-block {
+      margin-top: 6px;
+      border-top: 1px dashed #1f2937;
+      padding-top: 5px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      font-size: 11px;
+    }
+
+    .pick-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .pick-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .pick-value {
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .pick-value.muted {
+      opacity: 0.6;
+      font-style: italic;
+    }
+
+    .no-games {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 10px;
+      }
+
+      .hero-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .mode-badge {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .filter-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .board-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- HEADER PANEL -->
+    <header class="top-panel">
+      <div class="hero-row">
+        <div class="brand">
+          <div class="logo-circle">FBF</div>
+          <div class="brand-text-main">
+            <div class="brand-title">FORGED BY FREEDOM STRENGTH &amp; NUTRITION</div>
+            <div class="brand-subtitle">STRENGTH &ndash; DISCIPLINE &ndash; FREEDOM</div>
+            <div class="brand-tagline">
+              For all your training, supplementation, and nutrition needs.
+            </div>
+            <a href="https://forgedbyfreedom.org" class="brand-link" target="_blank" rel="noopener">
+              ForgedByFreedom.org
+            </a>
+          </div>
+        </div>
+        <div class="mode-badge">
+          <div class="mode-pill">
+            <span class="label">Black Ops</span>
+            <span class="sub">Tactical Dark Mode</span>
+          </div>
+          <div class="last-updated" id="last-updated-text">
+            Last updated: &mdash;
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <div class="filter-group">
+          <div class="filter-label">Filter Sports</div>
+          <div class="chip-row" id="sport-filters">
+            <button class="sport-chip active" data-sport="all">
+              <span class="dot"></span>All
+            </button>
+            <button class="sport-chip" data-sport="americanfootball_nfl">
+              <span class="dot"></span>NFL
+            </button>
+            <button class="sport-chip" data-sport="americanfootball_ncaaf">
+              <span class="dot"></span>NCAAF
+            </button>
+            <button class="sport-chip" data-sport="basketball_nba">
+              <span class="dot"></span>NBA
+            </button>
+            <button class="sport-chip" data-sport="basketball_ncaab">
+              <span class="dot"></span>NCAAB
+            </button>
+            <button class="sport-chip" data-sport="icehockey_nhl">
+              <span class="dot"></span>NHL
+            </button>
+            <button class="sport-chip" data-sport="mma_mixed_martial_arts">
+              <span class="dot"></span>UFC
+            </button>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span><span class="dot dot-low"></span>Low</span>
+          <span><span class="dot dot-med"></span>Medium</span>
+          <span><span class="dot dot-high"></span>High</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- BOARD META -->
+    <div class="board-meta">
+      <div class="board-meta-left">
+        Tue &ndash; Sun slates • Sorted by sport, then kickoff (EST)
+      </div>
+      <div class="board-meta-right">
+        Forged By Freedom • Live odds &amp; baseline picks
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <main class="cards-grid" id="cards-grid">
+      <!-- Filled by JS -->
+    </main>
+
+    <div class="no-games" id="no-games" style="display: none;">
+      No games available for this filter right now. Check back soon.
+    </div>
+  </div>
+
+  <script>
+    // ----- CONFIG / LABEL MAPS -----
+
+    const SPORT_LABELS = {
+      americanfootball_nfl: "NFL",
+      americanfootball_ncaaf: "NCAAF",
+      basketball_nba: "NBA",
+      basketball_ncaab: "NCAAB",
+      icehockey_nhl: "NHL",
+      mma_mixed_martial_arts: "UFC"
+    };
+
+    function getSportLabel(key) {
+      return SPORT_LABELS[key] || key || "Unknown Sport";
+    }
+
+    // ----- TIMESTAMP HANDLING (EST) -----
+
+    function formatTimestampEST(rawTs) {
+      if (!rawTs || typeof rawTs !== "string") {
+        return "Unknown";
+      }
+
+      const parts = rawTs.split("_");
+      if (parts.length !== 2) return rawTs;
+
+      const datePart = parts[0];
+      const timePart = parts[1];
+      if (datePart.length !== 8 || timePart.length < 4) return rawTs;
+
+      const year = Number(datePart.slice(0, 4));
+      const month = Number(datePart.slice(4, 6)) - 1;
+      const day = Number(datePart.slice(6, 8));
+      const hour = Number(timePart.slice(0, 2));
+      const minute = Number(timePart.slice(2, 4));
+
+      if (
+        Number.isNaN(year) ||
+        Number.isNaN(month) ||
+        Number.isNaN(day) ||
+        Number.isNaN(hour) ||
+        Number.isNaN(minute)
+      ) {
+        return rawTs;
+      }
+
+      // Treat stored timestamp as UTC and convert to America/New_York
+      const utcDate = new Date(Date.UTC(year, month, day, hour, minute));
+
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+
+      const partsArr = formatter.formatToParts(utcDate);
+      const map = {};
+      for (const p of partsArr) {
+        map[p.type] = p.value;
+      }
+
+      const weekday = map.weekday || "";
+      const monthName = map.month || "";
+      const dayNum = map.day || "";
+      const yearNum = map.year || "";
+      const hourStr = map.hour || "";
+      const minuteStr = map.minute || "";
+      const dayPeriod = map.dayPeriod || map.dayperiod || "";
+
+      return `${weekday}, ${monthName} ${dayNum}, ${yearNum} • ${hourStr}:${minuteStr} ${dayPeriod} EST`;
+    }
+
+    function updateLastUpdated(rawTs) {
+      const el = document.getElementById("last-updated-text");
+      const formatted = formatTimestampEST(rawTs);
+      el.textContent = "Last updated: " + formatted;
+    }
+
+    // ----- DATE HELPERS (EST) -----
+
+    function parseCommenceToDate(commenceTime) {
+      if (!commenceTime) return null;
+      const d = new Date(commenceTime);
+      if (Number.isNaN(d.getTime())) return null;
+      return d;
+    }
+
+    function formatDateKeyEST(commenceTime) {
+      const d = parseCommenceToDate(commenceTime);
+      if (!d) return "unknown";
+      const options = {
+        timeZone: "America/New_York",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      };
+      const formatter = new Intl.DateTimeFormat("en-CA", options); // yyyy-mm-dd
+      return formatter.format(d);
+    }
+
+    function formatDateLabelEST(commenceTime) {
+      const d = parseCommenceToDate(commenceTime);
+      if (!d) return "Unknown Date";
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        weekday: "short",
+        month: "short",
+        day: "2-digit",
+        year: "numeric"
+      });
+      return formatter.format(d).toUpperCase();
+    }
+
+    function formatKickoffTimeEST(commenceTime) {
+      const d = parseCommenceToDate(commenceTime);
+      if (!d) return "TBD";
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+      return formatter.format(d) + " EST";
+    }
+
+    // ----- CONFIDENCE (simple, display only) -----
+
+    function getConfidenceLevel(event) {
+      let spreadVal = null;
+      if (typeof event.spread === "number") {
+        spreadVal = Math.abs(event.spread);
+      } else if (typeof event.fav_spread === "number") {
+        spreadVal = Math.abs(event.fav_spread);
+      }
+
+      if (spreadVal == null) {
+        return "low";
+      }
+      if (spreadVal < 3) return "low";
+      if (spreadVal < 7) return "med";
+      return "high";
+    }
+
+    // ----- PICKS (simple baseline logic) -----
+
+    function buildPickStrings(ev) {
+      const favTeam = ev.fav_team || ev.favorite || null;
+      const dogTeam = ev.dog_team || ev.underdog || null;
+      const spread = ev.spread ?? ev.fav_spread ?? null;
+      const total = ev.total ?? null;
+
+      let su = "No clear edge";
+      let ats = "No play";
+      let ou = "No total lean";
+
+      if (favTeam && typeof favTeam === "string") {
+        su = favTeam;
+      } else if (ev.home_team || ev.away_team) {
+        su = ev.home_team || ev.away_team;
+      }
+
+      if (favTeam && typeof spread === "number") {
+        if (Math.abs(spread) <= 3) {
+          ats = `${favTeam} ${spread > 0 ? "+" : ""}${spread.toFixed(1)}`;
+        } else {
+          // big spread: slight preference to the dog
+          if (dogTeam) {
+            const dogSpread =
+              typeof ev.dog_spread === "number"
+                ? ev.dog_spread
+                : spread * -1;
+            ats = `${dogTeam} ${dogSpread > 0 ? "+" : ""}${dogSpread.toFixed(1)}`;
+          } else {
+            ats = `${favTeam} ${spread > 0 ? "+" : ""}${spread.toFixed(1)}`;
+          }
+        }
+      }
+
+      if (typeof total === "number") {
+        ou = `Over ${total.toFixed(1)}`;
+      }
+
+      return { su, ats, ou };
+    }
+
+    // ----- RENDERING -----
+
+    let ALL_EVENTS = [];
+    let currentSportFilter = "all";
+
+    function sortEvents(a, b) {
+      const orderMap = {
+        americanfootball_nfl: 1,
+        americanfootball_ncaaf: 2,
+        basketball_nba: 3,
+        basketball_ncaab: 4,
+        icehockey_nhl: 5,
+        mma_mixed_martial_arts: 6
+      };
+      const aOrder = orderMap[a.sport_key] || 99;
+      const bOrder = orderMap[b.sport_key] || 99;
+      if (aOrder !== bOrder) return aOrder - bOrder;
+
+      const aDate = new Date(a.commence_time || 0).getTime();
+      const bDate = new Date(b.commence_time || 0).getTime();
+      return aDate - bDate;
+    }
+
+    function render() {
+      const grid = document.getElementById("cards-grid");
+      const noGamesEl = document.getElementById("no-games");
+      grid.innerHTML = "";
+
+      const filtered = ALL_EVENTS
+        .filter((ev) =>
+          currentSportFilter === "all"
+            ? true
+            : ev.sport_key === currentSportFilter
+        )
+        .sort(sortEvents);
+
+      if (filtered.length === 0) {
+        noGamesEl.style.display = "block";
+        return;
+      }
+      noGamesEl.style.display = "none";
+
+      let lastGroupKey = null;
+
+      filtered.forEach((ev) => {
+        const sportLabel = getSportLabel(ev.sport_key);
+        const dateKey = formatDateKeyEST(ev.commence_time);
+        const dateLabel = formatDateLabelEST(ev.commence_time);
+        const groupKey = sportLabel + "|" + dateKey;
+
+        if (groupKey !== lastGroupKey) {
+          const groupEl = document.createElement("div");
+          groupEl.className = "group-header";
+          groupEl.innerHTML = `
+            <div class="group-date">${dateLabel}</div>
+            <div class="group-sport">${sportLabel} BOARD</div>
+          `;
+          grid.appendChild(groupEl);
+          lastGroupKey = groupKey;
+        }
+
+        const confidence = getConfidenceLevel(ev);
+        const picks = buildPickStrings(ev);
+        const kickoff = formatKickoffTimeEST(ev.commence_time);
+
+        const card = document.createElement("div");
+        card.className = "game-card conf-" + confidence;
+
+        const favDisplay = ev.favorite || "—";
+        const dogDisplay = ev.underdog || "—";
+
+        let spreadStr = "—";
+        if (typeof ev.spread === "number") {
+          spreadStr = (ev.spread > 0 ? "+" : "") + ev.spread.toFixed(1);
+        } else if (typeof ev.fav_spread === "number") {
+          spreadStr =
+            (ev.fav_spread > 0 ? "+" : "") + ev.fav_spread.toFixed(1);
+        }
+
+        let totalStr = "—";
+        if (typeof ev.total === "number") {
+          totalStr = ev.total.toFixed(1);
+        }
+
+        const bookLabel = (ev.book || "").toString().toUpperCase();
+
+        card.innerHTML = `
+          <div class="card-top-row">
+            <span class="sport-tag">${sportLabel}</span>
+            <span class="book-tag">${bookLabel}</span>
+          </div>
+          <div class="matchup-block">
+            <div class="matchup-line">${ev.matchup || ""}</div>
+            <div class="team-line">
+              <span class="team-label">AWAY</span>
+              <span class="team-name">${ev.away_team || ""}</span>
+            </div>
+            <div class="team-line">
+              <span class="team-label">HOME</span>
+              <span class="team-name">${ev.home_team || ""}</span>
+            </div>
+          </div>
+          <div class="kickoff-row">
+            <span><span class="label">Kickoff</span> <span class="value">${kickoff}</span></span>
+            <span><span class="label">Book</span> <span class="value">${bookLabel}</span></span>
+          </div>
+          <div class="lines-row">
+            <div class="line-col">
+              <div class="line-label">Favorite</div>
+              <div class="line-value">${favDisplay}</div>
+            </div>
+            <div class="line-col">
+              <div class="line-label">Underdog</div>
+              <div class="line-value">${dogDisplay}</div>
+            </div>
+            <div class="line-col">
+              <div class="line-label">Total</div>
+              <div class="line-value">${totalStr}</div>
+            </div>
+          </div>
+          <div class="picks-block">
+            <div class="pick-item">
+              <div class="pick-label">SU</div>
+              <div class="pick-value">${picks.su}</div>
+            </div>
+            <div class="pick-item">
+              <div class="pick-label">ATS</div>
+              <div class="pick-value">${picks.ats}</div>
+            </div>
+            <div class="pick-item">
+              <div class="pick-label">O/U</div>
+              <div class="pick-value">${picks.ou}</div>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ----- SPORT FILTER BUTTONS -----
+
+    function setupSportFilters() {
+      const container = document.getElementById("sport-filters");
+      container.addEventListener("click", (e) => {
+        const btn = e.target.closest(".sport-chip");
+        if (!btn) return;
+        const sport = btn.getAttribute("data-sport") || "all";
+        currentSportFilter = sport;
+
+        Array.from(container.querySelectorAll(".sport-chip")).forEach((b) => {
+          b.classList.toggle("active", b === btn);
+        });
+
+        render();
+      });
+    }
+
+    // ----- INIT: FETCH + RENDER -----
+
+    async function init() {
+      setupSportFilters();
+
+      try {
+        const res = await fetch("combined.json", { cache: "no-cache" });
+        const json = await res.json();
+
+        updateLastUpdated(json.timestamp);
+
+        const data = Array.isArray(json.data) ? json.data : [];
+        ALL_EVENTS = data.filter((ev) => ev && ev.sport_key && ev.matchup);
+        render();
+      } catch (err) {
+        console.error("Failed to load combined.json", err);
+        updateLastUpdated(null);
+        document.getElementById("no-games").style.display = "block";
+        document.getElementById("no-games").textContent =
+          "Error loading odds data. Check back shortly.";
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FBF Predictions Dashboard</title>
+
+<style>
+/* ============================================================
+   GLOBAL
+============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #111;
+  color: #eee;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+body.light {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+/* ============================================================
+   HEADER + TOGGLE
+============================================================ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.header h1 {
+  font-size: 24px;
+}
+.theme-toggle {
+  padding: 8px 14px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+body.light .theme-toggle {
+  background: #ddd;
+  color: #111;
+}
+
+/* ============================================================
+   FILTERS
+============================================================ */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 25px;
+  margin-bottom: 20px;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-label {
+  font-weight: bold;
+  font-size: 13px;
+}
+.filter-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #222;
+  color: #eee;
+  cursor: pointer;
+  font-size: 12px;
+}
+.filter-btn.active {
+  background: #fbbf24;
+  color: #111;
+  border-color: #f59e0b;
+  font-weight: bold;
+}
+body.light .filter-btn {
+  background: #eee;
+  color: #111;
+  border-color: #bbb;
+}
+body.light .filter-btn.active {
+  background: #f59e0b;
+  color: #111;
+  border-color: #c27803;
+}
+
+/* ============================================================
+   TABLES
+============================================================ */
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 8px 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 70vh;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.pred-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1b1b1b;
+}
+body.light .pred-table {
+  background: #fff;
+}
+
+.pred-table th, .pred-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 13px;
+}
+body.light .pred-table th, body.light .pred-table td {
+  border-bottom: 1px solid #ccc;
+}
+
+.pred-table th {
+  background: #222;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+body.light .pred-table th {
+  background: #eee;
+}
+
+.pred-table tbody tr:hover {
+  background: #2b2b2b;
+}
+body.light .pred-table tbody tr:hover {
+  background: #eaeaea;
+}
+
+/* ATS & CONF COLORS */
+.ats-fav { color: #ff6666; font-weight: bold; }
+.ats-dog { color: #66aaff; font-weight: bold; }
+.conf-low { color: #f97373; font-weight: bold; }
+.conf-med { color: #facc15; font-weight: bold; }
+.conf-high { color: #22c55e; font-weight: bold; }
+
+/* MOBILE */
+@media(max-width:600px){
+  .header h1 { font-size: 20px; }
+  .filters { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>FBF Game & Fight Predictions</h1>
+  <button class="theme-toggle" onclick="toggleTheme()">Dark / Light</button>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-group">
+    <span class="filter-label">SPORT:</span>
+    <button class="filter-btn active" data-filter-group="sport" data-value="ALL">All</button>
+    <button class="filter-btn" data-filter-group="sport" data-value="NFL">NFL</button>
+    <button class="filter-btn" data-filter-group="sport" data-value="NCAAF">NCAAF</button>
+    <button class="filter-btn" data-filter-group="sport" data-value="UFC">UFC</button>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">CONFIDENCE:</span>
+    <button class="filter-btn active" data-filter-group="conf" data-value="ALL">All</button>
+    <button class="filter-btn" data-filter-group="conf" data-value="LOW">Low</button>
+    <button class="filter-btn" data-filter-group="conf" data-value="MED">Medium</button>
+    <button class="filter-btn" data-filter-group="conf" data-value="HIGH">High</button>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">PICKS:</span>
+    <button class="filter-btn active" data-filter-group="pick" data-value="ALL">All</button>
+    <button class="filter-btn" data-filter-group="pick" data-value="SU">SU</button>
+    <button class="filter-btn" data-filter-group="pick" data-value="ATS">ATS</button>
+    <button class="filter-btn" data-filter-group="pick" data-value="OU">O/U</button>
+  </div>
+</div>
+
+<!-- FOOTBALL -->
+<div class="section-title">NFL & College Football</div>
+<div class="table-container">
+<table class="pred-table" id="football-table">
+  <thead>
+    <tr>
+      <th>Matchup</th>
+      <th>Straight-Up</th>
+      <th>SU %</th>
+      <th>ATS</th>
+      <th>Spread</th>
+      <th>Cover %</th>
+      <th>O/U</th>
+      <th>Total Pick</th>
+      <th>Conf (SU)</th>
+      <th>Conf (ATS)</th>
+    </tr>
+  </thead>
+  <tbody id="football-body"></tbody>
+</table>
+</div>
+
+<!-- UFC -->
+<div class="section-title">UFC Fight Predictions</div>
+<div class="table-container">
+<table class="pred-table" id="ufc-table">
+  <thead>
+    <tr>
+      <th>Fight</th>
+      <th>Pick</th>
+      <th>Win %</th>
+      <th>KO %</th>
+      <th>Sub %</th>
+      <th>Dec %</th>
+      <th>Round 1 %</th>
+      <th>Goes Dist %</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody id="ufc-body"></tbody>
+</table>
+</div>
+
+<script>
+// ===== THEME =====
+function toggleTheme(){document.body.classList.toggle("light");}
+
+// ===== AUTO REFRESH (30 min) =====
+setInterval(()=>location.reload(),1800000);
+
+// ===== STATE =====
+const state={predictions:[],sportFilter:"ALL",confFilter:"ALL",pickFilter:"ALL"};
+
+// ===== 7-DAY FILTER =====
+function isWithin7Days(item) {
+    if (!item.commence_time) return true;
+    let eventTime = new Date(item.commence_time);
+    let now = new Date();
+    let in7 = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    return eventTime >= now && eventTime <= in7;
+}
+
+// ===== HELPERS =====
+function getSport(item){
+  const s=(item.sport_key||item.sport||"").toLowerCase();
+  if(s.includes("mma"))return"UFC";
+  if(s.includes("ncaaf"))return"NCAAF";
+  if(s.includes("nfl"))return"NFL";
+  return"OTHER";
+}
+function toNum(v){let n=parseFloat(v);return isNaN(n)?null:n;}
+function confClass(v){
+  let n=toNum(v);if(n==null)return"";
+  if(n>=70)return"conf-high";
+  if(n>=56)return"conf-med";
+  return"conf-low";
+}
+function getFootballConf(item){
+  if(state.pickFilter==="ATS") return item.ats_conf;
+  if(state.pickFilter==="OU") return item.total_conf;
+  return item.su_conf;
+}
+
+// ===== FILTER CHECKS =====
+function passesSportFootball(s){
+  if(state.sportFilter==="ALL")return s==="NFL"||s==="NCAAF";
+  return state.sportFilter===s;
+}
+function passesSportUFC(){return state.sportFilter==="ALL"||state.sportFilter==="UFC";}
+function passesConf(v){
+  if(state.confFilter==="ALL")return true;
+  let n=toNum(v);if(n==null)return false;
+  if(state.confFilter==="LOW")return n<=55;
+  if(state.confFilter==="MED")return n>=56&&n<=69;
+  if(state.confFilter==="HIGH")return n>=70;
+}
+function passesPickFootball(item){
+  if(state.pickFilter==="ALL"||state.pickFilter==="SU")return true;
+  if(state.pickFilter==="ATS")return !!item.ats_side;
+  if(state.pickFilter==="OU")return (item.total_pick||"").toLowerCase()!=="no play";
+}
+function passesPickUFC(){return state.pickFilter==="ALL"||state.pickFilter==="SU";}
+function passesConfUFC(item){return passesConf(item.win_pct);}
+
+// ===== RENDER =====
+function renderTables(){
+  let fb=document.getElementById("football-body");
+  let uf=document.getElementById("ufc-body");
+  fb.innerHTML="";uf.innerHTML="";
+
+  state.predictions.forEach(it=>{
+    if (!isWithin7Days(it)) return;   // <-- FILTER OUTSIDE 7 DAYS
+
+    let sport=getSport(it);
+
+    if(sport==="UFC"){
+      if(!passesSportUFC())return;
+      if(!passesPickUFC())return;
+      if(!passesConfUFC(it))return;
+
+      uf.insertAdjacentHTML("beforeend",`
+        <tr>
+          <td>${it.matchup||""}</td>
+          <td>${it.pick||""}</td>
+          <td class="${confClass(it.win_pct)}">${it.win_pct}%</td>
+          <td>${it.ko_pct}%</td>
+          <td>${it.sub_pct}%</td>
+          <td>${it.dec_pct}%</td>
+          <td>${it.r1_pct}%</td>
+          <td>${it.goes_dist_pct}%</td>
+          <td class="${confClass(it.win_pct)}">${it.win_pct}%</td>
+        </tr>
+      `);
+
+    } else if(sport==="NFL"||sport==="NCAAF"){
+      if(!passesSportFootball(sport))return;
+      if(!passesPickFootball(it))return;
+      let c=getFootballConf(it);
+      if(!passesConf(c))return;
+
+      fb.insertAdjacentHTML("beforeend",`
+        <tr>
+        <td>${it.matchup}</td>
+        <td>${it.su_pick}</td>
+        <td class="${confClass(it.su_conf)}">${it.su_conf}%</td>
+        <td class="${it.ats_side==="fav"?"ats-fav":it.ats_side==="dog"?"ats-dog":""}">
+          ${(it.ats_side||"").toUpperCase()}
+        </td>
+        <td>${it.spread}</td>
+        <td class="${confClass(it.ats_conf)}">${it.ats_conf}%</td>
+        <td>${it.total}</td>
+        <td>${it.total_pick}</td>
+        <td class="${confClass(it.su_conf)}">${it.su_conf}%</td>
+        <td class="${confClass(it.ats_conf)}">${it.ats_conf}%</td>
+        </tr>
+      `);
+    }
+  });
+}
+
+// ===== FILTER BUTTONS =====
+document.addEventListener("click",e=>{
+  let b=e.target.closest(".filter-btn");if(!b)return;
+  let g=b.dataset.filterGroup,v=b.dataset.value;
+  document.querySelectorAll(`.filter-btn[data-filter-group="${g}"]`)
+    .forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  state[g+"Filter"]=v;
+  renderTables();
+});
+
+// ===== SORTING =====
+function enableSorting(id){
+  let t=document.getElementById(id);
+  if(!t)return;
+  t.querySelectorAll("th").forEach((th,i)=>{
+    th.onclick=()=>sortTable(t,i);
+  });
+}
+function sortTable(t,col){
+  let rows=Array.from(t.querySelector("tbody").rows);
+  let numeric=rows.every(r=>!isNaN(parseFloat(r.cells[col].innerText.replace("%",""))));
+  rows.sort((A,B)=>{
+    let a=A.cells[col].innerText.replace("%","");
+    let b=B.cells[col].innerText.replace("%","");
+    return numeric?(parseFloat(b)||0)-(parseFloat(a)||0):a.localeCompare(b);
+  });
+  let bd=t.querySelector("tbody");
+  bd.innerHTML="";
+  rows.forEach(r=>bd.appendChild(r));
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  enableSorting("football-table");
+  enableSorting("ufc-table");
+});
+
+// ===== LOAD DATA =====
+fetch("predictions.json",{cache:"no-cache"})
+  .then(r=>r.json())
+  .then(d=>{
+    state.predictions=d.data||d.predictions||[];
+    renderTables();
+  });
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FBF Predictions Dashboard</title>
+
+<style>
+/* ============================================================
+   GLOBAL
+============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #111;
+  color: #eee;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+body.light {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+/* ============================================================
+   HEADER + TOGGLE
+============================================================ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.header h1 {
+  font-size: 24px;
+}
+.theme-toggle {
+  padding: 8px 14px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+body.light .theme-toggle {
+  background: #ddd;
+  color: #111;
+}
+
+/* ============================================================
+   FILTERS
+============================================================ */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 25px;
+  margin-bottom: 20px;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-label {
+  font-weight: bold;
+  font-size: 13px;
+}
+.filter-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #222;
+  color: #eee;
+  cursor: pointer;
+  font-size: 12px;
+}
+.filter-btn.active {
+  background: #fbbf24;
+  color: #111;
+  border-color: #f59e0b;
+  font-weight: bold;
+}
+body.light .filter-btn {
+  background: #eee;
+  color: #111;
+  border-color: #bbb;
+}
+body.light .filter-btn.active {
+  background: #f59e0b;
+  color: #111;
+  border-color: #c27803;
+}
+
+/* ============================================================
+   TABLES
+============================================================ */
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 8px 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 70vh;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.pred-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1b1b1b;
+}
+body.light .pred-table {
+  background: #fff;
+}
+
+.pred-table th, .pred-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 13px;
+}
+body.light .pred-table th, body.light .pred-table td {
+  border-bottom: 1px solid #ccc;
+}
+
+.pred-table th {
+  background: #222;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+body.light .pred-table th {
+  background: #eee;
+}
+
+.pred-table tbody tr:hover {
+  background: #2b2b2b;
+}
+body.light .pred-table tbody tr:hover {
+  background: #eaeaea;
+}
+
+/* ATS & CONF COLORS */
+.ats-fav { color: #ff6666; font-weight: bold; }
+.ats-dog { color: #66aaff; font-weight: bold; }
+.conf-low { color: #f97373; font-weight: bold; }
+.conf-med { color: #facc15; font-weight: bold; }
+.conf-high { color: #22c55e; font-weight: bold; }
+
+/* MOBILE */
+@media(max-width:600px){
+  .header h1 { font-size: 20px; }
+  .filters { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>FBF Game & Fight Predictions</h1>
+  <button class="theme-toggle" onclick="toggleTheme()">Dark / Light</button>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-group">
+    <span class="filter-label">SPORT:</span>
+    <button class="filter-btn active" data-filter-group="sport" data-value="ALL">All</button>
+    <button class="filter-btn" data-filter-group="sport" data-value="NFL">NFL</button>
+    <button class="filter-btn" data-filter-group="sport" data-value="NCAAF">NCAAF</button>
+    <button class="filter-btn" data-filter-group="sport" data-value="UFC">UFC</button>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">CONFIDENCE:</span>
+    <button class="filter-btn active" data-filter-group="conf" data-value="ALL">All</button>
+    <button class="filter-btn" data-filter-group="conf" data-value="LOW">Low</button>
+    <button class="filter-btn" data-filter-group="conf" data-value="MED">Medium</button>
+    <button class="filter-btn" data-filter-group="conf" data-value="HIGH">High</button>
+  </div>
+
+  <div class="filter-group">
+    <span class="filter-label">PICKS:</span>
+    <button class="filter-btn active" data-filter-group="pick" data-value="ALL">All</button>
+    <button class="filter-btn" data-filter-group="pick" data-value="SU">SU</button>
+    <button class="filter-btn" data-filter-group="pick" data-value="ATS">ATS</button>
+    <button class="filter-btn" data-filter-group="pick" data-value="OU">O/U</button>
+  </div>
+</div>
+
+<!-- FOOTBALL -->
+<div class="section-title">NFL & College Football</div>
+<div class="table-container">
+<table class="pred-table" id="football-table">
+  <thead>
+    <tr>
+      <th>Matchup</th>
+      <th>Straight-Up</th>
+      <th>SU %</th>
+      <th>ATS</th>
+      <th>Spread</th>
+      <th>Cover %</th>
+      <th>O/U</th>
+      <th>Total Pick</th>
+      <th>Conf (SU)</th>
+      <th>Conf (ATS)</th>
+    </tr>
+  </thead>
+  <tbody id="football-body"></tbody>
+</table>
+</div>
+
+<!-- UFC -->
+<div class="section-title">UFC Fight Predictions</div>
+<div class="table-container">
+<table class="pred-table" id="ufc-table">
+  <thead>
+    <tr>
+      <th>Fight</th>
+      <th>Pick</th>
+      <th>Win %</th>
+      <th>KO %</th>
+      <th>Sub %</th>
+      <th>Dec %</th>
+      <th>Round 1 %</th>
+      <th>Goes Dist %</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody id="ufc-body"></tbody>
+</table>
+</div>
+
+<script>
+// ===== THEME =====
+function toggleTheme(){document.body.classList.toggle("light");}
+
+// ===== AUTO REFRESH (30 min) =====
+setInterval(()=>location.reload(),1800000);
+
+// ===== STATE =====
+const state={predictions:[],sportFilter:"ALL",confFilter:"ALL",pickFilter:"ALL"};
+
+// ===== HELPERS =====
+function getSport(item){
+  const s=(item.sport_key||item.sport||"").toLowerCase();
+  if(s.includes("mma"))return"UFC";
+  if(s.includes("ncaaf"))return"NCAAF";
+  if(s.includes("nfl"))return"NFL";
+  return"OTHER";
+}
+function toNum(v){let n=parseFloat(v);return isNaN(n)?null:n;}
+function confClass(v){
+  let n=toNum(v);if(n==null)return"";
+  if(n>=70)return"conf-high";
+  if(n>=56)return"conf-med";
+  return"conf-low";
+}
+function getFootballConf(item){
+  if(state.pickFilter==="ATS") return item.ats_conf;
+  if(state.pickFilter==="OU") return item.total_conf;
+  return item.su_conf;
+}
+
+// ===== FILTER CHECKS =====
+function passesSportFootball(s){
+  if(state.sportFilter==="ALL")return s==="NFL"||s==="NCAAF";
+  return state.sportFilter===s;
+}
+function passesSportUFC(){return state.sportFilter==="ALL"||state.sportFilter==="UFC";}
+function passesConf(v){
+  if(state.confFilter==="ALL")return true;
+  let n=toNum(v);if(n==null)return false;
+  if(state.confFilter==="LOW")return n<=55;
+  if(state.confFilter==="MED")return n>=56&&n<=69;
+  if(state.confFilter==="HIGH")return n>=70;
+}
+function passesPickFootball(item){
+  if(state.pickFilter==="ALL"||state.pickFilter==="SU")return true;
+  if(state.pickFilter==="ATS")return !!item.ats_side;
+  if(state.pickFilter==="OU")return (item.total_pick||"").toLowerCase()!=="no play";
+}
+function passesPickUFC(){return state.pickFilter==="ALL"||state.pickFilter==="SU";}
+function passesConfUFC(item){return passesConf(item.win_pct);}
+
+// ===== RENDER =====
+function renderTables(){
+  let fb=document.getElementById("football-body");
+  let uf=document.getElementById("ufc-body");
+  fb.innerHTML="";uf.innerHTML="";
+
+  state.predictions.forEach(it=>{
+    let sport=getSport(it);
+
+    if(sport==="UFC"){
+      if(!passesSportUFC())return;
+      if(!passesPickUFC())return;
+      if(!passesConfUFC(it))return;
+
+      uf.insertAdjacentHTML("beforeend",`
+        <tr>
+          <td>${it.matchup||""}</td>
+          <td>${it.pick||""}</td>
+          <td class="${confClass(it.win_pct)}">${it.win_pct}%</td>
+          <td>${it.ko_pct}%</td>
+          <td>${it.sub_pct}%</td>
+          <td>${it.dec_pct}%</td>
+          <td>${it.r1_pct}%</td>
+          <td>${it.goes_dist_pct}%</td>
+          <td class="${confClass(it.win_pct)}">${it.win_pct}%</td>
+        </tr>
+      `);
+
+    } else if(sport==="NFL"||sport==="NCAAF"){
+      if(!passesSportFootball(sport))return;
+      if(!passesPickFootball(it))return;
+      let c=getFootballConf(it);
+      if(!passesConf(c))return;
+
+      fb.insertAdjacentHTML("beforeend",`
+        <tr>
+        <td>${it.matchup}</td>
+        <td>${it.su_pick}</td>
+        <td class="${confClass(it.su_conf)}">${it.su_conf}%</td>
+        <td class="${it.ats_side==="fav"?"ats-fav":it.ats_side==="dog"?"ats-dog":""}">
+          ${(it.ats_side||"").toUpperCase()}
+        </td>
+        <td>${it.spread}</td>
+        <td class="${confClass(it.ats_conf)}">${it.ats_conf}%</td>
+        <td>${it.total}</td>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FBF Predictions Dashboard</title>
+
+  <style>
+    /* =============== GLOBAL =============== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      color: #eee;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    /* =============== HEADER =============== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .theme-toggle {
+      padding: 8px 14px;
+      background: #444;
+      border: none;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    body.light .theme-toggle {
+      background: #ddd;
+      color: #111;
+    }
+
+    /* =============== FILTER BAR =============== */
+    .filters {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-label {
+      font-weight: bold;
+      font-size: 13px;
+      margin-right: 4px;
+    }
+
+    .filter-btn {
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid #555;
+      background: #222;
+      color: #eee;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: #fbbf24;
+      color: #111;
+      border-color: #f59e0b;
+      font-weight: bold;
+    }
+
+    body.light .filter-btn {
+      background: #eee;
+      color: #111;
+      border-color: #bbb;
+    }
+
+    body.light .filter-btn.active {
+      background: #f59e0b;
+      color: #111;
+      border-color: #c27803;
+    }
+
+    /* =============== SECTIONS =============== */
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px 0 8px 0;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: auto;
+      max-height: 70vh;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    /* =============== TABLES =============== */
+    .pred-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1b1b1b;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    body.light .pred-table {
+      background: #fff;
+    }
+
+    .pred-table th,
+    .pred-table td {
+      padding: 8px 6px;
+      border-bottom: 1px solid #333;
+      text-align: center;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    body.light .pred-table th,
+    body.light .pred-table td {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .pred-table th {
+      background: #222;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    body.light .pred-table th {
+      background: #eee;
+    }
+
+    .pred-table tbody tr:hover {
+      background: #2b2b2b;
+    }
+
+    body.light .pred-table tbody tr:hover {
+      background: #eaeaea;
+    }
+
+    /* ATS highlight */
+    .ats-fav { color: #ff6666; font-weight: bold; }
+    .ats-dog { color: #66aaff; font-weight: bold; }
+
+    /* Confidence colors */
+    .conf-low   { color: #f97373; font-weight: bold; }   /* red-ish */
+    .conf-med   { color: #facc15; font-weight: bold; }   /* yellow  */
+    .conf-high  { color: #22c55e; font-weight: bold; }   /* green   */
+
+    /* Mobile tweaks */
+    @media (max-width: 640px) {
+      body {
+        padding: 10px;
+      }
+      .header h1 {
+        font-size: 20px;
+      }
+      .filters {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .table-container {
+        max-height: 65vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>FBF Game & Fight Predictions</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">Dark / Light</button>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <div class="filter-group">
+      <span class="filter-label">SPORT:</span>
+      <button class="filter-btn active" data-filter-group="sport" data-value="ALL">All</button>
+      <button class="filter-btn" data-filter-group="sport" data-value="NFL">NFL</button>
+      <button class="filter-btn" data-filter-group="sport" data-value="NCAAF">NCAAF</button>
+      <button class="filter-btn" data-filter-group="sport" data-value="UFC">UFC</button>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">CONFIDENCE:</span>
+      <button class="filter-btn active" data-filter-group="conf" data-value="ALL">All</button>
+      <button class="filter-btn" data-filter-group="conf" data-value="LOW">Low</button>
+      <button class="filter-btn" data-filter-group="conf" data-value="MED">Medium</button>
+      <button class="filter-btn" data-filter-group="conf" data-value="HIGH">High</button>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">PICKS:</span>
+      <button class="filter-btn active" data-filter-group="pick" data-value="ALL">All</button>
+      <button class="filter-btn" data-filter-group="pick" data-value="SU">SU</button>
+      <button class="filter-btn" data-filter-group="pick" data-value="ATS">ATS</button>
+      <button class="filter-btn" data-filter-group="pick" data-value="OU">O/U</button>
+    </div>
+  </div>
+
+  <!-- FOOTBALL SECTION -->
+  <div class="section-title">NFL & College Football</div>
+  <div class="table-container">
+    <table class="pred-table" id="football-table">
+      <thead>
+        <tr>
+          <th>Matchup</th>
+          <th>Straight-Up</th>
+          <th>SU %</th>
+          <th>ATS</th>
+          <th>Spread</th>
+          <th>Cover %</th>
+          <th>O/U</th>
+          <th>Total Pick</th>
+          <th>Conf (SU)</th>
+          <th>Conf (ATS)</th>
+        </tr>
+      </thead>
+      <tbody id="football-body"></tbody>
+    </table>
+  </div>
+
+  <!-- UFC SECTION -->
+  <div class="section-title">UFC Fight Predictions</div>
+  <div class="table-container">
+    <table class="pred-table" id="ufc-table">
+      <thead>
+        <tr>
+          <th>Fight</th>
+          <th>Pick</th>
+          <th>Win %</th>
+          <th>KO %</th>
+          <th>Sub %</th>
+          <th>Dec %</th>
+          <th>Round 1 %</th>
+          <th>Goes Dist %</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody id="ufc-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    // ================= THEME =================
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
+
+    // ================= STATE =================
+    const state = {
+      predictions: [],
+      sportFilter: "ALL",
+      confFilter: "ALL",
+      pickFilter: "ALL",
+    };
+
+    // Auto-refresh every 30 minutes (1800000 ms)
+    setInterval(() => {
+      location.reload();
+    }, 1800000);
+
+    // ================= HELPERS =================
+    function getSport(item) {
+      const sk = (item.sport_key || item.sport || "").toLowerCase();
+      if (sk.includes("mma")) return "UFC";
+      if (sk.includes("ncaaf")) return "NCAAF";
+      if (sk.includes("nfl")) return "NFL";
+      return "OTHER";
+    }
+
+    function toNumber(val) {
+      if (val == null) return null;
+      const n = parseFloat(val);
+      return isNaN(n) ? null : n;
+    }
+
+    function confClass(conf) {
+      const n = toNumber(conf);
+      if (n == null) return "";
+      if (n >= 70) return "conf-high";
+      if (n >= 56) return "conf-med";
+      return "conf-low";
+    }
+
+    // For football confidence filter: choose relevant confidence
+    function getFootballConfForFilter(item) {
+      if (state.pickFilter === "ATS") {
+        return item.ats_conf ?? item.ats_cover_conf ?? item.ats_prob;
+      } else if (state.pickFilter === "OU") {
+        return item.ou_conf ?? item.total_conf ?? item.ou_prob ?? item.total_prob;
+      } else {
+        // SU or ALL fall back to SU
+        return item.su_conf ?? item.su_prob;
+      }
+    }
+
+    function passesConfFilter(conf) {
+      if (state.confFilter === "ALL") return true;
+      const n = toNumber(conf);
+      if (n == null) return false;
+
+      if (state.confFilter === "LOW") {
+        return n <= 55;
+      } else if (state.confFilter === "MED") {
+        return n >= 56 && n <= 69;
+      } else if (state.confFilter === "HIGH") {
+        return n >= 70;
+      }
+      return true;
+    }
+
+    function passesPickFilterFootball(item) {
+      if (state.pickFilter === "ALL" || state.pickFilter === "SU") return true;
+
+      if (state.pickFilter === "ATS") {
+        return !!item.ats_side;
+      }
+
+      if (state.pickFilter === "OU") {
+        const tp = (item.total_pick || "").toLowerCase();
+        return tp && tp !== "no play";
+      }
+
+      return true;
+    }
+
+    function passesSportFilterFootball(sport) {
+      if (state.sportFilter === "ALL") return sport === "NFL" || sport === "NCAAF";
+      if (state.sportFilter === "NFL") return sport === "NFL";
+      if (state.sportFilter === "NCAAF") return sport === "NCAAF";
+      // If user selects UFC, football rows should be hidden:
+      if (state.sportFilter === "UFC") return false;
+      return true;
+    }
+
+    function passesSportFilterUFC() {
+      return state.sportFilter === "ALL" || state.sportFilter === "UFC";
+    }
+
+    function passesPickFilterUFC() {
+      // UFC is effectively SU only; only show when All or SU selected
+      return state.pickFilter === "ALL" || state.pickFilter === "SU";
+    }
+
+    function passesConfFilterUFC(item) {
+      const conf = item.win_pct ?? item.win_conf ?? item.win_prob;
+      return passesConfFilter(conf);
+    }
+
+    // ================= RENDER =================
+    function renderTables() {
+      const fbBody = document.getElementById("football-body");
+      const ufcBody = document.getElementById("ufc-body");
+      fbBody.innerHTML = "";
+      ufcBody.innerHTML = "";
+
+      state.predictions.forEach(item => {
+        const sport = getSport(item);
+
+        if (sport === "UFC") {
+          if (!passesSportFilterUFC()) return;
+          if (!passesPickFilterUFC()) return;
+          if (!passesConfFilterUFC(item)) return;
+
+          const win = item.win_pct ?? item.win_conf ?? item.win_prob;
+          const ko  = item.ko_pct ?? item.ko_prob;
+          const sub = item.sub_pct ?? item.sub_prob;
+          const dec = item.dec_pct ?? item.dec_prob;
+          const r1  = item.r1_pct ?? item.r1_prob;
+          const dist = item.goes_dist_pct ?? item.goes_dist_prob;
+          const conf = win;
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.matchup || ""}</td>
+            <td>${item.pick || item.su_pick || ""}</td>
+            <td class="${confClass(win)}">${win ?? ""}%</td>
+            <td>${ko ?? ""}%</td>
+            <td>${sub ?? ""}%</td>
+            <td>${dec ?? ""}%</td>
+            <td>${r1 ?? ""}%</td>
+            <td>${dist ?? ""}%</td>
+            <td class="${confClass(conf)}">${conf ?? ""}%</td>
+          `;
+          ufcBody.appendChild(row);
+        } else if (sport === "NFL" || sport === "NCAAF") {
+          if (!passesSportFilterFootball(sport)) return;
+          if (!passesPickFilterFootball(item)) return;
+
+          const confVal = getFootballConfForFilter(item);
+          if (!passesConfFilter(confVal)) return;
+
+          const atsClass =
+            item.ats_side === "fav" ? "ats-fav" :
+            item.ats_side === "dog" ? "ats-dog" : "";
+
+          const suConf  = item.su_conf ?? item.su_prob;
+          const atsConf = item.ats_conf ?? item.ats_cover_conf ?? item.ats_prob;
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.matchup || ""}</td>
+            <td>${item.su_pick || ""}</td>
+            <td class="${confClass(suConf)}">${suConf ?? ""}%</td>
+            <td class="${atsClass}">${(item.ats_side || "").toUpperCase()}</td>
+            <td>${item.spread ?? ""}</td>
+            <td class="${confClass(atsConf)}">${atsConf ?? ""}%</td>
+            <td>${item.total ?? ""}</td>
+            <td>${item.total_pick || ""}</td>
+            <td class="${confClass(suConf)}">${suConf ?? ""}%</td>
+            <td class="${confClass(atsConf)}">${atsConf ?? ""}%</td>
+          `;
+          fbBody.appendChild(row);
+        }
+      });
+    }
+
+    // ================= FILTER BUTTON LOGIC =================
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+
+      const group = btn.dataset.filterGroup;
+      const value = btn.dataset.value;
+      if (!group || !value) return;
+
+      // clear active in same group
+      document.querySelectorAll(`.filter-btn[data-filter-group="${group}"]`)
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (group === "sport") state.sportFilter = value;
+      if (group === "conf")  state.confFilter  = value;
+      if (group === "pick")  state.pickFilter  = value;
+
+      renderTables();
+    });
+
+    // ================= SORTING =================
+    document.addEventListener("DOMContentLoaded", () => {
+      enableSorting("football-table");
+      enableSorting("ufc-table");
+    });
+
+    function enableSorting(tableId) {
+      const table = document.getElementById(tableId);
+      if (!table) return;
+      const headers = table.querySelectorAll("th");
+      headers.forEach((th, idx) => {
+        th.addEventListener("click", () => sortTable(table, idx));
+      });
+    }
+
+    function sortTable(table, col) {
+      const tbody = table.querySelector("tbody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      const isNumeric = rows.every(r => {
+        const txt = r.children[col].innerText.replace("%","").trim();
+        return txt === "" || !isNaN(parseFloat(txt));
+      });
+
+      rows.sort((a, b) => {
+        const A = a.children[col].innerText.replace("%","").trim();
+        const B = b.children[col].innerText.replace("%","").trim();
+        if (isNumeric) {
+          const aNum = parseFloat(A) || 0;
+          const bNum = parseFloat(B) || 0;
+          return bNum - aNum; // numeric descending
+        }
+        return A.localeCompare(B); // A→Z
+      });
+
+      tbody.innerHTML = "";
+      rows.forEach(r => tbody.appendChild(r));
+    }
+
+    // ================= LOAD DATA =================
+    fetch("predictions.json", { cache: "no-cache" })
+      .then(r => r.json())
+      .then(data => {
+        const arr = Array.isArray(data) ? data : (data.data || data.predictions || []);
+        state.predictions = arr || [];
+        renderTables();
+      })
+      .catch(err => console.error("Error loading predictions.json", err));
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FBF Predictions Dashboard</title>
+
+<style>
+/* ============================================================
+   GLOBAL
+============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #111;
+  color: #eee;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+/* ============================================================
+   HEADER + THEME TOGGLE
+============================================================ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+
+.theme-toggle {
+  padding: 8px 14px;
+  background: #444;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body.light .theme-toggle {
+  background: #ddd;
+  color: #111;
+}
+
+/* ============================================================
+   TABLE WRAPPER
+============================================================ */
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 25px 0 10px 0;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 40px;
+}
+
+.pred-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1b1b1b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.light .pred-table {
+  background: #fff;
+}
+
+.pred-table th,
+.pred-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  font-size: 14px;
+}
+
+body.light .pred-table th,
+body.light .pred-table td {
+  border-bottom: 1px solid #ccc;
+}
+
+.pred-table th {
+  background: #222;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+body.light .pred-table th {
+  background: #eee;
+}
+
+.pred-table tr:hover {
+  background: #2b2b2b;
+}
+
+body.light .pred-table tr:hover {
+  background: #eaeaea;
+}
+
+/* ATS highlight */
+.ats-fav { color: #ff6666; font-weight: bold; }
+.ats-dog { color: #66aaff; font-weight: bold; }
+
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<div class="header">
+  <h1>FBF Game Predictions</h1>
+  <button class="theme-toggle" onclick="toggleTheme()">Dark / Light</button>
+</div>
+
+<!-- ============================================================
+     FOOTBALL SECTION
+============================================================ -->
+<div class="section-title">NFL & College Football</div>
+
+<div class="table-container">
+<table class="pred-table" id="football-table">
+  <thead>
+    <tr>
+      <th>Matchup</th>
+      <th>Straight-Up</th>
+      <th>SU %</th>
+      <th>ATS</th>
+      <th>Spread</th>
+      <th>Cover %</th>
+      <th>O/U</th>
+      <th>Total Pick</th>
+      <th>Conf (SU)</th>
+      <th>Conf (ATS)</th>
+    </tr>
+  </thead>
+  <tbody id="football-body"></tbody>
+</table>
+</div>
+
+<!-- ============================================================
+     UFC SECTION
+============================================================ -->
+<div class="section-title">UFC Fight Predictions</div>
+
+<div class="table-container">
+<table class="pred-table" id="ufc-table">
+  <thead>
+    <tr>
+      <th>Fight</th>
+      <th>Pick</th>
+      <th>Win %</th>
+      <th>KO %</th>
+      <th>Sub %</th>
+      <th>Dec %</th>
+      <th>Round 1 %</th>
+      <th>Goes Dist %</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody id="ufc-body"></tbody>
+</table>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+/* ------------------------------------------------------------
+   THEME TOGGLE
+------------------------------------------------------------ */
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+/* ------------------------------------------------------------
+   LOAD PREDICTIONS.JSON
+------------------------------------------------------------ */
+fetch("predictions.json")
+  .then(r => r.json())
+  .then(data => renderData(data.data))
+  .catch(err => console.error("Error loading predictions.json", err));
+
+
+/* ------------------------------------------------------------
+   RENDER BOTH TABLES
+------------------------------------------------------------ */
+function renderData(list) {
+  const fb = document.getElementById("football-body");
+  const ufc = document.getElementById("ufc-body");
+
+  list.forEach(item => {
+    if (item.sport && item.sport.includes("mma")) {
+      // ================= UFC ROW =================
+      const row = `
+        <tr>
+          <td>${item.matchup}</td>
+          <td>${item.pick}</td>
+          <td>${item.win_pct}%</td>
+          <td>${item.ko_pct}%</td>
+          <td>${item.sub_pct}%</td>
+          <td>${item.dec_pct}%</td>
+          <td>${item.r1_pct}%</td>
+          <td>${item.goes_dist_pct}%</td>
+          <td>${item.confidence}%</td>
+        </tr>
+      `;
+      ufc.insertAdjacentHTML("beforeend", row);
+
+    } else {
+      // ================= FOOTBALL ROW =================
+      const atsClass =
+        item.ats_side === "fav" ? "ats-fav" :
+        item.ats_side === "dog" ? "ats-dog" : "";
+
+      const row = `
+        <tr>
+          <td>${item.matchup}</td>
+          <td>${item.su_pick}</td>
+          <td>${item.su_conf}%</td>
+          <td class="${atsClass}">${item.ats_side.toUpperCase()}</td>
+          <td>${item.spread}</td>
+          <td>${item.ats_conf}%</td>
+          <td>${item.total}</td>
+          <td>${item.total_pick}</td>
+          <td>${item.su_conf}%</td>
+          <td>${item.ats_conf}%</td>
+        </tr>
+      `;
+
+      fb.insertAdjacentHTML("beforeend", row);
+    }
+  });
+}
+
+
+/* ------------------------------------------------------------
+   TABLE SORTING FOR BOTH TABLES
+------------------------------------------------------------ */
+document.addEventListener("DOMContentLoaded", () => {
+  enableSorting("football-table");
+  enableSorting("ufc-table");
+});
+
+function enableSorting(tableId) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+
+  const headers = table.querySelectorAll("th");
+
+  headers.forEach((header, index) => {
+    header.addEventListener("click", () => sortTable(table, index));
+  });
+}
+
+function sortTable(table, col) {
+  const tbody = table.querySelector("tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+
+  const isNumeric = rows.every(r =>
+    !isNaN(parseFloat(r.children[col].innerText.replace("%","").trim()))
+  );
+
+  rows.sort((a, b) => {
+    const A = a.children[col].innerText.replace("%","").trim();
+    const B = b.children[col].innerText.replace("%","").trim();
+
+    if (isNumeric) return parseFloat(B) - parseFloat(A);
+    return A.localeCompare(B);
+  });
+
+  tbody.innerHTML = "";
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FBF Predictions Dashboard</title>
+
+<style>
+/* ===== Global Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #111;
+  color: #eee;
+  transition: background 0.3s, color 0.3s;
+  padding: 20px;
+}
+
+body.light {
+  background-color: #fafafa;
+  color: #222;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  padding: 8px 14px;
+  background: #444;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body.light .theme-toggle {
+  background: #ddd;
+  color: #111;
+}
+
+/* ===== Table Styling ===== */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.pred-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1b1b1b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.light .pred-table {
+  background: #fff;
+}
+
+.pred-table th, .pred-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  font-size: 14px;
+}
+
+body.light .pred-table th,
+body.light .pred-table td {
+  border-bottom: 1px solid #ccc;
+}
+
+.pred-table th {
+  background: #222;
+  font-weight: bold;
+}
+
+body.light .pred-table th {
+  background: #eee;
+}
+
+tr:hover {
+  background: #2b2b2b;
+}
+
+body.light tr:hover {
+  background: #f2f2f2;
+}
+
+/* Highlight ATS picks */
+.ats-fav {
+  color: #ff6666;
+  font-weight: bold;
+}
+
+.ats-dog {
+  color: #66aaff;
+  font-weight: bold;
+}
+
+/* UFC styles simple */
+.ufc-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>FBF Game Predictions</h1>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+</div>
+
+<!-- ====================== NFL/NCAAF TABLE ====================== -->
+<div class="table-container">
+<table class="pred-table" id="football-table">
+  <thead>
+    <tr>
+      <th>Matchup</th>
+      <th>Straight-Up</th>
+      <th>SU Conf %</th>
+      <th>ATS Pick</th>
+      <th>Spread</th>
+      <th>Cover %</th>
+      <th>O/U</th>
+      <th>Total Pick</th>
+      <th>Conf (SU)</th>
+      <th>Conf (ATS)</th>
+    </tr>
+  </thead>
+  <tbody id="pred-body"></tbody>
+</table>
+</div>
+
+<!-- ====================== UFC TABLE ====================== -->
+<h2 class="ufc-title">UFC Predictions</h2>
+
+<div class="table-container">
+<table class="pred-table" id="ufc-table">
+  <thead>
+    <tr>
+      <th>Fight</th>
+      <th>Pick</th>
+      <th>Win %</th>
+      <th>KO/TKO %</th>
+      <th>Sub %</th>
+      <th>Dec %</th>
+      <th>R1 %</th>
+      <th>Goes Dist %</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody id="ufc-body"></tbody>
+</table>
+</div>
+
+<script>
+// ===== Theme Toggle =====
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+// ===== Load Predictions =====
+fetch("predictions.json")
+  .then(resp => resp.json())
+  .then(data => {
+    renderFootball(data.data);
+    renderUFC(data.data);
+  })
+  .catch(err => console.error("Error loading predictions.json:", err));
+
+/* ========== Render Football Games ========== */
+function renderFootball(list) {
+  const tbody = document.getElementById("pred-body");
+  tbody.innerHTML = "";
+
+  list
+    .filter(g => g.sport_key.includes("football"))
+    .forEach(game => {
+      const atsClass =
+        game.ats_side === "fav" ? "ats-fav" :
+        game.ats_side === "dog" ? "ats-dog" : "";
+
+      const row = `
+        <tr>
+          <td>${game.matchup}</td>
+          <td>${game.su_pick}</td>
+          <td>${game.su_conf}%</td>
+          <td class="${atsClass}">${game.ats_side.toUpperCase()}</td>
+          <td>${game.spread}</td>
+          <td>${game.ats_conf}%</td>
+          <td>${game.total}</td>
+          <td>${game.total_pick}</td>
+          <td>${game.su_conf}%</td>
+          <td>${game.ats_conf}%</td>
+        </tr>
+      `;
+      tbody.insertAdjacentHTML("beforeend", row);
+    });
+}
+
+/* ========== Render UFC ========== */
+function renderUFC(list) {
+  const tbody = document.getElementById("ufc-body");
+  tbody.innerHTML = "";
+
+  list
+    .filter(f => f.sport_key === "mma_mixed_martial_arts")
+    .forEach(fight => {
+      const row = `
+        <tr>
+          <td>${fight.matchup}</td>
+          <td>${fight.pick}</td>
+          <td>${fight.win_pct}%</td>
+          <td>${fight.ko_pct}%</td>
+          <td>${fight.sub_pct}%</td>
+          <td>${fight.dec_pct}%</td>
+          <td>${fight.r1_pct}%</td>
+          <td>${fight.goes_dist_pct}%</td>
+          <td>${fight.confidence}%</td>
+        </tr>
+      `;
+      tbody.insertAdjacentHTML("beforeend", row);
+    });
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forged By Freedom – Betting & DFS Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #05070b;
+      --bg-alt: #0c1018;
+      --card: #111827;
+      --card-alt: #020617;
+      --border: #1f2933;
+      --accent: #f59e0b;
+      --accent-soft: rgba(245,158,11,0.12);
+      --accent-strong: rgba(245,158,11,0.2);
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --text-muted: #6b7280;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --warning: #facc15;
+      --shadow-soft: 0 18px 35px rgba(0,0,0,0.6);
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    body.light {
+      --bg: #f3f4f6;
+      --bg-alt: #e5e7eb;
+      --card: #ffffff;
+      --card-alt: #f9fafb;
+      --border: #d1d5db;
+      --accent: #b45309;
+      --accent-soft: rgba(180,83,9,0.08);
+      --accent-strong: rgba(180,83,9,0.16);
+      --text: #111827;
+      --text-soft: #374151;
+      --text-muted: #6b7280;
+      --danger: #b91c1c;
+      --success: #15803d;
+      --warning: #a16207;
+      --shadow-soft: 0 18px 35px rgba(15,23,42,0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1320px;
+      background: linear-gradient(145deg, var(--card-alt), var(--bg-alt));
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148,163,184,0.15);
+      padding: 20px 22px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grain {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(248,250,252,0.08);
+      background: radial-gradient(circle at 30% 20%, #facc15 0, #ea580c 40%, #111827 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(251,191,36,0.45);
+      font-weight: 800;
+      font-size: 20px;
+      color: #0b1120;
+    }
+
+    .brand-main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      color: var(--text-muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.08), transparent 60%);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34,197,94,0.15);
+    }
+
+    .theme-toggle {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 5px 11px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.4));
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.08s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle span {
+      font-size: 14px;
+    }
+
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.4fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .panel {
+      background: radial-gradient(circle at top left, rgba(148,163,184,0.4), transparent 55%),
+                  linear-gradient(145deg, var(--card), var(--card-alt));
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148,163,184,0.18);
+      box-shadow: var(--shadow-soft);
+      padding: 14px 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(248,250,252,0.08), transparent 55%);
+      opacity: 0.9;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .panel-header {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .panel-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .sport-tabs {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    body.light .sport-tabs {
+      background: rgba(243,244,246,0.85);
+    }
+
+    .sport-tab {
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sport-tab.active {
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(15,23,42,0.98);
+      box-shadow: 0 0 0 1px rgba(248,250,252,0.08);
+    }
+
+    body.light .sport-tab.active {
+      background: rgba(249,250,251,0.98);
+    }
+
+    .filters {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 160px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.55);
+      padding: 6px 10px;
+      font-size: 12px;
+      background: rgba(15,23,42,0.8);
+      color: var(--text);
+      outline: none;
+    }
+
+    body.light .search-input {
+      background: rgba(249,250,251,0.9);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .select {
+      min-width: 110px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-soft);
+      font-size: 12px;
+      padding: 6px 10px;
+      outline: none;
+    }
+
+    body.light .select {
+      background: rgba(249,250,251,0.9);
+    }
+
+    .table-wrapper {
+      position: relative;
+      border-radius: 18px;
+      border: 1px solid rgba(31,41,55,0.85);
+      background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.75));
+      overflow: hidden;
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.light .table-wrapper {
+      background: linear-gradient(145deg, rgba(249,250,251,0.98), rgba(243,244,246,0.92));
+      border-color: rgba(209,213,219,0.9);
+    }
+
+    .table-scroll {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead {
+      background: linear-gradient(90deg, rgba(15,23,42,0.98), rgba(15,23,42,0.75));
+    }
+
+    body.light thead {
+      background: linear-gradient(90deg, rgba(243,244,246,0.98), rgba(229,231,235,0.9));
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      text-align: left;
+      padding: 8px 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-size: 10px;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(55,65,81,0.9);
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15,23,42,0.78);
+    }
+
+    body.light tbody tr:nth-child(even) {
+      background: rgba(243,244,246,0.94);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: rgba(15,23,42,0.52);
+    }
+
+    body.light tbody tr:nth-child(odd) {
+      background: rgba(249,250,251,0.96);
+    }
+
+    tbody td {
+      padding: 7px 10px;
+      border-bottom: 1px solid rgba(31,41,55,0.8);
+      white-space: nowrap;
+    }
+
+    body.light tbody td {
+      border-bottom-color: rgba(209,213,219,0.9);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .td-main {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .td-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .badge-fav {
+      background: rgba(239,68,68,0.14);
+      color: #fecaca;
+      border: 1px solid rgba(239,68,68,0.5);
+    }
+
+    .badge-dog {
+      background: rgba(59,130,246,0.14);
+      color: #bfdbfe;
+      border: 1px solid rgba(59,130,246,0.5);
+    }
+
+    .badge-over {
+      background: rgba(34,197,94,0.14);
+      color: #bbf7d0;
+      border: 1px solid rgba(34,197,94,0.5);
+    }
+
+    .badge-under {
+      background: rgba(234,179,8,0.14);
+      color: #fef3c7;
+      border: 1px solid rgba(234,179,8,0.5);
+    }
+
+    .edge-strong {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .edge-medium {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .edge-weak {
+      color: var(--text-soft);
+    }
+
+    .summary-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .summary-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .summary-card {
+      border-radius: 18px;
+      padding: 10px 11px;
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 65%),
+                  linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.8));
+      border: 1px solid rgba(148,163,184,0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    body.light .summary-card {
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 65%),
+                  linear-gradient(145deg, #ffffff, #f3f4f6);
+    }
+
+    .summary-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .summary-value {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .summary-sub {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .ufc-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .ufc-fight {
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(15,23,42,0.78));
+      padding: 9px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    body.light .ufc-fight {
+      background: linear-gradient(135deg, #ffffff, #f3f4f6);
+    }
+
+    .ufc-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ufc-matchup {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .ufc-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .ufc-pick {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .ufc-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--text-soft);
+    }
+
+    .footer {
+      position: relative;
+      margin-top: 10px;
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer span {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="dark">
+  <div class="app-shell">
+    <div class="grain"></div>
+    <header>
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-main">
+          <div class="brand-title">Forged By Freedom</div>
+          <div class="brand-sub">SU · ATS · TOTALS · DFS</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="pill">
+          <div class="pill-dot"></div>
+          <span>Live Model • Week Slate</span>
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button">
+          <span>🌙</span>
+          <span>Theme</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Left: Main NFL/NCAAF table -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Football Board</div>
+            <div class="panel-subtitle" id="panelSubtitle">NFL &amp; NCAAF • Sides &amp; Totals</div>
+          </div>
+          <div class="sport-tabs">
+            <button class="sport-tab active" data-sport="NFL">NFL</button>
+            <button class="sport-tab" data-sport="NCAAF">NCAAF</button>
+          </div>
+        </div>
+
+        <div class="filters">
+          <input id="searchInput" class="search-input" placeholder="Filter by team or matchup…" />
+          <select id="minEdgeSelect" class="select">
+            <option value="0">All Edges</option>
+            <option value="3">≥ 3 pts edge</option>
+            <option value="5">≥ 5 pts edge</option>
+            <option value="7">≥ 7 pts edge</option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Matchup</th>
+                  <th>Straight-Up</th>
+                  <th>SU Conf %</th>
+                  <th>ATS Pick</th>
+                  <th>Spread</th>
+                  <th>Cover %</th>
+                  <th>O/U</th>
+                  <th>Total Pick</th>
+                  <th>Conf (SU)</th>
+                  <th>Conf (ATS)</th>
+                </tr>
+              </thead>
+              <tbody id="gamesBody">
+                <!-- Rows injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Summary + UFC -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Slate Summary</div>
+            <div class="panel-subtitle">Edges • Totals • UFC</div>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="summary-label">Current Focus</div>
+            <div class="summary-value" id="summarySport">NFL</div>
+            <div class="summary-sub" id="summaryGames">– games loaded</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Top Edge (ATS)</div>
+            <div class="summary-value" id="summaryTopEdge">–</div>
+            <div class="summary-sub" id="summaryTopEdgeMeta">Waiting for data…</div>
+          </div>
+        </div>
+
+        <div class="summary-card" style="margin-bottom: 8px;">
+          <div class="summary-label">Totals Lean</div>
+          <div class="summary-value" id="summaryTotals">–</div>
+          <div class="summary-sub" id="summaryTotalsMeta">Over/Under distribution for current sport.</div>
+        </div>
+
+        <div class="panel-header" style="margin-top: 10px; margin-bottom: 6px;">
+          <div>
+            <div class="panel-title">UFC Board</div>
+            <div class="panel-subtitle">Main card &amp; strong edges</div>
+          </div>
+        </div>
+
+        <div class="ufc-list" id="ufcList">
+          <!-- UFC fights injected by JS -->
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      <span id="lastUpdated">Model: –</span>
+      <span>Results are probabilistic and informational only. Bet responsibly.</span>
+    </div>
+  </div>
+
+  <script>
+    const state = {
+      rawData: [],
+      sport: "NFL",
+      search: "",
+      minEdge: 0,
+      theme: "dark"
+    };
+
+    const SPORT_LABELS = {
+      americanfootball_nfl: "NFL",
+      NFL: "NFL",
+      americanfootball_ncaaf: "NCAAF",
+      NCAAF: "NCAAF",
+      mma_mixed_martial_arts: "UFC",
+      UFC: "UFC"
+    };
+
+    function mapSportKey(item) {
+      const k = item.sport_key || item.sport || "";
+      return SPORT_LABELS[k] || (k.toUpperCase().includes("NCAAF") ? "NCAAF"
+        : k.toUpperCase().includes("NFL") ? "NFL"
+        : k.toUpperCase().includes("MMA") ? "UFC"
+        : "NFL");
+    }
+
+    function toPctFromFields(obj, confField, probField) {
+      if (obj == null) return null;
+      if (typeof obj[confField] === "number") {
+        // assume already 0–100
+        return obj[confField];
+      }
+      if (typeof obj[probField] === "number") {
+        // assume 0–1
+        return obj[probField] * 100;
+      }
+      return null;
+    }
+
+    function formatPct(v) {
+      if (v == null || isNaN(v)) return "–";
+      return v.toFixed(1).replace(/\.0$/, "") + "%";
+    }
+
+    function formatSpread(v) {
+      if (v == null || isNaN(v)) return "–";
+      if (Math.abs(v) < 1e-6) return "PK";
+      return (v > 0 ? "+" : "") + v;
+    }
+
+    function classifyEdge(edgeValue) {
+      const mag = Math.abs(edgeValue || 0);
+      if (mag >= 7) return "edge-strong";
+      if (mag >= 3) return "edge-medium";
+      return "edge-weak";
+    }
+
+    function renderGames() {
+      const tbody = document.getElementById("gamesBody");
+      tbody.innerHTML = "";
+
+      const sport = state.sport;
+      const searchLower = (state.search || "").toLowerCase();
+      const minEdge = state.minEdge || 0;
+
+      const games = state.rawData
+        .filter(g => {
+          const s = mapSportKey(g);
+          return s === sport;
+        })
+        .filter(g => {
+          if (!searchLower) return true;
+          const matchup = (g.matchup || "").toLowerCase();
+          const fav = (g.fav_team || g.favorite || "").toLowerCase();
+          const dog = (g.dog_team || g.underdog || "").toLowerCase();
+          return matchup.includes(searchLower) ||
+                 fav.includes(searchLower) ||
+                 dog.includes(searchLower);
+        })
+        .filter(g => {
+          const atsVal = typeof g.ats_value === "number" ? Math.abs(g.ats_value) : 0;
+          return atsVal >= minEdge;
+        });
+
+      const frag = document.createDocumentFragment();
+
+      games.forEach(g => {
+        const suConf = toPctFromFields(g, "su_conf", "su_prob");
+        const atsConf = toPctFromFields(g, "ats_conf", "ats_prob");
+        const coverPct = toPctFromFields(g, "ats_cover_conf", "ats_conf") || atsConf;
+
+        const suPick = g.su_pick || g.su_team || (g.fav_team || g.favorite || "–");
+        const atsSideRaw = g.ats_side || g.ats_pick || "";
+        let atsLabel = "–";
+        let atsBadgeClass = "";
+        if (atsSideRaw === "fav") {
+          atsLabel = "Favorite";
+          atsBadgeClass = "badge badge-fav";
+        } else if (atsSideRaw === "dog") {
+          atsLabel = "Underdog";
+          atsBadgeClass = "badge badge-dog";
+        } else if (atsSideRaw) {
+          atsLabel = String(atsSideRaw).toUpperCase();
+        }
+
+        const totalPickRaw = g.total_pick || g.ou_pick || "";
+        let totalLabel = "–";
+        let totalBadgeClass = "";
+        if (/over/i.test(totalPickRaw)) {
+          totalLabel = "Over";
+          totalBadgeClass = "badge badge-over";
+        } else if (/under/i.test(totalPickRaw)) {
+          totalLabel = "Under";
+          totalBadgeClass = "badge badge-under";
+        } else if (totalPickRaw) {
+          totalLabel = String(totalPickRaw);
+        }
+
+        const matchup = g.matchup || `${g.away_team || "Away"}@${g.home_team || "Home"}`;
+        const spread = g.spread != null ? g.spread : g.fav_spread;
+        const ou = g.total != null ? g.total : g.total_line;
+
+        const atsValue = typeof g.ats_value === "number" ? g.ats_value : 0;
+        const edgeClass = classifyEdge(atsValue);
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>
+            <div class="td-main">${matchup}</div>
+            <div class="td-sub">${g.commence_time || ""}</div>
+          </td>
+          <td>
+            <div class="td-main">${suPick}</div>
+          </td>
+          <td><span class="${edgeClass}">${formatPct(suConf)}</span></td>
+          <td>
+            ${atsBadgeClass
+              ? `<span class="${atsBadgeClass}">${atsLabel}</span>`
+              : `<span>${atsLabel}</span>`}
+          </td>
+          <td>${formatSpread(spread)}</td>
+          <td>${formatPct(coverPct)}</td>
+          <td>${ou != null ? ou : "–"}</td>
+          <td>
+            ${totalBadgeClass
+              ? `<span class="${totalBadgeClass}">${totalLabel}</span>`
+              : `<span>${totalLabel}</span>`}
+          </td>
+          <td>${formatPct(suConf)}</td>
+          <td>${formatPct(atsConf)}</td>
+        `;
+        frag.appendChild(tr);
+      });
+
+      tbody.appendChild(frag);
+
+      // Summary for right panel
+      updateSummary(games);
+    }
+
+    function updateSummary(games) {
+      const sportLabel = state.sport;
+      const summarySport = document.getElementById("summarySport");
+      const summaryGames = document.getElementById("summaryGames");
+      const summaryTopEdge = document.getElementById("summaryTopEdge");
+      const summaryTopEdgeMeta = document.getElementById("summaryTopEdgeMeta");
+      const summaryTotals = document.getElementById("summaryTotals");
+      const summaryTotalsMeta = document.getElementById("summaryTotalsMeta");
+
+      summarySport.textContent = sportLabel;
+      summaryGames.textContent = `${games.length} games in view`;
+
+      if (!games.length) {
+        summaryTopEdge.textContent = "–";
+        summaryTopEdgeMeta.textContent = "No games match your filters.";
+        summaryTotals.textContent = "–";
+        summaryTotalsMeta.textContent = "Adjust filters to see totals distribution.";
+        return;
+      }
+
+      let top = null;
+      games.forEach(g => {
+        const v = typeof g.ats_value === "number" ? Math.abs(g.ats_value) : 0;
+        if (!top || v > top.edge) {
+          top = {
+            edge: v,
+            item: g
+          };
+        }
+      });
+
+      if (top && top.item) {
+        const matchup = top.item.matchup || "Top ATS Edge";
+        const side = top.item.ats_side === "dog" ? "Underdog" :
+                     top.item.ats_side === "fav" ? "Favorite" :
+                     (top.item.ats_side || "Lean");
+        const atsConf = toPctFromFields(top.item, "ats_conf", "ats_prob");
+
+        summaryTopEdge.textContent = `${matchup}`;
+        summaryTopEdgeMeta.textContent = `${side} • Edge ≈ ${top.edge.toFixed(1)} pts • ${formatPct(atsConf)} cover`;
+      } else {
+        summaryTopEdge.textContent = "–";
+        summaryTopEdgeMeta.textContent = "No clear ATS edge computed.";
+      }
+
+      // Totals distribution
+      let overCount = 0, underCount = 0;
+      games.forEach(g => {
+        const tp = (g.total_pick || g.ou_pick || "").toLowerCase();
+        if (tp.includes("over")) overCount++;
+        else if (tp.includes("under")) underCount++;
+      });
+      const totalCount = overCount + underCount;
+      if (totalCount === 0) {
+        summaryTotals.textContent = "Balanced";
+        summaryTotalsMeta.textContent = "No strong totals leans logged yet.";
+      } else {
+        const overPct = (overCount / totalCount) * 100;
+        const underPct = 100 - overPct;
+        summaryTotals.textContent = overPct >= underPct
+          ? `Over ${overPct.toFixed(0)}%`
+          : `Under ${underPct.toFixed(0)}%`;
+        summaryTotalsMeta.textContent = `Overs: ${overCount} • Unders: ${underCount}`;
+      }
+    }
+
+    function renderUFC() {
+      const container = document.getElementById("ufcList");
+      container.innerHTML = "";
+
+      const fights = state.rawData.filter(g => mapSportKey(g) === "UFC");
+      if (!fights.length) {
+        const div = document.createElement("div");
+        div.className = "td-sub";
+        div.textContent = "No UFC fights found in predictions.json.";
+        container.appendChild(div);
+        return;
+      }
+
+      fights.sort((a, b) => {
+        const ta = a.commence_time || "";
+        const tb = b.commence_time || "";
+        return ta.localeCompare(tb);
+      });
+
+      fights.forEach(f => {
+        const suPick = f.su_pick || f.pick || f.fav_fighter || "Pick";
+        const winConf = toPctFromFields(f, "su_conf", "win_prob");
+        const koPct  = toPctFromFields(f, "ko_tko_pct", "ko_prob");
+        const subPct = toPctFromFields(f, "sub_pct", "sub_prob");
+        const decPct = toPctFromFields(f, "dec_pct", "dec_prob");
+        const r1Pct  = toPctFromFields(f, "r1_pct", "r1_prob");
+        const distPct = toPctFromFields(f, "goes_dist_pct", "goes_dist_prob");
+
+        const matchup = f.matchup || `${f.dog_name || "Red"} vs ${f.fav_name || "Blue"}`;
+        const commence = f.commence_time || "";
+        const edgeClass = classifyEdge(typeof f.ats_value === "number" ? f.ats_value : 0);
+
+        const el = document.createElement("div");
+        el.className = "ufc-fight";
+        el.innerHTML = `
+          <div class="ufc-main">
+            <div>
+              <div class="ufc-matchup">${matchup}</div>
+              <div class="ufc-meta">${commence}</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="ufc-pick ${edgeClass}">${suPick}</div>
+              <div class="td-sub">${formatPct(winConf)} win</div>
+            </div>
+          </div>
+          <div class="ufc-stats">
+            <span>KO/TKO: ${formatPct(koPct)}</span>
+            <span>Sub: ${formatPct(subPct)}</span>
+            <span>Dec: ${formatPct(decPct)}</span>
+            <span>R1: ${formatPct(r1Pct)}</span>
+            <span>Goes Dist: ${formatPct(distPct)}</span>
+          </div>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+    function updateLastUpdated(ts) {
+      const el = document.getElementById("lastUpdated");
+      if (!ts) {
+        el.textContent = "Model: timestamp unknown";
+        return;
+      }
+      el.textContent = `Model: ${ts}`;
+    }
+
+    function attachEvents() {
+      document.querySelectorAll(".sport-tab").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".sport-tab").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.sport = btn.dataset.sport;
+          document.getElementById("panelSubtitle").textContent =
+            state.sport + " • Sides & Totals";
+          renderGames();
+        });
+      });
+
+      document.getElementById("searchInput").addEventListener("input", e => {
+        state.search = e.target.value || "";
+        renderGames();
+      });
+
+      document.getElementById("minEdgeSelect").addEventListener("change", e => {
+        state.minEdge = parseFloat(e.target.value || "0");
+        renderGames();
+      });
+
+      const themeToggle = document.getElementById("themeToggle");
+      themeToggle.addEventListener("click", () => {
+        state.theme = state.theme === "dark" ? "light" : "dark";
+        document.body.className = state.theme;
+        themeToggle.firstElementChild.textContent = state.theme === "dark" ? "🌙" : "☀️";
+      });
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch("predictions.json", { cache: "no-cache" });
+        const json = await res.json();
+        const data = json.data || json.predictions || json || [];
+        state.rawData = Array.isArray(data) ? data : [];
+        updateLastUpdated(json.timestamp || json.ts || "");
+        renderGames();
+        renderUFC();
+      } catch (err) {
+        console.error("Failed to load predictions.json", err);
+        updateLastUpdated(null);
+      }
+    }
+
+    // Init
+    attachEvents();
+    loadData();
+  </script>
+</body>
+</html>
+cd ~/Documents/fbf-data
+nano index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>Forged By Freedom — Live Odds & Picks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
