@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>Forged By Freedom — Live Odds & Picks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- tiny blank favicon so the console stops yelling -->
+  <link rel="icon" href="data:," />
 
   <style>
     :root {
@@ -22,6 +24,7 @@
       --chip-active-bg: #ff7a1a;
       --chip-active-text: #05070b;
       --badge-bg: #111827;
+      --pill-bg: rgba(21,26,36,0.75);
     }
 
     body {
@@ -35,7 +38,7 @@
     #app { max-width: 1400px; margin: 0 auto; }
 
     /* --------------------------------------------- */
-    /*  CENTERED HEADER BLOCK                        */
+    /*  CENTERED HEADER BLOCK  */
     /* --------------------------------------------- */
     header {
       display: flex;
@@ -62,19 +65,41 @@
       gap: 4px;
     }
 
+    /* neon pulse title */
     .brand-title {
+      margin: 0;
       font-size: 34px;
       font-weight: 900;
       color: var(--accent);
-      letter-spacing: 1.3px;
-      text-shadow: 0 0 6px #ff7a1a, 0 0 12px #ff7a1a;
+      letter-spacing: 1.4px;
+      text-shadow:
+        0 0 6px rgba(255,122,26,0.9),
+        0 0 14px rgba(255,122,26,0.8),
+        0 0 26px rgba(255,122,26,0.7);
       animation: pulseGlow 2.2s ease-in-out infinite;
     }
-
     @keyframes pulseGlow {
-      0%   { text-shadow: 0 0 4px #ff7a1a, 0 0 8px #ff7a1a; opacity: .9; }
-      50%  { text-shadow: 0 0 14px #ffb266, 0 0 30px #ff7a1a; opacity: 1; }
-      100% { text-shadow: 0 0 4px #ff7a1a, 0 0 8px #ff7a1a; opacity: .9; }
+      0% {
+        filter: brightness(1);
+        text-shadow:
+          0 0 4px rgba(255,122,26,0.8),
+          0 0 10px rgba(255,122,26,0.8),
+          0 0 18px rgba(255,122,26,0.6);
+      }
+      50% {
+        filter: brightness(1.4);
+        text-shadow:
+          0 0 10px rgba(255,178,102,1),
+          0 0 22px rgba(255,122,26,1),
+          0 0 40px rgba(255,122,26,0.9);
+      }
+      100% {
+        filter: brightness(1);
+        text-shadow:
+          0 0 4px rgba(255,122,26,0.8),
+          0 0 10px rgba(255,122,26,0.8),
+          0 0 18px rgba(255,122,26,0.6);
+      }
     }
 
     .brand-sub {
@@ -88,16 +113,10 @@
       font-size: 11px;
       letter-spacing: 2px;
       color: var(--accent-soft);
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      justify-content: center;
-    }
+    .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content:center; }
 
     .chip {
       background: var(--chip-bg);
@@ -125,7 +144,7 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      text-align: center;
+      text-align:center;
     }
     .statusline .warn { color: var(--warning); }
     .statusline .ok { color: var(--success); }
@@ -196,6 +215,22 @@
       gap: 8px;
     }
     .team-line strong { color: var(--text); font-weight: 700; }
+
+    .lines-row{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      font-size:10px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+    .line-pill{
+      background: var(--pill-bg);
+      border: 1px solid var(--border-soft);
+      border-radius:999px;
+      padding:2px 6px;
+      white-space:nowrap;
+    }
 
     .picks-block {
       border-top: 1px dashed #1f2937;
@@ -301,7 +336,6 @@
     function toDate(x) {
       try { return new Date(x); } catch { return null; }
     }
-
     function formatTime(iso) {
       const d = toDate(iso);
       if (!d) return "—";
@@ -412,10 +446,12 @@
         const windStr = wx.wind_kph != null ? `${wx.wind_kph} kph wind` : null;
         const precipStr = wx.precip_mm != null ? `${wx.precip_mm} mm precip` : null;
 
-        // ---- Style 1 pills (compact) ----
-        const refHome = ref.ref_home_win_pct != null ? `${Math.round(ref.ref_home_win_pct)}% home` : null;
-        const refOver = ref.ref_over_pct != null ? `${Math.round(ref.ref_over_pct)}% over` : null;
-        const refFav = ref.ref_fav_cover_pct != null ? `${Math.round(ref.ref_fav_cover_pct)}% fav cover` : null;
+        const refHome = ref.ref_home_win_pct != null ? `${Math.round(ref.ref_home_win_pct*100)}% home` : null;
+        const refOver = ref.ref_over_pct != null ? `${Math.round(ref.ref_over_pct*100)}% over` : null;
+        const refFav = ref.ref_fav_cover_pct != null ? `${Math.round(ref.ref_fav_cover_pct*100)}% fav cover` : null;
+
+        const spreadNum = g.spread ?? g.fav_spread ?? null;
+        const totalNum = g.total ?? null;
 
         c.innerHTML = `
           <div class="card-top-row">
@@ -436,6 +472,11 @@
           <div class="team-line">
             <span>Kickoff</span>
             <span>${formatTime(g.commence_time)}</span>
+          </div>
+
+          <div class="lines-row">
+            ${spreadNum != null ? `<div class="line-pill">Line: ${spreadNum > 0 ? "+" : ""}${spreadNum}</div>` : `<div class="line-pill">Line: —</div>`}
+            ${totalNum != null ? `<div class="line-pill">Total: ${totalNum}</div>` : `<div class="line-pill">Total: —</div>`}
           </div>
 
           <div class="picks-block">
@@ -473,7 +514,7 @@
             ${refOver ? `<div class="meta-pill">OU ${refOver}</div>` : ""}
             ${refFav ? `<div class="meta-pill">ATS ${refFav}</div>` : ""}
 
-            ${(inj.home_injuries != null || inj.away_injuries != null)
+            ${inj.home_injuries != null || inj.away_injuries != null
               ? `<div class="meta-pill">🏥 Inj: ${inj.home_injuries||0}-${inj.away_injuries||0}</div>` : ""}
           </div>
         `;
@@ -486,12 +527,12 @@
       const status = document.getElementById("statusline");
       status.innerHTML = `<div>Loading data…</div>`;
 
-      // NOTE: refs file is referees.json (not referee_trends.json)
+      // NOTE: refs file is referee_trends.json (not referees.json)
       const [combined, predictions, weather, refs, injuries] = await Promise.all([
         loadJsonSafe("combined.json"),
         loadJsonSafe("predictions.json"),
         loadJsonSafe("weather.json"),
-        loadJsonSafe("referees.json"),
+        loadJsonSafe("referee_trends.json"),
         loadJsonSafe("injuries.json"),
       ]);
 
