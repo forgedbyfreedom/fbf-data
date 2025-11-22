@@ -25,55 +25,55 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ---------------------------------------
-      # 1) FETCH ODDS (creates combined.json)
-      # ---------------------------------------
+      # -----------------------------
+      # 1) ESPN ODDS → combined.json
+      # -----------------------------
       - name: Fetch ESPN Odds (All Sports)
         run: python3 fetch_espn_all.py
 
       - name: Tag favorites and dogs
         run: python3 tag_favorites.py
 
-      # ---------------------------------------
+      # -----------------------------
       # 2) SUPPORTING DATA BUILDERS
-      # ---------------------------------------
-      - name: Build full FBS stadium list
+      # -----------------------------
+      - name: Build FBS stadium list
         run: python3 build_fbs_stadiums.py
 
-      - name: Build weather for games (outdoor only)
+      - name: Build outdoor weather for games
         run: python3 build_weather_for_games.py
 
       - name: Build referee trends
         run: python3 referee_trends.py
 
-      - name: Fetch / merge injuries
+      - name: Fetch injury data (from API)
         run: python3 fetch_injuries.py
         continue-on-error: true
 
-      - name: Merge injuries into injuries.json
+      - name: Merge injuries
         run: python3 merge_injuries.py
         continue-on-error: true
 
-      # ---------------------------------------
-      # 3) HISTORICAL LABELS + TRAINING
-      # ---------------------------------------
+      # -----------------------------
+      # 3) HISTORICAL + TRAINING
+      # -----------------------------
       - name: Build historical results
         run: python3 build_historical_results.py
         continue-on-error: true
 
-      - name: Train ML models (safe if no labels yet)
+      - name: Train ML models
         run: python3 train_model.py
         continue-on-error: true
 
-      # ---------------------------------------
-      # 4) PREDICTIONS
-      # ---------------------------------------
+      # -----------------------------
+      # 4) PREDICTIONS FILE
+      # -----------------------------
       - name: Build predictions file
         run: python3 build_predictions.py
 
-      # ---------------------------------------
+      # -----------------------------
       # 5) COMMIT + PUSH
-      # ---------------------------------------
+      # -----------------------------
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
@@ -83,6 +83,6 @@ jobs:
 
           git add -A
 
-          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git commit -m "Auto update $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
 
           git push origin main || echo "Nothing to push"
