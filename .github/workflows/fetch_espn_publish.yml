@@ -2,32 +2,19 @@ name: Auto Fetch - ESPN Odds Weather Ref Trends Predictions
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # every 15 minutes
+    - cron: "*/15 * * * *"
   workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: fetch-and-publish
-  cancel-in-progress: true
 
 jobs:
   fetch-and-publish:
     runs-on: ubuntu-latest
 
     steps:
-      # ------------------------------------------------------
-      # CHECKOUT
-      # ------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ------------------------------------------------------
-      # PYTHON SETUP
-      # ------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -48,29 +35,17 @@ jobs:
         run: python3 tag_favorites.py
 
       # ---------------------------------------
-      # 2) STADIUMS / VENUES / WEATHER
+      # 2) SUPPORTING DATA BUILDERS
       # ---------------------------------------
       - name: Build full FBS stadium list
         run: python3 build_fbs_stadiums.py
 
-      - name: Build venues from combined
-        run: python3 build_venues_from_combined.py
-        continue-on-error: true
-
       - name: Build weather for games (outdoor only)
         run: python3 build_weather_for_games.py
-        continue-on-error: true
 
-      # ---------------------------------------
-      # 3) REF TRENDS
-      # ---------------------------------------
       - name: Build referee trends
         run: python3 referee_trends.py
-        continue-on-error: true
 
-      # ---------------------------------------
-      # 4) INJURIES
-      # ---------------------------------------
       - name: Fetch injuries
         run: python3 fetch_injuries.py
         continue-on-error: true
@@ -80,29 +55,22 @@ jobs:
         continue-on-error: true
 
       # ---------------------------------------
-      # 5) HISTORICAL LABELS + TRAINING
+      # 3) HISTORICAL LABELS + TRAINING
       # ---------------------------------------
       - name: Build historical results
         run: python3 build_historical_results.py
         continue-on-error: true
 
-      - name: Train ML models (safe if no labels yet)
+      - name: Train ML models
         run: python3 train_model.py
         continue-on-error: true
 
       # ---------------------------------------
-      # 6) PREDICTIONS
-      # ---------------------------------------
-      - name: Build predictions file
+      - name: Build predictions
         run: python3 build_predictions.py
 
-      # Optional accuracy tracking if you want it:
-      - name: Track accuracy (safe)
-        run: python3 track_accuracy.py
-        continue-on-error: true
-
       # ---------------------------------------
-      # 7) COMMIT + PUSH
+      # 5) COMMIT + PUSH
       # ---------------------------------------
       - name: Commit and push updated data
         run: |
@@ -112,5 +80,5 @@ jobs:
           git pull --rebase origin main || true
 
           git add -A
-          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
           git push origin main || echo "Nothing to push"
