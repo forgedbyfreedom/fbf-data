@@ -1,4 +1,4 @@
-name: "Auto Fetch – ESPN Odds + Weather + Ref Trends + Predictions"
+name: Auto Fetch - ESPN Odds + Stadiums + Weather + Ref Trends + Injuries + Predictions
 
 on:
   schedule:
@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       # ------------------------------------------------------
       # CHECKOUT
       # ------------------------------------------------------
@@ -30,31 +29,47 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pandas numpy scikit-learn
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install requests pandas numpy scikit-learn joblib python-dateutil pytz
 
       # ------------------------------------------------------
-      # DATA BUILDERS
+      # FETCH ODDS FIRST (creates combined.json)
       # ------------------------------------------------------
-      - name: Build full FBS stadium list
-        run: python3 build_fbs_stadiums.py
-
       - name: Fetch ESPN Odds (All Sports)
         run: python3 fetch_espn_all.py
+
+      - name: Tag favorites and dogs
+        run: python3 tag_favorites.py
+
+      # ------------------------------------------------------
+      # BUILD SUPPORTING DATA
+      # ------------------------------------------------------
+      - name: Build full FBS stadium list (outdoor/indoor)
+        run: python3 build_fbs_stadiums.py
+
+      - name: Build weather data (outdoor only)
+        run: python3 build_weather.py
 
       - name: Build referee trends
         run: python3 referee_trends.py
 
-      - name: Build weather data
-        run: python3 build_weather.py
+      - name: Build injuries file
+        run: python3 build_injuries.py
 
-      - name: Merge injuries
-        run: python3 merge_injuries.py
+      # ------------------------------------------------------
+      # HISTORICAL RESULTS (for ML labels)
+      # ------------------------------------------------------
+      - name: Build/update historical results
+        run: python3 build_historical_results.py
 
-      - name: Build predictions (rule-based baseline)
+      # ------------------------------------------------------
+      # TRAIN + PREDICT
+      # ------------------------------------------------------
+      - name: Train ML models (ATS/SU/OU)
+        run: python3 train_model.py
+
+      - name: Build predictions.json (rule-based + ML hybrid)
         run: python3 build_predictions.py
-
-      - name: Train ML model (ATS/SU/OU)
-        run: python3 predictions_model.py
 
       # ------------------------------------------------------
       # COMMIT / PUSH
@@ -63,13 +78,8 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-
           git pull --rebase origin main || true
 
-          git add *.json || true
-          git add predictions.json || true
-          git add weather.json || true
-
+          git add *.json models/* || true
           git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
-
           git push origin main || echo "Nothing to push"
