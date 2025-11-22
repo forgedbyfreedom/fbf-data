@@ -31,197 +31,18 @@
       color: var(--text);
     }
 
-    #app {
-      max-width: 1400px;
-      margin: -6px auto 0 auto; /* pulls header up */
-    }
+    #app { max-width: 1400px; margin: 0 auto; }
 
-    /* HEADER PANEL */
-    .top-panel {
-      background: radial-gradient(circle at top left, #1f2937, #020617 65%);
-      border-radius: 18px;
-      border: 1px solid #1f2937;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
-      padding: 12px 20px 10px 20px;
-      margin-bottom: 14px;
-    }
-
-    .hero-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-circle {
-      width: 52px;
-      height: 52px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #ffecd5, #f97316 45%, #7f1d1d 80%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      color: #111827;
-      font-size: 17px;
-      flex-shrink: 0;
-    }
-
-    .brand-text-main {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .brand-title {
-      font-size: 18px;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .brand-subtitle {
-      font-size: 11px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--accent-soft);
-      margin-top: -1px;
-    }
-
-    .brand-tagline {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: -1px;
-    }
-
-    .brand-link {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #60a5fa;
-      text-decoration: none;
-      margin-top: 2px;
-    }
-
-    .mode-badge {
-      font-size: 11px;
-      text-align: right;
-      color: var(--muted);
-    }
-
-    .mode-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #020617, #1f2937);
-      border: 1px solid #1f2937;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
-      font-size: 11px;
-      margin-bottom: 2px;
-    }
-
-    /* Filter Row */
-    .filter-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .filter-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-    }
-
-    .chip-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .sport-chip {
-      padding: 4px 10px;
-      font-size: 11px;
-      border-radius: 999px;
-      border: 1px solid #1f2937;
-      background: var(--chip-bg);
-      color: var(--muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      text-transform: uppercase;
-    }
-
-    .sport-chip.active {
-      background: var(--chip-active-bg);
-      color: var(--chip-active-text);
-      border-color: #f97316;
-    }
-
-    .legend {
-      display: flex;
-      gap: 10px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .legend .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      display: inline-block;
-      margin-right: 4px;
-    }
-
-    .dot-low { background: var(--danger); }
-    .dot-med { background: var(--warning); }
-    .dot-high { background: var(--success); }
-
-    /* Grid: ALWAYS 3 ACROSS */
+    /* Force cards to ALWAYS 3 across */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       width: 100%;
       margin-top: 10px;
     }
 
-    /* Group header across whole grid */
-    .group-header {
-      grid-column: 1 / -1;
-      border-bottom: 1px solid #111827;
-      padding-bottom: 4px;
-      margin-top: 12px;
-      margin-bottom: 4px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--muted);
-      letter-spacing: 0.18em;
-    }
-
-    /* Cards */
+    /* Card layout tightening */
     .game-card {
       background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
       border-radius: 14px;
@@ -230,19 +51,15 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
-      gap: 6px;
-    }
-
-    .card-top-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--muted);
+      gap: 4px;
     }
 
     .matchup-line {
       font-size: 13px;
       font-weight: 600;
+      line-height: 1.25;
+      word-break: break-word;
+      margin-top: 2px;
     }
 
     .team-line {
@@ -250,21 +67,7 @@
       justify-content: space-between;
       font-size: 11px;
       color: var(--muted);
-    }
-
-    .line-col {
-      background: #141a26;
-      padding: 4px 6px;
-      border-radius: 8px;
-      border: 1px solid #111827;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .line-label {
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 0.14em;
+      line-height: 1.2;
     }
 
     .picks-block {
@@ -275,163 +78,41 @@
       gap: 4px;
     }
 
-    .pick-label {
-      font-size: 9px;
-      color: var(--muted);
-    }
+    .pick-label { font-size: 9px; color: var(--muted); }
 
-    .no-games {
-      text-align: center;
-      margin-top: 22px;
-      font-size: 13px;
-      color: var(--muted);
-      display: none;
-    }
   </style>
 </head>
-
 <body>
   <div id="app">
-
-    <!-- HEADER -->
-    <header class="top-panel">
-      <div class="hero-row">
-        <div class="brand">
-          <div class="logo-circle">FBF</div>
-          <div class="brand-text-main">
-            <div class="brand-title">FORGED BY FREEDOM STRENGTH & NUTRITION</div>
-            <div class="brand-subtitle">STRENGTH – DISCIPLINE – FREEDOM</div>
-            <div class="brand-tagline">For all your training, supplementation, and nutrition needs.</div>
-            <a class="brand-link" href="https://forgedbyfreedom.org" target="_blank">ForgedByFreedom.org</a>
-            <div id="last-updated-text" class="brand-tagline">Last updated: —</div>
-          </div>
-        </div>
-
-        <div class="mode-badge">
-          <div class="mode-pill">
-            <span class="label">Black Ops</span>
-            <span class="sub">Tactical Dark Mode</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- FILTERS -->
-      <div class="filter-row">
-        <div class="filter-group">
-          <div class="filter-label">Filter Sports</div>
-          <div class="chip-row" id="sport-filters">
-            <button class="sport-chip active" data-sport="all"><span class="dot"></span>All</button>
-            <button class="sport-chip" data-sport="americanfootball_nfl"><span class="dot"></span>NFL</button>
-            <button class="sport-chip" data-sport="americanfootball_ncaaf"><span class="dot"></span>NCAAF</button>
-            <button class="sport-chip" data-sport="basketball_nba"><span class="dot"></span>NBA</button>
-            <button class="sport-chip" data-sport="basketball_ncaab"><span class="dot"></span>NCAAB</button>
-            <button class="sport-chip" data-sport="icehockey_nhl"><span class="dot"></span>NHL</button>
-            <button class="sport-chip" data-sport="mma_mixed_martial_arts"><span class="dot"></span>UFC</button>
-          </div>
-        </div>
-
-        <div class="legend">
-          <span><span class="dot dot-low"></span>Low</span>
-          <span><span class="dot dot-med"></span>Medium</span>
-          <span><span class="dot dot-high"></span>High</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- GRID -->
     <main class="cards-grid" id="cards-grid"></main>
-    <div id="no-games" class="no-games">No games available for this filter.</div>
-
   </div>
 
   <script>
-    /* JS FETCH & RENDER */
-    const SPORT_LABELS = {
-      americanfootball_nfl: "NFL",
-      americanfootball_ncaaf: "NCAAF",
-      basketball_nba: "NBA",
-      basketball_ncaab: "NCAAB",
-      icehockey_nhl: "NHL",
-      mma_mixed_martial_arts: "UFC"
-    };
-
-    function getSportLabel(k) {
-      return SPORT_LABELS[k] || k;
-    }
-
     async function loadData() {
-      try {
-        const res = await fetch("combined.json?cachebust=" + Date.now());
-        const json = await res.json();
-        return json.data || [];
-      } catch (e) {
-        console.error(e);
-        return [];
-      }
+      const r = await fetch("combined.json?cb=" + Date.now());
+      const j = await r.json();
+      return j.data || [];
     }
 
-    function formatTime(iso) {
-      if (!iso) return "—";
-      return new Date(iso).toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        month: "short",
-        day: "numeric"
-      });
+    function formatTime(t) {
+      return new Date(t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
     }
 
-    function renderCards(games) {
+    function render(games) {
       const grid = document.getElementById("cards-grid");
-      const noGames = document.getElementById("no-games");
-
       grid.innerHTML = "";
-      if (games.length === 0) {
-        noGames.style.display = "block";
-        return;
-      }
-      noGames.style.display = "none";
 
       games.forEach(g => {
-        const card = document.createElement("div");
-        card.className = "game-card";
+        const c = document.createElement("div");
+        c.className = "game-card";
 
-        card.innerHTML = `
+        c.innerHTML = `
           <div class="card-top-row">
-            <span class="sport-tag">${getSportLabel(g.sport_key)}</span>
-            <span class="book-tag">${g.book || "ESPN"}</span>
+            <span>${g.sport_key}</span>
+            <span>${g.book || "ESPN"}</span>
           </div>
-
           <div class="matchup-line">${g.matchup}</div>
 
-          <div class="team-line">
-            <span>${g.favorite}</span>
-            <span>${g.underdog}</span>
-          </div>
-
-          <div class="team-line"><span>Kickoff:</span> <span>${formatTime(g.commence_time)}</span></div>
-
-          <div class="picks-block">
-            <div>
-              <div class="pick-label">Spread</div>
-              <div>${g.favorite}</div>
-            </div>
-            <div>
-              <div class="pick-label">Dog</div>
-              <div>${g.underdog}</div>
-            </div>
-            <div>
-              <div class="pick-label">Total</div>
-              <div>${g.total || "—"}</div>
-            </div>
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
-    }
-
-    async function init() {
-      const games = await loadData();
-      renderCards(games);
-
-      document.getElementById("
+          <div class="team-line"><span>Fav:</span><span>${g.favorite}</span></div>
+          <div class="team-line"><span>Dog:</span><span>${g.underdog}</span></div>
+          <div class="team-line"><span>Kickoff:</span><span>${formatTime(g.commence_time)}</spa
