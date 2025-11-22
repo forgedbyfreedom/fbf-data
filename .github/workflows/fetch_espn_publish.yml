@@ -1,4 +1,4 @@
-name: Auto Fetch - ESPN Odds + Stadiums + Weather + Ref Trends + Predictions
+name: Auto Fetch - ESPN Odds Weather Ref Trends Predictions
 
 on:
   schedule:
@@ -25,45 +25,55 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # -------------------------------
-      # Build / Fetch core data
-      # -------------------------------
-      - name: Build full FBS stadium list
-        run: python3 build_fbs_stadiums.py
-
-      - name: Fetch ESPN Odds (all sports)
+      # ---------------------------------------
+      # 1) FETCH ODDS (creates combined.json)
+      # ---------------------------------------
+      - name: Fetch ESPN Odds (All Sports)
         run: python3 fetch_espn_all.py
 
-      - name: Tag favorites / dogs
+      - name: Tag favorites and dogs
         run: python3 tag_favorites.py
 
-      - name: Build referee trends
-        run: python3 referee_trends.py
-
-      - name: Fetch injuries
-        run: python3 fetch_injuries.py
-
-      - name: Merge injuries into injuries.json
-        run: python3 merge_injuries.py
+      # ---------------------------------------
+      # 2) SUPPORTING DATA BUILDERS
+      # ---------------------------------------
+      - name: Build full FBS stadium list
+        run: python3 build_fbs_stadiums.py
 
       - name: Build weather for games (outdoor only)
         run: python3 build_weather_for_games.py
 
-      # -------------------------------
-      # Feature engineering + ML + predictions
-      # -------------------------------
-      - name: Build features
-        run: python3 feature_engineering.py
+      - name: Build referee trends
+        run: python3 referee_trends.py
 
-      - name: Train ML model(s)
+      - name: Fetch / merge injuries
+        run: python3 fetch_injuries.py
+        continue-on-error: true
+
+      - name: Merge injuries into injuries.json
+        run: python3 merge_injuries.py
+        continue-on-error: true
+
+      # ---------------------------------------
+      # 3) HISTORICAL LABELS + TRAINING
+      # ---------------------------------------
+      - name: Build historical results
+        run: python3 build_historical_results.py
+        continue-on-error: true
+
+      - name: Train ML models (safe if no labels yet)
         run: python3 train_model.py
+        continue-on-error: true
 
-      - name: Build predictions
+      # ---------------------------------------
+      # 4) PREDICTIONS
+      # ---------------------------------------
+      - name: Build predictions file
         run: python3 build_predictions.py
 
-      # -------------------------------
-      # Commit + push results
-      # -------------------------------
+      # ---------------------------------------
+      # 5) COMMIT + PUSH
+      # ---------------------------------------
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
@@ -71,7 +81,8 @@ jobs:
 
           git pull --rebase origin main || true
 
-          git add *.json models/* || true
+          git add -A
+
           git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
 
           git push origin main || echo "Nothing to push"
