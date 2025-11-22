@@ -1,8 +1,8 @@
-name: Auto Fetch & Publish ESPN Odds
+name: Auto Fetch • ESPN Odds + Weather + Ref Trends + Predictions
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/15 * * * *"   # every 15 minutes
   workflow_dispatch:
 
 jobs:
@@ -10,11 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ------------------------------------------------------
+      # CHECKOUT
+      # ------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # ------------------------------------------------------
+      # PYTHON SETUP
+      # ------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -25,51 +31,44 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pandas numpy scikit-learn
 
-      # -------------------------------------------------
-      # Build all supporting data FIRST
-      # -------------------------------------------------
-      - name: Build FBS stadium list
+      # ------------------------------------------------------
+      # RUN DATA BUILDERS
+      # ------------------------------------------------------
+      - name: Build full FBS stadium list
         run: python3 build_fbs_stadiums.py
+
+      - name: Fetch ESPN Odds (All Sports)
+        run: python3 fetch_espn_all.py
 
       - name: Build referee trends
         run: python3 referee_trends.py
 
-      - name: Build injuries file
-        run: python3 build_injuries.py
-
       - name: Build weather data
         run: python3 build_weather.py
 
-      # -------------------------------------------------
-      # Fetch ESPN odds + unify into combined.json
-      # -------------------------------------------------
-      - name: Fetch ESPN Odds
-        run: python3 fetch_espn_all.py
+      - name: Merge injuries
+        run: python3 merge_injuries.py
 
-      - name: Tag favorites and dogs
-        run: python3 tag_favorites.py
-
-      # -------------------------------------------------
-      # Machine-learning predictions
-      # -------------------------------------------------
-      - name: Train ML models
-        run: python3 train_model.py
-
-      - name: Build predictions file
+      - name: Build predictions (rule-based baseline)
         run: python3 build_predictions.py
 
-      # -------------------------------------------------
-      # Commit and push
-      # -------------------------------------------------
+      - name: Train ML model (ATS/SU/OU)
+        run: python3 predictions_model.py
+
+      # ------------------------------------------------------
+      # GIT COMMIT / PUSH
+      # ------------------------------------------------------
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+
           git pull --rebase origin main || true
 
           git add *.json || true
           git add predictions.json || true
           git add weather.json || true
 
-          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+
           git push origin main || echo "Nothing to push"
