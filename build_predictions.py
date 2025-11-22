@@ -2,183 +2,107 @@
 """
 build_predictions.py
 
-Rule-based baseline predictions, ML-ready.
+Creates predictions.json:
+- Rule baseline
+- ML overlay if models exist
 
-Inputs (optional):
-- combined.json           (required for games)
-- weather.json            (outdoor games only)
-- referee_trends.json     (if historical labels exist)
-- injuries.json           (live ESPN injuries)
-- power_ratings.json      (if you add it later)
-
-Outputs:
-- predictions.json
-
-Generates SU / ATS / OU picks + confidence 0–100.
-Safe if any inputs missing.
+Safe if models missing.
 """
 
-import json, os, math
+import os, json, math
+import numpy as np
 from datetime import datetime, timezone
+from joblib import load
 
-COMBINED_FILE = "combined.json"
-WEATHER_FILE = "weather.json"
-REF_FILE = "referee_trends.json"
-INJ_FILE = "injuries.json"
-PR_FILE = "power_ratings.json"
+from feature_engineering import build_feature_rows, FEATURES
+
 OUTFILE = "predictions.json"
+MODELS_DIR = "models"
 
-def load_json(path, default):
-    if not os.path.exists(path):
-        return default
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+def load_model(name):
+    path = os.path.join(MODELS_DIR, f"{name}.joblib")
+    if os.path.exists(path):
+        try:
+            return load(path)
+        except Exception:
+            return None
+    return None
 
-def index_by_matchup(rows):
-    m = {}
-    for r in rows:
-        key = r.get("matchup")
-        if key:
-            m[key] = r
-    return m
-
-def injuries_by_team(payload):
-    out = {}
-    for row in payload.get("data", []):
-        team = (row.get("team") or "").lower()
-        out[team] = row.get("injuries", [])
-    return out
-
-def ref_bias_map(payload):
-    out = {}
-    for r in payload.get("data", []):
-        out[(r.get("referee") or "").lower()] = r
-    return out
-
-def power_by_team(payload):
-    out = {}
-    for r in payload.get("data", []):
-        tn = (r.get("team_name") or r.get("team") or "").lower()
-        if tn:
-            out[tn] = float(r.get("rating", 0))
-    return out
-
-def clamp(x, lo, hi):
+def clamp(x, lo=0, hi=100):
     return max(lo, min(hi, x))
 
 def main():
-    combined = load_json(COMBINED_FILE, {})
-    games = combined.get("data", [])
-    if not games:
-        payload = {
-            "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
-            "count": 0,
-            "data": [],
-            "note": "combined.json missing or empty",
-        }
-        with open(OUTFILE, "w") as f:
-            json.dump(payload, f, indent=2)
-        print(f"⚠️ Wrote empty {OUTFILE}")
-        return
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+    rows = build_feature_rows()
 
-    wx = index_by_matchup(load_json(WEATHER_FILE, {}).get("data", []))
-    refs = ref_bias_map(load_json(REF_FILE, {}))
-    inj = injuries_by_team(load_json(INJ_FILE, {}))
-    pr = power_by_team(load_json(PR_FILE, {}))
+    su_m = load_model("su")
+    ats_m = load_model("ats")
+    ou_m = load_model("ou")
 
-    out = []
-    for g in games:
-        matchup = g.get("matchup")
-        fav = g.get("fav_team") or (g.get("favorite") or "").split(" -")[0]
-        dog = g.get("dog_team") or (g.get("underdog") or "").split(" +")[0]
-        spread = float(g.get("fav_spread") or g.get("spread") or 0)
-        total = float(g.get("total") or 0)
+    data = []
+    for r in rows:
+        spread = r["spread"]
+        total = r["total"]
 
-        fav_l = (fav or "").lower()
-        dog_l = (dog or "").lower()
+        # -------- Rule baseline (very simple)
+        rule_su = 50 + min(18, abs(spread)*2.0)
+        rule_su = rule_su if spread < 0 else 100-rule_su
 
-        # --- Feature signals ---
-        fav_pr = pr.get(fav_l, 0)
-        dog_pr = pr.get(dog_l, 0)
-        pr_edge = fav_pr - dog_pr  # positive favors favorite
+        rule_ats = 52  # neutral baseline
+        rule_ou = 52 if total else None
 
-        # injury penalties
-        fav_inj = len(inj.get(fav_l, []))
-        dog_inj = len(inj.get(dog_l, []))
-        inj_edge = dog_inj - fav_inj  # positive favors favorite
+        # -------- ML overlay
+        X = np.array([[r[f] for f in FEATURES]], dtype=float)
 
-        # weather penalty (wind/rain reduce total, help dog/under)
-        w = wx.get(matchup, {})
-        wind = float(w.get("wind_kph") or 0)
-        precip = float(w.get("precip_mm") or 0)
-        weather_drag = (wind/25.0) + (precip/5.0)
+        ml_su = float(su_m.predict_proba(X)[0,1])*100 if su_m else None
+        ml_ats = float(ats_m.predict_proba(X)[0,1])*100 if ats_m else None
+        ml_ou = float(ou_m.predict_proba(X)[0,1])*100 if ou_m else None
 
-        # referee bias (if exists)
-        ref_bias_fav = 0
-        ref_bias_over = 0
-        # (You add referee assignment later; placeholder uses g["referees"] if present)
-        for rname in (g.get("referees") or []):
-            rrow = refs.get((rname or "").lower())
-            if rrow:
-                ref_bias_fav += rrow.get("bias_fav", 0)
-                ref_bias_over += rrow.get("bias_over", 0)
+        # -------- Final ensemble
+        su_final = ml_su if ml_su is not None else rule_su
+        ats_final = ml_ats if ml_ats is not None else rule_ats
+        ou_final = ml_ou if ml_ou is not None else rule_ou
 
-        # --- SU pick ---
-        su_score = (
-            0.6 * (abs(spread) / 7.0) +    # market strength
-            0.2 * (pr_edge / 10.0) +       # power edge
-            0.1 * (inj_edge / 3.0) +       # injury edge
-            0.1 * ref_bias_fav
-        )
-        su_conf = clamp(50 + su_score * 50, 50, 95)
-        su_pick = fav if spread <= 0 else dog
-
-        # --- ATS pick ---
-        ats_margin = pr_edge + (inj_edge * 0.8) + (ref_bias_fav * 2.0)
-        ats_pick = fav if ats_margin > abs(spread) * 0.2 else dog
-        ats_conf = clamp(50 + (ats_margin - abs(spread)*0.2) * 5, 50, 92)
-
-        # --- OU pick ---
-        if total <= 0:
-            ou_pick, ou_conf = None, None
-        else:
-            total_delta = (pr_edge * 0.6) - (weather_drag * 4.0) + (ref_bias_over * 2.0)
-            ou_pick = "over" if total_delta > 0 else "under"
-            ou_conf = clamp(50 + abs(total_delta) * 4, 50, 90)
-
-        out.append({
-            "matchup": matchup,
-            "sport_key": g.get("sport_key"),
-            "commence_time": g.get("commence_time"),
-            "favorite_team": fav,
-            "underdog_team": dog,
+        data.append({
+            "event_id": r["event_id"],
+            "matchup": r["matchup"],
+            "sport_key": r["sport_key"],
+            "commence_time": r["commence_time"],
+            "fav_team": r["fav_team"],
+            "dog_team": r["dog_team"],
             "spread": spread,
-            "total": total if total > 0 else None,
-            "SU_pick": su_pick,
-            "SU_confidence": round(su_conf, 1),
-            "ATS_pick": ats_pick,
-            "ATS_confidence": round(ats_conf, 1),
-            "OU_pick": ou_pick,
-            "OU_confidence": round(ou_conf, 1) if ou_conf else None,
-            "signals": {
-                "power_edge": pr_edge,
-                "injury_edge": inj_edge,
-                "weather_drag": round(weather_drag, 3),
-                "ref_bias_fav": round(ref_bias_fav, 3),
-                "ref_bias_over": round(ref_bias_over, 3),
+            "total": total,
+
+            "SU_conf": round(su_final, 1),
+            "ATS_conf": round(ats_final, 1),
+            "OU_conf": round(ou_final, 1) if ou_final is not None else None,
+
+            "SU_pick": f"{r['fav_team']} ML" if su_final >= 50 else f"{r['dog_team']} ML",
+            "ATS_pick": f"{r['fav_team']} {spread:+g}" if ats_final >= 50 else f"{r['dog_team']} {(-spread):+g}",
+            "OU_pick": ("Over" if ou_final and ou_final >= 50 else "Under") + f" {total:g}" if total else None,
+
+            "source_rule": {
+                "SU_conf": round(rule_su,1),
+                "ATS_conf": round(rule_ats,1),
+                "OU_conf": round(rule_ou,1) if rule_ou is not None else None
+            },
+            "source_ml": {
+                "SU_conf": round(ml_su,1) if ml_su is not None else None,
+                "ATS_conf": round(ml_ats,1) if ml_ats is not None else None,
+                "OU_conf": round(ml_ou,1) if ml_ou is not None else None
             }
         })
 
     payload = {
-        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
-        "count": len(out),
-        "data": out
+        "timestamp": ts,
+        "count": len(data),
+        "data": data
     }
 
-    with open(OUTFILE, "w") as f:
-        json.dump(payload, f, indent=2)
+    with open(OUTFILE, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
 
-    print(f"✅ Wrote {OUTFILE} with {len(out)} predictions")
+    print(f"✅ Wrote {OUTFILE} ({len(data)} predictions)")
 
 if __name__ == "__main__":
     main()
