@@ -1,12 +1,12 @@
-name: Auto Fetch & Publish ESPN Odds
+name: Auto Fetch & Publish ESPN Odds + Enrichment + Predictions
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/15 * * * *"   # every 15 minutes
   workflow_dispatch:
 
 jobs:
-  fetch-and-publish:
+  fetch-enrich-predict:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,25 +23,38 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install -r requirements.txt
 
-      - name: Run ESPN Odds Fetcher
+      - name: Fetch ESPN Odds (all sports)
         run: python3 fetch_espn_all.py
+
+      - name: Tag favorites / underdogs
+        run: python3 tag_favorites.py
+
+      - name: Fetch outdoor-stadium weather
+        env:
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+        run: python3 fetch_weather.py
+
+      - name: Fetch injuries
+        run: python3 fetch_injuries.py
 
       - name: Build referee trends
         run: python3 referee_trends.py
+
+      - name: Build predictions
+        run: python3 build_predictions.py
+
+      - name: Train / update ML model (optional)
+        run: python3 train_model.py || echo "Model training skipped"
 
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-          # rebase in case another workflow pushed
           git pull --rebase origin main || true
 
-          # add all json files your site depends on
-          git add combined.json *.json
-
-          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
-
+          git add combined.json *.json predictions.json referee_trends.json weather.json injuries.json model.pkl || true
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
           git push origin main || echo "Nothing to push"
