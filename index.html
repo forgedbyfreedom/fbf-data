@@ -31,18 +31,19 @@
       color: var(--text);
     }
 
-    #app { max-width: 1400px; margin: 0 auto; }
+    #app {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-    /* Force cards to ALWAYS 3 across */
+    /* Force cards to ALWAYS appear 3-across */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      width: 100%;
       margin-top: 10px;
     }
 
-    /* Card layout tightening */
     .game-card {
       background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
       border-radius: 14px;
@@ -51,15 +52,21 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
     }
 
     .matchup-line {
       font-size: 13px;
       font-weight: 600;
-      line-height: 1.25;
+      line-height: 1.3;
       word-break: break-word;
-      margin-top: 2px;
     }
 
     .team-line {
@@ -76,12 +83,16 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
+      font-size: 11px;
     }
 
-    .pick-label { font-size: 9px; color: var(--muted); }
-
+    .pick-label {
+      font-size: 9px;
+      color: var(--muted);
+    }
   </style>
 </head>
+
 <body>
   <div id="app">
     <main class="cards-grid" id="cards-grid"></main>
@@ -95,7 +106,12 @@
     }
 
     function formatTime(t) {
-      return new Date(t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+      return new Date(t).toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      });
     }
 
     function render(games) {
@@ -111,8 +127,25 @@
             <span>${g.sport_key}</span>
             <span>${g.book || "ESPN"}</span>
           </div>
+
           <div class="matchup-line">${g.matchup}</div>
 
           <div class="team-line"><span>Fav:</span><span>${g.favorite}</span></div>
           <div class="team-line"><span>Dog:</span><span>${g.underdog}</span></div>
-          <div class="team-line"><span>Kickoff:</span><span>${formatTime(g.commence_time)}</spa
+          <div class="team-line"><span>Kickoff:</span><span>${formatTime(g.commence_time)}</span></div>
+
+          <div class="picks-block">
+            <div><div class="pick-label">SU</div>${g.pick_su || "--"}</div>
+            <div><div class="pick-label">ATS</div>${g.pick_ats || "--"}</div>
+            <div><div class="pick-label">O/U</div>${g.pick_ou || "--"}</div>
+          </div>
+        `;
+
+        grid.appendChild(c);
+      });
+    }
+
+    loadData().then(render);
+  </script>
+</body>
+</html>
