@@ -1,120 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>FBF Predictions</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Forged By Freedom — Live Odds & Picks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
+  <style>
+    :root {
+      --bg: #05070b;
+      --card-bg: #0c1018;
+      --card-bg-alt: #0f141e;
+      --accent: #ff7a1a;
+      --accent-soft: #ffb266;
+      --text: #f5f7ff;
+      --muted: #9ba3b8;
+      --border-soft: #252b3a;
+      --danger: #ff4b5c;
+      --warning: #facc15;
+      --success: #22c55e;
+      --chip-bg: #151a24;
+      --chip-active-bg: #ff7a1a;
+      --chip-active-text: #05070b;
+      --badge-bg: #111827;
+    }
+
+    * { box-sizing: border-box; }
     body {
-        font-family: Arial, sans-serif;
-        background: #111;
-        color: #eee;
-        margin: 0;
-        padding: 20px;
+      margin: 0;
+      padding: 12px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #111827, #020308 55%) fixed;
+      color: var(--text);
     }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #fff;
+    #app { max-width: 1400px; margin: 0 auto; }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 2px 10px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 10px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: radial-gradient(circle at top left, #ffb266, #ff7a1a 60%, #7a2b00);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+    .brand h1 {
+      font-size: 18px; margin: 0; letter-spacing: 0.4px;
+    }
+    .brand .sub {
+      font-size: 12px; color: var(--muted); margin-top: 2px;
     }
 
-    /* 3-card layout */
-    #games-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 18px;
+    .top-actions {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .pill {
+      background: var(--chip-bg);
+      border: 1px solid var(--border-soft);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform .08s ease, background .15s ease, border .15s ease;
+    }
+    .pill:hover { transform: translateY(-1px); }
+    .pill.active {
+      background: var(--chip-active-bg);
+      color: var(--chip-active-text);
+      border-color: transparent;
+      font-weight: 700;
     }
 
+    .search {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--chip-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+    .search input {
+      background: transparent; border: none; outline: none;
+      color: var(--text); font-size: 12px; width: 180px;
+    }
+
+    /* Meta row */
+    .meta-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 6px 2px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .meta-left, .meta-right { display: flex; gap: 10px; align-items: center; }
+
+    .badge {
+      background: var(--badge-bg);
+      border: 1px solid var(--border-soft);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 999px; display: inline-block;
+      background: var(--success);
+      box-shadow: 0 0 10px rgba(34,197,94,0.75);
+      margin-right: 6px;
+    }
+
+    /* Grid — always 3 across on desktop */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      width: 100%;
+      margin-top: 10px;
+    }
+    @media (max-width: 1100px) {
+      .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .search input { width: 120px; }
+    }
+
+    /* Card */
     .game-card {
-        background: #1b1b1b;
-        padding: 16px;
-        border-radius: 10px;
-        border: 1px solid #333;
-        box-shadow: 0px 0px 10px #000;
+      background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      padding: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 160px;
     }
 
-    .game-card h3 {
-        margin: 0 0 12px;
-        font-size: 20px;
-        color: #fff;
+    .card-top-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .6px;
+    }
+
+    .matchup-line {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+      word-break: break-word;
+      margin-top: 2px;
+    }
+
+    .teams {
+      display: grid; gap: 4px;
+    }
+    .team-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.2;
+      gap: 8px;
+    }
+    .team-name {
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 75%;
+    }
+    .team-odd {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .kick {
+      font-size: 11px; color: var(--muted);
+      display: flex; justify-content: space-between;
+    }
+
+    .picks-block {
+      border-top: 1px dashed #1f2937;
+      padding-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .pick {
+      background: #0b0f17;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 6px 8px;
+      display: grid;
+      gap: 4px;
+      min-height: 56px;
+    }
+    .pick-label {
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .7px;
+    }
+    .pick-main {
+      font-size: 12px; font-weight: 700; line-height: 1.2;
+      word-break: break-word;
+    }
+    .pick-sub {
+      font-size: 11px; color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+      font-variant-numeric: tabular-nums;
     }
 
     .conf {
-        font-weight: bold;
-        padding: 2px 6px;
-        border-radius: 6px;
-        margin-left: 6px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+    .conf.low { background: rgba(255,75,92,.12); color: var(--danger); }
+    .conf.med { background: rgba(250,204,21,.12); color: var(--warning); }
+    .conf.high { background: rgba(34,197,94,.12); color: var(--success); }
+
+    .empty {
+      text-align: center;
+      padding: 26px 8px;
+      color: var(--muted);
+      border: 1px dashed var(--border-soft);
+      border-radius: 12px;
+      background: rgba(10,12,18,.6);
     }
 
-    /* confidence colors */
-    .low { background: #802020; }
-    .med { background: #804c20; }
-    .high { background: #1f7a29; }
-
-</style>
+    footer {
+      margin: 18px 4px 6px;
+      font-size: 11px; color: var(--muted);
+      text-align: center;
+      opacity: 0.9;
+    }
+    a { color: var(--accent-soft); text-decoration: none; }
+  </style>
 </head>
 
 <body>
+  <div id="app">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Forged By Freedom</h1>
+          <div class="sub">Live Odds • Picks • Weather • Ref Trends</div>
+        </div>
+      </div>
 
-<h1>FBF AI Picks</h1>
-<div id="games-container"></div>
+      <div class="top-actions">
+        <div id="sport-chips" class="top-actions"></div>
 
-<script>
-async function loadPicks() {
-    try {
-        const res = await fetch("predictions.json?_=" + Date.now());
-        const data = await res.json();
+        <div class="search">
+          <span style="font-size:12px; color:var(--muted)">Search</span>
+          <input id="search-input" placeholder="team, matchup…" />
+        </div>
 
-        const games = data.data || [];
-        console.log("Loaded predictions:", games);
-        renderGames(games);
-    } catch (e) {
-        console.error("Error loading predictions:", e);
+        <button class="pill" id="refresh-btn">Refresh</button>
+      </div>
+    </header>
+
+    <div class="meta-row">
+      <div class="meta-left">
+        <span class="badge"><span class="dot"></span>Auto-updating</span>
+        <span id="games-count" class="badge">Games: —</span>
+      </div>
+      <div class="meta-right">
+        <span id="last-updated" class="badge">Updated: —</span>
+        <span id="data-status" class="badge">Status: loading…</span>
+      </div>
+    </div>
+
+    <main class="cards-grid" id="cards-grid"></main>
+
+    <footer>
+      Data from ESPN Core API • Forecasts from Open-Meteo • Models in /models  
+    </footer>
+  </div>
+
+  <script>
+    // -------------------------------
+    // Config
+    // -------------------------------
+    const COMBINED_URL = "combined.json";
+    const PREDICTIONS_URL = "predictions.json";
+
+    const SPORT_LABELS = {
+      "americanfootball_nfl": "NFL",
+      "americanfootball_ncaaf": "NCAAF",
+      "basketball_nba": "NBA",
+      "basketball_ncaab": "NCAAB",
+      "icehockey_nhl": "NHL",
+      "baseball_mlb": "MLB",
+      "mma_mixed_martial_arts": "UFC",
+    };
+
+    let ALL_GAMES = [];
+    let ACTIVE_SPORT = "all";
+    let SEARCH_TERM = "";
+
+    // cache buster
+    const bust = () => "?_=" + Date.now();
+
+    // -------------------------------
+    // Helpers
+    // -------------------------------
+    function formatTime(iso) {
+      if (!iso) return "TBD";
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) return iso;
+      return d.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      });
     }
-}
 
-function renderGames(games) {
-    const container = document.getElementById("games-container");
-    container.innerHTML = "";
+    function sportName(key) {
+      return SPORT_LABELS[key] || key || "Unknown";
+    }
 
-    games.forEach(g => {
-        const card = document.createElement("div");
-        card.className = "game-card";
+    function safeNum(x) {
+      const n = Number(x);
+      return Number.isFinite(n) ? n : null;
+    }
 
-        card.innerHTML = `
-            <h3>${g.matchup}</h3>
-            <p><b>Start:</b> ${g.commence_time}</p>
+    function byKickoffAsc(a,b) {
+      const ta = new Date(a.commence_time || 0).getTime();
+      const tb = new Date(b.commence_time || 0).getTime();
+      return ta - tb;
+    }
 
-            <p><b>ML:</b> ${g.SU_pick}
-                <span class="conf ${g.SU_grade}">
-                    ${g.SU_conf}%
-                </span>
-            </p>
+    function mergeGamesAndPicks(games, picks) {
+      const pickById = new Map();
+      const pickByMatchup = new Map();
 
-            <p><b>ATS:</b> ${g.ATS_pick}
-                <span class="conf ${g.ATS_grade}">
-                    ${g.ATS_conf}%
-                </span>
-            </p>
+      (picks || []).forEach(p => {
+        if (p.event_id) pickById.set(String(p.event_id), p);
+        if (p.matchup) pickByMatchup.set(String(p.matchup).toLowerCase(), p);
+      });
 
-            <p><b>OU:</b> ${g.OU_pick || "—"}
-                ${g.OU_conf ? `<span class="conf ${g.OU_grade}">
-                    ${g.OU_conf}%
-                </span>` : ""}
-            </p>
+      return (games || []).map(g => {
+        const idKey = g.event_id ? String(g.event_id) : null;
+        const mKey = g.matchup ? String(g.matchup).toLowerCase() : null;
+
+        const p = (idKey && pickById.get(idKey)) || (mKey && pickByMatchup.get(mKey)) || null;
+        return { ...g, pick: p };
+      });
+    }
+
+    // -------------------------------
+    // UI: sport chips
+    // -------------------------------
+    function buildSportChips(games) {
+      const wrap = document.getElementById("sport-chips");
+      wrap.innerHTML = "";
+
+      const counts = {};
+      games.forEach(g => {
+        counts[g.sport_key] = (counts[g.sport_key] || 0) + 1;
+      });
+
+      const chips = [
+        { key: "all", label: "All", count: games.length },
+        ...Object.keys(counts).sort().map(k => ({
+          key: k, label: sportName(k), count: counts[k]
+        }))
+      ];
+
+      chips.forEach(c => {
+        const el = document.createElement("button");
+        el.className = "pill" + (ACTIVE_SPORT === c.key ? " active" : "");
+        el.textContent = `${c.label} (${c.count})`;
+        el.onclick = () => {
+          ACTIVE_SPORT = c.key;
+          buildSportChips(games);
+          render();
+        };
+        wrap.appendChild(el);
+      });
+    }
+
+    // -------------------------------
+    // Render cards
+    // -------------------------------
+    function render() {
+      const grid = document.getElementById("cards-grid");
+      grid.innerHTML = "";
+
+      let filtered = ALL_GAMES.slice();
+
+      if (ACTIVE_SPORT !== "all") {
+        filtered = filtered.filter(g => g.sport_key === ACTIVE_SPORT);
+      }
+
+      if (SEARCH_TERM) {
+        const t = SEARCH_TERM.toLowerCase();
+        filtered = filtered.filter(g =>
+          (g.matchup || "").toLowerCase().includes(t) ||
+          (g.home_team || "").toLowerCase().includes(t) ||
+          (g.away_team || "").toLowerCase().includes(t)
+        );
+      }
+
+      filtered.sort(byKickoffAsc);
+
+      document.getElementById("games-count").textContent = `Games: ${filtered.length}`;
+
+      if (!filtered.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No games match your filters yet.";
+        grid.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(g => {
+        const c = document.createElement("div");
+        c.className = "game-card";
+
+        const p = g.pick || {};
+
+        const spread = safeNum(g.spread);
+        const total = safeNum(g.total);
+
+        const favStr = g.favorite || (g.fav_team && spread != null ? `${g.fav_team} ${spread:+g}` : "—");
+        const dogStr = g.underdog || (g.dog_team && spread != null ? `${g.dog_team} ${(-spread):+g}` : "—");
+
+        const mlPick = p.SU_pick || "—";
+        const atsPick = p.ATS_pick || "—";
+        const ouPick = p.OU_pick || "—";
+
+        const suConf = p.SU_conf != null ? `${p.SU_conf}%` : "—";
+        const atsConf = p.ATS_conf != null ? `${p.ATS_conf}%` : "—";
+        const ouConf = p.OU_conf != null ? `${p.OU_conf}%` : null;
+
+        c.innerHTML = `
+          <div class="card-top-row">
+            <span>${sportName(g.sport_key)}</span>
+            <span>${(g.book || "ESPN").toUpperCase()}</span>
+          </div>
+
+          <div class="matchup-line">${g.matchup || `${g.away_team}@${g.home_team}`}</div>
+
+          <div class="teams">
+            <div class="team-line">
+              <span class="team-name">${g.fav_team || g.home_team || "Favorite"}</span>
+              <span class="team-odd">${favStr}</span>
+            </div>
+            <div class="team-line">
+              <span class="team-name">${g.dog_team || g.away_team || "Underdog"}</span>
+              <span class="team-odd">${dogStr}</span>
+            </div>
+          </div>
+
+          <div class="kick">
+            <span>Kickoff</span>
+            <span>${formatTime(g.commence_time)}</span>
+          </div>
+
+          <div class="picks-block">
+            <div class="pick">
+              <div class="pick-label">Moneyline</div>
+              <div class="pick-main">${mlPick}</div>
+              <div class="pick-sub">
+                <span class="conf ${(p.SU_grade || "low")}">${suConf}</span>
+              </div>
+            </div>
+
+            <div class="pick">
+              <div class="pick-label">ATS</div>
+              <div class="pick-main">${atsPick}</div>
+              <div class="pick-sub">
+                <span class="conf ${(p.ATS_grade || "low")}">${atsConf}</span>
+              </div>
+            </div>
+
+            <div class="pick">
+              <div class="pick-label">Total</div>
+              <div class="pick-main">${ouPick}</div>
+              <div class="pick-sub">
+                ${ouConf ? `<span class="conf ${(p.OU_grade || "low")}">${ouConf}</span>` : `<span style="color:var(--muted)">—</span>`}
+              </div>
+            </div>
+          </div>
         `;
 
-        container.appendChild(card);
+        grid.appendChild(c);
+      });
+    }
+
+    // -------------------------------
+    // Load data
+    // -------------------------------
+    async function loadAll() {
+      const status = document.getElementById("data-status");
+      status.textContent = "Status: loading…";
+
+      let combined = null;
+      let predictions = null;
+
+      try {
+        const r = await fetch(COMBINED_URL + bust());
+        combined = await r.json();
+      } catch (e) {
+        console.error("combined.json load failed", e);
+      }
+
+      try {
+        const r2 = await fetch(PREDICTIONS_URL + bust());
+        predictions = await r2.json();
+      } catch (e) {
+        console.error("predictions.json load failed", e);
+      }
+
+      const games = (combined && combined.data) || [];
+      const picks = (predictions && predictions.data) || [];
+
+      ALL_GAMES = mergeGamesAndPicks(games, picks);
+
+      buildSportChips(ALL_GAMES);
+      render();
+
+      // updated stamps
+      const ts = (predictions && predictions.timestamp) || (combined && combined.timestamp) || null;
+      document.getElementById("last-updated").textContent =
+        "Updated: " + (ts ? ts : new Date().toISOString());
+
+      if (!games.length) {
+        status.textContent = "Status: combined.json empty/missing";
+      } else if (!picks.length) {
+        status.textContent = "Status: picks missing (rules still show odds)";
+      } else {
+        status.textContent = "Status: OK";
+      }
+    }
+
+    // -------------------------------
+    // Wire controls
+    // -------------------------------
+    document.getElementById("refresh-btn").onclick = loadAll;
+    document.getElementById("search-input").addEventListener("input", (e) => {
+      SEARCH_TERM = e.target.value.trim();
+      render();
     });
-}
 
-// Load immediately
-loadPicks();
-// Refresh every 60s
-setInterval(loadPicks, 60000);
-</script>
-
+    // auto refresh every 2 minutes
+    loadAll();
+    setInterval(loadAll, 120000);
+  </script>
 </body>
 </html>
