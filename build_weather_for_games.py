@@ -1,58 +1,77 @@
-#!/usr/bin/env python3
-"""
-build_weather.py
+name: Auto Fetch & Publish ESPN Odds
 
-Uses:
-  - fbs_stadiums.json
-  - combined.json
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
 
-Produces:
-  - weather.json
+jobs:
+  fetch-and-publish:
+    runs-on: ubuntu-latest
 
-Behavior:
-  • Only applies weather to OUTDOOR stadiums.
-  • Fetches hourly weather using free Open-Meteo API (no key needed).
-  • Matches games by home team → stadium.
-  • Picks hour closest to kickoff.
-  • Safe if input files missing (outputs empty weather.json).
-"""
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-import json
-import os
-import requests
-from datetime import datetime, timezone
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-STADIUMS_FILE = "fbs_stadiums.json"
-COMBINED_FILE = "combined.json"
-OUTFILE = "weather.json"
-TIMEOUT = 12
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas numpy scikit-learn
 
-OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
+      # -------------------------------------------------
+      # Build all supporting data FIRST
+      # -------------------------------------------------
 
+      - name: Build FBS stadium list
+        run: python3 build_fbs_stadiums.py
 
-# ---------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------
-def load_json(path, default):
-    """Load JSON or return default if file missing."""
-    if not os.path.exists(path):
-        return default
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+      - name: Build referee trends
+        run: python3 referee_trends.py
 
+      - name: Build injuries file
+        run: python3 build_injuries.py
 
-def save_json(path, payload):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
-        
+      - name: Build weather data
+        run: python3 build_weather.py
 
-def get_json(url, params=None):
-    r = requests.get(url, params=params, timeout=TIMEOUT)
-    r.raise_for_status()
-    return r.json()
+      # -------------------------------------------------
+      # Fetch ESPN odds + unify into combined.json
+      # -------------------------------------------------
+      - name: Fetch ESPN Odds
+        run: python3 fetch_espn_all.py
 
+      - name: Tag favorites and dogs
+        run: python3 tag_favorites.py
 
-def to_utc_dt(iso_str):
-    """Convert ISO8601 → UTC datetime."""
-    try:
-        return datetime.fromisoformat(iso_str.replace("Z", "+00:00")).astimezone(timezone.ut_
+      # -------------------------------------------------
+      # Machine-learning predictions
+      # -------------------------------------------------
+
+      - name: Train ML models
+        run: python3 train_model.py
+
+      - name: Build predictions file
+        run: python3 build_predictions.py
+
+      # -------------------------------------------------
+      # Commit and push
+      # -------------------------------------------------
+      - name: Commit and push updated data
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git pull --rebase origin main || true
+
+          git add *.json
+          git add predictions.json || true
+          git add weather.json || true
+
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
+          git push origin main || echo "Nothing to push"
