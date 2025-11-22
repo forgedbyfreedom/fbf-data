@@ -1,465 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Forged By Freedom — Live Game Odds & Picks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #05070b;
-      --card-bg: #0c1018;
-      --card-bg-alt: #0f141e;
-      --accent: #ff7a1a;
-      --accent-soft: #ffb266;
-      --text: #f5f7ff;
-      --muted: #9ba3b8;
-      --border-soft: #252b3a;
-      --danger: #ff4b5c;
-      --warning: #facc15;
-      --success: #22c55e;
-      --chip-bg: #151a24;
-      --chip-active-bg: #ff7a1a;
-      --chip-active-text: #05070b;
-      --badge-bg: #111827;
-    }
+<meta charset="UTF-8">
+<title>FBF Predictions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * { box-sizing: border-box; }
-
+<style>
     body {
-      margin: 0;
-      padding: 16px;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #111827, #020308 55%) fixed;
-      color: var(--text);
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #eee;
+        margin: 0;
+        padding: 20px;
     }
 
-    #app { max-width: 1600px; margin: 0 auto; }
-
-    .top-panel {
-      background: radial-gradient(circle at top left, #1f2937, #020617 65%);
-      border-radius: 18px;
-      border: 1px solid #1f2937;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.6);
-      padding: 18px 20px 16px 20px;
-      margin-bottom: 18px;
-      position: sticky;
-      top: 8px;
-      z-index: 5;
+    h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #fff;
     }
 
-    .hero-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
-
-    .logo-circle {
-      width: 54px; height: 54px; border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #ffecd5, #f97316 45%, #7f1d1d 80%);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:800; letter-spacing:.05em; color:#111827; font-size:18px;
-      box-shadow: 0 0 30px rgba(248, 113, 113, 0.7);
-      flex-shrink:0;
-    }
-
-    .brand-title {
-      font-size: 17px; letter-spacing:.12em; font-weight:700; text-transform:uppercase;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
-
-    .brand-subtitle {
-      font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent-soft);
-      white-space:nowrap;
-    }
-
-    .brand-tagline { font-size:11px; color:var(--muted); margin-top:2px; }
-
-    .brand-link {
-      font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:#60a5fa; text-decoration:none;
-    }
-    .brand-link:hover { text-decoration:underline; }
-
-    .mode-badge { display:flex; flex-direction:column; align-items:flex-end; gap:4px; font-size:11px; color:var(--muted); }
-
-    .mode-pill {
-      display:inline-flex; align-items:center; gap:6px;
-      padding:4px 10px; border-radius:999px;
-      background: linear-gradient(135deg, #020617, #1f2937);
-      border:1px solid #1f2937; box-shadow:0 8px 18px rgba(0,0,0,0.6);
-      font-size:11px;
-    }
-
-    .filter-row {
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; margin-top:10px; flex-wrap:wrap;
-    }
-
-    .filter-group { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-
-    .filter-label {
-      font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
-      white-space:nowrap;
-    }
-
-    .chip-row { display:flex; flex-wrap:wrap; gap:6px; }
-
-    .sport-chip {
-      padding:4px 10px; font-size:11px; border-radius:999px; border:1px solid #1f2937;
-      background:var(--chip-bg); color:var(--muted); cursor:pointer;
-      display:inline-flex; align-items:center; gap:4px; text-transform:uppercase; letter-spacing:.08em;
-    }
-    .sport-chip span.dot { width:6px; height:6px; border-radius:999px; background:#4b5563; }
-    .sport-chip.active { background:var(--chip-active-bg); color:var(--chip-active-text); border-color:#f97316; }
-    .sport-chip.active span.dot { background:#111827; }
-
-    .legend { display:flex; align-items:center; gap:10px; font-size:11px; color:var(--muted); flex-wrap:wrap; }
-    .legend span.dot { width:8px; height:8px; border-radius:999px; display:inline-block; margin-right:4px; }
-    .dot-low { background: var(--danger); }
-    .dot-med { background: var(--warning); }
-    .dot-high { background: var(--success); }
-
-    .board-meta {
-      display:flex; justify-content:space-between; align-items:center;
-      margin:10px 2px 4px 2px; font-size:11px; color:var(--muted);
-      text-transform:uppercase; letter-spacing:.18em; flex-wrap:wrap; gap:6px;
-    }
-
-    .cards-grid {
-      display:grid;
-      grid-template-columns: repeat(1, minmax(0,1fr));
-      gap:14px;
-      margin-top:10px;
-    }
-    @media (min-width: 700px) {
-      .cards-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media (min-width: 1100px) {
-      .cards-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    }
-
-    .group-header {
-      grid-column:1/-1;
-      margin-top:6px; margin-bottom:4px;
-      display:flex; justify-content:space-between; align-items:baseline;
-      border-bottom:1px solid #111827; padding:6px 2px;
-    }
-    .group-date, .group-sport {
-      font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);
+    /* 3-card layout */
+    #games-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 18px;
     }
 
     .game-card {
-      background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
-      border-radius:14px; border:1px solid var(--border-soft);
-      padding:10px 11px; box-shadow:0 10px 30px rgba(0,0,0,0.6);
-      display:flex; flex-direction:column; gap:6px; position:relative;
+        background: #1b1b1b;
+        padding: 16px;
+        border-radius: 10px;
+        border: 1px solid #333;
+        box-shadow: 0px 0px 10px #000;
     }
 
-    .card-top-row {
-      display:flex; justify-content:space-between; align-items:center;
-      font-size:11px; color:var(--muted);
+    .game-card h3 {
+        margin: 0 0 12px;
+        font-size: 20px;
+        color: #fff;
     }
 
-    .sport-tag {
-      padding:2px 6px; border-radius:999px; border:1px solid #1f2937;
-      background:rgba(15,23,42,0.9);
-      font-size:10px; text-transform:uppercase; letter-spacing:.14em;
+    .conf {
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 6px;
+        margin-left: 6px;
     }
 
-    .book-tag { font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:#9ca3af; }
+    /* confidence colors */
+    .low { background: #802020; }
+    .med { background: #804c20; }
+    .high { background: #1f7a29; }
 
-    .matchup-line {
-      font-size:12px; font-weight:700; line-height:1.25; word-break:break-word;
-    }
-
-    .teams {
-      margin-top:2px;
-      display:flex; flex-direction:column; gap:3px;
-      font-size:12px;
-    }
-    .team-row {
-      display:flex; justify-content:space-between; gap:6px; align-items:center;
-    }
-    .team-name { font-weight:600; line-height:1.2; }
-    .team-spread { color:var(--accent-soft); font-weight:600; }
-
-    .kickoff-row {
-      margin-top:2px; font-size:11px; color:var(--muted);
-      display:flex; justify-content:space-between; gap:6px;
-    }
-
-    .lines-row {
-      display:grid; grid-template-columns:1fr 1fr 1fr;
-      gap:4px; margin-top:4px; font-size:11px;
-    }
-    .line-col {
-      background:rgba(15,23,42,0.9);
-      border-radius:8px; padding:4px 6px; border:1px solid #111827;
-      display:flex; flex-direction:column; gap:2px;
-    }
-    .line-label {
-      text-transform:uppercase; letter-spacing:.14em; font-size:9px; color:var(--muted);
-    }
-    .line-value { font-size:11px; font-weight:600; }
-
-    .picks-block {
-      margin-top:6px; border-top:1px dashed #1f2937; padding-top:5px;
-      display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:4px; font-size:11px;
-    }
-    .pick-item { display:flex; flex-direction:column; gap:1px; }
-    .pick-label { font-size:9px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); }
-    .pick-value { font-size:11px; font-weight:600; }
-
-    .pick-value.muted { opacity:.6; font-style:italic; }
-
-    .no-games { margin-top:24px; font-size:13px; color:var(--muted); text-align:center; }
-  </style>
+</style>
 </head>
+
 <body>
-<div id="app">
 
-  <header class="top-panel">
-    <div class="hero-row">
-      <div class="brand">
-        <div class="logo-circle">FBF</div>
-        <div>
-          <div class="brand-title">FORGED BY FREEDOM STRENGTH &amp; NUTRITION</div>
-          <div class="brand-subtitle">STRENGTH · DISCIPLINE · FREEDOM</div>
-          <div class="brand-tagline">For all your training, supplementation, and nutrition needs.</div>
-          <a href="https://forgedbyfreedom.org" class="brand-link" target="_blank" rel="noopener">ForgedByFreedom.org</a>
-        </div>
-      </div>
-      <div class="mode-badge">
-        <div class="mode-pill"><span>Black Ops</span><span class="sub">Tactical Dark Mode</span></div>
-        <div class="last-updated" id="last-updated-text">Last updated: —</div>
-      </div>
-    </div>
-
-    <div class="filter-row">
-      <div class="filter-group">
-        <div class="filter-label">Filter Sports</div>
-        <div class="chip-row" id="sport-filters">
-          <button class="sport-chip active" data-sport="all"><span class="dot"></span>All</button>
-          <button class="sport-chip" data-sport="americanfootball_nfl"><span class="dot"></span>NFL</button>
-          <button class="sport-chip" data-sport="americanfootball_ncaaf"><span class="dot"></span>NCAAF</button>
-          <button class="sport-chip" data-sport="basketball_nba"><span class="dot"></span>NBA</button>
-          <button class="sport-chip" data-sport="basketball_ncaab"><span class="dot"></span>NCAAB</button>
-          <button class="sport-chip" data-sport="icehockey_nhl"><span class="dot"></span>NHL</button>
-          <button class="sport-chip" data-sport="mma_mixed_martial_arts"><span class="dot"></span>UFC</button>
-        </div>
-      </div>
-      <div class="legend">
-        <span><span class="dot dot-low"></span>Low 0–55%</span>
-        <span><span class="dot dot-med"></span>Med 56–69%</span>
-        <span><span class="dot dot-high"></span>High 70%+</span>
-      </div>
-    </div>
-  </header>
-
-  <div class="board-meta">
-    <div>Tue – Sun slates • Sorted by sport, then kickoff (local)</div>
-    <div>Forged By Freedom • Live odds & baseline + ML picks</div>
-  </div>
-
-  <main class="cards-grid" id="cards-grid"></main>
-  <div class="no-games" id="no-games" style="display:none;">No games available for this filter right now.</div>
-
-</div>
+<h1>FBF AI Picks</h1>
+<div id="games-container"></div>
 
 <script>
-const SPORT_LABELS = {
-  americanfootball_nfl: "NFL",
-  americanfootball_ncaaf: "NCAAF",
-  basketball_nba: "NBA",
-  basketball_ncaab: "NCAAB",
-  icehockey_nhl: "NHL",
-  mma_mixed_martial_arts: "UFC"
-};
+async function loadPicks() {
+    try {
+        const res = await fetch("predictions.json?_=" + Date.now());
+        const data = await res.json();
 
-const confidenceClass = (pct) => {
-  if (pct == null) return "";
-  if (pct >= 70) return "conf-high";
-  if (pct >= 56) return "conf-med";
-  return "conf-low";
-};
-
-const formatKickoff = (iso) => {
-  try {
-    return new Date(iso).toLocaleString([], { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" });
-  } catch { return iso || "—"; }
-};
-
-const normalizeKey = (g) => {
-  const home = (g.home_team||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-  const away = (g.away_team||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-  return `${away}@${home}|${g.commence_time||""}`;
-};
-
-async function loadJson(path) {
-  const r = await fetch(path + "?cb=" + Date.now());
-  return await r.json();
+        const games = data.data || [];
+        console.log("Loaded predictions:", games);
+        renderGames(games);
+    } catch (e) {
+        console.error("Error loading predictions:", e);
+    }
 }
 
-function mergePredictions(games, preds) {
-  const byId = {};
-  const byKey = {};
-  (preds||[]).forEach(p => {
-    if (p.event_id) byId[p.event_id] = p;
-    byKey[normalizeKey(p)] = p;
-  });
+function renderGames(games) {
+    const container = document.getElementById("games-container");
+    container.innerHTML = "";
 
-  return games.map(g => {
-    const p = byId[g.event_id] || byKey[normalizeKey(g)];
-    return { ...g, _pred: p || null };
-  });
-}
+    games.forEach(g => {
+        const card = document.createElement("div");
+        card.className = "game-card";
 
-function groupGames(games) {
-  const groups = {};
-  games.forEach(g => {
-    const d = new Date(g.commence_time);
-    const dateKey = d.toDateString();
-    const sportKey = g.sport_key || "unknown";
-    const k = dateKey + "||" + sportKey;
-    groups[k] = groups[k] || { dateKey, sportKey, games: [] };
-    groups[k].games.push(g);
-  });
-  return Object.values(groups)
-    .sort((a,b)=> new Date(a.games[0].commence_time) - new Date(b.games[0].commence_time));
-}
+        card.innerHTML = `
+            <h3>${g.matchup}</h3>
+            <p><b>Start:</b> ${g.commence_time}</p>
 
-function render(games) {
-  const grid = document.getElementById("cards-grid");
-  const noGames = document.getElementById("no-games");
-  grid.innerHTML = "";
-  noGames.style.display = games.length ? "none" : "block";
-  if (!games.length) return;
+            <p><b>ML:</b> ${g.SU_pick}
+                <span class="conf ${g.SU_grade}">
+                    ${g.SU_conf}%
+                </span>
+            </p>
 
-  const grouped = groupGames(games);
+            <p><b>ATS:</b> ${g.ATS_pick}
+                <span class="conf ${g.ATS_grade}">
+                    ${g.ATS_conf}%
+                </span>
+            </p>
 
-  grouped.forEach(group => {
-    const head = document.createElement("div");
-    head.className = "group-header";
-    head.innerHTML = `
-      <div class="group-date">${group.dateKey}</div>
-      <div class="group-sport">${SPORT_LABELS[group.sportKey] || group.sportKey}</div>
-    `;
-    grid.appendChild(head);
+            <p><b>OU:</b> ${g.OU_pick || "—"}
+                ${g.OU_conf ? `<span class="conf ${g.OU_grade}">
+                    ${g.OU_conf}%
+                </span>` : ""}
+            </p>
+        `;
 
-    group.games.forEach(g => {
-      const p = g._pred;
-      const suC = p?.SU_conf ?? null;
-      const atsC = p?.ATS_conf ?? null;
-      const ouC = p?.OU_conf ?? null;
-
-      const card = document.createElement("div");
-      card.className = `game-card ${confidenceClass(suC)}`;
-
-      const fav = g.fav_team || g.favorite_team || g.home_team;
-      const dog = g.dog_team || g.underdog_team || g.away_team;
-
-      const favSpread = (g.fav_spread ?? g.spread);
-      const dogSpread = (g.dog_spread ?? (favSpread!=null ? -favSpread : null));
-
-      card.innerHTML = `
-        <div class="card-top-row">
-          <span class="sport-tag">${SPORT_LABELS[g.sport_key] || g.sport_key}</span>
-          <span class="book-tag">${(g.book||"ESPN").toUpperCase()}</span>
-        </div>
-
-        <div class="matchup-line">${g.away_team} @ ${g.home_team}</div>
-
-        <div class="teams">
-          <div class="team-row">
-            <span class="team-name">${g.away_team}</span>
-            <span class="team-spread">${dogSpread!=null ? (dogSpread>0?"+":"")+dogSpread : ""}</span>
-          </div>
-          <div class="team-row">
-            <span class="team-name">${g.home_team}</span>
-            <span class="team-spread">${favSpread!=null ? (favSpread>0?"+":"")+favSpread : ""}</span>
-          </div>
-        </div>
-
-        <div class="kickoff-row">
-          <span>Kickoff</span><span>${formatKickoff(g.commence_time)}</span>
-        </div>
-
-        <div class="lines-row">
-          <div class="line-col">
-            <div class="line-label">Spread</div>
-            <div class="line-value">${fav} ${favSpread!=null ? (favSpread>0?"+":"")+favSpread : ""}</div>
-          </div>
-          <div class="line-col">
-            <div class="line-label">Total</div>
-            <div class="line-value">${g.total ?? "—"}</div>
-          </div>
-          <div class="line-col">
-            <div class="line-label">Confidence</div>
-            <div class="line-value">${suC!=null ? suC.toFixed(1)+"%" : "—"}</div>
-          </div>
-        </div>
-
-        <div class="picks-block">
-          <div class="pick-item">
-            <div class="pick-label">SU</div>
-            <div class="pick-value ${p? "" : "muted"}">${p?.SU_pick ?? "No data"}</div>
-          </div>
-          <div class="pick-item">
-            <div class="pick-label">ATS</div>
-            <div class="pick-value ${p? "" : "muted"}">${p?.ATS_pick ?? "No data"}</div>
-          </div>
-          <div class="pick-item">
-            <div class="pick-label">O/U</div>
-            <div class="pick-value ${p? "" : "muted"}">${p?.OU_pick ?? "No data"}</div>
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
+        container.appendChild(card);
     });
-  });
 }
 
-let ALL_GAMES = [];
-let ACTIVE_SPORT = "all";
-
-function applyFilter() {
-  const games = ACTIVE_SPORT==="all"
-    ? ALL_GAMES
-    : ALL_GAMES.filter(g => g.sport_key === ACTIVE_SPORT);
-  render(games);
-}
-
-function hookFilters() {
-  const root = document.getElementById("sport-filters");
-  root.addEventListener("click", (e) => {
-    const btn = e.target.closest(".sport-chip");
-    if (!btn) return;
-    root.querySelectorAll(".sport-chip").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    ACTIVE_SPORT = btn.dataset.sport;
-    applyFilter();
-  });
-}
-
-(async function init(){
-  hookFilters();
-
-  const combined = await loadJson("combined.json");
-  const preds = await loadJson("predictions.json").catch(()=>({data:[]}));
-
-  document.getElementById("last-updated-text").textContent =
-    "Last updated: " + (combined.timestamp || "—");
-
-  ALL_GAMES = mergePredictions(combined.data || [], preds.data || [])
-    .sort((a,b)=> new Date(a.commence_time) - new Date(b.commence_time));
-
-  applyFilter();
-})();
+// Load immediately
+loadPicks();
+// Refresh every 60s
+setInterval(loadPicks, 60000);
 </script>
+
 </body>
 </html>
