@@ -1,206 +1,155 @@
 #!/usr/bin/env python3
 """
-build_weather_for_games.py
+build_weather.py
 
-Uses combined.json + venues.json.
+Uses fbs_stadiums.json + combined.json to attach outdoor-only weather.
+- Only applies to outdoor stadiums.
+- Uses Open-Meteo forecast (no key).
+- Output: weather.json
 
-Weather rules:
-- venue_type == "outdoor"    => fetch forecast
-- venue_type == "indoor"     => skip (weather_applicable: false)
-- venue_type == "retractable"=> Rule B: assume indoor unless verified open
-                               so skip with reason "retractable_assumed_closed"
-
-Forecast provider:
-Open-Meteo hourly forecast (no key).
-
-Output:
-  weather.json
-
-Structure:
-{
-  "timestamp": "...",
-  "data": [
-     {
-       "event_id": "...",
-       "matchup": "...",
-       "home_team": "...",
-       "venue": "...",
-       "venue_type": "...",
-       "weather_applicable": true|false,
-       "skip_reason": null | "...",
-       "forecast": {
-          "temp_c": ...,
-          "wind_kph": ...,
-          "precip_mm": ...,
-          "weathercode": ...,
-          "time_utc": "..."
-       }
-     }, ...
-  ]
-}
+Safe if inputs missing.
 """
 
-import json
-import os
-import math
-import requests
+import json, os, math
 from datetime import datetime, timezone
+import requests
 
+STADIUMS_FILE = "fbs_stadiums.json"
+COMBINED_FILE = "combined.json"
 OUTFILE = "weather.json"
 TIMEOUT = 12
 
+OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
 
-def safe_float(x):
-    try:
-        return float(x)
-    except Exception:
-        return None
-
-
-def parse_iso_z(s: str):
-    # expects "2025-11-16T18:00:00Z"
-    if not s:
-        return None
-    return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(timezone.utc)
-
-
-def nearest_hour_index(times, target_dt_utc):
-    """Find index of closest hourly time in list."""
-    if not times or not target_dt_utc:
-        return None
-    # times are strings in ISO format like "2025-11-16T18:00"
-    best_i, best_delta = None, None
-    for i, t in enumerate(times):
-        dt_i = datetime.fromisoformat(t).replace(tzinfo=timezone.utc)
-        delta = abs((dt_i - target_dt_utc).total_seconds())
-        if best_delta is None or delta < best_delta:
-            best_delta = delta
-            best_i = i
-    return best_i
-
-
-def fetch_open_meteo_hourly(lat, lon, start_dt_utc):
-    """
-    Fetch hourly forecast around game time.
-    We'll ask for hourly in UTC to keep alignment easy.
-    """
-    url = "https://api.open-meteo.com/v1/forecast"
-    params = {
-        "latitude": lat,
-        "longitude": lon,
-        "hourly": "temperature_2m,precipitation,weathercode,windspeed_10m",
-        "timezone": "UTC",
-        "forecast_days": 7
-    }
+def get_json(url, params=None):
     r = requests.get(url, params=params, timeout=TIMEOUT)
     r.raise_for_status()
     return r.json()
 
+def load_json(path, default):
+    if not os.path.exists(path):
+        return default
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def to_utc_dt(iso_str):
+    try:
+        return datetime.fromisoformat(iso_str.replace("Z","+00:00")).astimezone(timezone.utc)
+    except Exception:
+        return None
+
+def nearest_hour_index(times, target_dt):
+    # times are ISO strings in UTC
+    best_i, best_diff = None, None
+    for i, ts in enumerate(times):
+        dt = to_utc_dt(ts)
+        if not dt:
+            continue
+        diff = abs((dt - target_dt).total_seconds())
+        if best_diff is None or diff < best_diff:
+            best_diff = diff
+            best_i = i
+    return best_i
 
 def main():
-    if not os.path.exists("combined.json"):
-        raise SystemExit("❌ combined.json not found.")
-    if not os.path.exists("venues.json"):
-        raise SystemExit("❌ venues.json not found. Run build_venues_from_combined.py first.")
+    stadiums_payload = load_json(STADIUMS_FILE, {})
+    combined_payload = load_json(COMBINED_FILE, {})
 
-    with open("combined.json", "r", encoding="utf-8") as f:
-        combined = json.load(f)
-    with open("venues.json", "r", encoding="utf-8") as f:
-        venues_payload = json.load(f)
+    stadiums = stadiums_payload.get("data", [])
+    games = combined_payload.get("data", [])
 
-    games = combined.get("data", [])
-    venues = venues_payload.get("venues", {})
+    if not stadiums or not games:
+        payload = {
+            "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
+            "data": [],
+            "note": "Missing fbs_stadiums.json or combined.json",
+        }
+        with open(OUTFILE, "w") as f:
+            json.dump(payload, f, indent=2)
+        print(f"⚠️  Wrote empty {OUTFILE} (no inputs)")
+        return
+
+    # Map venue by team name (best-effort matching)
+    venue_by_team = {}
+    for s in stadiums:
+        tn = (s.get("team_name") or "").lower()
+        if tn:
+            venue_by_team[tn] = s
 
     out = []
-    print(f"[🌦️] Building weather for {len(games)} games...")
+    errors = []
 
     for g in games:
-        home = g.get("home_team")
-        if not home:
+        sport_key = g.get("sport_key","")
+        if "ncaaf" not in sport_key:
+            continue  # only FBS weather for now
+
+        home_team = (g.get("home_team") or "").lower()
+        away_team = (g.get("away_team") or "").lower()
+        commence = to_utc_dt(g.get("commence_time") or "")
+        if not commence:
             continue
 
-        venue_rec = venues.get(home)
-        base = {
-            "event_id": g.get("event_id"),
-            "matchup": g.get("matchup"),
-            "sport_key": g.get("sport_key"),
-            "home_team": home,
-            "away_team": g.get("away_team"),
-            "commence_time": g.get("commence_time"),
-            "venue": venue_rec.get("venue") if venue_rec else None,
-            "venue_type": venue_rec.get("venue_type") if venue_rec else None,
-            "weather_applicable": False,
-            "skip_reason": None,
-            "forecast": None
-        }
-
-        if not venue_rec:
-            base["skip_reason"] = "no_venue_found"
-            out.append(base)
+        venue = venue_by_team.get(home_team)
+        if not venue:
+            errors.append({"matchup": g.get("matchup"), "reason": "home venue not found"})
             continue
 
-        vtype = venue_rec.get("venue_type")
-        lat = venue_rec.get("lat")
-        lon = venue_rec.get("lon")
-
-        if vtype == "indoor":
-            base["skip_reason"] = "indoor_venue"
-            out.append(base)
+        if venue.get("indoor"):
+            # outdoor only rule
             continue
 
-        if vtype == "retractable":
-            # RULE B: assume indoor unless verified open
-            base["skip_reason"] = "retractable_assumed_closed"
-            out.append(base)
-            continue
-
-        # Outdoor only from here
-        game_dt = parse_iso_z(g.get("commence_time"))
-        if not game_dt or lat is None or lon is None:
-            base["skip_reason"] = "missing_time_or_coords"
-            out.append(base)
-            continue
+        lat, lon = venue["latitude"], venue["longitude"]
 
         try:
-            wx = fetch_open_meteo_hourly(lat, lon, game_dt)
+            params = {
+                "latitude": lat,
+                "longitude": lon,
+                "hourly": "temperature_2m,precipitation,wind_speed_10m,weather_code",
+                "timezone": "UTC",
+            }
+            wx = get_json(OPEN_METEO_URL, params=params)
             hourly = wx.get("hourly", {})
             times = hourly.get("time", [])
-            idx = nearest_hour_index(times, game_dt)
+            if not times:
+                raise ValueError("no hourly times")
 
-            if idx is None:
-                base["skip_reason"] = "forecast_not_found"
-                out.append(base)
-                continue
+            i = nearest_hour_index(times, commence)
+            if i is None:
+                raise ValueError("no nearest hour")
 
-            temp_c = safe_float(hourly.get("temperature_2m", [None])[idx])
-            precip_mm = safe_float(hourly.get("precipitation", [None])[idx])
-            wind_kph = safe_float(hourly.get("windspeed_10m", [None])[idx])
-            weathercode = hourly.get("weathercode", [None])[idx]
-
-            base["weather_applicable"] = True
-            base["forecast"] = {
-                "time_utc": times[idx] + "Z",
-                "temp_c": temp_c,
-                "precip_mm": precip_mm,
-                "wind_kph": wind_kph,
-                "weathercode": weathercode
+            entry = {
+                "matchup": g.get("matchup"),
+                "event_id": g.get("event_id"),
+                "sport_key": sport_key,
+                "commence_time": g.get("commence_time"),
+                "venue_name": venue.get("venue_name"),
+                "latitude": lat,
+                "longitude": lon,
+                "forecast_utc": times[i],
+                "temperature_c": hourly.get("temperature_2m", [None])[i],
+                "wind_kph": hourly.get("wind_speed_10m", [None])[i],
+                "precip_mm": hourly.get("precipitation", [None])[i],
+                "weather_code": hourly.get("weather_code", [None])[i],
+                "outdoor": True,
+                "source": "open-meteo",
             }
-            out.append(base)
+            out.append(entry)
 
         except Exception as e:
-            base["skip_reason"] = f"forecast_error: {e}"
-            out.append(base)
+            errors.append({"matchup": g.get("matchup"), "reason": str(e)})
 
     payload = {
-        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S"),
-        "data": out
+        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
+        "count": len(out),
+        "data": out,
+        "errors": errors or None,
     }
 
     with open(OUTFILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
-    print(f"[✅] Saved {OUTFILE} with {len(out)} records.")
-
+    print(f"✅ Wrote {OUTFILE} with {len(out)} weather rows (outdoor only)")
 
 if __name__ == "__main__":
     main()
