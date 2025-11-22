@@ -1,4 +1,4 @@
-name: Auto Fetch - ESPN Odds Weather Ref Trends Predictions
+name: "Auto Fetch – ESPN Odds + Weather + Ref Trends + Predictions"
 
 on:
   schedule:
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       # ------------------------------------------------------
       # CHECKOUT
       # ------------------------------------------------------
@@ -32,7 +33,7 @@ jobs:
           pip install requests pandas numpy scikit-learn
 
       # ------------------------------------------------------
-      # RUN DATA BUILDERS
+      # DATA BUILDERS
       # ------------------------------------------------------
       - name: Build full FBS stadium list
         run: python3 build_fbs_stadiums.py
@@ -56,7 +57,7 @@ jobs:
         run: python3 predictions_model.py
 
       # ------------------------------------------------------
-      # GIT COMMIT / PUSH
+      # COMMIT / PUSH
       # ------------------------------------------------------
       - name: Commit and push updated data
         run: |
