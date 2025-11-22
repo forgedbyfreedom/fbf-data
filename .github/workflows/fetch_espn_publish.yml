@@ -8,9 +8,12 @@ on:
 jobs:
   fetch-and-publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,19 +25,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Fetch ESPN Core API Odds
-        run: python3 fetch_espn_core_odds.py
+      - name: Run ESPN Odds Fetcher
+        run: python3 fetch_espn_all.py
 
-      - name: Tag favorites and underdogs
-        run: python3 tag_favorites.py
-
-      - name: Track weekly accuracy
-        run: python3 track_accuracy.py
+      - name: Build referee trends
+        run: python3 referee_trends.py
 
       - name: Commit and push updated data
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add combined.json performance_log.json *.json || true
+
+          # rebase in case another workflow pushed
+          git pull --rebase origin main || true
+
+          # add all json files your site depends on
+          git add combined.json *.json
+
           git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+
           git push origin main || echo "Nothing to push"
