@@ -2,47 +2,40 @@
 """
 gpu_backend.py
 
-Auto-detects GPU libraries.
-- If CuPy exists -> use it as np
-- If cuML exists -> use it for ML
-- Otherwise falls back to NumPy / scikit-learn
-
-Usage:
-    from gpu_backend import np, ML_BACKEND, is_gpu
-
-    X = np.array(...)
-    if ML_BACKEND == "cuml":
-        ...
+Optional GPU/CPU abstraction.
+- If cupy is installed and a CUDA device is available, uses GPU arrays.
+- Otherwise falls back to numpy.
 """
 
-def _try_import(name):
+from __future__ import annotations
+import os
+
+BACKEND = "numpy"
+xp = None
+
+def _try_cupy():
+    global BACKEND, xp
     try:
-        mod = __import__(name)
-        return mod
+        import cupy  # type: ignore
+        # basic device test
+        _ = cupy.zeros((1,))
+        xp = cupy
+        BACKEND = "cupy"
+        return True
     except Exception:
-        return None
+        return False
 
+def _use_numpy():
+    global BACKEND, xp
+    import numpy
+    xp = numpy
+    BACKEND = "numpy"
 
-# ---------- NumPy vs CuPy ----------
-cupy = _try_import("cupy")
-if cupy is not None:
-    np = cupy
-    is_gpu = True
+if os.environ.get("FBF_FORCE_CPU", "").lower() in ("1","true","yes"):
+    _use_numpy()
 else:
-    import numpy as np
-    is_gpu = False
+    if not _try_cupy():
+        _use_numpy()
 
-
-# ---------- scikit-learn vs cuML ----------
-cuml = _try_import("cuml")
-if cuml is not None:
-    ML_BACKEND = "cuml"
-else:
-    ML_BACKEND = "sklearn"
-
-
-def to_cpu(x):
-    """Convert CuPy arrays to NumPy safely."""
-    if is_gpu:
-        return x.get()
-    return x
+def backend_name() -> str:
+    return BACKEND
