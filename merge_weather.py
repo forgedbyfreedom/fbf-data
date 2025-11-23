@@ -1,37 +1,37 @@
-import json, os
+import json
+import os
 
 def load_json(path, default):
-    if os.path.exists(path):
+    try:
         with open(path, "r") as f:
             return json.load(f)
-    return default
+    except:
+        return default
 
 def main():
     games = load_json("combined.json", [])
     raw = load_json("weather_raw.json", {})
-    risk = load_json("weather_risk1.json", {})  # <-- or weather_risk.json depending what you chose
+    risk = load_json("weather_risk1.json", {})
 
     out = []
 
     for g in games:
 
-        # ---------------------------------------
-        # SAFETY GUARD — FIXES YOUR ERROR
-        # ---------------------------------------
+        # SAFETY: combined.json is corrupted at top with "timestamp", "count", "data"
         if not isinstance(g, dict):
-            print(f"[⚠️] Skipping corrupted combined.json entry: {g}")
+            print(f"[⚠️] Skipping non-game entry: {g}")
             continue
 
         gid = g.get("game_id") or g.get("id")
         if not gid:
-            print(f"[⚠️] Skipping entry with no game ID: {g}")
+            print(f"[⚠️] Skipping entry without ID: {g}")
             continue
 
-        # Merge weather fields
+        # Merge fields
         g["weather"] = raw.get(gid, {})
         g["weatherRisk"] = risk.get(gid, {})
 
-        # Combine tag sets safely
+        # Merge tags
         existing = set(g.get("flags") or [])
         new = set(g["weatherRisk"].get("tags") or [])
         g["flags"] = sorted(list(existing | new))
@@ -41,7 +41,7 @@ def main():
     with open("combined.json", "w") as f:
         json.dump(out, f, indent=2)
 
-    print(f"[✅] Weather merged into combined.json ({len(out)} games).")
+    print(f"[✅] Weather merged into combined.json ({len(out)} valid games).")
 
 if __name__ == "__main__":
     main()
