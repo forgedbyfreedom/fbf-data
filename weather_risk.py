@@ -91,9 +91,56 @@ def main():
     out = {}
 
     for g in games:
-        # SAFETY: skip bad entries
+
+        # Skip bad entries
         if not isinstance(g, dict):
             print(f"[⚠️] Skipping corrupted game entry: {g}")
             continue
 
-        gid = g.get("game_id") or g.get("id_
+        gid = g.get("game_id") or g.get("id")
+        if not gid:
+            print(f"[⚠️] Game missing ID: {g}")
+            continue
+
+        w = weather.get(gid, {})
+
+        # indoor or API error
+        if w.get("indoor") or w.get("error"):
+            out[gid] = {
+                "indoor": bool(w.get("indoor")),
+                "error": w.get("error")
+            }
+            continue
+
+        wind = w.get("windSpeedMph")
+        rain = w.get("rainChancePct")
+        temp = w.get("temperatureF")
+        sport = g.get("sport")
+
+        wr = wind_risk(wind)
+        rr = rain_risk(rain)
+        tr = temp_risk(temp)
+
+        weights = sport_weights(sport)
+        score = clamp(
+            wr * weights["wind"] +
+            rr * weights["rain"] +
+            tr * weights["temp"]
+        )
+
+        out[gid] = {
+            "overallRisk": round(score, 1),
+            "windRisk": round(wr, 1),
+            "rainRisk": round(rr, 1),
+            "tempRisk": round(tr, 1),
+            "tags": performance_tags(sport, wind, rain, temp)
+        }
+
+    with open("weather_risk.json", "w") as f:
+        json.dump(out, f, indent=2)
+
+    print(f"[✅] Weather risk scored for {len(out)} games.")
+
+
+if __name__ == "__main__":
+    main()
