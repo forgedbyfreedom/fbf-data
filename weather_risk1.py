@@ -35,12 +35,10 @@ def temp_risk(temp_f):
         if temp_f is None:
             return 0
         temp_f = float(temp_f)
-
         if temp_f < 32:
             return clamp((32 - temp_f) * 2.2)
         if temp_f > 90:
             return clamp((temp_f - 90) * 2.0)
-
         return 0
     except:
         return 0
@@ -79,7 +77,6 @@ def performance_tags(sport, wind, rain, temp):
 
         if temp is not None and float(temp) >= 90:
             tags += ["heat_game", "fatigue_risk"]
-
     except:
         pass
 
@@ -92,7 +89,12 @@ def main():
 
     out = {}
 
+    # combined.json format: {"timestamp": "...", "count": N, "data": [...]}
+    if isinstance(games, dict) and "data" in games:
+        games = games["data"]
+
     for g in games:
+
         if not isinstance(g, dict):
             print(f"[⚠️] Skipping corrupted game entry: {g}")
             continue
@@ -104,11 +106,11 @@ def main():
 
         w = weather.get(gid, {})
 
-        # Indoor or error: pass through
+        # Indoor or API error
         if w.get("indoor") or w.get("error"):
             out[gid] = {
                 "indoor": bool(w.get("indoor")),
-                "error": w.get("error"),
+                "error": w.get("error")
             }
             continue
 
