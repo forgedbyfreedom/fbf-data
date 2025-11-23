@@ -11,7 +11,6 @@ jobs:
 
     steps:
       - name: Checkout repository
-      use
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -45,7 +44,7 @@ jobs:
       - name: Build Weather For Games
         run: python3 build_weather_for_games.py
 
-      # Temporarily disable referee script (until ref data added)
+      # Referee trends disabled until ref data is turned on
       # - name: Build Referee Trends
       #   run: python3 referee_trends.py
 
