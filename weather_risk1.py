@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, os
+import json
 
 def load_json(path, default):
     try:
@@ -57,22 +57,22 @@ def performance_tags(sport, wind, rain, temp):
     s = (sport or "").lower()
     try:
         if wind is not None and float(wind) >= 15:
-            tags.extend(["high_wind", "passing_penalty", "kicking_penalty"])
+            tags += ["high_wind", "passing_penalty", "kicking_penalty"]
             if s == "mlb":
-                tags.append("hr_suppression")
+                tags += ["hr_suppression"]
         if rain is not None and float(rain) >= 50:
-            tags.extend(["rain_game", "ball_security_risk"])
+            tags += ["rain_game", "ball_security_risk"]
         if temp is not None and float(temp) <= 32:
-            tags.extend(["freezing_game", "run_rate_up"])
+            tags += ["freezing_game", "run_rate_up"]
         if temp is not None and float(temp) >= 90:
-            tags.extend(["heat_game", "fatigue_risk"])
+            tags += ["heat_game", "fatigue_risk"]
     except:
         pass
     return tags
 
 def main():
     combined = load_json("combined.json", {})
-    games = combined.get("data") or []
+    games = combined.get("data") or []   # ✅ NEW FORMAT
     weather = load_json("weather_raw.json", {})
 
     out = {}
@@ -87,7 +87,6 @@ def main():
 
         w = weather.get(gid, {})
 
-        # Indoor or error
         if w.get("indoor") or w.get("error"):
             out[gid] = {
                 "indoor": bool(w.get("indoor")),
@@ -105,7 +104,6 @@ def main():
         tr = temp_risk(temp)
 
         weights = sport_weights(sport)
-
         score = clamp(
             wr * weights["wind"] +
             rr * weights["rain"] +
@@ -120,4 +118,10 @@ def main():
             "tags": performance_tags(sport, wind, rain, temp)
         }
 
-    with open("w
+    with open("weather_risk1.json", "w") as f:
+        json.dump(out, f, indent=2)
+
+    print(f"[✅] Weather risk scored for {len(out)} games.")
+
+if __name__ == "__main__":
+    main()
