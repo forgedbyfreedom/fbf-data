@@ -52,7 +52,7 @@ jobs:
         run: python3 fetch_weather.py
 
       - name: Build Weather Risk Scores
-        run: python3 weather_risk.py
+        run: python3 weather_risk1.py
 
       - name: Merge Weather Into Combined
         run: python3 merge_weather.py
