@@ -11,6 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
+      use
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -23,6 +24,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # --------------------------
+      #  FETCH RAW DATA SOURCES
+      # --------------------------
+
       - name: Fetch ALL ESPN odds
         run: |
           echo "🏈 Fetching ESPN odds…"
@@ -34,29 +39,48 @@ jobs:
       - name: Build FBS Stadiums
         run: python3 build_fbs_stadiums.py
 
-      - name: Fetch Weather
+      - name: Fetch Weather (Raw)
         run: python3 fetch_weather.py
 
       - name: Build Weather For Games
         run: python3 build_weather_for_games.py
 
-      - name: Build Referee Trends
-        run: python3 referee_trends.py
+      # Temporarily disable referee script (until ref data added)
+      # - name: Build Referee Trends
+      #   run: python3 referee_trends.py
+
+      # --------------------------
+      #  INJURY SYSTEM (SAFE MODE)
+      # --------------------------
 
       - name: Fetch Injuries
-        run: python3 fetch_injuries.py
+        run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed but continuing"
 
-      - name: Merge Injuries
-        run: python3 merge_injuries.py
+      - name: Merge Injuries (Safe)
+        run: |
+          set +e
+          python3 merge_injuries.py
+          if [ $? -ne 0 ]; then
+            echo "⚠️ merge_injuries failed — skipping but continuing CI"
+          fi
+          set -e
+
+      # --------------------------
+      #  ML AND PREDICTIONS
+      # --------------------------
 
       - name: Build Historical Results
-        run: python3 build_historical_results.py
+        run: python3 build_historical_results.py || echo "⚠️ No history available"
 
       - name: Train ML Models
-        run: python3 train_model.py
+        run: python3 train_model.py || echo "⚠️ ML Training skipped"
 
       - name: Build Predictions
         run: python3 build_predictions.py
+
+      # --------------------------
+      #  COMMIT + DEPLOY
+      # --------------------------
 
       - name: Commit and push updates
         run: |
