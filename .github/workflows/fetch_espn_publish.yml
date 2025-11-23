@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # --------------------------
-      #  BOOTSTRAP
-      # --------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -29,9 +26,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # --------------------------
-      #  FETCH RAW DATA SOURCES
-      # --------------------------
       - name: Fetch ALL ESPN odds
         run: |
           echo "📡 Fetching ESPN odds…"
@@ -43,9 +37,6 @@ jobs:
       - name: Build FBS Stadiums
         run: python3 build_fbs_stadiums.py
 
-      # --------------------------
-      #  WEATHER.GOV FULL PIPELINE
-      # --------------------------
       - name: Fetch Weather (NWS Raw)
         env:
           NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
@@ -57,7 +48,31 @@ jobs:
       - name: Merge Weather Into Combined
         run: python3 merge_weather.py
 
-      # --------------------------
-      #  INJURY SYSTEM (SAFE MODE)
-      # --------------------------
       - name: Fetch Injuries
+        run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
+
+      - name: Merge Injuries (Safe)
+        run: |
+          set +e
+          python3 merge_injuries.py
+          if [ $? -ne 0 ]; then
+            echo "⚠️ merge_injuries failed — skipping but continuing CI"
+          fi
+          set -e
+
+      - name: Build Historical Results
+        run: python3 build_historical_results.py || echo "⚠️ Historical results unavailable"
+
+      - name: Train ML Models
+        run: python3 train_model.py || echo "⚠️ ML Training skipped"
+
+      - name: Build Predictions
+        run: python3 build_predictions.py
+
+      - name: Commit and push updates
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add *.json */*.json || true
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
+          git push origin main || echo "Nothing to push"
