@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # --------------------------
+      #  BOOTSTRAP
+      # --------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -26,10 +29,9 @@ jobs:
       # --------------------------
       #  FETCH RAW DATA SOURCES
       # --------------------------
-
       - name: Fetch ALL ESPN odds
         run: |
-          echo "🏈 Fetching ESPN odds…"
+          echo "📡 Fetching ESPN odds…"
           python3 fetch_espn_all.py
 
       - name: Tag Favorites/Dogs
@@ -38,22 +40,25 @@ jobs:
       - name: Build FBS Stadiums
         run: python3 build_fbs_stadiums.py
 
-      - name: Fetch Weather (Raw)
+      # --------------------------
+      #  WEATHER.GOV FULL PIPELINE
+      # --------------------------
+      - name: Fetch Weather (NWS Raw)
+        env:
+          NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
         run: python3 fetch_weather.py
 
-      - name: Build Weather For Games
-        run: python3 build_weather_for_games.py
+      - name: Build Weather Risk Scores
+        run: python3 weather_risk.py
 
-      # Referee trends disabled until ref data is turned on
-      # - name: Build Referee Trends
-      #   run: python3 referee_trends.py
+      - name: Merge Weather Into Combined
+        run: python3 merge_weather.py
 
       # --------------------------
       #  INJURY SYSTEM (SAFE MODE)
       # --------------------------
-
       - name: Fetch Injuries
-        run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed but continuing"
+        run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
       - name: Merge Injuries (Safe)
         run: |
@@ -65,11 +70,10 @@ jobs:
           set -e
 
       # --------------------------
-      #  ML AND PREDICTIONS
+      #  ML + PREDICTIONS
       # --------------------------
-
       - name: Build Historical Results
-        run: python3 build_historical_results.py || echo "⚠️ No history available"
+        run: python3 build_historical_results.py || echo "⚠️ Historical results unavailable"
 
       - name: Train ML Models
         run: python3 train_model.py || echo "⚠️ ML Training skipped"
@@ -80,7 +84,6 @@ jobs:
       # --------------------------
       #  COMMIT + DEPLOY
       # --------------------------
-
       - name: Commit and push updates
         run: |
           git config user.name "GitHub Actions"
