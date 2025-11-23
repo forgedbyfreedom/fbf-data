@@ -133,7 +133,7 @@ def main():
             "tags": performance_tags(sport, wind, rain, temp)
         }
 
-    with open("weather_risk.json", "w") as f:
+    with open("weather_risk1.json", "w") as f:
         json.dump(out, f, indent=2)
 
     print(f"[✅] Weather risk scored for {len(out)} games.")
