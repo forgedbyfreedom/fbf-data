@@ -1,3 +1,4 @@
+print("WEATHER_RISK.PY VERSION ACTIVE")
 import json, os
 
 def load_json(path, default):
