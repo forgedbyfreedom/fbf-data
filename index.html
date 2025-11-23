@@ -1,4 +1,3 @@
-nano index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,11 +34,13 @@ nano index.html
 
     #app { max-width: 1400px; margin: 0 auto; }
 
+    /* --------------------------------------------- */
+    /*  CENTERED HEADER BLOCK  */
+    /* --------------------------------------------- */
     header {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
       gap: 14px;
       margin-bottom: 18px;
       padding: 18px 10px;
@@ -49,45 +50,58 @@ nano index.html
       box-shadow: 0 8px 28px rgba(0,0,0,0.5);
       position: sticky;
       top: 8px;
+      z-index: 5;
       backdrop-filter: blur(6px);
-      z-index: 10;
+      text-align: center;
+    }
+
+    /* ---------------- TITLE & GLOW ---------------- */
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
     }
 
     .brand-title {
-      font-size: 38px;
+      font-size: 34px;
       font-weight: 900;
       color: var(--accent);
-      letter-spacing: 1.4px;
+      letter-spacing: 1.3px;
       text-shadow: 0 0 6px #ff7a1a, 0 0 12px #ff7a1a;
       animation: pulseGlow 2.2s ease-in-out infinite;
     }
 
     @keyframes pulseGlow {
-      0% { text-shadow: 0 0 4px #ff7a1a, 0 0 8px #ff7a1a; }
-      50% { text-shadow: 0 0 12px #ffb266, 0 0 24px #ff7a1a; }
+      0%   { text-shadow: 0 0 4px #ff7a1a, 0 0 8px #ff7a1a; }
+      50%  { text-shadow: 0 0 14px #ffb266, 0 0 28px #ff7a1a; }
       100% { text-shadow: 0 0 4px #ff7a1a, 0 0 8px #ff7a1a; }
     }
 
     .brand-sub {
-      font-size: 14px;
-      color: var(--muted);
+      font-size: 13px;
       letter-spacing: 1px;
+      color: var(--muted);
+      font-weight: 600;
     }
 
     .brand-url {
-      font-size: 12px;
-      color: var(--accent-soft);
+      font-size: 11px;
       letter-spacing: 2px;
+      color: var(--accent-soft);
       font-weight: 700;
+      text-transform: uppercase;
     }
 
+    /* -------------- FILTER CHIP SECTION ------------- */
     .controls {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      align-items: center;
       justify-content: center;
+      margin-top: 4px;
     }
-
     .chip {
       background: var(--chip-bg);
       border: 1px solid var(--border-soft);
@@ -98,41 +112,62 @@ nano index.html
       cursor: pointer;
       user-select: none;
       transition: 120ms ease;
+      white-space: nowrap;
     }
     .chip.active {
       background: var(--chip-active-bg);
       color: var(--chip-active-text);
-      font-weight: 700;
       border-color: transparent;
+      font-weight: 700;
+      box-shadow: 0 0 0 2px rgba(255,122,26,0.15);
     }
 
+    /* ---------------- STATUS ---------------- */
     .statusline {
       font-size: 11px;
       color: var(--muted);
-      text-align: center;
       display: flex;
       flex-direction: column;
       gap: 2px;
+      text-align: center;
     }
+    .statusline .warn { color: var(--warning); }
+    .statusline .ok { color: var(--success); }
 
+    /* ---------------- GAME GRID ---------------- */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 14px;
+      width: 100%;
+      margin-top: 10px;
     }
-    @media (max-width: 1000px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 700px) { .cards-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1000px) {
+      .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
 
+    /* ---------------- GAME CARD ---------------- */
     .game-card {
       background: radial-gradient(circle at top left, var(--card-bg-alt), var(--card-bg));
-      border: 1px solid var(--border-soft);
       border-radius: 14px;
+      border: 1px solid var(--border-soft);
       padding: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
       gap: 6px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.6);
+      min-height: 175px;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
     }
 
     .sport-badge {
@@ -140,19 +175,31 @@ nano index.html
       border: 1px solid var(--border-soft);
       padding: 2px 8px;
       border-radius: 999px;
-      font-size: 10px;
       font-weight: 700;
       color: var(--text);
+      font-size: 10px;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .matchup-line {
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      word-break: break-word;
       margin-top: 2px;
     }
 
-    .team-line { font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
-    .team-line strong { color: var(--text); }
+    .team-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.2;
+      gap: 8px;
+    }
+    .team-line strong { color: var(--text); font-weight: 700; }
 
     .picks-block {
       border-top: 1px dashed #1f2937;
@@ -161,226 +208,381 @@ nano index.html
       grid-template-columns: repeat(3, 1fr);
       gap: 6px;
     }
-
     .pick {
       background: rgba(17,24,39,0.85);
       border: 1px solid var(--border-soft);
       border-radius: 10px;
-      padding: 6px;
+      padding: 6px 6px;
       display: flex;
       flex-direction: column;
       gap: 2px;
+      min-height: 48px;
     }
-
-    .pick-main { font-size: 12px; font-weight: 800; }
-    .conf { font-size: 10px; padding: 1px 6px; border-radius: 999px; }
-    .conf.low  { background: rgba(255,75,92,0.16); color: var(--danger); }
-    .conf.med  { background: rgba(250,204,21,0.16); color: var(--warning); }
+    .pick-label {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+    .pick-main {
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .conf {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-left: 4px;
+    }
+    .conf.low { background: rgba(255,75,92,0.16); color: var(--danger); }
+    .conf.med { background: rgba(250,204,21,0.16); color: var(--warning); }
     .conf.high { background: rgba(34,197,94,0.16); color: var(--success); }
 
-    .meta-row { font-size: 10px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; }
+    .meta-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
     .meta-pill {
       background: rgba(21,26,36,0.75);
       border: 1px solid var(--border-soft);
       border-radius: 999px;
       padding: 2px 6px;
+      white-space: nowrap;
+    }
+
+    .empty {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
-<div id="app">
-  <header>
-    <div class="brand-title">FORGED BY FREEDOM</div>
-    <div class="brand-sub">Strength – Discipline – Freedom</div>
-    <div class="brand-url">FORGEDBYFREEDOM.org</div>
-
-    <div class="controls" id="sport-filters"></div>
-    <div class="statusline" id="statusline"><div>Loading…</div></div>
-  </header>
-
-  <main class="cards-grid" id="cards-grid"></main>
-  <div class="empty" id="empty" style="display:none;text-align:center;color:#999;">No upcoming games.</div>
-</div>
-
-<script>
-const CACHE_BUST = () => "?cb=" + Date.now();
-
-const SPORT_LABELS = {
-  "americanfootball_nfl": "NFL",
-  "americanfootball_ncaaf": "NCAAF",
-  "basketball_nba": "NBA",
-  "basketball_ncaab": "NCAAB",
-  "icehockey_nhl": "NHL",
-  "baseball_mlb": "MLB",
-  "mma_mixed_martial_arts": "UFC"
-};
-
-let ACTIVE_SPORT = "ALL";
-
-async function loadJsonSafe(path) {
-  try {
-    const r = await fetch(path + CACHE_BUST());
-    if (!r.ok) throw new Error(path + " " + r.status);
-    return await r.json();
-  } catch (e) {
-    console.warn("missing/failed", path, e);
-    return null;
-  }
-}
-
-function indexBy(items) {
-  const byId = new Map();
-  const byMatch = new Map();
-  (items || []).forEach(g => {
-    if (g.event_id) byId.set(String(g.event_id), g);
-    if (g.matchup) byMatch.set(g.matchup.toLowerCase(), g);
-  });
-  return { byId, byMatch };
-}
-
-function mergeGame(game, idx) {
-  const id = game.event_id ? String(game.event_id) : null;
-  const key = game.matchup?.toLowerCase();
-
-  return {
-    ...game,
-    pick: idx.picks.byId.get(id) || idx.picks.byMatch.get(key) || null,
-    wx:   idx.weather.byId.get(id) || idx.weather.byMatch.get(key) || null,
-    ref:  idx.refs.byId.get(id) || idx.refs.byMatch.get(key) || null,
-    inj:  idx.inj.byId.get(id) || idx.inj.byMatch.get(key) || null
-  };
-}
-
-function buildFilters(games) {
-  const filters = document.getElementById("sport-filters");
-  filters.innerHTML = "";
-
-  const sports = [...new Set(games.map(g => g.sport_key))];
-  ["ALL", ...sports].forEach(sk => {
-    const chip = document.createElement("div");
-    chip.className = "chip" + (ACTIVE_SPORT === sk ? " active" : "");
-    chip.textContent = sk === "ALL" ? "All Sports" : SPORT_LABELS[sk] || sk;
-    chip.onclick = () => { ACTIVE_SPORT = sk; render(games); buildFilters(games); };
-    filters.appendChild(chip);
-  });
-}
-
-function render(gamesMerged) {
-  const grid = document.getElementById("cards-grid");
-  const empty = document.getElementById("empty");
-  grid.innerHTML = "";
-
-  const now = new Date();
-  const TEN_DAYS = 10 * 86400000;
-
-  const games = gamesMerged
-    .filter(g => {
-      const t = new Date(g.commence_time);
-      return t - now > -7200000 && t - now < TEN_DAYS;
-    })
-    .filter(g => ACTIVE_SPORT === "ALL" || g.sport_key === ACTIVE_SPORT)
-    .sort((a,b) => new Date(a.commence_time) - new Date(b.commence_time));
-
-  if (!games.length) { empty.style.display = "block"; return; }
-  empty.style.display = "none";
-
-  games.forEach(g => {
-    const card = document.createElement("div");
-    card.className = "game-card";
-
-    const p = g.pick || {};
-    const su = p.SU_pick || "—";
-    const ats = p.ATS_pick || "—";
-    const ou = p.OU_pick || "—";
-
-    const suC = p.SU_conf ? `(${p.SU_conf}%)` : "";
-    const atsC = p.ATS_conf ? `(${p.ATS_conf}%)` : "";
-    const ouC = p.OU_conf ? `(${p.OU_conf}%)` : "";
-
-    const refHome = g.ref?.ref_home_win_pct != null
-      ? `${Math.round(g.ref.ref_home_win_pct*100)}% home`
-      : null;
-
-    const refOver = g.ref?.ref_over_pct != null
-      ? `${Math.round(g.ref.ref_over_pct*100)}% over`
-      : null;
-
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:#9ba3b8">
-        <span class="sport-badge">${SPORT_LABELS[g.sport_key] || g.sport_key}</span>
-        <span>${(g.book || "ESPN").toUpperCase()}</span>
+  <div id="app">
+    <header>
+      <div class="brand-block">
+        <div class="brand-title">FORGED BY FREEDOM</div>
+        <div class="brand-sub">Strength – Discipline – Freedom</div>
+        <div class="brand-url">FORGEDBYFREEDOM.org</div>
       </div>
 
-      <div class="matchup-line">${g.matchup}</div>
+      <div class="controls" id="sport-filters"></div>
 
-      <div class="team-line"><span>Favorite</span><strong>${g.fav_team} ${g.fav_spread > 0 ? "+"+g.fav_spread : g.fav_spread}</strong></div>
-      <div class="team-line"><span>Dog</span><strong>${g.dog_team}</strong></div>
-      <div class="team-line"><span>Kickoff</span><span>${new Date(g.commence_time).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</span></div>
-
-      <div class="picks-block">
-        <div class="pick">
-          <div class="pick-main">${su} ${suC}</div>
-        </div>
-        <div class="pick">
-          <div class="pick-main">${ats} ${atsC}</div>
-        </div>
-        <div class="pick">
-          <div class="pick-main">${ou} ${ouC}</div>
-        </div>
+      <div class="statusline" id="statusline">
+        <div>Loading…</div>
       </div>
+    </header>
 
-      <div class="meta-row">
-        ${refHome ? `<div class="meta-pill">👨‍⚖️ ${refHome}</div>` : ""}
-        ${refOver ? `<div class="meta-pill">OU ${refOver}</div>` : ""}
-      </div>
-    `;
+    <main class="cards-grid" id="cards-grid"></main>
+    <div class="empty" id="empty" style="display:none;">No upcoming games found.</div>
+  </div>
 
-    grid.appendChild(card);
-  });
-}
+  <script>
+    const CACHE_BUST = () => "?cb=" + Date.now();
 
-async function boot() {
-  const status = document.getElementById("statusline");
-  status.innerHTML = `<div>Loading…</div>`;
+    const SPORT_LABELS = {
+      "americanfootball_nfl": "NFL",
+      "americanfootball_ncaaf": "NCAAF",
+      "basketball_nba": "NBA",
+      "basketball_ncaab": "NCAAB",
+      "icehockey_nhl": "NHL",
+      "baseball_mlb": "MLB",
+      "mma_mixed_martial_arts": "UFC"
+    };
 
-  const [combined, predictions, weather, refs, injuries] = await Promise.all([
-    loadJsonSafe("combined.json"),
-    loadJsonSafe("predictions.json"),
-    loadJsonSafe("weather.json"),
-    loadJsonSafe("referee_trends.json"),
-    loadJsonSafe("injuries.json")
-  ]);
+    let ACTIVE_SPORT = "ALL";
 
-  const games = combined?.data || [];
-  const picks = predictions?.data || [];
-  const wx = weather?.data || [];
-  const rr = refs?.officials || [];
-  const inj = injuries?.data || [];
+    function toDate(x) {
+      try { return new Date(x); } catch { return null; }
+    }
 
-  const idx = {
-    picks: indexBy(picks),
-    weather: indexBy(wx),
-    refs: indexBy(rr),
-    inj: indexBy(inj)
-  };
+    function formatTime(iso) {
+      const d = toDate(iso);
+      if (!d) return "—";
+      return d.toLocaleString("en-US", {
+        month: "short", day: "numeric",
+        hour: "numeric", minute: "2-digit"
+      });
+    }
 
-  const merged = games.map(g => mergeGame(g, idx));
+    async function loadJsonSafe(path) {
+      try {
+        const r = await fetch(path + CACHE_BUST());
+        if (!r.ok) throw new Error(path + " " + r.status);
+        return await r.json();
+      } catch (e) {
+        console.warn("missing/failed", path, e);
+        return null;
+      }
+    }
 
-  buildFilters(merged);
-  render(merged);
+    function buildIndexByIdOrMatchup(list) {
+      const byId = new Map();
+      const byMatch = new Map();
+      (list || []).forEach(x => {
+        if (x && x.event_id != null) byId.set(String(x.event_id), x);
+        if (x && x.matchup) byMatch.set(String(x.matchup).toLowerCase(), x);
+      });
+      return { byId, byMatch };
+    }
 
-  status.innerHTML = `
-    <div>Odds: ${combined?.timestamp || "—"}</div>
-    <div>Picks: ${predictions?.timestamp || "—"}</div>
-    <div>Weather: ${weather?.timestamp || "—"}</div>
-    <div>Refs: ${refs?.timestamp || "—"}</div>
-    <div class="ok">Data synced</div>
-  `;
-}
+    function mergeGame(game, idx) {
+      const id = game.event_id ? String(game.event_id) : null;
+      const m  = game.matchup ? String(game.matchup).toLowerCase() : null;
 
-boot();
-</script>
+      const pick = (id && idx.picks.byId.get(id)) || (m && idx.picks.byMatch.get(m)) || null;
+      const wx   = (id && idx.weather.byId.get(id)) || (m && idx.weather.byMatch.get(m)) || null;
+      const ref  = (id && idx.refs.byId.get(id)) || (m && idx.refs.byMatch.get(m)) || null;
+      const inj  = (id && idx.inj.byId.get(id)) || (m && idx.inj.byMatch.get(m)) || null;
 
+      return { ...game, pick, wx, ref, inj };
+    }
+
+    function normalizePick(p) {
+      if (!p) return {};
+
+      // support both naming styles (older uppercase vs your current lowercase)
+      const su_pick  = p.SU_pick  ?? p.su_pick  ?? p.suPick  ?? p.moneyline_pick ?? null;
+      const ats_pick = p.ATS_pick ?? p.ats_pick ?? p.atsPick ?? null;
+      const ou_pick  = p.OU_pick  ?? p.ou_pick  ?? p.ouPick  ?? null;
+
+      const su_conf  = p.SU_conf  ?? p.su_conf  ?? p.suConf  ?? null;
+      const ats_conf = p.ATS_conf ?? p.ats_conf ?? p.atsConf ?? null;
+      const ou_conf  = p.OU_conf  ?? p.ou_conf  ?? p.ouConf  ?? null;
+
+      const su_grade  = p.SU_grade  ?? p.su_grade  ?? p.suGrade  ?? null;
+      const ats_grade = p.ATS_grade ?? p.ats_grade ?? p.atsGrade ?? null;
+      const ou_grade  = p.OU_grade  ?? p.ou_grade  ?? p.ouGrade  ?? null;
+
+      return {
+        su_pick, ats_pick, ou_pick,
+        su_conf, ats_conf, ou_conf,
+        su_grade, ats_grade, ou_grade
+      };
+    }
+
+    function buildFilters(games) {
+      const filters = document.getElementById("sport-filters");
+      filters.innerHTML = "";
+
+      const sports = Array.from(new Set(games.map(g => g.sport_key))).filter(Boolean);
+      const buttons = ["ALL", ...sports];
+
+      buttons.forEach(sk => {
+        const b = document.createElement("div");
+        b.className = "chip" + (ACTIVE_SPORT === sk ? " active" : "");
+        b.textContent = sk === "ALL" ? "All Sports" : (SPORT_LABELS[sk] || sk);
+        b.onclick = () => {
+          ACTIVE_SPORT = sk;
+          render(games);
+          buildFilters(games);
+        };
+        filters.appendChild(b);
+      });
+    }
+
+    function render(gamesMerged) {
+      const grid = document.getElementById("cards-grid");
+      const empty = document.getElementById("empty");
+      grid.innerHTML = "";
+
+      const now = new Date();
+      const tenDays = 10 * 24 * 60 * 60 * 1000;
+
+      let games = gamesMerged
+        .filter(g => {
+          const t = toDate(g.commence_time);
+          if (!t) return false;
+          // upcoming within next 10 days, and not started yet
+          return (t - now) > -2*60*60*1000 && (t - now) < tenDays;
+        })
+        .filter(g => ACTIVE_SPORT === "ALL" ? true : g.sport_key === ACTIVE_SPORT)
+        .sort((a,b) => new Date(a.commence_time) - new Date(b.commence_time));
+
+      if (!games.length) {
+        empty.style.display = "block";
+        return;
+      }
+      empty.style.display = "none";
+
+      games.forEach(g => {
+        const c = document.createElement("div");
+        c.className = "game-card";
+
+        const pRaw = g.pick || {};
+        const p = normalizePick(pRaw);
+
+        const wx = g.wx || {};
+        const ref = g.ref || {};
+        const inj = g.inj || {};
+
+        const suPick = p.su_pick || "—";
+        const atsPick = p.ats_pick || "—";
+        const ouPick = p.ou_pick || "—";
+
+        const suConf = p.su_conf != null ? `${p.su_conf}%` : "";
+        const atsConf = p.ats_conf != null ? `${p.ats_conf}%` : "";
+        const ouConf = p.ou_conf != null ? `${p.ou_conf}%` : "";
+
+        const suGrade = p.su_grade || "low";
+        const atsGrade = p.ats_grade || "low";
+        const ouGrade = p.ou_grade || "low";
+
+        const tempStr = wx.temperature_c != null ? `${wx.temperature_c}°C` : null;
+        const windStr = wx.wind_kph != null ? `${wx.wind_kph} kph wind` : null;
+        const precipStr = wx.precip_mm != null ? `${wx.precip_mm} mm precip` : null;
+
+        // referee trends JSON could be either:
+        //  A) per-game flat objects in referee_trends.json.data
+        //  B) the "officials / crews" payload (then per-game won't exist)
+        // We only show per-game pills if fields exist on merged object.
+        const refHome = ref.ref_home_win_pct != null ? `${Math.round(ref.ref_home_win_pct*100)}% home` : null;
+        const refOver = ref.ref_over_pct != null ? `${Math.round(ref.ref_over_pct*100)}% over` : null;
+        const refFav = ref.ref_fav_cover_pct != null ? `${Math.round(ref.ref_fav_cover_pct*100)}% fav cover` : null;
+
+        c.innerHTML = `
+          <div class="card-top-row">
+            <span class="sport-badge">${SPORT_LABELS[g.sport_key] || g.sport_key}</span>
+            <span>${(g.book || "ESPN").toUpperCase()}</span>
+          </div>
+
+          <div class="matchup-line">${g.matchup}</div>
+
+          <div class="team-line">
+            <span>Fav</span>
+            <strong>${g.favorite || g.fav_team || "—"}</strong>
+          </div>
+          <div class="team-line">
+            <span>Dog</span>
+            <strong>${g.underdog || g.dog_team || "—"}</strong>
+          </div>
+          <div class="team-line">
+            <span>Kickoff</span>
+            <span>${formatTime(g.commence_time)}</span>
+          </div>
+
+          <div class="picks-block">
+            <div class="pick">
+              <div class="pick-label">Moneyline</div>
+              <div class="pick-main">
+                ${suPick}
+                ${suConf ? `<span class="conf ${suGrade}">(${suConf})</span>` : ""}
+              </div>
+            </div>
+
+            <div class="pick">
+              <div class="pick-label">Against Spread</div>
+              <div class="pick-main">
+                ${atsPick}
+                ${atsConf ? `<span class="conf ${atsGrade}">(${atsConf})</span>` : ""}
+              </div>
+            </div>
+
+            <div class="pick">
+              <div class="pick-label">Total</div>
+              <div class="pick-main">
+                ${ouPick}
+                ${ouConf ? `<span class="conf ${ouGrade}">(${ouConf})</span>` : ""}
+              </div>
+            </div>
+          </div>
+
+          <div class="meta-row">
+            ${tempStr ? `<div class="meta-pill">🌤 ${tempStr}</div>` : ""}
+            ${windStr ? `<div class="meta-pill">💨 ${windStr}</div>` : ""}
+            ${precipStr ? `<div class="meta-pill">🌧 ${precipStr}</div>` : ""}
+
+            ${refHome ? `<div class="meta-pill">👨‍⚖️ ${refHome}</div>` : ""}
+            ${refOver ? `<div class="meta-pill">OU ${refOver}</div>` : ""}
+            ${refFav ? `<div class="meta-pill">ATS ${refFav}</div>` : ""}
+
+            ${(inj.home_injuries != null || inj.away_injuries != null)
+              ? `<div class="meta-pill">🏥 Inj: ${inj.home_injuries||0}-${inj.away_injuries||0}</div>` : ""}
+          </div>
+        `;
+
+        grid.appendChild(c);
+      });
+    }
+
+    async function boot() {
+      const status = document.getElementById("statusline");
+      status.innerHTML = `<div>Loading data…</div>`;
+
+      // try both refs file names; keep referee_trends as primary
+      const refsPrimary = await loadJsonSafe("referee_trends.json");
+      const refsFallback = refsPrimary ? null : await loadJsonSafe("referees.json");
+
+      const [combined, predictions, weather, injuries] = await Promise.all([
+        loadJsonSafe("combined.json"),
+        loadJsonSafe("predictions.json"),
+        loadJsonSafe("weather.json"),
+        loadJsonSafe("injuries.json")
+      ]);
+
+      const refs = refsPrimary || refsFallback;
+
+      const games = (combined && combined.data) ? combined.data : [];
+      const picksList = (predictions && predictions.data) ? predictions.data : [];
+      const wxList = (weather && weather.data) ? weather.data : [];
+      const injList = (injuries && injuries.data) ? injuries.data : [];
+
+      // referee trends may be:
+      //  - {timestamp, data:[per-game objects]}  <-- old per-game style
+      //  - {timestamp, officials:[...], crews:[...]} <-- new trends style; no per-game list
+      const refList = (refs && refs.data) ? refs.data : [];
+
+      const idx = {
+        picks: buildIndexByIdOrMatchup(picksList),
+        weather: buildIndexByIdOrMatchup(wxList),
+        refs: buildIndexByIdOrMatchup(refList),
+        inj: buildIndexByIdOrMatchup(injList),
+      };
+
+      const merged = games.map(g => mergeGame(g, idx));
+
+      buildFilters(merged);
+      render(merged);
+
+      // timestamps & freshness note
+      const cTS = combined?.timestamp || "—";
+      const pTS = predictions?.timestamp || "—";
+      const wTS = weather?.timestamp || "—";
+      const rTS = refs?.timestamp || "—";
+
+      let freshnessNote = "";
+      try {
+        const cTime = cTS !== "—" ? new Date(cTS.replace("_", "T") + "Z") : null;
+        const pTime = pTS !== "—" ? new Date(pTS.replace("_", "T") + "Z") : null;
+        if (cTime && pTime && (cTime - pTime) > 6*60*60*1000) {
+          freshnessNote = `<div class="warn">Predictions older than odds — check workflow</div>`;
+        } else if (games.length && picksList.length) {
+          freshnessNote = `<div class="ok">Picks synced</div>`;
+        } else if (!picksList.length) {
+          freshnessNote = `<div class="warn">No picks found (predictions.json empty?)</div>`;
+        }
+      } catch {}
+
+      status.innerHTML = `
+        <div>Odds: ${cTS}</div>
+        <div>Picks: ${pTS}</div>
+        <div>Weather: ${wTS}</div>
+        <div>Refs: ${rTS}</div>
+        ${freshnessNote}
+      `;
+    }
+
+    boot();
+  </script>
 </body>
 </html>
