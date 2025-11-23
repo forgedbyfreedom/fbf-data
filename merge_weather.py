@@ -8,13 +8,12 @@ def load_json(path, default):
     except:
         return default
 
-
 def main():
     combined = load_json("combined.json", {})
-    games = combined.get("data") or []   # ✅ NEW format
+    games = combined.get("data") or []   # ✅ NEW FORMAT
 
     raw = load_json("weather_raw.json", {})
-    risk = load_json("weather_risk1.json", {})  # ✅ risk1 output
+    risk = load_json("weather_risk1.json", {})
 
     out_games = []
 
@@ -42,7 +41,6 @@ def main():
         json.dump(combined, f, indent=2)
 
     print(f"[✅] Weather merged into combined.json ({len(out_games)} games).")
-
 
 if __name__ == "__main__":
     main()
