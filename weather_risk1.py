@@ -55,24 +55,30 @@ def sport_weights(sport):
 def performance_tags(sport, wind, rain, temp):
     tags = []
     s = (sport or "").lower()
+
     try:
         if wind is not None and float(wind) >= 15:
             tags += ["high_wind", "passing_penalty", "kicking_penalty"]
             if s == "mlb":
                 tags += ["hr_suppression"]
+
         if rain is not None and float(rain) >= 50:
             tags += ["rain_game", "ball_security_risk"]
+
         if temp is not None and float(temp) <= 32:
             tags += ["freezing_game", "run_rate_up"]
+
         if temp is not None and float(temp) >= 90:
             tags += ["heat_game", "fatigue_risk"]
+
     except:
         pass
+
     return tags
 
 def main():
     combined = load_json("combined.json", {})
-    games = combined.get("data") or []   # ✅ NEW FORMAT
+    games = combined.get("data") or []   # NEW SCHEME
     weather = load_json("weather_raw.json", {})
 
     out = {}
@@ -105,9 +111,9 @@ def main():
 
         weights = sport_weights(sport)
         score = clamp(
-            wr * weights["wind"] +
-            rr * weights["rain"] +
-            tr * weights["temp"]
+            wr * weights["wind"]
+            + rr * weights["rain"]
+            + tr * weights["temp"]
         )
 
         out[gid] = {
