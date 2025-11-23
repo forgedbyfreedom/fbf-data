@@ -10,6 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # --------------------------------------
+      # CLEAN WORKSPACE (fixes your bad file)
+      # --------------------------------------
+      - name: Clean runner workspace
+        run: |
+          echo "🔥 Cleaning workspace"
+          rm -rf ./* || true
+          rm -rf ./.git || true
+
+      # --------------------------------------
+      # CHECKOUT FRESH REPO
+      # --------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -55,28 +68,25 @@ jobs:
         run: python3 merge_weather.py
 
       # --------------------------
-      #  INJURY SYSTEM (SAFE MODE)
+      #  INJURIES
       # --------------------------
       - name: Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
-      - name: Merge Injuries (Safe)
+      - name: Merge Injuries
         run: |
           set +e
           python3 merge_injuries.py
-          if [ $? -ne 0 ]; then
-            echo "⚠️ merge_injuries failed — skipping but continuing CI"
-          fi
           set -e
 
       # --------------------------
       #  ML + PREDICTIONS
       # --------------------------
       - name: Build Historical Results
-        run: python3 build_historical_results.py || echo "⚠️ Historical results unavailable"
+        run: python3 build_historical_results.py || echo "⚠️ Skipped"
 
       - name: Train ML Models
-        run: python3 train_model.py || echo "⚠️ ML Training skipped"
+        run: python3 train_model.py || echo "⚠️ Skipped"
 
       - name: Build Predictions
         run: python3 build_predictions.py
@@ -88,6 +98,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add *.json */*.json || true
-          git commit -m "Auto update data $(date -u +%Y-%m-%d_%H:%M:%S_UTC)" || echo "No changes"
+          git add -A
+          git commit -m "Auto update data" || echo "No changes"
           git push origin main || echo "Nothing to push"
