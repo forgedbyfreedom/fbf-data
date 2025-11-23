@@ -8,8 +8,10 @@ def load_json(path, default):
     except:
         return default
 
+
 def main():
-    games = load_json("combined.json", [])
+    combined = load_json("combined.json", {})
+    games = combined.get("data", [])  # <-- NEW STRUCTURE
     raw = load_json("weather_raw.json", {})
     risk = load_json("weather_risk1.json", {})
 
@@ -17,7 +19,6 @@ def main():
 
     for g in games:
 
-        # SAFETY: combined.json is corrupted at top with "timestamp", "count", "data"
         if not isinstance(g, dict):
             print(f"[⚠️] Skipping non-game entry: {g}")
             continue
@@ -27,21 +28,22 @@ def main():
             print(f"[⚠️] Skipping entry without ID: {g}")
             continue
 
-        # Merge fields
         g["weather"] = raw.get(gid, {})
         g["weatherRisk"] = risk.get(gid, {})
 
-        # Merge tags
         existing = set(g.get("flags") or [])
         new = set(g["weatherRisk"].get("tags") or [])
         g["flags"] = sorted(list(existing | new))
 
         out.append(g)
 
-    with open("combined.json", "w") as f:
-        json.dump(out, f, indent=2)
+    combined["data"] = out  # <-- write back to new structure
 
-    print(f"[✅] Weather merged into combined.json ({len(out)} valid games).")
+    with open("combined.json", "w") as f:
+        json.dump(combined, f, indent=2)
+
+    print(f"[✅] Weather merged into combined.json ({len(out)} games).")
+
 
 if __name__ == "__main__":
     main()
