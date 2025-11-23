@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           clean: true
-          fetch-depth: 0   # ensures newest code, prevents stale cached files
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -61,33 +61,3 @@ jobs:
       #  INJURY SYSTEM (SAFE MODE)
       # --------------------------
       - name: Fetch Injuries
-        run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
-
-      - name: Merge Injuries (Safe)
-        run: |
-          set +e
-          python3 merge_injuries.py
-          if [ $? -ne 0 ]; then
-            echo "⚠️ merge_injuries failed — skipping but continuing CI"
-          fi
-          set -e
-
-      # --------------------------
-      #  ML + PREDICTIONS
-      # --------------------------
-      - name: Build Historical Results
-        run: python3 build_historical_results.py || echo "⚠️ Historical results unavailable"
-
-      - name: Train ML Models
-        run: python3 train_model.py || echo "⚠️ ML Training skipped"
-
-      - name: Build Predictions
-        run: python3 build_predictions.py
-
-      # --------------------------
-      #  COMMIT + DEPLOY
-      # --------------------------
-      - name: Commit and push updates
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@gith
