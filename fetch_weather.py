@@ -1,118 +1,94 @@
-#!/usr/bin/env python3
-"""
-fetch_weather.py
-- Reads combined.json
-- For outdoor stadiums only, fetches forecast near kickoff from OpenWeather One Call 3.0
-- Writes weather.json
-- Adds g["weather"] to combined.json (outdoor games only)
+import json
+import requests
+from time import sleep
 
-Requires env: OPENWEATHER_API_KEY
-Endpoint: https://api.openweathermap.org/data/3.0/onecall?lat=..&lon=..&appid=..&units=imperial
-"""
+USER_AGENT = "fbf-data-weather (contact@forgedbyfreedom.com)"
 
-import os, json, requests
-from datetime import datetime, timezone
-from dateutil import parser as dateparser
+HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "application/geo+json"
+}
 
-OW_KEY = os.getenv("OPENWEATHER_API_KEY", "").strip()
-if not OW_KEY:
-    print("⚠️  OPENWEATHER_API_KEY not set. Skipping weather.")
-    OW_KEY = None
+def get_grid_info(lat, lon):
+    url = f"https://api.weather.gov/points/{lat},{lon}"
+    r = requests.get(url, headers=HEADERS, timeout=10)
 
-STADIUMS_FILE = "stadiums_outdoor.json"
-WEATHER_OUT = "weather.json"
-TIMEOUT = 12
+    if r.status_code != 200:
+        return None
 
-def get_json(url):
-    r = requests.get(url, timeout=TIMEOUT)
-    r.raise_for_status()
+    data = r.json()
+    props = data.get("properties", {})
+
+    return {
+        "gridId": props.get("gridId"),
+        "gridX": props.get("gridX"),
+        "gridY": props.get("gridY"),
+        "forecast": props.get("forecast"),
+        "forecastHourly": props.get("forecastHourly"),
+        "observationStations": props.get("observationStations")
+    }
+
+
+def get_forecast(url):
+    r = requests.get(url, headers=HEADERS, timeout=10)
+    if r.status_code != 200:
+        return None
     return r.json()
 
-def load_stadiums():
-    if not os.path.exists(STADIUMS_FILE):
-        return {}
-    with open(STADIUMS_FILE, "r", encoding="utf-8") as f:
+
+def load_games():
+    with open("combined.json", "r") as f:
         return json.load(f)
 
-def closest_hourly(hourlies, target_ts):
-    if not hourlies:
-        return None
-    return min(hourlies, key=lambda h: abs(h.get("dt", 0) - target_ts))
 
 def main():
-    if not os.path.exists("combined.json"):
-        print("❌ combined.json missing")
-        return
+    games = load_games()
+    weather_results = {}
 
-    stadiums = load_stadiums()
-    nfl_map = stadiums.get("NFL", {})
-    cfb_map = stadiums.get("NCAAF", {})
+    for game in games:
+        gid = game["game_id"]
 
-    with open("combined.json","r",encoding="utf-8") as f:
-        payload = json.load(f)
+        lat = game.get("latitude")
+        lon = game.get("longitude")
 
-    games = payload.get("data", [])
-    weather_log = {"timestamp": datetime.now(timezone.utc).isoformat(), "data": []}
-
-    for g in games:
-        if not OW_KEY:
-            break
-
-        sport_key = g.get("sport_key","")
-        home = g.get("home_team")
-        commence = g.get("commence_time")
-        if not home or not commence:
+        if not lat or not lon:
+            weather_results[gid] = {"error": "Missing coords"}
             continue
 
-        # locate stadium record
-        rec = None
-        if "nfl" in sport_key:
-            rec = nfl_map.get(home)
-        elif "ncaaf" in sport_key:
-            rec = cfb_map.get(home)
+        grid = get_grid_info(lat, lon)
+        if not grid or not grid["forecast"]:
+            weather_results[gid] = {"error": "No forecast grid"}
+            continue
 
-        if not rec or not rec.get("outdoor"):
+        sleep(0.75)  # avoid hitting rate limits
+
+        forecast_data = get_forecast(grid["forecast"])
+        if not forecast_data:
+            weather_results[gid] = {"error": "Forecast error"}
             continue
 
         try:
-            kickoff_dt = dateparser.isoparse(commence)
-            kickoff_ts = int(kickoff_dt.timestamp())
+            periods = forecast_data["properties"]["periods"]
+            short_forecast = periods[0]["shortForecast"]
+            temperature = periods[0]["temperature"]
+            wind = periods[0]["windSpeed"]
+            rain = periods[0].get("probabilityOfPrecipitation", {}).get("value")
+        except Exception:
+            weather_results[gid] = {"error": "Parse error"}
+            continue
 
-            lat, lon = rec["lat"], rec["lon"]
-            url = (
-                f"https://api.openweathermap.org/data/3.0/onecall"
-                f"?lat={lat}&lon={lon}&appid={OW_KEY}&units=imperial"
-            )
-            w = get_json(url)
-            hourly = w.get("hourly", [])
-            h = closest_hourly(hourly, kickoff_ts) or {}
+        weather_results[gid] = {
+            "shortForecast": short_forecast,
+            "temperature": temperature,
+            "wind": wind,
+            "rainChance": rain
+        }
 
-            weather_obj = {
-                "stadium_team": home,
-                "lat": lat,
-                "lon": lon,
-                "kickoff": commence,
-                "temp_f": h.get("temp"),
-                "wind_mph": (h.get("wind_speed") or None),
-                "humidity": h.get("humidity"),
-                "precip_prob": h.get("pop"),
-                "conditions": (h.get("weather") or [{}])[0].get("description"),
-            }
+    with open("weather.json", "w") as f:
+        json.dump(weather_results, f, indent=2)
 
-            g["weather"] = weather_obj
-            weather_log["data"].append(weather_obj)
+    print(f"[✅] Weather updated for {len(weather_results)} games.")
 
-        except Exception as e:
-            print(f"⚠️ weather failed for {g.get('matchup')}: {e}")
-
-    with open(WEATHER_OUT,"w",encoding="utf-8") as f:
-        json.dump(weather_log, f, indent=2)
-
-    payload["data"] = games
-    with open("combined.json","w",encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
-
-    print(f"[✅] Weather updated for {len(weather_log['data'])} outdoor games.")
 
 if __name__ == "__main__":
     main()
