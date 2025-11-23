@@ -9,7 +9,7 @@ def load_json(path, default):
 def main():
     games = load_json("combined.json", [])
     raw = load_json("weather_raw.json", {})
-    risk = load_json("weather_risk.json", {})
+    risk = load_json("weather_risk1.json", {})
 
     for g in games:
         gid = g.get("game_id") or g.get("id")
