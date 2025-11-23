@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 """
-fetch_espn_all.py
+fetch_espn_all.py  (2025 ESPN Core format)
 
 Unified ESPN odds fetcher.
 - Pulls upcoming events + odds from ESPN Core API by league.
+- Resolves team $ref objects (ESPN 2025 change).
+- Resolves odds $ref (item list).
 - Produces per-league *_latest.json and combined.json.
 
-More robust vs ESPN schema shifts:
-- Supports competitors/team being $ref
-- Supports odds being inline, dict, list, or $ref
-- Falls back across multiple name fields
+Safe vs missing fields: skips gracefully.
 """
 
-import json, time, os
+import json
+import time
 from datetime import datetime, timezone
 import requests
 
 TIMEOUT = 12
 OUT_COMBINED = "combined.json"
-DEBUG = os.getenv("DEBUG", "0") == "1"
 
 LEAGUES = {
     "americanfootball_nfl": "football/leagues/nfl",
@@ -30,13 +29,19 @@ LEAGUES = {
     "mma_mixed_martial_arts": "mma/leagues/ufc",
 }
 
-session = requests.Session()
-session.headers.update({
-    "User-Agent": "fbf-data-bot/1.0"
-})
+# nicer filenames (prevents "arts_latest.json")
+LATEST_FILES = {
+    "americanfootball_nfl": "nfl_latest.json",
+    "americanfootball_ncaaf": "ncaaf_latest.json",
+    "basketball_nba": "nba_latest.json",
+    "basketball_ncaab": "ncaab_latest.json",
+    "icehockey_nhl": "nhl_latest.json",
+    "baseball_mlb": "mlb_latest.json",
+    "mma_mixed_martial_arts": "ufc_latest.json",
+}
 
 def get_json(url):
-    r = session.get(url, timeout=TIMEOUT)
+    r = requests.get(url, timeout=TIMEOUT)
     r.raise_for_status()
     return r.json()
 
@@ -53,176 +58,164 @@ def safe(o, path, default=None):
 
 def resolve_ref(obj):
     """
-    If obj is dict with '$ref', fetch and return JSON.
+    ESPN Core frequently returns:
+      {"$ref": "http://sports.core.api.espn.com/v2/..."}
+    If so, fetch and return the referenced JSON.
     Otherwise return obj unchanged.
     """
-    if isinstance(obj, dict) and "$ref" in obj and isinstance(obj["$ref"], str):
-        try:
-            return get_json(obj["$ref"])
-        except Exception:
-            return obj
+    if isinstance(obj, dict):
+        ref = obj.get("$ref")
+        if ref and isinstance(ref, str):
+            try:
+                return get_json(ref)
+            except Exception:
+                return None
     return obj
 
-def get_team_name(comp):
+def extract_team_name(team_stub):
     """
-    Extract a usable team name from a competitor.
-    Handles team inline or team $ref.
+    team_stub is usually {"$ref": ".../teams/34?..."}
+    We resolve it and read displayName.
     """
-    team = comp.get("team") or {}
-    team = resolve_ref(team)
+    team_obj = resolve_ref(team_stub) or {}
+    name = team_obj.get("displayName") or team_obj.get("shortDisplayName") or team_obj.get("name")
+    return name or ""
 
-    for keypath in (
-        ["displayName"],
-        ["shortDisplayName"],
-        ["name"],
-        ["nickname"],
-    ):
-        val = safe(team, keypath, None)
-        if val:
-            return val
-
-    # Some feeds put name at competitor level
-    for k in ("displayName", "shortDisplayName", "name"):
-        if comp.get(k):
-            return comp.get(k)
-
-    return ""
-
-def normalize_odds_block(comp):
+def extract_competitors(comp):
     """
-    Return a normalized odds dict (or {}).
-    ESPN variants:
-      - competitions[0].odds -> list
-      - competitions[0].odds -> dict
-      - competitions[0].odds -> {"$ref": "..."}
-      - competitions[0].odds.items[0].$ref
+    Return (home_name, away_name) by resolving team $refs.
     """
-    odds = comp.get("odds")
-
-    if odds is None:
-        return {}
-
-    odds = resolve_ref(odds)
-
-    # If odds is dict with items, use first item
-    if isinstance(odds, dict):
-        items = odds.get("items")
-        if isinstance(items, list) and items:
-            first = resolve_ref(items[0])
-            if isinstance(first, dict):
-                return first
-        # Or odds dict itself may contain spread/overUnder
-        if any(k in odds for k in ("spread", "overUnder", "favorite", "provider")):
-            return odds
-        return {}
-
-    # If odds is list, take first
-    if isinstance(odds, list) and odds:
-        first = resolve_ref(odds[0])
-        if isinstance(first, dict):
-            return first
-
-    return {}
-
-def parse_event(event):
-    comp = safe(event, ["competitions", 0], None)
-    if not isinstance(comp, dict):
-        return None
-
     competitors = comp.get("competitors") or []
-    if not isinstance(competitors, list) or len(competitors) < 2:
-        return None
+    if len(competitors) < 2:
+        return None, None
 
-    # try to find home/away by homeAway
     home = next((c for c in competitors if c.get("homeAway") == "home"), None)
     away = next((c for c in competitors if c.get("homeAway") == "away"), None)
-
-    # fallback if homeAway missing
-    if home is None or away is None:
+    if not home or not away:
+        # fallback to order
         home, away = competitors[0], competitors[1]
 
-    home_team = get_team_name(home)
-    away_team = get_team_name(away)
+    home_name = extract_team_name(home.get("team") or {})
+    away_name = extract_team_name(away.get("team") or {})
+
+    if not home_name or not away_name:
+        return None, None
+
+    return home_name, away_name
+
+def fetch_best_odds_from_comp(comp):
+    """
+    comp["odds"] is a $ref to an odds collection like:
+      {"count":2,"items":[{spread,overUnder,provider,awayTeamOdds{favorite},homeTeamOdds{favorite}}]}
+    We resolve, take first item (priority order already sorted by ESPN),
+    and normalize favorite/dog spreads.
+    """
+    odds_coll_stub = comp.get("odds")
+    if not odds_coll_stub:
+        return None
+
+    odds_coll = resolve_ref(odds_coll_stub)
+    if not odds_coll:
+        return None
+
+    items = odds_coll.get("items") or []
+    if not items:
+        return None
+
+    odds_item = items[0]  # ESPN priority=1 is first in practice
+    spread_abs = odds_item.get("spread")
+    total = odds_item.get("overUnder")
+    provider = safe(odds_item, ["provider", "name"], "ESPN").lower()
+
+    away_fav = safe(odds_item, ["awayTeamOdds", "favorite"], None)
+    home_fav = safe(odds_item, ["homeTeamOdds", "favorite"], None)
+
+    try:
+        spread_abs = float(spread_abs) if spread_abs is not None else None
+    except Exception:
+        spread_abs = None
+
+    try:
+        total = float(total) if total is not None else None
+    except Exception:
+        total = None
+
+    return {
+        "provider": provider,
+        "spread_abs": spread_abs,
+        "total": total,
+        "away_fav": bool(away_fav) if away_fav is not None else None,
+        "home_fav": bool(home_fav) if home_fav is not None else None,
+        "details": odds_item.get("details"),
+    }
+
+def parse_event(event):
+    comp_stub = safe(event, ["competitions", 0], None)
+    if not comp_stub:
+        return None
+
+    comp = resolve_ref(comp_stub) or comp_stub or {}
+
+    home_team, away_team = extract_competitors(comp)
     if not home_team or not away_team:
         return None
 
     commence = event.get("date") or comp.get("date")
+    event_id = event.get("id")
 
-    odds = normalize_odds_block(comp)
+    odds = fetch_best_odds_from_comp(comp) or {}
+    spread_abs = odds.get("spread_abs")
+    total = odds.get("total")
+    provider = odds.get("provider", "espn")
 
-    spread = odds.get("spread")
-    over_under = odds.get("overUnder")
-    provider = safe(odds, ["provider", "name"], "ESPN")
-    if isinstance(provider, str):
-        provider = provider.lower()
-    else:
-        provider = "espn"
+    fav_team = dog_team = None
+    fav_spread = dog_spread = None
 
-    fav_team = None
-    dog_team = None
-    fav_spread = None
-    dog_spread = None
-
-    if spread is not None:
-        try:
-            spread_f = float(spread)
-            fav_field = odds.get("favorite")
-
-            # favorite might be abbrev; only trust if matches
-            if isinstance(fav_field, str) and fav_field in (home_team, away_team):
-                fav_team = fav_field
-                dog_team = away_team if fav_team == home_team else home_team
-                fav_spread = spread_f if fav_team == home_team else -spread_f
-            else:
-                # fallback rule: negative spread => home favored
-                fav_team = home_team if spread_f < 0 else away_team
-                dog_team = away_team if fav_team == home_team else home_team
-                fav_spread = spread_f if fav_team == home_team else -spread_f
-
-            dog_spread = -fav_spread
-        except Exception:
-            pass
+    if spread_abs is not None:
+        # Determine favorite based on away/home favorite flags
+        if odds.get("away_fav") is True:
+            fav_team = away_team
+            dog_team = home_team
+            fav_spread = -abs(spread_abs)
+            dog_spread = abs(spread_abs)
+        elif odds.get("home_fav") is True:
+            fav_team = home_team
+            dog_team = away_team
+            fav_spread = -abs(spread_abs)
+            dog_spread = abs(spread_abs)
+        else:
+            # fallback: if no fav flags, assume negative to home doesn't exist here,
+            # so just mark spread from details if possible
+            fav_spread = -abs(spread_abs)
 
     matchup = f"{away_team}@{home_team}"
 
-    total_f = None
-    if over_under is not None:
-        try:
-            total_f = float(over_under)
-        except Exception:
-            total_f = None
-
     return {
-        "sport_key": None,  # filled at caller
+        "sport_key": None,  # filled by caller
         "matchup": matchup,
         "home_team": home_team,
         "away_team": away_team,
-
-        # Display strings
         "favorite": f"{fav_team} {fav_spread:+g}" if fav_team and fav_spread is not None else None,
         "underdog": f"{dog_team} {dog_spread:+g}" if dog_team and dog_spread is not None else None,
-
-        # Raw fields
         "fav_team": fav_team,
         "dog_team": dog_team,
         "fav_spread": fav_spread,
         "dog_spread": dog_spread,
         "spread": fav_spread,
-        "total": total_f,
-
+        "total": total,
         "commence_time": commence,
         "book": provider,
-        "event_id": event.get("id"),
+        "event_id": event_id,
     }
 
 def fetch_league(sport_key, league_path):
     events_url = f"https://sports.core.api.espn.com/v2/sports/{league_path}/events"
     data = get_json(events_url)
-    items = data.get("items", []) or []
+    items = data.get("items", [])
 
     games = []
     for it in items:
-        ref = it.get("$ref") if isinstance(it, dict) else None
+        ref = it.get("$ref")
         if not ref:
             continue
         try:
@@ -233,13 +226,9 @@ def fetch_league(sport_key, league_path):
             g["sport_key"] = sport_key
             g["fetched_at"] = datetime.now(timezone.utc).isoformat()
             games.append(g)
-        except Exception as e:
-            if DEBUG:
-                print(f"  skip event ref {ref}: {e}")
+        except Exception:
             continue
 
-    if DEBUG:
-        print(f"[debug] {sport_key}: parsed {len(games)} games from {len(items)} items")
     return games
 
 def write_json(path, payload):
@@ -251,13 +240,13 @@ def main():
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
 
     for sport_key, league_path in LEAGUES.items():
+        games = []
         try:
             games = fetch_league(sport_key, league_path)
         except Exception as e:
             print(f"⚠️ {sport_key} fetch failed: {e}")
-            games = []
 
-        latest_path = f"{sport_key.split('_')[-1]}_latest.json"
+        latest_path = LATEST_FILES.get(sport_key, f"{sport_key.split('_')[-1]}_latest.json")
         write_json(latest_path, {"timestamp": ts, "data": games})
         print(f"✅ Wrote {latest_path} ({len(games)} games)")
 
