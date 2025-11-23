@@ -10,25 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      # --------------------------------------
-      # CLEAN WORKSPACE (fixes your bad file)
-      # --------------------------------------
-      - name: Clean runner workspace
+      # ------------------------------------------
+      # CLEAN RUNNER WORKSPACE (fix stale file bugs)
+      # ------------------------------------------
+      - name: 🔥 Clean workspace
         run: |
           echo "🔥 Cleaning workspace"
           rm -rf ./* || true
-          rm -rf ./.git || true
 
-      # --------------------------------------
-      # CHECKOUT FRESH REPO
-      # --------------------------------------
+      # ------------------------------------------
+      # CHECKOUT REPO FRESH
+      # ------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           clean: true
           fetch-depth: 0
 
+      # ------------------------------------------
+      # PYTHON SETUP
+      # ------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -39,9 +40,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # --------------------------
-      #  FETCH RAW DATA SOURCES
-      # --------------------------
+      # ------------------------------------------
+      # FETCH RAW ESPN DATA
+      # ------------------------------------------
       - name: Fetch ALL ESPN odds
         run: |
           echo "📡 Fetching ESPN odds…"
@@ -53,9 +54,9 @@ jobs:
       - name: Build FBS Stadiums
         run: python3 build_fbs_stadiums.py
 
-      # --------------------------
-      #  WEATHER.GOV FULL PIPELINE
-      # --------------------------
+      # ------------------------------------------
+      # WEATHER PIPELINE (NWS RAW → RISK → MERGE)
+      # ------------------------------------------
       - name: Fetch Weather (NWS Raw)
         env:
           NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
@@ -67,37 +68,44 @@ jobs:
       - name: Merge Weather Into Combined
         run: python3 merge_weather.py
 
-      # --------------------------
-      #  INJURIES
-      # --------------------------
+      # ------------------------------------------
+      # INJURIES (SAFE MODE)
+      # ------------------------------------------
       - name: Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
-      - name: Merge Injuries
+      - name: Merge Injuries (Safe)
         run: |
           set +e
           python3 merge_injuries.py
+          if [ $? -ne 0 ]; then
+            echo "⚠️ merge_injuries failed — skipping but continuing"
+          fi
           set -e
 
-      # --------------------------
-      #  ML + PREDICTIONS
-      # --------------------------
+      # ------------------------------------------
+      # ML PIPELINE
+      # ------------------------------------------
       - name: Build Historical Results
-        run: python3 build_historical_results.py || echo "⚠️ Skipped"
+        run: python3 build_historical_results.py || echo "⚠️ No historical results"
 
       - name: Train ML Models
-        run: python3 train_model.py || echo "⚠️ Skipped"
+        run: python3 train_model.py || echo "⚠️ ML Training skipped"
 
       - name: Build Predictions
         run: python3 build_predictions.py
 
-      # --------------------------
-      #  COMMIT + DEPLOY
-      # --------------------------
+      # ------------------------------------------
+      # COMMIT + SAFE PUSH (NO MORE ERRORS)
+      # ------------------------------------------
       - name: Commit and push updates
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+          # avoid non-fast-forward push errors
+          git pull --rebase origin main || true
+
           git add -A
-          git commit -m "Auto update data" || echo "No changes"
+          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
           git push origin main || echo "Nothing to push"
