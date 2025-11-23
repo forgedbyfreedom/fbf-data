@@ -1,3 +1,4 @@
+print("🟢 RUNNING WEATHER_RISK VERSION: COMMIT 918f682")
 print("WEATHER_RISK.PY VERSION ACTIVE")
 import json, os
 
