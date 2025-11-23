@@ -4,7 +4,7 @@ def load_json(path, default):
     try:
         with open(path, "r") as f:
             return json.load(f)
-    except Exception:
+    except:
         return default
 
 
@@ -85,7 +85,8 @@ def performance_tags(sport, wind, rain, temp):
 
 
 def main():
-    games = load_json("combined.json", [])
+    combined = load_json("combined.json", {})
+    games = combined.get("data", [])  # <-- NEW STRUCTURE
     weather = load_json("weather_raw.json", {})
 
     out = {}
@@ -120,9 +121,9 @@ def main():
 
         weights = sport_weights(sport)
         score = clamp(
-            wr * weights["wind"]
-            + rr * weights["rain"]
-            + tr * weights["temp"]
+            wr * weights["wind"] +
+            rr * weights["rain"] +
+            tr * weights["temp"]
         )
 
         out[gid] = {
