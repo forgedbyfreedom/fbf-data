@@ -1,5 +1,5 @@
+#!/usr/bin/env python3
 import json
-import os
 
 def load_json(path, default):
     try:
@@ -11,21 +11,19 @@ def load_json(path, default):
 
 def main():
     combined = load_json("combined.json", {})
-    games = combined.get("data", [])  # <-- NEW STRUCTURE
-    raw = load_json("weather_raw.json", {})
-    risk = load_json("weather_risk1.json", {})
+    games = combined.get("data") or []   # ✅ NEW format
 
-    out = []
+    raw = load_json("weather_raw.json", {})
+    risk = load_json("weather_risk1.json", {})  # ✅ risk1 output
+
+    out_games = []
 
     for g in games:
-
         if not isinstance(g, dict):
-            print(f"[⚠️] Skipping non-game entry: {g}")
             continue
 
-        gid = g.get("game_id") or g.get("id")
+        gid = g.get("id") or g.get("game_id")
         if not gid:
-            print(f"[⚠️] Skipping entry without ID: {g}")
             continue
 
         g["weather"] = raw.get(gid, {})
@@ -35,14 +33,15 @@ def main():
         new = set(g["weatherRisk"].get("tags") or [])
         g["flags"] = sorted(list(existing | new))
 
-        out.append(g)
+        out_games.append(g)
 
-    combined["data"] = out  # <-- write back to new structure
+    combined["data"] = out_games
+    combined["count"] = len(out_games)
 
     with open("combined.json", "w") as f:
         json.dump(combined, f, indent=2)
 
-    print(f"[✅] Weather merged into combined.json ({len(out)} games).")
+    print(f"[✅] Weather merged into combined.json ({len(out_games)} games).")
 
 
 if __name__ == "__main__":
