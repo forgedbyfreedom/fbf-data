@@ -1,154 +1,107 @@
-#!/usr/bin/env python3
-"""
-predictions_model.py
+import json
+import math
+from collections import defaultdict
 
-Trains ML models for SU / ATS / OU once labeled history exists.
-
-Inputs:
-- historical_results.json (YOU add builder later)
-- power_ratings.json (optional)
-- referee_trends.json (optional)
-- weather.json (optional)
-
-Outputs:
-- models/su_model.pkl
-- models/ats_model.pkl
-- models/ou_model.pkl
-- models/model_meta.json
-
-Safe if historical_results.json missing.
-
-Dependencies:
-- pandas, numpy, scikit-learn, joblib
-"""
-
-import json, os
-from datetime import datetime, timezone
-
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
-import joblib
-
-HIST_FILE = "historical_results.json"
-PR_FILE   = "power_ratings.json"
-REF_FILE  = "referee_trends.json"
-WX_FILE   = "weather.json"
-
-MODEL_DIR = "models"
-META_FILE = os.path.join(MODEL_DIR, "model_meta.json")
+HIST_PATH = "historical_results.json"
+POWER_PATH = "power_ratings.json"
+COMBINED_PATH = "combined.json"
+PRED_OUT = "predictions.json"
 
 def load_json(path, default):
-    if not os.path.exists(path):
+    try:
+        with open(path, "r") as f:
+            return json.load(f)
+    except Exception:
         return default
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
 
-def power_by_team(payload):
-    out = {}
-    for r in payload.get("data", []):
-        tn = (r.get("team_name") or r.get("team") or "").lower()
-        if tn:
-            out[tn] = float(r.get("rating", 0))
-    return out
+def save_json(path, obj):
+    with open(path, "w") as f:
+        json.dump(obj, f, indent=2)
+
+def team_key(team):
+    if not isinstance(team, dict):
+        return None
+    return team.get("id") or team.get("abbr") or team.get("slug") or team.get("name")
+
+def sigmoid(x):
+    return 1 / (1 + math.exp(-x))
 
 def main():
-    hist = load_json(HIST_FILE, [])
-    if not hist:
-        os.makedirs(MODEL_DIR, exist_ok=True)
-        meta = {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "trained": False,
-            "note": "historical_results.json missing; no training performed"
-        }
-        with open(META_FILE, "w") as f:
-            json.dump(meta, f, indent=2)
-        print("⚠️ No historical_results.json — skipping ML training")
-        return
+    hist = load_json(HIST_PATH, {})
+    power = load_json(POWER_PATH, {})
+    combined = load_json(COMBINED_PATH, {})
 
-    pr = power_by_team(load_json(PR_FILE, {}))
+    if isinstance(combined, dict) and "data" in combined:
+        games = combined["data"]
+    elif isinstance(combined, list):
+        games = combined
+    else:
+        games = []
 
-    rows = []
-    for r in hist:
-        fav = (r.get("favorite_team") or "").lower()
-        dog = (r.get("underdog_team") or "").lower()
-        spread = float(r.get("fav_spread") or 0)
-        total = float(r.get("total") or 0)
-        fav_score = r.get("fav_score")
-        dog_score = r.get("dog_score")
+    # If no history exists, enable heuristic mode
+    hist_games = hist.get("data") if isinstance(hist, dict) else hist
+    hist_games = hist_games if isinstance(hist_games, list) else []
+    heuristic_mode = len(hist_games) < 20
 
-        if fav_score is None or dog_score is None:
+    # Build a simple power map fallback
+    power_map = {}
+    if isinstance(power, dict):
+        for k, v in power.items():
+            try:
+                power_map[str(k)] = float(v)
+            except Exception:
+                pass
+
+    preds = {"timestamp": combined.get("timestamp"), "count": len(games), "data": []}
+
+    for g in games:
+        if not isinstance(g, dict):
             continue
 
-        pr_edge = pr.get(fav, 0) - pr.get(dog, 0)
+        home = g.get("home_team") or {}
+        away = g.get("away_team") or {}
+        odds = g.get("odds") or {}
 
-        su_label = int(fav_score > dog_score)
-        ats_label = int((fav_score - dog_score) > abs(spread))
-        ou_label = int((fav_score + dog_score) > total) if total else None
+        hid = str(team_key(home) or "")
+        aid = str(team_key(away) or "")
 
-        rows.append({
-            "spread": spread,
-            "total": total,
-            "pr_edge": pr_edge,
-            "su_label": su_label,
-            "ats_label": ats_label,
-            "ou_label": ou_label
+        spread = odds.get("spread")
+        total = odds.get("total")
+
+        # Pull power ratings if available; else 0
+        hpow = power_map.get(hid, 0)
+        apow = power_map.get(aid, 0)
+
+        # Heuristic prediction:
+        # If spread exists, build probability from (power diff + spread)
+        # If no spread, use power diff only.
+        try:
+            spr = float(spread) if spread is not None else 0.0
+        except Exception:
+            spr = 0.0
+
+        diff = (hpow - apow)
+
+        # convert to win probability
+        raw = diff / 6.0 + (-spr) / 7.0
+        win_prob_home = sigmoid(raw)
+
+        pick_side = "home" if win_prob_home >= 0.5 else "away"
+        confidence = abs(win_prob_home - 0.5) * 2  # 0..1
+
+        preds["data"].append({
+            "id": g.get("id") or g.get("game_id"),
+            "sport": g.get("sport"),
+            "home_team": home.get("abbr") or home.get("name"),
+            "away_team": away.get("abbr") or away.get("name"),
+            "pick": pick_side,
+            "confidence": round(confidence * 100, 1),
+            "model": "heuristic" if heuristic_mode else "ml",
+            "notes": "fallback power+spread" if heuristic_mode else "trained model"
         })
 
-    df = pd.DataFrame(rows).dropna(subset=["su_label","ats_label"])
-    if df.empty:
-        print("⚠️ Not enough labeled rows to train")
-        return
-
-    os.makedirs(MODEL_DIR, exist_ok=True)
-
-    features = ["spread","total","pr_edge"]
-
-    # --- SU model ---
-    X = df[features]
-    y = df["su_label"]
-    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=7)
-    su_model = RandomForestClassifier(n_estimators=300, random_state=7)
-    su_model.fit(Xtr, ytr)
-    su_acc = accuracy_score(yte, su_model.predict(Xte))
-    joblib.dump(su_model, os.path.join(MODEL_DIR, "su_model.pkl"))
-
-    # --- ATS model ---
-    y = df["ats_label"]
-    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=7)
-    ats_model = RandomForestClassifier(n_estimators=300, random_state=7)
-    ats_model.fit(Xtr, ytr)
-    ats_acc = accuracy_score(yte, ats_model.predict(Xte))
-    joblib.dump(ats_model, os.path.join(MODEL_DIR, "ats_model.pkl"))
-
-    # --- OU model ---
-    df_ou = df.dropna(subset=["ou_label"])
-    ou_acc = None
-    if not df_ou.empty:
-        X = df_ou[features]
-        y = df_ou["ou_label"]
-        Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=7)
-        ou_model = RandomForestClassifier(n_estimators=300, random_state=7)
-        ou_model.fit(Xtr, ytr)
-        ou_acc = accuracy_score(yte, ou_model.predict(Xte))
-        joblib.dump(ou_model, os.path.join(MODEL_DIR, "ou_model.pkl"))
-
-    meta = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "trained": True,
-        "rows": len(df),
-        "features": features,
-        "su_accuracy": round(float(su_acc), 4),
-        "ats_accuracy": round(float(ats_acc), 4),
-        "ou_accuracy": round(float(ou_acc), 4) if ou_acc is not None else None
-    }
-
-    with open(META_FILE, "w") as f:
-        json.dump(meta, f, indent=2)
-
-    print("✅ ML models trained & saved to models/")
+    save_json(PRED_OUT, preds)
+    print(f"[✅] predictions.json built ({len(preds['data'])} games).")
 
 if __name__ == "__main__":
     main()
