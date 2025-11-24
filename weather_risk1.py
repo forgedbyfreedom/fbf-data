@@ -1,43 +1,49 @@
 import json
 
+
 def load_json(path, default):
     try:
         with open(path, "r") as f:
             return json.load(f)
-    except:
+    except Exception:
         return default
+
 
 def clamp(x, lo=0, hi=100):
     return max(lo, min(hi, x))
+
 
 def wind_risk(mph):
     try:
         if mph is None:
             return 0
         return clamp((float(mph) - 8) * 4)
-    except:
+    except Exception:
         return 0
+
 
 def rain_risk(pct):
     try:
         if pct is None:
             return 0
         return clamp(float(pct) * 0.7)
-    except:
+    except Exception:
         return 0
+
 
 def temp_risk(temp_f):
     try:
         if temp_f is None:
             return 0
-        temp_f = float(temp_f)
-        if temp_f < 32:
-            return clamp((32 - temp_f) * 2.2)
-        elif temp_f > 90:
-            return clamp((temp_f - 90) * 2.0)
+        temp = float(temp_f)
+        if temp < 32:
+            return clamp((32 - temp) * 2.2)
+        elif temp > 90:
+            return clamp((temp - 90) * 2.0)
         return 0
-    except:
+    except Exception:
         return 0
+
 
 def sport_weights(sport):
     s = (sport or "").lower()
@@ -51,6 +57,7 @@ def sport_weights(sport):
         return {"wind": 0.10, "rain": 0.65, "temp": 0.25}
     return {"wind": 0.35, "rain": 0.35, "temp": 0.30}
 
+
 def performance_tags(sport, wind, rain, temp):
     tags = []
     s = (sport or "").lower()
@@ -59,20 +66,25 @@ def performance_tags(sport, wind, rain, temp):
             tags += ["high_wind", "passing_penalty", "kicking_penalty"]
             if s == "mlb":
                 tags += ["hr_suppression"]
+
         if rain is not None and float(rain) >= 50:
             tags += ["rain_game", "ball_security_risk"]
+
         if temp is not None and float(temp) <= 32:
             tags += ["freezing_game", "run_rate_up"]
+
         if temp is not None and float(temp) >= 90:
             tags += ["heat_game", "fatigue_risk"]
-    except:
+    except Exception:
         pass
     return tags
+
 
 def main():
     games = load_json("combined.json", [])
     weather = load_json("weather_raw.json", {})
 
+    # unwrap combined if needed
     if isinstance(games, dict) and "data" in games:
         games = games["data"]
 
@@ -88,15 +100,11 @@ def main():
 
         w = weather.get(gid, {})
         if not isinstance(w, dict):
-            out[gid] = {"overallRisk": 0, "error": "weather_not_dict"}
+            out[gid] = {"overallRisk": 0, "error": "bad_weather_entry"}
             continue
 
-        # Indoor or fetch error
         if w.get("indoor") or w.get("error"):
-            out[gid] = {
-                "indoor": bool(w.get("indoor")),
-                "error": w.get("error")
-            }
+            out[gid] = {"indoor": bool(w.get("indoor")), "error": w.get("error")}
             continue
 
         wind = w.get("windSpeedMph")
@@ -110,9 +118,9 @@ def main():
 
         weights = sport_weights(sport)
         score = clamp(
-            wr * weights["wind"]
-            + rr * weights["rain"]
-            + tr * weights["temp"]
+            wr * weights["wind"] +
+            rr * weights["rain"] +
+            tr * weights["temp"]
         )
 
         out[gid] = {
@@ -127,6 +135,7 @@ def main():
         json.dump(out, f, indent=2)
 
     print(f"✅ Weather risk scores computed for {len(out)} games.")
+
 
 if __name__ == "__main__":
     main()
