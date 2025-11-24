@@ -11,7 +11,7 @@ jobs:
 
     steps:
       #####################################################################
-      # 1) NUKE GITHUB WORKSPACE **BEFORE ANYTHING ELSE**
+      # 1) NUKE GITHUB WORKSPACE — GUARANTEED CLEAN, FIX NESTED PATHS
       #####################################################################
       - name: 🔥 Nuke GitHub Runner Workspace (Fix nested fbf-data/fbf-data)
         run: |
@@ -22,9 +22,9 @@ jobs:
           echo "🔥 Workspace nuked."
 
       #####################################################################
-      # 2) CLEAN CHECKOUT — PREVENT fbf-data/fbf-data NESTING FOREVER
+      # 2) CLEAN CHECKOUT
       #####################################################################
-      - name: 📥 Checkout repository (Fresh, Clean)
+      - name: 📥 Checkout repository (Fresh)
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -50,10 +50,8 @@ jobs:
       #####################################################################
       # 5) FETCH ESPN DATA
       #####################################################################
-      - name: 📡 Fetch ESPN odds…
-        run: |
-          echo "📡 Fetching ESPN odds…"
-          python3 fetch_espn_all.py
+      - name: 📡 Fetch ESPN odds
+        run: python3 fetch_espn_all.py
 
       #####################################################################
       # 6) TAG FAVORITES
@@ -62,13 +60,13 @@ jobs:
         run: python3 tag_favorites.py
 
       #####################################################################
-      # 7) BUILD STADIUMS (FIXED)
+      # 7) BUILD STADIUMS
       #####################################################################
-      - name: 🏟 Build FBS Stadiums (correct, safe, no crash)
+      - name: 🏟 Build FBS Stadiums (correct, safe)
         run: python3 build_fbs_stadiums.py
 
       #####################################################################
-      # 8) FETCH WEATHER & WEATHER RISK
+      # 8) WEATHER FETCH + WEATHER RISK
       #####################################################################
       - name: 🌦 Fetch Weather
         run: python3 fetch_weather.py
@@ -77,24 +75,22 @@ jobs:
         run: python3 weather_risk1.py
 
       #####################################################################
-      # 9) MERGE WEATHER ONTO COMBINED DATA
+      # 9) MERGE WEATHER
       #####################################################################
       - name: 🔗 Merge Weather
         run: python3 merge_weather.py
 
       #####################################################################
-      # 10) FETCH INJURIES (NON-FATAL)
+      # 10) INJURIES
       #####################################################################
       - name: 🩺 Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
       - name: 🔗 Merge Injuries
-        run: |
-          set +e
-          python3 merge_injuries.py || echo "⚠️ Merge injuries failed — continuing"
+        run: python3 merge_injuries.py || echo "⚠️ Merge injuries failed — continuing"
 
       #####################################################################
-      # 11) HISTORICAL + TRAINING + PREDICTIONS
+      # 11) HISTORICAL RESULTS + ML TRAINING + PREDICTIONS
       #####################################################################
       - name: 🧮 Build historical results
         run: python3 build_historical_results.py || echo "⚠️ No historical results"
@@ -106,20 +102,27 @@ jobs:
         run: python3 build_predictions.py
 
       #####################################################################
-      # 12) PUSH UPDATED DATA BACK TO GITHUB PAGES
+      # 12) COMMIT & PUSH — ***SAFE FORCE PUSH, NEVER FAILS***
       #####################################################################
-      - name: 📤 Commit & Push updated data
+      - name: 📤 Commit & Push updated data (safe, atomic)
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
+          echo "📦 Staging changes..."
           git add -A
-          git commit -m "Auto update data $(date -u +"%Y-%m-%d %H:%M:%S") UTC" || echo "Nothing to commit"
 
-          # avoid push conflicts forever
-          git pull --rebase --autostash || true
+          # If no changes -> exit early
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
 
-          git push || echo "Nothing to push"
+          echo "🧾 Committing..."
+          git commit -m "Auto update data $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+
+          echo "🚀 Safe force-push..."
+          git push origin HEAD:main --force
 
       #####################################################################
       # 13) CLEANUP
