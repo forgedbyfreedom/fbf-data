@@ -1,139 +1,121 @@
 import json
-import os
+import requests
+import time
+from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent
 
-def load_json(path, default):
+COMBINED_FILE = ROOT / "combined.json"
+MASTER_FILE = ROOT / "stadiums_master.json"
+FBS_FILE = ROOT / "fbs_stadiums.json"
+OUTDOOR_FILE = ROOT / "stadiums_outdoor.json"
+
+# -----------------------------
+# Simple fallback geocoder
+# -----------------------------
+def geocode(query):
+    """Return (lat, lon) or (None, None)"""
     try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except Exception:
-        return default
+        url = f"https://nominatim.openstreetmap.org/search?q={query}&format=json&limit=1"
+        r = requests.get(url, timeout=10, headers={"User-Agent": "fbf-weather"})
+        r.raise_for_status()
+        d = r.json()
+        if isinstance(d, list) and d:
+            return float(d[0]["lat"]), float(d[0]["lon"])
+    except:
+        return None, None
+    return None, None
 
 
-def save_json(path, data):
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
-
-
-def normalize_combined(combined):
-    # combined.json can be {"timestamp":..., "count":..., "data":[...]}
-    if isinstance(combined, dict) and "data" in combined:
-        return combined["data"]
-    if isinstance(combined, list):
-        return combined
-    return []
-
-
-def venue_key(v):
-    # stable venue id first, else fallback to slugged name
-    if isinstance(v, dict):
-        vid = v.get("id") or v.get("venue_id")
-        if vid:
-            return str(vid)
-        nm = (v.get("name") or "").strip().lower()
-        city = (v.get("city") or "").strip().lower()
-        st = (v.get("state") or "").strip().lower()
-        return f"{nm}|{city}|{st}"
-    return None
-
-
-def merge_venue(base, incoming):
-    """
-    Merge two venue dicts, preferring existing good data,
-    but filling missing lat/lon/indoor/etc from incoming.
-    """
-    if not isinstance(base, dict):
-        base = {}
-    if not isinstance(incoming, dict):
-        return base
-
-    for k, v in incoming.items():
-        if v is None:
-            continue
-        if k not in base or base.get(k) in (None, "", 0):
-            base[k] = v
-
-    # normalize types
-    for kk in ("lat", "lon"):
-        if kk in base and base[kk] is not None:
-            try:
-                base[kk] = float(base[kk])
-            except Exception:
-                base[kk] = None
-
-    if "indoor" in base:
-        base["indoor"] = bool(base["indoor"])
-
-    return base
+def normalize_team(name: str) -> str:
+    """Normalize for matching."""
+    return name.lower().replace("state", "").replace("university", "").strip()
 
 
 def main():
-    combined = normalize_combined(load_json("combined.json", []))
-    master = load_json("data/stadiums_master.json", {})
-    if not isinstance(master, dict):
-        master = {}
+    with open(COMBINED_FILE, "r") as f:
+        combined = json.load(f)["data"]
 
-    fbs = {}
+    # This collects venue info keyed consistently
+    stadiums = {}
+
+    print("🔍 Extracting venues from combined.json ...")
+
+    for game in combined:
+        venue = game.get("venue")
+        if not venue:
+            continue
+
+        name = venue.get("name")
+        if not name:
+            continue
+
+        name_key = name.strip().lower()
+
+        if name_key not in stadiums:
+            stadiums[name_key] = {
+                "venue_name": name.strip(),
+                "city": venue.get("city", ""),
+                "state": venue.get("state", ""),
+                "indoor": bool(venue.get("indoor")),
+                "grass": bool(venue.get("grass")),
+                "lat": venue.get("lat"),
+                "lon": venue.get("lon"),
+            }
+
+    # Attempt to fill missing lat/lon
+    print("🌎 Geocoding missing coordinates (fallback)...")
+    geo_filled = 0
+
+    for key, v in stadiums.items():
+        if not v["lat"] or not v["lon"]:
+            query = f"{v['venue_name']}, {v['city']} {v['state']}"
+            lat, lon = geocode(query)
+            if lat and lon:
+                stadiums[key]["lat"] = lat
+                stadiums[key]["lon"] = lon
+                geo_filled += 1
+            time.sleep(1.1)  # avoid Nominatim rate limits
+
+    print(f"🔥 Geocoder filled {geo_filled} missing venues.")
+
+    # Write master
+    with open(MASTER_FILE, "w") as f:
+        json.dump(stadiums, f, indent=2)
+
+    # Outdoor = indoor == False AND has valid coords
     outdoor = {}
+    for key, v in stadiums.items():
+        if not v["indoor"] and v["lat"] and v["lon"]:
+            outdoor[key] = v
 
-    # 1) Pull venues from combined.json (ESPN data)
-    for g in combined:
-        if not isinstance(g, dict):
-            continue
+    with open(OUTDOOR_FILE, "w") as f:
+        json.dump(outdoor, f, indent=2)
 
-        sport = (g.get("sport") or "").lower()
-        if sport not in ("ncaaf", "nfl"):  # FBS + NFL in one master
-            continue
+    # FBS-only = Power Five + Group of Five teams (based on combined)
+    fbs = {}
+    for game in combined:
+        for t in [game.get("home_team"), game.get("away_team")]:
+            if not t:
+                continue
 
-        v = g.get("venue") or {}
-        if not isinstance(v, dict):
-            continue
+            team_name = t.get("name", "")
+            if not team_name:
+                continue
 
-        key = venue_key(v)
-        if not key:
-            continue
+            team_norm = normalize_team(team_name)
 
-        # Build minimal incoming venue from combined
-        incoming = {
-            "id": v.get("id") or v.get("venue_id"),
-            "name": v.get("name"),
-            "city": v.get("city"),
-            "state": v.get("state"),
-            "indoor": bool(v.get("indoor")),
-            "grass": v.get("grass"),
-            "lat": v.get("lat") or v.get("latitude"),
-            "lon": v.get("lon") or v.get("longitude"),
-            "source": "combined_espn"
-        }
+            # Match stadium by “city + team”
+            for key, v in stadiums.items():
+                if team_norm in key:
+                    fbs[key] = v
 
-        # Merge with any existing master record
-        existing = master.get(key, {})
-        merged = merge_venue(existing, incoming)
-        master[key] = merged
+    with open(FBS_FILE, "w") as f:
+        json.dump(fbs, f, indent=2)
 
-    # 2) Create fbs_stadiums from master
-    for k, v in master.items():
-        if not isinstance(v, dict):
-            continue
-
-        # keep only venues with usable identity
-        if not v.get("name"):
-            continue
-
-        # fbs file should contain all FBS + NFL venues we saw
-        fbs[k] = v
-
-        # outdoor subset needs coords + not indoor
-        if (not v.get("indoor")) and v.get("lat") and v.get("lon"):
-            outdoor[k] = v
-
-    save_json("data/stadiums_master.json", master)
-    save_json("fbs_stadiums.json", fbs)
-    save_json("stadiums_outdoor.json", outdoor)
-
-    print(f"✅ Wrote fbs_stadiums.json with {len(fbs)} venues")
-    print(f"✅ Wrote stadiums_outdoor.json with {len(outdoor)} outdoor venues")
-    print("✅ stadiums_master.json updated")
+    print(f"🎉 stadiums_master.json written: {len(stadiums)} venues")
+    print(f"🎉 stadiums_outdoor.json written: {len(outdoor)} outdoor venues")
+    print(f"🎉 fbs_stadiums.json written: {len(fbs)} FBS venues")
 
 
 if __name__ == "__main__":
