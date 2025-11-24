@@ -11,27 +11,26 @@ jobs:
 
     steps:
       #####################################################################
-      # 1) CLEAN WORKSPACE — PREVENT NESTED fbf-data/fbf-data
+      # 1) CLEAN WORKSPACE — SAFEST POSSIBLE VERSION
       #####################################################################
-      - name: 🧨 Nuking workspace (safe)
+      - name: 🧨 Clean workspace
         run: |
-          echo "🧨 Nuking workspace (safe)..."
-          sudo rm -rf $GITHUB_WORKSPACE/*
-          sudo rm -rf $GITHUB_WORKSPACE/.[!.]*
-          sudo rm -rf $GITHUB_WORKSPACE/.??*
+          echo "🧨 Cleaning workspace..."
+          sudo rm -rf ./* || true
+          sudo rm -rf ./.??* || true
+          echo "Workspace cleaned."
 
       #####################################################################
-      # 2) CLEAN CHECKOUT
+      # 2) CLEAN CHECKOUT — NO MORE fbf-data/fbf-data
       #####################################################################
-      - name: 📥 Checkout repository cleanly
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           clean: true
-          path: .
 
       #####################################################################
-      # 3) PYTHON SETUP
+      # 3) SET UP PYTHON
       #####################################################################
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4
@@ -41,15 +40,15 @@ jobs:
       #####################################################################
       # 4) INSTALL REQUIREMENTS
       #####################################################################
-      - name: 📦 Install dependencies
+      - name: 📦 Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       #####################################################################
-      # 5) FETCH ESPN LIVE ODDS
+      # 5) FETCH ESPN DATA
       #####################################################################
-      - name: 📡 Fetch ESPN odds
+      - name: 📡 Fetch ESPN odds…
         run: |
           echo "📡 Fetching ESPN odds..."
           python3 fetch_espn_all.py
@@ -61,13 +60,15 @@ jobs:
         run: python3 tag_favorites.py
 
       #####################################################################
-      # 7) BUILD STADIUM DATABASE
+      # 7) BUILD STADIUM FILES
       #####################################################################
       - name: 🏟 Build FBS Stadiums
-        run: python3 build_fbs_stadiums.py
+        run: |
+          python3 build_fbs_stadiums.py
+          echo "Stadium files built."
 
       #####################################################################
-      # 8) WEATHER FETCH + RISK
+      # 8) WEATHER PIPELINE
       #####################################################################
       - name: 🌦 Fetch Weather
         run: python3 fetch_weather.py
@@ -75,64 +76,46 @@ jobs:
       - name: ⚡ Compute Weather Risk
         run: python3 weather_risk1.py
 
-      #####################################################################
-      # 9) MERGE WEATHER
-      #####################################################################
       - name: 🔗 Merge Weather
         run: python3 merge_weather.py
 
       #####################################################################
-      # 10) INJURIES (NON-FATAL)
+      # 9) INJURY PIPELINE
       #####################################################################
-      - name: 🩺 Fetch Injuries
+      - name: 🩺 Fetch Injuries (non-fatal)
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
-      - name: 🔗 Merge Injuries
-        run: |
-          set +e
-          python3 merge_injuries.py || echo "⚠️ Injury merge failed — continuing"
+      - name: 🔗 Merge Injuries (non-fatal)
+        run: python3 merge_injuries.py || echo "⚠️ Merge injuries failed — continuing"
 
       #####################################################################
-      # 11) HISTORICAL + ML + PREDICTIONS
+      # 10) HISTORICAL DATA + ML PREDICTIONS
       #####################################################################
-      - name: 🧮 Build historical results
+      - name: 📚 Build historical results
         run: python3 build_historical_results.py || echo "⚠️ No historical results"
 
       - name: 🤖 Train ML model
-        run: python3 train_model.py || echo "⚠️ ML Training skipped"
+        run: python3 train_model.py || echo "⚠️ ML training skipped"
 
       - name: 🔮 Build predictions
         run: python3 build_predictions.py
 
       #####################################################################
-      # 12) FINAL PUSH (GUARANTEED — NO FAILS EVER)
+      # 11) PUSH BACK UPDATED DATA
       #####################################################################
-      - name: 📤 Commit & Push updated data (absolute force)
+      - name: 📤 Commit & Push updated data
         run: |
-          echo "📝 Setting git identity..."
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          echo "🚫 Disabling all auto-pull/rebase behavior..."
-          git config --global pull.rebase false
-          git config --global pull.ff only
-
-          echo "📦 Staging..."
           git add -A
+          git commit -m "Auto update data $(date -u +"%Y-%m-%d %H:%M:%S") UTC" || echo "Nothing to commit"
 
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-
-          echo "🧾 Committing..."
-          git commit -m "Auto update data $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-
-          echo "🚀 FORCE-PUSHING SAFELY..."
-          git push --force-with-lease origin main || git push --force origin main
+          git pull --rebase --autostash || true
+          git push || echo "Nothing to push"
 
       #####################################################################
-      # 13) CLEANUP
+      # 12) DONE
       #####################################################################
       - name: 🧹 Cleanup
         run: echo "Done."
