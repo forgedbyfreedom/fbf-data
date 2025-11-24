@@ -1,35 +1,35 @@
 {
-  "timestamp": "20251124_1645",
+  "timestamp": "20251124_1857",
   "count": 229,
   "data": [
     {
       "sport": "ncaab",
       "id": "401827435",
-      "name": "Tennessee Volunteers at Rutgers Scarlet Knights",
-      "shortName": "TENN VS RUTG",
+      "name": "Rutgers Scarlet Knights at Tennessee Volunteers",
+      "shortName": "RUTG VS TENN",
       "date_utc": "2025-11-24T18:00Z",
       "date_local": "2025-11-24 01:00 PM ET",
       "home_team": {
-        "id": "164",
-        "name": "Rutgers Scarlet Knights",
-        "abbr": "RUTG",
-        "slug": "rutgers-scarlet-knights",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/164.png"
-      },
-      "away_team": {
         "id": "2633",
         "name": "Tennessee Volunteers",
         "abbr": "TENN",
         "slug": "tennessee-volunteers",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2633.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_team": {
+        "id": "164",
+        "name": "Rutgers Scarlet Knights",
+        "abbr": "RUTG",
+        "slug": "rutgers-scarlet-knights",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/164.png"
+      },
+      "home_score": 49.0,
+      "away_score": 27.0,
+      "total_points": 76.0,
       "odds": {
         "details": "TENN -14.5",
-        "spread": 14.5,
-        "total": 139.5,
+        "spread": -14.5,
+        "total": 141.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -39,16 +39,36 @@
         "indoor": true,
         "grass": false
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Nathan Farrell",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Owen Shortt",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -75,9 +95,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "NCSU -9.5",
-        "spread": -9.5,
-        "total": 145.5,
+        "details": "NCSU -8.5",
+        "spread": -8.5,
+        "total": 143.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -89,62 +109,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
-    },
-    {
-      "sport": "ncaab",
-      "id": "401817436",
-      "name": "Notre Dame Fighting Irish at Kansas Jayhawks",
-      "shortName": "ND VS KU",
-      "date_utc": "2025-11-24T20:30Z",
-      "date_local": "2025-11-24 03:30 PM ET",
-      "home_team": {
-        "id": "2305",
-        "name": "Kansas Jayhawks",
-        "abbr": "KU",
-        "slug": "kansas-jayhawks",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png"
-      },
-      "away_team": {
-        "id": "87",
-        "name": "Notre Dame Fighting Irish",
-        "abbr": "ND",
-        "slug": "notre-dame-fighting-irish",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": {
-        "details": "KU -5.5",
-        "spread": -5.5,
-        "total": 141.5,
-        "provider": "ESPN BET"
-      },
-      "venue": {
-        "name": "MGM Grand Garden Arena",
-        "city": "Las Vegas",
-        "state": "NV",
+      "weatherRisk": {
         "indoor": true,
-        "grass": false
+        "error": null
       },
-      "officials": [],
-      "weather": {
-        "error": "no_coords"
-      },
-      "weatherRisk": {},
-      "flags": [],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -173,7 +148,7 @@
       "odds": {
         "details": "ISU -2.5",
         "spread": -2.5,
-        "total": 157.5,
+        "total": 158.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -185,14 +160,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -221,7 +199,7 @@
       "odds": {
         "details": "HOU -14.5",
         "spread": -14.5,
-        "total": 141.5,
+        "total": 142.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -233,14 +211,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -281,14 +262,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -315,9 +299,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CLE -2.5",
-        "spread": 2.5,
-        "total": 235.5,
+        "details": "TOR -1.5",
+        "spread": -1.5,
+        "total": 234.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -329,14 +313,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -377,14 +364,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -425,14 +415,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -459,7 +452,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "NJ -140",
+        "details": "NJ -135",
         "spread": -1.5,
         "total": 5.5,
         "provider": "ESPN BET"
@@ -473,14 +466,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -521,14 +517,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -569,14 +568,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -617,14 +619,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -651,9 +656,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MIA -8.5",
-        "spread": -8.5,
-        "total": 240.5,
+        "details": "MIA -7.5",
+        "spread": -7.5,
+        "total": 238.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -665,14 +670,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -713,14 +721,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -761,14 +772,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -809,14 +823,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -857,14 +874,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -905,14 +925,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -939,7 +962,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "FLA -145",
+        "details": "FLA -135",
         "spread": 1.5,
         "total": 5.5,
         "provider": "ESPN BET"
@@ -953,14 +976,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -1003,12 +1029,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -1035,7 +1064,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "VGK -115",
+        "details": "VGK -120",
         "spread": 1.5,
         "total": 5.5,
         "provider": "ESPN BET"
@@ -1049,14 +1078,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -1097,14 +1129,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -1131,8 +1166,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "HOU -6.5",
-        "spread": 6.5,
+        "details": "HOU -5.5",
+        "spread": 5.5,
         "total": 223.5,
         "provider": "ESPN BET"
       },
@@ -1145,14 +1180,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1193,14 +1231,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -1241,14 +1282,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -1289,14 +1333,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1337,14 +1384,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1385,14 +1435,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1428,14 +1481,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1476,62 +1532,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
-    },
-    {
-      "sport": "ncaab",
-      "id": "401817482",
-      "name": "Syracuse Orange at Kansas Jayhawks",
-      "shortName": "SYR VS KU",
-      "date_utc": "2025-11-25T20:30Z",
-      "date_local": "2025-11-25 03:30 PM ET",
-      "home_team": {
-        "id": "2305",
-        "name": "Kansas Jayhawks",
-        "abbr": "KU",
-        "slug": "kansas-jayhawks",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png"
-      },
-      "away_team": {
-        "id": "183",
-        "name": "Syracuse Orange",
-        "abbr": "SYR",
-        "slug": "syracuse-orange",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/183.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": {
-        "details": "KU -4.5",
-        "spread": -4.5,
-        "total": 147.5,
-        "provider": "ESPN BET"
-      },
-      "venue": {
-        "name": "MGM Grand Garden Arena",
-        "city": "Las Vegas",
-        "state": "NV",
+      "weatherRisk": {
         "indoor": true,
-        "grass": false
+        "error": null
       },
-      "officials": [],
-      "weather": {
-        "error": "no_coords"
-      },
-      "weatherRisk": {},
-      "flags": [],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -1574,12 +1585,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1620,14 +1634,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1668,14 +1685,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1711,14 +1731,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -1754,14 +1777,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -1788,8 +1814,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "WMU -6.5",
-        "spread": 6.5,
+        "details": "WMU -7.5",
+        "spread": 7.5,
         "total": 46.5,
         "provider": "ESPN BET"
       },
@@ -1804,12 +1830,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -1845,14 +1874,63 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
+    },
+    {
+      "sport": "ncaab",
+      "id": "401819892",
+      "name": "Kansas State Wildcats at Indiana Hoosiers",
+      "shortName": "KSU @ IU",
+      "date_utc": "2025-11-26T01:00Z",
+      "date_local": "2025-11-25 08:00 PM ET",
+      "home_team": {
+        "id": "84",
+        "name": "Indiana Hoosiers",
+        "abbr": "IU",
+        "slug": "indiana-hoosiers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png"
+      },
+      "away_team": {
+        "id": "2306",
+        "name": "Kansas State Wildcats",
+        "abbr": "KSU",
+        "slug": "kansas-state-wildcats",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2306.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Simon Skjodt Assembly Hall",
+        "city": "Bloomington",
+        "state": "IN",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": [],
+      "weather": {
+        "indoor": true
+      },
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1893,14 +1971,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -1926,7 +2007,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "EDM -145",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "ESPN BET"
+      },
       "venue": {
         "name": "Rogers Place",
         "city": "Edmonton",
@@ -1936,14 +2022,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -1984,14 +2073,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -2027,14 +2119,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2070,14 +2165,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -2118,14 +2216,63 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
+    },
+    {
+      "sport": "ncaab",
+      "id": "401823362",
+      "name": "Vanderbilt Commodores at Western Kentucky Hilltoppers",
+      "shortName": "VAN VS WKU",
+      "date_utc": "2025-11-26T17:00Z",
+      "date_local": "2025-11-26 12:00 PM ET",
+      "home_team": {
+        "id": "98",
+        "name": "Western Kentucky Hilltoppers",
+        "abbr": "WKU",
+        "slug": "western-kentucky-hilltoppers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/98.png"
+      },
+      "away_team": {
+        "id": "238",
+        "name": "Vanderbilt Commodores",
+        "abbr": "VAN",
+        "slug": "vanderbilt-commodores",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/238.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Imperial Arena",
+        "city": "Nassau",
+        "state": "Bahamas",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": [],
+      "weather": {
+        "indoor": true
+      },
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -2161,14 +2308,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2204,14 +2354,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2247,14 +2400,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -2290,14 +2446,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2333,14 +2492,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2376,14 +2538,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2419,14 +2584,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2462,14 +2630,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2505,14 +2676,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2548,14 +2722,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2591,14 +2768,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2634,14 +2814,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2677,14 +2860,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2720,14 +2906,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2763,14 +2952,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2806,14 +2998,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -2849,14 +3044,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2892,14 +3090,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -2935,14 +3136,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -2978,14 +3182,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -3021,14 +3228,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -3064,14 +3274,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -3107,14 +3320,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -3150,14 +3366,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -3193,14 +3412,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -3236,14 +3458,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -3279,14 +3504,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -3327,14 +3555,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -3370,14 +3601,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -3404,9 +3638,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "KC -3.5",
-        "spread": 3.5,
-        "total": 51.5,
+        "details": "KC -3",
+        "spread": 3.0,
+        "total": 52.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -3418,14 +3652,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -3461,14 +3698,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -3504,57 +3744,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
-    },
-    {
-      "sport": "ncaab",
-      "id": "401826890",
-      "name": "Wisconsin Badgers at Providence Friars",
-      "shortName": "WIS VS PROV",
-      "date_utc": "2025-11-27T22:30Z",
-      "date_local": "2025-11-27 05:30 PM ET",
-      "home_team": {
-        "id": "2507",
-        "name": "Providence Friars",
-        "abbr": "PROV",
-        "slug": "providence-friars",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2507.png"
-      },
-      "away_team": {
-        "id": "275",
-        "name": "Wisconsin Badgers",
-        "abbr": "WIS",
-        "slug": "wisconsin-badgers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Jenny Craig Pavilion",
-        "city": "San Diego",
-        "state": "CA",
+      "weatherRisk": {
         "indoor": true,
-        "grass": false
+        "error": null
       },
-      "officials": [],
-      "weather": {
-        "error": "no_coords"
-      },
-      "weatherRisk": {},
-      "flags": [],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -3597,12 +3797,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -3638,14 +3841,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -3688,12 +3894,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -3720,8 +3929,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MISS -7.5",
-        "spread": 7.5,
+        "details": "MISS -6.5",
+        "spread": 6.5,
         "total": 62.5,
         "provider": "ESPN BET"
       },
@@ -3736,12 +3945,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -3784,12 +3996,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -3832,12 +4047,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -3880,12 +4098,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -3928,12 +4149,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -3969,14 +4193,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4012,14 +4239,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -4055,14 +4285,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4098,14 +4331,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -4148,12 +4384,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4180,8 +4419,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "AF -2.5",
-        "spread": 2.5,
+        "details": "AF -1.5",
+        "spread": 1.5,
         "total": 46.5,
         "provider": "ESPN BET"
       },
@@ -4196,12 +4435,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4242,14 +4484,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4292,12 +4537,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4340,12 +4588,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4381,14 +4632,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4431,12 +4685,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4472,14 +4729,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4515,14 +4775,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4558,14 +4821,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4601,14 +4867,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4644,14 +4913,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4687,14 +4959,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4730,14 +5005,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4773,14 +5051,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4816,14 +5097,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -4859,14 +5143,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4909,12 +5196,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -4957,12 +5247,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -4998,14 +5291,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5041,14 +5337,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5084,14 +5383,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5127,14 +5429,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5170,14 +5475,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5213,14 +5521,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -5256,14 +5567,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -5299,14 +5613,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5349,12 +5666,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5390,14 +5710,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5433,14 +5756,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5476,14 +5802,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5519,14 +5848,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -5562,14 +5894,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5612,12 +5947,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5660,12 +5998,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5708,12 +6049,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5756,12 +6100,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5788,8 +6135,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "LOU -3.5",
-        "spread": -3.5,
+        "details": "LOU -2.5",
+        "spread": -2.5,
         "total": 47.5,
         "provider": "ESPN BET"
       },
@@ -5804,12 +6151,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5852,12 +6202,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5900,12 +6253,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5934,7 +6290,7 @@
       "odds": {
         "details": "ISU -13.5",
         "spread": 13.5,
-        "total": 48.5,
+        "total": 47.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -5948,12 +6304,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -5982,7 +6341,7 @@
       "odds": {
         "details": "ECU -6.5",
         "spread": 6.5,
-        "total": 67.5,
+        "total": 66.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -5996,12 +6355,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6044,12 +6406,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6092,12 +6457,61 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
+    },
+    {
+      "sport": "ncaab",
+      "id": "401827111",
+      "name": "Bethune-Cookman Wildcats at Indiana Hoosiers",
+      "shortName": "BCU @ IU",
+      "date_utc": "2025-11-29T17:00Z",
+      "date_local": "2025-11-29 12:00 PM ET",
+      "home_team": {
+        "id": "84",
+        "name": "Indiana Hoosiers",
+        "abbr": "IU",
+        "slug": "indiana-hoosiers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png"
+      },
+      "away_team": {
+        "id": "2065",
+        "name": "Bethune-Cookman Wildcats",
+        "abbr": "BCU",
+        "slug": "bethune-cookman-wildcats",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2065.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Simon Skjodt Assembly Hall",
+        "city": "Bloomington",
+        "state": "IN",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": [],
+      "weather": {
+        "indoor": true
+      },
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6124,8 +6538,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "BYU -18.5",
-        "spread": -18.5,
+        "details": "BYU -17.5",
+        "spread": -17.5,
         "total": 47.5,
         "provider": "ESPN BET"
       },
@@ -6140,12 +6554,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6188,12 +6605,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6236,12 +6656,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6284,12 +6707,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6332,12 +6758,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6364,8 +6793,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MOST -3.5",
-        "spread": -3.5,
+        "details": "MOST -2.5",
+        "spread": -2.5,
         "total": 51.5,
         "provider": "ESPN BET"
       },
@@ -6380,12 +6809,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6428,12 +6860,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -6469,14 +6904,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6519,12 +6957,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6565,14 +7006,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6615,12 +7059,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6647,9 +7094,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "UL -12.5",
-        "spread": -12.5,
-        "total": 49.5,
+        "details": "UL -11.5",
+        "spread": -11.5,
+        "total": 48.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -6663,12 +7110,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6697,7 +7147,7 @@
       "odds": {
         "details": "TXST -9.5",
         "spread": -9.5,
-        "total": 63.5,
+        "total": 62.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -6711,12 +7161,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6759,12 +7212,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -6800,14 +7256,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -6850,12 +7309,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -6891,14 +7353,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -6934,14 +7399,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -6977,14 +7445,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7020,14 +7491,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7063,14 +7537,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7106,14 +7583,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7149,14 +7629,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7192,14 +7675,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7235,14 +7721,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7278,14 +7767,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7321,14 +7813,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7364,14 +7859,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7407,14 +7905,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7450,14 +7951,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7493,14 +7997,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -7536,14 +8043,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7579,14 +8089,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -7622,14 +8135,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7672,12 +8188,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7720,12 +8239,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7752,8 +8274,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "IND -4",
-        "spread": -4.0,
+        "details": "IND -4.5",
+        "spread": -4.5,
         "total": 44.5,
         "provider": "ESPN BET"
       },
@@ -7766,14 +8288,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7816,12 +8341,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7864,12 +8392,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7912,12 +8443,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -7960,12 +8494,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -8001,14 +8538,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8044,14 +8584,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaab",
@@ -8087,14 +8630,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -8130,14 +8676,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -8164,9 +8713,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "SEA -8.5",
-        "spread": -8.5,
-        "total": 42.5,
+        "details": "SEA -10",
+        "spread": -10.0,
+        "total": 41.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -8180,12 +8729,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -8228,12 +8780,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -8274,14 +8829,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -8317,14 +8875,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8360,14 +8921,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8403,14 +8967,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8446,14 +9013,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8489,14 +9059,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -8532,14 +9105,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8575,14 +9151,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -8625,12 +9204,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8666,14 +9248,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8709,14 +9294,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8752,14 +9340,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8795,14 +9386,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8838,14 +9432,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -8881,14 +9478,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -8924,14 +9524,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -8967,14 +9570,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -9010,14 +9616,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -9053,14 +9662,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -9096,14 +9708,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -9139,14 +9754,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9175,7 +9793,7 @@
       "odds": {
         "details": "NE -7.5",
         "spread": -7.5,
-        "total": 47.5,
+        "total": 46.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -9189,12 +9807,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -9230,14 +9851,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -9273,14 +9897,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nba",
@@ -9316,14 +9943,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nhl",
@@ -9359,14 +9989,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9402,14 +10035,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9441,12 +10077,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9478,12 +10117,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9515,12 +10157,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9552,12 +10197,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9593,14 +10241,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9636,14 +10287,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9679,14 +10333,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9724,12 +10381,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "ncaaf",
@@ -9765,14 +10425,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9808,14 +10471,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9853,12 +10519,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9896,12 +10565,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9937,14 +10609,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -9982,12 +10657,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10025,12 +10703,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10068,12 +10749,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10111,12 +10795,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10152,14 +10839,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10197,12 +10887,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10238,14 +10931,17 @@
       },
       "officials": [],
       "weather": {
-        "error": "no_coords"
+        "indoor": true
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": true,
+        "error": null
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     },
     {
       "sport": "nfl",
@@ -10283,12 +10979,15 @@
       "weather": {
         "error": "no_coords"
       },
-      "weatherRisk": {},
-      "flags": [],
+      "weatherRisk": {
+        "indoor": false,
+        "error": "no_coords"
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
-      "injury_count_away": 0
+      "injury_count_away": 0,
+      "prediction": {}
     }
   ],
   "injuries_source": "UNKNOWN",
