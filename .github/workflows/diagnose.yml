@@ -1,0 +1,21 @@
+name: Diagnose Repo Structure
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: List full directory tree
+        run: |
+          echo "===== FULL DIRECTORY TREE ====="
+          find $GITHUB_WORKSPACE -maxdepth 4 -type d -print
+
+      - name: Show all build_fbs_stadiums.py copies
+        run: |
+          echo "===== SEARCHING FOR build_fbs_stadiums.py ====="
+          find $GITHUB_WORKSPACE -name "build_fbs_stadiums.py" -print
