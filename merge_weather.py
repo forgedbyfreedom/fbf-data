@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import json
 
 def load_json(path, default):
@@ -8,39 +7,38 @@ def load_json(path, default):
     except:
         return default
 
+def save_json(path, obj):
+    with open(path, "w") as f:
+        json.dump(obj, f, indent=2)
+
 def main():
-    combined = load_json("combined.json", {})
-    games = combined.get("data") or []   # ✅ NEW FORMAT
+    combined = load_json("combined.json", [])
+    weather_raw = load_json("weather_raw.json", {})
+    weather_risk = load_json("weather_risk1.json", {})
 
-    raw = load_json("weather_raw.json", {})
-    risk = load_json("weather_risk1.json", {})
+    if isinstance(combined, dict) and "data" in combined:
+        data = combined["data"]
+    else:
+        data = combined
 
-    out_games = []
-
-    for g in games:
+    for g in data:
         if not isinstance(g, dict):
             continue
 
-        gid = g.get("id") or g.get("game_id")
+        gid = g.get("game_id") or g.get("id")
         if not gid:
             continue
 
-        g["weather"] = raw.get(gid, {})
-        g["weatherRisk"] = risk.get(gid, {})
+        g["weather"] = weather_raw.get(gid, {})
+        g["weatherRisk"] = weather_risk.get(gid, {})
 
-        existing = set(g.get("flags") or [])
-        new = set(g["weatherRisk"].get("tags") or [])
-        g["flags"] = sorted(list(existing | new))
-
-        out_games.append(g)
-
-    combined["data"] = out_games
-    combined["count"] = len(out_games)
-
-    with open("combined.json", "w") as f:
-        json.dump(combined, f, indent=2)
-
-    print(f"[✅] Weather merged into combined.json ({len(out_games)} games).")
+    if isinstance(combined, dict) and "data" in combined:
+        combined["data"] = data
+        save_json("combined.json", combined)
+        print(f"[✅] Weather merged into combined.json ({len(data)} games).")
+    else:
+        save_json("combined.json", data)
+        print(f"[✅] Weather merged into combined.json ({len(data)} games).")
 
 if __name__ == "__main__":
     main()
