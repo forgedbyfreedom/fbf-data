@@ -1,218 +1,113 @@
 #!/usr/bin/env python3
 """
 train_model.py
+--------------------------
+Trains real ML models using historical_results.json.
 
-Trains 3 models:
-- SU (favorite wins)
-- ATS (favorite covers)
-- OU (over hits)
+Outputs:
+- models/spread_model.pkl
+- models/total_model.pkl
+- models/feature_schema.json
 
-This version is fully hardened:
-✔ Safe if historical data missing
-✔ Safe if some features missing
-✔ Computes ATS labels correctly
-✔ Avoids OU label errors
-✔ Automatically handles indoor stadiums
+If historical file too small, it skips safely.
 """
 
-import os
-import json
-import numpy as np
+import os, json, pickle, math
 import pandas as pd
-from datetime import datetime, timezone
-
-from joblib import dump
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
-
-from feature_engineering import build_feature_rows, FEATURES
+from sklearn.ensemble import RandomForestRegressor
 
 HIST_FILE = "historical_results.json"
-MODELS_DIR = "models"
+MODEL_DIR = "models"
+SPREAD_MODEL_PATH = os.path.join(MODEL_DIR, "spread_model.pkl")
+TOTAL_MODEL_PATH = os.path.join(MODEL_DIR, "total_model.pkl")
+SCHEMA_PATH = os.path.join(MODEL_DIR, "feature_schema.json")
 
+os.makedirs(MODEL_DIR, exist_ok=True)
 
-# ---------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------
-
-def load_json(path, default):
-    if not os.path.exists(path):
-        return default
-    with open(path, "r", encoding="utf-8") as f:
+def load_hist():
+    if not os.path.exists(HIST_FILE):
+        return None
+    with open(HIST_FILE, "r") as f:
         return json.load(f)
 
+def make_features(df: pd.DataFrame):
+    # Basic features only; you can expand later.
+    df["spread"] = pd.to_numeric(df["spread"], errors="coerce")
+    df["total"]  = pd.to_numeric(df["total"], errors="coerce")
+    df["home_score"] = pd.to_numeric(df["home_score"], errors="coerce")
+    df["away_score"] = pd.to_numeric(df["away_score"], errors="coerce")
 
-def safe_float(x, default=None):
-    """Convert safely to float."""
-    try:
-        if x is None or (isinstance(x, float) and np.isnan(x)):
-            return default
-        return float(x)
-    except Exception:
-        return default
+    df["is_nfl"]   = (df["sport"] == "nfl").astype(int)
+    df["is_ncaaf"] = (df["sport"] == "ncaaf").astype(int)
+    df["is_nba"]   = (df["sport"] == "nba").astype(int)
+    df["is_ncaab"] = (df["sport"] == "ncaab").astype(int)
+    df["is_nhl"]   = (df["sport"] == "nhl").astype(int)
 
+    # Targets:
+    # spread target = (home_score - away_score)
+    df["margin"] = df["home_score"] - df["away_score"]
+    df["points_total"] = df["home_score"] + df["away_score"]
 
-def compute_ats_label(fav_score, dog_score, spread):
-    """
-    True ATS result:
-      If favorite - spread > underdog → favorite covered
-    """
-    if fav_score is None or dog_score is None:
-        return None
-    if spread is None:
-        return None
+    # Remove rows missing targets
+    df = df.dropna(subset=["margin", "points_total"])
 
-    fav_adj = fav_score + spread
-    return 1 if fav_adj > dog_score else 0
+    feature_cols = [
+        "spread", "total",
+        "is_nfl", "is_ncaaf", "is_nba", "is_ncaab", "is_nhl"
+    ]
 
+    X = df[feature_cols].fillna(0)
+    y_spread = df["margin"]
+    y_total  = df["points_total"]
 
-def compute_ou_label(fav_score, dog_score, total):
-    """1 if game went over."""
-    if fav_score is None or dog_score is None:
-        return None
-    if total is None:
-        return None
-
-    return 1 if (fav_score + dog_score) > total else 0
-
-
-# ---------------------------------------------------------
-# MAIN TRAINING LOGIC
-# ---------------------------------------------------------
+    return X, y_spread, y_total, feature_cols
 
 def main():
-    print("🔧 Starting ML training...")
-    os.makedirs(MODELS_DIR, exist_ok=True)
-
-    hist_payload = load_json(HIST_FILE, {})
-    history = hist_payload.get("data", [])
-
-    if not history:
-        print("⚠️ No historical results.json → skipping ML training.")
+    hist = load_hist()
+    if not hist or not hist.get("data"):
+        print("⚠️ No historical data found — skipping ML training.")
         return
 
-    # Map event_id → result row
-    hist_lookup = {
-        h.get("event_id"): h for h in history if h.get("event_id")
-    }
-
-    # Build features from today's combined.json
-    rows = build_feature_rows()
-    if not rows:
-        print("⚠️ No feature rows. Cannot train.")
-        return
-
-    labeled_rows = []
-
-    for r in rows:
-        evt = r.get("event_id")
-        if evt not in hist_lookup:
-            continue
-
-        h = hist_lookup[evt]
-        fav_score = safe_float(h.get("fav_score"))
-        dog_score = safe_float(h.get("dog_score"))
-
-        if fav_score is None or dog_score is None:
-            continue
-
-        spread = safe_float(r.get("spread"))
-        total = safe_float(r.get("total"))
-
-        ats = compute_ats_label(fav_score, dog_score, spread)
-        ou = compute_ou_label(fav_score, dog_score, total)
-        su = 1 if fav_score > dog_score else 0
-
-        labeled_rows.append({
-            **r,
-            "y_su": su,
-            "y_ats": ats,
-            "y_ou": ou
+    rows = []
+    for g in hist["data"]:
+        home = g.get("home_team") or {}
+        away = g.get("away_team") or {}
+        rows.append({
+            "sport": g.get("sport"),
+            "spread": g.get("spread"),
+            "total": g.get("total"),
+            "home_score": home.get("score"),
+            "away_score": away.get("score"),
         })
 
-    # Convert to dataframe
-    df = pd.DataFrame(labeled_rows)
-
-    # Drop rows missing required labels
-    df = df.dropna(subset=["y_su", "y_ats"])
-    if df.empty:
-        print("⚠️ No labeled samples → Cannot train ML models yet.")
+    df = pd.DataFrame(rows)
+    if len(df) < 500:
+        print(f"⚠️ Only {len(df)} games in historical file — too small to train safely.")
         return
 
-    if len(df) < 40:
-        print(f"⚠️ Only {len(df)} labeled games → skipping training (need ~40+).")
-        return
+    X, y_spread, y_total, cols = make_features(df)
 
-    # Ensure all features exist
-    missing = [f for f in FEATURES if f not in df.columns]
-    for m in missing:
-        print(f"⚠️ Missing feature '{m}' — filling with 0.")
-        df[m] = 0.0
+    # Train Spread Model
+    X_train, X_test, y_train, y_test = train_test_split(X, y_spread, test_size=0.2, random_state=42)
+    spread_model = RandomForestRegressor(n_estimators=250, random_state=42, n_jobs=-1)
+    spread_model.fit(X_train, y_train)
 
-    X = df[FEATURES].astype(float)
+    # Train Total Model
+    X_train2, X_test2, y_train2, y_test2 = train_test_split(X, y_total, test_size=0.2, random_state=42)
+    total_model = RandomForestRegressor(n_estimators=250, random_state=42, n_jobs=-1)
+    total_model.fit(X_train2, y_train2)
 
-    def train_one(label, name):
-        print(f"\n📘 Training model: {name} ...")
+    with open(SPREAD_MODEL_PATH, "wb") as f:
+        pickle.dump(spread_model, f)
+    with open(TOTAL_MODEL_PATH, "wb") as f:
+        pickle.dump(total_model, f)
+    with open(SCHEMA_PATH, "w") as f:
+        json.dump({"feature_cols": cols}, f, indent=2)
 
-        if label not in df:
-            print(f"⚠️ Missing label {label} → skipping")
-            return None
-
-        sub = df.dropna(subset=[label])
-        if len(sub) < 40:
-            print(f"⚠️ Not enough samples for {name} ({len(sub)}) → skipping.")
-            return None
-
-        Xs = sub[FEATURES].astype(float)
-        ys = sub[label].astype(int)
-
-        X_train, X_test, y_train, y_test = train_test_split(
-            Xs, ys, test_size=0.22, random_state=42
-        )
-
-        model = Pipeline([
-            ("scaler", StandardScaler()),
-            ("clf", LogisticRegression(
-                max_iter=800,
-                solver="lbfgs",
-                n_jobs=-1
-            ))
-        ])
-
-        model.fit(X_train, y_train)
-
-        acc = model.score(X_test, y_test)
-        print(f"✅ {name} model accuracy: {acc:.3f}")
-
-        outpath = os.path.join(MODELS_DIR, f"{name}.joblib")
-        dump(model, outpath)
-        print(f"💾 Saved model → {outpath}")
-
-        return acc
-
-    # Train 3 models
-    acc_su = train_one("y_su", "su")
-    acc_ats = train_one("y_ats", "ats")
-    acc_ou = train_one("y_ou", "ou")
-
-    # Write metadata
-    meta = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "samples": len(df),
-        "features": FEATURES,
-        "acc_su": acc_su,
-        "acc_ats": acc_ats,
-        "acc_ou": acc_ou
-    }
-
-    with open(os.path.join(MODELS_DIR, "meta.json"), "w") as f:
-        json.dump(meta, f, indent=2)
-
-    print(f"\n🎉 ML Training complete! {len(df)} labeled samples used.")
-    print(f"📁 Models saved under: {MODELS_DIR}/")
-
+    print(f"[✅] Trained spread model → {SPREAD_MODEL_PATH}")
+    print(f"[✅] Trained total model  → {TOTAL_MODEL_PATH}")
+    print(f"[✅] Feature schema saved → {SCHEMA_PATH}")
 
 if __name__ == "__main__":
     main()
