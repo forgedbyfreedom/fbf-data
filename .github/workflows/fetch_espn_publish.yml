@@ -11,15 +11,15 @@ jobs:
 
     steps:
       # ------------------------------------------
-      # CLEAN RUNNER WORKSPACE
+      # CLEAN RUNNER WORKSPACE (REAL FIX)
       # ------------------------------------------
-      - name: 🔥 Clean workspace
+      - name: 🔥 Clean workspace (correct path)
         run: |
-          echo "🔥 Cleaning workspace"
-          rm -rf ./* || true
+          echo "🔥 Cleaning workspace at $GITHUB_WORKSPACE"
+          rm -rf "$GITHUB_WORKSPACE/"* || true
 
       # ------------------------------------------
-      # CHECKOUT REPO
+      # CHECKOUT REPO FRESH
       # ------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
           pip install -r requirements.txt
 
       # ------------------------------------------
-      # FETCH ESPN DATA
+      # FETCH RAW ESPN DATA
       # ------------------------------------------
       - name: Fetch ALL ESPN odds
         run: |
@@ -55,29 +55,12 @@ jobs:
         run: python3 build_fbs_stadiums.py
 
       # ------------------------------------------
-      # WEATHER PIPELINE
+      # WEATHER PIPELINE (NWS RAW → RISK → MERGE)
       # ------------------------------------------
       - name: Fetch Weather (NWS Raw)
         env:
           NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
         run: python3 fetch_weather.py
-
-      # ------------------------------------------
-      # 🔍 DEBUG BLOCK (find duplicate weather risk files)
-      # ------------------------------------------
-      - name: 🔍 Scan for duplicate weather files
-        run: |
-          echo "📁 Listing directory tree (Python files only)..."
-          find . -type f -name "*.py" | sort
-
-          echo "🔎 Searching for 'if temp' inside all Python files..."
-          grep -Rns "if temp" . || echo "No matches"
-
-          echo "🔎 Looking for ALL weather_risk files..."
-          find . -type f -name "weather_risk*.py"
-
-          echo "🔎 Checking for old weather folders or stray copies..."
-          find . -type d -name "*weather*" -maxdepth 4
 
       - name: Build Weather Risk Scores
         run: python3 weather_risk1.py
@@ -113,7 +96,7 @@ jobs:
         run: python3 build_predictions.py
 
       # ------------------------------------------
-      # COMMIT + PUSH
+      # COMMIT + SAFE PUSH
       # ------------------------------------------
       - name: Commit and push updates
         run: |
