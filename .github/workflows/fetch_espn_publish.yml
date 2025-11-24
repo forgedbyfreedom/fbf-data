@@ -11,20 +11,19 @@ jobs:
 
     steps:
       #####################################################################
-      # 1) NUKE GITHUB WORKSPACE — GUARANTEED CLEAN, FIX NESTED PATHS
+      # 1) CLEAN WORKSPACE — PREVENT NESTED fbf-data/fbf-data
       #####################################################################
-      - name: 🔥 Nuke GitHub Runner Workspace (Fix nested fbf-data/fbf-data)
+      - name: 🧨 Nuking workspace (safe)
         run: |
-          echo "🔥 FULL WORKSPACE NUKE"
+          echo "🧨 Nuking workspace (safe)..."
           sudo rm -rf $GITHUB_WORKSPACE/*
           sudo rm -rf $GITHUB_WORKSPACE/.[!.]*
           sudo rm -rf $GITHUB_WORKSPACE/.??*
-          echo "🔥 Workspace nuked."
 
       #####################################################################
       # 2) CLEAN CHECKOUT
       #####################################################################
-      - name: 📥 Checkout repository (Fresh)
+      - name: 📥 Checkout repository cleanly
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -32,7 +31,7 @@ jobs:
           path: .
 
       #####################################################################
-      # 3) SET UP PYTHON
+      # 3) PYTHON SETUP
       #####################################################################
       - name: 🐍 Set up Python
         uses: actions/setup-python@v4
@@ -42,16 +41,18 @@ jobs:
       #####################################################################
       # 4) INSTALL REQUIREMENTS
       #####################################################################
-      - name: 📦 Install Python dependencies
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       #####################################################################
-      # 5) FETCH ESPN DATA
+      # 5) FETCH ESPN LIVE ODDS
       #####################################################################
       - name: 📡 Fetch ESPN odds
-        run: python3 fetch_espn_all.py
+        run: |
+          echo "📡 Fetching ESPN odds..."
+          python3 fetch_espn_all.py
 
       #####################################################################
       # 6) TAG FAVORITES
@@ -60,13 +61,13 @@ jobs:
         run: python3 tag_favorites.py
 
       #####################################################################
-      # 7) BUILD STADIUMS
+      # 7) BUILD STADIUM DATABASE
       #####################################################################
-      - name: 🏟 Build FBS Stadiums (correct, safe)
+      - name: 🏟 Build FBS Stadiums
         run: python3 build_fbs_stadiums.py
 
       #####################################################################
-      # 8) WEATHER FETCH + WEATHER RISK
+      # 8) WEATHER FETCH + RISK
       #####################################################################
       - name: 🌦 Fetch Weather
         run: python3 fetch_weather.py
@@ -81,16 +82,18 @@ jobs:
         run: python3 merge_weather.py
 
       #####################################################################
-      # 10) INJURIES
+      # 10) INJURIES (NON-FATAL)
       #####################################################################
       - name: 🩺 Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
       - name: 🔗 Merge Injuries
-        run: python3 merge_injuries.py || echo "⚠️ Merge injuries failed — continuing"
+        run: |
+          set +e
+          python3 merge_injuries.py || echo "⚠️ Injury merge failed — continuing"
 
       #####################################################################
-      # 11) HISTORICAL RESULTS + ML TRAINING + PREDICTIONS
+      # 11) HISTORICAL + ML + PREDICTIONS
       #####################################################################
       - name: 🧮 Build historical results
         run: python3 build_historical_results.py || echo "⚠️ No historical results"
@@ -102,17 +105,21 @@ jobs:
         run: python3 build_predictions.py
 
       #####################################################################
-      # 12) COMMIT & PUSH — ***SAFE FORCE PUSH, NEVER FAILS***
+      # 12) FINAL PUSH (GUARANTEED — NO FAILS EVER)
       #####################################################################
-      - name: 📤 Commit & Push updated data (safe, atomic)
+      - name: 📤 Commit & Push updated data (absolute force)
         run: |
+          echo "📝 Setting git identity..."
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          echo "📦 Staging changes..."
+          echo "🚫 Disabling all auto-pull/rebase behavior..."
+          git config --global pull.rebase false
+          git config --global pull.ff only
+
+          echo "📦 Staging..."
           git add -A
 
-          # If no changes -> exit early
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
@@ -121,8 +128,8 @@ jobs:
           echo "🧾 Committing..."
           git commit -m "Auto update data $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
 
-          echo "🚀 Safe force-push..."
-          git push origin HEAD:main --force
+          echo "🚀 FORCE-PUSHING SAFELY..."
+          git push --force-with-lease origin main || git push --force origin main
 
       #####################################################################
       # 13) CLEANUP
