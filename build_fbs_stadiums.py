@@ -1,18 +1,14 @@
-import json
-import time
-import requests
-from pathlib import Path
+import json, time, requests
 
 COMBINED_PATH = "combined.json"
-OUT_PATH = "fbs_stadiums.json"
-OUTDOOR_PATH = "stadiums_outdoor.json"
+STADIUMS_MASTER_PATH = "stadiums_master.json"     # all venues keyed by venue_id
+STADIUMS_BY_TEAM_PATH = "fbs_stadiums.json"       # home team_id -> venue dict (FBS + NFL)
+STADIUMS_OUTDOOR_PATH = "stadiums_outdoor.json"   # only outdoor venues with coords
 
-NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
-UA = "fbf-data (contact@forgedbyfreedom.com)"
-
-POWER5_HINTS = [
-    "SEC", "BIG TEN", "BIG 12", "ACC", "PAC", "PAC-12", "PAC-10"
-]
+ESPN_VENUE_ENDPOINTS = {
+    "ncaaf": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/venues/{vid}",
+    "nfl":   "https://site.api.espn.com/apis/site/v2/sports/football/nfl/venues/{vid}",
+}
 
 def load_json(path, default):
     try:
@@ -21,118 +17,144 @@ def load_json(path, default):
     except:
         return default
 
-def save_json(path, obj):
-    with open(path, "w") as f:
-        json.dump(obj, f, indent=2)
+def safe_get(d, key, default=None):
+    return d.get(key, default) if isinstance(d, dict) else default
 
-def norm(s):
-    return (s or "").strip()
+def fetch_venue_from_espn(sport, venue_id):
+    url_tpl = ESPN_VENUE_ENDPOINTS.get(sport)
+    if not url_tpl or not venue_id:
+        return None
 
-def geocode_osm(query):
+    url = url_tpl.format(vid=venue_id)
     try:
-        params = {"q": query, "format": "json", "limit": 1}
-        r = requests.get(NOMINATIM_URL, params=params, headers={"User-Agent": UA}, timeout=20)
-        if not r.ok:
+        r = requests.get(url, timeout=10)
+        if r.status_code != 200:
             return None
         data = r.json()
-        if not data:
-            return None
-        lat = float(data[0]["lat"])
-        lon = float(data[0]["lon"])
-        return {"lat": lat, "lon": lon, "source": "osm"}
+
+        venue = safe_get(data, "venue", {})
+        address = safe_get(venue, "address", {}) or {}
+        geo = safe_get(venue, "geo", {}) or {}
+
+        lat = geo.get("latitude")
+        lon = geo.get("longitude")
+
+        return {
+            "id": str(venue_id),
+            "name": venue.get("fullName") or venue.get("name"),
+            "city": address.get("city"),
+            "state": address.get("state"),
+            "lat": lat,
+            "lon": lon,
+            "indoor": bool(venue.get("indoor") or venue.get("roof") == "dome"),
+            "grass": (venue.get("surface") or "").lower() in ["grass", "natural grass"],
+            "source": "espn"
+        }
     except:
         return None
 
-def extract_games():
-    games = load_json(COMBINED_PATH, [])
-    if isinstance(games, dict) and "data" in games:
-        games = games["data"]
-    return [g for g in games if isinstance(g, dict)]
+def normalize_venue(g, sport):
+    """
+    Try to produce a full venue dict:
+    1) Use g["venue"] if it already has lat/lon (some ESPN feeds include geo)
+    2) Else fetch venue info from ESPN venue endpoint using venue id
+    """
+    v = safe_get(g, "venue", {})
+    if isinstance(v, dict):
+        lat = v.get("lat") or v.get("latitude")
+        lon = v.get("lon") or v.get("longitude")
+
+        if lat and lon:
+            return {
+                "id": str(v.get("id") or v.get("venue_id") or ""),
+                "name": v.get("name"),
+                "city": v.get("city"),
+                "state": v.get("state"),
+                "lat": float(lat),
+                "lon": float(lon),
+                "indoor": bool(v.get("indoor")),
+                "grass": bool(v.get("grass")),
+                "source": "combined"
+            }
+
+    # fetch from ESPN if possible
+    venue_id = None
+    if isinstance(v, dict):
+        venue_id = v.get("id") or v.get("venue_id")
+    venue_id = venue_id or g.get("venue_id")
+
+    if venue_id:
+        fetched = fetch_venue_from_espn(sport, venue_id)
+        if fetched:
+            return fetched
+
+    return None
 
 def main():
-    games = extract_games()
+    combined = load_json(COMBINED_PATH, [])
+    if isinstance(combined, dict) and "data" in combined:
+        games = combined["data"]
+    else:
+        games = combined
 
-    # Existing cache (so we only geocode once)
-    cache = load_json(OUT_PATH, {})
+    stadiums_master = {}
+    stadiums_by_team = {}
 
-    stadiums = dict(cache)  # clone
-
-    created = 0
-    geocoded = 0
+    seen_requests = 0
 
     for g in games:
+        if not isinstance(g, dict):
+            continue
+
         sport = (g.get("sport") or "").lower()
-        if sport != "ncaaf":
+
+        # We only build stadium tables for FBS + NFL
+        if sport not in ["ncaaf", "nfl"]:
             continue
 
-        venue = g.get("venue") or {}
-        vname = norm(venue.get("name"))
-        city  = norm(venue.get("city"))
-        state = norm(venue.get("state"))
+        home = safe_get(g, "home_team", {}) or {}
+        home_id = str(home.get("id") or "")
 
-        if not vname:
+        if not home_id:
             continue
 
-        key = vname.lower()
+        venue = normalize_venue(g, sport)
 
-        if key not in stadiums:
-            stadiums[key] = {
-                "name": vname,
-                "city": city,
-                "state": state,
-                "lat": None,
-                "lon": None,
-                "indoor": bool(venue.get("indoor")),
-                "grass": bool(venue.get("grass")),
-                "source": "espn"
-            }
-            created += 1
+        if venue:
+            vid = venue.get("id") or f"{sport}_{home_id}"
 
-        # If ESPN already gives coords, take them
-        espn_lat = venue.get("latitude") or venue.get("lat")
-        espn_lon = venue.get("longitude") or venue.get("lon")
-        if espn_lat and espn_lon:
-            stadiums[key]["lat"] = float(espn_lat)
-            stadiums[key]["lon"] = float(espn_lon)
-            stadiums[key]["source"] = "espn_coords"
-            stadiums[key]["city"] = stadiums[key]["city"] or city
-            stadiums[key]["state"] = stadiums[key]["state"] or state
+            stadiums_master[str(vid)] = venue
+            stadiums_by_team[home_id] = venue
+
+            # Be nice to ESPN endpoint
+            if venue.get("source") == "espn":
+                seen_requests += 1
+                if seen_requests % 10 == 0:
+                    time.sleep(0.6)
+
+    # Filter outdoor venues with coords (NO crash even if garbage types exist)
+    outdoor = {}
+    for tid, v in stadiums_by_team.items():
+        if not isinstance(v, dict):
             continue
-
-        # If missing coords, try cached first
-        if stadiums[key].get("lat") and stadiums[key].get("lon"):
+        if v.get("indoor"):
             continue
+        if not v.get("lat") or not v.get("lon"):
+            continue
+        outdoor[tid] = v
 
-        # OSM geocode once per missing stadium
-        q = vname
-        if city or state:
-            q = f"{vname}, {city} {state}".strip()
+    with open(STADIUMS_MASTER_PATH, "w") as f:
+        json.dump(stadiums_master, f, indent=2)
 
-        geo = geocode_osm(q)
-        if geo:
-            stadiums[key]["lat"] = geo["lat"]
-            stadiums[key]["lon"] = geo["lon"]
-            stadiums[key]["source"] = "osm"
-            stadiums[key]["city"] = stadiums[key]["city"] or city
-            stadiums[key]["state"] = stadiums[key]["state"] or state
-            geocoded += 1
+    with open(STADIUMS_BY_TEAM_PATH, "w") as f:
+        json.dump(stadiums_by_team, f, indent=2)
 
-        # Respect Nominatim politeness
-        time.sleep(1.05)
+    with open(STADIUMS_OUTDOOR_PATH, "w") as f:
+        json.dump(outdoor, f, indent=2)
 
-    # Save master stadium cache
-    save_json(OUT_PATH, stadiums)
-
-    # Create quick outdoor subset
-    outdoor = {
-        k: v for k, v in stadiums.items()
-        if not v.get("indoor") and v.get("lat") and v.get("lon")
-    }
-    save_json(OUTDOOR_PATH, outdoor)
-
-    print(f"✅ Wrote {OUT_PATH} with {len(stadiums)} FBS venues "
-          f"(new: {created}, geocoded: {geocoded})")
-    print(f"✅ Wrote {OUTDOOR_PATH} with {len(outdoor)} outdoor FBS venues")
+    print(f"[✅] stadiums_master.json built: {len(stadiums_master)} venues")
+    print(f"[✅] fbs_stadiums.json built: {len(stadiums_by_team)} teams (FBS + NFL)")
+    print(f"[✅] stadiums_outdoor.json built: {len(outdoor)} outdoor teams")
 
 if __name__ == "__main__":
     main()
