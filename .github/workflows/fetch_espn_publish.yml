@@ -10,31 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      # ---------------------------------------------------------
-      # Nuke the entire workspace to eliminate stale Python files
-      # ---------------------------------------------------------
-      - name: Hard reset runner workspace
+      # --------------------------------------------------------------------
+      # CLEAN RUNNER WORKSPACE (PREVENTS ANY STALE FILES OR HIDDEN CACHES)
+      # --------------------------------------------------------------------
+      - name: 🧨 Full Workspace Reset
         run: |
-          echo "FULL WORKSPACE NUKE"
-          ls -lah $GITHUB_WORKSPACE
-          sudo rm -rf $GITHUB_WORKSPACE/*
-          sudo rm -rf $GITHUB_WORKSPACE/.[!.]*
-          sudo rm -rf $GITHUB_WORKSPACE/.??*
-          echo "Workspace nuked."
+          echo "🧨 Nuking workspace (safe)..."
+          sudo rm -rf "$GITHUB_WORKSPACE"/*
+          sudo rm -rf "$GITHUB_WORKSPACE"/.[!.]*
+          sudo rm -rf "$GITHUB_WORKSPACE"/.??*
 
-      # ------------------------------------------
-      # CHECKOUT REPO FRESH
-      # ------------------------------------------
+      # --------------------------------------------------------------------
+      # CHECKOUT REPO (CLEAN, DEEP CLONE)
+      # --------------------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           clean: true
           fetch-depth: 0
 
-      # ------------------------------------------
+      # --------------------------------------------------------------------
       # PYTHON SETUP
-      # ------------------------------------------
+      # --------------------------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -45,9 +42,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ------------------------------------------
+      # --------------------------------------------------------------------
       # FETCH RAW ESPN DATA
-      # ------------------------------------------
+      # --------------------------------------------------------------------
       - name: Fetch ALL ESPN odds
         run: |
           echo "📡 Fetching ESPN odds…"
@@ -59,10 +56,10 @@ jobs:
       - name: Build FBS Stadiums
         run: python3 build_fbs_stadiums.py
 
-      # ------------------------------------------
-      # WEATHER PIPELINE (NWS RAW → RISK → MERGE)
-      # ------------------------------------------
-      - name: Fetch Weather (NWS Raw)
+      # --------------------------------------------------------------------
+      # WEATHER PIPELINE
+      # --------------------------------------------------------------------
+      - name: Fetch Weather
         env:
           NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
         run: python3 fetch_weather.py
@@ -73,24 +70,21 @@ jobs:
       - name: Merge Weather Into Combined
         run: python3 merge_weather.py
 
-      # ------------------------------------------
-      # INJURIES (SAFE MODE)
-      # ------------------------------------------
+      # --------------------------------------------------------------------
+      # INJURIES
+      # --------------------------------------------------------------------
       - name: Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
-      - name: Merge Injuries (Safe)
+      - name: Merge Injuries
         run: |
           set +e
           python3 merge_injuries.py
-          if [ $? -ne 0 ]; then
-            echo "⚠️ merge_injuries failed — skipping but continuing"
-          fi
           set -e
 
-      # ------------------------------------------
+      # --------------------------------------------------------------------
       # ML PIPELINE
-      # ------------------------------------------
+      # --------------------------------------------------------------------
       - name: Build Historical Results
         run: python3 build_historical_results.py || echo "⚠️ No historical results"
 
@@ -100,16 +94,20 @@ jobs:
       - name: Build Predictions
         run: python3 build_predictions.py
 
-      # ------------------------------------------
-      # COMMIT + SAFE PUSH
-      # ------------------------------------------
+      # --------------------------------------------------------------------
+      # PUSH TO GITHUB (FORCE-SAFE)
+      # --------------------------------------------------------------------
       - name: Commit and push updates
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          git pull --rebase origin main || true
+          echo "📥 Pulling latest from origin with rebase safety..."
+          git pull --rebase --strategy-option theirs origin main || true
 
           git add -A
+
           git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
-          git push origin main || echo "Nothing to push"
+
+          echo "📤 Force pushing safely..."
+          git push --force-with-lease origin main || echo "Nothing to push"
