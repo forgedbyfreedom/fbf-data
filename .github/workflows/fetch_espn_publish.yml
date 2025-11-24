@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # ------------------------------------------
-      # CLEAN RUNNER WORKSPACE (fix stale file bugs)
+      # CLEAN RUNNER WORKSPACE
       # ------------------------------------------
       - name: 🔥 Clean workspace
         run: |
@@ -19,7 +19,7 @@ jobs:
           rm -rf ./* || true
 
       # ------------------------------------------
-      # CHECKOUT REPO FRESH
+      # CHECKOUT REPO
       # ------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
           pip install -r requirements.txt
 
       # ------------------------------------------
-      # FETCH RAW ESPN DATA
+      # FETCH ESPN DATA
       # ------------------------------------------
       - name: Fetch ALL ESPN odds
         run: |
@@ -55,12 +55,29 @@ jobs:
         run: python3 build_fbs_stadiums.py
 
       # ------------------------------------------
-      # WEATHER PIPELINE (NWS RAW → RISK → MERGE)
+      # WEATHER PIPELINE
       # ------------------------------------------
       - name: Fetch Weather (NWS Raw)
         env:
           NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
         run: python3 fetch_weather.py
+
+      # ------------------------------------------
+      # 🔍 DEBUG BLOCK (find duplicate weather risk files)
+      # ------------------------------------------
+      - name: 🔍 Scan for duplicate weather files
+        run: |
+          echo "📁 Listing directory tree (Python files only)..."
+          find . -type f -name "*.py" | sort
+
+          echo "🔎 Searching for 'if temp' inside all Python files..."
+          grep -Rns "if temp" . || echo "No matches"
+
+          echo "🔎 Looking for ALL weather_risk files..."
+          find . -type f -name "weather_risk*.py"
+
+          echo "🔎 Checking for old weather folders or stray copies..."
+          find . -type d -name "*weather*" -maxdepth 4
 
       - name: Build Weather Risk Scores
         run: python3 weather_risk1.py
@@ -69,7 +86,7 @@ jobs:
         run: python3 merge_weather.py
 
       # ------------------------------------------
-      # INJURIES (SAFE MODE)
+      # INJURIES
       # ------------------------------------------
       - name: Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
@@ -96,14 +113,13 @@ jobs:
         run: python3 build_predictions.py
 
       # ------------------------------------------
-      # COMMIT + SAFE PUSH (NO MORE ERRORS)
+      # COMMIT + PUSH
       # ------------------------------------------
       - name: Commit and push updates
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          # avoid non-fast-forward push errors
           git pull --rebase origin main || true
 
           git add -A
