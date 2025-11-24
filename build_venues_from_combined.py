@@ -1,117 +1,107 @@
-#!/usr/bin/env python3
-"""
-build_fbs_stadiums.py
-Auto-build COMPLETE FBS stadium database from ESPN Core API.
-
-Generates:
-    stadiums_fbs.json  (ALL stadiums)
-    stadiums_outdoor.json (ONLY outdoor stadiums)
-
-Output format example:
-{
-  "NCAAF": {
-      "Michigan Wolverines": {
-          "stadium": "Michigan Stadium",
-          "lat": 42.2658,
-          "lon": -83.7487,
-          "indoor": false
-      },
-      ...
-  }
-}
-"""
-
 import json
-import requests
-from datetime import datetime, timezone
+import re
+from collections import defaultdict
 
-TIMEOUT = 10
+COMBINED_PATH = "combined.json"
+STADIUMS_MASTER_PATH = "stadiums_master.json"
 
-# ESPN FBS team list
-TEAMS_URL = "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/teams?limit=300"
-
-def get_json(url):
-    r = requests.get(url, timeout=TIMEOUT)
-    r.raise_for_status()
-    return r.json()
-
-
-def fetch_team_objects():
-    print("📡 Fetching FBS team list…")
-    data = get_json(TEAMS_URL)
-    teams = data.get("items", [])
-    print(f"   → {len(teams)} teams found.")
-    return teams
-
-
-def fetch_team_details(team_ref):
-    url = team_ref.get("$ref")
-    if not url:
-        return None
-
+def load_json(path, default):
     try:
-        team = get_json(url)
+        with open(path, "r") as f:
+            return json.load(f)
     except Exception:
-        return None
+        return default
 
-    name = team.get("displayName") or team.get("name")
-    venue_ref = team.get("venue", {}).get("$ref")
+def save_json(path, obj):
+    with open(path, "w") as f:
+        json.dump(obj, f, indent=2)
 
-    if not venue_ref:
-        return {"name": name, "stadium": None, "lat": None, "lon": None, "indoor": None}
-
-    try:
-        venue = get_json(venue_ref)
-    except Exception:
-        return {"name": name, "stadium": None, "lat": None, "lon": None, "indoor": None}
-
-    # Parse location
-    lat = venue.get("location", {}).get("latitude")
-    lon = venue.get("location", {}).get("longitude")
-    indoor = venue.get("indoor")  # boolean
-    stadium = venue.get("fullName") or venue.get("shortName")
-
-    return {
-        "name": name,
-        "stadium": stadium,
-        "lat": lat,
-        "lon": lon,
-        "indoor": bool(indoor) if indoor is not None else None
-    }
-
+def normalize_name(name):
+    if not name:
+        return ""
+    n = name.strip().lower()
+    n = re.sub(r"\s+", " ", n)
+    n = n.replace("stadium", "").replace("arena", "").replace("field", "")
+    n = n.replace("center", "").replace("centre", "")
+    n = n.replace("coliseum", "").replace("dome", "")
+    n = n.replace("the ", "")
+    n = re.sub(r"[^a-z0-9 ]+", "", n)
+    return n.strip()
 
 def main():
-    teams = fetch_team_objects()
-    out = {"timestamp": datetime.now(timezone.utc).isoformat(), "NCAAF": {}}
+    combined = load_json(COMBINED_PATH, {})
+    if isinstance(combined, dict) and "data" in combined:
+        games = combined["data"]
+    elif isinstance(combined, list):
+        games = combined
+    else:
+        games = []
 
-    for t in teams:
-        details = fetch_team_details(t)
-        if not details:
+    existing_master = load_json(STADIUMS_MASTER_PATH, {})
+
+    master = {}  # key = venue_id or normalized name
+
+    # seed with existing master (defensive: only dict entries)
+    if isinstance(existing_master, dict):
+        for k, v in existing_master.items():
+            if isinstance(v, dict):
+                master[k] = v
+
+    # extract venues from combined
+    for g in games:
+        if not isinstance(g, dict):
             continue
 
-        nm = details.pop("name")
-        out["NCAAF"][nm] = details
-        print(f"✓ {nm}: {details['stadium']}")
+        venue = g.get("venue") or {}
+        if not isinstance(venue, dict):
+            continue
 
-    # Write full list
-    with open("stadiums_fbs.json", "w", encoding="utf-8") as f:
-        json.dump(out, f, indent=2)
+        vname = venue.get("name") or g.get("venue_name")
+        city = venue.get("city") or ""
+        state = venue.get("state") or ""
+        indoor = bool(venue.get("indoor"))
+        grass = venue.get("grass")
+        vid = venue.get("id") or venue.get("venue_id") or g.get("venue_id")
 
-    # Extract OUTDOOR ONLY
-    outdoor = {
-        "NCAAF": {
-            team: info
-            for team, info in out["NCAAF"].items()
-            if info.get("indoor") is False
-        }
-    }
+        lat = None
+        lon = None
 
-    with open("stadiums_outdoor.json", "w", encoding="utf-8") as f:
-        json.dump(outdoor, f, indent=2)
+        # ESPN sometimes puts coords under different keys
+        for k_lat, k_lon in [
+            ("lat", "lon"),
+            ("latitude", "longitude"),
+            ("latitude", "longitude"),
+            ("y", "x"),
+        ]:
+            if venue.get(k_lat) and venue.get(k_lon):
+                lat = venue.get(k_lat)
+                lon = venue.get(k_lon)
+                break
 
-    print(f"\n[✅] Done! Wrote {len(out['NCAAF'])} total FBS stadiums")
-    print(f"[🌤️] Wrote {len(outdoor['NCAAF'])} OUTDOOR stadiums → stadiums_outdoor.json")
+        key = str(vid) if vid else normalize_name(vname)
 
+        if not key:
+            continue
+
+        master.setdefault(key, {})
+        master[key].update({
+            "name": vname,
+            "norm": normalize_name(vname),
+            "city": city,
+            "state": state,
+            "indoor": indoor,
+            "grass": grass,
+        })
+
+        if lat and lon:
+            try:
+                master[key]["lat"] = float(lat)
+                master[key]["lon"] = float(lon)
+            except Exception:
+                pass
+
+    save_json(STADIUMS_MASTER_PATH, master)
+    print(f"[✅] stadiums_master.json built ({len(master)} venues).")
 
 if __name__ == "__main__":
     main()
