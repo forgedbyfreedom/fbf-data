@@ -1,91 +1,116 @@
-import json
-from datetime import datetime
+#!/usr/bin/env python3
+"""
+merge_weather.py
+--------------------------------
+Merges weather.json + weather_risk1.json onto combined.json.
 
-def load_json(path):
-    try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except:
-        return {}
+Safe for:
+- missing venues
+- missing coords
+- games without lat/lon
+- indoor games
+- null venue objects
 
-def get_weather_for_venue(lat, lon, weather_data):
-    """Find closest matching weather entry."""
-    for entry in weather_data.get("data", []):
-        if round(entry.get("lat"), 3) == round(lat, 3) and round(entry.get("lon"), 3) == round(lon, 3):
-            return entry
-    return None
+Output:
+- combined.json (updated)
+"""
+
+import json, os
+
+COMBINED_FILE = "combined.json"
+WEATHER_FILE = "weather.json"
+RISK_FILE = "weather_risk1.json"
+
+def load(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, "r") as f:
+        return json.load(f)
+
+def safe_get_venue(g):
+    """Always return a dict, even when venue is None."""
+    v = g.get("venue")
+    if isinstance(v, dict):
+        return v
+    return {}  # safe blank venue
+
+def merge_weather_into_game(game, weather_map, risk_map):
+    venue = safe_get_venue(game)
+
+    # Try name first
+    venue_name = venue.get("name", "")
+    venue_name_key = venue_name.lower().strip() if venue_name else None
+
+    # Try coords (best)
+    lat = venue.get("lat")
+    lon = venue.get("lon")
+
+    weather_key = None
+
+    # Priority: lat/lon → name → fallback
+    if lat and lon:
+        weather_key = f"{lat:.4f},{lon:.4f}"
+    elif venue_name_key:
+        weather_key = venue_name_key
+
+    # Default None
+    game_weather = None
+    game_risk = None
+
+    if weather_key and weather_key in weather_map:
+        game_weather = weather_map[weather_key]
+
+    if weather_key and weather_key in risk_map:
+        game_risk = risk_map[weather_key]
+
+    # Apply results
+    game["weather"] = game_weather or {"error": "no_weather"}
+    game["weatherRisk"] = game_risk or {"risk": None}
 
 def main():
-    combined = load_json("combined.json")
-    weather = load_json("weather.json")
-    weather_risk = load_json("weather_risk1.json")
-    stadiums = load_json("stadiums_master.json")  # Always use master
+    combined = load(COMBINED_FILE)
+    weather = load(WEATHER_FILE)
+    risk = load(RISK_FILE)
 
-    merged_count = 0
+    if not combined or "data" not in combined:
+        print("❌ combined.json missing")
+        return
+    if not weather:
+        print("⚠️ weather.json missing")
+        weather = {}
+    if not risk:
+        print("⚠️ risk file missing")
+        risk = {}
 
-    for game in combined.get("data", []):
-        sport = game.get("sport")
+    # Convert weather list → dict
+    weather_map = {}
+    for w in weather.get("data", []):
+        k = w.get("key")
+        if k:
+            weather_map[k] = w
 
-        # Indoor sports automatically get no weather
-        if sport in ["nba", "ncaab", "nhl", "mlb"]:
-            game["weather"] = {"indoor": True, "note": "Indoor sport"}
-            game["weatherRisk"] = {"risk": 0, "details": []}
-            continue
+    # Convert risk list → dict
+    risk_map = {}
+    for r in risk.get("data", []):
+        k = r.get("key")
+        if k:
+            risk_map[k] = r
 
-        # Try venue lookup
-        venue = game.get("venue", {})
-        venue_name = venue.get("name", "").strip()
+    total = len(combined["data"])
+    merged = 0
 
-        stadium_info = None
+    for game in combined["data"]:
+        before = game.get("weather")
+        merge_weather_into_game(game, weather_map, risk_map)
+        after = game.get("weather")
 
-        # First lookup via stadium master DB
-        for name, data in stadiums.items():
-            if name.lower() == venue_name.lower():
-                stadium_info = data
-                break
+        if after and after != {"error": "no_weather"}:
+            merged += 1
 
-        # Fallback: check the ESPN venue data inside combined JSON
-        if not stadium_info:
-            if venue.get("lat") and venue.get("lon"):
-                stadium_info = {
-                    "lat": venue.get("lat"),
-                    "lon": venue.get("lon"),
-                    "indoor": venue.get("indoor", False),
-                    "name": venue_name
-                }
-
-        # Final fallback if still nothing → no coords
-        if not stadium_info or not stadium_info.get("lat") or not stadium_info.get("lon"):
-            game["weather"] = {"error": "no_coords"}
-            game["weatherRisk"] = {"risk": 0, "details": []}
-            continue
-
-        lat = stadium_info["lat"]
-        lon = stadium_info["lon"]
-        indoor = stadium_info.get("indoor", False)
-
-        # If indoor
-        if indoor:
-            game["weather"] = {"indoor": True}
-            game["weatherRisk"] = {"risk": 0, "details": []}
-            continue
-
-        # Outdoor — pull closest matching weather reading
-        w = get_weather_for_venue(lat, lon, weather)
-        r = weather_risk.get("data", {}).get(f"{lat},{lon}", {"risk": 0, "details": []})
-
-        if w:
-            game["weather"] = w
-        else:
-            game["weather"] = {"error": "weather_not_found"}
-
-        game["weatherRisk"] = r
-        merged_count += 1
-
-    print(f"[✅] Weather merged for {merged_count}/{len(combined.get('data', []))} games.")
-
-    with open("combined.json", "w") as f:
+    with open(COMBINED_FILE, "w") as f:
         json.dump(combined, f, indent=2)
+
+    print(f"[✅] Weather merged for {merged}/{total} games.")
 
 if __name__ == "__main__":
     main()
