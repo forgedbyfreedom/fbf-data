@@ -19,11 +19,11 @@ HEADERS = {
 
 
 def geocode(stadium_name, city, state):
-    """Try to get lat/lon for stadium."""
+    """Try to geocode a stadium using OpenStreetMap."""
     query = f"{stadium_name}, {city}, {state}, USA"
     try:
         url = f"{GEOCODE_URL}?q={quote(query)}&format=json&limit=1"
-        r = requests.get(url, headers=HEADERS, timeout=10)
+        r = requests.get(url, headers=HEADERS, timeout=15)
         if r.status_code == 200:
             data = r.json()
             if data:
@@ -39,22 +39,20 @@ def load_combined():
 
 
 def extract_venues(combined):
-    """Extract every venue from combined.json."""
+    """Extract all venues from combined.json (all sports)."""
     venues = {}
 
     for g in combined.get("data", []):
-        v = g.get("venue")
-        if not v:
-            continue
+        v = g.get("venue") or {}   # <-- SAFE: protects against null
 
         name = v.get("name", "").strip()
         city = v.get("city", "").strip()
         state = v.get("state", "").strip()
-        indoor = v.get("indoor", False)
-        grass = v.get("grass", False)
+        indoor = bool(v.get("indoor", False))
+        grass = bool(v.get("grass", False))
 
         if not name or not city or not state:
-            continue
+            continue  # skip incomplete venue info
 
         key = f"{name.lower()}|{city.lower()}|{state.lower()}"
 
@@ -73,9 +71,9 @@ def extract_venues(combined):
 
 
 def fill_missing_coords(venues):
-    """Fill lat/lon using geocoder."""
+    """Geocode stadiums missing lat/lon."""
     filled = 0
-    for key, v in venues.items():
+    for k, v in venues.items():
         if not v.get("lat") or not v.get("lon"):
             lat, lon = geocode(v["name"], v["city"], v["state"])
             if lat and lon:
@@ -86,14 +84,15 @@ def fill_missing_coords(venues):
 
 
 def get_fbs_locations(combined):
-    """Return set of (city, state) for every NCAAF game venue."""
+    """Return all (city, state) pairs for NCAAF game venues."""
     locs = set()
 
     for g in combined.get("data", []):
         if g.get("sport") != "ncaaf":
             continue
 
-        v = g.get("venue", {})
+        v = g.get("venue") or {}   # <-- FIXED: prevents crash on `None`
+
         city = v.get("city")
         state = v.get("state")
 
@@ -104,23 +103,21 @@ def get_fbs_locations(combined):
 
 
 def build_outdoor(venues):
-    """Outdoor = NOT indoor AND has coordinates."""
+    """Outdoor = NOT indoor + has lat/lon."""
     outdoor = {}
-    for k, v in venues.items():
+    for key, v in venues.items():
         if not v.get("indoor") and v.get("lat") and v.get("lon"):
-            outdoor[k] = v
+            outdoor[key] = v
     return outdoor
 
 
 def build_fbs(outdoor, fbs_locations):
-    """FBS venues = outdoor stadiums located in real NCAA FBS city/states."""
+    """FBS stadiums = outdoor stadiums in NCAAF city/state pairs."""
     fbs = {}
-    for k, v in outdoor.items():
-        city = v["city"].lower()
-        state = v["state"].lower()
-
-        if (city, state) in fbs_locations:
-            fbs[k] = v
+    for key, v in outdoor.items():
+        loc = (v["city"].lower(), v["state"].lower())
+        if loc in fbs_locations:
+            fbs[key] = v
     return fbs
 
 
@@ -130,20 +127,15 @@ def main():
 
     venues = extract_venues(combined)
 
-    # Fill missing coordinates
     print("🌎 Geocoding missing coordinates (fallback)...")
     filled = fill_missing_coords(venues)
-
     print(f"🔥 Geocoder filled {filled} missing venues.")
 
-    # Build outdoor stadiums
     outdoor = build_outdoor(venues)
-
-    # Build FBS stadiums (correct)
     fbs_locations = get_fbs_locations(combined)
     fbs = build_fbs(outdoor, fbs_locations)
 
-    # Write output files
+    # Write JSON outputs
     with open(MASTER_FILE, "w") as f:
         json.dump(venues, f, indent=2)
     print(f"🎉 stadiums_master.json written: {len(venues)} venues")
