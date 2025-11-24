@@ -1,170 +1,274 @@
 #!/usr/bin/env python3
 """
 build_historical_results.py
-
-Pulls final scores from ESPN Core API and builds/updates historical_results.json.
-Uses combined.json to know which games to track.
+---------------------------------
+Builds a 5-year historical dataset using ESPN Core API.
 
 Outputs:
 - historical_results.json
+
+Each record includes:
+- sport
+- event_id
+- date_utc
+- home/away teams
+- final scores
+- spread / total (when present)
+- favorite
+- ATS result (home/away/push/none)
+- OU result (over/under/push/none)
+
+NOTE:
+ESPN historical odds availability varies by sport/season. This script:
+- uses odds if ESPN provides them
+- otherwise leaves spread/total as None and ATS/OU as "none"
 """
 
-import os, json, requests, re
-from datetime import datetime, timezone
+import json, os, time, math, datetime as dt
+from typing import Dict, Any, List, Optional
+import requests
 
-COMBINED_FILE = "combined.json"
 OUTFILE = "historical_results.json"
-TIMEOUT = 12
 
-LEAGUE_MAP = {
-    "nfl": "football/leagues/nfl",
-    "ncaaf": "football/leagues/college-football",
-    "nba": "basketball/leagues/nba",
-    "ncaab": "basketball/leagues/mens-college-basketball",
-    "nhl": "hockey/leagues/nhl",
-    "mlb": "baseball/leagues/mlb",
-    "mma": "mma/leagues/ufc",
+SPORTS = {
+    "nfl": {
+        "events_url": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/2/events?limit=500",
+        "season_type": 2,  # regular season type already in url
+    },
+    "ncaaf": {
+        "events_url": "http://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{season}/types/2/events?limit=500",
+        "season_type": 2,
+    },
+    "nba": {
+        "events_url": "http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/seasons/{season}/types/2/events?limit=500",
+        "season_type": 2,
+    },
+    "ncaab": {
+        "events_url": "http://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{season}/types/2/events?limit=500",
+        "season_type": 2,
+    },
+    "nhl": {
+        "events_url": "http://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/seasons/{season}/types/2/events?limit=500",
+        "season_type": 2,
+    },
 }
 
-def load_json(path, default):
-    if not os.path.exists(path):
-        return default
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+HEADERS = {
+    "User-Agent": "fbf-data-historical (contact@forgedbyfreedom.com)"
+}
 
-def get_json(url):
-    r = requests.get(url, timeout=TIMEOUT)
-    r.raise_for_status()
-    return r.json()
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
 
-def norm_team(n):
-    return re.sub(r"[^a-z0-9]+", "", (n or "").lower())
-
-def extract_scores(event):
-    try:
-        competitors = event["competitions"][0]["competitors"]
-        out = {}
-        for c in competitors:
-            team = c["team"]["displayName"]
-            out[team] = int(c.get("score", 0))
-        return out
-    except Exception:
-        return {}
-
-def compute_fav_cover(fav_score, dog_score, spread):
-    if spread is None:
-        return None
-    return (fav_score + spread) > dog_score
-
-def compute_over(fav_score, dog_score, total):
-    if total is None:
-        return None
-    return (fav_score + dog_score) > total
-
-def main():
-    combined = load_json(COMBINED_FILE, {}).get("data", [])
-    if not combined:
-        print("⚠️ combined.json missing/empty.")
-        return
-
-    existing_payload = load_json(OUTFILE, {"data": []})
-    existing = existing_payload.get("data", [])
-    existing_ids = set([e.get("event_id") for e in existing if e.get("event_id")])
-
-    results = existing[:]
-
-    sports_present = set()
-    for g in combined:
-        sk = g.get("sport_key", "")
-        if sk:
-            sports_present.add(sk.split("_")[-1])
-
-    for sport in sports_present:
-        league_path = LEAGUE_MAP.get(sport)
-        if not league_path:
-            continue
-
-        events_url = f"https://sports.core.api.espn.com/v2/sports/{league_path}/events"
+def get_json(url: str, tries: int = 3, sleep: float = 0.6) -> Optional[Dict[str, Any]]:
+    for i in range(tries):
         try:
-            events = get_json(events_url).get("items", [])
-        except Exception as e:
-            print(f"⚠️ ESPN events failed for {sport}: {e}")
-            continue
+            r = SESSION.get(url, timeout=20)
+            if r.status_code == 200:
+                return r.json()
+            time.sleep(sleep)
+        except Exception:
+            time.sleep(sleep)
+    return None
 
-        for ev_ref in events:
-            if not isinstance(ev_ref, dict) or "$ref" not in ev_ref:
-                continue
+def safe_float(x):
+    try:
+        if x is None:
+            return None
+        return float(x)
+    except Exception:
+        return None
 
-            ev_url = ev_ref["$ref"]
-            try:
-                ev = get_json(ev_url)
-            except Exception:
-                continue
+def parse_competitors(comp: Dict[str, Any]) -> Dict[str, Any]:
+    competitors = comp.get("competitors", [])
+    home, away = None, None
 
-            status = ev.get("status", {}).get("type", {}).get("state")
-            if status != "post":
-                continue  # only finals
+    for c in competitors:
+        if c.get("homeAway") == "home":
+            home = c
+        elif c.get("homeAway") == "away":
+            away = c
 
-            ev_name = ev.get("name", "")
-            scores = extract_scores(ev)
-            if len(scores) < 2:
-                continue
+    def pack(team_blob):
+        if not team_blob:
+            return {"id": None, "name": None, "abbr": None, "score": None}
+        team = team_blob.get("team", {}) or {}
+        return {
+            "id": str(team.get("id")) if team.get("id") else None,
+            "name": team.get("displayName") or team.get("name"),
+            "abbr": team.get("abbreviation"),
+            "score": safe_float(team_blob.get("score")),
+        }
 
-            # try to match with combined
-            match_game = None
-            for g in combined:
-                if norm_team(g.get("home_team")) in norm_team(ev_name) and \
-                   norm_team(g.get("away_team")) in norm_team(ev_name):
-                    match_game = g
-                    break
+    return {"home": pack(home), "away": pack(away)}
 
-            if not match_game:
-                continue
+def parse_odds(comp: Dict[str, Any]) -> Dict[str, Any]:
+    odds_list = comp.get("odds") or []
+    if not odds_list or not isinstance(odds_list, list):
+        return {"spread": None, "total": None, "favorite": None, "details": None, "provider": None}
 
-            event_id = match_game.get("event_id") or ev.get("id") or match_game.get("matchup")
-            if event_id in existing_ids:
-                continue
+    # take first odds provider
+    o = odds_list[0] or {}
+    details = o.get("details")
+    spread = safe_float(o.get("spread"))
+    total = safe_float(o.get("overUnder")) or safe_float(o.get("total"))
+    provider = o.get("provider", {}).get("name") if isinstance(o.get("provider"), dict) else o.get("provider")
 
-            fav_team = match_game.get("fav_team") or match_game.get("favorite_team") or match_game.get("home_team")
-            dog_team = match_game.get("dog_team") or match_game.get("underdog_team") or match_game.get("away_team")
-            spread = match_game.get("spread", match_game.get("fav_spread"))
-            total = match_game.get("total")
+    favorite = None
+    if details and isinstance(details, str):
+        favorite = details.split(" ")[0].strip()
 
-            fav_score = scores.get(fav_team)
-            dog_score = scores.get(dog_team)
-            if fav_score is None or dog_score is None:
-                continue
-
-            fav_cover = compute_fav_cover(fav_score, dog_score, spread)
-            over = compute_over(fav_score, dog_score, total)
-
-            results.append({
-                "event_id": event_id,
-                "matchup": match_game.get("matchup"),
-                "sport_key": match_game.get("sport_key"),
-                "commence_time": match_game.get("commence_time"),
-                "fav_team": fav_team,
-                "dog_team": dog_team,
-                "spread": spread,
-                "total": total,
-                "fav_score": fav_score,
-                "dog_score": dog_score,
-                "fav_cover": fav_cover,
-                "over": over,
-                "fetched_at": datetime.now(timezone.utc).isoformat()
-            })
-            existing_ids.add(event_id)
-
-    payload = {
-        "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
-        "count": len(results),
-        "data": results
+    return {
+        "spread": spread,
+        "total": total,
+        "favorite": favorite,
+        "details": details,
+        "provider": provider
     }
 
-    with open(OUTFILE, "w", encoding="utf-8") as f:
+def compute_ats(home_score, away_score, spread, favorite_abbr, home_abbr, away_abbr):
+    if spread is None or home_score is None or away_score is None or not favorite_abbr:
+        return "none"
+
+    # ESPN convention: details like "SF -7" means favorite is SF giving 7
+    # We store spread as positive number for favorite giving points.
+    fav_is_home = (favorite_abbr == home_abbr)
+    fav_is_away = (favorite_abbr == away_abbr)
+    if not (fav_is_home or fav_is_away):
+        return "none"
+
+    margin = (home_score - away_score)
+    fav_margin = margin if fav_is_home else -margin
+
+    if fav_margin > spread:
+        return f"{favorite_abbr}_covers"
+    if math.isclose(fav_margin, spread, abs_tol=0.01):
+        return "push"
+    return f"{favorite_abbr}_fails"
+
+def compute_ou(home_score, away_score, total):
+    if total is None or home_score is None or away_score is None:
+        return "none"
+    pts = home_score + away_score
+    if pts > total:
+        return "over"
+    if math.isclose(pts, total, abs_tol=0.01):
+        return "push"
+    return "under"
+
+def fetch_event_detail(event_url: str) -> Optional[Dict[str, Any]]:
+    ev = get_json(event_url)
+    if not ev:
+        return None
+
+    # competitions are refs, follow first
+    comps_ref = ev.get("competitions")
+    if isinstance(comps_ref, dict) and comps_ref.get("$ref"):
+        comps = get_json(comps_ref["$ref"])
+    else:
+        comps = comps_ref
+
+    if not comps or "items" not in comps:
+        return None
+
+    comp_url = comps["items"][0].get("$ref")
+    if not comp_url:
+        return None
+
+    comp = get_json(comp_url)
+    if not comp:
+        return None
+
+    # only final games
+    status = comp.get("status", {}).get("type", {}).get("name")
+    if status not in ("STATUS_FINAL", "STATUS_COMPLETED"):
+        return None
+
+    teams = parse_competitors(comp)
+    odds = parse_odds(comp)
+
+    date_utc = comp.get("date") or ev.get("date")
+    home = teams["home"]
+    away = teams["away"]
+
+    home_score = home["score"]
+    away_score = away["score"]
+
+    ats = compute_ats(
+        home_score, away_score,
+        odds["spread"],
+        odds["favorite"],
+        home["abbr"], away["abbr"]
+    )
+    ou = compute_ou(home_score, away_score, odds["total"])
+
+    return {
+        "event_id": str(ev.get("id") or comp.get("id")),
+        "date_utc": date_utc,
+        "home_team": home,
+        "away_team": away,
+        "spread": odds["spread"],
+        "total": odds["total"],
+        "favorite": odds["favorite"],
+        "odds_details": odds["details"],
+        "odds_provider": odds["provider"],
+        "ats_result": ats,
+        "ou_result": ou
+    }
+
+def fetch_events_for_season(sport_key: str, season_year: int) -> List[Dict[str, Any]]:
+    sport = SPORTS[sport_key]
+    url = sport["events_url"].format(season=season_year)
+    out = []
+
+    while url:
+        page = get_json(url)
+        if not page:
+            break
+
+        items = page.get("items") or []
+        for it in items:
+            ref = it.get("$ref")
+            if not ref:
+                continue
+            detail = fetch_event_detail(ref)
+            if detail:
+                detail["sport"] = sport_key
+                detail["season"] = season_year
+                out.append(detail)
+
+        nxt = page.get("next", {})
+        url = nxt.get("$ref")
+
+        time.sleep(0.25)
+
+    return out
+
+def main():
+    now = dt.datetime.utcnow()
+    end_year = now.year
+    start_year = end_year - 4  # 5 seasons inclusive
+
+    all_rows = []
+    for sport_key in SPORTS.keys():
+        print(f"[ℹ️] Fetching historical for {sport_key} seasons {start_year}-{end_year} ...")
+        for season in range(start_year, end_year + 1):
+            rows = fetch_events_for_season(sport_key, season)
+            print(f"   ✅ {sport_key} {season}: {len(rows)} final games")
+            all_rows.extend(rows)
+
+    payload = {
+        "timestamp": now.strftime("%Y%m%d_%H%M"),
+        "count": len(all_rows),
+        "start_year": start_year,
+        "end_year": end_year,
+        "data": all_rows
+    }
+
+    with open(OUTFILE, "w") as f:
         json.dump(payload, f, indent=2)
 
-    print(f"✅ Wrote {OUTFILE} ({len(results)} total games).")
+    print(f"[✅] Wrote {OUTFILE} with {len(all_rows)} games.")
 
 if __name__ == "__main__":
     main()
