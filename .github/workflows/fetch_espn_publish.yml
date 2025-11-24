@@ -10,104 +10,119 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # --------------------------------------------------------------------
-      # CLEAN RUNNER WORKSPACE (PREVENTS ANY STALE FILES OR HIDDEN CACHES)
-      # --------------------------------------------------------------------
-      - name: 🧨 Full Workspace Reset
+      #####################################################################
+      # 1) NUKE GITHUB WORKSPACE **BEFORE ANYTHING ELSE**
+      #####################################################################
+      - name: 🔥 Nuke GitHub Runner Workspace (Fix nested fbf-data/fbf-data)
         run: |
-          echo "🧨 Nuking workspace (safe)..."
-          sudo rm -rf "$GITHUB_WORKSPACE"/*
-          sudo rm -rf "$GITHUB_WORKSPACE"/.[!.]*
-          sudo rm -rf "$GITHUB_WORKSPACE"/.??*
+          echo "🔥 FULL WORKSPACE NUKE"
+          sudo rm -rf $GITHUB_WORKSPACE/*
+          sudo rm -rf $GITHUB_WORKSPACE/.[!.]*
+          sudo rm -rf $GITHUB_WORKSPACE/.??*
+          echo "🔥 Workspace nuked."
 
-      # --------------------------------------------------------------------
-      # CHECKOUT REPO (CLEAN, DEEP CLONE)
-      # --------------------------------------------------------------------
-      - name: Checkout repository
+      #####################################################################
+      # 2) CLEAN CHECKOUT — PREVENT fbf-data/fbf-data NESTING FOREVER
+      #####################################################################
+      - name: 📥 Checkout repository (Fresh, Clean)
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
           clean: true
-          fetch-depth: 0
+          path: .
 
-      # --------------------------------------------------------------------
-      # PYTHON SETUP
-      # --------------------------------------------------------------------
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      #####################################################################
+      # 3) SET UP PYTHON
+      #####################################################################
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      #####################################################################
+      # 4) INSTALL REQUIREMENTS
+      #####################################################################
+      - name: 📦 Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # --------------------------------------------------------------------
-      # FETCH RAW ESPN DATA
-      # --------------------------------------------------------------------
-      - name: Fetch ALL ESPN odds
+      #####################################################################
+      # 5) FETCH ESPN DATA
+      #####################################################################
+      - name: 📡 Fetch ESPN odds…
         run: |
           echo "📡 Fetching ESPN odds…"
           python3 fetch_espn_all.py
 
-      - name: Tag Favorites/Dogs
+      #####################################################################
+      # 6) TAG FAVORITES
+      #####################################################################
+      - name: 🏷 Tag favorites
         run: python3 tag_favorites.py
 
-      - name: Build FBS Stadiums
+      #####################################################################
+      # 7) BUILD STADIUMS (FIXED)
+      #####################################################################
+      - name: 🏟 Build FBS Stadiums (correct, safe, no crash)
         run: python3 build_fbs_stadiums.py
 
-      # --------------------------------------------------------------------
-      # WEATHER PIPELINE
-      # --------------------------------------------------------------------
-      - name: Fetch Weather
-        env:
-          NWS_USER_AGENT: "fbf-data (contact@forgedbyfreedom.com)"
+      #####################################################################
+      # 8) FETCH WEATHER & WEATHER RISK
+      #####################################################################
+      - name: 🌦 Fetch Weather
         run: python3 fetch_weather.py
 
-      - name: Build Weather Risk Scores
+      - name: ⚡ Compute Weather Risk
         run: python3 weather_risk1.py
 
-      - name: Merge Weather Into Combined
+      #####################################################################
+      # 9) MERGE WEATHER ONTO COMBINED DATA
+      #####################################################################
+      - name: 🔗 Merge Weather
         run: python3 merge_weather.py
 
-      # --------------------------------------------------------------------
-      # INJURIES
-      # --------------------------------------------------------------------
-      - name: Fetch Injuries
+      #####################################################################
+      # 10) FETCH INJURIES (NON-FATAL)
+      #####################################################################
+      - name: 🩺 Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
 
-      - name: Merge Injuries
+      - name: 🔗 Merge Injuries
         run: |
           set +e
-          python3 merge_injuries.py
-          set -e
+          python3 merge_injuries.py || echo "⚠️ Merge injuries failed — continuing"
 
-      # --------------------------------------------------------------------
-      # ML PIPELINE
-      # --------------------------------------------------------------------
-      - name: Build Historical Results
+      #####################################################################
+      # 11) HISTORICAL + TRAINING + PREDICTIONS
+      #####################################################################
+      - name: 🧮 Build historical results
         run: python3 build_historical_results.py || echo "⚠️ No historical results"
 
-      - name: Train ML Models
+      - name: 🤖 Train ML model
         run: python3 train_model.py || echo "⚠️ ML Training skipped"
 
-      - name: Build Predictions
+      - name: 🔮 Build predictions
         run: python3 build_predictions.py
 
-      # --------------------------------------------------------------------
-      # PUSH TO GITHUB (FORCE-SAFE)
-      # --------------------------------------------------------------------
-      - name: Commit and push updates
+      #####################################################################
+      # 12) PUSH UPDATED DATA BACK TO GITHUB PAGES
+      #####################################################################
+      - name: 📤 Commit & Push updated data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          echo "📥 Pulling latest from origin with rebase safety..."
-          git pull --rebase --strategy-option theirs origin main || true
-
           git add -A
+          git commit -m "Auto update data $(date -u +"%Y-%m-%d %H:%M:%S") UTC" || echo "Nothing to commit"
 
-          git commit -m "Auto update data $(date -u '+%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
+          # avoid push conflicts forever
+          git pull --rebase --autostash || true
 
-          echo "📤 Force pushing safely..."
-          git push --force-with-lease origin main || echo "Nothing to push"
+          git push || echo "Nothing to push"
+
+      #####################################################################
+      # 13) CLEANUP
+      #####################################################################
+      - name: 🧹 Cleanup
+        run: echo "Done."
