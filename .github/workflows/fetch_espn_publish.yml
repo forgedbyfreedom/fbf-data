@@ -10,13 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ------------------------------------------
-      # CLEAN RUNNER WORKSPACE (REAL FIX)
-      # ------------------------------------------
-      - name: 🔥 Clean workspace (correct path)
+
+      # ---------------------------------------------------------
+      # Nuke the entire workspace to eliminate stale Python files
+      # ---------------------------------------------------------
+      - name: Hard reset runner workspace
         run: |
-          echo "🔥 Cleaning workspace at $GITHUB_WORKSPACE"
-          rm -rf "$GITHUB_WORKSPACE/"* || true
+          echo "FULL WORKSPACE NUKE"
+          ls -lah $GITHUB_WORKSPACE
+          sudo rm -rf $GITHUB_WORKSPACE/*
+          sudo rm -rf $GITHUB_WORKSPACE/.[!.]*
+          sudo rm -rf $GITHUB_WORKSPACE/.??*
+          echo "Workspace nuked."
 
       # ------------------------------------------
       # CHECKOUT REPO FRESH
@@ -69,7 +74,7 @@ jobs:
         run: python3 merge_weather.py
 
       # ------------------------------------------
-      # INJURIES
+      # INJURIES (SAFE MODE)
       # ------------------------------------------
       - name: Fetch Injuries
         run: python3 fetch_injuries.py || echo "⚠️ Injury fetch failed — continuing"
