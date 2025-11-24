@@ -1,120 +1,159 @@
+#!/usr/bin/env python3
 import json
 import requests
-import time
 from pathlib import Path
+from urllib.parse import quote
 
-ROOT = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parent
 
-COMBINED_FILE = ROOT / "combined.json"
-MASTER_FILE = ROOT / "stadiums_master.json"
-FBS_FILE = ROOT / "fbs_stadiums.json"
-OUTDOOR_FILE = ROOT / "stadiums_outdoor.json"
+COMBINED_FILE = BASE / "combined.json"
+MASTER_FILE = BASE / "stadiums_master.json"
+OUTDOOR_FILE = BASE / "stadiums_outdoor.json"
+FBS_FILE = BASE / "fbs_stadiums.json"
 
-# -----------------------------
-# Simple fallback geocoder
-# -----------------------------
-def geocode(query):
-    """Return (lat, lon) or (None, None)"""
+GEOCODE_URL = "https://nominatim.openstreetmap.org/search"
+
+HEADERS = {
+    "User-Agent": "ForgedByFreedomSportsBot/1.0"
+}
+
+
+def geocode(stadium_name, city, state):
+    """Try to get lat/lon for stadium."""
+    query = f"{stadium_name}, {city}, {state}, USA"
     try:
-        url = f"https://nominatim.openstreetmap.org/search?q={query}&format=json&limit=1"
-        r = requests.get(url, timeout=10, headers={"User-Agent": "fbf-weather"})
-        r.raise_for_status()
-        d = r.json()
-        if isinstance(d, list) and d:
-            return float(d[0]["lat"]), float(d[0]["lon"])
+        url = f"{GEOCODE_URL}?q={quote(query)}&format=json&limit=1"
+        r = requests.get(url, headers=HEADERS, timeout=10)
+        if r.status_code == 200:
+            data = r.json()
+            if data:
+                return float(data[0]["lat"]), float(data[0]["lon"])
     except:
-        return None, None
+        pass
     return None, None
 
 
-def normalize_team(name: str) -> str:
-    """Normalize for matching."""
-    return name.lower().replace("state", "").replace("university", "").strip()
+def load_combined():
+    with open(COMBINED_FILE, "r") as f:
+        return json.load(f)
+
+
+def extract_venues(combined):
+    """Extract every venue from combined.json."""
+    venues = {}
+
+    for g in combined.get("data", []):
+        v = g.get("venue")
+        if not v:
+            continue
+
+        name = v.get("name", "").strip()
+        city = v.get("city", "").strip()
+        state = v.get("state", "").strip()
+        indoor = v.get("indoor", False)
+        grass = v.get("grass", False)
+
+        if not name or not city or not state:
+            continue
+
+        key = f"{name.lower()}|{city.lower()}|{state.lower()}"
+
+        venues[key] = {
+            "name": name,
+            "city": city,
+            "state": state,
+            "indoor": indoor,
+            "grass": grass,
+            "lat": v.get("lat"),
+            "lon": v.get("lon"),
+            "source": "combined_espn"
+        }
+
+    return venues
+
+
+def fill_missing_coords(venues):
+    """Fill lat/lon using geocoder."""
+    filled = 0
+    for key, v in venues.items():
+        if not v.get("lat") or not v.get("lon"):
+            lat, lon = geocode(v["name"], v["city"], v["state"])
+            if lat and lon:
+                v["lat"] = lat
+                v["lon"] = lon
+                filled += 1
+    return filled
+
+
+def get_fbs_locations(combined):
+    """Return set of (city, state) for every NCAAF game venue."""
+    locs = set()
+
+    for g in combined.get("data", []):
+        if g.get("sport") != "ncaaf":
+            continue
+
+        v = g.get("venue", {})
+        city = v.get("city")
+        state = v.get("state")
+
+        if city and state:
+            locs.add((city.lower(), state.lower()))
+
+    return locs
+
+
+def build_outdoor(venues):
+    """Outdoor = NOT indoor AND has coordinates."""
+    outdoor = {}
+    for k, v in venues.items():
+        if not v.get("indoor") and v.get("lat") and v.get("lon"):
+            outdoor[k] = v
+    return outdoor
+
+
+def build_fbs(outdoor, fbs_locations):
+    """FBS venues = outdoor stadiums located in real NCAA FBS city/states."""
+    fbs = {}
+    for k, v in outdoor.items():
+        city = v["city"].lower()
+        state = v["state"].lower()
+
+        if (city, state) in fbs_locations:
+            fbs[k] = v
+    return fbs
 
 
 def main():
-    with open(COMBINED_FILE, "r") as f:
-        combined = json.load(f)["data"]
-
-    # This collects venue info keyed consistently
-    stadiums = {}
-
     print("🔍 Extracting venues from combined.json ...")
+    combined = load_combined()
 
-    for game in combined:
-        venue = game.get("venue")
-        if not venue:
-            continue
+    venues = extract_venues(combined)
 
-        name = venue.get("name")
-        if not name:
-            continue
-
-        name_key = name.strip().lower()
-
-        if name_key not in stadiums:
-            stadiums[name_key] = {
-                "venue_name": name.strip(),
-                "city": venue.get("city", ""),
-                "state": venue.get("state", ""),
-                "indoor": bool(venue.get("indoor")),
-                "grass": bool(venue.get("grass")),
-                "lat": venue.get("lat"),
-                "lon": venue.get("lon"),
-            }
-
-    # Attempt to fill missing lat/lon
+    # Fill missing coordinates
     print("🌎 Geocoding missing coordinates (fallback)...")
-    geo_filled = 0
+    filled = fill_missing_coords(venues)
 
-    for key, v in stadiums.items():
-        if not v["lat"] or not v["lon"]:
-            query = f"{v['venue_name']}, {v['city']} {v['state']}"
-            lat, lon = geocode(query)
-            if lat and lon:
-                stadiums[key]["lat"] = lat
-                stadiums[key]["lon"] = lon
-                geo_filled += 1
-            time.sleep(1.1)  # avoid Nominatim rate limits
+    print(f"🔥 Geocoder filled {filled} missing venues.")
 
-    print(f"🔥 Geocoder filled {geo_filled} missing venues.")
+    # Build outdoor stadiums
+    outdoor = build_outdoor(venues)
 
-    # Write master
+    # Build FBS stadiums (correct)
+    fbs_locations = get_fbs_locations(combined)
+    fbs = build_fbs(outdoor, fbs_locations)
+
+    # Write output files
     with open(MASTER_FILE, "w") as f:
-        json.dump(stadiums, f, indent=2)
-
-    # Outdoor = indoor == False AND has valid coords
-    outdoor = {}
-    for key, v in stadiums.items():
-        if not v["indoor"] and v["lat"] and v["lon"]:
-            outdoor[key] = v
+        json.dump(venues, f, indent=2)
+    print(f"🎉 stadiums_master.json written: {len(venues)} venues")
 
     with open(OUTDOOR_FILE, "w") as f:
         json.dump(outdoor, f, indent=2)
-
-    # FBS-only = Power Five + Group of Five teams (based on combined)
-    fbs = {}
-    for game in combined:
-        for t in [game.get("home_team"), game.get("away_team")]:
-            if not t:
-                continue
-
-            team_name = t.get("name", "")
-            if not team_name:
-                continue
-
-            team_norm = normalize_team(team_name)
-
-            # Match stadium by “city + team”
-            for key, v in stadiums.items():
-                if team_norm in key:
-                    fbs[key] = v
+    print(f"🎉 stadiums_outdoor.json written: {len(outdoor)} outdoor venues")
 
     with open(FBS_FILE, "w") as f:
         json.dump(fbs, f, indent=2)
-
-    print(f"🎉 stadiums_master.json written: {len(stadiums)} venues")
-    print(f"🎉 stadiums_outdoor.json written: {len(outdoor)} outdoor venues")
     print(f"🎉 fbs_stadiums.json written: {len(fbs)} FBS venues")
 
 
