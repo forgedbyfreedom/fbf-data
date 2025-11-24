@@ -1,12 +1,12 @@
-import json
-import requests
-import time
+import os, json, time, requests
+from datetime import datetime, timezone
 
 COMBINED_PATH = "combined.json"
-STADIUMS_PATH = "fbs_stadiums.json"
-OUT_PATH = "weather_raw.json"
+WEATHER_OUT_PATH = "weather_raw.json"
+STADIUMS_OUTDOOR_PATH = "stadiums_outdoor.json"
+STADIUMS_BY_TEAM_PATH = "fbs_stadiums.json"
 
-UA = "fbf-data (contact@forgedbyfreedom.com)"
+NWS_USER_AGENT = os.getenv("NWS_USER_AGENT", "fbf-data (contact@forgedbyfreedom.com)")
 
 def load_json(path, default):
     try:
@@ -19,151 +19,130 @@ def save_json(path, obj):
     with open(path, "w") as f:
         json.dump(obj, f, indent=2)
 
-def clamp(x, lo=None, hi=None):
-    if lo is not None:
-        x = max(lo, x)
-    if hi is not None:
-        x = min(hi, x)
-    return x
-
-def extract_games():
-    games = load_json(COMBINED_PATH, [])
-    if isinstance(games, dict) and "data" in games:
-        games = games["data"]
-    return [g for g in games if isinstance(g, dict)]
-
-def get_coords_for_game(g, stadiums):
-    venue = g.get("venue") or {}
-    vname = (venue.get("name") or "").strip()
-    indoor = bool(venue.get("indoor"))
-
-    # ESPN coords first
-    lat = venue.get("latitude") or venue.get("lat")
-    lon = venue.get("longitude") or venue.get("lon")
-    if lat and lon:
-        return float(lat), float(lon), indoor, "espn_coords"
-
-    # Fallback to stadium cache (name match)
-    if vname:
-        key = vname.lower()
-        s = stadiums.get(key)
-        if s and s.get("lat") and s.get("lon"):
-            return float(s["lat"]), float(s["lon"]), indoor, "stadium_cache"
-
-    return None, None, indoor, "no_coords"
-
-def nws_point(lat, lon):
-    url = f"https://api.weather.gov/points/{lat},{lon}"
-    r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-    if not r.ok:
-        return None
-    return r.json()
-
-def nws_forecast_hourly(forecast_url):
-    r = requests.get(forecast_url, headers={"User-Agent": UA}, timeout=20)
-    if not r.ok:
-        return None
-    return r.json()
-
-def parse_hourly_to_simple(hourly_json):
+def nws_point_forecast(lat, lon):
     """
-    Convert NWS hourly to:
-    windSpeedMph, rainChancePct, temperatureF
-    Choose next forecast period.
+    Get simplified forecast values from NWS:
+    - windSpeedMph (approx max next 12h)
+    - rainChancePct (approx PoP max next 12h)
+    - temperatureF (next period temp)
     """
     try:
-        periods = hourly_json["properties"]["periods"]
-        if not periods:
-            return None
-        p = periods[0]
+        headers = {"User-Agent": NWS_USER_AGENT}
 
-        temp_f = p.get("temperature")
+        # 1) points lookup
+        p = requests.get(
+            f"https://api.weather.gov/points/{lat},{lon}",
+            headers=headers,
+            timeout=10
+        )
+        if p.status_code != 200:
+            return {"error": "points_lookup_failed"}
 
-        wind = p.get("windSpeed") or ""
-        # e.g. "12 mph" or "5 to 10 mph"
-        mph = None
-        nums = [int(x) for x in wind.replace("mph","").replace("to"," ").split() if x.isdigit()]
-        if nums:
-            mph = sum(nums) / len(nums)
+        points = p.json()
+        forecast_url = points["properties"]["forecastHourly"]
 
-        rain = None
-        pop = p.get("probabilityOfPrecipitation") or {}
-        if isinstance(pop, dict):
-            rain = pop.get("value")
+        # 2) hourly forecast
+        f = requests.get(forecast_url, headers=headers, timeout=10)
+        if f.status_code != 200:
+            return {"error": "forecast_failed"}
+
+        periods = f.json()["properties"]["periods"][:12]
+
+        temps = []
+        winds = []
+        pops = []
+
+        for per in periods:
+            t = per.get("temperature")
+            if t is not None:
+                temps.append(float(t))
+
+            ws = per.get("windSpeed","0").split(" ")[0]
+            try:
+                winds.append(float(ws))
+            except:
+                pass
+
+            pop = per.get("probabilityOfPrecipitation", {}).get("value")
+            if pop is not None:
+                pops.append(float(pop))
 
         return {
-            "temperatureF": temp_f,
-            "windSpeedMph": mph,
-            "rainChancePct": rain
+            "temperatureF": temps[0] if temps else None,
+            "windSpeedMph": max(winds) if winds else None,
+            "rainChancePct": max(pops) if pops else None
         }
-    except:
-        return None
+    except Exception as e:
+        return {"error": str(e)}
 
 def main():
-    games = extract_games()
-    stadiums = load_json(STADIUMS_PATH, {})
+    combined = load_json(COMBINED_PATH, [])
+    games = combined["data"] if isinstance(combined, dict) and "data" in combined else combined
+
+    # stadium lookup tables
+    outdoor = load_json(STADIUMS_OUTDOOR_PATH, {})
+    by_team = load_json(STADIUMS_BY_TEAM_PATH, {})
 
     out = {}
+    now_utc = datetime.now(timezone.utc).isoformat()
 
     for g in games:
+        if not isinstance(g, dict):
+            continue
+
         gid = g.get("game_id") or g.get("id")
         if not gid:
             continue
 
-        lat, lon, indoor, source = get_coords_for_game(g, stadiums)
+        sport = (g.get("sport") or "").lower()
+        home = g.get("home_team") if isinstance(g.get("home_team"), dict) else {}
+        home_id = str(home.get("id") or "")
 
-        # Indoor = auto-skip
-        if indoor:
-            out[gid] = {
-                "indoor": True,
-                "error": None,
-                "source": "indoor"
-            }
+        # Default response
+        out[gid] = {"timestamp": now_utc}
+
+        # Indoor / non-weather sports
+        v = g.get("venue") if isinstance(g.get("venue"), dict) else {}
+        if v.get("indoor") is True:
+            out[gid].update({"indoor": True})
             continue
+
+        # Find coords:
+        coords = None
+
+        # Prefer outdoor stadium coords if available
+        if home_id and home_id in outdoor:
+            coords = outdoor[home_id]
+
+        # else any stadium coords we have (even indoor False might be missing)
+        if not coords and home_id and home_id in by_team:
+            coords = by_team[home_id]
+
+        lat = coords.get("lat") if isinstance(coords, dict) else None
+        lon = coords.get("lon") if isinstance(coords, dict) else None
 
         if not lat or not lon:
-            out[gid] = {
-                "indoor": False,
-                "error": "no_coords",
-                "source": source
-            }
+            out[gid].update({"error": "no_coords"})
             continue
 
-        # NWS pipeline
-        try:
-            point_json = nws_point(lat, lon)
-            if not point_json:
-                out[gid] = {"indoor": False, "error": "nws_point_fail", "source": source}
-                continue
+        forecast = nws_point_forecast(lat, lon)
 
-            hourly_url = point_json["properties"].get("forecastHourly")
-            if not hourly_url:
-                out[gid] = {"indoor": False, "error": "no_hourly_url", "source": source}
-                continue
+        if "error" in forecast:
+            out[gid].update({"error": forecast["error"], "lat": lat, "lon": lon})
+            continue
 
-            hourly_json = nws_forecast_hourly(hourly_url)
-            simple = parse_hourly_to_simple(hourly_json)
+        out[gid].update({
+            "lat": lat,
+            "lon": lon,
+            "temperatureF": forecast.get("temperatureF"),
+            "windSpeedMph": forecast.get("windSpeedMph"),
+            "rainChancePct": forecast.get("rainChancePct"),
+        })
 
-            if not simple:
-                out[gid] = {"indoor": False, "error": "hourly_parse_fail", "source": source}
-                continue
+        time.sleep(0.15)
 
-            out[gid] = {
-                "indoor": False,
-                "error": None,
-                "source": source,
-                "lat": lat,
-                "lon": lon,
-                **simple
-            }
-
-        except Exception as e:
-            out[gid] = {"indoor": False, "error": str(e), "source": source}
-
-        time.sleep(0.25)  # light throttle
-
-    save_json(OUT_PATH, out)
-    print(f"FETCH WEATHER FILE UPDATED SUCCESSFULLY ({len(out)} games)")
+    save_json(WEATHER_OUT_PATH, out)
+    print(f"[✅] weather_raw.json updated for {len(out)} games")
 
 if __name__ == "__main__":
     main()
