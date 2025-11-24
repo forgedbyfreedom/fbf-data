@@ -1,4 +1,12 @@
+#!/usr/bin/env python3
+"""
+weather_risk1.py
+Reads: combined.json + weather_raw.json
+Writes: weather_risk1.json
+"""
+
 import json
+
 
 def load_json(path, default):
     try:
@@ -67,7 +75,7 @@ def performance_tags(sport, wind, rain, temp):
         if wind is not None and float(wind) >= 15:
             tags += ["high_wind", "passing_penalty", "kicking_penalty"]
             if s == "mlb":
-                tags += ["hr_suppression"]
+                tags.append("hr_suppression")
 
         if rain is not None and float(rain) >= 50:
             tags += ["rain_game", "ball_security_risk"]
@@ -77,6 +85,7 @@ def performance_tags(sport, wind, rain, temp):
 
         if temp is not None and float(temp) >= 90:
             tags += ["heat_game", "fatigue_risk"]
+
     except:
         pass
 
@@ -84,29 +93,25 @@ def performance_tags(sport, wind, rain, temp):
 
 
 def main():
-    games = load_json("combined.json", [])
+    games = load_json("combined.json", {})
     weather = load_json("weather_raw.json", {})
 
-    out = {}
-
-    # combined.json format: {"timestamp": "...", "count": N, "data": [...]}
+    # combined payload format: {timestamp, count, data:[...]}
     if isinstance(games, dict) and "data" in games:
         games = games["data"]
 
-    for g in games:
+    out = {}
 
+    for g in games:
         if not isinstance(g, dict):
-            print(f"[⚠️] Skipping corrupted game entry: {g}")
             continue
 
-        gid = g.get("game_id") or g.get("id")
+        gid = g.get("id") or g.get("game_id")
         if not gid:
-            print(f"[⚠️] Game missing ID: {g}")
             continue
 
         w = weather.get(gid, {})
 
-        # Indoor or API error
         if w.get("indoor") or w.get("error"):
             out[gid] = {
                 "indoor": bool(w.get("indoor")),
@@ -135,7 +140,7 @@ def main():
             "windRisk": round(wr, 1),
             "rainRisk": round(rr, 1),
             "tempRisk": round(tr, 1),
-            "tags": performance_tags(sport, wind, rain, temp)
+            "tags": performance_tags(sport, wind, rain, temp),
         }
 
     with open("weather_risk1.json", "w") as f:
