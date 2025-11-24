@@ -6,483 +6,402 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-  :root {
-    --bg: #000;
-    --panel: #0b0b0b;
-    --panel2: #111;
-    --line: #222;
-    --txt: #fff;
-    --muted: #aaa;
-    --orange: #ff8c00;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--txt);
-    font-family: Arial, sans-serif;
-  }
-
-  /* Header */
-  .header {
-    text-align: center;
-    padding: 26px 10px 18px 10px;
-    border-bottom: 1px solid var(--line);
-    position: relative;
-    background: #000;
-  }
-
-  .glow {
-    color: var(--orange);
-    text-shadow: 0 0 12px var(--orange), 0 0 20px #ff6600, 0 0 30px #ff4500;
-    animation: pulse 2.5s infinite ease-in-out;
-  }
-
-  @keyframes pulse {
-    0%   { text-shadow: 0 0 8px var(--orange); }
-    50%  { text-shadow: 0 0 22px #ff4500; }
-    100% { text-shadow: 0 0 8px var(--orange); }
-  }
-
-  a { color: var(--orange); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* Summary strip */
-  .summary-wrap {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    padding: 14px 12px;
-    border-bottom: 1px solid var(--line);
-    background: #050505;
-  }
-
-  .summary-box {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-  }
-
-  .summary-title {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
-    letter-spacing: 0.6px;
-  }
-
-  .summary-value {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--orange);
-  }
-
-  /* Tabs */
-  .tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 12px;
-    justify-content: center;
-    border-bottom: 1px solid var(--line);
-    background: #000;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-
-  .tab {
-    padding: 7px 12px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    font-size: 13px;
-    cursor: pointer;
-    background: var(--panel2);
-    color: var(--txt);
-    user-select: none;
-  }
-
-  .tab.active {
-    background: var(--orange);
-    color: #000;
-    font-weight: bold;
-  }
-
-  /* Picks box */
-  .picks-wrap {
-    padding: 12px;
-    border-bottom: 1px solid var(--line);
-    background: #070707;
-  }
-
-  .picks-title {
-    text-align: center;
-    font-size: 20px;
-    color: var(--orange);
-    margin: 4px 0 10px 0;
-  }
-
-  .picks-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .pick-card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .pick-card .pc-top {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    font-weight: bold;
-    margin-bottom: 6px;
-  }
-
-  .pick-card img {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
-  }
-
-  /* Sport sections */
-  .sport-title {
-    font-size: 20px;
-    margin: 20px 0 8px 0;
-    text-align: center;
-    color: var(--orange);
-  }
-
-  /* Game grid */
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    padding: 10px 12px 24px 12px;
-  }
-
-  .game-card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 12px;
-  }
-
-  .teams-row {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .team {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .team img {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-  }
-
-  .vs {
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-
-  .line {
-    margin-top: 8px;
-    font-size: 14px;
-  }
-
-  .muted { color: var(--muted); }
-  .orange { color: var(--orange); font-weight: bold; }
-
-  @media (max-width: 1024px) {
-    .summary-wrap, .games-grid, .picks-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    :root{
+        --bg:#000;
+        --panel:#0b0b0b;
+        --panel2:#121212;
+        --line:#222;
+        --txt:#fff;
+        --muted:#aaa;
+        --orange:#ff8c00;
     }
-  }
-
-  @media (max-width: 640px) {
-    .summary-wrap, .games-grid, .picks-grid {
-      grid-template-columns: 1fr;
+    body{
+        margin:0; padding:0;
+        background:var(--bg);
+        color:var(--txt);
+        font-family: Arial, sans-serif;
     }
-  }
+
+    /* HEADER */
+    .header{
+        text-align:center;
+        padding: 24px 10px 18px 10px;
+        border-bottom:1px solid var(--line);
+        background: #000;
+        position: sticky;
+        top:0; z-index:10;
+    }
+    .glow{
+        color:var(--orange);
+        text-shadow:0 0 12px var(--orange),0 0 20px #ff6600,0 0 30px #ff4500;
+        animation:pulse 2.5s infinite ease-in-out;
+    }
+    @keyframes pulse{
+        0%{text-shadow:0 0 10px var(--orange);}
+        50%{text-shadow:0 0 25px #ff4500;}
+        100%{text-shadow:0 0 10px var(--orange);}
+    }
+    a{color:var(--orange);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .subline{
+        margin-top:6px; font-size:14px; color:#ddd;
+    }
+    .note{
+        margin-top:8px; font-size:12px; color:#666;
+    }
+
+    /* SUMMARY BOXES */
+    .summary{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:10px;
+        padding:12px;
+        max-width:1100px;
+        margin:0 auto;
+    }
+    .sum-card{
+        background:var(--panel);
+        border:1px solid var(--line);
+        border-radius:8px;
+        padding:12px 10px;
+        text-align:center;
+    }
+    .sum-title{
+        font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px;
+    }
+    .sum-val{
+        margin-top:6px; font-size:28px; font-weight:bold; color:var(--orange);
+    }
+
+    /* FILTERS */
+    .filters{
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:8px;
+        padding: 6px 10px 14px;
+        border-bottom:1px solid var(--line);
+        background:#000;
+    }
+    .filter-btn{
+        padding:7px 12px;
+        background:var(--panel2);
+        border:1px solid var(--line);
+        border-radius:999px;
+        color:#fff;
+        cursor:pointer;
+        font-size:13px;
+        transition:all .15s ease;
+    }
+    .filter-btn.active{
+        background:var(--orange);
+        color:#000;
+        font-weight:bold;
+        border-color:var(--orange);
+    }
+
+    /* SPORT SECTION */
+    .sport-block{
+        max-width:1200px;
+        margin:0 auto;
+        padding: 0 8px 20px;
+    }
+    .sport-title{
+        font-size:20px;
+        margin:22px 0 10px;
+        text-align:center;
+        color:var(--orange);
+        font-weight:bold;
+        letter-spacing:.5px;
+    }
+
+    /* 3-COLUMN GRID */
+    .grid{
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap:12px;
+    }
+    @media(max-width:1000px){
+        .grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+        .summary{grid-template-columns: repeat(2,1fr);}
+    }
+    @media(max-width:650px){
+        .grid{grid-template-columns: 1fr;}
+        .summary{grid-template-columns: 1fr;}
+    }
+
+    .card{
+        background:var(--panel);
+        border:1px solid var(--line);
+        border-radius:10px;
+        padding:12px;
+    }
+    .topline{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:8px;
+        font-size:13px; color:var(--muted);
+    }
+    .teams{
+        margin-top:8px;
+        display:grid;
+        grid-template-columns: 22px 1fr;
+        row-gap:6px; column-gap:8px;
+        font-size:15px;
+        font-weight:bold;
+    }
+    .teams img{width:22px;height:22px;object-fit:contain;}
+
+    .favline{
+        margin-top:8px;
+        font-weight:bold;
+        color:var(--orange);
+        font-size:14px;
+    }
+
+    .lineitem{
+        margin-top:6px; font-size:13px; color:#ddd;
+    }
+    .muted{color:var(--muted);}
+    .pill{
+        display:inline-block;
+        padding:2px 7px;
+        border-radius:999px;
+        background:var(--panel2);
+        border:1px solid var(--line);
+        font-size:11px;
+        margin-right:4px;
+        color:#eee;
+    }
+    .pick-pill{
+        background:var(--orange);
+        color:#000;
+        font-weight:bold;
+        border-color:var(--orange);
+    }
 </style>
 </head>
-
 <body>
 
 <div class="header">
-  <div class="glow" style="font-size:16px;">
-    🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
-  </div>
+    <div class="glow" style="font-size:15px;">
+        🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
+    </div>
 
-  <div class="glow" style="font-size:18px; margin-top:6px;">
-    Provided to you by
-    <a href="https://forgedbyfreedom.org" target="_blank">ForgedByFreedom.org</a>
-  </div>
+    <div class="glow" style="font-size:18px; margin-top:6px;">
+        Provided to you by
+        <a href="https://forgedbyfreedom.org" target="_blank">ForgedByFreedom.org</a>
+    </div>
 
-  <div class="glow" style="font-size:32px; margin-top:8px;">
-    FORGED BY FREEDOM STRENGTH AND NUTRITION
-  </div>
+    <div class="glow" style="font-size:30px; margin-top:8px;">
+        FORGED BY FREEDOM STRENGTH AND NUTRITION
+    </div>
 
-  <div class="glow" style="font-size:18px; margin-top:4px;">
-    STRENGTH – DISCIPLINE – FREEDOM
-  </div>
+    <div class="glow" style="font-size:18px; margin-top:5px;">
+        STRENGTH – DISCIPLINE – FREEDOM
+    </div>
 
-  <div style="margin-top:10px; font-size:15px; color:#ccc;">
-    Visit us for all your fitness, nutrition and supplement program needs
-    <br><br>
-    <span style="font-size:13px; color:#666;">For entertainment purposes only</span>
-  </div>
+    <div class="subline">
+        Visit us for all your fitness, nutrition and supplement program needs
+    </div>
+
+    <div class="note">For entertainment purposes only</div>
 </div>
 
-<div class="summary-wrap">
-  <div class="summary-box">
-    <div class="summary-title">Total Games</div>
-    <div class="summary-value" id="total-games">0</div>
-  </div>
-  <div class="summary-box">
-    <div class="summary-title">Favorites Tagged</div>
-    <div class="summary-value" id="fav-count">0</div>
-  </div>
-  <div class="summary-box">
-    <div class="summary-title">Picks Available</div>
-    <div class="summary-value" id="pick-count">0</div>
-  </div>
-</div>
-
-<div class="tabs" id="tabs"></div>
-
-<div class="picks-wrap">
-  <div class="picks-title">🔥 Today’s Picks</div>
-  <div id="picks-grid" class="picks-grid"></div>
-  <div id="picks-empty" class="muted" style="text-align:center; padding:8px; display:none;">
-    No picks available yet.
-  </div>
-</div>
-
+<div class="summary" id="summary"></div>
+<div class="filters" id="filters"></div>
 <div id="sports-container"></div>
 
 <script>
-const DATA_URL = "https://data.forgedbyfreedom.org/combined.json";
-const REFRESH_MS = 15 * 60 * 1000;
-
-async function loadJson(url) {
-  const r = await fetch(url, { cache: "no-store" });
-  if (!r.ok) return null;
-  return await r.json();
+async function loadJson(url){
+    const r = await fetch(url, {cache:"no-store"});
+    if(!r.ok) return null;
+    return await r.json();
 }
 
-function safeSportLabel(key) {
-  if (!key) return "SPORT";
-  return key.replace(/_/g, " ").toUpperCase();
+function fmtLocal(utcStr){
+    try{
+        return new Date(utcStr).toLocaleString();
+    }catch(e){ return utcStr || ""; }
 }
 
-function groupBySport(games) {
-  const bySport = {};
-  for (const g of games) {
-    const k = (g.sport || g.sport_key || "other").toLowerCase();
-    if (!bySport[k]) bySport[k] = [];
-    bySport[k].push(g);
-  }
-  return bySport;
+function safeUpper(x){
+    if(!x) return "";
+    return String(x).toUpperCase();
 }
 
-function hasPick(g) {
-  const p = g.prediction || {};
-  return p.pred_winner || p.winner || p.pick || p.predictedWinner;
-}
+function buildSummary(games){
+    const total = games.length;
+    const favTagged = games.filter(g => g.favorite || g.fav_team).length;
+    const picksAvail = games.filter(g => g.prediction && g.prediction.pickSide).length;
 
-function getPickText(g) {
-  const p = g.prediction || {};
-  return p.pred_winner || p.winner || p.pick || p.predictedWinner || null;
-}
-
-function renderTabs(sportKeys, activeKey, onPick) {
-  const tabs = document.getElementById("tabs");
-  tabs.innerHTML = "";
-
-  const all = document.createElement("div");
-  all.className = "tab " + (activeKey === "all" ? "active" : "");
-  all.textContent = "ALL";
-  all.onclick = () => onPick("all");
-  tabs.appendChild(all);
-
-  for (const k of sportKeys) {
-    const t = document.createElement("div");
-    t.className = "tab " + (activeKey === k ? "active" : "");
-    t.textContent = safeSportLabel(k);
-    t.onclick = () => onPick(k);
-    tabs.appendChild(t);
-  }
-}
-
-function renderSummary(games) {
-  document.getElementById("total-games").textContent = games.length;
-
-  const favs = games.filter(g => g.favorite || g.fav_team || (g.odds && g.odds.details));
-  document.getElementById("fav-count").textContent = favs.length;
-
-  const picks = games.filter(hasPick);
-  document.getElementById("pick-count").textContent = picks.length;
-}
-
-function renderPicks(games) {
-  const picksGrid = document.getElementById("picks-grid");
-  const picksEmpty = document.getElementById("picks-empty");
-  picksGrid.innerHTML = "";
-
-  const picks = games.filter(hasPick);
-
-  if (!picks.length) {
-    picksEmpty.style.display = "block";
-    return;
-  }
-  picksEmpty.style.display = "none";
-
-  for (const g of picks.slice(0, 30)) {
-    const home = g.home_team || {};
-    const away = g.away_team || {};
-
-    const pickText = getPickText(g);
-    const details = g.odds?.details || "N/A";
-
-    const card = document.createElement("div");
-    card.className = "pick-card";
-    card.innerHTML = `
-      <div class="pc-top">
-        <img src="${away.logo || ""}" onerror="this.style.display='none'">
-        <span>${away.abbr || away.name || "AWAY"}</span>
-        <span class="muted">@</span>
-        <span>${home.abbr || home.name || "HOME"}</span>
-        <img src="${home.logo || ""}" onerror="this.style.display='none'">
+    const s = document.getElementById("summary");
+    s.innerHTML = `
+      <div class="sum-card">
+        <div class="sum-title">Total Games</div>
+        <div class="sum-val">${total}</div>
       </div>
-      <div class="line orange">Pick: ${pickText}</div>
-      <div class="line muted">Odds: ${details}</div>
-      <div class="line muted">${g.date_local || g.date_utc || ""}</div>
+      <div class="sum-card">
+        <div class="sum-title">Favorites Tagged</div>
+        <div class="sum-val">${favTagged}</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-title">Picks Available</div>
+        <div class="sum-val">${picksAvail}</div>
+      </div>
     `;
-    picksGrid.appendChild(card);
-  }
 }
 
-function renderSports(games, filterKey) {
-  const container = document.getElementById("sports-container");
-  container.innerHTML = "";
+function buildFilters(games){
+    const sports = [...new Set(games.map(g => safeUpper(g.sport)))].sort();
+    const holder = document.getElementById("filters");
 
-  const bySport = groupBySport(games);
-  const sportKeys = Object.keys(bySport).sort();
+    holder.innerHTML = "";
+    const allBtn = document.createElement("button");
+    allBtn.className="filter-btn active";
+    allBtn.textContent="ALL";
+    allBtn.onclick=() => { setFilter("ALL"); };
+    holder.appendChild(allBtn);
 
-  const toShow = (filterKey && filterKey !== "all")
-    ? { [filterKey]: bySport[filterKey] || [] }
-    : bySport;
+    for(const sp of sports){
+        const b = document.createElement("button");
+        b.className="filter-btn";
+        b.textContent=sp;
+        b.onclick=() => { setFilter(sp); };
+        holder.appendChild(b);
+    }
+}
 
-  for (const sportKey of Object.keys(toShow)) {
-    const sportGames = (toShow[sportKey] || []).slice().sort(
-      (a,b) => (a.date_utc || "").localeCompare(b.date_utc || "")
-    );
+let LIVE_GAMES = [];
+let ACTIVE_FILTER = "ALL";
 
-    const title = document.createElement("div");
-    title.className = "sport-title";
-    title.textContent = `${safeSportLabel(sportKey)} — ${sportGames.length} games`;
-    container.appendChild(title);
+function setFilter(sp){
+    ACTIVE_FILTER = sp;
+    document.querySelectorAll(".filter-btn").forEach(btn=>{
+        btn.classList.toggle("active", btn.textContent===sp);
+        if(sp==="ALL" && btn.textContent==="ALL") btn.classList.add("active");
+        if(sp!=="ALL" && btn.textContent==="ALL") btn.classList.remove("active");
+    });
+    renderSports(LIVE_GAMES);
+}
 
-    const grid = document.createElement("div");
-    grid.className = "games-grid";
+function renderSports(games){
+    const container = document.getElementById("sports-container");
+    container.innerHTML = "";
 
-    sportGames.forEach(g => {
-      const home = g.home_team || {};
-      const away = g.away_team || {};
-      const odds = g.odds || {};
-      const wr = g.weatherRisk || {};
-      const w = g.weather || {};
+    const filtered = (ACTIVE_FILTER==="ALL")
+        ? games
+        : games.filter(g => safeUpper(g.sport)===ACTIVE_FILTER);
 
-      const favText =
-        g.favorite ||
-        g.fav_team ||
-        odds.details ||
-        "";
-
-      const pickText = hasPick(g) ? getPickText(g) : "No prediction yet";
-
-      const weatherText =
-        wr.overallRisk != null
-          ? `Risk: ${wr.overallRisk}`
-          : (w.error === "no_coords" ? "no_coords" :
-            (g.venue?.indoor ? "Indoor / N/A" : "N/A"));
-
-      const card = document.createElement("div");
-      card.className = "game-card";
-      card.innerHTML = `
-        <div class="teams-row">
-          <div class="team">
-            <img src="${away.logo || ""}" onerror="this.style.display='none'">
-            <div>
-              <div><b>${away.name || "Away Team"}</b></div>
-              <div class="muted">${away.abbr || ""}</div>
-            </div>
-          </div>
-          <div class="vs"> @ </div>
-          <div class="team" style="justify-content:flex-end;">
-            <div style="text-align:right;">
-              <div><b>${home.name || "Home Team"}</b></div>
-              <div class="muted">${home.abbr || ""}</div>
-            </div>
-            <img src="${home.logo || ""}" onerror="this.style.display='none'">
-          </div>
-        </div>
-
-        <div class="line orange">${favText}</div>
-
-        <div class="line">Odds: ${odds.details || "N/A"} (${odds.provider || "ESPN"})</div>
-        <div class="line">Spread: ${odds.spread ?? "N/A"} | Total: ${odds.total ?? "N/A"}</div>
-
-        <div class="line">Prediction: ${pickText}</div>
-        <div class="line">Weather Risk: ${weatherText}</div>
-
-        <div class="line muted">Time: ${g.date_local || g.date_utc || ""}</div>
-      `;
-      grid.appendChild(card);
+    const bySport = {};
+    filtered.forEach(g=>{
+        const k = safeUpper(g.sport) || "OTHER";
+        if(!bySport[k]) bySport[k]=[];
+        bySport[k].push(g);
     });
 
-    container.appendChild(grid);
-  }
+    for(const sportKey of Object.keys(bySport)){
+        const sportDiv = document.createElement("div");
+        sportDiv.className="sport-block";
 
-  return sportKeys;
+        const title = document.createElement("div");
+        title.className="sport-title";
+        title.textContent = sportKey + " — " + bySport[sportKey].length + " games";
+        sportDiv.appendChild(title);
+
+        const grid = document.createElement("div");
+        grid.className="grid";
+
+        bySport[sportKey].forEach(g=>{
+            const card = document.createElement("div");
+            card.className="card";
+
+            const odds = g.odds || {};
+            const pred = g.prediction || {};
+            const wr = g.weatherRisk || {};
+            const w = g.weather || {};
+            const v = g.venue || {};
+
+            const favText = g.favorite || (g.fav_team ? `${g.fav_team} ${g.spread>0?"-":""}${g.spread}` : "");
+
+            let weatherLine = "Indoor / N/A";
+            if(w && w.error==="no_coords") weatherLine = "No coords for venue";
+            else if(w && w.temperatureF!=null){
+                weatherLine = `${w.temperatureF}°F • wind ${w.windSpeedMph ?? "?"} mph • rain ${w.rainChancePct ?? 0}%`;
+            }
+
+            let riskLine = (wr && wr.overallRisk!=null)
+                ? `Risk: ${wr.overallRisk} (${(wr.tags||[]).join(", ") || "clean"})`
+                : (v.indoor ? "Indoor / N/A" : "N/A");
+
+            let pickLine = "No prediction yet";
+            if(pred.pickSide){
+                pickLine = `<span class="pill pick-pill">${pred.recommendedTeam} ATS</span>
+                            Edge ${pred.edgePts} pts • Conf ${(pred.confidence*100).toFixed(1)}%`;
+            }
+
+            card.innerHTML = `
+              <div class="topline">
+                <div class="muted">${g.shortName || g.name || ""}</div>
+                <div class="muted">${g.date_local || fmtLocal(g.date_utc)}</div>
+              </div>
+
+              <div class="teams">
+                <img src="${g.away_team?.logo || ""}" onerror="this.style.display='none'"/>
+                <div>${g.away_team?.name || g.away_team?.abbr || "AWAY"}</div>
+
+                <img src="${g.home_team?.logo || ""}" onerror="this.style.display='none'"/>
+                <div>${g.home_team?.name || g.home_team?.abbr || "HOME"}</div>
+              </div>
+
+              ${favText ? `<div class="favline">${favText}</div>` : ``}
+
+              <div class="lineitem">
+                Odds: ${odds.details || "N/A"} (${odds.provider || "ESPN"})
+              </div>
+              <div class="lineitem muted">
+                Spread: ${odds.spread ?? "N/A"}  |  Total: ${odds.total ?? "N/A"}
+              </div>
+
+              <div class="lineitem">
+                Picks: ${pickLine}
+              </div>
+
+              <div class="lineitem muted">
+                Weather: ${weatherLine}
+              </div>
+              <div class="lineitem muted">
+                Weather Risk: ${riskLine}
+              </div>
+            `;
+
+            grid.appendChild(card);
+        });
+
+        sportDiv.appendChild(grid);
+        container.appendChild(sportDiv);
+    }
 }
 
-async function boot(activeKey="all") {
-  const combined = await loadJson(DATA_URL);
-  if (!combined || !combined.data) {
-    document.getElementById("sports-container").innerHTML =
-      "<div style='padding:20px; text-align:center;'>No games available.</div>";
-    return;
-  }
+async function boot(){
+    const combined = await loadJson("https://data.forgedbyfreedom.org/combined.json");
+    if(!combined || !combined.data){
+        document.getElementById("sports-container").innerHTML =
+          "<div style='padding:20px;text-align:center;'>No games available.</div>";
+        return;
+    }
+    LIVE_GAMES = combined.data;
+    buildSummary(LIVE_GAMES);
+    buildFilters(LIVE_GAMES);
+    renderSports(LIVE_GAMES);
 
-  const games = combined.data;
-
-  renderSummary(games);
-  renderPicks(games);
-
-  const sportKeys = renderSports(games, activeKey);
-  renderTabs(sportKeys, activeKey, (k) => boot(k));
+    // auto refresh every 15 min
+    setInterval(()=>location.reload(), 15*60*1000);
 }
 
 boot();
-setInterval(() => boot(document.querySelector(".tab.active")?.textContent.toLowerCase() || "all"), REFRESH_MS);
 </script>
-
 </body>
 </html>
