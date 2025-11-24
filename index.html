@@ -1,485 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Forged By Freedom Betting Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Forged By Freedom Betting Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --muted: #aaa;
+      --muted2: #666;
+      --line: #222;
+      --orange: #ff8c00;
+      --orange2: #ff6600;
+      --orange3: #ff4500;
+      --card: #0a0a0a;
+    }
+
     body {
-        margin: 0;
-        padding: 0;
-        background: #000;
-        color: #fff;
-        font-family: Arial, sans-serif;
-    }
-
-    a {
-        color: #ff8c00;
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Arial, sans-serif;
     }
 
     /* Header */
     .header {
-        text-align: center;
-        padding: 30px 10px 16px 10px;
-        border-bottom: 1px solid #222;
-        position: relative;
+      text-align: center;
+      padding: 26px 10px 14px 10px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
     }
 
+    /* Orange glow */
     .glow {
-        color: #ff8c00;
-        text-shadow: 0 0 12px #ff8c00, 0 0 20px #ff6600, 0 0 30px #ff4500;
-        animation: pulse 2.5s infinite ease-in-out;
+      color: var(--orange);
+      text-shadow: 0 0 12px var(--orange), 0 0 20px var(--orange2), 0 0 30px var(--orange3);
+      animation: pulse 2.5s infinite ease-in-out;
     }
     @keyframes pulse {
-        0%   { text-shadow: 0 0 10px #ff8c00; }
-        50%  { text-shadow: 0 0 25px #ff4500; }
-        100% { text-shadow: 0 0 10px #ff8c00; }
+      0%   { text-shadow: 0 0 10px var(--orange); }
+      50%  { text-shadow: 0 0 25px var(--orange3); }
+      100% { text-shadow: 0 0 10px var(--orange); }
     }
 
-    /* Picks banner */
-    .banner {
-        background: linear-gradient(90deg, #111, #000);
-        border-bottom: 1px solid #222;
-        padding: 12px 10px;
-        text-align: center;
-        font-size: 16px;
-        color: #ff8c00;
-        position: sticky;
-        top: 0;
-        z-index: 999;
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Stat boxes */
+    .stats-wrap {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 14px auto 4px auto;
+      padding: 0 12px;
+      max-width: 980px;
+    }
+    .stat-box {
+      background: #050505;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      min-width: 160px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255,140,0,0.15);
+    }
+    .stat-title {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 4px;
+      color: var(--orange);
     }
 
-    /* Sticky sport tabs */
-    .tabs {
-        position: sticky;
-        top: 44px; /* sits under banner */
-        z-index: 998;
-        background: #000;
-        border-bottom: 1px solid #222;
-        display: flex;
-        overflow-x: auto;
-        gap: 8px;
-        padding: 8px 10px;
-        scrollbar-width: none;
+    /* Sport filter bar */
+    .filter-bar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: #000;
+      border-bottom: 1px solid var(--line);
+      padding: 8px 10px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
     }
-    .tabs::-webkit-scrollbar { display: none; }
-
-    .tab {
-        white-space: nowrap;
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-size: 13px;
-        background: #111;
-        border: 1px solid #222;
-        color: #ccc;
-        cursor: pointer;
-        transition: 0.2s;
-        user-select: none;
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: #070707;
+      color: var(--fg);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: .15s ease;
+      flex: 0 0 auto;
     }
-    .tab:hover {
-        border-color: #ff8c00;
-        color: #ff8c00;
-    }
-    .tab.active {
-        background: #ff8c00;
-        color: #000;
-        border-color: #ff8c00;
-        font-weight: bold;
+    .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .filter-btn.active {
+      border-color: var(--orange);
+      color: #000;
+      background: var(--orange);
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255,140,0,0.35);
     }
 
-    /* Summary boxes */
-    .summary-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 12px;
-        border-bottom: 1px solid #222;
-        background: #000;
-    }
-    .summary-box {
-        background: #0b0b0b;
-        border: 1px solid #222;
-        border-radius: 12px;
-        padding: 12px;
-        text-align: center;
-        box-shadow: 0 0 12px rgba(255,140,0,0.12);
-    }
-    .summary-title {
-        font-size: 12px;
-        color: #aaa;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .summary-value {
-        font-size: 20px;
-        color: #ff8c00;
-        font-weight: bold;
-    }
-
-    /* Sport section */
-    .sport-section {
-        margin: 0;
-        border-bottom: 1px solid #111;
-    }
-
+    /* Sport section title */
     .sport-title {
-        font-size: 26px;
-        margin: 0;
-        text-align: center;
-        padding: 18px 10px;
-        border-top: 2px solid #222;
-        border-bottom: 1px solid #222;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        user-select: none;
-        position: sticky;
-        top: 86px; /* banner + tabs */
-        z-index: 20;
-        background: #000;
+      font-size: 22px;
+      margin: 26px 0 8px 0;
+      text-align: center;
+      color: var(--orange);
+      font-weight: bold;
+      letter-spacing: .5px;
+    }
+    .sport-sub {
+      text-align: center;
+      color: var(--muted2);
+      font-size: 12px;
+      margin-bottom: 4px;
     }
 
-    .sport-title .chev {
-        font-size: 18px;
-        color: #666;
-        transform: rotate(0deg);
-        transition: 0.2s;
-    }
-    .sport-section.collapsed .sport-title .chev {
-        transform: rotate(-90deg);
-    }
-
-    /* Color-coded headers */
-    .sport-nfl   { color: #00e5ff; }
-    .sport-ncaaf { color: #7CFC00; }
-    .sport-ncaab { color: #ff8c00; }
-    .sport-nba   { color: #ff3b3b; }
-    .sport-nhl   { color: #b388ff; }
-    .sport-mlb   { color: #ffd54f; }
-    .sport-other { color: #ff8c00; }
-
-    .games-wrap {
-        padding: 0 6px 10px 6px;
-    }
-
+    /* Game cards */
     .game-card {
-        border: 1px solid #222;
-        background: #050505;
-        border-radius: 12px;
-        padding: 12px;
-        margin: 10px 6px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 12px;
+      margin: 10px 12px;
+      box-shadow: 0 0 10px rgba(255,140,0,0.08);
     }
 
-    .team-line {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 6px;
+    .game-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 6px;
     }
 
-    .favorite-tag {
-        color: #ff8c00;
-        font-weight: bold;
-        margin-right: 6px;
+    .matchup {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .team {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .team img {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #111;
     }
 
-    .meta-row {
-        color: #888;
-        margin-top: 6px;
-        font-size: 14px;
-        line-height: 1.35;
+    .fav-pill {
+      font-size: 12px;
+      font-weight: bold;
+      color: #000;
+      background: var(--orange);
+      padding: 2px 8px;
+      border-radius: 999px;
     }
 
-    .tiny {
-        color:#666;
-        font-size:12px;
-        margin-top: 6px;
+    .meta-line {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.35;
     }
 
-    .pill {
-        display:inline-block;
-        padding: 2px 8px;
-        border-radius: 999px;
-        background: #111;
-        border: 1px solid #222;
-        font-size: 12px;
-        color:#bbb;
-        margin-right: 6px;
-        margin-top: 4px;
+    .label {
+      color: var(--muted2);
     }
 
-    .pill.hot { border-color:#ff8c00; color:#ff8c00; }
-    .pill.good { border-color:#7CFC00; color:#7CFC00; }
-    .pill.bad { border-color:#ff3b3b; color:#ff3b3b; }
-
-    .prediction-box {
-        margin-top: 8px;
-        padding: 8px;
-        background: #0b0b0b;
-        border: 1px dashed #333;
-        border-radius: 8px;
-        font-size: 14px;
-        color: #ddd;
+    .pick {
+      font-weight: bold;
+      color: var(--orange);
     }
-</style>
+
+    .risk-high { color: #ff5c5c; font-weight: bold; }
+    .risk-mid  { color: #ffd166; font-weight: bold; }
+    .risk-low  { color: #9cff89; font-weight: bold; }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted2);
+      padding: 18px 10px 30px 10px;
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="banner glow">
-    🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
-</div>
-
-<div class="header">
-    <div class="glow" style="font-size:20px;">
-        Provided to you by  
-        <a href="https://forgedbyfreedom.org" target="_blank">ForgedByFreedom.org</a>
+  <div class="header">
+    <div class="glow" style="font-size:16px;">
+      🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
     </div>
 
-    <div class="glow" style="font-size:34px; margin-top:8px;">
-        FORGED BY FREEDOM STRENGTH AND NUTRITION
+    <div class="glow" style="font-size:18px; margin-top:8px;">
+      Provided to you by
+      <a href="https://forgedbyfreedom.org" target="_blank">ForgedByFreedom.org</a>
     </div>
 
-    <div class="glow" style="font-size:20px; margin-top:5px;">
-        STRENGTH – DISCIPLINE – FREEDOM
+    <div class="glow" style="font-size:32px; margin-top:8px;">
+      FORGED BY FREEDOM STRENGTH AND NUTRITION
     </div>
 
-    <div style="margin-top:10px; font-size:16px; color:#ccc;">
-        Visit us for all your fitness, nutrition and supplement program needs
-        <br><br>
-        <span style="font-size:14px; color:#666;">For entertainment purposes only</span>
+    <div class="glow" style="font-size:18px; margin-top:5px;">
+      STRENGTH – DISCIPLINE – FREEDOM
     </div>
-</div>
 
-<div class="summary-row" id="summary-row">
-    <div class="summary-box">
-        <div class="summary-title">Total Games</div>
-        <div class="summary-value" id="sum-games">0</div>
+    <div style="margin-top:10px; font-size:14px; color:#ccc;">
+      Visit us for all your fitness, nutrition and supplement program needs
+      <br><br>
+      <span style="font-size:12px; color:#666;">For entertainment purposes only</span>
     </div>
-    <div class="summary-box">
-        <div class="summary-title">Favorites Tagged</div>
-        <div class="summary-value" id="sum-favs">0</div>
-    </div>
-    <div class="summary-box">
-        <div class="summary-title">Picks Available</div>
-        <div class="summary-value" id="sum-picks">0</div>
-    </div>
-</div>
 
-<div class="tabs" id="tabs"></div>
-<div id="sports-container"></div>
+    <div class="stats-wrap" id="stats-wrap">
+      <div class="stat-box">
+        <div class="stat-title">Total Games</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-title">Favorites Tagged</div>
+        <div class="stat-value" id="stat-favs">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-title">Picks Available</div>
+        <div class="stat-value" id="stat-picks">0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-bar" id="filter-bar"></div>
+
+  <div id="sports-container"></div>
+
+  <div class="footer-note">
+    Data updates automatically. If a sport shows “N/A” odds, ESPN hasn’t posted a line yet.
+  </div>
 
 <script>
+/* ---------- helpers ---------- */
+
 async function loadJson(url) {
+  try {
     const r = await fetch(url, { cache: "no-store" });
     if (!r.ok) return null;
     return await r.json();
+  } catch (e) {
+    return null;
+  }
 }
 
-function safeSportKey(g){
-    return (g.sport_key || g.sport || "other").toLowerCase();
+function safeUpper(x) {
+  return (x || "").toString().toUpperCase();
 }
 
-function safeSportLabel(key) {
-    if (!key) return "SPORT";
-    return key.replace(/_/g, " ").toUpperCase();
+function fmtTime(game) {
+  if (game.date_local) return game.date_local;
+  if (game.date_utc) {
+    try {
+      return new Date(game.date_utc).toLocaleString();
+    } catch { return game.date_utc; }
+  }
+  if (game.commence_time) {
+    try {
+      return new Date(game.commence_time).toLocaleString();
+    } catch { return game.commence_time; }
+  }
+  return "Time TBD";
 }
 
-function parseTime(g){
-    const raw = g.commence_time || g.date_utc || g.date || g.date_local;
-    if (!raw) return null;
-    const d = new Date(raw);
-    if (isNaN(d.getTime())) return null;
-    return d;
+function sportLabel(key) {
+  if (!key) return "SPORT";
+  return safeUpper(key.replace(/_/g, " "));
 }
 
-function fmtLocal(d){
-    if (!d) return "Invalid Date";
-    return d.toLocaleString();
+function getFavoriteText(g) {
+  // prefer explicit tags from tag_favorites.py
+  if (g.favorite && typeof g.favorite === "string") {
+    return g.favorite;
+  }
+  if (g.fav_team && g.spread != null) {
+    return `${g.fav_team} ${g.spread > 0 ? "-" : ""}${Math.abs(g.spread)}`;
+  }
+  // fall back to odds.details
+  if (g.odds && g.odds.details) return g.odds.details;
+  return "";
 }
 
-function favText(g){
-    if (g.favorite) return g.favorite;
-    if (g.fav_team && g.spread != null) return `${g.fav_team} ${g.spread > 0 ? "-" : ""}${Math.abs(g.spread)}`;
-    if (g.odds && g.odds.details) return g.odds.details;
-    return "";
+function getOddsLine(g) {
+  if (!g.odds) return { details:"N/A", spread:null, total:null, provider:"ESPN" };
+  return {
+    details: g.odds.details ?? "N/A",
+    spread: g.odds.spread ?? null,
+    total: g.odds.total ?? null,
+    provider: g.odds.provider ?? "ESPN"
+  };
 }
 
-function totalText(g){
-    if (g.total != null) return g.total;
-    if (g.odds && g.odds.total != null) return g.odds.total;
-    return "N/A";
+function getPick(g) {
+  const p = g.prediction || g.pick || {};
+  if (!p || typeof p !== "object") return null;
+
+  // try common keys
+  const pickTeam =
+    p.pick || p.side || p.team || p.selection || p.bet || null;
+
+  const conf =
+    p.confidence ?? p.prob ?? p.win_prob ?? p.p ?? null;
+
+  const edge =
+    p.edge ?? p.value ?? p.advantage ?? null;
+
+  if (!pickTeam) return null;
+
+  return {
+    team: pickTeam,
+    confidence: conf,
+    edge: edge
+  };
 }
 
-function spreadText(g){
-    if (g.spread != null) return g.spread;
-    if (g.odds && g.odds.spread != null) return g.odds.spread;
-    return "N/A";
-}
+function getWeatherRisk(g) {
+  if (g.venue && g.venue.indoor) return { text: "Indoor / N/A", cls: "risk-low" };
 
-function hasPick(g){
-    const p = g.prediction || {};
-    return (
-        p.pick || p.edge || p.modelPick || p.recommendedBet ||
-        p.homeWinPct != null || p.awayWinPct != null ||
-        p.predictedSpread != null || p.predictedTotal != null
-    );
-}
-
-function renderPrediction(g){
-    const p = g.prediction || {};
-    if (!hasPick(g)) {
-        return `<div class="prediction-box">Prediction: <b>No prediction yet</b></div>`;
+  const wr = g.weatherRisk || {};
+  if (!wr || typeof wr !== "object" || Object.keys(wr).length === 0) {
+    // if weather error exists
+    if (g.weather && g.weather.error) {
+      return { text: g.weather.error, cls: "risk-mid" };
     }
+    return { text: "N/A", cls: "risk-mid" };
+  }
 
-    const lines = [];
-    if (p.pick) lines.push(`Pick: <b>${p.pick}</b>`);
-    if (p.modelPick) lines.push(`Model Pick: <b>${p.modelPick}</b>`);
-    if (p.edge != null) lines.push(`Edge: <b>${p.edge}</b>`);
-    if (p.predictedSpread != null) lines.push(`Pred Spread: <b>${p.predictedSpread}</b>`);
-    if (p.predictedTotal != null) lines.push(`Pred Total: <b>${p.predictedTotal}</b>`);
-    if (p.homeWinPct != null || p.awayWinPct != null) {
-        lines.push(`Win %: Home <b>${p.homeWinPct ?? "?"}%</b> / Away <b>${p.awayWinPct ?? "?"}%</b>`);
-    }
+  const overall = wr.overallRisk ?? wr.risk ?? wr.score ?? null;
+  if (overall == null) return { text: "N/A", cls: "risk-mid" };
 
-    return `<div class="prediction-box">${lines.join("<br>")}</div>`;
+  let cls = "risk-low";
+  if (overall >= 60) cls = "risk-high";
+  else if (overall >= 30) cls = "risk-mid";
+
+  return { text: `${overall}`, cls };
 }
 
-function renderSports(data) {
-    const container = document.getElementById("sports-container");
-    const tabs = document.getElementById("tabs");
-    container.innerHTML = "";
-    tabs.innerHTML = "";
+/* ---------- render ---------- */
 
-    // group by sport
-    const bySport = {};
-    data.forEach(g => {
-        const k = safeSportKey(g);
-        if (!bySport[k]) bySport[k] = [];
-        bySport[k].push(g);
-    });
+function renderFilterBar(sportKeys, activeKey, onClick) {
+  const bar = document.getElementById("filter-bar");
+  bar.innerHTML = "";
 
-    // sort sports by number of games, desc
-    const sportKeys = Object.keys(bySport)
-        .sort((a,b)=> bySport[b].length - bySport[a].length);
+  const makeBtn = (key, label) => {
+    const b = document.createElement("button");
+    b.className = "filter-btn" + (key === activeKey ? " active" : "");
+    b.textContent = label;
+    b.onclick = () => onClick(key);
+    return b;
+  };
 
-    // build tabs
-    sportKeys.forEach((k, idx)=>{
-        const tab = document.createElement("div");
-        tab.className = "tab" + (idx===0 ? " active":"");
-        tab.textContent = safeSportLabel(k);
-        tab.onclick = () => {
-            document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-            tab.classList.add("active");
-            const el = document.getElementById("sport-"+k);
-            if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
-        };
-        tabs.appendChild(tab);
-    });
+  bar.appendChild(makeBtn("__all__", "ALL"));
 
-    sportKeys.forEach(k => {
-        const section = document.createElement("div");
-        section.className = "sport-section";
-        section.id = "sport-"+k;
-
-        const title = document.createElement("div");
-        title.className = `sport-title sport-${k}`;
-        title.innerHTML = `<span class="chev">▶</span> ${safeSportLabel(k)} (${bySport[k].length})`;
-        title.onclick = () => section.classList.toggle("collapsed");
-
-        section.appendChild(title);
-
-        const wrap = document.createElement("div");
-        wrap.className = "games-wrap";
-
-        // auto-sort by time
-        bySport[k].sort((a,b)=>{
-            const ta = parseTime(a);
-            const tb = parseTime(b);
-            if (!ta && !tb) return 0;
-            if (!ta) return 1;
-            if (!tb) return -1;
-            return ta - tb;
-        });
-
-        bySport[k].forEach(g => {
-            const card = document.createElement("div");
-            card.className = "game-card";
-
-            const awayName = g.away_team?.name || g.away_team || g.awayTeam || g.away || "AWAY";
-            const homeName = g.home_team?.name || g.home_team || g.homeTeam || g.home || "HOME";
-
-            const fav = favText(g);
-            const matchup = `${awayName} @ ${homeName}`;
-
-            const time = parseTime(g);
-            const oddsProvider = g.odds?.provider || g.provider || "ESPN";
-
-            const weatherRisk = g.weatherRisk?.overallRisk != null
-                ? `Weather Risk: ${g.weatherRisk.overallRisk}`
-                : (g.venue?.indoor || g.weather?.indoor)
-                    ? "Weather Risk: Indoor / N/A"
-                    : (g.weather?.error ? `Weather Risk: ${g.weather.error}` : "Weather Risk: N/A");
-
-            const tags = (g.weatherRisk?.tags || g.flags || []).slice(0,6);
-
-            card.innerHTML = `
-                <div class="team-line">
-                    ${fav ? `<span class="favorite-tag">${fav}</span>` : ""}
-                    ${matchup}
-                </div>
-
-                <div class="meta-row">
-                    Odds: ${g.odds?.details || "N/A"} <span class="tiny">(${oddsProvider})</span><br>
-                    Spread: ${spreadText(g)} | Total: ${totalText(g)}<br>
-                    ${weatherRisk}<br>
-                    Time: ${fmtLocal(time)}
-                </div>
-
-                ${tags.length ? `<div class="meta-row">
-                    ${tags.map(t=>`<span class="pill hot">${t}</span>`).join("")}
-                </div>` : ""}
-
-                ${renderPrediction(g)}
-            `;
-
-            wrap.appendChild(card);
-        });
-
-        section.appendChild(wrap);
-        container.appendChild(section);
-    });
+  sportKeys.forEach(k => {
+    bar.appendChild(makeBtn(k, sportLabel(k)));
+  });
 }
 
-function updateSummary(data){
-    const totalGames = data.length;
-    const favs = data.filter(g => g.favorite || g.fav_team || (g.odds && g.odds.details)).length;
-    const picks = data.filter(hasPick).length;
+function renderSports(games, activeKey) {
+  const container = document.getElementById("sports-container");
+  container.innerHTML = "";
 
-    document.getElementById("sum-games").textContent = totalGames;
-    document.getElementById("sum-favs").textContent = favs;
-    document.getElementById("sum-picks").textContent = picks;
+  // group by sport
+  const bySport = {};
+  games.forEach(g => {
+    const k = g.sport || g.sport_key || "unknown";
+    if (!bySport[k]) bySport[k] = [];
+    bySport[k].push(g);
+  });
+
+  const keys = Object.keys(bySport).sort();
+
+  keys.forEach(sKey => {
+    if (activeKey !== "__all__" && sKey !== activeKey) return;
+
+    const sportDiv = document.createElement("div");
+
+    const title = document.createElement("div");
+    title.className = "sport-title";
+    title.textContent = sportLabel(sKey);
+    sportDiv.appendChild(title);
+
+    const sub = document.createElement("div");
+    sub.className = "sport-sub";
+    sub.textContent = `${bySport[sKey].length} games`;
+    sportDiv.appendChild(sub);
+
+    bySport[sKey]
+      .sort((a,b) => (a.date_utc || "").localeCompare(b.date_utc || ""))
+      .forEach(g => {
+        const card = document.createElement("div");
+        card.className = "game-card";
+
+        const favText = getFavoriteText(g);
+        const odds = getOddsLine(g);
+        const pick = getPick(g);
+        const risk = getWeatherRisk(g);
+        const timeText = fmtTime(g);
+
+        const away = g.away_team || {};
+        const home = g.home_team || {};
+
+        const awayName = away.name || g.away_team_name || g.away_team || "AWAY";
+        const homeName = home.name || g.home_team_name || g.home_team || "HOME";
+        const awayLogo = away.logo || "";
+        const homeLogo = home.logo || "";
+
+        const pickLine = pick
+          ? `<span class="pick">${safeUpper(pick.team)}</span>`
+          : `<span class="label">No prediction yet</span>`;
+
+        const confLine = (pick && pick.confidence != null)
+          ? ` • Conf: ${(Number(pick.confidence)*100).toFixed(1)}%`
+          : "";
+
+        const edgeLine = (pick && pick.edge != null)
+          ? ` • Edge: ${Number(pick.edge).toFixed(2)}`
+          : "";
+
+        card.innerHTML = `
+          <div class="game-top">
+            <div class="matchup">
+              <span class="team">
+                ${awayLogo ? `<img src="${awayLogo}" alt="">` : ""}
+                ${awayName}
+              </span>
+              <span class="label">@</span>
+              <span class="team">
+                ${homeLogo ? `<img src="${homeLogo}" alt="">` : ""}
+                ${homeName}
+              </span>
+              ${favText ? `<span class="fav-pill">${favText}</span>` : ""}
+            </div>
+          </div>
+
+          <div class="meta-line">
+            <span class="label">Odds:</span>
+            ${odds.details} (${odds.provider})
+          </div>
+
+          <div class="meta-line">
+            <span class="label">Spread:</span>
+            ${odds.spread != null ? odds.spread : "N/A"}
+            &nbsp;|&nbsp;
+            <span class="label">Total:</span>
+            ${odds.total != null ? odds.total : "N/A"}
+          </div>
+
+          <div class="meta-line">
+            <span class="label">Prediction:</span>
+            ${pickLine}${confLine}${edgeLine}
+          </div>
+
+          <div class="meta-line">
+            <span class="label">Weather Risk:</span>
+            <span class="${risk.cls}">${risk.text}</span>
+          </div>
+
+          <div class="meta-line">
+            <span class="label">Time:</span>
+            ${timeText}
+          </div>
+        `;
+
+        sportDiv.appendChild(card);
+      });
+
+    container.appendChild(sportDiv);
+  });
 }
+
+function renderStats(games) {
+  const total = games.length;
+
+  const favs = games.filter(g => {
+    const f = g.favorite || g.fav_team || (g.odds && g.odds.details);
+    return !!f;
+  }).length;
+
+  const picks = games.filter(g => !!getPick(g)).length;
+
+  document.getElementById("stat-total").textContent = total;
+  document.getElementById("stat-favs").textContent = favs;
+  document.getElementById("stat-picks").textContent = picks;
+}
+
+/* ---------- boot ---------- */
+
+let ALL_GAMES = [];
+let ACTIVE_SPORT = "__all__";
 
 async function boot() {
-    const combined = await loadJson("https://data.forgedbyfreedom.org/combined.json");
-    if (!combined || !combined.data || !Array.isArray(combined.data)) {
-        document.getElementById("sports-container").innerHTML =
-            "<div style='padding:20px; text-align:center;'>No games available.</div>";
-        return;
-    }
+  // primary: same-origin combined.json
+  let combined = await loadJson("combined.json");
 
-    const games = combined.data;
-    updateSummary(games);
-    renderSports(games);
+  // fallback to absolute if needed
+  if (!combined) {
+    combined = await loadJson("https://data.forgedbyfreedom.org/combined.json");
+  }
+
+  if (!combined || !combined.data || !Array.isArray(combined.data)) {
+    document.getElementById("sports-container").innerHTML =
+      "<div style='padding:20px; text-align:center;'>No games available.</div>";
+    return;
+  }
+
+  ALL_GAMES = combined.data;
+
+  const sportKeys = [...new Set(ALL_GAMES.map(g => g.sport || g.sport_key || "unknown"))]
+    .filter(Boolean)
+    .sort();
+
+  renderStats(ALL_GAMES);
+  renderFilterBar(sportKeys, ACTIVE_SPORT, (k) => {
+    ACTIVE_SPORT = k;
+    renderFilterBar(sportKeys, ACTIVE_SPORT, arguments.callee);
+    renderSports(ALL_GAMES, ACTIVE_SPORT);
+  });
+
+  renderSports(ALL_GAMES, ACTIVE_SPORT);
 }
 
 boot();
