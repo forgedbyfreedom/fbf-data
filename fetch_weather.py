@@ -1,115 +1,116 @@
 #!/usr/bin/env python3
-
 import json
+import os
 import requests
-import socket
-import time
 
-COMBINED_FILE = "combined.json"
-OUTPUT_FILE = "weather.json"
+COMBINED = "combined.json"
+OUTFILE = "weather.json"
 
-HEADERS = {
-    "User-Agent": "FBF Sports Data (contact: support@forgedbyfreedom.com)",
-    "Accept": "application/geo+json"
+HEADERS = {"User-Agent": "fbf-weather-fetcher"}
+
+US_STATES = {
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS",
+    "KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY",
+    "NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV",
+    "WI","WY"
 }
 
-# Force IPv4 only for ALL requests
-orig_getaddrinfo = socket.getaddrinfo
-def ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
-    return orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-socket.getaddrinfo = ipv4_only_getaddrinfo
+def load(path):
+    if not os.path.exists(path):
+        return None
+    with open(path,"r") as f:
+        return json.load(f)
 
+def is_us_outdoor(venue):
+    """Return True only for USA + outdoor stadiums."""
+    if not venue: 
+        return False
 
-def safe_request(url, retries=3, timeout=20):
-    """Robust HTTP GET with IPv4, retries, and long timeouts."""
-    for attempt in range(1, retries + 1):
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=timeout)
-            if r.status_code == 200:
-                return r.json()
-            else:
-                print(f"⚠️ HTTP {r.status_code} for {url}")
-        except Exception as e:
-            print(f"⚠️ Attempt {attempt}/{retries} failed: {e}")
-            time.sleep(1.5 * attempt)
-    return None
+    state = venue.get("state")
+    indoor = venue.get("indoor", False)
 
+    if indoor:
+        return False
+    if state not in US_STATES:
+        return False
 
-def collect_weather(lat, lon):
-    """Fetch hourly forecast for given coordinates."""
+    return True
+
+def fetch_point(lat, lon):
+    """Get the hourly forecast URL from api.weather.gov/points."""
     url = f"https://api.weather.gov/points/{lat},{lon}"
-    p = safe_request(url)
-    if not p:
-        return None
-
-    hourly = p["properties"].get("forecastHourly")
-    if not hourly:
-        return None
-
-    data = safe_request(hourly)
-    if not data:
-        return None
-
-    periods = data.get("properties", {}).get("periods", [])
-    if not periods:
-        return None
-
-    # Use the first-hour forecast
-    f = periods[0]
-
-    temp_f = f.get("temperature")
-    wind = f.get("windSpeed") or "0 mph"
-    short = f.get("shortForecast", "")
-    detailed = f.get("detailedForecast", "")
-
     try:
-        wind_mph = float(wind.split()[0])
+        r = requests.get(url, headers=HEADERS, timeout=10)
+        if r.status_code == 404:
+            return None  # foreign (Canada/etc)
+        r.raise_for_status()
+        data = r.json()
+        return data["properties"]["forecastHourly"]
     except:
-        wind_mph = 0.0
+        return None
 
-    return {
-        "temperatureF": temp_f,
-        "windSpeedMph": wind_mph,
-        "rainChancePct": f.get("probabilityOfPrecipitation", {}).get("value", 0),
-        "shortForecast": short,
-        "detailedForecast": detailed
-    }
-
+def fetch_hourly(url):
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=10)
+        r.raise_for_status()
+        return r.json()
+    except:
+        return None
 
 def main():
-    # Load combined.json
-    with open(COMBINED_FILE, "r") as f:
-        combined = json.load(f)
+    combined = load(COMBINED)
+    if not combined or "data" not in combined:
+        print("❌ combined.json missing")
+        return
 
-    weather_output = {"data": []}
+    results = []
+    total_games = len(combined["data"])
 
-    games = combined.get("data", [])
-    print(f"🔎 Fetching weather for {len(games)} games...")
+    print(f"🔎 Fetching weather for {total_games} games...")
 
-    for g in games:
+    for g in combined["data"]:
         venue = g.get("venue") or {}
+        vid = g.get("id")
+
+        # Skip non-US or indoor
+        if not is_us_outdoor(venue):
+            results.append({
+                "key": str(vid),
+                "error": "no_weather_needed"
+            })
+            continue
+
         lat = venue.get("lat")
         lon = venue.get("lon")
 
         if not lat or not lon:
+            results.append({"key": str(vid), "error": "missing_coords"})
             continue
 
-        key = f"{lat:.4f},{lon:.4f}"
-
-        w = collect_weather(lat, lon)
-        if not w:
+        point_url = fetch_point(lat, lon)
+        if not point_url:
+            results.append({"key": str(vid), "error": "point_lookup_failed"})
             continue
 
-        weather_output["data"].append({
-            "key": key,
-            **w
+        hourly = fetch_hourly(point_url)
+        if not hourly:
+            results.append({"key": str(vid), "error": "hourly_fetch_failed"})
+            continue
+
+        props = hourly["properties"]["periods"][0]  # nearest forecast
+
+        results.append({
+            "key": str(vid),
+            "temperatureF": props.get("temperature"),
+            "windSpeedMph": props.get("windSpeed"),
+            "shortForecast": props.get("shortForecast"),
+            "detailedForecast": props.get("detailedForecast"),
         })
 
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(weather_output, f, indent=2)
+    with open(OUTFILE,"w") as f:
+        json.dump({"data": results}, f, indent=2)
 
-    print(f"✅ Weather written: {len(weather_output['data'])} locations")
-
+    print(f"✅ Weather written: {len(results)} locations")
 
 if __name__ == "__main__":
     main()
