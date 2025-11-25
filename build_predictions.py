@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
-"""
-build_predictions.py
----------------------
-Runs prediction model over combined.json and outputs predictions.json
-"""
-
 import json
 from pathlib import Path
 from predictions_model import predict
 
 COMBINED = Path("combined.json")
 OUTFILE = Path("predictions.json")
-
 
 def load_json(path, default=None):
     try:
@@ -20,21 +13,30 @@ def load_json(path, default=None):
     except:
         return default
 
-
 def main():
     combined = load_json(COMBINED, {})
-    if not combined or "data" not in combined:
-        print("❌ combined.json missing or invalid")
-        return
+    games = combined.get("data", [])
 
     output = {
         "timestamp": combined.get("timestamp"),
         "count": 0,
-        "predictions": [],
+        "predictions": []
     }
 
-    for g in combined["data"]:
-        p = predict(g)
+    for g in games:
+        try:
+            p = predict(g)
+        except Exception as e:
+            # capture broken cases
+            p = {
+                "error": str(e),
+                "projected_home_score": 0,
+                "projected_away_score": 0,
+                "projected_total": 0,
+                "projected_spread": 0,
+                "win_probability_home": 0,
+                "confidence": 0
+            }
 
         result = {
             "id": g.get("id"),
@@ -45,11 +47,11 @@ def main():
             "odds": g.get("odds", {}),
             "weather": g.get("weather"),
             "risk": g.get("weatherRisk"),
-            "prediction": p,
+            "prediction": p
         }
 
-        # Highlight strong edges
-        if p["confidence"] >= 70:
+        # Mark high edge
+        if isinstance(p, dict) and p.get("confidence", 0) >= 70:
             result["highlight"] = True
 
         output["predictions"].append(result)
@@ -59,8 +61,7 @@ def main():
     with open(OUTFILE, "w") as f:
         json.dump(output, f, indent=2)
 
-    print(f"✅ Predictions generated for {output['count']} games.")
-
+    print(f"[✅] Predictions generated for {output['count']} games.]")
 
 if __name__ == "__main__":
     main()
