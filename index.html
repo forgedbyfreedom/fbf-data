@@ -38,7 +38,7 @@
       padding: 24px 16px 40px;
     }
 
-    /* HERO HEADER (GLOWING VERSION) */
+    /* HERO HEADER */
     .hero {
       text-align: center;
       margin-bottom: 24px;
@@ -65,7 +65,6 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: #ffedd5;
-      text-align: center;
       text-shadow:
         0 0 16px rgba(249, 115, 22, 0.75),
         0 0 40px rgba(249, 115, 22, 0.95);
@@ -302,7 +301,7 @@
       color: #e5e7eb;
     }
 
-    /* PICKS STRIP – OPTION A (3 BLOCKS) */
+    /* PICKS STRIP */
     .picks-strip {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -318,7 +317,6 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      min-height: 58px;
     }
 
     .pick-block.straight {
@@ -445,16 +443,12 @@
       return String(code).toLowerCase();
     }
 
-    function clampConfidence(val) {
-      if (!Number.isFinite(val)) return null;
-      const v = Math.max(0, Math.min(99, Math.round(val)));
+    function clampConfidence(raw) {
+      if (raw == null || isNaN(raw)) return null;
+      const v = Math.round(raw);
+      if (v < 0) return 0;
+      if (v > 99) return 99;
       return v;
-    }
-
-    function formatSpread(num) {
-      if (typeof num !== 'number') return null;
-      const fixed = Number.isInteger(num) ? num.toString() : num.toFixed(1);
-      return num > 0 ? `+${fixed}` : fixed;
     }
 
     function buildGameView(game, pred) {
@@ -468,80 +462,107 @@
       const oddsDetails = typeof odds.details === 'string' ? odds.details : null;
 
       const weather = game.weather || {};
-      const risk = game.weatherRisk || {};
+      const risk = game.weatherRisk || game.risk || {};
       const indoor = (game.venue && game.venue.indoor) || weather.indoor || false;
 
-      const baseConf = typeof pred?.confidence === 'number' ? pred.confidence : 0;
-      const highConfidence = !!pred?.high_confidence;
-      const margin = typeof pred?.pred_margin === 'number' ? pred.pred_margin : null;
-      const modelTotal = typeof pred?.pred_total === 'number' ? pred.pred_total : null;
+      // ----- model numbers from prediction -----
+      let margin = null;      // home - away
+      let modelTotal = null;  // projected total
 
-      // ---------- Straight Up ----------
-      let suTeam = null;
-      let suConf = null;
+      if (pred && pred.prediction) {
+        const p = pred.prediction;
+        const ph = typeof p.projected_home_score === 'number' ? p.projected_home_score : null;
+        const pa = typeof p.projected_away_score === 'number' ? p.projected_away_score : null;
+        if (ph != null && pa != null) {
+          margin = ph - pa;
+        }
+        if (typeof p.projected_total === 'number') {
+          modelTotal = p.projected_total;
+        }
+      }
 
-      if (margin !== null) {
-        suTeam = margin >= 0 ? homeTeam : awayTeam;
-        suConf = clampConfidence(Math.abs(margin) * 6.25);
+      // backwards-compat field names (old JSON)
+      if (margin === null && typeof pred?.pred_margin === 'number') {
+        margin = pred.pred_margin;
+      }
+      if (modelTotal === null && typeof pred?.pred_total === 'number') {
+        modelTotal = pred.pred_total;
+      }
+
+      // ----- STRAIGHT UP -----
+      let suLabel = 'No pick';
+      let suConfidence = null;
+      if (margin != null) {
+        if (margin > 0) suLabel = homeTeam;
+        else if (margin < 0) suLabel = awayTeam;
+        else suLabel = 'No clear edge';
+
+        const rawSu = Math.abs(margin) * 6.25; // OPTION 2 formula
+        suConfidence = clampConfidence(rawSu);
       } else if (pred?.pick_team) {
-        suTeam = pred.pick_team;
-        // if no margin, fall back to model confidence but still cap
-        suConf = clampConfidence(baseConf);
+        suLabel = pred.pick_team;
+        if (typeof pred.confidence === 'number') {
+          suConfidence = clampConfidence(pred.confidence);
+        }
       }
 
-      // ---------- ATS ----------
-      let atsText = 'No strong edge';
-      let atsConf = null;
+      // ----- AGAINST THE SPREAD -----
+      let atsLabel = 'No spread line';
+      let atsConfidence = null;
 
-      if (spread !== null && margin !== null) {
-        // Home & away lines (assuming spread is home line; away is opposite)
-        const homeLine = spread;
-        const awayLine = -spread;
-
-        const homeDiff = Math.abs(margin - homeLine);
-        const awayDiff = Math.abs(margin - awayLine);
-
-        const threshold = 0.5; // below this, no real edge
-        if (homeDiff < threshold && awayDiff < threshold) {
-          atsText = 'No strong edge';
-        } else if (homeDiff >= awayDiff) {
-          // Home side ATS
-          const lineText = formatSpread(homeLine) ?? '';
-          atsText = `${homeTeam} ${lineText}`.trim();
-          atsConf = clampConfidence(homeDiff * 6.25);
+      if (spread != null && margin != null) {
+        const diff = margin - spread; // model margin vs book line
+        if (Math.abs(diff) < 0.01) {
+          atsLabel = 'No edge';
         } else {
-          // Away side ATS
-          const lineText = formatSpread(awayLine) ?? '';
-          atsText = `${awayTeam} ${lineText}`.trim();
-          atsConf = clampConfidence(awayDiff * 6.25);
+          // Decide side & attach correct line
+          const homeLineNum = spread;
+          const homeLineTxt = homeLineNum > 0
+            ? '+' + homeLineNum.toFixed(1)
+            : homeLineNum.toFixed(1);
+
+          const awayLineNum = -spread;
+          const awayLineTxt = awayLineNum > 0
+            ? '+' + awayLineNum.toFixed(1)
+            : awayLineNum.toFixed(1);
+
+          if (diff > 0) {
+            // model likes home vs the spread
+            atsLabel = homeTeam + ' ' + homeLineTxt;
+          } else {
+            // model likes away vs the spread
+            atsLabel = awayTeam + ' ' + awayLineTxt;
+          }
+
+          const rawAts = Math.abs(diff) * 6.25; // OPTION 2 formula
+          atsConfidence = clampConfidence(rawAts);
         }
-      } else if (spread === null) {
-        atsText = 'No spread line';
       }
 
-      // ---------- TOTAL ----------
-      let totalText = 'No total edge';
-      let totalConf = null;
+      // ----- TOTAL (O/U) -----
+      let totalLabel = totalLine != null ? 'No edge' : 'No total line';
+      let totalConfidence = null;
 
-      if (totalLine !== null && modelTotal !== null) {
-        const diff = modelTotal - totalLine;
-        const absDiff = Math.abs(diff);
-
-        if (absDiff < 1) {
-          totalText = 'No total edge';
+      if (totalLine != null && modelTotal != null) {
+        const diffT = modelTotal - totalLine;
+        if (Math.abs(diffT) < 0.01) {
+          totalLabel = 'No edge';
         } else {
-          const pick = diff > 0 ? 'Over' : 'Under';
-          const lineText = typeof totalLine === 'number'
-            ? (Number.isInteger(totalLine) ? totalLine.toString() : totalLine.toFixed(1))
-            : String(totalLine);
-          totalText = `${pick} ${lineText}`;
-          totalConf = clampConfidence(absDiff * 6.25);
+          const pickWord = diffT > 0 ? 'Over' : 'Under';
+          const lineTxt = totalLine.toFixed(1);
+          totalLabel = pickWord + ' ' + lineTxt;
+
+          const rawTotal = Math.abs(diffT) * 6.25; // OPTION 2 formula
+          totalConfidence = clampConfidence(rawTotal);
         }
-      } else if (totalLine === null) {
-        totalText = 'No total line';
       }
 
       const hasPrediction = !!pred;
+      const highConfidence =
+        !!(pred && (pred.highlight || pred.high_confidence)) ||
+        (suConfidence != null && suConfidence >= 80) ||
+        (atsConfidence != null && atsConfidence >= 80) ||
+        (totalConfidence != null && totalConfidence >= 80);
 
       return {
         raw: game,
@@ -558,16 +579,16 @@
         indoor,
         highConfidence,
         su: {
-          team: suTeam,
-          confidence: suConf
+          label: suLabel,
+          confidence: suConfidence
         },
         ats: {
-          text: atsText,
-          confidence: atsConf
+          label: atsLabel,
+          confidence: atsConfidence
         },
         total: {
-          text: totalText,
-          confidence: totalConf
+          label: totalLabel,
+          confidence: totalConfidence
         },
         hasPrediction
       };
@@ -582,8 +603,12 @@
     function formatOddsLine(view) {
       if (view.oddsDetails) return view.oddsDetails;
       const parts = [];
-      if (typeof view.spread === 'number') parts.push(`Spread ${formatSpread(view.spread)}`);
-      if (typeof view.totalLine === 'number') parts.push(`Total ${view.totalLine}`);
+      if (typeof view.spread === 'number') {
+        parts.push('Spread ' + (view.spread > 0 ? '+' + view.spread : view.spread));
+      }
+      if (typeof view.totalLine === 'number') {
+        parts.push('Total ' + view.totalLine);
+      }
       return parts.length ? parts.join(' • ') : 'Odds: N/A';
     }
 
@@ -599,7 +624,7 @@
       const ts = state.lastUpdated;
       const meta = document.getElementById('last-updated');
       if (ts) {
-        meta.textContent = `Data loaded • ${ts}`;
+        meta.textContent = 'Data loaded • ' + ts;
       } else {
         meta.textContent = 'Awaiting data...';
       }
@@ -699,16 +724,13 @@
         // Straight Up block
         const suBlock = document.createElement('div');
         suBlock.className = 'pick-block straight';
-        const suTeam = g.su.team;
-        const suConf = g.su.confidence;
-
         suBlock.innerHTML = `
           <div class="pick-label">Straight Up</div>
           <div class="pick-main">
-            ${suTeam ? suTeam : 'No pick'}
+            ${g.su.label}
           </div>
           <div class="pick-sub">
-            <span class="conf">${suConf != null ? suConf + '% confidence' : 'Confidence N/A'}</span>
+            <span class="conf">Confidence: ${g.su.confidence != null ? g.su.confidence + '%' : 'N/A'}</span>
           </div>
         `;
         picksStrip.appendChild(suBlock);
@@ -716,15 +738,13 @@
         // ATS block
         const atsBlock = document.createElement('div');
         atsBlock.className = 'pick-block ats';
-        const atsConf = g.ats.confidence;
-
         atsBlock.innerHTML = `
           <div class="pick-label">Against The Spread</div>
           <div class="pick-main">
-            ${g.ats.text}
+            ${g.ats.label}
           </div>
           <div class="pick-sub">
-            <span class="conf">${atsConf != null ? atsConf + '% confidence' : 'Confidence N/A'}</span>
+            <span class="conf">Confidence: ${g.ats.confidence != null ? g.ats.confidence + '%' : 'N/A'}</span>
           </div>
         `;
         picksStrip.appendChild(atsBlock);
@@ -732,15 +752,13 @@
         // Total block
         const totBlock = document.createElement('div');
         totBlock.className = 'pick-block total';
-        const totConf = g.total.confidence;
-
         totBlock.innerHTML = `
           <div class="pick-label">Total (O/U)</div>
           <div class="pick-main">
-            ${g.total.text}
+            ${g.total.label}
           </div>
           <div class="pick-sub">
-            <span class="conf">${totConf != null ? totConf + '% confidence' : 'Confidence N/A'}</span>
+            <span class="conf">Confidence: ${g.total.confidence != null ? g.total.confidence + '%' : 'N/A'}</span>
           </div>
         `;
         picksStrip.appendChild(totBlock);
@@ -801,8 +819,6 @@
       });
 
       loadData();
-      // keep your 15-minute refresh if you want; current backend already does it
-      // setInterval(loadData, 15 * 60 * 1000);
     });
   </script>
 </body>
