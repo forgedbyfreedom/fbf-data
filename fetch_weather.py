@@ -1,209 +1,114 @@
 #!/usr/bin/env python3
-"""
-High-speed asynchronous weather fetcher.
------------------------------------------
-• Fetches hourly forecasts from api.weather.gov
-• Async with concurrency limits (safe for NWS)
-• Robust retry & exponential backoff
-• Produces:
-    - weather.json      (clean normalized output)
-    - weather_raw.json  (raw hourly periods)
-"""
 
 import json
-import asyncio
-import aiohttp
-import async_timeout
-import math
+import requests
+import socket
 import time
 
 COMBINED_FILE = "combined.json"
-STADIUMS_FILE = "stadiums_master.json"
+OUTPUT_FILE = "weather.json"
 
-OUT_FILE = "weather.json"
-RAW_FILE = "weather_raw.json"
-
-NWS_HEADERS = {
-    "User-Agent": "fbf-data (weather fetcher)"
+HEADERS = {
+    "User-Agent": "FBF Sports Data (contact: support@forgedbyfreedom.com)",
+    "Accept": "application/geo+json"
 }
 
-# Max 8 requests in flight (NWS safe limit)
-CONCURRENCY = 8
-TIMEOUT = 45
-RETRIES = 4
+# Force IPv4 only for ALL requests
+orig_getaddrinfo = socket.getaddrinfo
+def ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    return orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+socket.getaddrinfo = ipv4_only_getaddrinfo
 
 
-# ------------------------------------------------------------
-# Helpers
-# ------------------------------------------------------------
-
-def load_json(path, default):
-    try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except:
-        return default
-
-
-def make_key(lat, lon):
-    """Normalized lat/lon key that merge_weather expects."""
-    return f"{float(lat):.4f},{float(lon):.4f}"
-
-
-# ------------------------------------------------------------
-# Async Fetch Helpers
-# ------------------------------------------------------------
-
-async def fetch_json(session, url, timeout=TIMEOUT, retries=RETRIES):
-    """
-    Generic async GET with retries & exponential backoff.
-    """
+def safe_request(url, retries=3, timeout=20):
+    """Robust HTTP GET with IPv4, retries, and long timeouts."""
     for attempt in range(1, retries + 1):
         try:
-            async with async_timeout.timeout(timeout):
-                async with session.get(url, headers=NWS_HEADERS) as r:
-                    if r.status == 200:
-                        return await r.json(), None
-                    err = f"HTTP {r.status}"
+            r = requests.get(url, headers=HEADERS, timeout=timeout)
+            if r.status_code == 200:
+                return r.json()
+            else:
+                print(f"⚠️ HTTP {r.status_code} for {url}")
         except Exception as e:
-            err = str(e)
-
-        # Retry with backoff
-        wait = 1.2 * attempt
-        print(f"⚠️ fetch_json retry {attempt}/{retries} for {url}: {err}")
-        await asyncio.sleep(wait)
-
-    return None, err
+            print(f"⚠️ Attempt {attempt}/{retries} failed: {e}")
+            time.sleep(1.5 * attempt)
+    return None
 
 
-async def fetch_forecast_for_location(session, lat, lon, semaphore):
-    """
-    Full pipeline for one stadium:
-    1) GET /points/{lat,lon}
-    2) Extract hourly URL
-    3) GET hourly forecast
-    """
+def collect_weather(lat, lon):
+    """Fetch hourly forecast for given coordinates."""
+    url = f"https://api.weather.gov/points/{lat},{lon}"
+    p = safe_request(url)
+    if not p:
+        return None
 
-    async with semaphore:  # limit concurrency
-        key = make_key(lat, lon)
+    hourly = p["properties"].get("forecastHourly")
+    if not hourly:
+        return None
 
-        # 1) Points lookup
-        pts_url = f"https://api.weather.gov/points/{lat},{lon}"
-        points, err = await fetch_json(session, pts_url)
-        if err or not points:
-            return key, None, None, f"points_failed: {err}"
+    data = safe_request(hourly)
+    if not data:
+        return None
 
-        hourly = points.get("properties", {}).get("forecastHourly")
-        if not hourly:
-            return key, None, None, "no_hourly_url"
+    periods = data.get("properties", {}).get("periods", [])
+    if not periods:
+        return None
 
-        # 2) Hourly forecast
-        periods, err2 = await fetch_json(session, hourly)
-        if err2 or not periods:
-            return key, None, None, f"hourly_failed: {err2}"
+    # Use the first-hour forecast
+    f = periods[0]
 
-        # Use first (closest hour)
-        first = None
-        try:
-            first = periods.get("properties", {}).get("periods", [])[0]
-        except:
-            # old API responses: treat periods as list
-            try:
-                first = periods.get("periods", [])[0]
-            except:
-                return key, None, None, "no_periods"
+    temp_f = f.get("temperature")
+    wind = f.get("windSpeed") or "0 mph"
+    short = f.get("shortForecast", "")
+    detailed = f.get("detailedForecast", "")
 
-        if not first:
-            return key, None, None, "no_periods"
+    try:
+        wind_mph = float(wind.split()[0])
+    except:
+        wind_mph = 0.0
 
-        # Normalize fields
-        tempF = first.get("temperature")
-        wind_raw = first.get("windSpeed") or "0 mph"
-        try:
-            wind_mph = float(wind_raw.split(" ")[0])
-        except:
-            wind_mph = 0.0
+    return {
+        "temperatureF": temp_f,
+        "windSpeedMph": wind_mph,
+        "rainChancePct": f.get("probabilityOfPrecipitation", {}).get("value", 0),
+        "shortForecast": short,
+        "detailedForecast": detailed
+    }
 
-        rain = first.get("probabilityOfPrecipitation", {}).get("value") or 0
-
-        clean = {
-            "key": key,
-            "lat": lat,
-            "lon": lon,
-            "temperatureF": tempF,
-            "windSpeedMph": wind_mph,
-            "rainChancePct": rain,
-            "shortForecast": first.get("shortForecast") or "",
-            "detailedForecast": first.get("detailedForecast") or "",
-        }
-
-        raw = { "key": key, "raw": first }
-
-        return key, clean, raw, None
-
-
-# ------------------------------------------------------------
-# Main async runner
-# ------------------------------------------------------------
-
-async def run_weather_fetch():
-    combined = load_json(COMBINED_FILE, {})
-    if "data" not in combined:
-        print("❌ combined.json missing data[]")
-        return
-
-    games = combined["data"]
-
-    semaphore = asyncio.Semaphore(CONCURRENCY)
-
-    tasks = []
-
-    async with aiohttp.ClientSession() as session:
-        for g in games:
-            venue = g.get("venue") or {}
-            lat = venue.get("lat")
-            lon = venue.get("lon")
-
-            # Skip missing coords
-            if not lat or not lon:
-                continue
-
-            lat = float(lat)
-            lon = float(lon)
-
-            task = asyncio.create_task(
-                fetch_forecast_for_location(session, lat, lon, semaphore)
-            )
-            tasks.append(task)
-
-        results = await asyncio.gather(*tasks)
-
-    clean_rows = []
-    raw_rows = []
-
-    for key, clean, raw, err in results:
-        if err:
-            clean_rows.append({"key": key, "error": err})
-        else:
-            clean_rows.append(clean)
-            raw_rows.append(raw)
-
-    # Save outputs
-    with open(OUT_FILE, "w") as f:
-        json.dump({"data": clean_rows}, f, indent=2)
-
-    with open(RAW_FILE, "w") as f:
-        json.dump({"data": raw_rows}, f, indent=2)
-
-    print(f"✅ Weather fetched for {len(clean_rows)} locations (async mode).")
-
-
-# ------------------------------------------------------------
-# Entrypoint
-# ------------------------------------------------------------
 
 def main():
-    asyncio.run(run_weather_fetch())
+    # Load combined.json
+    with open(COMBINED_FILE, "r") as f:
+        combined = json.load(f)
+
+    weather_output = {"data": []}
+
+    games = combined.get("data", [])
+    print(f"🔎 Fetching weather for {len(games)} games...")
+
+    for g in games:
+        venue = g.get("venue") or {}
+        lat = venue.get("lat")
+        lon = venue.get("lon")
+
+        if not lat or not lon:
+            continue
+
+        key = f"{lat:.4f},{lon:.4f}"
+
+        w = collect_weather(lat, lon)
+        if not w:
+            continue
+
+        weather_output["data"].append({
+            "key": key,
+            **w
+        })
+
+    with open(OUTPUT_FILE, "w") as f:
+        json.dump(weather_output, f, indent=2)
+
+    print(f"✅ Weather written: {len(weather_output['data'])} locations")
 
 
 if __name__ == "__main__":
