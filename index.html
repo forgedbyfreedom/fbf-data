@@ -96,24 +96,24 @@
 
         /* Picks Section */
         .pick-box {
-            margin-top: 15px;
-            padding: 12px;
+            margin-top: 12px;
+            padding: 10px;
             background: #111;
             border-radius: 8px;
             border: 1px solid #444;
         }
         .pick-title {
-            font-size: 15px;
-            margin-bottom: 6px;
+            font-size: 14px;
+            margin-bottom: 4px;
             color: #ff7a00;
         }
         .pick-value {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
         }
         .confidence {
-            margin-top: 5px;
-            font-size: 14px;
+            margin-top: 4px;
+            font-size: 13px;
             color: #ccc;
         }
 
@@ -160,21 +160,35 @@
         let currentSportFilter = "all";
 
         async function loadData() {
-            const res = await fetch("predictions.json?v=" + Date.now());
-            const json = await res.json();
-            globalData = json.data || [];
-            renderGames();
+            try {
+                const res = await fetch("predictions.json?v=" + Date.now());
+                const json = await res.json();
+                globalData = json.data || json.predictions || [];
+                renderGames();
+            } catch (e) {
+                console.error("Error loading predictions.json", e);
+            }
         }
 
         function setFilter(sport) {
             currentSportFilter = sport;
             document.querySelectorAll(".filter-buttons button").forEach(b => b.classList.remove("active"));
-            event.target.classList.add("active");
+            // inline onclick gives us a global event in browser
+            if (window.event && window.event.target) {
+                window.event.target.classList.add("active");
+            }
             renderGames();
         }
 
-        function confidenceFormula(pred_margin, spread) {
-            return Math.abs(pred_margin - spread) * 6.25;
+        function cap99(val) {
+            if (!Number.isFinite(val)) return null;
+            return Math.min(99, Math.max(0, val));
+        }
+
+        function formatSpread(num) {
+            if (!Number.isFinite(num)) return "N/A";
+            if (num === 0) return "PK";
+            return (num > 0 ? "+" + num : String(num));
         }
 
         function renderGames() {
@@ -188,43 +202,82 @@
 
             filtered.forEach(game => {
                 const odds = game.odds || {};
+                const spread = (typeof odds.spread === "number") ? odds.spread : null;
+                const total = (typeof odds.total === "number") ? odds.total : null;
 
-                const spread = odds.spread ?? null;
-                const total = odds.total ?? null;
+                const pred_margin = (typeof game.pred_margin === "number") ? game.pred_margin : null;
+                const pred_total  = (typeof game.pred_total  === "number") ? game.pred_total  : null;
 
-                const pred_margin = game.pred_margin ?? 0;
-                const pred_total = game.pred_total ?? 0;
+                const homeTeamName = game.home_team?.name || "Home";
+                const awayTeamName = game.away_team?.name || "Away";
 
-                /* SU PICK */
+                /* ---------- STRAIGHT UP PICK ---------- */
                 let suPick = game.pick_team || "N/A";
-
-                /* ATS PICK */
-                let atsPick = "N/A";
-                if (spread !== null) {
-                    if (pred_margin > spread) atsPick = "Favorite Covers";
-                    else if (pred_margin < spread) atsPick = "Dog Covers";
-                    else atsPick = "No Edge";
+                let confSu = null;
+                if (pred_margin !== null) {
+                    confSu = cap99(Math.abs(pred_margin) * 6.25);
                 }
 
-                /* TOTAL PICK */
-                let totalPick = "N/A";
-                if (total !== null) {
-                    if (pred_total > total) totalPick = "OVER";
-                    else if (pred_total < total) totalPick = "UNDER";
-                    else totalPick = "No Edge";
+                /* ---------- ATS PICK ---------- */
+                let atsDisplay = "N/A";
+                let confAts = null;
+                if (spread !== null && pred_margin !== null) {
+                    // which side covers according to model?
+                    let atsTeamName = null;
+                    if (pred_margin > spread) {
+                        atsTeamName = homeTeamName;
+                    } else if (pred_margin < spread) {
+                        atsTeamName = awayTeamName;
+                    }
+
+                    if (atsTeamName) {
+                        // Book line is stored as home spread
+                        let teamSpread;
+                        if (atsTeamName === homeTeamName) {
+                            teamSpread = spread;
+                        } else {
+                            teamSpread = -spread;
+                        }
+                        atsDisplay = atsTeamName + " " + formatSpread(teamSpread);
+                        confAts = cap99(Math.abs(pred_margin - spread) * 6.25);
+                    } else {
+                        atsDisplay = "No Edge";
+                    }
                 }
 
-                const conf = confidenceFormula(pred_margin, spread || 0).toFixed(1);
-                const isHigh = conf >= 80;
+                /* ---------- TOTAL (O/U) PICK ---------- */
+                let totalDisplay = "N/A";
+                let confTotal = null;
+                if (total !== null && pred_total !== null) {
+                    if (pred_total > total) {
+                        totalDisplay = "OVER";
+                    } else if (pred_total < total) {
+                        totalDisplay = "UNDER";
+                    } else {
+                        totalDisplay = "No Edge";
+                    }
+                    confTotal = cap99(Math.abs(pred_total - total) * 6.25);
+                }
+
+                /* HIGH CONFIDENCE FLAG */
+                const maxConf = Math.max(
+                    confSu || 0,
+                    confAts || 0,
+                    confTotal || 0
+                );
+                const isHigh = (game.high_confidence === true) || maxConf >= 80;
 
                 /* Weather */
                 let weatherHTML = "";
                 if (game.venue && !game.venue.indoor && game.weather) {
+                    const summary = game.weather.summary ?? "";
+                    const temp = game.weather.temp ?? game.weather.temperatureF ?? "";
+                    const wind = game.weather.wind ?? game.weather.windSpeedMph ?? "";
                     weatherHTML = `
                         <div class="weather">
-                            <strong>Weather:</strong> ${game.weather.summary}<br>
-                            Temp: ${game.weather.temp}°F<br>
-                            Wind: ${game.weather.wind} mph
+                            <strong>Weather:</strong> ${summary}<br>
+                            Temp: ${temp}°F<br>
+                            Wind: ${wind} mph
                         </div>`;
                 }
 
@@ -232,36 +285,42 @@
                     <div class="game-card ${isHigh ? "high-confidence" : ""}">
                         <div class="teams">
                             <div class="team">
-                                <img src="${game.away_team?.logo || ""}">
-                                <div class="team-name">${game.away_team?.name || "Away"}</div>
+                                <img src="${game.away_team?.logo || ""}" alt="">
+                                <div class="team-name">${awayTeamName}</div>
                             </div>
                             <div class="team">
-                                <img src="${game.home_team?.logo || ""}">
-                                <div class="team-name">${game.home_team?.name || "Home"}</div>
+                                <img src="${game.home_team?.logo || ""}" alt="">
+                                <div class="team-name">${homeTeamName}</div>
                             </div>
                         </div>
 
                         <div class="odds">
                             <div><strong>Spread:</strong> ${odds.details || "N/A"}</div>
-                            <div><strong>Total:</strong> ${total ?? "N/A"}</div>
+                            <div><strong>Total:</strong> ${total !== null ? total : "N/A"}</div>
                         </div>
 
                         <div class="pick-box">
                             <div class="pick-title">STRAIGHT UP</div>
                             <div class="pick-value">${suPick}</div>
-                            <div class="confidence">Confidence: ${conf}%</div>
+                            <div class="confidence">
+                                Confidence: ${confSu !== null ? confSu.toFixed(1) + "%" : "N/A"}
+                            </div>
                         </div>
 
                         <div class="pick-box">
                             <div class="pick-title">ATS (Spread)</div>
-                            <div class="pick-value">${atsPick}</div>
-                            <div class="confidence">Confidence: ${conf}%</div>
+                            <div class="pick-value">${atsDisplay}</div>
+                            <div class="confidence">
+                                Confidence: ${confAts !== null ? confAts.toFixed(1) + "%" : "N/A"}
+                            </div>
                         </div>
 
                         <div class="pick-box">
                             <div class="pick-title">TOTAL (O/U)</div>
-                            <div class="pick-value">${totalPick}</div>
-                            <div class="confidence">Confidence: ${conf}%</div>
+                            <div class="pick-value">${totalDisplay}</div>
+                            <div class="confidence">
+                                Confidence: ${confTotal !== null ? confTotal.toFixed(1) + "%" : "N/A"}
+                            </div>
                         </div>
 
                         ${weatherHTML}
@@ -271,7 +330,8 @@
         }
 
         loadData();
-        setInterval(loadData, 15000);
+        // 15 minutes = 900000 ms
+        setInterval(loadData, 900000);
     </script>
 
 </body>
