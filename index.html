@@ -2,251 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Forged By Freedom Betting Dashboard</title>
-  <style>
-    :root{
-      --bg:#0b0d10; --panel:#12161b; --panel2:#0f1317; --text:#e6e6e6;
-      --muted:#9aa4af; --accent:#22c55e; --warn:#f59e0b; --bad:#ef4444;
-      --line:#1f2937;
-    }
-    body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;}
-    header{padding:18px 20px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0e1216,transparent);}
-    h1{margin:0;font-size:20px;letter-spacing:.3px;}
-    .sub{color:var(--muted);margin-top:4px;font-size:12px;}
-    .wrap{max-width:1200px;margin:0 auto;padding:16px;}
-    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
-    select,input{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 10px;outline:none;}
-    input{min-width:240px;}
-    .meta{display:flex;gap:14px;align-items:center;color:var(--muted);font-size:12px;margin:8px 0 14px;}
-    .pill{background:var(--panel);border:1px solid var(--line);padding:3px 8px;border-radius:999px;}
-    table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
-    thead th{position:sticky;top:0;background:var(--panel2);text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:12px;color:#cbd5e1;}
-    tbody td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;}
-    tbody tr:hover{background:#0e1318;}
-    .sport{font-weight:700;letter-spacing:.5px;font-size:11px;color:#cbd5e1;}
-    .match{font-weight:600;}
-    .odds{color:#cbd5e1;font-size:12px;}
-    .pred{display:grid;gap:2px;font-size:12px;}
-    .conf{font-weight:700;}
-    .hi{color:var(--accent);}
-    .mid{color:var(--warn);}
-    .lo{color:var(--bad);}
-    .tag{display:inline-block;font-size:11px;padding:2px 6px;border-radius:6px;background:#0b1220;border:1px solid #1e293b;margin-left:6px;}
-    .tag.hi{border-color:#14532d;background:#052e1a;}
-    .weather{color:#cbd5e1;font-size:12px;}
-    .muted{color:var(--muted);}
-    .right{text-align:right;}
-    .small{font-size:11px;color:var(--muted);}
-    footer{color:var(--muted);font-size:12px;text-align:center;padding:18px;}
-    .err{background:#1b1111;border:1px solid #3b1d1d;color:#fecaca;padding:12px;border-radius:10px;}
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Forged By Freedom — Live Odds + Picks</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <header>
-    <div class="wrap">
-      <h1>Forged By Freedom — Live Odds + Picks</h1>
-      <div class="sub">Updated every 15 minutes • For entertainment only</div>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Forged By Freedom Sports Picks</h1>
+      <p class="sub">
+        🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
+      </p>
+      <p class="sub small">
+        Provided to you by ForgedByFreedom.org<br/>
+        FORGED BY FREEDOM STRENGTH AND NUTRITION<br/>
+        STRENGTH – DISCIPLINE – FREEDOM<br/>
+        Visit us for all your fitness, nutrition and supplement program needs<br/>
+        For entertainment purposes only
+      </p>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-label">Total Games</div>
+          <div class="stat-value" id="statTotalGames">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Favorites Tagged</div>
+          <div class="stat-value" id="statFavorites">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Picks Available</div>
+          <div class="stat-value" id="statPicksAvail">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">High Confidence</div>
+          <div class="stat-value" id="statHighConf">—</div>
+        </div>
+        <div class="stat time">
+          <div class="stat-label">Last Update (UTC)</div>
+          <div class="stat-value" id="statTimestamp">—</div>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="wrap">
     <div class="controls">
-      <select id="sportFilter">
-        <option value="all">All Sports</option>
-      </select>
-      <select id="minConf">
-        <option value="0">All Confidence</option>
-        <option value="60">60%+</option>
-        <option value="70">70%+</option>
-        <option value="80">80%+</option>
-      </select>
-      <input id="search" placeholder="Search teams / matchup..." />
-      <select id="sortBy">
-        <option value="time">Sort: Time</option>
-        <option value="conf">Sort: Confidence</option>
-        <option value="edge">Sort: Projected Edge</option>
-      </select>
+      <div class="filters" id="sportFilters">
+        <!-- buttons injected -->
+      </div>
+
+      <div class="search">
+        <input id="searchBox" type="text" placeholder="Search team / matchup / venue..." />
+        <select id="sortSelect">
+          <option value="time">Sort: Time</option>
+          <option value="confidence">Sort: Confidence</option>
+          <option value="edge">Sort: Edge vs Spread</option>
+        </select>
+      </div>
     </div>
 
-    <div class="meta">
-      <div class="pill" id="lastUpdated">Last updated: —</div>
-      <div class="pill" id="gameCount">Games: —</div>
-      <div class="pill" id="hiCount">High-confidence: —</div>
+    <div id="sportSections">
+      <!-- sections injected -->
     </div>
 
-    <div id="status" class="small muted">Loading predictions.json…</div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Sport</th>
-          <th>Matchup</th>
-          <th>Odds</th>
-          <th>Prediction</th>
-          <th>Weather</th>
-          <th class="right">Confidence</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
+    <footer class="footer">
+      <div>© ForgedByFreedom.org — Entertainment Only</div>
+    </footer>
   </main>
 
-  <footer>
-    Strength • Discipline • Freedom
-  </footer>
-
-<script>
-const sportFilter = document.getElementById("sportFilter");
-const minConf = document.getElementById("minConf");
-const searchBox = document.getElementById("search");
-const sortBy = document.getElementById("sortBy");
-const rowsEl = document.getElementById("rows");
-const statusEl = document.getElementById("status");
-
-let predictions = [];
-
-function tsToLocal(ts){
-  if(!ts) return "—";
-  // ts like 20251124_2339
-  const m = ts.match(/^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})/);
-  if(!m) return ts;
-  const [_,y,mo,d,h,mi] = m;
-  const dt = new Date(`${y}-${mo}-${d}T${h}:${mi}:00Z`);
-  return dt.toLocaleString();
-}
-
-function safeOdds(o){
-  if(!o || typeof o !== "object") return {};
-  return o;
-}
-
-function confClass(c){
-  if(c >= 80) return "hi";
-  if(c >= 70) return "hi";
-  if(c >= 60) return "mid";
-  return "lo";
-}
-
-function projEdge(p){
-  // edge = projected_spread - market_spread (signed)
-  if(!p) return 0;
-  const market = (p.odds && typeof p.odds.spread === "number") ? p.odds.spread : 0;
-  const proj = (p.prediction && typeof p.prediction.projected_spread === "number") ? p.prediction.projected_spread : 0;
-  return proj - market;
-}
-
-function render(){
-  const sportVal = sportFilter.value;
-  const minVal = parseInt(minConf.value,10);
-  const q = searchBox.value.trim().toLowerCase();
-  const sortVal = sortBy.value;
-
-  let filtered = predictions.filter(p=>{
-    if(sportVal !== "all" && p.sport !== sportVal) return false;
-    const c = p.prediction?.confidence ?? 0;
-    if(c < minVal) return false;
-    if(q){
-      const hay = `${p.matchup} ${p.home} ${p.away}`.toLowerCase();
-      if(!hay.includes(q)) return false;
-    }
-    return true;
-  });
-
-  if(sortVal === "conf"){
-    filtered.sort((a,b)=>(b.prediction?.confidence??0)-(a.prediction?.confidence??0));
-  } else if(sortVal === "edge"){
-    filtered.sort((a,b)=>projEdge(b)-projEdge(a));
-  } else {
-    filtered.sort((a,b)=>(a.date_utc||"").localeCompare(b.date_utc||""));
-  }
-
-  rowsEl.innerHTML = "";
-  for(const p of filtered){
-    const odds = safeOdds(p.odds);
-    const pred = p.prediction || {};
-    const conf = pred.confidence ?? 0;
-    const edge = projEdge(p);
-
-    const weather = p.weather || {};
-    const indoor = p.venue?.indoor || weather.indoor;
-
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td><div class="sport">${p.sport?.toUpperCase()||""}</div></td>
-      <td>
-        <div class="match">${p.matchup||""}
-          ${p.highlight ? `<span class="tag hi">EDGE</span>` : ""}
-        </div>
-        <div class="small muted">${p.away||""} @ ${p.home||""}</div>
-      </td>
-      <td class="odds">
-        <div>${odds.details||"—"}</div>
-        <div class="small muted">Spread: ${odds.spread ?? "—"} | Total: ${odds.total ?? "—"}</div>
-      </td>
-      <td class="pred">
-        <div>Proj Spread: <b>${pred.projected_spread ?? "—"}</b></div>
-        <div>Proj Total: <b>${pred.projected_total ?? "—"}</b></div>
-        <div class="small muted">Edge vs market: ${edge.toFixed(1)}</div>
-        <div class="small muted">Win Prob (home): ${pred.win_probability_home ?? "—"}</div>
-      </td>
-      <td class="weather">
-        ${indoor ? `<div class="muted">Indoor</div>` :
-          `<div>${weather.shortForecast || "—"}</div>
-           <div class="small muted">
-             Temp: ${weather.temperatureF ?? "—"}°F |
-             Wind: ${weather.windSpeedMph ?? "—"} mph |
-             Rain: ${weather.rainChancePct ?? "—"}%
-           </div>`
-        }
-      </td>
-      <td class="right">
-        <div class="conf ${confClass(conf)}">${conf}%</div>
-      </td>
-    `;
-    rowsEl.appendChild(tr);
-  }
-
-  statusEl.textContent = filtered.length ? "" : "No games match your filters.";
-}
-
-async function init(){
-  try{
-    const r = await fetch("./predictions.json", {cache:"no-store"});
-    if(!r.ok) throw new Error(`HTTP ${r.status}`);
-    const data = await r.json();
-    predictions = data.predictions || data.data || [];
-    // keep date for sorting if present in file
-    for(const p of predictions){
-      if(!p.date_utc && p.prediction?.date_utc) p.date_utc = p.prediction.date_utc;
-    }
-
-    // header stats
-    document.getElementById("lastUpdated").textContent = "Last updated: " + tsToLocal(data.timestamp);
-    document.getElementById("gameCount").textContent = "Games: " + (data.count ?? predictions.length);
-    const hi = predictions.filter(x=>(x.prediction?.confidence??0) >= 70).length;
-    document.getElementById("hiCount").textContent = "High-confidence: " + hi;
-
-    // fill sport dropdown
-    const sports = Array.from(new Set(predictions.map(p=>p.sport).filter(Boolean))).sort();
-    for(const s of sports){
-      const opt = document.createElement("option");
-      opt.value = s; opt.textContent = s.toUpperCase();
-      sportFilter.appendChild(opt);
-    }
-
-    render();
-  }catch(e){
-    statusEl.innerHTML = `<div class="err">Failed to load predictions.json (${e.message}).</div>`;
-  }
-}
-
-sportFilter.addEventListener("change", render);
-minConf.addEventListener("change", render);
-searchBox.addEventListener("input", render);
-sortBy.addEventListener("change", render);
-
-init();
-</script>
+  <script src="app.js"></script>
 </body>
 </html>
