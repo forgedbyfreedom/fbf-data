@@ -1,86 +1,86 @@
-/* --- GAME GRID LAYOUT --- */
-#gamesContainer {
+.games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 22px;
-    padding: 20px;
+    margin-top: 25px;
 }
 
-/* --- GAME CARD --- */
 .game-card {
     background: #111;
-    border-radius: 14px;
-    padding: 20px;
-    color: #fff;
+    padding: 18px 20px;
+    border-radius: 12px;
     border: 2px solid #222;
-    box-shadow: 0 0 12px rgba(255, 120, 0, 0.25);
-    transition: 0.25s ease-in-out;
+    box-shadow: 0 0 10px rgba(255,140,0,0.15);
+    transition: 0.2s ease-in-out;
 }
 
-.game-card.high-confidence {
-    border-color: #ff7a00;
-    box-shadow: 0 0 22px rgba(255, 120, 0, 0.45);
+.game-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px rgba(255,140,0,0.35);
 }
 
-/* Header area */
+.high-conf-card {
+    border-color: orange !important;
+    box-shadow: 0 0 25px rgba(255,165,0,0.55) !important;
+}
+
 .game-header {
     text-align: center;
     margin-bottom: 12px;
 }
 
-.game-header .matchup {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffa04d;
+.game-short {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffa64d;
 }
 
-.game-header .date {
-    font-size: 0.95rem;
-    opacity: 0.85;
+.game-date {
+    font-size: 14px;
+    color: #bbb;
+    margin-top: 4px;
 }
 
-/* --- PICK ROWS --- */
-.pick-row {
-    display: flex;
-    justify-content: space-between;
-    background: #1c1c1c;
+.teams {
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+
+.teams .vs {
+    margin: 0 5px;
+    color: #888;
+}
+
+.pick-section {
+    background: #1a1a1a;
     padding: 10px 12px;
-    border-radius: 10px;
-    margin-top: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
 }
 
 .pick-label {
-    font-weight: 700;
-    color: #ff7a00;
-    font-size: 0.95rem;
+    font-size: 12px;
     text-transform: uppercase;
+    color: #999;
+    margin-bottom: 3px;
 }
 
 .pick-value {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: bold;
+    color: #eee;
 }
 
-/* Confidence Bar */
-.conf-bar {
-    margin-top: 8px;
-    height: 8px;
-    border-radius: 6px;
-    background: #333;
-    overflow: hidden;
+.spread {
+    color: #ffa64d;
+    margin-left: 4px;
+    font-size: 14px;
 }
 
-.conf-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #ff7a00, #ffae4d);
-    width: 0%;
-    transition: width 0.4s ease;
-    border-radius: 6px;
-}
-
-/* Notes */
-.notes {
-    margin-top: 10px;
-    font-size: 0.85rem;
-    opacity: 0.65;
+.pick-confidence {
+    font-size: 13px;
+    color: #ffa64d;
+    margin-top: 4px;
 }
