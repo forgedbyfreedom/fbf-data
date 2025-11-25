@@ -27,7 +27,6 @@ def main():
         try:
             p = predict(g)
         except Exception as e:
-            # capture broken cases
             p = {
                 "error": str(e),
                 "projected_home_score": 0,
@@ -50,8 +49,7 @@ def main():
             "prediction": p
         }
 
-        # Mark high edge
-        if isinstance(p, dict) and p.get("confidence", 0) >= 70:
+        if p.get("confidence", 0) >= 70:
             result["highlight"] = True
 
         output["predictions"].append(result)
@@ -62,6 +60,7 @@ def main():
         json.dump(output, f, indent=2)
 
     print(f"[✅] Predictions generated for {output['count']} games.]")
+
 
 if __name__ == "__main__":
     main()
