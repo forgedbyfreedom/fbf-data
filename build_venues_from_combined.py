@@ -1,107 +1,82 @@
+#!/usr/bin/env python3
 import json
 import re
-from collections import defaultdict
+from pathlib import Path
 
-COMBINED_PATH = "combined.json"
-STADIUMS_MASTER_PATH = "stadiums_master.json"
+COMBINED = Path("combined.json")
+MASTER = Path("stadiums_master.json")
+OUTFILE = Path("combined.json")   # overwrite combined with enriched version
 
-def load_json(path, default):
+
+def load_json(path, default=None):
     try:
         with open(path, "r") as f:
             return json.load(f)
-    except Exception:
+    except:
         return default
 
-def save_json(path, obj):
-    with open(path, "w") as f:
-        json.dump(obj, f, indent=2)
 
-def normalize_name(name):
+def normalize_name(name: str):
     if not name:
         return ""
     n = name.strip().lower()
     n = re.sub(r"\s+", " ", n)
-    n = n.replace("stadium", "").replace("arena", "").replace("field", "")
-    n = n.replace("center", "").replace("centre", "")
-    n = n.replace("coliseum", "").replace("dome", "")
+    n = n.replace("stadium", "").replace("field", "").replace("arena", "")
+    n = n.replace("center", "").replace("coliseum", "").replace("dome", "")
     n = n.replace("the ", "")
     n = re.sub(r"[^a-z0-9 ]+", "", n)
     return n.strip()
 
+
+def find_master_match(venue, master):
+    """Find the best stadium match by ID -> name -> normalized name."""
+    vid = venue.get("id") or venue.get("venue_id")
+    if vid and str(vid) in master:
+        return master[str(vid)]
+
+    vname = venue.get("name")
+    if vname:
+        norm = normalize_name(vname)
+        # direct name matches
+        for k, v in master.items():
+            if normalize_name(v.get("name", "")) == norm:
+                return v
+
+    return None
+
+
 def main():
-    combined = load_json(COMBINED_PATH, {})
-    if isinstance(combined, dict) and "data" in combined:
-        games = combined["data"]
-    elif isinstance(combined, list):
-        games = combined
-    else:
-        games = []
+    combined = load_json(COMBINED, {})
+    master = load_json(MASTER, {})
 
-    existing_master = load_json(STADIUMS_MASTER_PATH, {})
+    if not combined or "data" not in combined:
+        print("❌ combined.json missing or empty")
+        return
 
-    master = {}  # key = venue_id or normalized name
+    updated = 0
 
-    # seed with existing master (defensive: only dict entries)
-    if isinstance(existing_master, dict):
-        for k, v in existing_master.items():
-            if isinstance(v, dict):
-                master[k] = v
-
-    # extract venues from combined
-    for g in games:
-        if not isinstance(g, dict):
-            continue
-
-        venue = g.get("venue") or {}
+    for game in combined["data"]:
+        venue = game.get("venue")
         if not isinstance(venue, dict):
             continue
 
-        vname = venue.get("name") or g.get("venue_name")
-        city = venue.get("city") or ""
-        state = venue.get("state") or ""
-        indoor = bool(venue.get("indoor"))
-        grass = venue.get("grass")
-        vid = venue.get("id") or venue.get("venue_id") or g.get("venue_id")
-
-        lat = None
-        lon = None
-
-        # ESPN sometimes puts coords under different keys
-        for k_lat, k_lon in [
-            ("lat", "lon"),
-            ("latitude", "longitude"),
-            ("latitude", "longitude"),
-            ("y", "x"),
-        ]:
-            if venue.get(k_lat) and venue.get(k_lon):
-                lat = venue.get(k_lat)
-                lon = venue.get(k_lon)
-                break
-
-        key = str(vid) if vid else normalize_name(vname)
-
-        if not key:
+        match = find_master_match(venue, master)
+        if not match:
             continue
 
-        master.setdefault(key, {})
-        master[key].update({
-            "name": vname,
-            "norm": normalize_name(vname),
-            "city": city,
-            "state": state,
-            "indoor": indoor,
-            "grass": grass,
-        })
+        # Inject missing lat/lon
+        if "lat" not in venue and "lat" in match:
+            venue["lat"] = match["lat"]
+            updated += 1
 
-        if lat and lon:
-            try:
-                master[key]["lat"] = float(lat)
-                master[key]["lon"] = float(lon)
-            except Exception:
-                pass
+        if "lon" not in venue and "lon" in match:
+            venue["lon"] = match["lon"]
 
-    save_json(STADIUMS_MASTER_PATH, master)
-    print(f"[✅] stadiums_master.json built ({len(master)} venues).")
+    with open(OUTFILE, "w") as f:
+        json.dump(combined, f, indent=2)
+
+    print(f"[✅] Venues enriched with coordinates ({updated} venues updated).")
+
 
 if __name__ == "__main__":
     main()
