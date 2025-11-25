@@ -1,77 +1,931 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Forged By Freedom — Live Odds + Picks</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <title>Forged By Freedom • Live Odds & Model Picks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-card: #101018;
+      --bg-card-alt: #161624;
+      --accent: #ff8a00;
+      --accent-2: #ff3b3b;
+      --accent-soft: rgba(255, 138, 0, 0.3);
+      --text-main: #f5f5fb;
+      --text-muted: #a0a2b8;
+      --text-soft: #8b8dad;
+      --border: #2a2b3d;
+      --danger: #ff4d4d;
+      --success: #40ff9e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #14121f 0, #050509 50%, #020308 100%);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      position: relative;
+      padding: 1.75rem 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 138, 0, 0.3);
+      background:
+        radial-gradient(circle at top, rgba(255, 154, 0, 0.28), transparent 55%),
+        radial-gradient(circle at 10% 10%, rgba(255, 61, 0, 0.32), transparent 55%),
+        linear-gradient(135deg, #12040a, #1a0b1f 50%, #07030e 100%);
+      box-shadow:
+        0 0 40px rgba(255, 128, 0, 0.5),
+        inset 0 0 25px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 180, 0, 0.15), transparent 60%),
+        radial-gradient(circle at 100% 0%, rgba(255, 80, 0, 0.18), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.7fr);
+      gap: 1.75rem;
+      align-items: center;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+      }
+    }
+
+    .hero-main-title {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ffe7c2, #ffb347, #ffd18f);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 230, 200, 0.92);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.9rem;
+      color: rgba(255, 240, 214, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 223, 186, 0.95);
+      margin: 0.65rem 0 0.35rem;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.45rem 0 0.3rem;
+    }
+
+    .hero-pill {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 200, 160, 0.5);
+      color: rgba(255, 230, 200, 0.96);
+      background: radial-gradient(circle at top, rgba(255, 205, 160, 0.25), rgba(10, 5, 0, 0.8));
+    }
+
+    .hero-footnote {
+      font-size: 0.75rem;
+      color: rgba(255, 220, 190, 0.7);
+      margin-top: 0.35rem;
+    }
+
+    .hero-badge {
+      justify-self: end;
+      text-align: right;
+    }
+
+    @media (max-width: 900px) {
+      .hero-badge {
+        justify-self: flex-start;
+        text-align: left;
+      }
+    }
+
+    .hero-badge-top {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255, 240, 220, 0.85);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-badge-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(255, 180, 80, 0.25), rgba(32, 10, 0, 0.95));
+      border: 1px solid rgba(255, 190, 120, 0.8);
+      box-shadow: 0 0 18px rgba(255, 150, 60, 0.7);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .hero-badge-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #5cff7f;
+      box-shadow: 0 0 14px rgba(64, 255, 158, 0.9);
+      flex-shrink: 0;
+    }
+
+    .hero-badge-sub {
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+      color: rgba(255, 230, 210, 0.8);
+    }
+
+    .hero-badge-sub strong {
+      color: #ffe7c2;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 0 1rem 2rem;
+      flex: 1;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .stat-pill {
+      min-width: 8rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #11111a, #181827);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--text-soft);
+      margin-bottom: 0.18rem;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .stat-tagline {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .filter-btn {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top, #171726, #0b0b13);
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: rgba(255, 138, 0, 0.8);
+      color: #ffe3b8;
+    }
+
+    .filter-btn.active {
+      border-color: rgba(255, 138, 0, 1);
+      background: linear-gradient(135deg, rgba(255, 140, 0, 0.3), rgba(255, 64, 0, 0.45));
+      color: #fff7e8;
+      box-shadow: 0 0 18px rgba(255, 140, 0, 0.7);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin: 1rem 0 0.75rem;
+    }
+
+    .section-title {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .section-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 0.85rem;
+    }
+
+    @media (min-width: 1100px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .content {
+        padding: 0 0.75rem 2rem;
+      }
+    }
+
+    .card {
+      position: relative;
+      border-radius: 14px;
+      padding: 0.85rem 0.9rem 0.8rem;
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-card-alt));
+      border: 1px solid var(--border);
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      overflow: hidden;
+    }
+
+    .card.highlight {
+      border-color: rgba(255, 170, 50, 0.95);
+      box-shadow:
+        0 0 24px rgba(255, 138, 0, 0.9),
+        0 0 60px rgba(255, 80, 0, 0.75);
+    }
+
+    .card.highlight::before {
+      content: "HIGH CONFIDENCE";
+      position: absolute;
+      top: 0.5rem;
+      right: -3.75rem;
+      transform: rotate(16deg);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.18rem 3rem;
+      background: linear-gradient(115deg, #ffb347, #ff7b00, #ff3b3b);
+      color: #1b0900;
+      font-weight: 800;
+      box-shadow: 0 0 18px rgba(255, 138, 0, 0.9);
+    }
+
+    .card-league {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-soft);
+      margin-bottom: 0.2rem;
+    }
+
+    .card-matchup {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fdfdff;
+    }
+
+    .card-shortname {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+    }
+
+    .card-time {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.08rem;
+    }
+
+    .card-teams {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      margin-top: 0.35rem;
+    }
+
+    .team {
+      flex: 1;
+      font-size: 0.78rem;
+    }
+
+    .team-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+    }
+
+    .team-name {
+      font-size: 0.82rem;
+      color: #f8f8ff;
+    }
+
+    .odds-row,
+    .pred-row,
+    .weather-row {
+      margin-top: 0.3rem;
+      padding-top: 0.3rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .odds-row strong,
+    .pred-row strong,
+    .weather-row strong {
+      color: var(--text-main);
+    }
+
+    .pred-row-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+      align-items: baseline;
+    }
+
+    .pred-meta {
+      font-size: 0.72rem;
+      color: var(--text-soft);
+      margin-top: 0.2rem;
+    }
+
+    .pred-confidence {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--success);
+    }
+
+    .pred-confidence.low {
+      color: var(--text-soft);
+    }
+
+    .pred-confidence.medium {
+      color: #ffd966;
+    }
+
+    .pred-confidence.high {
+      color: var(--success);
+    }
+
+    .weather-row span {
+      display: inline-block;
+      margin-right: 0.4rem;
+    }
+
+    .pill-indoor {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.18rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(180, 180, 255, 0.5);
+      color: rgba(220, 220, 255, 0.9);
+    }
+
+    .pill-outdoor {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.18rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 200, 160, 0.7);
+      color: rgba(255, 230, 200, 0.95);
+    }
+
+    .pill-risk {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.18rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 120, 120, 0.7);
+      color: rgba(255, 190, 190, 0.95);
+    }
+
+    .empty-state {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .footer-note {
+      max-width: 1200px;
+      margin: 0 auto 1.5rem;
+      padding: 0 1rem;
+      font-size: 0.72rem;
+      color: #777892;
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <h1>Forged By Freedom Sports Picks</h1>
-      <p class="sub">
-        🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
-      </p>
-      <p class="sub small">
-        Provided to you by ForgedByFreedom.org<br/>
-        FORGED BY FREEDOM STRENGTH AND NUTRITION<br/>
-        STRENGTH – DISCIPLINE – FREEDOM<br/>
-        Visit us for all your fitness, nutrition and supplement program needs<br/>
-        For entertainment purposes only
-      </p>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div>
+          <div class="hero-subtitle">
+            🏈 Live Odds + Picks Updated Every 15 Minutes • For Entertainment Only
+          </div>
+          <h1 class="hero-main-title">Forged By Freedom Model Edge Board</h1>
 
-      <div class="stats-row">
-        <div class="stat">
-          <div class="stat-label">Total Games</div>
-          <div class="stat-value" id="statTotalGames">—</div>
+          <p class="hero-tagline">
+            Provided to you by <strong>ForgedByFreedom.org</strong>
+          </p>
+          <p class="hero-brand">Forged By Freedom Strength &amp; Nutrition</p>
+
+          <div class="hero-pill-row">
+            <div class="hero-pill">Strength • Discipline • Freedom</div>
+            <div class="hero-pill">Fitness • Nutrition • Supplement Programming</div>
+          </div>
+
+          <p class="hero-footnote">
+            Visit us for all your fitness, nutrition and supplement program needs.
+            This information is for entertainment purposes only — not betting advice.
+          </p>
         </div>
-        <div class="stat">
-          <div class="stat-label">Favorites Tagged</div>
-          <div class="stat-value" id="statFavorites">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Picks Available</div>
-          <div class="stat-value" id="statPicksAvail">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">High Confidence</div>
-          <div class="stat-value" id="statHighConf">—</div>
-        </div>
-        <div class="stat time">
-          <div class="stat-label">Last Update (UTC)</div>
-          <div class="stat-value" id="statTimestamp">—</div>
+
+        <div class="hero-badge">
+          <div class="hero-badge-top">Live Model Board</div>
+          <div class="hero-badge-main">
+            <div class="hero-badge-dot"></div>
+            <div>
+              <div>Engine running</div>
+              <div style="font-size:0.75rem;color:rgba(255,230,210,0.8);">
+                Odds + weather + model projections
+              </div>
+            </div>
+          </div>
+          <div class="hero-badge-sub">
+            Updates roughly every <strong>15 minutes</strong> while games are on the board.
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="wrap">
-    <div class="controls">
-      <div class="filters" id="sportFilters">
-        <!-- buttons injected -->
+    <main class="content">
+      <div class="top-bar">
+        <div class="stats">
+          <div class="stat-pill">
+            <div class="stat-label">Total Games</div>
+            <div class="stat-value" id="stat-total-games">0</div>
+            <div class="stat-tagline">On today&apos;s board</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-label">Favorites Tagged</div>
+            <div class="stat-value" id="stat-favorites">0</div>
+            <div class="stat-tagline">High-confidence edges</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-label">Picks Available</div>
+            <div class="stat-value" id="stat-picks">0</div>
+            <div class="stat-tagline">Games with model output</div>
+          </div>
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn active" data-sport="ALL">All</button>
+          <button class="filter-btn" data-sport="NBA">NBA</button>
+          <button class="filter-btn" data-sport="NCAAB">NCAAB</button>
+          <button class="filter-btn" data-sport="NCAAF">NCAAF</button>
+          <button class="filter-btn" data-sport="NFL">NFL</button>
+          <button class="filter-btn" data-sport="NHL">NHL</button>
+        </div>
       </div>
 
-      <div class="search">
-        <input id="searchBox" type="text" placeholder="Search team / matchup / venue..." />
-        <select id="sortSelect">
-          <option value="time">Sort: Time</option>
-          <option value="confidence">Sort: Confidence</option>
-          <option value="edge">Sort: Edge vs Spread</option>
-        </select>
+      <div class="section-header">
+        <div class="section-title">Live Board</div>
+        <div class="section-subtitle" id="section-subtitle">
+          Loading combined odds and picks…
+        </div>
       </div>
-    </div>
 
-    <div id="sportSections">
-      <!-- sections injected -->
-    </div>
+      <div id="cards" class="cards-grid"></div>
 
-    <footer class="footer">
-      <div>© ForgedByFreedom.org — Entertainment Only</div>
+      <div id="empty" class="empty-state" style="display:none;">
+        No games found for this filter yet. If this looks wrong, give the data pipeline a minute and refresh.
+      </div>
+    </main>
+
+    <footer class="footer-note">
+      This site is for entertainment and informational purposes only. No guarantees are made about the accuracy of the
+      data, odds, or projections. Always follow the law and gamble responsibly if you choose to bet.
     </footer>
-  </main>
+  </div>
 
-  <script src="app.js"></script>
+  <script>
+    async function fetchJson(path) {
+      try {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return await res.json();
+      } catch (err) {
+        console.error("Failed to fetch", path, err);
+        return null;
+      }
+    }
+
+    function mergeData(combined, predictionsFile) {
+      const combinedGames = (combined && combined.data) || [];
+      const predsArray = (predictionsFile && (predictionsFile.predictions || predictionsFile.data)) || [];
+
+      const gameById = new Map();
+      combinedGames.forEach((g) => {
+        if (!g) return;
+        gameById.set(String(g.id), g);
+      });
+
+      const merged = predsArray.map((p) => {
+        const game = gameById.get(String(p.id)) || {};
+        const prediction = p.prediction || null;
+        const odds = p.odds || game.odds || null;
+
+        const sport = (p.sport || game.sport || "").toUpperCase();
+        const dateLocal = game.date_local || game.date || "";
+        const shortName = game.shortName || "";
+        const name = p.matchup || game.name || shortName || "Unknown matchup";
+
+        const homeTeam = game.home_team || {};
+        const awayTeam = game.away_team || {};
+
+        const highlight = !!(p.highlight || (prediction && prediction.confidence >= 70));
+
+        return {
+          id: p.id || game.id || null,
+          sport,
+          dateLocal,
+          shortName,
+          name,
+          homeTeam,
+          awayTeam,
+          odds,
+          venue: game.venue || {},
+          weather: game.weather || p.weather || null,
+          risk: game.weatherRisk || p.risk || null,
+          prediction,
+          highlight,
+        };
+      });
+
+      // If for some reason we have combined games with no prediction but you still want them shown,
+      // you could also append them here. For now we show prediction-bearing games only.
+      return merged;
+    }
+
+    function confidenceClass(conf) {
+      if (conf >= 70) return "high";
+      if (conf >= 55) return "medium";
+      return "low";
+    }
+
+    function buildCard(game) {
+      const card = document.createElement("article");
+      card.className = "card" + (game.highlight ? " highlight" : "");
+
+      // League + matchup
+      const league = document.createElement("div");
+      league.className = "card-league";
+      league.textContent = game.sport || "SPORT";
+      card.appendChild(league);
+
+      const title = document.createElement("div");
+      title.className = "card-matchup";
+      title.textContent = game.shortName || game.name;
+      card.appendChild(title);
+
+      const time = document.createElement("div");
+      time.className = "card-time";
+      time.textContent = game.dateLocal ? game.dateLocal + " ET" : "";
+      card.appendChild(time);
+
+      // Teams
+      const teamsRow = document.createElement("div");
+      teamsRow.className = "card-teams";
+
+      const home = document.createElement("div");
+      home.className = "team";
+      home.innerHTML =
+        '<div class="team-label">HOME</div>' +
+        '<div class="team-name">' +
+        (game.homeTeam.name || game.homeTeam.abbr || "Home") +
+        "</div>";
+
+      const away = document.createElement("div");
+      away.className = "team";
+      away.innerHTML =
+        '<div class="team-label">AWAY</div>' +
+        '<div class="team-name">' +
+        (game.awayTeam.name || game.awayTeam.abbr || "Away") +
+        "</div>";
+
+      teamsRow.appendChild(home);
+      teamsRow.appendChild(away);
+      card.appendChild(teamsRow);
+
+      // Odds row
+      const oddsRow = document.createElement("div");
+      oddsRow.className = "odds-row";
+
+      if (game.odds) {
+        const spread = game.odds.spread;
+        const total = game.odds.total;
+        const provider = game.odds.provider || "ESPN";
+
+        const spreadText =
+          spread !== null && spread !== undefined && !Number.isNaN(spread)
+            ? (spread > 0 ? "+" + spread : spread)
+            : "N/A";
+
+        const totalText =
+          total !== null && total !== undefined && !Number.isNaN(total) ? total : "N/A";
+
+        const details =
+          typeof game.odds.details === "string" && game.odds.details.trim().length
+            ? game.odds.details
+            : "N/A";
+
+        oddsRow.innerHTML =
+          "<strong>Odds:</strong> " +
+          details +
+          " <span style=\"color:var(--text-soft);\">(" +
+          provider +
+          ")</span><br>" +
+          "<strong>Spread:</strong> " +
+          spreadText +
+          " &nbsp;|&nbsp; <strong>Total:</strong> " +
+          totalText;
+      } else {
+        oddsRow.innerHTML = "<strong>Odds:</strong> N/A";
+      }
+      card.appendChild(oddsRow);
+
+      // Prediction row
+      const predRow = document.createElement("div");
+      predRow.className = "pred-row";
+
+      if (game.prediction) {
+        const p = game.prediction;
+        const homeAbbr = game.homeTeam.abbr || "HOME";
+        const awayAbbr = game.awayTeam.abbr || "AWAY";
+
+        const main = document.createElement("div");
+        main.className = "pred-row-main";
+
+        const left = document.createElement("div");
+        left.innerHTML =
+          "<strong>Projection:</strong> " +
+          homeAbbr +
+          " " +
+          p.projected_home_score +
+          " – " +
+          awayAbbr +
+          " " +
+          p.projected_away_score +
+          " (Total " +
+          p.projected_total +
+          ", Spread " +
+          p.projected_spread +
+          ")";
+
+        const right = document.createElement("div");
+        const confClass = confidenceClass(p.confidence);
+        right.className = "pred-confidence " + confClass;
+        right.textContent = "Conf: " + p.confidence + "/100";
+
+        main.appendChild(left);
+        main.appendChild(right);
+        predRow.appendChild(main);
+
+        const meta = document.createElement("div");
+        meta.className = "pred-meta";
+        const winPct =
+          typeof p.win_probability_home === "number"
+            ? Math.round(p.win_probability_home * 100)
+            : null;
+
+        if (winPct !== null) {
+          meta.textContent = "Model home win probability: " + winPct + "%";
+        } else {
+          meta.textContent = "Model home win probability: N/A";
+        }
+
+        predRow.appendChild(meta);
+      } else {
+        predRow.innerHTML = "<strong>Picks:</strong> No prediction yet";
+      }
+
+      card.appendChild(predRow);
+
+      // Weather row (basic)
+      const weatherRow = document.createElement("div");
+      weatherRow.className = "weather-row";
+
+      const indoor = !!(game.venue && game.venue.indoor);
+      const w = game.weather || {};
+      const temp = w.temperatureF;
+      const wind = w.windSpeedMph;
+      const rain = w.rainChancePct;
+
+      const parts = [];
+
+      if (indoor) {
+        parts.push('<span class="pill-indoor">Indoor</span>');
+      } else {
+        parts.push('<span class="pill-outdoor">Outdoor</span>');
+      }
+
+      if (temp !== undefined && temp !== null) {
+        parts.push("<span><strong>Temp:</strong> " + temp + "°F</span>");
+      }
+      if (wind !== undefined && wind !== null) {
+        parts.push("<span><strong>Wind:</strong> " + wind + " mph</span>");
+      }
+      if (rain !== undefined && rain !== null) {
+        parts.push("<span><strong>Rain:</strong> " + rain + "%</span>");
+      }
+
+      const riskVal = game.risk && (game.risk.risk || game.risk.level);
+      if (riskVal !== undefined && riskVal !== null) {
+        parts.push('<span class="pill-risk">Weather risk: ' + riskVal + "</span>");
+      }
+
+      if (parts.length === 0) {
+        weatherRow.innerHTML = "<strong>Weather:</strong> N/A or indoor";
+      } else {
+        weatherRow.innerHTML = "<strong>Weather:</strong> " + parts.join(" ");
+      }
+
+      card.appendChild(weatherRow);
+
+      return card;
+    }
+
+    function renderBoard(allGames) {
+      const cardsEl = document.getElementById("cards");
+      const emptyEl = document.getElementById("empty");
+      const statTotal = document.getElementById("stat-total-games");
+      const statFav = document.getElementById("stat-favorites");
+      const statPicks = document.getElementById("stat-picks");
+      const subtitle = document.getElementById("section-subtitle");
+
+      let currentSport = "ALL";
+
+      function applyFilter() {
+        let filtered = allGames;
+        if (currentSport !== "ALL") {
+          filtered = allGames.filter((g) => g.sport === currentSport);
+        }
+
+        cardsEl.innerHTML = "";
+        if (filtered.length === 0) {
+          emptyEl.style.display = "block";
+        } else {
+          emptyEl.style.display = "none";
+          filtered.forEach((g) => cardsEl.appendChild(buildCard(g)));
+        }
+
+        const favoriteCount = filtered.filter((g) => g.highlight).length;
+        const picksCount = filtered.filter((g) => !!g.prediction).length;
+
+        statTotal.textContent = filtered.length;
+        statFav.textContent = favoriteCount;
+        statPicks.textContent = picksCount;
+
+        subtitle.textContent =
+          filtered.length === 0
+            ? "No games found for this sport yet."
+            : "Showing " +
+              filtered.length +
+              " games • " +
+              favoriteCount +
+              " high-confidence edges • " +
+              picksCount +
+              " with projections";
+      }
+
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentSport = btn.dataset.sport;
+          applyFilter();
+        });
+      });
+
+      applyFilter();
+    }
+
+    async function init() {
+      const subtitle = document.getElementById("section-subtitle");
+      subtitle.textContent = "Loading odds, predictions & weather…";
+
+      const [combined, predictionsFile] = await Promise.all([
+        fetchJson("combined.json"),
+        fetchJson("predictions.json"),
+      ]);
+
+      if (!combined || !predictionsFile) {
+        subtitle.textContent =
+          "Error loading data. If this persists more than a few minutes, check the pipeline.";
+        return;
+      }
+
+      const allGames = mergeData(combined, predictionsFile);
+      if (!allGames || allGames.length === 0) {
+        subtitle.textContent =
+          "No games with predictions yet. If this persists after a run, check predictions.json.";
+      } else {
+        subtitle.textContent =
+          "Board ready • Merged " + allGames.length + " games with odds and projections.";
+      }
+
+      renderBoard(allGames);
+    }
+
+    init();
+  </script>
 </body>
 </html>
