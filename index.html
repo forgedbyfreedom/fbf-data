@@ -3,752 +3,826 @@
 <head>
   <meta charset="UTF-8" />
   <title>Forged By Freedom • Live Odds & Picks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #050509;
-      --bg-elevated: #0c0f18;
-      --bg-elevated-soft: #111827;
-      --accent: #ff7a18;
-      --accent-soft: rgba(255, 122, 24, 0.18);
-      --accent-strong: rgba(255, 170, 80, 0.4);
-      --text-main: #f9fafb;
+      --bg-main: #020617;
+      --bg-card: #020b1b;
+      --bg-card-soft: #020819;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.2);
+      --accent-strong: rgba(249, 115, 22, 0.8);
+      --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --card-border: rgba(148, 163, 184, 0.35);
-      --danger: #ef4444;
-      --success: #22c55e;
-      --pill-bg: #020617;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --radius-lg: 18px;
+      --radius-xl: 22px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
       color: var(--text-main);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      letter-spacing: 0.01em;
+      min-height: 100vh;
     }
 
-    .page {
+    .page-shell {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.75rem 1rem 3rem;
+      padding: 24px 16px 40px;
     }
 
     /* HERO HEADER */
-
     .hero {
       text-align: center;
-      margin-bottom: 1.75rem;
+      margin-bottom: 24px;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
+    .hero-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      border: 1px solid rgba(248, 250, 252, 0.16);
-      background: linear-gradient(
-        90deg,
-        rgba(15, 23, 42, 0.85),
-        rgba(30, 64, 175, 0.35),
-        rgba(15, 23, 42, 0.85)
-      );
-      box-shadow: 0 0 18px rgba(96, 165, 250, 0.45);
-      margin-bottom: 0.9rem;
-      color: #e5e7eb;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .hero-provided {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
     .hero-title {
-      font-size: clamp(1.85rem, 3.3vw, 2.6rem);
-      font-weight: 800;
-      letter-spacing: 0.16em;
+      font-size: 1.9rem;
+      line-height: 1.1;
+      margin: 0;
       text-transform: uppercase;
-      margin-bottom: 0.35rem;
-      color: #ffe4b5;
+      letter-spacing: 0.18em;
+      color: #ffedd5;
       text-shadow:
-        0 0 12px rgba(255, 154, 54, 0.9),
-        0 0 34px rgba(255, 122, 24, 0.65),
-        0 0 60px rgba(248, 113, 113, 0.35);
+        0 0 16px rgba(249, 115, 22, 0.75),
+        0 0 40px rgba(249, 115, 22, 0.95);
     }
 
     .hero-tagline {
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.35em;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
       text-transform: uppercase;
+      letter-spacing: 0.3em;
       color: #fed7aa;
-      margin-bottom: 0.75rem;
       text-shadow:
-        0 0 18px rgba(255, 122, 24, 0.85),
-        0 0 36px rgba(249, 115, 22, 0.75);
+        0 0 12px rgba(249, 115, 22, 0.7),
+        0 0 26px rgba(249, 115, 22, 0.8);
     }
 
-    .hero-subline {
-      font-size: 0.9rem;
+    .hero-sub {
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 0.25rem;
-    }
-
-    .hero-subline strong {
-      color: #f97316;
-      font-weight: 600;
+      margin: 2px 0;
     }
 
     .hero-disclaimer {
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #6b7280;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 6px;
     }
 
-    .hero-disclaimer span {
-      color: #f97316;
-      font-weight: 600;
-    }
-
-    /* STATS & FILTERS */
-
-    .top-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    /* STATS BAR */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.75rem;
-      flex: 1 1 260px;
-      min-width: 260px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .stat-card {
-      padding: 0.85rem 0.9rem;
-      border-radius: 0.9rem;
-      background: radial-gradient(circle at top left, #1f2937 0, #020617 55%);
-      border: 1px solid var(--card-border);
+      background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.09), rgba(15, 23, 42, 0.98));
+      border-radius: 14px;
+      padding: 10px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 4px;
     }
 
     .stat-label {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.12em;
       color: var(--text-muted);
     }
 
     .stat-value {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fef3c7;
     }
 
-    .stat-tag {
+    .stat-sub {
       font-size: 0.7rem;
-      color: #22c55e;
+      color: var(--text-muted);
+    }
+
+    /* FILTERS */
+    .filters-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .filters-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.16em;
     }
 
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      justify-content: flex-end;
-      flex: 0 0 auto;
-    }
-
-    .pill {
-      padding: 0.45rem 0.75rem;
+    .filter-pill {
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.8);
-      font-size: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.9);
       color: var(--text-muted);
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition:
-        background 0.15s ease,
-        border-color 0.15s ease,
-        color 0.15s ease,
-        box-shadow 0.15s ease,
-        transform 0.05s ease;
+      transition: all 0.16s ease-out;
     }
 
-    .pill span.count {
-      font-size: 0.7rem;
-      padding: 0.05rem 0.45rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    .pill:hover {
-      border-color: rgba(249, 115, 22, 0.9);
-      color: #fed7aa;
-      box-shadow: 0 0 16px rgba(248, 113, 22, 0.4);
+    .filter-pill:hover {
+      border-color: rgba(248, 250, 252, 0.9);
+      color: #e5e7eb;
       transform: translateY(-1px);
     }
 
-    .pill.active {
-      background: radial-gradient(circle at top left, #7c2d12 0, #1f2937 55%);
-      color: #fed7aa;
-      border-color: rgba(248, 113, 22, 0.9);
+    .filter-pill.active {
+      background: radial-gradient(circle at top, #f97316, #c2410c 80%);
+      color: #0b1120;
+      border-color: transparent;
       box-shadow:
-        0 0 0 1px rgba(248, 250, 252, 0.06),
-        0 0 28px rgba(248, 113, 22, 0.5);
+        0 0 18px rgba(249, 115, 22, 0.6),
+        0 0 46px rgba(248, 250, 252, 0.35);
     }
 
-    /* CARDS GRID */
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.75rem;
-      margin-top: 0.25rem;
+    .filters-meta {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--text-muted);
     }
 
-    .section-heading h2 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #9ca3af;
-    }
-
-    .section-heading small {
-      font-size: 0.75rem;
-      color: #6b7280;
-    }
-
-    .cards-grid {
+    /* GRID + CARDS */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
     }
 
     .game-card {
-      border-radius: 1rem;
-      padding: 0.9rem 0.95rem;
-      background: radial-gradient(circle at top left, #020617 0, #020617 28%, #020617 100%);
-      border: 1px solid var(--card-border);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 10px;
       position: relative;
       overflow: hidden;
     }
 
-    .game-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .game-card:hover::before {
-      opacity: 1;
+    .game-card.highlight {
+      border-color: var(--accent);
       box-shadow:
-        0 0 0 1px rgba(148, 163, 184, 0.8),
-        0 0 22px rgba(148, 163, 184, 0.5);
+        0 0 12px rgba(249, 115, 22, 0.8),
+        0 0 40px rgba(249, 115, 22, 0.7);
     }
 
-    .game-card.high-confidence {
-      border-color: rgba(249, 115, 22, 0.95);
-      box-shadow:
-        0 0 0 1px rgba(251, 146, 60, 0.9),
-        0 0 32px rgba(248, 113, 22, 0.9);
-      background:
-        radial-gradient(circle at top center, rgba(248, 113, 22, 0.32) 0, #020617 40%, #020617 100%);
-    }
-
-    .pill-high {
+    .chip-high {
       position: absolute;
-      top: 0.65rem;
-      right: 0.65rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.4);
-      background: rgba(15, 23, 42, 0.85);
+      top: 8px;
+      right: 10px;
       font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #fed7aa;
-      box-shadow:
-        0 0 18px rgba(248, 113, 22, 0.7),
-        0 0 34px rgba(248, 113, 22, 0.45);
-    }
-
-    .row-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.35rem;
-      align-items: center;
-    }
-
-    .sport-pill {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-    }
-
-    .game-time {
-      font-size: 0.7rem;
-      color: #6b7280;
-      text-align: right;
-    }
-
-    .matchup {
-      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(249, 115, 22, 1), #facc15);
+      color: #111827;
       font-weight: 600;
-      margin-top: 0.1rem;
+      box-shadow: 0 0 16px rgba(249, 115, 22, 0.85);
     }
 
-    .teams {
-      font-size: 0.85rem;
-      color: #d1d5db;
-    }
-
-    .row-odds {
+    .game-top {
       display: flex;
       justify-content: space-between;
-      gap: 0.5rem;
-      align-items: center;
-      margin-top: 0.2rem;
+      align-items: flex-start;
+      gap: 8px;
     }
 
-    .odds-main {
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
-
-    .odds-main span.label {
-      text-transform: uppercase;
+    .sport-tag {
       font-size: 0.7rem;
-      color: #9ca3af;
-      margin-right: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
     }
 
-    .odds-sub {
-      font-size: 0.75rem;
-      color: #9ca3af;
+    .game-date {
+      font-size: 0.74rem;
+      color: var(--text-muted);
     }
 
-    .row-picks {
-      margin-top: 0.35rem;
-      padding-top: 0.35rem;
-      border-top: 1px dashed rgba(148, 163, 184, 0.35);
-      font-size: 0.8rem;
+    .game-main {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 4px;
     }
 
-    .picks-heading {
-      font-size: 0.75rem;
+    .game-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #9ca3af;
     }
 
-    .pick-line {
+    .game-matchup {
+      font-size: 0.95rem;
+      font-weight: 600;
       color: #e5e7eb;
     }
 
-    .pick-line strong {
-      color: #f97316;
+    .game-matchup span.vs {
+      color: #9ca3af;
+      font-weight: 400;
+      margin: 0 3px;
     }
 
-    .pick-conf {
-      font-size: 0.75rem;
-      color: #9ca3af;
+    .game-odds {
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    .row-weather {
-      margin-top: 0.35rem;
-      font-size: 0.75rem;
-      color: #9ca3af;
+    .game-odds strong {
+      color: #f9fafb;
+    }
+
+    .game-meta-row {
       display: flex;
-      justify-content: space-between;
-      gap: 0.6rem;
       flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
     }
 
-    .badge-weather-risk {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
+    .pill {
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.85);
+      padding: 3px 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
     }
 
-    .badge-weather-risk.bad {
-      color: #f97316;
-      border-color: rgba(248, 113, 22, 0.9);
-      box-shadow: 0 0 14px rgba(248, 113, 22, 0.6);
+    .pill span.key {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.65rem;
+      color: #9ca3af;
+      margin-right: 4px;
     }
 
-    .empty-state {
-      text-align: center;
-      margin-top: 2rem;
+    .pill span.val {
+      color: #e5e7eb;
+    }
+
+    /* PICKS STRIP */
+    .picks-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pick-block {
+      border-radius: 12px;
+      padding: 6px 8px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pick-block.straight {
+      background: radial-gradient(circle at top, rgba(55, 65, 81, 0.6), rgba(15, 23, 42, 0.95));
+    }
+
+    .pick-block.ats {
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.45), rgba(15, 23, 42, 0.96));
+    }
+
+    .pick-block.total {
+      background: radial-gradient(circle at top, rgba(22, 163, 74, 0.45), rgba(15, 23, 42, 0.96));
+    }
+
+    .pick-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #cbd5f5;
+    }
+
+    .pick-main {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .pick-sub {
+      font-size: 0.7rem;
+      color: #cbd5f5;
+    }
+
+    .pick-sub span.conf {
+      color: #bbf7d0;
+    }
+
+    .pick-sub span.edge {
+      color: #fed7aa;
+    }
+
+    .no-games {
+      margin-top: 20px;
       font-size: 0.9rem;
-      color: #6b7280;
-    }
-
-    .hidden {
-      display: none;
+      color: var(--text-muted);
+      text-align: center;
     }
 
     @media (max-width: 768px) {
-      .top-row {
-        flex-direction: column;
-        align-items: stretch;
+      .page-shell {
+        padding: 18px 12px 32px;
       }
-
-      .filters {
-        justify-content: flex-start;
+      .hero-title {
+        font-size: 1.5rem;
+        letter-spacing: 0.14em;
       }
-
-      .game-card {
-        padding: 0.85rem;
+      .hero-tagline {
+        font-size: 0.85rem;
+        letter-spacing: 0.22em;
+      }
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+      .picks-strip {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <div class="hero-badge">
-        LIVE ODDS + PICKS UPDATED EVERY 15 MINUTES • FOR ENTERTAINMENT ONLY
-      </div>
+  <div class="page-shell">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-kicker">LIVE ODDS + PICKS UPDATED EVERY 15 MINUTES • FOR ENTERTAINMENT ONLY</p>
+      <p class="hero-provided">Provided to you by ForgedByFreedom.org</p>
       <h1 class="hero-title">FORGED BY FREEDOM STRENGTH &amp; NUTRITION</h1>
       <p class="hero-tagline">STRENGTH • DISCIPLINE • FREEDOM</p>
-      <p class="hero-subline">
-        Provided to you by <strong>ForgedByFreedom.org</strong>
-      </p>
-      <p class="hero-subline">
-        Visit us for all your fitness, nutrition and supplement program needs.
-      </p>
-      <p class="hero-disclaimer">
-        <span>No gambling advice.</span> This dashboard is for informational and entertainment use only.
-      </p>
-    </header>
+      <p class="hero-sub">Visit us for all your fitness, nutrition and supplement program needs.</p>
+      <p class="hero-disclaimer">No gambling advice. This dashboard is for informational and entertainment use only.</p>
+    </section>
 
-    <main>
-      <div class="top-row">
-        <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-label">Total Games</div>
-            <div class="stat-value" id="statTotal">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">High-Confidence Picks</div>
-            <div class="stat-value" id="statHigh">0</div>
-            <div class="stat-tag">70+ confidence</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Favorites Tagged</div>
-            <div class="stat-value" id="statFavs">0</div>
-          </div>
-        </div>
-
-        <div class="filters">
-          <button class="pill active" data-sport="all">
-            ALL
-            <span class="count" id="count-all">0</span>
-          </button>
-          <button class="pill" data-sport="nba">
-            NBA
-            <span class="count" id="count-nba">0</span>
-          </button>
-          <button class="pill" data-sport="ncaab">
-            NCAAB
-            <span class="count" id="count-ncaab">0</span>
-          </button>
-          <button class="pill" data-sport="ncaaf">
-            NCAAF
-            <span class="count" id="count-ncaaf">0</span>
-          </button>
-          <button class="pill" data-sport="nfl">
-            NFL
-            <span class="count" id="count-nfl">0</span>
-          </button>
-          <button class="pill" data-sport="nhl">
-            NHL
-            <span class="count" id="count-nhl">0</span>
-          </button>
-        </div>
+    <!-- STATS -->
+    <section class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Games</div>
+        <div class="stat-value" id="stat-total-games">0</div>
+        <div class="stat-sub">Across NFL, NCAAF, NBA, NCAAB, NHL</div>
       </div>
-
-      <div class="section-heading">
-        <h2 id="section-label">ALL SPORTS</h2>
-        <small id="section-meta">Data loaded every ~15 minutes from predictions.json</small>
+      <div class="stat-card">
+        <div class="stat-label">High-Confidence Picks</div>
+        <div class="stat-value" id="stat-high-confidence">0</div>
+        <div class="stat-sub">Model edges flagged as strongest</div>
       </div>
+      <div class="stat-card">
+        <div class="stat-label">Games With Picks</div>
+        <div class="stat-value" id="stat-with-picks">0</div>
+        <div class="stat-sub">Straight up, ATS, and totals derived from one model</div>
+      </div>
+    </section>
 
-      <section>
-        <div id="cardsGrid" class="cards-grid"></div>
-        <div id="emptyState" class="empty-state hidden">
-          No games available for this filter. Check back after the next JSON update.
-        </div>
-      </section>
-    </main>
+    <!-- FILTERS -->
+    <section class="filters-row">
+      <span class="filters-label">Filter</span>
+      <button class="filter-pill active" data-sport="all">ALL</button>
+      <button class="filter-pill" data-sport="nfl">NFL</button>
+      <button class="filter-pill" data-sport="ncaaf">NCAAF</button>
+      <button class="filter-pill" data-sport="nba">NBA</button>
+      <button class="filter-pill" data-sport="ncaab">NCAAB</button>
+      <button class="filter-pill" data-sport="nhl">NHL</button>
+      <div class="filters-meta" id="last-updated"></div>
+    </section>
+
+    <!-- GRID -->
+    <section id="games-grid" class="grid"></section>
+    <div id="no-games" class="no-games" style="display:none;">
+      No games available for this filter. Check back after the next 15-minute update.
+    </div>
   </div>
 
   <script>
     const state = {
-      all: [],
-      activeSport: "all"
+      allGames: [],
+      activeSport: 'all',
+      lastUpdated: null
     };
 
-    const sportLabels = {
-      nba: "NBA",
-      ncaab: "NCAAB",
-      ncaaf: "NCAAF",
-      nfl: "NFL",
-      nhl: "NHL"
-    };
-
-    function safeArray(arr) {
-      return Array.isArray(arr) ? arr : [];
+    function normalizeSport(code) {
+      if (!code) return 'other';
+      return String(code).toLowerCase();
     }
 
-    function normalizeSport(s) {
-      if (!s) return "";
-      return String(s).toLowerCase();
-    }
+    function buildGameView(game, pred) {
+      const sport = normalizeSport(game.sport);
+      const homeTeam = game.home_team?.name || game.home_team?.abbr || 'Home';
+      const awayTeam = game.away_team?.name || game.away_team?.abbr || 'Away';
 
-    function formatTime(game) {
-      const local = game.date_local || game.date || "";
-      if (!local) return "";
-      return local;
-    }
+      const odds = game.odds || {};
+      const spread = typeof odds.spread === 'number' ? odds.spread : null;
+      const totalLine = typeof odds.total === 'number' ? odds.total : null;
+      const oddsDetails = typeof odds.details === 'string' ? odds.details : null;
 
-    function computeSide(pred) {
-      const p = pred.prediction || {};
-      const spread = typeof p.projected_spread === "number" ? p.projected_spread : null;
-      if (spread === null) return null;
+      const weather = game.weather || {};
+      const risk = game.weatherRisk || {};
+      const indoor = (game.venue && game.venue.indoor) || weather.indoor || false;
 
-      if (spread > 0.5) {
-        return "home";
-      } else if (spread < -0.5) {
-        return "away";
+      const baseConf = typeof pred?.confidence === 'number' ? pred.confidence : 0;
+      const highConfidence = !!pred?.high_confidence;
+      const edge = typeof pred?.edge === 'number' ? pred.edge : null;
+      const margin = typeof pred?.pred_margin === 'number' ? pred.pred_margin : null;
+      const modelTotal = typeof pred?.pred_total === 'number' ? pred.pred_total : null;
+
+      // ---------- Straight Up ----------
+      let suTeam = null;
+      let suConf = null;
+      let suMargin = margin;
+
+      if (margin !== null) {
+        suTeam = margin >= 0 ? homeTeam : awayTeam;
+        const fromMargin = Math.min(60, Math.abs(margin) * 4); // up to ~60%
+        suConf = Math.round(Math.min(99, Math.max(baseConf, fromMargin + 20)));
+      } else if (pred?.pick_team) {
+        suTeam = pred.pick_team;
+        suConf = Math.round(baseConf || 0);
       }
-      return "total";
-    }
 
-    function renderStatsAndCounts() {
-      const games = state.all;
-      const total = games.length;
+      // ---------- ATS ----------
+      let atsTeam = null;
+      let atsConf = null;
+      let atsText = 'No strong edge vs spread';
+      let atsEdge = null;
 
-      const high = games.filter((g) => {
-        const p = g.prediction || {};
-        const c = typeof p.confidence === "number" ? p.confidence : 0;
-        return c >= 70;
-      }).length;
-
-      const favs = games.filter((g) => {
-        const odds = g.odds || {};
-        return typeof odds.details === "string" && odds.details.includes("-");
-      }).length;
-
-      document.getElementById("statTotal").textContent = total;
-      document.getElementById("statHigh").textContent = high;
-      document.getElementById("statFavs").textContent = favs;
-
-      const sportCounts = { all: total, nba: 0, ncaab: 0, ncaaf: 0, nfl: 0, nhl: 0 };
-      for (const g of games) {
-        const s = normalizeSport(g.sport);
-        if (sportCounts[s] != null) {
-          sportCounts[s] += 1;
+      if (spread !== null && margin !== null) {
+        let e = edge;
+        if (e === null) {
+          // fallback: approximate edge as (model margin - absolute spread)
+          const bookAbs = Math.abs(spread);
+          const modelAbs = Math.abs(margin);
+          e = modelAbs - bookAbs;
         }
+        atsEdge = e;
+
+        const strongThresh = 2.0;
+        const leanThresh = 0.5;
+
+        if (Math.abs(e) < leanThresh) {
+          atsText = 'No strong edge vs spread';
+        } else {
+          const modelFavorite = margin >= 0 ? homeTeam : awayTeam;
+          const valueSide = e > 0 ? modelFavorite : (modelFavorite === homeTeam ? awayTeam : homeTeam);
+          atsTeam = valueSide;
+
+          const baseFromEdge = Math.min(40, Math.abs(e) * 10);
+          atsConf = Math.round(Math.min(99, Math.max(baseConf * 0.7, baseFromEdge + 20)));
+          const tag = Math.abs(e) >= strongThresh ? 'ATS PICK' : 'ATS LEAN';
+          atsText = `${tag}: ${valueSide}`;
+        }
+      } else if (spread === null) {
+        atsText = 'No spread line';
       }
 
-      for (const key of Object.keys(sportCounts)) {
-        const el = document.getElementById(`count-${key}`);
-        if (el) el.textContent = sportCounts[key];
+      // ---------- TOTAL ----------
+      let totalPick = null;
+      let totalConf = null;
+      let totalText = 'No total edge';
+      let totalEdge = null;
+
+      if (totalLine !== null && modelTotal !== null) {
+        const diff = modelTotal - totalLine;
+        totalEdge = diff;
+        const absDiff = Math.abs(diff);
+
+        if (absDiff < 1) {
+          totalText = 'No total edge';
+        } else {
+          const isStrong = absDiff >= 3;
+          const pick = diff > 0 ? 'Over' : 'Under';
+          totalPick = pick;
+          const tag = isStrong ? 'BEST TOTAL' : 'TOTAL LEAN';
+          const lineText = typeof totalLine === 'number' ? totalLine.toFixed(1) : String(totalLine);
+          totalText = `${tag}: ${pick} ${lineText}`;
+          const baseFromDiff = Math.min(40, absDiff * 8);
+          totalConf = Math.round(Math.min(99, baseFromDiff + 25));
+        }
+      } else if (totalLine === null) {
+        totalText = 'No total line';
+      }
+
+      const hasPrediction = !!pred;
+
+      return {
+        raw: game,
+        pred,
+        sport,
+        homeTeam,
+        awayTeam,
+        odds,
+        oddsDetails,
+        spread,
+        totalLine,
+        weather,
+        risk,
+        indoor,
+        highConfidence,
+        su: {
+          team: suTeam,
+          confidence: suConf,
+          margin: suMargin
+        },
+        ats: {
+          team: atsTeam,
+          confidence: atsConf,
+          text: atsText,
+          edge: atsEdge
+        },
+        total: {
+          pick: totalPick,
+          confidence: totalConf,
+          text: totalText,
+          edge: totalEdge
+        },
+        hasPrediction
+      };
+    }
+
+    function gameSort(a, b) {
+      const da = new Date(a.raw.date_utc || a.raw.date_local || 0).getTime();
+      const db = new Date(b.raw.date_utc || b.raw.date_local || 0).getTime();
+      return da - db;
+    }
+
+    function formatOddsLine(view) {
+      if (view.oddsDetails) return view.oddsDetails;
+      const parts = [];
+      if (typeof view.spread === 'number') parts.push(`Spread ${view.spread > 0 ? '+' + view.spread : view.spread}`);
+      if (typeof view.totalLine === 'number') parts.push(`Total ${view.totalLine}`);
+      return parts.length ? parts.join(' • ') : 'Odds: N/A';
+    }
+
+    function renderStats() {
+      const totalGames = state.allGames.length;
+      const withPicks = state.allGames.filter(g => g.hasPrediction).length;
+      const highConf = state.allGames.filter(g => g.highConfidence).length;
+
+      document.getElementById('stat-total-games').textContent = totalGames;
+      document.getElementById('stat-with-picks').textContent = withPicks;
+      document.getElementById('stat-high-confidence').textContent = highConf;
+
+      const ts = state.lastUpdated;
+      const meta = document.getElementById('last-updated');
+      if (ts) {
+        meta.textContent = `Data loaded • ${ts}`;
+      } else {
+        meta.textContent = 'Awaiting data...';
       }
     }
 
-    function renderCards() {
-      const grid = document.getElementById("cardsGrid");
-      const empty = document.getElementById("emptyState");
+    function renderGames() {
+      const grid = document.getElementById('games-grid');
+      const emptyNotice = document.getElementById('no-games');
 
-      const sport = state.activeSport;
-      let games = state.all;
+      const filtered = state.allGames
+        .filter(g => state.activeSport === 'all' || g.sport === state.activeSport)
+        .sort(gameSort);
 
-      if (sport !== "all") {
-        games = games.filter((g) => normalizeSport(g.sport) === sport);
-      }
+      grid.innerHTML = '';
 
-      grid.innerHTML = "";
-
-      const sectionLabel = document.getElementById("section-label");
-      if (sport === "all") {
-        sectionLabel.textContent = "ALL SPORTS";
-      } else {
-        sectionLabel.textContent = (sportLabels[sport] || sport.toUpperCase()) + " — " + games.length + " games";
-      }
-
-      if (!games.length) {
-        empty.classList.remove("hidden");
+      if (!filtered.length) {
+        emptyNotice.style.display = 'block';
         return;
       }
-      empty.classList.add("hidden");
+      emptyNotice.style.display = 'none';
 
-      games.forEach((g) => {
-        const p = g.prediction || {};
-        const odds = g.odds || {};
-        const weather = g.weather || {};
-        const risk = g.risk || g.weatherRisk || {};
-        const confidence = typeof p.confidence === "number" ? p.confidence : 0;
-        const high = confidence >= 70;
-        const side = computeSide(g);
+      for (const g of filtered) {
+        const card = document.createElement('article');
+        card.className = 'game-card' + (g.highConfidence ? ' highlight' : '');
 
-        const homeAbbr = (g.home || g.home_team || {}).abbr || "";
-        const awayAbbr = (g.away || g.away_team || {}).abbr || "";
-        const matchup = g.matchup || g.name || `${awayAbbr || "Away"} at ${homeAbbr || "Home"}`;
-
-        let sideText = "No strong edge";
-        if (side === "home" && homeAbbr) sideText = `Lean: ${homeAbbr}`;
-        if (side === "away" && awayAbbr) sideText = `Lean: ${awayAbbr}`;
-        if (side === "total") sideText = "Lean: Total";
-
-        const projHome = typeof p.projected_home_score === "number" ? p.projected_home_score.toFixed(1) : "N/A";
-        const projAway = typeof p.projected_away_score === "number" ? p.projected_away_score.toFixed(1) : "N/A";
-        const projTotal = typeof p.projected_total === "number" ? p.projected_total.toFixed(1) : "N/A";
-        const projSpread = typeof p.projected_spread === "number" ? p.projected_spread.toFixed(1) : "N/A";
-        const winProb = typeof p.win_probability_home === "number" ? (p.win_probability_home * 100).toFixed(1) + "%" : "N/A";
-
-        const oddsLine = odds.details || "N/A";
-        const oddsSpread = (typeof odds.spread === "number") ? odds.spread : "N/A";
-        const oddsTotal = (typeof odds.total === "number") ? odds.total : "N/A";
-        const oddsProvider = odds.provider || "ESPN";
-
-        const indoor = (g.venue && g.venue.indoor) || weather.indoor;
-        let weatherText = "Indoor / N/A";
-        if (!indoor && (weather.temperatureF || weather.windSpeedMph || weather.rainChancePct != null)) {
-          const t = weather.temperatureF != null ? `${weather.temperatureF}°F` : "N/A";
-          const w = weather.windSpeedMph != null ? `${weather.windSpeedMph} mph` : "N/A";
-          const r = weather.rainChancePct != null ? `${weather.rainChancePct}% rain` : "N/A";
-          weatherText = `${t}, wind ${w}, ${r}`;
+        if (g.highConfidence) {
+          const chip = document.createElement('div');
+          chip.className = 'chip-high';
+          chip.textContent = 'HIGH CONFIDENCE';
+          card.appendChild(chip);
         }
 
-        let riskLabel = "Risk: none / indoor";
-        let riskClass = "badge-weather-risk";
-        if (!indoor && risk && typeof risk.risk === "number") {
-          if (risk.risk >= 2) {
-            riskLabel = `Weather risk: ${risk.risk} (watch totals)`;
-            riskClass += " bad";
-          } else if (risk.risk === 1) {
-            riskLabel = "Weather risk: 1 (minor)";
-          } else {
-            riskLabel = "Weather risk: 0 (low)";
-          }
-        }
+        // Top row
+        const top = document.createElement('div');
+        top.className = 'game-top';
+        top.innerHTML = `
+          <div class="sport-tag">${g.sport.toUpperCase()}</div>
+          <div class="game-date">${g.raw.date_local || ''}</div>
+        `;
+        card.appendChild(top);
 
-        const time = formatTime(g);
-        const sportLabel = sportLabels[normalizeSport(g.sport)] || (g.sport || "").toUpperCase();
-
-        const card = document.createElement("article");
-        card.className = "game-card" + (high ? " high-confidence" : "");
-        card.innerHTML = `
-          ${high ? '<div class="pill-high">HIGH CONFIDENCE</div>' : ""}
-          <div class="row-top">
-            <div class="sport-pill">${sportLabel || "SPORT"}</div>
-            <div class="game-time">${time}</div>
+        // Main matchup
+        const main = document.createElement('div');
+        main.className = 'game-main';
+        main.innerHTML = `
+          <div class="game-label">${g.raw.shortName || ''}</div>
+          <div class="game-matchup">
+            ${g.awayTeam}<span class="vs">@</span>${g.homeTeam}
           </div>
-          <div class="matchup">${matchup}</div>
-          <div class="teams">${awayAbbr || "AWAY"} @ ${homeAbbr || "HOME"}</div>
-          <div class="row-odds">
-            <div class="odds-main">
-              <span class="label">Odds:</span> ${oddsLine} (${oddsProvider})
-            </div>
-            <div class="odds-sub">
-              Spread: ${oddsSpread} &nbsp;|&nbsp; Total: ${oddsTotal}
-            </div>
-          </div>
-          <div class="row-picks">
-            <div class="picks-heading">Model Picks</div>
-            <div class="pick-line">
-              Projected score: <strong>${homeAbbr || "HOME"} ${projHome}</strong> –
-              <strong>${awayAbbr || "AWAY"} ${projAway}</strong>
-              (Total: <strong>${projTotal}</strong>, Spread: <strong>${projSpread}</strong>)
-            </div>
-            <div class="pick-line">${sideText}</div>
-            <div class="pick-conf">
-              Confidence: <strong>${confidence}</strong>/100 • Home win probability: ${winProb}
-            </div>
-          </div>
-          <div class="row-weather">
-            <div>Weather: ${weatherText}</div>
-            <div class="${riskClass}">${riskLabel}</div>
+          <div class="game-odds">
+            <strong>${formatOddsLine(g)}</strong>
+            ${g.odds.provider ? `<span> • ${g.odds.provider}</span>` : ''}
           </div>
         `;
-        grid.appendChild(card);
-      });
-    }
+        card.appendChild(main);
 
-    async function loadPredictions() {
-      try {
-        const res = await fetch("predictions.json?ts=" + Date.now());
-        if (!res.ok) {
-          throw new Error("HTTP " + res.status);
+        // Meta row (venue / weather)
+        const metaRow = document.createElement('div');
+        metaRow.className = 'game-meta-row';
+
+        const venueCity = g.raw.venue?.city;
+        const venueState = g.raw.venue?.state;
+        if (venueCity || venueState) {
+          const pill = document.createElement('div');
+          pill.className = 'pill';
+          pill.innerHTML = `<span class="key">Venue</span><span class="val">${venueCity || ''}${venueCity && venueState ? ', ' : ''}${venueState || ''}</span>`;
+          metaRow.appendChild(pill);
         }
-        const data = await res.json();
-        const list = safeArray(data.predictions || data.data || []);
-        state.all = list;
-        renderStatsAndCounts();
-        renderCards();
-      } catch (err) {
-        console.error("Error loading predictions.json:", err);
-        const empty = document.getElementById("emptyState");
-        empty.textContent = "Failed to load predictions.json from GitHub Pages.";
-        empty.classList.remove("hidden");
+
+        const wxPill = document.createElement('div');
+        wxPill.className = 'pill';
+        if (g.indoor) {
+          wxPill.innerHTML = `<span class="key">Weather</span><span class="val">Indoor</span>`;
+        } else if (g.weather && typeof g.weather.temperatureF === 'number') {
+          const t = g.weather.temperatureF;
+          const w = g.weather.windSpeedMph ?? 0;
+          wxPill.innerHTML = `<span class="key">Weather</span><span class="val">${t}°F, wind ${w} mph</span>`;
+        } else {
+          wxPill.innerHTML = `<span class="key">Weather</span><span class="val">N/A</span>`;
+        }
+        metaRow.appendChild(wxPill);
+
+        const riskVal = g.risk && g.risk.risk != null ? g.risk.risk : null;
+        if (riskVal != null) {
+          const riskPill = document.createElement('div');
+          riskPill.className = 'pill';
+          riskPill.innerHTML = `<span class="key">Wx Risk</span><span class="val">${riskVal}</span>`;
+          metaRow.appendChild(riskPill);
+        }
+
+        card.appendChild(metaRow);
+
+        // Picks strip: Straight Up / ATS / Total
+        const picksStrip = document.createElement('div');
+        picksStrip.className = 'picks-strip';
+
+        // Straight Up block
+        const suBlock = document.createElement('div');
+        suBlock.className = 'pick-block straight';
+        const suTeam = g.su.team;
+        const suConf = g.su.confidence;
+        const suMargin = g.su.margin;
+
+        suBlock.innerHTML = `
+          <div class="pick-label">Straight Up</div>
+          <div class="pick-main">
+            ${suTeam ? suTeam : 'No pick'}
+          </div>
+          <div class="pick-sub">
+            ${suConf ? `<span class="conf">${suConf}% confidence</span>` : '<span class="conf">N/A</span>'}
+            ${typeof suMargin === 'number'
+              ? `<span class="edge"> • Model margin ${suMargin > 0 ? '+' + suMargin.toFixed(1) : suMargin.toFixed(1)}</span>`
+              : ''
+            }
+          </div>
+        `;
+        picksStrip.appendChild(suBlock);
+
+        // ATS block
+        const atsBlock = document.createElement('div');
+        atsBlock.className = 'pick-block ats';
+        const atsConf = g.ats.confidence;
+        const atsEdge = g.ats.edge;
+
+        atsBlock.innerHTML = `
+          <div class="pick-label">Against The Spread</div>
+          <div class="pick-main">
+            ${g.ats.team ? g.ats.text : g.ats.text}
+          </div>
+          <div class="pick-sub">
+            ${atsConf ? `<span class="conf">${atsConf}% confidence</span>` : '<span class="conf">N/A</span>'}
+            ${typeof atsEdge === 'number'
+              ? `<span class="edge"> • Edge ${atsEdge > 0 ? '+' + atsEdge.toFixed(1) : atsEdge.toFixed(1)}</span>`
+              : ''
+            }
+          </div>
+        `;
+        picksStrip.appendChild(atsBlock);
+
+        // Total block
+        const totBlock = document.createElement('div');
+        totBlock.className = 'pick-block total';
+        const totConf = g.total.confidence;
+        const totEdge = g.total.edge;
+
+        totBlock.innerHTML = `
+          <div class="pick-label">Total (O/U)</div>
+          <div class="pick-main">
+            ${g.total.text}
+          </div>
+          <div class="pick-sub">
+            ${totConf ? `<span class="conf">${totConf}% confidence</span>` : '<span class="conf">N/A</span>'}
+            ${typeof totEdge === 'number'
+              ? `<span class="edge"> • Edge ${totEdge > 0 ? '+' + totEdge.toFixed(1) : totEdge.toFixed(1)}</span>`
+              : ''
+            }
+          </div>
+        `;
+        picksStrip.appendChild(totBlock);
+
+        card.appendChild(picksStrip);
+        grid.appendChild(card);
       }
     }
 
-    function setupFilters() {
-      const pills = document.querySelectorAll(".pill");
-      pills.forEach((pill) => {
-        pill.addEventListener("click", () => {
-          const sport = pill.getAttribute("data-sport");
-          state.activeSport = sport || "all";
-
-          pills.forEach((p) => p.classList.remove("active"));
-          pill.classList.add("active");
-
-          renderCards();
-        });
+    function setActiveFilter(sport) {
+      state.activeSport = sport;
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.sport === sport);
       });
+      renderGames();
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      setupFilters();
-      loadPredictions();
-      // Auto-refresh every 15 minutes
-      setInterval(loadPredictions, 15 * 60 * 1000);
+    async function loadData() {
+      try {
+        const [combinedRes, predsRes] = await Promise.all([
+          fetch('combined.json', { cache: 'no-store' }),
+          fetch('predictions.json', { cache: 'no-store' })
+        ]);
+
+        const combinedJson = await combinedRes.json();
+        const predsJson = await predsRes.json();
+
+        const gamesRaw = combinedJson.data || [];
+        const predsArr = predsJson.data || predsJson.predictions || [];
+
+        state.lastUpdated = predsJson.timestamp || combinedJson.timestamp || null;
+
+        const predMap = new Map();
+        for (const p of predsArr) {
+          if (p && p.id != null) predMap.set(String(p.id), p);
+        }
+
+        const views = gamesRaw.map(g => {
+          const p = predMap.get(String(g.id)) || null;
+          return buildGameView(g, p);
+        });
+
+        state.allGames = views;
+        renderStats();
+        renderGames();
+      } catch (err) {
+        console.error('Error loading data', err);
+        const grid = document.getElementById('games-grid');
+        grid.innerHTML = '<div class="no-games">Error loading JSON data. Check that combined.json and predictions.json are present.</div>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActiveFilter(btn.dataset.sport);
+        });
+      });
+
+      loadData();
     });
   </script>
 </body>
