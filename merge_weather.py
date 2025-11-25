@@ -2,17 +2,19 @@
 """
 merge_weather.py
 --------------------------------
-Correct merge step:
-- Match weather + risk using game_id (NOT lat/lon).
-- If a game has no weather entry, insert defaults.
+Merges weather.json + weather_risk1.json into combined.json
+using coordinate-based keys ONLY.
+
+Both weather.json and weather_risk1.json use:
+    key = "lat,lon" (rounded to 4 decimals)
 """
 
 import json
 import os
 
-COMBINED_FILE = "combined.json"
-WEATHER_FILE = "weather_raw.json"
-RISK_FILE = "weather_risk1.json"
+COMBINED = "combined.json"
+WEATHER = "weather.json"
+RISK = "weather_risk1.json"
 
 
 def load(path):
@@ -22,63 +24,49 @@ def load(path):
         return json.load(f)
 
 
-def merge_weather(game, weather_map, risk_map):
-    gid = str(game.get("id"))
-
-    w = weather_map.get(gid)
-    r = risk_map.get(gid)
-
-    # Always attach something so front-end doesn't break
-    game["weather"] = w or {
-        "lat": None,
-        "lon": None,
-        "temperatureF": None,
-        "windSpeedMph": None,
-        "rainChancePct": None,
-        "shortForecast": None,
-    }
-
-    game["weatherRisk"] = r or {
-        "risk": None
-    }
+def format_key(lat, lon):
+    try:
+        return f"{float(lat):.4f},{float(lon):.4f}"
+    except:
+        return None
 
 
-def main():
-    combined = load(COMBINED_FILE)
-    weather_raw = load(WEATHER_FILE)
-    risk_raw = load(RISK_FILE)
+def merge():
+    combined = load(COMBINED)
+    weather = load(WEATHER)
+    risk = load(RISK)
 
     if not combined or "data" not in combined:
         print("❌ combined.json missing or invalid")
         return
 
-    if not weather_raw:
-        print("⚠️ weather_raw.json missing")
-        weather_raw = {}
+    weather_map = {d["key"]: d for d in weather.get("data", [])} if weather else {}
+    risk_map = {d["key"]: d for d in risk.get("data", [])} if risk else {}
 
-    if not risk_raw:
-        print("⚠️ weather_risk1.json missing")
-        risk_raw = {}
-
-    # These files are already dicts keyed by gameId
-    weather_map = {str(k): v for k, v in weather_raw.items()}
-    risk_map = {str(k): v for k, v in risk_raw.items()}
-
-    total = len(combined["data"])
     merged = 0
 
-    for game in combined["data"]:
-        gid = str(game.get("id"))
-        if gid in weather_map:
-            merged += 1
-        merge_weather(game, weather_map, risk_map)
+    for g in combined["data"]:
+        venue = g.get("venue", {})
+        lat = venue.get("lat")
+        lon = venue.get("lon")
 
-    # Write updated combined.json
-    with open(COMBINED_FILE, "w") as f:
+        key = format_key(lat, lon)
+        if not key:
+            g["weather"] = {"error": "no_coords"}
+            g["weatherRisk"] = {"risk": None}
+            continue
+
+        g["weather"] = weather_map.get(key, {"error": "no_weather"})
+        g["weatherRisk"] = risk_map.get(key, {"risk": None})
+
+        if key in weather_map:
+            merged += 1
+
+    with open(COMBINED, "w") as f:
         json.dump(combined, f, indent=2)
 
-    print(f"[✅] Weather merged for {merged}/{total} games.")
+    print(f"[✅] Weather merged for {merged}/{len(combined['data'])} games.")
 
 
 if __name__ == "__main__":
-    main()
+    merge()
