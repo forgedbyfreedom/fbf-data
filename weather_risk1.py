@@ -1,68 +1,144 @@
-import json
+#!/usr/bin/env python3
+"""
+weather_risk1.py
+------------------------------------
+Consumes weather_raw.json (indexed by lat,lon keys)
+and produces weather_risk1.json with risk scoring.
 
-def load_json(path):
-    try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except:
-        return {}
+Risk factors included:
+- wind speed
+- temperature (cold & heat)
+- rain chance
+- snow chance (if included in forecast text)
+- storm phrases
+"""
+
+import json
+import os
+import re
+
+RAW_FILE = "weather_raw.json"
+OUT_FILE = "weather_risk1.json"
+
+
+def load(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, "r") as f:
+        return json.load(f)
+
+
+def detect_snow(text):
+    if not text:
+        return False
+    t = text.lower()
+    return any(kw in t for kw in ["snow", "flurries", "wintry", "blizzard"])
+
+
+def detect_storm(text):
+    if not text:
+        return False
+    t = text.lower()
+    return any(kw in t for kw in ["storm", "thunder", "lightning", "severe"])
+
 
 def compute_risk(entry):
-    """Very simple weather risk logic."""
-    temp = entry.get("temp")
-    wind = entry.get("wind")
-    precip = entry.get("precip")
+    """
+    entry = {
+        "lat": float,
+        "lon": float,
+        "temperatureF": int,
+        "windSpeedMph": float,
+        "rainChancePct": int,
+        "shortForecast": str,
+        "detailedForecast": str
+    }
+    """
+    if not entry:
+        return {"risk": None}
 
-    risk = 0
-    details = []
+    temp = entry.get("temperatureF")
+    wind = entry.get("windSpeedMph") or 0
+    rain = entry.get("rainChancePct") or 0
 
-    if temp is None:
-        return 0, ["missing_temp"]
+    short = entry.get("shortForecast", "") or ""
+    detail = entry.get("detailedForecast", "") or ""
+    text = f"{short} {detail}"
 
-    # Temperature risk
-    if temp < 32:
-        risk += 2
-        details.append("cold")
-    elif temp > 90:
-        risk += 2
-        details.append("heat")
+    score = 0
+    factors = []
 
-    # Wind risk
-    if wind is not None and wind > 20:
-        risk += 2
-        details.append("windy")
+    # Wind
+    if wind >= 25:
+        score += 3
+        factors.append("High wind")
+    elif wind >= 15:
+        score += 2
+        factors.append("Windy")
 
-    # Precip risk
-    if precip and precip > 40:
-        risk += 2
-        details.append("precip")
+    # Temperature cold
+    if temp is not None and temp <= 25:
+        score += 3
+        factors.append("Extreme cold")
+    elif temp is not None and temp <= 40:
+        score += 2
+        factors.append("Cold")
 
-    return risk, details
+    # Heat
+    if temp is not None and temp >= 95:
+        score += 2
+        factors.append("Extreme heat")
+
+    # Rain
+    if rain >= 70:
+        score += 3
+        factors.append("Heavy rain")
+    elif rain >= 40:
+        score += 2
+        factors.append("Rain possible")
+
+    # Snow
+    if detect_snow(text):
+        score += 3
+        factors.append("Snow")
+
+    # Storms
+    if detect_storm(text):
+        score += 4
+        factors.append("Storm")
+
+    return {
+        "risk": score,
+        "factors": factors,
+        "temperatureF": temp,
+        "windSpeedMph": wind,
+        "rainChancePct": rain,
+    }
+
 
 def main():
-    weather = load_json("weather.json")
-    risk_output = {"timestamp": None, "data": {}}
+    raw = load(RAW_FILE)
+    if not raw or "data" not in raw:
+        print("❌ weather_raw.json missing or empty")
+        return
 
-    risk_output["timestamp"] = weather.get("timestamp")
+    out_list = []
+    for key, entry in raw["data"].items():
+        risk_info = compute_risk(entry)
+        out_list.append({
+            "key": key,
+            "risk": risk_info["risk"],
+            "factors": risk_info["factors"],
+            "temperatureF": risk_info["temperatureF"],
+            "windSpeedMph": risk_info["windSpeedMph"],
+            "rainChancePct": risk_info["rainChancePct"],
+        })
 
-    for entry in weather.get("data", []):
-        lat = entry.get("lat")
-        lon = entry.get("lon")
-        if lat is None or lon is None:
-            continue
+    with open(OUT_FILE, "w") as f:
+        json.dump({"data": out_list}, f, indent=2)
 
-        key = f"{lat},{lon}"
+    print(f"✅ Weather risk scores computed for {len(out_list)} locations.")
 
-        r, details = compute_risk(entry)
-        risk_output["data"][key] = {
-            "risk": r,
-            "details": details
-        }
-
-    print(f"✅ Weather risk scores computed for {len(risk_output['data'])} locations.")
-
-    with open("weather_risk1.json", "w") as f:
-        json.dump(risk_output, f, indent=2)
 
 if __name__ == "__main__":
     main()
