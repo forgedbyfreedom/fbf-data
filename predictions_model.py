@@ -1,35 +1,19 @@
 #!/usr/bin/env python3
-"""
-predictions_model.py
-Simple feature-driven model:
-- Uses spread, total, power ratings, weather, risk
-- Outputs:
-    projected_spread
-    projected_total
-    projected_home_score
-    projected_away_score
-    win_probability
-    confidence
-"""
-
 import math
-
 
 def sigmoid(x):
     return 1 / (1 + math.exp(-x))
 
-
 def build_features(game):
-    """Extract numerical features safely."""
-    odds = game.get("odds", {})
-    venue = game.get("venue", {})
-    weather = game.get("weather", {})
-    risk = game.get("weatherRisk", {})
+    """Extract numerical features safely and defensively."""
+    odds = game.get("odds") or {}
+    venue = game.get("venue") or {}
+    weather = game.get("weather") or {}
+    risk = game.get("weatherRisk") or {}
 
-    spread = odds.get("spread", 0)
-    total = odds.get("total", 0)
+    spread = odds.get("spread") or 0
+    total = odds.get("total") or 0
 
-    # Weather F
     temp = weather.get("temperatureF") or 70
     wind = weather.get("windSpeedMph") or 0
     rain = weather.get("rainChancePct") or 0
@@ -39,8 +23,7 @@ def build_features(game):
         wind = 0
         rain = 0
 
-    # Risk scoring (0–3)
-    risk_score = (risk.get("risk") or 0)
+    risk_score = risk.get("risk") or 0
 
     return {
         "spread": float(spread),
@@ -52,16 +35,8 @@ def build_features(game):
         "indoor": 1.0 if venue.get("indoor") else 0.0,
     }
 
-
 def predict(game):
-    """
-    Core prediction logic.
-    Tuned so:
-      - outdoor wind/rain reduces scoring
-      - spread influences expected margin
-      - risk reduces overall scoring & confidence
-    """
-
+    """Core prediction logic."""
     X = build_features(game)
 
     spread = X["spread"]
@@ -75,18 +50,15 @@ def predict(game):
         (risk * 2.5)
     )
 
-    # indoor → no penalty
     if X["indoor"] == 1:
         weather_penalty = 0
 
     adjusted_total = max(20.0, total - weather_penalty)
 
     # --- SCORE SPLIT ---
-    # Spread splits scoring
     home_base = adjusted_total / 2 + (-spread / 2)
     away_base = adjusted_total / 2 + (spread / 2)
 
-    # clamp
     home_score = max(3.0, home_base)
     away_score = max(3.0, away_base)
 
