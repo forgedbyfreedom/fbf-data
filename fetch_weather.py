@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import json
 import os
+import re
 import requests
 
 COMBINED = "combined.json"
-OUTFILE = "weather.json"
+STADIUMS_MASTER = "stadiums_master.json"
+OUTFILE = "weather_raw.json"   # <<< IMPORTANT: match weather_risk1.py
 
 HEADERS = {"User-Agent": "fbf-weather-fetcher"}
 
@@ -15,19 +17,35 @@ US_STATES = {
     "WI","WY"
 }
 
-def load(path):
+GEOCODER_BASE = "https://api.weather.gov"
+
+
+def load_json(path):
     if not os.path.exists(path):
         return None
-    with open(path,"r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def is_us_outdoor(venue):
-    """Return True only for USA + outdoor stadiums."""
-    if not venue: 
+
+def normalize_name(name: str) -> str:
+    if not name:
+        return ""
+    n = name.lower().strip()
+    n = re.sub(r"[^a-z0-9 ]+", "", n)
+    n = re.sub(r"\s+", " ", n)
+    return n
+
+
+def is_us_outdoor(venue_rec: dict) -> bool:
+    """
+    Decide if we should fetch weather for this venue.
+    Uses stadiums_master fields, not combined.json.
+    """
+    if not venue_rec:
         return False
 
-    state = venue.get("state")
-    indoor = venue.get("indoor", False)
+    state = venue_rec.get("state")
+    indoor = venue_rec.get("indoor", False)
 
     if indoor:
         return False
@@ -36,81 +54,131 @@ def is_us_outdoor(venue):
 
     return True
 
+
 def fetch_point(lat, lon):
-    """Get the hourly forecast URL from api.weather.gov/points."""
-    url = f"https://api.weather.gov/points/{lat},{lon}"
+    """Get hourly forecast URL from api.weather.gov/points."""
+    url = f"{GEOCODER_BASE}/points/{lat},{lon}"
     try:
         r = requests.get(url, headers=HEADERS, timeout=10)
         if r.status_code == 404:
-            return None  # foreign (Canada/etc)
+            return None  # foreign / non-supported
         r.raise_for_status()
         data = r.json()
-        return data["properties"]["forecastHourly"]
-    except:
+        return data["properties"].get("forecastHourly")
+    except Exception:
         return None
 
-def fetch_hourly(url):
+
+def fetch_hourly(url: str):
     try:
         r = requests.get(url, headers=HEADERS, timeout=10)
         r.raise_for_status()
         return r.json()
-    except:
+    except Exception:
         return None
 
+
+def parse_wind_speed(val):
+    """
+    NWS often returns '7 mph' or '10 to 15 mph'.
+    Convert to a simple numeric mph (best effort).
+    """
+    if val is None:
+        return None
+    if isinstance(val, (int, float)):
+        return val
+    s = str(val)
+    # Grab first integer in the string
+    m = re.search(r"(\d+)", s)
+    if not m:
+        return None
+    try:
+        return int(m.group(1))
+    except Exception:
+        return None
+
+
 def main():
-    combined = load(COMBINED)
+    combined = load_json(COMBINED)
     if not combined or "data" not in combined:
-        print("❌ combined.json missing")
+        print("❌ combined.json missing or invalid")
         return
 
-    results = []
-    total_games = len(combined["data"])
+    stadiums = load_json(STADIUMS_MASTER) or {}
+    if not isinstance(stadiums, dict):
+        print("❌ stadiums_master.json missing or invalid")
+        return
 
+    total_games = len(combined["data"])
     print(f"🔎 Fetching weather for {total_games} games...")
 
-    for g in combined["data"]:
-        venue = g.get("venue") or {}
-        vid = g.get("id")
+    weather_out = {}
 
-        # Skip non-US or indoor
-        if not is_us_outdoor(venue):
-            results.append({
-                "key": str(vid),
-                "error": "no_weather_needed"
-            })
+    for g in combined["data"]:
+        game_id = str(g.get("id"))
+        venue = g.get("venue") or {}
+        venue_name = venue.get("name")
+
+        # If no venue name, we can't map it
+        if not venue_name:
+            weather_out[game_id] = {"error": "no_venue_name"}
             continue
 
-        lat = venue.get("lat")
-        lon = venue.get("lon")
+        norm = normalize_name(venue_name)
+        venue_rec = stadiums.get(norm)
 
+        # If we don't have this venue in master, skip
+        if not venue_rec:
+            weather_out[game_id] = {"error": "no_venue_match"}
+            continue
+
+        # Only US outdoor
+        if not is_us_outdoor(venue_rec):
+            weather_out[game_id] = {"error": "no_weather_needed"}
+            continue
+
+        lat = venue_rec.get("lat")
+        lon = venue_rec.get("lon")
         if not lat or not lon:
-            results.append({"key": str(vid), "error": "missing_coords"})
+            weather_out[game_id] = {"error": "missing_coords"}
             continue
 
         point_url = fetch_point(lat, lon)
         if not point_url:
-            results.append({"key": str(vid), "error": "point_lookup_failed"})
+            weather_out[game_id] = {"error": "point_lookup_failed"}
             continue
 
         hourly = fetch_hourly(point_url)
         if not hourly:
-            results.append({"key": str(vid), "error": "hourly_fetch_failed"})
+            weather_out[game_id] = {"error": "hourly_fetch_failed"}
             continue
 
-        props = hourly["properties"]["periods"][0]  # nearest forecast
+        periods = (hourly.get("properties") or {}).get("periods") or []
+        if not periods:
+            weather_out[game_id] = {"error": "no_periods"}
+            continue
 
-        results.append({
-            "key": str(vid),
-            "temperatureF": props.get("temperature"),
-            "windSpeedMph": props.get("windSpeed"),
-            "shortForecast": props.get("shortForecast"),
-            "detailedForecast": props.get("detailedForecast"),
-        })
+        # Nearest forecast (you can later refine to game-time index if you want)
+        p0 = periods[0]
 
-    with open(OUTFILE,"w") as f:
-        json.dump({"data": results}, f, indent=2)
+        temp = p0.get("temperature")
+        wind_raw = p0.get("windSpeed")
+        wind_mph = parse_wind_speed(wind_raw)
+        short = p0.get("shortForecast")
+        detailed = p0.get("detailedForecast")
 
-    print(f"✅ Weather written: {len(results)} locations")
+        weather_out[game_id] = {
+            "temperatureF": temp,
+            "windSpeedMph": wind_mph,
+            "summary": short,
+            "details": detailed,
+        }
+
+    with open(OUTFILE, "w", encoding="utf-8") as f:
+        json.dump(weather_out, f, indent=2)
+
+    print(f"✅ Weather written: {len(weather_out)} locations → {OUTFILE}")
+
 
 if __name__ == "__main__":
     main()
