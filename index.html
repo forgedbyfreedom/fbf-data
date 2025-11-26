@@ -464,6 +464,7 @@
       return typeof val === "number" && !Number.isNaN(val) ? val : null;
     }
 
+    // Parse odds to identify favorite, dog, and the spread magnitude
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
       const details = odds.details || "";
@@ -477,7 +478,7 @@
       let spreadMag = safeNumber(odds.spread);
       let favoriteName = null;
 
-      // Try to parse from "MSU -19.5" style details
+      // Try to parse from "TEAM -7.5" in odds.details
       const m = details.match(/([A-Za-z.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
       if (m) {
         const teamToken = m[1].trim();
@@ -548,6 +549,7 @@
         if (projSpread !== null) {
           modelMarginHome = projSpread;
         } else if (projHome !== null && projAway !== null) {
+          // Positive if home projected to win, negative if away
           modelMarginHome = projHome - projAway;
         }
       }
@@ -567,6 +569,7 @@
       let suConf = null;
 
       if (winProbHome !== null) {
+        // Home probability vs Away probability
         if (winProbHome >= 0.5) {
           suTeam = homeName;
           suConf = Math.round(winProbHome * 100);
@@ -580,54 +583,47 @@
         suConf = Math.round(base);
       }
 
-      // ---------- ATS ----------
+      // ---------- ATS (favorite cover probability; flip < 50% to dog) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
       let atsConf = null;
 
       if (spreadInfo && modelMarginHome !== null) {
-        const { favoriteName, dogName, line } = spreadInfo;
+        const { favoriteName, dogName, line, homeName: hName, awayName: aName } = spreadInfo;
 
-        // Predicted margin from favorite's perspective
+        // Convert model margin to favorite perspective
+        // modelMarginHome is home - away; flip sign if favorite is away
         let predFavMargin;
-        if (favoriteName === homeName) {
+        if (favoriteName === hName) {
           predFavMargin = modelMarginHome;
-        } else {
+        } else if (favoriteName === aName) {
           predFavMargin = -modelMarginHome;
+        } else {
+          // Fallback: assume favorite is home if something weird happens
+          predFavMargin = modelMarginHome;
         }
 
+        // diff > 0 → model thinks favorite wins by more than line
         const diff = predFavMargin - line;
-        const edgePts = Math.abs(diff);
 
-        const minEdgeForPick = 1.0; // at least 1 point of edge
+        // Map diff (in points) to favorite cover probability, centered at 50%
+        // Smaller scale than before to avoid silly 99% on huge spreads
+        const SCALE_ATS = 3.0; // ~1pt edge → +3% over 50
+        let probFavCovers = 50 + diff * SCALE_ATS;
+        probFavCovers = clamp(probFavCovers, 1, 99);
 
-        if (edgePts >= minEdgeForPick) {
-          // Positive diff: model thinks favorite wins by more than line
-          const coversFavorite = diff >= 0;
-          let sideName = coversFavorite ? favoriteName : dogName;
-          let sideSpread = coversFavorite ? `-${line}` : `+${line}`;
-
-          let rawConf = clamp(edgePts * 6.25, 5, 99);
-          rawConf = Math.round(rawConf);
-
-          // Flip below 50% and keep real spread signs
-          if (rawConf < 50) {
-            rawConf = 100 - rawConf;
-            if (coversFavorite) {
-              // Flip to dog
-              sideName = dogName;
-              sideSpread = `+${line}`;
-            } else {
-              // Flip to favorite
-              sideName = favoriteName;
-              sideSpread = `-${line}`;
-            }
-          }
-
-          atsTeam = sideName;
-          atsConf = rawConf;
-          atsText = `${sideName} ${sideSpread}`;
+        if (probFavCovers >= 50) {
+          // Favorite against the spread
+          atsTeam = favoriteName;
+          atsConf = Math.round(probFavCovers);
+          atsText = `${favoriteName} -${line}`;
+        } else {
+          // Underdog with the points
+          const probDogCovers = clamp(100 - probFavCovers, 1, 99);
+          atsTeam = dogName;
+          atsConf = Math.round(probDogCovers);
+          atsText = `${dogName} +${line}`;
         }
       }
 
