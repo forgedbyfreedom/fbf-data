@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-weather_risk1.py
-Convert weather_raw.json → weather_risk1.json using simple risk scoring.
+weather_risk1.py — compatible with list-based weather_raw.json
 """
 
 import json
@@ -12,85 +11,70 @@ RAW = Path("weather_raw.json")
 OUT = Path("weather_risk1.json")
 
 
-def load(path):
+def load_json(path):
     try:
         with open(path, "r") as f:
             return json.load(f)
-    except:
+    except Exception:
         return None
 
 
-def classify(entry):
-    """Return a simple weather risk score."""
-    if entry.get("error") == "no_weather_needed":
-        return {"risk": None, "desc": "Indoor or no weather impact"}
+def compute_risk(entry):
+    """Return simple risk score based on wind/temp."""
+    if not entry or "error" in entry:
+        return {"risk": None, "reason": entry.get("error", "no_data")}
 
     temp = entry.get("temperatureF")
     wind = entry.get("windSpeedMph")
-    forecast = entry.get("shortForecast") or ""
 
-    # Normalize wind if API returns "12 mph"
-    if isinstance(wind, str) and wind.endswith("mph"):
+    # Try extracting mph from "12 mph" strings
+    if isinstance(wind, str) and "mph" in wind:
         try:
-            wind = int(wind.replace("mph", "").strip())
+            wind = float(wind.split(" ")[0])
         except:
             wind = None
 
     risk = 0
-    notes = []
+    reasons = []
 
-    # TEMP
-    if temp is not None:
-        if temp <= 25:
-            risk += 3; notes.append("Very cold")
-        elif temp <= 40:
-            risk += 2; notes.append("Cold")
+    if wind and wind >= 15:
+        risk += 1
+        reasons.append("wind")
 
-    # WIND
-    if wind is not None:
-        if wind >= 25:
-            risk += 3; notes.append("High wind")
-        elif wind >= 15:
-            risk += 1; notes.append("Windy")
-
-    # PRECIP
-    f = forecast.lower()
-    if "snow" in f:
-        risk += 3; notes.append("Snow")
-    elif "rain" in f:
-        risk += 2; notes.append("Rain")
-    elif "showers" in f:
-        risk += 1; notes.append("Showers")
+    if temp and temp <= 32:
+        risk += 1
+        reasons.append("cold")
 
     return {
-        "risk": risk if risk > 0 else None,
-        "desc": ", ".join(notes) if notes else "No significant impact"
+        "risk": risk,
+        "factors": reasons or None
     }
 
 
 def main():
-    raw = load(RAW)
-    if not raw or "data" not in raw:
-        print("❌ weather_raw.json missing or invalid")
+    raw = load_json(RAW)
+    if not raw or "data" not in raw or not isinstance(raw["data"], list):
+        print("❌ weather_raw.json missing or empty")
         return
 
-    out = {}
-    for entry in raw["data"]:
-        key = entry.get("key")
+    output = {}
+
+    for item in raw["data"]:
+        key = str(item.get("key"))
         if not key:
             continue
-
-        out[key] = classify(entry)
+        output[key] = compute_risk(item)
 
     payload = {
         "timestamp": datetime.datetime.utcnow().isoformat(),
-        "data": out
+        "count": len(output),
+        "data": output
     }
 
     with open(OUT, "w") as f:
         json.dump(payload, f, indent=2)
 
-    print(f"✅ weather_risk1.json written ({len(out)} entries)")
+    print(f"✅ weather_risk1.json written ({len(output)} entries)")
 
 
 if __name__ == "__main__":
