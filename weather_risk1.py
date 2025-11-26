@@ -1,144 +1,78 @@
 #!/usr/bin/env python3
-"""
-weather_risk1.py
-------------------------------------
-Consumes weather_raw.json (indexed by lat,lon keys)
-and produces weather_risk1.json with risk scoring.
-
-Risk factors included:
-- wind speed
-- temperature (cold & heat)
-- rain chance
-- snow chance (if included in forecast text)
-- storm phrases
-"""
-
 import json
-import os
-import re
+import datetime
+from pathlib import Path
 
-RAW_FILE = "weather_raw.json"
-OUT_FILE = "weather_risk1.json"
-
+RAW = Path("weather_raw.json")
+OUT = Path("weather_risk1.json")
 
 def load(path):
-    if not os.path.exists(path):
+    try:
+        with open(path, "r") as f:
+            return json.load(f)
+    except:
         return None
-    with open(path, "r") as f:
-        return json.load(f)
 
-
-def detect_snow(text):
-    if not text:
-        return False
-    t = text.lower()
-    return any(kw in t for kw in ["snow", "flurries", "wintry", "blizzard"])
-
-
-def detect_storm(text):
-    if not text:
-        return False
-    t = text.lower()
-    return any(kw in t for kw in ["storm", "thunder", "lightning", "severe"])
-
-
-def compute_risk(entry):
-    """
-    entry = {
-        "lat": float,
-        "lon": float,
-        "temperatureF": int,
-        "windSpeedMph": float,
-        "rainChancePct": int,
-        "shortForecast": str,
-        "detailedForecast": str
-    }
-    """
+def classify(entry):
+    """Simple rules for risk scoring."""
     if not entry:
-        return {"risk": None}
+        return {"risk": 0, "note": "no weather data"}
+
+    if entry.get("error"):
+        return {"risk": 0, "note": entry["error"]}
 
     temp = entry.get("temperatureF")
-    wind = entry.get("windSpeedMph") or 0
-    rain = entry.get("rainChancePct") or 0
+    wind_raw = entry.get("windSpeedMph")
 
-    short = entry.get("shortForecast", "") or ""
-    detail = entry.get("detailedForecast", "") or ""
-    text = f"{short} {detail}"
+    try:
+        wind = int(wind_raw.split()[0]) if isinstance(wind_raw, str) else wind_raw
+    except:
+        wind = None
 
-    score = 0
-    factors = []
+    risk = 0
+    notes = []
 
-    # Wind
-    if wind >= 25:
-        score += 3
-        factors.append("High wind")
-    elif wind >= 15:
-        score += 2
-        factors.append("Windy")
+    if temp is not None:
+        if temp <= 20: 
+            risk += 2
+            notes.append("very cold")
+        elif temp <= 32:
+            risk += 1
+            notes.append("cold")
 
-    # Temperature cold
-    if temp is not None and temp <= 25:
-        score += 3
-        factors.append("Extreme cold")
-    elif temp is not None and temp <= 40:
-        score += 2
-        factors.append("Cold")
-
-    # Heat
-    if temp is not None and temp >= 95:
-        score += 2
-        factors.append("Extreme heat")
-
-    # Rain
-    if rain >= 70:
-        score += 3
-        factors.append("Heavy rain")
-    elif rain >= 40:
-        score += 2
-        factors.append("Rain possible")
-
-    # Snow
-    if detect_snow(text):
-        score += 3
-        factors.append("Snow")
-
-    # Storms
-    if detect_storm(text):
-        score += 4
-        factors.append("Storm")
+    if wind is not None:
+        if wind >= 25:
+            risk += 2
+            notes.append("high wind")
+        elif wind >= 15:
+            risk += 1
+            notes.append("windy")
 
     return {
-        "risk": score,
-        "factors": factors,
-        "temperatureF": temp,
-        "windSpeedMph": wind,
-        "rainChancePct": rain,
+        "risk": risk,
+        "note": ", ".join(notes) if notes else "normal"
     }
 
-
 def main():
-    raw = load(RAW_FILE)
+    raw = load(RAW)
     if not raw or "data" not in raw:
-        print("❌ weather_raw.json missing or empty")
+        print("❌ weather_raw.json missing or invalid")
         return
 
-    out_list = []
-    for key, entry in raw["data"].items():
-        risk_info = compute_risk(entry)
-        out_list.append({
-            "key": key,
-            "risk": risk_info["risk"],
-            "factors": risk_info["factors"],
-            "temperatureF": risk_info["temperatureF"],
-            "windSpeedMph": risk_info["windSpeedMph"],
-            "rainChancePct": risk_info["rainChancePct"],
-        })
+    output = {}
+    for entry in raw["data"]:
+        key = entry.get("key")
+        if key is None:
+            continue
+        output[str(key)] = classify(entry)
 
-    with open(OUT_FILE, "w") as f:
-        json.dump({"data": out_list}, f, indent=2)
+    with open(OUT, "w") as f:
+        json.dump({
+            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "data": output
+        }, f, indent=2)
 
-    print(f"✅ Weather risk scores computed for {len(out_list)} locations.")
-
+    print(f"✅ Built weather_risk1.json with {len(output)} entries")
 
 if __name__ == "__main__":
     main()
