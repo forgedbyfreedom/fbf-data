@@ -94,6 +94,41 @@
       margin-top: 6px;
     }
 
+    /* NEW: ACCURACY TRACKER IN HERO */
+    .hero-accuracy-title {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #fbbf24;
+    }
+
+    .hero-accuracy-line {
+      margin-top: 4px;
+      font-size: 0.88rem;
+      color: #e5e7eb;
+    }
+
+    .hero-accuracy-line span.label {
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      margin-right: 4px;
+    }
+
+    .hero-accuracy-line span.val {
+      font-weight: 600;
+      color: #fef3c7;
+      margin-right: 10px;
+    }
+
+    .hero-accuracy-by-sport {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
     /* STATS BAR */
     .stats-row {
       display: grid;
@@ -403,6 +438,15 @@
       <p class="hero-tagline">STRENGTH • DISCIPLINE • FREEDOM</p>
       <p class="hero-sub">Visit us for all your fitness, nutrition and supplement program needs.</p>
       <p class="hero-disclaimer">No gambling advice. This dashboard is for informational and entertainment use only.</p>
+
+      <!-- ACCURACY TRACKER -->
+      <p class="hero-accuracy-title">Accuracy Tracker (Games After Nov 26, 2025)</p>
+      <p class="hero-accuracy-line">
+        <span class="label">Straight Up</span><span class="val" id="acc-su">--%</span>
+        <span class="label">ATS</span><span class="val" id="acc-ats">--%</span>
+        <span class="label">O/U</span><span class="val" id="acc-ou">--%</span>
+      </p>
+      <p class="hero-accuracy-by-sport" id="acc-by-sport"></p>
     </section>
 
     <!-- STATS -->
@@ -447,7 +491,8 @@
     const state = {
       allGames: [],
       activeSport: "all",
-      lastUpdated: null
+      lastUpdated: null,
+      accuracy: null
     };
 
     function normalizeSport(code) {
@@ -469,14 +514,14 @@
     }
 
     function buildSpreadInfo(game, pred) {
-      const odds = game.odds || pred?.odds || {};
+      const odds = game.odds || (pred && pred.odds) || {};
       const details = odds.details || "";
 
       const homeTeamObj = game.home_team || {};
       const awayTeamObj = game.away_team || {};
 
-      const homeName = homeTeamObj.name || game.home || pred?.home || "Home";
-      const awayName = awayTeamObj.name || game.away || pred?.away || "Away";
+      const homeName = homeTeamObj.name || game.home || (pred && pred.home) || "Home";
+      const awayName = awayTeamObj.name || game.away || (pred && pred.away) || "Away";
 
       let spreadMag = safeNumber(odds.spread);
       let favoriteName = null;
@@ -521,30 +566,30 @@
     }
 
     function buildGameView(game, pred) {
-      const sport = normalizeSport(game.sport || pred?.sport);
+      const sport = normalizeSport(game.sport || (pred && pred.sport));
 
       const homeTeam = game.home_team || {};
       const awayTeam = game.away_team || {};
 
-      const homeName = homeTeam.name || game.home || pred?.home || "Home";
-      const awayName = awayTeam.name || game.away || pred?.away || "Away";
+      const homeName = homeTeam.name || game.home || (pred && pred.home) || "Home";
+      const awayName = awayTeam.name || game.away || (pred && pred.away) || "Away";
 
-      const odds = game.odds || pred?.odds || {};
+      const odds = game.odds || (pred && pred.odds) || {};
       const oddsDetails = typeof odds.details === "string" ? odds.details : null;
       const totalLine = safeNumber(odds.total);
 
-      const venue = game.venue || pred?.venue || {};
-      const weather = game.weather || pred?.weather || null;
-      const risk = game.weatherRisk || game.risk || pred?.risk || null;
+      const venue = game.venue || (pred && pred.venue) || {};
+      const weather = game.weather || (pred && pred.weather) || null;
+      const risk = game.weatherRisk || game.risk || (pred && pred.risk) || null;
 
       const indoor = !!(venue.indoor || (weather && weather.indoor));
 
-      const predCore = pred?.prediction || {};
+      const predCore = pred && pred.prediction ? pred.prediction : {};
       const projHome = safeNumber(predCore.projected_home_score);
       const projAway = safeNumber(predCore.projected_away_score);
       const winProbHome = safeNumber(predCore.win_probability_home);
 
-      let modelMarginHome = safeNumber(pred?.pred_margin);
+      let modelMarginHome = safeNumber(pred && pred.pred_margin);
       if (modelMarginHome === null) {
         const projSpread = safeNumber(predCore.projected_spread);
         if (projSpread !== null) {
@@ -554,7 +599,7 @@
         }
       }
 
-      let modelTotal = safeNumber(pred?.pred_total);
+      let modelTotal = safeNumber(pred && pred.pred_total);
       if (modelTotal === null) {
         const projTotal = safeNumber(predCore.projected_total);
         if (projTotal !== null) {
@@ -564,7 +609,7 @@
         }
       }
 
-      // ---------- Straight Up (use win probability when available) ----------
+      // Straight Up
       let suTeam = null;
       let suConf = null;
 
@@ -582,7 +627,7 @@
         suConf = Math.round(base);
       }
 
-      // ---------- ATS (favorite vs dog, flip below 50%, keep real spread signs) ----------
+      // ATS
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
@@ -591,7 +636,6 @@
       if (spreadInfo && modelMarginHome !== null) {
         const { favoriteName, dogName, line, homeName: hName, awayName: aName } = spreadInfo;
 
-        // Predicted margin from favorite's perspective
         let predFavMargin;
         if (favoriteName === hName) {
           predFavMargin = modelMarginHome;
@@ -628,7 +672,7 @@
         }
       }
 
-      // ---------- TOTAL (O/U) ----------
+      // TOTAL
       let totalPick = null;
       let totalText = "No total edge";
       let totalConf = null;
@@ -653,7 +697,7 @@
 
       const hasPrediction = !!pred;
       const highConfidence =
-        !!pred?.highlight ||
+        !!(pred && pred.highlight) ||
         (suConf !== null && suConf >= 80) ||
         (atsConf !== null && atsConf >= 80) ||
         (totalConf !== null && totalConf >= 80);
@@ -752,6 +796,41 @@
       } else {
         meta.textContent = "Awaiting data...";
       }
+    }
+
+    function renderAccuracy() {
+      const acc = state.accuracy;
+      const suEl = document.getElementById("acc-su");
+      const atsEl = document.getElementById("acc-ats");
+      const ouEl = document.getElementById("acc-ou");
+      const bySportEl = document.getElementById("acc-by-sport");
+
+      if (!acc) {
+        suEl.textContent = "--%";
+        atsEl.textContent = "--%";
+        ouEl.textContent = "--%";
+        bySportEl.textContent = "";
+        return;
+      }
+
+      const su = typeof acc.SU_accuracy === "number" ? acc.SU_accuracy.toFixed(1) : "0.0";
+      const ats = typeof acc.ATS_accuracy === "number" ? acc.ATS_accuracy.toFixed(1) : "0.0";
+      const ou = typeof acc.OU_accuracy === "number" ? acc.OU_accuracy.toFixed(1) : "0.0";
+
+      suEl.textContent = `${su}%`;
+      atsEl.textContent = `${ats}%`;
+      ouEl.textContent = `${ou}%`;
+
+      const bySport = acc.by_sport || {};
+      const parts = [];
+      for (const key of Object.keys(bySport).sort()) {
+        const s = bySport[key];
+        const s_su = typeof s.SU_accuracy === "number" ? s.SU_accuracy.toFixed(1) : "0.0";
+        const s_ats = typeof s.ATS_accuracy === "number" ? s.ATS_accuracy.toFixed(1) : "0.0";
+        const s_ou = typeof s.OU_accuracy === "number" ? s.OU_accuracy.toFixed(1) : "0.0";
+        parts.push(`${key.toUpperCase()}: ${s_su}% SU / ${s_ats}% ATS / ${s_ou}% O/U`);
+      }
+      bySportEl.textContent = parts.join(" • ");
     }
 
     function renderGames() {
@@ -911,6 +990,23 @@
       renderGames();
     }
 
+    async function loadAccuracy() {
+      try {
+        const res = await fetch("performance_log.json?v=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) {
+          throw new Error("no accuracy file");
+        }
+        const data = await res.json();
+        const arr = Array.isArray(data) ? data : [data];
+        const latest = arr[arr.length - 1];
+        state.accuracy = latest || null;
+      } catch (err) {
+        console.warn("Accuracy data not available:", err);
+        state.accuracy = null;
+      }
+      renderAccuracy();
+    }
+
     async function loadData() {
       try {
         const [combinedRes, predsRes] = await Promise.all([
@@ -962,6 +1058,7 @@
       });
 
       loadData();
+      loadAccuracy();
     });
   </script>
 </body>
