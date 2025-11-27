@@ -1,53 +1,76 @@
 #!/usr/bin/env python3
-"""
-Merge weather_risk1.json into combined.json.
-"""
-
-import json, datetime
+import json
+import os
 from pathlib import Path
+import datetime
 
-COMBINED = Path("combined.json")
-WEATHER = Path("weather_risk1.json")
+COMBINED_FILE = Path("combined.json")
+WEATHER_FILE = Path("weather.json")
+OUT_FILE = Path("weather_merged.json")
 
-def load(path):
+
+def load_json(path):
     if not path.exists():
         return None
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-def normalize(name):
-    return name.lower().strip() if name else ""
+
+def save_json(path, obj):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2)
+
 
 def main():
-    combined = load(COMBINED)
-    weather = load(WEATHER)
+    combined = load_json(COMBINED_FILE)
+    weather = load_json(WEATHER_FILE)
 
     if not combined or "data" not in combined:
-        print("❌ combined.json invalid")
+        print("❌ combined.json missing or invalid")
+        return
+    if not weather or "data" not in weather:
+        print("❌ weather.json missing or invalid")
         return
 
-    wx_map = {}
-    for w in weather.get("data", []):
-        key = normalize(w["key"])
-        wx_map[key] = w
+    wmap = weather["data"]  # { gameId: { ... } }
 
-    for g in combined["data"]:
-        venue_name = normalize(g.get("venue", {}).get("name"))
-        wx = wx_map.get(venue_name)
-        if wx:
-            g["weather"] = {
-                "temperatureF": wx.get("temperatureF"),
-                "windSpeedMph": wx.get("windSpeedMph"),
-                "shortForecast": wx.get("shortForecast"),
-            }
-            g["weatherRisk"] = {"risk": wx.get("risk")}
+    games = combined["data"]
+    attached = 0
 
-    combined["timestamp"] = datetime.datetime.utcnow().isoformat()
+    for g in games:
+        if not isinstance(g, dict):
+            continue
+        gid = g.get("id")
+        if gid is None:
+            continue
+        wk = wmap.get(str(gid))
+        if not wk:
+            continue
 
-    with open(COMBINED, "w") as f:
-        json.dump(combined, f, indent=2)
+        # Build normalized weather object for frontend
+        temp = wk.get("temperatureF")
+        wind = wk.get("windSpeedMph")
+        summary = wk.get("shortForecast") or wk.get("summary")
+        risk_val = wk.get("risk")
 
-    print("✅ Weather merged into combined.json")
+        g["weather"] = {
+            "summary": summary,
+            "description": wk.get("detailedForecast"),
+            "temperatureF": temp,
+            "temp": temp,
+            "windSpeedMph": wind,
+            "wind": wind,
+        }
+        g["weatherRisk"] = {"risk": risk_val}
+        attached += 1
+
+    combined["weather_merged_at"] = datetime.datetime.utcnow().isoformat()
+
+    # Write merged snapshot AND overwrite combined.json so frontend sees it
+    save_json(OUT_FILE, combined)
+    save_json(COMBINED_FILE, combined)
+    print(f"✅ Weather merged onto {attached} games → {OUT_FILE} & {COMBINED_FILE}")
+
 
 if __name__ == "__main__":
     main()
