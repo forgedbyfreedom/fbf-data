@@ -1,15 +1,27 @@
 #!/usr/bin/env python3
 """
 track_accuracy.py
-Evaluates weekly accuracy for favorites, ATS, and O/U based on ESPN Core API final scores.
-Requires an up-to-date combined.json (from your odds fetchers).
-Logs results to performance_log.json
+Evaluates accuracy for Straight Up, ATS, and Over/Under picks
+ONLY for games dated AFTER 2025-11-26.
+
+Requires an up-to-date combined.json (your main game data feed).
+Logs results to performance_log.json.
+
+Tracks ONLY picks your system actually made (SU / ATS / O/U independently).
 """
 
-import requests, json, os
+import requests
+import json
+import os
 from datetime import datetime, timezone
 
 OUTPUT = "performance_log.json"
+CUTOFF_DATE = datetime(2025, 11, 26, tzinfo=timezone.utc)  # Track from Nov 27 onward
+
+
+# ------------------------------------------------------------
+# Helpers
+# ------------------------------------------------------------
 
 def get_json(url):
     try:
@@ -20,17 +32,36 @@ def get_json(url):
         print(f"⚠️  Failed {url}: {e}")
         return None
 
+
+def parse_game_date(raw):
+    """Return datetime object from combined.json date."""
+    dt = raw.get("date_utc") or raw.get("date_local")
+    if not dt:
+        return None
+
+    try:
+        if "T" in dt:
+            return datetime.fromisoformat(dt.replace("Z", "+00:00"))
+        return datetime.strptime(dt, "%Y-%m-%d %I:%M %p ET").replace(tzinfo=timezone.utc)
+    except Exception:
+        return None
+
+
 def extract_score(event):
-    """Extract team scores cleanly from ESPN Core API event object."""
+    """Extract final scores from an ESPN Core event object."""
     try:
         competitors = event["competitions"][0]["competitors"]
         return {
             c["team"]["displayName"]: int(c.get("score", 0))
-            for c in competitors
-            if "team" in c
+            for c in competitors if "team" in c
         }
     except Exception:
         return {}
+
+
+# ------------------------------------------------------------
+# MAIN
+# ------------------------------------------------------------
 
 def main():
     if not os.path.exists("combined.json"):
@@ -38,12 +69,18 @@ def main():
         return
 
     with open("combined.json") as f:
-        odds_data = json.load(f).get("data", [])
+        combined = json.load(f)
+
+    games = combined.get("data", [])
 
     results = []
-    total_su = total_ats = total_ou = total_games = 0
 
-    # ESPN Core API league map
+    # Running totals (only for categories where picks exist)
+    total_su = total_su_correct = 0
+    total_ats = total_ats_correct = 0
+    total_ou = total_ou_correct = 0
+
+    # ESPN Core league map
     league_map = {
         "nfl": "football/leagues/nfl",
         "ncaaf": "football/leagues/college-football",
@@ -53,92 +90,162 @@ def main():
         "mlb": "baseball/leagues/mlb",
     }
 
-    for g in odds_data:
-        sport_key = g.get("sport_key", "")
-        sport = sport_key.split("_")[-1]
+    print("🔍 Checking final scores...")
 
-        league_path = league_map.get(sport, None)
-        if not league_path:
+    for g in games:
+        # Must have a valid game date
+        g_date = parse_game_date(g)
+        if g_date is None or g_date <= CUTOFF_DATE:
+            continue  # ❗ Ignore games before cutoff
+
+        sport_key = g.get("sport", "").lower()
+        if sport_key not in league_map:
             continue
 
+        league_path = league_map[sport_key]
+
+        # Pull ESPN events list
         url = f"https://sports.core.api.espn.com/v2/sports/{league_path}/events"
         events_data = get_json(url)
         if not events_data or "items" not in events_data:
-            print(f"⚠️  No events found for {sport_key}")
             continue
 
+        # Find matching game by team names
+        home = g["home_team"]["name"]
+        away = g["away_team"]["name"]
+
+        event_match = None
         for ev_ref in events_data["items"]:
             if not isinstance(ev_ref, dict) or "$ref" not in ev_ref:
                 continue
 
-            ev_url = ev_ref["$ref"]
-            event_data = get_json(ev_url)
-            if not event_data:
+            event = get_json(ev_ref["$ref"])
+            if not event:
                 continue
 
-            name = event_data.get("name", "")
-            if g["home_team"] not in name and g["away_team"] not in name:
-                continue
+            name = event.get("name", "")
+            if home in name and away in name:
+                event_match = event
+                break
 
-            scores = extract_score(event_data)
-            if len(scores) < 2:
-                continue
+        if not event_match:
+            continue
 
-            fav = g.get("favorite_team")
-            dog = g.get("dog_team")
-            spread = g.get("fav_spread", 0) or 0
-            total_line = g.get("total", 0) or 0
+        scores = extract_score(event_match)
+        if len(scores) < 2:
+            continue
 
-            fav_score = scores.get(fav, 0)
-            dog_score = scores.get(dog, 0)
-            total_score = fav_score + dog_score
+        # Identify favorite/dog
+        fav = g.get("favorite_team")
+        dog = g.get("dog_team")
+        spread = float(g.get("fav_spread") or 0)
+        total_line = g.get("total")
 
-            # Straight up (SU)
-            su_correct = fav_score > dog_score
+        fav_score = scores.get(fav, 0)
+        dog_score = scores.get(dog, 0)
+        total_score = fav_score + dog_score
 
-            # ATS (cover spread)
-            ats_correct = (fav_score - dog_score) > abs(spread)
+        # -------------------------------------------------------
+        # Straight Up (ONLY if we made an SU pick)
+        # -------------------------------------------------------
+        su_pick = g.get("pick_su_team")
+        su_correct = None
 
-            # Over/Under
-            ou_correct = total_score > total_line
+        if su_pick:
+            total_su += 1
+            winner = fav if fav_score > dog_score else dog
+            su_correct = (su_pick == winner)
+            if su_correct:
+                total_su_correct += 1
 
-            results.append({
-                "matchup": g["matchup"],
-                "favorite": fav,
-                "spread": spread,
-                "total": total_line,
-                "fav_score": fav_score,
-                "dog_score": dog_score,
-                "SU_correct": su_correct,
-                "ATS_correct": ats_correct,
-                "OU_correct": ou_correct,
-            })
+        # -------------------------------------------------------
+        # ATS (ONLY if we made an ATS pick)
+        # -------------------------------------------------------
+        ats_pick = g.get("pick_ats_team")
+        ats_pick_line = g.get("pick_ats_line")
+        ats_correct = None
 
-            total_su += int(su_correct)
-            total_ats += int(ats_correct)
-            total_ou += int(ou_correct)
-            total_games += 1
-            break
+        if ats_pick and ats_pick_line is not None:
+            total_ats += 1
+
+            # Determine ATS winner using actual scores
+            fav_margin = fav_score - dog_score
+            covers_fav = fav_margin > spread
+            ats_real_team = fav if covers_fav else dog
+
+            ats_correct = (ats_pick == ats_real_team)
+            if ats_correct:
+                total_ats_correct += 1
+
+        # -------------------------------------------------------
+        # OVER/UNDER (ONLY if we made an O/U pick)
+        # -------------------------------------------------------
+        ou_pick = g.get("pick_total")
+        ou_correct = None
+
+        if ou_pick and total_line is not None:
+            total_ou += 1
+            if ou_pick == "Over":
+                ou_correct = total_score > total_line
+            else:
+                ou_correct = total_score < total_line
+
+            if ou_correct:
+                total_ou_correct += 1
+
+        # Save results entry
+        results.append({
+            "matchup": g.get("shortName"),
+            "sport": sport_key,
+            "date": g.get("date_local"),
+            "favorite": fav,
+            "spread": spread,
+            "total_line": total_line,
+            "fav_score": fav_score,
+            "dog_score": dog_score,
+            "total_score": total_score,
+            "SU_pick": su_pick,
+            "SU_correct": su_correct,
+            "ATS_pick": ats_pick,
+            "ATS_correct": ats_correct,
+            "OU_pick": ou_pick,
+            "OU_correct": ou_correct
+        })
+
+    # ------------------------------------------------------------
+    # Compute final accuracy
+    # ------------------------------------------------------------
 
     accuracy = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "games_checked": total_games,
-        "SU_accuracy": round((total_su / total_games * 100), 2) if total_games else 0,
-        "ATS_accuracy": round((total_ats / total_games * 100), 2) if total_games else 0,
-        "OU_accuracy": round((total_ou / total_games * 100), 2) if total_games else 0,
+        "tracked_games": len(results),
+
+        "SU_accuracy": round((total_su_correct / total_su * 100), 2) if total_su else None,
+        "ATS_accuracy": round((total_ats_correct / total_ats * 100), 2) if total_ats else None,
+        "OU_accuracy": round((total_ou_correct / total_ou * 100), 2) if total_ou else None,
+
+        "raw": results
     }
 
-    print(f"[📊] Week summary: {accuracy}")
+    print("📊 Accuracy:", json.dumps(accuracy, indent=2))
+
+    # Append to log
     log = []
     if os.path.exists(OUTPUT):
         with open(OUTPUT) as f:
             log = json.load(f)
+
     log.append(accuracy)
+
     with open(OUTPUT, "w") as f:
         json.dump(log, f, indent=2)
-    print(f"[💾] Logged accuracy → {OUTPUT}")
 
+    print(f"💾 Accuracy logged → {OUTPUT}")
+
+
+# ------------------------------------------------------------
+# RUN
+# ------------------------------------------------------------
 if __name__ == "__main__":
     print(f"[🏈] Tracking accuracy at {datetime.now(timezone.utc).isoformat()}...")
     main()
-
