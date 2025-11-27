@@ -576,6 +576,35 @@
       return `${x.toFixed(1)}%`;
     }
 
+    // --- helper: resolve a team key / nickname to the full display name ---
+    function resolveTeamName(key, homeName, awayName) {
+      if (!key) return null;
+      const k = String(key).toUpperCase().trim();
+
+      function matches(label) {
+        if (!label) return false;
+        const up = String(label).toUpperCase();
+        return up.includes(k) || k.includes(up);
+      }
+
+      if (matches(homeName)) return homeName;
+      if (matches(awayName)) return awayName;
+      return key; // fallback: just show the key
+    }
+
+    // Map model edge (in points) to a probability around 50–95%
+    function oddsBasedProbFromEdge(delta, maxEdge, maxBoost = 0.45) {
+      if (delta === null || delta === undefined) return null;
+      if (delta === 0) return 0.5;
+      const sign = delta > 0 ? 1 : -1;
+      const edgeUnits = clamp(Math.abs(delta), 0, maxEdge);
+      const frac = edgeUnits / maxEdge;  // 0 → 1
+      let prob = 0.5 + sign * frac * maxBoost;
+      prob = clamp(prob, 0.05, 0.95);
+      return prob;
+    }
+
+    // --- NEW: favorite/dog + spread from combined.json fields first, then odds.details as fallback ---
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
       const details = odds.details || "";
@@ -586,57 +615,66 @@
       const homeName = homeTeamObj.name || game.home || pred?.home || "Home";
       const awayName = awayTeamObj.name || game.away || pred?.away || "Away";
 
-      let spreadMag = safeNumber(odds.spread);
-      let favoriteName = null;
+      // 1) Try explicit favorite/dog fields from backend
+      const favKey =
+        game.favorite_team ||
+        odds.favorite_team ||
+        pred?.favorite_team ||
+        game.fav_team ||
+        odds.fav_team ||
+        pred?.fav_team;
 
-      const m = details.match(/([A-Za-z.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
-      if (m) {
-        const teamToken = m[1].trim();
-        const lineStr = m[2];
-        const lineVal = parseFloat(lineStr);
+      const dogKey =
+        game.dog_team ||
+        odds.dog_team ||
+        pred?.dog_team ||
+        game.underdog_team ||
+        odds.underdog_team ||
+        pred?.underdog_team;
 
-        if (!Number.isNaN(lineVal)) {
-          spreadMag = Math.abs(lineVal);
-          const tok = teamToken.toUpperCase();
+      let favSpread =
+        safeNumber(game.fav_spread) ??
+        safeNumber(odds.fav_spread) ??
+        safeNumber(pred?.fav_spread) ??
+        safeNumber(odds.spread);
 
-          function matches(label) {
-            if (!label) return false;
-            const up = label.toUpperCase();
-            return up.includes(tok) || tok.includes(up);
-          }
+      let favoriteName = favKey ? resolveTeamName(favKey, homeName, awayName) : null;
+      let dogName = dogKey ? resolveTeamName(dogKey, homeName, awayName) : null;
 
-          if (matches(homeName)) {
-            favoriteName = homeName;
-          } else if (matches(awayName)) {
-            favoriteName = awayName;
+      // If we still don't have favorite/dog, fall back to parsing details
+      if (!favoriteName || !favSpread) {
+        const m = typeof details === "string"
+          ? details.match(/([A-Za-z0-9.&\s]+)\s*([+-]?\d+(\.\d+)?)/)
+          : null;
+
+        if (m) {
+          const teamToken = m[1].trim();
+          const lineStr = m[2];
+          const lineVal = parseFloat(lineStr);
+
+          if (!Number.isNaN(lineVal)) {
+            favSpread = Math.abs(lineVal);
+            favoriteName = resolveTeamName(teamToken, homeName, awayName);
           }
         }
       }
 
-      if (!spreadMag || !favoriteName) {
-        return null;
+      // If we now have a favorite but no dog, infer dog from home/away
+      if (favoriteName && !dogName) {
+        dogName = favoriteName === homeName ? awayName : homeName;
       }
 
-      const dogName = favoriteName === homeName ? awayName : homeName;
+      if (!favoriteName || !dogName || !favSpread) {
+        return null;
+      }
 
       return {
         favoriteName,
         dogName,
-        line: spreadMag,
+        line: Math.abs(favSpread),
         homeName,
         awayName
       };
-    }
-
-    function oddsBasedProbFromEdge(delta, maxEdge, maxBoost = 0.45) {
-      if (delta === null || delta === undefined) return null;
-      const sign = delta === 0 ? 0 : (delta > 0 ? 1 : -1);
-      const edgeUnits = clamp(Math.abs(delta), 0, maxEdge);
-      const frac = edgeUnits / maxEdge;  // 0 → 1
-      // Probability for "favored" outcome (covers / over) relative to 50%
-      let prob = 0.5 + sign * frac * maxBoost;
-      prob = clamp(prob, 0.05, 0.95);
-      return prob;
     }
 
     function extractInjurySummary(raw, pred) {
@@ -647,7 +685,6 @@
       let away = [];
 
       if (Array.isArray(src)) {
-        // Just a flat list
         if (!src.length) return null;
         return {
           total: src.length,
@@ -704,7 +741,6 @@
         return ref;
       }
 
-      // Try a few common fields
       const name = ref.crew_name || ref.referee || ref.name || ref.crew;
       const ats = ref.ats_home || ref.ats_trend || ref.ats_edge;
       const total = ref.ou_over || ref.total_trend;
@@ -760,7 +796,7 @@
         }
       }
 
-      // ---------- Straight Up (use win probability when available) ----------
+      // ---------- Straight Up ----------
       let suTeam = null;
       let suConf = null;
 
@@ -779,7 +815,7 @@
         suConf = Math.round(prob * 100);
       }
 
-      // ---------- ATS (favorite vs dog, confidence-flip logic) ----------
+      // ---------- ATS (favorite vs dog, confidence flip logic) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
@@ -788,8 +824,13 @@
       if (spreadInfo && modelMarginHome !== null) {
         const { favoriteName, dogName, line, homeName: hName } = spreadInfo;
 
-        // Predicted margin from favorite's perspective
-        let predFavMargin = favoriteName === hName ? modelMarginHome : -modelMarginHome;
+        // Predicted margin from favorite's perspective (independent of home/away)
+        let predFavMargin;
+        if (favoriteName === hName) {
+          predFavMargin = modelMarginHome;
+        } else {
+          predFavMargin = -modelMarginHome;
+        }
 
         const favDelta = predFavMargin - line; // >0: favorite covers, <0: dog covers
         const probFavCovers = oddsBasedProbFromEdge(favDelta, 10, 0.45);
@@ -803,7 +844,7 @@
           } else {
             pickTeam = dogName;
             pickSpread = `+${line}`;
-            displayProb = 1 - probFavCovers;
+            displayProb = 1 - probFavCovers; // flip + invert below 50%
           }
           atsTeam = pickTeam;
           atsConf = Math.round(displayProb * 100);
@@ -827,7 +868,7 @@
             displayProb = probOver;
           } else {
             pick = "Under";
-            displayProb = 1 - probOver;
+            displayProb = 1 - probOver; // flip + invert
           }
           totalPick = pick;
           const lineText = typeof totalLine === "number" ? totalLine.toFixed(1) : String(totalLine);
