@@ -1,6 +1,6 @@
 {
-  "timestamp": "20251127_2143",
-  "count": 223,
+  "timestamp": "20251127_2243",
+  "count": 224,
   "data": [
     {
       "sport": "ncaab",
@@ -37,7 +37,9 @@
         "city": "Nassau",
         "state": "Bahamas",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": null,
+        "lon": null
       },
       "officials": [
         {
@@ -101,7 +103,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": [
         {
@@ -183,9 +187,9 @@
         "slug": "tcu-horned-frogs",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png"
       },
-      "home_score": 59.0,
-      "away_score": 56.0,
-      "total_points": 115.0,
+      "home_score": 80.0,
+      "away_score": 84.0,
+      "total_points": 164.0,
       "odds": {
         "details": "FLA -11.5",
         "spread": -11.5,
@@ -197,7 +201,9 @@
         "city": "San Diego",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7174202,
+        "lon": -117.162772
       },
       "officials": [
         {
@@ -247,9 +253,9 @@
         "slug": "kansas-city-chiefs",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 10.0,
+      "away_score": 14.0,
+      "total_points": 24.0,
       "odds": {
         "details": "KC -3.5",
         "spread": 3.5,
@@ -261,7 +267,9 @@
         "city": "Arlington",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7355816,
+        "lon": -97.1071186
       },
       "officials": [
         {
@@ -343,21 +351,23 @@
         "slug": "michigan-state-spartans",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png"
       },
-      "home_score": 8.0,
-      "away_score": 9.0,
-      "total_points": 17.0,
+      "home_score": 28.0,
+      "away_score": 33.0,
+      "total_points": 61.0,
       "odds": {
         "details": "MSU -1.5",
         "spread": 1.5,
         "total": 152.5,
-        "provider": "Draft Kings"
+        "provider": "ESPN BET"
       },
       "venue": {
         "name": "Suncoast Credit Union Arena",
         "city": "Fort Myers",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": [
         {
@@ -407,9 +417,9 @@
         "slug": "byu-cougars",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 29.0,
+      "away_score": 27.0,
+      "total_points": 56.0,
       "odds": {
         "details": "BYU -7.5",
         "spread": 7.5,
@@ -421,9 +431,28 @@
         "city": "Kissimmee",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 28.2918995,
+        "lon": -81.4075838
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Sean Hull",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Doug Sirmons",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "ncaaf",
@@ -460,20 +489,11 @@
         "city": "Memphis",
         "state": "TN",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.1460249,
+        "lon": -90.0517638
       },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 48,
-        "temp": 48,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -510,7 +530,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": []
     },
@@ -549,9 +571,79 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Frank Steratore",
+          "role": {
+            "name": "Side Judge",
+            "displayName": "Side Judge",
+            "id": "115"
+          }
+        },
+        {
+          "name": "Craig Wrolstad",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "114"
+          }
+        },
+        {
+          "name": "Rich Martinez",
+          "role": {
+            "name": "Back Judge",
+            "displayName": "Back Judge",
+            "id": "110"
+          }
+        },
+        {
+          "name": "Danny Short",
+          "role": {
+            "name": "Down Judge",
+            "displayName": "Down Judge",
+            "id": "112"
+          }
+        },
+        {
+          "name": "Brandon Cruse",
+          "role": {
+            "name": "Umpire",
+            "displayName": "Umpire",
+            "id": "116"
+          }
+        },
+        {
+          "name": "Jeff Shears",
+          "role": {
+            "name": "Field Judge",
+            "displayName": "Field Judge",
+            "id": "111"
+          }
+        },
+        {
+          "name": "Brett Bergman",
+          "role": {
+            "name": "Line Judge",
+            "displayName": "Line Judge",
+            "id": "113"
+          }
+        }
+      ],
+      "weather": {
+        "summary": "Mostly Cloudy",
+        "description": "",
+        "temperatureF": 42,
+        "temp": 42,
+        "windSpeedMph": 14.0,
+        "wind": 14.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -588,7 +680,9 @@
         "city": "Starkville",
         "state": "MS",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4638745,
+        "lon": -88.8152074
       },
       "officials": [],
       "weather": {
@@ -596,8 +690,8 @@
         "description": "",
         "temperatureF": 52,
         "temp": 52,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
@@ -638,7 +732,9 @@
         "city": "Lawrence",
         "state": "KS",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.9719137,
+        "lon": -95.2359403
       },
       "officials": [],
       "weather": {
@@ -688,7 +784,9 @@
         "city": "Lincoln",
         "state": "NE",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.8088861,
+        "lon": -96.7077751
       },
       "officials": [],
       "weather": {
@@ -738,16 +836,18 @@
         "city": "Buffalo",
         "state": "NY",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.8867166,
+        "lon": -78.8783922
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Snow Showers",
+        "summary": "Slight Chance Snow Showers",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
-        "windSpeedMph": 24.0,
-        "wind": 24.0
+        "temperatureF": 37,
+        "temp": 37,
+        "windSpeedMph": 23.0,
+        "wind": 23.0
       },
       "weatherRisk": {
         "risk": 2
@@ -788,7 +888,9 @@
         "city": "Dekalb",
         "state": "IL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 41.8903447,
+        "lon": -88.7713953
       },
       "officials": [],
       "weather": {
@@ -796,8 +898,8 @@
         "description": "",
         "temperatureF": 31,
         "temp": 31,
-        "windSpeedMph": 20.0,
-        "wind": 20.0
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
         "risk": 2
@@ -838,7 +940,9 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": []
     },
@@ -877,7 +981,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -916,7 +1022,45 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaab",
+      "id": "401830879",
+      "name": "Vanderbilt Commodores at Saint Mary's Gaels",
+      "shortName": "VAN VS SMC",
+      "date_utc": "2025-11-28T18:00Z",
+      "date_local": "2025-11-28 01:00 PM ET",
+      "home_team": {
+        "id": "2608",
+        "name": "Saint Mary's Gaels",
+        "abbr": "SMC",
+        "slug": "saint-marys-gaels",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2608.png"
+      },
+      "away_team": {
+        "id": "238",
+        "name": "Vanderbilt Commodores",
+        "abbr": "VAN",
+        "slug": "vanderbilt-commodores",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/238.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Imperial Arena",
+        "city": "Nassau",
+        "state": "Bahamas",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -955,7 +1099,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
       "officials": []
     },
@@ -994,7 +1140,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": [],
       "weather": {
@@ -1044,7 +1192,9 @@
         "city": "Fort Collins",
         "state": "CO",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.5871782,
+        "lon": -105.0770113
       },
       "officials": [],
       "weather": {
@@ -1094,7 +1244,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -1133,7 +1285,9 @@
         "city": "Albuquerque",
         "state": "NM",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.0841034,
+        "lon": -106.650985
       },
       "officials": [],
       "weather": {
@@ -1183,7 +1337,9 @@
         "city": "Denton",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.1838787,
+        "lon": -97.1413417
       },
       "officials": [],
       "weather": {
@@ -1233,7 +1389,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": []
     },
@@ -1272,7 +1430,9 @@
         "city": "Logan",
         "state": "UT",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 41.7313063,
+        "lon": -111.834914
       },
       "officials": [],
       "weather": {
@@ -1322,7 +1482,9 @@
         "city": "Buffalo",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.8867166,
+        "lon": -78.8783922
       },
       "officials": []
     },
@@ -1361,7 +1523,9 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
       "officials": []
     },
@@ -1400,7 +1564,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": []
     },
@@ -1439,7 +1605,9 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
       "officials": []
     },
@@ -1478,7 +1646,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -1517,7 +1687,9 @@
         "city": "Anaheim",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.8347516,
+        "lon": -117.911732
       },
       "officials": []
     },
@@ -1556,7 +1728,9 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
       "officials": []
     },
@@ -1595,7 +1769,9 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
       "officials": []
     },
@@ -1634,7 +1810,9 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
       "officials": []
     },
@@ -1673,7 +1851,9 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
       "officials": []
     },
@@ -1712,16 +1892,18 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 35,
+        "temp": 35,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 0
@@ -1762,11 +1944,13 @@
         "city": "Austin",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 30.2711286,
+        "lon": -97.7436995
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
         "temperatureF": 63,
         "temp": 63,
@@ -1802,9 +1986,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CLE -3.5",
-        "spread": 3.5,
-        "total": 239.5,
+        "details": "CLE -4.5",
+        "spread": 4.5,
+        "total": 240.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -1812,7 +1996,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -1841,8 +2027,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "PHI -5.5",
-        "spread": 5.5,
+        "details": "PHI -6.5",
+        "spread": 6.5,
         "total": 226.5,
         "provider": "ESPN BET"
       },
@@ -1851,7 +2037,9 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
       "officials": []
     },
@@ -1880,8 +2068,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CHI -2.5",
-        "spread": 2.5,
+        "details": "CHI -1.5",
+        "spread": 1.5,
         "total": 246.5,
         "provider": "ESPN BET"
       },
@@ -1890,7 +2078,9 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": []
     },
@@ -1919,8 +2109,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DET -2.5",
-        "spread": -2.5,
+        "details": "DET -3.5",
+        "spread": -3.5,
         "total": 235.5,
         "provider": "ESPN BET"
       },
@@ -1929,7 +2119,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -1960,15 +2152,17 @@
       "odds": {
         "details": "IND -6.5",
         "spread": -6.5,
-        "total": 240.5,
-        "provider": "ESPN BET"
+        "total": 239.5,
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Gainbridge Fieldhouse",
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -2007,7 +2201,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -2046,7 +2242,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": []
     },
@@ -2085,7 +2283,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -2124,7 +2324,9 @@
         "city": "Tempe",
         "state": "AZ",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4255117,
+        "lon": -111.940016
       },
       "officials": [],
       "weather": {
@@ -2174,7 +2376,9 @@
         "city": "Oklahoma City",
         "state": "OK",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": []
     },
@@ -2205,7 +2409,7 @@
       "odds": {
         "details": "DEN -8.5",
         "spread": -8.5,
-        "total": 237.5,
+        "total": 236.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -2213,7 +2417,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -2252,7 +2458,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": []
     },
@@ -2291,7 +2499,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -2330,7 +2540,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -2369,7 +2581,9 @@
         "city": "Ann Arbor",
         "state": "MI",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.2813722,
+        "lon": -83.7484616
       },
       "officials": [],
       "weather": {
@@ -2419,7 +2633,9 @@
         "city": "Morgantown",
         "state": "WV",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.6296809,
+        "lon": -79.9559437
       },
       "officials": [],
       "weather": {
@@ -2427,8 +2643,8 @@
         "description": "",
         "temperatureF": 34,
         "temp": 34,
-        "windSpeedMph": 13.0,
-        "wind": 13.0
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 1
@@ -2469,19 +2685,21 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4416941,
+        "lon": -79.9900861
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Snow Showers",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
-        "windSpeedMph": 16.0,
-        "wind": 16.0
+        "temperatureF": 34,
+        "temp": 34,
+        "windSpeedMph": 14.0,
+        "wind": 14.0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       }
     },
     {
@@ -2511,7 +2729,7 @@
       "odds": {
         "details": "LOU -2.5",
         "spread": -2.5,
-        "total": 45.5,
+        "total": 46.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -2519,14 +2737,16 @@
         "city": "Louisville",
         "state": "KY",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.2542376,
+        "lon": -85.759407
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 39,
-        "temp": 39,
+        "temperatureF": 37,
+        "temp": 37,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -2569,9 +2789,22 @@
         "city": "Columbia",
         "state": "SC",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 34.000754,
+        "lon": -81.0352313
       },
-      "officials": []
+      "officials": [],
+      "weather": {
+        "summary": "Sunny",
+        "description": "",
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2608,14 +2841,16 @@
         "city": "Waco",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 31.5491899,
+        "lon": -97.1474628
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 60,
-        "temp": 60,
+        "temperatureF": 56,
+        "temp": 56,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -2658,20 +2893,11 @@
         "city": "Manhattan",
         "state": "KS",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.1836082,
+        "lon": -96.5716694
       },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 45,
-        "temp": 45,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -2700,7 +2926,7 @@
       "odds": {
         "details": "ISU -13.5",
         "spread": 13.5,
-        "total": 46.5,
+        "total": 45.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -2708,16 +2934,18 @@
         "city": "Stillwater",
         "state": "OK",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1156306,
+        "lon": -97.0585717
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 53,
-        "temp": 53,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 52,
+        "temp": 52,
+        "windSpeedMph": 2.0,
+        "wind": 2.0
       },
       "weatherRisk": {
         "risk": 0
@@ -2758,16 +2986,18 @@
         "city": "Boca Raton",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.3586885,
+        "lon": -80.0830984
       },
       "officials": [],
       "weather": {
-        "summary": "Showers And Thunderstorms Likely",
+        "summary": "Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 79,
-        "temp": 79,
-        "windSpeedMph": 7.0,
-        "wind": 7.0
+        "temperatureF": 80,
+        "temp": 80,
+        "windSpeedMph": 8.0,
+        "wind": 8.0
       },
       "weatherRisk": {
         "risk": 1
@@ -2808,16 +3038,18 @@
         "city": "Mount Pleasant",
         "state": "MI",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 43.597646,
+        "lon": -84.7668495
       },
       "officials": [],
       "weather": {
         "summary": "Chance Snow Showers",
         "description": "",
-        "temperatureF": 31,
-        "temp": 31,
-        "windSpeedMph": 18.0,
-        "wind": 18.0
+        "temperatureF": 30,
+        "temp": 30,
+        "windSpeedMph": 17.0,
+        "wind": 17.0
       },
       "weatherRisk": {
         "risk": 2
@@ -2850,7 +3082,7 @@
       "odds": {
         "details": "M-OH -17.5",
         "spread": -17.5,
-        "total": 42.5,
+        "total": 41.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -2858,14 +3090,16 @@
         "city": "Oxford",
         "state": "OH",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.5103048,
+        "lon": -84.7420519
       },
       "officials": [],
       "weather": {
         "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 33,
-        "temp": 33,
+        "temperatureF": 32,
+        "temp": 32,
         "windSpeedMph": 14.0,
         "wind": 14.0
       },
@@ -2903,7 +3137,9 @@
         "city": "Bloomington",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.1670396,
+        "lon": -86.5342881
       },
       "officials": []
     },
@@ -2942,7 +3178,9 @@
         "city": "Provo",
         "state": "UT",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.2337289,
+        "lon": -111.6587085
       },
       "officials": [],
       "weather": {
@@ -2982,8 +3220,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DEL -4.5",
-        "spread": -4.5,
+        "details": "DEL -3.5",
+        "spread": -3.5,
         "total": 55.5,
         "provider": "ESPN BET"
       },
@@ -2992,7 +3230,9 @@
         "city": "Newark",
         "state": "DE",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.6828358,
+        "lon": -75.7515682
       },
       "officials": [],
       "weather": {
@@ -3042,14 +3282,16 @@
         "city": "Houston",
         "state": "TX",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
+        "temperatureF": 67,
+        "temp": 67,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -3092,7 +3334,9 @@
         "city": "Huntington",
         "state": "WV",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.4192496,
+        "lon": -82.445154
       },
       "officials": [],
       "weather": {
@@ -3134,7 +3378,7 @@
       "odds": {
         "details": "WKU -2.5",
         "spread": 2.5,
-        "total": 56.5,
+        "total": 55.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -3142,14 +3386,16 @@
         "city": "Jacksonville",
         "state": "AL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.8137919,
+        "lon": -85.7612872
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
+        "temperatureF": 50,
+        "temp": 50,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -3182,8 +3428,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MOST -2.5",
-        "spread": -2.5,
+        "details": "MOST -1.5",
+        "spread": -1.5,
         "total": 47.5,
         "provider": "ESPN BET"
       },
@@ -3192,7 +3438,9 @@
         "city": "Springfield",
         "state": "MO",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 37.2081729,
+        "lon": -93.2922715
       },
       "officials": [],
       "weather": {
@@ -3242,7 +3490,9 @@
         "city": "Norfolk",
         "state": "VA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.8493695,
+        "lon": -76.2899539
       },
       "officials": [],
       "weather": {
@@ -3287,7 +3537,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -3326,14 +3578,16 @@
         "city": "Boone",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.2187873,
+        "lon": -81.684004
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 31,
-        "temp": 31,
+        "temperatureF": 30,
+        "temp": 30,
         "windSpeedMph": 18.0,
         "wind": 18.0
       },
@@ -3376,7 +3630,9 @@
         "city": "Syracuse",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0481221,
+        "lon": -76.1474244
       },
       "officials": []
     },
@@ -3415,14 +3671,16 @@
         "city": "Las Cruces",
         "state": "NM",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 32.3140354,
+        "lon": -106.779807
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 65,
-        "temp": 65,
+        "temperatureF": 54,
+        "temp": 54,
         "windSpeedMph": 2.0,
         "wind": 2.0
       },
@@ -3465,7 +3723,9 @@
         "city": "Lafayette",
         "state": "LA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 30.2262187,
+        "lon": -92.0178202
       },
       "officials": [],
       "weather": {
@@ -3515,7 +3775,9 @@
         "city": "San Marcos",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 29.8826436,
+        "lon": -97.9405828
       },
       "officials": [],
       "weather": {
@@ -3555,8 +3817,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "TLSA -9.5",
-        "spread": -9.5,
+        "details": "TLSA -8.5",
+        "spread": -8.5,
         "total": 58.5,
         "provider": "ESPN BET"
       },
@@ -3565,14 +3827,16 @@
         "city": "Tulsa",
         "state": "OK",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1563122,
+        "lon": -95.9927516
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 53,
-        "temp": 53,
+        "temperatureF": 52,
+        "temp": 52,
         "windSpeedMph": 0.0,
         "wind": 0.0
       },
@@ -3610,7 +3874,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -3649,14 +3915,16 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Light Rain",
+        "summary": "Light Rain Likely",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
+        "temperatureF": 50,
+        "temp": 50,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -3694,7 +3962,9 @@
         "city": "Tucson",
         "state": "AZ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.2228765,
+        "lon": -110.974847
       },
       "officials": []
     },
@@ -3728,7 +3998,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": []
     },
@@ -3762,7 +4034,9 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
       "officials": []
     },
@@ -3796,7 +4070,9 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": []
     },
@@ -3830,7 +4106,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
       "officials": []
     },
@@ -3864,7 +4142,9 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
       "officials": []
     },
@@ -3898,7 +4178,9 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4416941,
+        "lon": -79.9900861
       },
       "officials": []
     },
@@ -3932,7 +4214,9 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": []
     },
@@ -3966,7 +4250,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -4000,7 +4286,9 @@
         "city": "Miami",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 25.7741566,
+        "lon": -80.1935973
       },
       "officials": []
     },
@@ -4034,7 +4322,9 @@
         "city": "Milwaukee",
         "state": "WI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0386475,
+        "lon": -87.9090751
       },
       "officials": []
     },
@@ -4068,7 +4358,9 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
       "officials": []
     },
@@ -4102,7 +4394,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": []
     },
@@ -4136,7 +4430,9 @@
         "city": "San Francisco",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.7932754,
+        "lon": -122.3963589
       },
       "officials": []
     },
@@ -4170,7 +4466,9 @@
         "city": "Phoenix",
         "state": "AZ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -4204,7 +4502,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -4238,7 +4538,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -4272,7 +4574,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -4311,16 +4615,18 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": [],
       "weather": {
         "summary": "Light Snow",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
-        "windSpeedMph": 25.0,
-        "wind": 25.0
+        "temperatureF": 33,
+        "temp": 33,
+        "windSpeedMph": 26.0,
+        "wind": 26.0
       },
       "weatherRisk": {
         "risk": 3
@@ -4361,14 +4667,16 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 47,
-        "temp": 47,
+        "temperatureF": 45,
+        "temp": 45,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -4411,7 +4719,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -4450,16 +4760,18 @@
         "city": "Miami Gardens",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 25.9420377,
+        "lon": -80.2456045
       },
       "officials": [],
       "weather": {
         "summary": "Showers And Thunderstorms Likely",
         "description": "",
-        "temperatureF": 81,
-        "temp": 81,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
+        "temperatureF": 77,
+        "temp": 77,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 1
@@ -4500,9 +4812,22 @@
         "city": "East Rutherford",
         "state": "NJ",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.833989,
+        "lon": -74.0970865
       },
-      "officials": []
+      "officials": [],
+      "weather": {
+        "summary": "Partly Sunny",
+        "description": "",
+        "temperatureF": 41,
+        "temp": 41,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "nfl",
@@ -4539,9 +4864,22 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
-      "officials": []
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Cloudy",
+        "description": "",
+        "temperatureF": 72,
+        "temp": 72,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "nfl",
@@ -4578,16 +4916,18 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 50,
-        "temp": 50,
-        "windSpeedMph": 9.0,
-        "wind": 9.0
+        "temperatureF": 49,
+        "temp": 49,
+        "windSpeedMph": 7.0,
+        "wind": 7.0
       },
       "weatherRisk": {
         "risk": 0
@@ -4623,7 +4963,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": []
     },
@@ -4657,7 +4999,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": []
     },
@@ -4691,7 +5035,9 @@
         "city": "Lubbock",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.5855677,
+        "lon": -101.8470215
       },
       "officials": []
     },
@@ -4725,7 +5071,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": []
     },
@@ -4764,14 +5112,16 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Light Rain",
+        "summary": "Light Rain Likely",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
+        "temperatureF": 50,
+        "temp": 50,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -4814,19 +5164,21 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4416941,
+        "lon": -79.9900861
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Snow Showers",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
-        "windSpeedMph": 16.0,
-        "wind": 16.0
+        "temperatureF": 34,
+        "temp": 34,
+        "windSpeedMph": 14.0,
+        "wind": 14.0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       }
     },
     {
@@ -4864,7 +5216,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -4898,7 +5252,9 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
       "officials": []
     },
@@ -4932,7 +5288,9 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": []
     },
@@ -4966,7 +5324,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -5000,7 +5360,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -5034,7 +5396,9 @@
         "city": "Portland",
         "state": "OR",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5202471,
+        "lon": -122.674194
       },
       "officials": []
     },
@@ -5068,7 +5432,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -5102,7 +5468,9 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
       "officials": []
     },
@@ -5141,11 +5509,13 @@
         "city": "Landover",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 38.9253129,
+        "lon": -76.8815433
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Cloudy",
         "description": "",
         "temperatureF": 42,
         "temp": 42,
@@ -5186,7 +5556,9 @@
         "city": "Sacramento",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": []
     },
@@ -5220,7 +5592,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -5254,7 +5628,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -5288,7 +5664,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -5322,7 +5700,9 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
       "officials": []
     },
@@ -5356,7 +5736,9 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
       "officials": []
     },
@@ -5390,7 +5772,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -5424,7 +5808,9 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
       "officials": []
     },
@@ -5458,7 +5844,9 @@
         "city": "Miami",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 25.7741566,
+        "lon": -80.1935973
       },
       "officials": []
     },
@@ -5492,7 +5880,9 @@
         "city": "Orlando",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 28.5421218,
+        "lon": -81.379045
       },
       "officials": []
     },
@@ -5526,7 +5916,9 @@
         "city": "Buffalo",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.8867166,
+        "lon": -78.8783922
       },
       "officials": []
     },
@@ -5560,7 +5952,9 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
       "officials": []
     },
@@ -5599,16 +5993,18 @@
         "city": "Foxborough",
         "state": "MA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.0653768,
+        "lon": -71.2478308
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
-        "windSpeedMph": 7.0,
-        "wind": 7.0
+        "temperatureF": 43,
+        "temp": 43,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 0
@@ -5644,7 +6040,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -5678,7 +6076,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": []
     },
@@ -5712,7 +6112,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -5746,7 +6148,9 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
       "officials": []
     },
@@ -5780,7 +6184,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -5814,7 +6220,9 @@
         "city": "East Lansing",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.7320307,
+        "lon": -84.4721678
       },
       "officials": []
     },
@@ -5848,7 +6256,9 @@
         "city": "Syracuse",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0481221,
+        "lon": -76.1474244
       },
       "officials": []
     },
@@ -5882,7 +6292,9 @@
         "city": "Montreal",
         "state": "QC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
       },
       "officials": []
     },
@@ -5916,7 +6328,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -5950,7 +6364,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": []
     },
@@ -5984,7 +6400,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -6018,7 +6436,9 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
       "officials": []
     },
@@ -6052,7 +6472,9 @@
         "city": "Durham",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.996653,
+        "lon": -78.9018053
       },
       "officials": []
     },
@@ -6086,7 +6508,9 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
       "officials": []
     },
@@ -6120,7 +6544,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
       "officials": []
     },
@@ -6154,7 +6580,9 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
       "officials": []
     },
@@ -6188,7 +6616,9 @@
         "city": "San Antonio",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.4246002,
+        "lon": -98.4951405
       },
       "officials": []
     },
@@ -6222,7 +6652,9 @@
         "city": "Piscataway",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.5464326,
+        "lon": -74.4660542
       },
       "officials": []
     },
@@ -6256,7 +6688,9 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": []
     },
@@ -6290,7 +6724,9 @@
         "city": "Lawrence",
         "state": "KS",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.9719137,
+        "lon": -95.2359403
       },
       "officials": []
     },
@@ -6324,7 +6760,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -6358,7 +6796,9 @@
         "city": "Edmonton",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.9800563,
+        "lon": -85.6121906
       },
       "officials": []
     },
@@ -6392,7 +6832,9 @@
         "city": "Lexington",
         "state": "KY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.0464066,
+        "lon": -84.4970393
       },
       "officials": []
     },
@@ -6426,7 +6868,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -6460,7 +6904,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -6494,7 +6940,9 @@
         "city": "San Francisco",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.7932754,
+        "lon": -122.3963589
       },
       "officials": []
     },
@@ -6528,7 +6976,9 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": []
     },
@@ -6562,7 +7012,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -6596,7 +7048,9 @@
         "city": "Orlando",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 28.5421218,
+        "lon": -81.379045
       },
       "officials": []
     },
@@ -6630,7 +7084,9 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
       "officials": []
     },
@@ -6664,7 +7120,9 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
       "officials": []
     },
@@ -6698,7 +7156,9 @@
         "city": "Fayetteville",
         "state": "AR",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.0625843,
+        "lon": -94.1574328
       },
       "officials": []
     },
@@ -6732,7 +7192,9 @@
         "city": "Tuscaloosa",
         "state": "AL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.2095614,
+        "lon": -87.5675258
       },
       "officials": []
     },
@@ -6766,7 +7228,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -6800,7 +7264,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -6834,7 +7300,9 @@
         "city": "Montreal",
         "state": "QC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
       },
       "officials": []
     },
@@ -6868,7 +7336,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -6902,7 +7372,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": []
     },
@@ -6936,7 +7408,9 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": []
     },
@@ -6970,7 +7444,9 @@
         "city": "Milwaukee",
         "state": "WI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0386475,
+        "lon": -87.9090751
       },
       "officials": []
     },
@@ -7004,7 +7480,9 @@
         "city": "Ames",
         "state": "IA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.0267567,
+        "lon": -93.6170448
       },
       "officials": []
     },
@@ -7038,7 +7516,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -7072,7 +7552,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": []
     },
@@ -7106,7 +7588,9 @@
         "city": "Auburn",
         "state": "AL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.6098566,
+        "lon": -85.4807825
       },
       "officials": []
     },
@@ -7140,7 +7624,9 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": []
     },
@@ -7174,7 +7660,9 @@
         "city": "Anaheim",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.8347516,
+        "lon": -117.911732
       },
       "officials": []
     },
@@ -7208,7 +7696,9 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
       "officials": []
     },
@@ -7242,7 +7732,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": []
     },
@@ -7276,7 +7768,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -7310,7 +7804,9 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
       "officials": []
     },
@@ -7344,7 +7840,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
       "officials": []
     },
@@ -7378,7 +7876,9 @@
         "city": "Ottawa",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.6419261,
+        "lon": -86.1655501
       },
       "officials": []
     },
@@ -7412,7 +7912,9 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": []
     },
@@ -7446,7 +7948,9 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
       "officials": []
     },
@@ -7480,7 +7984,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": []
     },
@@ -7514,7 +8020,9 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
       "officials": []
     },
@@ -7548,7 +8056,9 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
       "officials": []
     },
@@ -7582,7 +8092,9 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
       "officials": []
     },
@@ -7616,7 +8128,9 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
       "officials": []
     },
@@ -7650,7 +8164,9 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
       "officials": []
     },
@@ -7684,7 +8200,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -7718,7 +8236,9 @@
         "city": "Calgary",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 31.6174004,
+        "lon": -94.1193622
       },
       "officials": []
     },
@@ -7752,7 +8272,9 @@
         "city": "Edmonton",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.9800563,
+        "lon": -85.6121906
       },
       "officials": []
     },
@@ -7786,7 +8308,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -7876,11 +8400,13 @@
         "city": "Harrisonburg",
         "state": "VA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.4493315,
+        "lon": -78.8688833
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Cloudy",
         "description": "",
         "temperatureF": 38,
         "temp": 38,
@@ -7921,7 +8447,9 @@
         "city": "Lexington",
         "state": "KY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.0464066,
+        "lon": -84.4970393
       },
       "officials": []
     },
@@ -7955,7 +8483,9 @@
         "city": "Storrs",
         "state": "CT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8056456,
+        "lon": -72.2541329
       },
       "officials": []
     },
@@ -8017,7 +8547,9 @@
         "city": "Arlington",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7355816,
+        "lon": -97.1071186
       },
       "officials": []
     },
@@ -8051,7 +8583,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -8085,7 +8619,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -8119,16 +8655,18 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
-        "windSpeedMph": 8.0,
-        "wind": 8.0
+        "temperatureF": 49,
+        "temp": 49,
+        "windSpeedMph": 7.0,
+        "wind": 7.0
       },
       "weatherRisk": {
         "risk": 0
@@ -8164,7 +8702,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -8203,7 +8743,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -8237,20 +8779,11 @@
         "city": "Orchard Park",
         "state": "NY",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.7670376,
+        "lon": -78.7435517
       },
-      "officials": [],
-      "weather": {
-        "summary": "Chance Snow Showers",
-        "description": "",
-        "temperatureF": 35,
-        "temp": 35,
-        "windSpeedMph": 22.0,
-        "wind": 22.0
-      },
-      "weatherRisk": {
-        "risk": 2
-      }
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -8287,16 +8820,18 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": [],
       "weather": {
         "summary": "Light Snow",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
-        "windSpeedMph": 25.0,
-        "wind": 25.0
+        "temperatureF": 33,
+        "temp": 33,
+        "windSpeedMph": 26.0,
+        "wind": 26.0
       },
       "weatherRisk": {
         "risk": 3
@@ -8332,7 +8867,9 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
       "officials": []
     },
@@ -8366,16 +8903,18 @@
         "city": "East Rutherford",
         "state": "NJ",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.833989,
+        "lon": -74.0970865
       },
       "officials": [],
       "weather": {
         "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 41,
+        "temp": 41,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
@@ -8411,16 +8950,18 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 72,
+        "temp": 72,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 0
@@ -8461,9 +9002,22 @@
         "city": "Jacksonville",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 30.3321838,
+        "lon": -81.655651
       },
-      "officials": []
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 65,
+        "temp": 65,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "nfl",
@@ -8500,7 +9054,9 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
       "officials": [],
       "weather": {
@@ -8545,7 +9101,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": true
+        "grass": true,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -8579,7 +9137,9 @@
         "city": "Green Bay",
         "state": "WI",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 44.5126379,
+        "lon": -88.0125794
       },
       "officials": [],
       "weather": {
@@ -8624,7 +9184,9 @@
         "city": "Glendale",
         "state": "AZ",
         "indoor": true,
-        "grass": true
+        "grass": true,
+        "lat": 33.5386858,
+        "lon": -112.185994
       },
       "officials": []
     },
@@ -8663,7 +9225,9 @@
         "city": "Kansas City",
         "state": "MO",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.100105,
+        "lon": -94.5781416
       },
       "officials": [],
       "weather": {
@@ -8708,7 +9272,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -8742,7 +9308,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -8776,7 +9344,9 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
       "officials": [],
       "weather": {
@@ -8821,10 +9391,12 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-11-27T21:51:18.668744"
+  "weather_merged_at": "2025-11-27T22:45:13.279841"
 }
