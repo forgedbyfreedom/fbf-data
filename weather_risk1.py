@@ -1,81 +1,60 @@
 #!/usr/bin/env python3
 """
-weather_risk1.py — compatible with list-based weather_raw.json
+Convert weather_raw.json into weather_risk1.json with proper risk scoring.
 """
 
 import json
-import datetime
 from pathlib import Path
 
 RAW = Path("weather_raw.json")
 OUT = Path("weather_risk1.json")
 
+def load_raw():
+    if not RAW.exists():
+        print("❌ weather_raw.json missing")
+        return []
+    with open(RAW, "r") as f:
+        js = json.load(f)
+        return js.get("data", [])
 
-def load_json(path):
-    try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except Exception:
+def weather_risk(entry):
+    """Simple scoring."""
+    if "error" in entry:
         return None
-
-
-def compute_risk(entry):
-    """Return simple risk score based on wind/temp."""
-    if not entry or "error" in entry:
-        return {"risk": None, "reason": entry.get("error", "no_data")}
 
     temp = entry.get("temperatureF")
     wind = entry.get("windSpeedMph")
 
-    # Try extracting mph from "12 mph" strings
-    if isinstance(wind, str) and "mph" in wind:
-        try:
-            wind = float(wind.split(" ")[0])
-        except:
-            wind = None
+    if temp is None or wind is None:
+        return None
 
     risk = 0
-    reasons = []
+    if temp < 35: risk += 1
+    if temp < 25: risk += 1
+    if wind > 15: risk += 1
+    if wind > 25: risk += 1
 
-    if wind and wind >= 15:
-        risk += 1
-        reasons.append("wind")
-
-    if temp and temp <= 32:
-        risk += 1
-        reasons.append("cold")
-
-    return {
-        "risk": risk,
-        "factors": reasons or None
-    }
-
+    return risk
 
 def main():
-    raw = load_json(RAW)
-    if not raw or "data" not in raw or not isinstance(raw["data"], list):
-        print("❌ weather_raw.json missing or empty")
-        return
+    raw = load_raw()
+    out = []
 
-    output = {}
-
-    for item in raw["data"]:
-        key = str(item.get("key"))
-        if not key:
-            continue
-        output[key] = compute_risk(item)
-
-    payload = {
-        "timestamp": datetime.datetime.utcnow().isoformat(),
-        "count": len(output),
-        "data": output
-    }
+    for e in raw:
+        r = weather_risk(e)
+        out.append({
+            "key": e.get("key"),
+            "team_id": e.get("team_id"),
+            "risk": r,
+            "temperatureF": e.get("temperatureF"),
+            "windSpeedMph": e.get("windSpeedMph"),
+            "shortForecast": e.get("shortForecast"),
+        })
 
     with open(OUT, "w") as f:
-        json.dump(payload, f, indent=2)
+        json.dump({"data": out}, f, indent=2)
 
-    print(f"✅ weather_risk1.json written ({len(output)} entries)")
-
+    print(f"✅ Weather risk written → {OUT}")
 
 if __name__ == "__main__":
     main()
