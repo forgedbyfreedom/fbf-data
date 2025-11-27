@@ -1,72 +1,144 @@
 #!/usr/bin/env python3
 """
 build_historical.py
-Downloads full ESPN historical game data (scores, officials, injuries)
-Stores into /history/<sport>.json
+
+Builds a simple historical summary from combined.json:
+- per-team average points for/against
+- simple point differential
+
+This is intentionally conservative scaffolding:
+- It only uses games in combined.json that have a past date
+  AND some notion of final scores if present.
+- If no finished games are found, it still writes a valid
+  historical.json with empty structures.
+
+Output: historical.json
 """
 
-import requests, json, os, time
-from datetime import datetime
+import json
+import os
+from datetime import datetime, timezone
 
-SPORTS = {
-    "nfl":   "football/leagues/nfl",
-    "ncaaf": "football/leagues/college-football",
-    "nba":   "basketball/leagues/nba",
-    "ncaab": "basketball/leagues/mens-college-basketball",
-    "nhl":   "hockey/leagues/nhl",
-    "mlb":   "baseball/leagues/mlb",
-}
+INPUT = "combined.json"
+OUTPUT = "historical.json"
 
-def fetch_json(url):
+def safe_float(x, default=None):
     try:
-        r = requests.get(url, timeout=10)
-        r.raise_for_status()
-        return r.json()
-    except:
+        return float(x)
+    except Exception:
+        return default
+
+def safe_int(x, default=None):
+    try:
+        return int(x)
+    except Exception:
+        return default
+
+def parse_date(dt_str):
+    if not dt_str:
+        return None
+    try:
+        # Accept ISO-ish strings
+        return datetime.fromisoformat(dt_str.replace("Z", "+00:00"))
+    except Exception:
         return None
 
-def build_history():
-    os.makedirs("history", exist_ok=True)
-    out = {}
+def main():
+    if not os.path.exists(INPUT):
+        print(f"❌ {INPUT} not found.")
+        return
 
-    for key, path in SPORTS.items():
-        print(f"\n🔎 Fetching historical for: {key}")
+    with open(INPUT, "r") as f:
+        root = json.load(f)
 
-        url = f"https://sports.core.api.espn.com/v2/sports/{path}/events"
-        data = fetch_json(url)
-        if not data or "items" not in data:
-            print(f"⚠️  No events for {key}")
+    games = root.get("data") or root.get("games") or root.get("combined") or []
+    now_utc = datetime.now(timezone.utc)
+
+    teams = {}  # key: team name, value: aggregates
+
+    finished_games = 0
+
+    for g in games:
+        # Use UTC if available, else local
+        dt = parse_date(g.get("date_utc") or g.get("date_local"))
+        if not dt or dt >= now_utc:
+            # Skip future games
             continue
 
-        events = []
-        for e in data["items"]:
-            if "$ref" not in e:
-                continue
-            ev = fetch_json(e["$ref"])
-            if not ev:
-                continue
+        # We need some scores; allow several common shapes
+        home_score = None
+        away_score = None
 
-            events.append({
-                "id": ev.get("id"),
-                "name": ev.get("name"),
-                "date": ev.get("date"),
-                "shortName": ev.get("shortName"),
-                "competitions": ev.get("competitions"),
-            })
-            time.sleep(0.1)
+        # 1) explicit score fields
+        home_score = safe_int(g.get("home_score"))
+        away_score = safe_int(g.get("away_score"))
 
-        out[key] = events
-        with open(f"history/{key}.json", "w") as f:
-            json.dump(events, f, indent=2)
+        # 2) nested score objects
+        if home_score is None and isinstance(g.get("home_team"), dict):
+            home_score = safe_int(g["home_team"].get("score"))
+        if away_score is None and isinstance(g.get("away_team"), dict):
+            away_score = safe_int(g["away_team"].get("score"))
 
-        print(f"✅ Saved history/{key}.json ({len(events)} games)")
+        # 3) generic scores dict
+        if home_score is None and isinstance(g.get("scores"), dict):
+            s = g["scores"]
+            home_score = safe_int(s.get("home"))
+            away_score = safe_int(s.get("away"))
 
-    out["timestamp"] = datetime.utcnow().isoformat()
+        if home_score is None or away_score is None:
+            # No final score, treat as unfinished
+            continue
 
-    with open("history/history_index.json", "w") as f:
+        finished_games += 1
+
+        home_name = (g.get("home_team") or {}).get("name") or g.get("home") or "HOME"
+        away_name = (g.get("away_team") or {}).get("name") or g.get("away") or "AWAY"
+
+        for name, pts_for, pts_against in [
+            (home_name, home_score, away_score),
+            (away_name, away_score, home_score),
+        ]:
+            rec = teams.setdefault(
+                name,
+                {
+                    "team": name,
+                    "games": 0,
+                    "points_for": 0.0,
+                    "points_against": 0.0,
+                },
+            )
+            rec["games"] += 1
+            rec["points_for"] += pts_for
+            rec["points_against"] += pts_against
+
+    # Aggregate
+    teams_out = {}
+    for name, rec in teams.items():
+        gcount = max(rec["games"], 1)
+        pf = rec["points_for"] / gcount
+        pa = rec["points_against"] / gcount
+        diff = pf - pa
+        teams_out[name] = {
+            "team": name,
+            "games": rec["games"],
+            "avg_points_for": round(pf, 2),
+            "avg_points_against": round(pa, 2),
+            "avg_point_diff": round(diff, 2),
+        }
+
+    out = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source": INPUT,
+        "games_used": finished_games,
+        "teams": teams_out,
+    }
+
+    with open(OUTPUT, "w") as f:
         json.dump(out, f, indent=2)
 
-    print("\n🎉 Historical database built successfully!\n")
+    print(
+        f"✅ Wrote {OUTPUT} (teams={len(teams_out)}, historical_games={finished_games})"
+    )
 
 if __name__ == "__main__":
-    build_history()
+    main()
