@@ -468,9 +468,58 @@
       return null;
     }
 
+    // ---------- INJURY + REF HELPERS ----------
+
+    function summarizeInjuries(injuries, homeName, awayName) {
+      if (!Array.isArray(injuries) || injuries.length === 0) return null;
+
+      const SEVERE = new Set(["OUT", "DOUBTFUL", "QUESTIONABLE", "SUSPENDED"]);
+      let total = 0;
+      let severe = 0;
+      let home = 0;
+      let away = 0;
+
+      for (const inj of injuries) {
+        if (!inj) continue;
+        total++;
+        const status = String(inj.status || "").toUpperCase();
+        if (SEVERE.has(status)) severe++;
+        const team = (inj.team || inj.team_abbr || "").toUpperCase();
+        if (homeName && team && homeName.toUpperCase().includes(team)) home++;
+        if (awayName && team && awayName.toUpperCase().includes(team)) away++;
+      }
+
+      if (total === 0) return null;
+
+      return {
+        total,
+        severe,
+        home,
+        away
+      };
+    }
+
+    function formatRefTrend(refTrend) {
+      if (!refTrend) return null;
+      const name = refTrend.name || refTrend.referee || null;
+      const homeAts = safeNumber(refTrend.home_ats);
+      const overRate = safeNumber(refTrend.over_rate || refTrend.total_over);
+      const sample = refTrend.sample || refTrend.games;
+
+      const pieces = [];
+      if (name) pieces.push(name);
+      if (homeAts !== null) pieces.push(`Home ATS ${Math.round(homeAts * 100)}%`);
+      if (overRate !== null) pieces.push(`Over ${Math.round(overRate * 100)}%`);
+      if (sample) pieces.push(`${sample} gms`);
+
+      return pieces.join(" • ");
+    }
+
+    // ---------- SPREAD PARSING / ATS LOGIC ----------
+
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
-      const details = odds.details || "";
+      const details = typeof odds.details === "string" ? odds.details : "";
 
       const homeTeamObj = game.home_team || {};
       const awayTeamObj = game.away_team || {};
@@ -478,6 +527,7 @@
       const homeName = homeTeamObj.name || game.home || pred?.home || "Home";
       const awayName = awayTeamObj.name || game.away || pred?.away || "Away";
 
+      // Try to get spread magnitude and favorite from odds.details first
       let spreadMag = safeNumber(odds.spread);
       let favoriteName = null;
 
@@ -505,6 +555,33 @@
         }
       }
 
+      // Fallback: use favorite_team + fav_spread from combined.json if needed
+      if (!favoriteName) {
+        const favFromGame = game.favorite_team || game.favoriteTeam || null;
+        const dogFromGame = game.dog_team || game.dogTeam || null;
+        let favSpread = safeNumber(game.fav_spread ?? game.favSpread ?? odds.spread);
+
+        if (favFromGame && favSpread != null) {
+          const favUp = String(favFromGame).toUpperCase();
+          if (homeName && favUp.includes(homeName.toUpperCase())) {
+            favoriteName = homeName;
+          } else if (awayName && favUp.includes(awayName.toUpperCase())) {
+            favoriteName = awayName;
+          }
+          spreadMag = Math.abs(favSpread);
+        }
+
+        // If we still don't know favorite but have a spread, assume home favorite on negative spread
+        if (!favoriteName && favSpread != null) {
+          if (favSpread < 0) {
+            favoriteName = homeName;
+          } else if (favSpread > 0) {
+            favoriteName = awayName;
+          }
+          spreadMag = Math.abs(favSpread);
+        }
+      }
+
       if (!spreadMag || !favoriteName) {
         return null;
       }
@@ -518,33 +595,6 @@
         homeName,
         awayName
       };
-    }
-
-    function formatInjuries(inj) {
-      if (!inj) return null;
-
-      if (typeof inj === "string") return inj.trim() || null;
-
-      if (Array.isArray(inj)) {
-        if (!inj.length) return null;
-        const keyOuts = inj.filter(x =>
-          x &&
-          (x.out === true ||
-           x.status === "out" ||
-           (typeof x.status === "string" && x.status.toLowerCase().includes("out")))
-        ).length;
-
-        if (keyOuts > 0) return `${keyOuts} key out`;
-        return `${inj.length} injuries`;
-      }
-
-      if (typeof inj === "object") {
-        if (inj.summary) return String(inj.summary);
-        if (inj.note) return String(inj.note);
-        if (inj.count) return `${inj.count} injuries`;
-      }
-
-      return null;
     }
 
     function buildGameView(game, pred) {
@@ -563,7 +613,9 @@
       const venue = game.venue || pred?.venue || {};
       const weather = game.weather || pred?.weather || null;
       const risk = game.weatherRisk || game.risk || pred?.risk || null;
-      const injuries = game.injuries || game.injury_report || pred?.injuries || null;
+
+      const injuries = game.injuries || pred?.injuries || null;
+      const refTrend = game.ref_trend || game.referee_trend || game.referee || null;
 
       const indoor = !!(venue.indoor || (weather && weather.indoor));
 
@@ -606,11 +658,11 @@
         }
       } else if (modelMarginHome !== null) {
         suTeam = modelMarginHome >= 0 ? homeName : awayName;
-        const base = clamp(50 + Math.abs(modelMarginHome) * 5, 50, 99);
+        const base = clamp(Math.abs(modelMarginHome) * 6.25 + 50, 51, 98);
         suConf = Math.round(base);
       }
 
-      // ---------- ATS (probability-style; flip if < 50) ----------
+      // ---------- ATS (favorite vs dog, flip below 50%, keep real spread signs) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
@@ -627,66 +679,62 @@
           predFavMargin = -modelMarginHome;
         }
 
-        // diff > 0 ⇒ favorite expected to beat the spread by diff points
-        const diff = predFavMargin - line;
+        const diff = predFavMargin - line; // positive = favorite covers
+        const edgePts = Math.abs(diff);
 
-        // Map diff (signed) → probability that favorite covers
-        //  diff = 0  ⇒ 50%
-        //  diff = +2 ⇒ ~60%
-        //  diff = +4 ⇒ ~70%, etc.
-        const slope = 5; // tweakable
-        let favProb = 50 + diff * slope;
-        favProb = clamp(favProb, 1, 99); // keep within [1,99]
+        // Symmetric probability that favorite covers centered at 50
+        const strength = clamp(edgePts, 0, 10); // cap big blowouts
+        const confDelta = strength * 5;         // up to ±50
+        let probFavCovers = clamp(50 + (diff >= 0 ? confDelta : -confDelta), 1, 99);
 
+        // Apply your rule:
+        // if < 50, flip to dog and use (100 - X)
         let sideName;
         let sideSpread;
-        let finalConf;
+        let displayConf;
 
-        if (favProb >= 50) {
-          // Favorite side
+        if (probFavCovers >= 50) {
           sideName = favoriteName;
           sideSpread = `-${line}`;
-          finalConf = Math.round(favProb);
+          displayConf = probFavCovers;
         } else {
-          // Your rule: if < 50%, flip the pick and invert confidence
           sideName = dogName;
           sideSpread = `+${line}`;
-          finalConf = Math.round(100 - favProb);
+          displayConf = 100 - probFavCovers;
         }
 
         atsTeam = sideName;
-        atsConf = finalConf;
+        atsConf = Math.round(displayConf);
         atsText = `${sideName} ${sideSpread}`;
       }
 
-      // ---------- TOTAL (O/U; probability-style, flip if < 50) ----------
+      // ---------- TOTAL (O/U) with flip < 50% ----------
       let totalPick = null;
       let totalText = "No total edge";
       let totalConf = null;
 
       if (totalLine !== null && modelTotal !== null) {
-        const diff = modelTotal - totalLine; // >0 = leaning Over
-        const slope = 5;
-        let overProb = 50 + diff * slope;
-        overProb = clamp(overProb, 1, 99);
+        const diff = modelTotal - totalLine; // positive = Over lean
+        const edgePts = Math.abs(diff);
+        const strength = clamp(edgePts, 0, 15);
+        const confDelta = strength * 3.5; // up to ~52.5
 
-        const lineText =
-          typeof totalLine === "number" ? totalLine.toFixed(1) : String(totalLine);
+        let probOver = clamp(50 + (diff >= 0 ? confDelta : -confDelta), 1, 99);
 
-        let pick, finalConf;
+        let pick;
+        let displayConf;
 
-        if (overProb >= 50) {
+        if (probOver >= 50) {
           pick = "Over";
-          finalConf = Math.round(overProb);
+          displayConf = probOver;
         } else {
-          // Your rule: < 50 ⇒ other side with 100 − X
           pick = "Under";
-          finalConf = Math.round(100 - overProb);
+          displayConf = 100 - probOver;
         }
 
         totalPick = pick;
-        totalText = `${pick} ${lineText}`;
-        totalConf = finalConf;
+        totalText = `${pick} ${typeof totalLine === "number" ? totalLine.toFixed(1) : totalLine}`;
+        totalConf = Math.round(displayConf);
       } else if (totalLine === null) {
         totalText = "No total line";
       }
@@ -697,6 +745,9 @@
         (suConf !== null && suConf >= 80) ||
         (atsConf !== null && atsConf >= 80) ||
         (totalConf !== null && totalConf >= 80);
+
+      const injurySummary = summarizeInjuries(injuries, homeName, awayName);
+      const refSummary = formatRefTrend(refTrend);
 
       return {
         raw: game,
@@ -710,8 +761,10 @@
         venue,
         weather,
         risk,
-        injuries,
         indoor,
+        injuries,
+        injurySummary,
+        refSummary,
         highConfidence,
         su: {
           team: suTeam,
@@ -873,12 +926,19 @@
           metaRow.appendChild(riskPill);
         }
 
-        const injText = formatInjuries(g.injuries);
-        if (injText) {
-          const injPill = document.createElement("div");
-          injPill.className = "pill";
-          injPill.innerHTML = `<span class="key">Injuries</span><span class="val">${injText}</span>`;
-          metaRow.appendChild(injPill);
+        if (g.injurySummary) {
+          const inj = g.injurySummary;
+          const pill = document.createElement("div");
+          pill.className = "pill";
+          pill.innerHTML = `<span class="key">Injuries</span><span class="val">${inj.severe || inj.total} key (${inj.home} home / ${inj.away} away)</span>`;
+          metaRow.appendChild(pill);
+        }
+
+        if (g.refSummary) {
+          const pill = document.createElement("div");
+          pill.className = "pill";
+          pill.innerHTML = `<span class="key">Ref</span><span class="val">${g.refSummary}</span>`;
+          metaRow.appendChild(pill);
         }
 
         card.appendChild(metaRow);
@@ -919,7 +979,7 @@
         atsBlock.innerHTML = `
           <div class="pick-label">Against The Spread</div>
           <div class="pick-main">
-            ${g.ats.team ? g.ats.text : "No strong edge vs spread"}
+            ${g.ats.team ? g.ats.text : "No spread / model"}
           </div>
           <div class="pick-sub">
             ${atsConf !== null ? `<span class="conf">${atsConf}% confidence</span>` : '<span class="conf">N/A</span>'}
