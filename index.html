@@ -38,10 +38,10 @@
       padding: 24px 16px 40px;
     }
 
-    /* HERO HEADER */
+    /* HERO HEADER (unchanged) */
     .hero {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
     .hero-kicker {
@@ -92,6 +92,52 @@
       font-size: 0.8rem;
       color: #9ca3af;
       margin-top: 6px;
+    }
+
+    /* ACCURACY TRACKER HEADER */
+    .accuracy-wrap {
+      text-align: center;
+      margin: 10px auto 22px;
+      max-width: 680px;
+    }
+
+    .accuracy-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #fed7aa;
+      margin-bottom: 4px;
+    }
+
+    .accuracy-line {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 2px 0;
+    }
+
+    .accuracy-line span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.75rem;
+      color: #e5e7eb;
+      margin-right: 6px;
+    }
+
+    .accuracy-line span.metric {
+      margin: 0 4px;
+      color: #fef3c7;
+    }
+
+    .accuracy-line span.metric span.value {
+      font-weight: 600;
+    }
+
+    .accuracy-line span.sport-name {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      color: #cbd5f5;
+      margin-right: 6px;
     }
 
     /* STATS BAR */
@@ -301,6 +347,40 @@
       color: #e5e7eb;
     }
 
+    /* INJURIES + REFS */
+    .injuries-block {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(15, 23, 42, 0.8);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .injuries-title {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      color: #f97316;
+      margin-bottom: 2px;
+    }
+
+    .injuries-body {
+      font-size: 0.72rem;
+      color: #e5e7eb;
+    }
+
+    .injuries-body span.chip {
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .refs-pill {
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(248, 250, 252, 0.35);
+    }
+
     /* PICKS STRIP */
     .picks-strip {
       display: grid;
@@ -395,7 +475,7 @@
 </head>
 <body>
   <div class="page-shell">
-    <!-- HERO -->
+    <!-- HERO (unchanged) -->
     <section class="hero">
       <p class="hero-kicker">LIVE ODDS + PICKS UPDATED EVERY 15 MINUTES • FOR ENTERTAINMENT ONLY</p>
       <p class="hero-provided">Provided to you by ForgedByFreedom.org</p>
@@ -403,6 +483,24 @@
       <p class="hero-tagline">STRENGTH • DISCIPLINE • FREEDOM</p>
       <p class="hero-sub">Visit us for all your fitness, nutrition and supplement program needs.</p>
       <p class="hero-disclaimer">No gambling advice. This dashboard is for informational and entertainment use only.</p>
+    </section>
+
+    <!-- ACCURACY TRACKER HEADER -->
+    <section class="accuracy-wrap">
+      <div class="accuracy-title">Accuracy Tracker</div>
+      <div class="accuracy-line" id="acc-overall-line">
+        <span class="label">All Sports</span>
+        <span class="metric">SU: <span class="value" id="acc-overall-su">--%</span></span> •
+        <span class="metric">ATS: <span class="value" id="acc-overall-ats">--%</span></span> •
+        <span class="metric">O/U: <span class="value" id="acc-overall-ou">--%</span></span>
+      </div>
+      <div class="accuracy-line" id="acc-sport-line" style="display:none;">
+        <span class="sport-name" id="acc-sport-name"></span>
+        <span class="metric">SU: <span class="value" id="acc-sport-su">--%</span></span> •
+        <span class="metric">ATS: <span class="value" id="acc-sport-ats">--%</span></span> •
+        <span class="metric">O/U: <span class="value" id="acc-sport-ou">--%</span></span>
+      </div>
+      <div class="accuracy-line" id="acc-since-line" style="font-size:0.76rem;"></div>
     </section>
 
     <!-- STATS -->
@@ -447,7 +545,12 @@
     const state = {
       allGames: [],
       activeSport: "all",
-      lastUpdated: null
+      lastUpdated: null,
+      accuracy: {
+        overall: null,
+        bySport: {},
+        since: null
+      }
     };
 
     function normalizeSport(code) {
@@ -468,58 +571,14 @@
       return null;
     }
 
-    // ---------- INJURY + REF HELPERS ----------
-
-    function summarizeInjuries(injuries, homeName, awayName) {
-      if (!Array.isArray(injuries) || injuries.length === 0) return null;
-
-      const SEVERE = new Set(["OUT", "DOUBTFUL", "QUESTIONABLE", "SUSPENDED"]);
-      let total = 0;
-      let severe = 0;
-      let home = 0;
-      let away = 0;
-
-      for (const inj of injuries) {
-        if (!inj) continue;
-        total++;
-        const status = String(inj.status || "").toUpperCase();
-        if (SEVERE.has(status)) severe++;
-        const team = (inj.team || inj.team_abbr || "").toUpperCase();
-        if (homeName && team && homeName.toUpperCase().includes(team)) home++;
-        if (awayName && team && awayName.toUpperCase().includes(team)) away++;
-      }
-
-      if (total === 0) return null;
-
-      return {
-        total,
-        severe,
-        home,
-        away
-      };
+    function formatPct(x) {
+      if (x === null || x === undefined || Number.isNaN(x)) return "--%";
+      return `${x.toFixed(1)}%`;
     }
-
-    function formatRefTrend(refTrend) {
-      if (!refTrend) return null;
-      const name = refTrend.name || refTrend.referee || null;
-      const homeAts = safeNumber(refTrend.home_ats);
-      const overRate = safeNumber(refTrend.over_rate || refTrend.total_over);
-      const sample = refTrend.sample || refTrend.games;
-
-      const pieces = [];
-      if (name) pieces.push(name);
-      if (homeAts !== null) pieces.push(`Home ATS ${Math.round(homeAts * 100)}%`);
-      if (overRate !== null) pieces.push(`Over ${Math.round(overRate * 100)}%`);
-      if (sample) pieces.push(`${sample} gms`);
-
-      return pieces.join(" • ");
-    }
-
-    // ---------- SPREAD PARSING / ATS LOGIC ----------
 
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
-      const details = typeof odds.details === "string" ? odds.details : "";
+      const details = odds.details || "";
 
       const homeTeamObj = game.home_team || {};
       const awayTeamObj = game.away_team || {};
@@ -527,7 +586,6 @@
       const homeName = homeTeamObj.name || game.home || pred?.home || "Home";
       const awayName = awayTeamObj.name || game.away || pred?.away || "Away";
 
-      // Try to get spread magnitude and favorite from odds.details first
       let spreadMag = safeNumber(odds.spread);
       let favoriteName = null;
 
@@ -555,33 +613,6 @@
         }
       }
 
-      // Fallback: use favorite_team + fav_spread from combined.json if needed
-      if (!favoriteName) {
-        const favFromGame = game.favorite_team || game.favoriteTeam || null;
-        const dogFromGame = game.dog_team || game.dogTeam || null;
-        let favSpread = safeNumber(game.fav_spread ?? game.favSpread ?? odds.spread);
-
-        if (favFromGame && favSpread != null) {
-          const favUp = String(favFromGame).toUpperCase();
-          if (homeName && favUp.includes(homeName.toUpperCase())) {
-            favoriteName = homeName;
-          } else if (awayName && favUp.includes(awayName.toUpperCase())) {
-            favoriteName = awayName;
-          }
-          spreadMag = Math.abs(favSpread);
-        }
-
-        // If we still don't know favorite but have a spread, assume home favorite on negative spread
-        if (!favoriteName && favSpread != null) {
-          if (favSpread < 0) {
-            favoriteName = homeName;
-          } else if (favSpread > 0) {
-            favoriteName = awayName;
-          }
-          spreadMag = Math.abs(favSpread);
-        }
-      }
-
       if (!spreadMag || !favoriteName) {
         return null;
       }
@@ -595,6 +626,94 @@
         homeName,
         awayName
       };
+    }
+
+    function oddsBasedProbFromEdge(delta, maxEdge, maxBoost = 0.45) {
+      if (delta === null || delta === undefined) return null;
+      const sign = delta === 0 ? 0 : (delta > 0 ? 1 : -1);
+      const edgeUnits = clamp(Math.abs(delta), 0, maxEdge);
+      const frac = edgeUnits / maxEdge;  // 0 → 1
+      // Probability for "favored" outcome (covers / over) relative to 50%
+      let prob = 0.5 + sign * frac * maxBoost;
+      prob = clamp(prob, 0.05, 0.95);
+      return prob;
+    }
+
+    function extractInjurySummary(raw, pred) {
+      const src = raw.injuries || raw.injury || pred?.injuries || null;
+      if (!src) return null;
+
+      let home = [];
+      let away = [];
+
+      if (Array.isArray(src)) {
+        // Just a flat list
+        if (!src.length) return null;
+        return {
+          total: src.length,
+          homeCount: null,
+          awayCount: null,
+          keyPlayers: src
+            .map(it => {
+              if (!it) return null;
+              const name = it.name || it.player || it.full_name || it.displayName;
+              const status = it.status || it.injury_status || it.designation;
+              if (!name) return null;
+              return status ? `${name} (${status})` : name;
+            })
+            .filter(Boolean)
+            .slice(0, 4)
+        };
+      }
+
+      if (Array.isArray(src.home)) home = src.home;
+      if (Array.isArray(src.away)) away = src.away;
+      if (Array.isArray(src.home_injuries)) home = src.home_injuries;
+      if (Array.isArray(src.away_injuries)) away = src.away_injuries;
+
+      const total = home.length + away.length;
+      if (!total) return null;
+
+      const keyPlayers = [];
+      function collect(list) {
+        for (const it of list) {
+          if (keyPlayers.length >= 4) break;
+          if (!it) continue;
+          const name = it.name || it.player || it.full_name || it.displayName;
+          const status = it.status || it.injury_status || it.designation;
+          if (!name) continue;
+          keyPlayers.push(status ? `${name} (${status})` : name);
+        }
+      }
+      collect(home);
+      collect(away);
+
+      return {
+        total,
+        homeCount: home.length,
+        awayCount: away.length,
+        keyPlayers
+      };
+    }
+
+    function extractRefInfo(raw, pred) {
+      const ref = raw.ref_info || raw.referee || raw.officials || raw.ref_trend || pred?.ref_info || pred?.referee;
+      if (!ref) return null;
+
+      if (typeof ref === "string") {
+        return ref;
+      }
+
+      // Try a few common fields
+      const name = ref.crew_name || ref.referee || ref.name || ref.crew;
+      const ats = ref.ats_home || ref.ats_trend || ref.ats_edge;
+      const total = ref.ou_over || ref.total_trend;
+
+      let parts = [];
+      if (name) parts.push(String(name));
+      if (ats !== undefined && ats !== null) parts.push(`ATS: ${ats}`);
+      if (total !== undefined && total !== null) parts.push(`O/U: ${total}`);
+      return parts.length ? parts.join(" • ") : null;
     }
 
     function buildGameView(game, pred) {
@@ -613,9 +732,6 @@
       const venue = game.venue || pred?.venue || {};
       const weather = game.weather || pred?.weather || null;
       const risk = game.weatherRisk || game.risk || pred?.risk || null;
-
-      const injuries = game.injuries || pred?.injuries || null;
-      const refTrend = game.ref_trend || game.referee_trend || game.referee || null;
 
       const indoor = !!(venue.indoor || (weather && weather.indoor));
 
@@ -644,7 +760,7 @@
         }
       }
 
-      // ---------- Straight Up ----------
+      // ---------- Straight Up (use win probability when available) ----------
       let suTeam = null;
       let suConf = null;
 
@@ -658,83 +774,66 @@
         }
       } else if (modelMarginHome !== null) {
         suTeam = modelMarginHome >= 0 ? homeName : awayName;
-        const base = clamp(Math.abs(modelMarginHome) * 6.25 + 50, 51, 98);
-        suConf = Math.round(base);
+        const edgePts = Math.abs(modelMarginHome);
+        const prob = 0.5 + clamp(edgePts, 0, 20) / 20 * 0.45; // up to ~95%
+        suConf = Math.round(prob * 100);
       }
 
-      // ---------- ATS (favorite vs dog, flip below 50%, keep real spread signs) ----------
+      // ---------- ATS (favorite vs dog, confidence-flip logic) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
       let atsConf = null;
 
       if (spreadInfo && modelMarginHome !== null) {
-        const { favoriteName, dogName, line, homeName: hName, awayName: aName } = spreadInfo;
+        const { favoriteName, dogName, line, homeName: hName } = spreadInfo;
 
         // Predicted margin from favorite's perspective
-        let predFavMargin;
-        if (favoriteName === hName) {
-          predFavMargin = modelMarginHome;
-        } else {
-          predFavMargin = -modelMarginHome;
+        let predFavMargin = favoriteName === hName ? modelMarginHome : -modelMarginHome;
+
+        const favDelta = predFavMargin - line; // >0: favorite covers, <0: dog covers
+        const probFavCovers = oddsBasedProbFromEdge(favDelta, 10, 0.45);
+
+        if (probFavCovers !== null) {
+          let pickTeam, pickSpread, displayProb;
+          if (probFavCovers >= 0.5) {
+            pickTeam = favoriteName;
+            pickSpread = `-${line}`;
+            displayProb = probFavCovers;
+          } else {
+            pickTeam = dogName;
+            pickSpread = `+${line}`;
+            displayProb = 1 - probFavCovers;
+          }
+          atsTeam = pickTeam;
+          atsConf = Math.round(displayProb * 100);
+          atsText = `${pickTeam} ${pickSpread}`;
         }
-
-        const diff = predFavMargin - line; // positive = favorite covers
-        const edgePts = Math.abs(diff);
-
-        // Symmetric probability that favorite covers centered at 50
-        const strength = clamp(edgePts, 0, 10); // cap big blowouts
-        const confDelta = strength * 5;         // up to ±50
-        let probFavCovers = clamp(50 + (diff >= 0 ? confDelta : -confDelta), 1, 99);
-
-        // Apply your rule:
-        // if < 50, flip to dog and use (100 - X)
-        let sideName;
-        let sideSpread;
-        let displayConf;
-
-        if (probFavCovers >= 50) {
-          sideName = favoriteName;
-          sideSpread = `-${line}`;
-          displayConf = probFavCovers;
-        } else {
-          sideName = dogName;
-          sideSpread = `+${line}`;
-          displayConf = 100 - probFavCovers;
-        }
-
-        atsTeam = sideName;
-        atsConf = Math.round(displayConf);
-        atsText = `${sideName} ${sideSpread}`;
       }
 
-      // ---------- TOTAL (O/U) with flip < 50% ----------
+      // ---------- TOTAL (O/U) with flip logic ----------
       let totalPick = null;
       let totalText = "No total edge";
       let totalConf = null;
 
       if (totalLine !== null && modelTotal !== null) {
-        const diff = modelTotal - totalLine; // positive = Over lean
-        const edgePts = Math.abs(diff);
-        const strength = clamp(edgePts, 0, 15);
-        const confDelta = strength * 3.5; // up to ~52.5
+        const delta = modelTotal - totalLine; // >0: over, <0: under
+        const probOver = oddsBasedProbFromEdge(delta, 20, 0.45);
 
-        let probOver = clamp(50 + (diff >= 0 ? confDelta : -confDelta), 1, 99);
-
-        let pick;
-        let displayConf;
-
-        if (probOver >= 50) {
-          pick = "Over";
-          displayConf = probOver;
-        } else {
-          pick = "Under";
-          displayConf = 100 - probOver;
+        if (probOver !== null) {
+          let pick, displayProb;
+          if (probOver >= 0.5) {
+            pick = "Over";
+            displayProb = probOver;
+          } else {
+            pick = "Under";
+            displayProb = 1 - probOver;
+          }
+          totalPick = pick;
+          const lineText = typeof totalLine === "number" ? totalLine.toFixed(1) : String(totalLine);
+          totalText = `${pick} ${lineText}`;
+          totalConf = Math.round(displayProb * 100);
         }
-
-        totalPick = pick;
-        totalText = `${pick} ${typeof totalLine === "number" ? totalLine.toFixed(1) : totalLine}`;
-        totalConf = Math.round(displayConf);
       } else if (totalLine === null) {
         totalText = "No total line";
       }
@@ -746,8 +845,8 @@
         (atsConf !== null && atsConf >= 80) ||
         (totalConf !== null && totalConf >= 80);
 
-      const injurySummary = summarizeInjuries(injuries, homeName, awayName);
-      const refSummary = formatRefTrend(refTrend);
+      const injuries = extractInjurySummary(game, pred);
+      const refsInfo = extractRefInfo(game, pred);
 
       return {
         raw: game,
@@ -762,9 +861,6 @@
         weather,
         risk,
         indoor,
-        injuries,
-        injurySummary,
-        refSummary,
         highConfidence,
         su: {
           team: suTeam,
@@ -780,6 +876,8 @@
           confidence: totalConf,
           text: totalText
         },
+        injuries,
+        refsInfo,
         hasPrediction
       };
     }
@@ -845,6 +943,57 @@
         meta.textContent = `Data loaded • ${ts}`;
       } else {
         meta.textContent = "Awaiting data...";
+      }
+    }
+
+    function renderAccuracy() {
+      const overall = state.accuracy.overall;
+      const bySport = state.accuracy.bySport || {};
+      const since = state.accuracy.since;
+
+      const overallSU = document.getElementById("acc-overall-su");
+      const overallATS = document.getElementById("acc-overall-ats");
+      const overallOU = document.getElementById("acc-overall-ou");
+
+      if (overall) {
+        overallSU.textContent = formatPct(overall.su ?? overall.SU ?? 0);
+        overallATS.textContent = formatPct(overall.ats ?? overall.ATS ?? 0);
+        overallOU.textContent = formatPct(overall.ou ?? overall.OU ?? 0);
+      } else {
+        overallSU.textContent = "--%";
+        overallATS.textContent = "--%";
+        overallOU.textContent = "--%";
+      }
+
+      const sportLine = document.getElementById("acc-sport-line");
+      const sportNameEl = document.getElementById("acc-sport-name");
+      const sportSU = document.getElementById("acc-sport-su");
+      const sportATS = document.getElementById("acc-sport-ats");
+      const sportOU = document.getElementById("acc-sport-ou");
+
+      if (state.activeSport && state.activeSport !== "all") {
+        const sAcc = bySport[state.activeSport] || null;
+        sportLine.style.display = "block";
+        sportNameEl.textContent = state.activeSport.toUpperCase();
+
+        if (sAcc) {
+          sportSU.textContent = formatPct(sAcc.su ?? sAcc.SU ?? 0);
+          sportATS.textContent = formatPct(sAcc.ats ?? sAcc.ATS ?? 0);
+          sportOU.textContent = formatPct(sAcc.ou ?? sAcc.OU ?? 0);
+        } else {
+          sportSU.textContent = "--%";
+          sportATS.textContent = "--%";
+          sportOU.textContent = "--%";
+        }
+      } else {
+        sportLine.style.display = "none";
+      }
+
+      const sinceLine = document.getElementById("acc-since-line");
+      if (since) {
+        sinceLine.textContent = `Tracking from ${since} onward`;
+      } else {
+        sinceLine.textContent = "";
       }
     }
 
@@ -926,22 +1075,38 @@
           metaRow.appendChild(riskPill);
         }
 
-        if (g.injurySummary) {
-          const inj = g.injurySummary;
-          const pill = document.createElement("div");
-          pill.className = "pill";
-          pill.innerHTML = `<span class="key">Injuries</span><span class="val">${inj.severe || inj.total} key (${inj.home} home / ${inj.away} away)</span>`;
-          metaRow.appendChild(pill);
-        }
-
-        if (g.refSummary) {
-          const pill = document.createElement("div");
-          pill.className = "pill";
-          pill.innerHTML = `<span class="key">Ref</span><span class="val">${g.refSummary}</span>`;
-          metaRow.appendChild(pill);
+        if (g.refsInfo) {
+          const refPill = document.createElement("div");
+          refPill.className = "refs-pill";
+          refPill.innerHTML = `<span class="key">Refs</span> <span class="val">${g.refsInfo}</span>`;
+          metaRow.appendChild(refPill);
         }
 
         card.appendChild(metaRow);
+
+        if (g.injuries) {
+          const inj = g.injuries;
+          const injDiv = document.createElement("div");
+          injDiv.className = "injuries-block";
+
+          const counts = [];
+          if (inj.homeCount != null) counts.push(`Home ${inj.homeCount}`);
+          if (inj.awayCount != null) counts.push(`Away ${inj.awayCount}`);
+          const countText = counts.length ? counts.join(" • ") : `${inj.total} listed`;
+
+          const playersText = (inj.keyPlayers && inj.keyPlayers.length)
+            ? inj.keyPlayers.join(" • ")
+            : "";
+
+          injDiv.innerHTML = `
+            <div class="injuries-title">Injuries (${inj.total})</div>
+            <div class="injuries-body">
+              <span class="chip">${countText}</span>
+              ${playersText ? `<span class="chip">${playersText}</span>` : ""}
+            </div>
+          `;
+          card.appendChild(injDiv);
+        }
 
         const picksStrip = document.createElement("div");
         picksStrip.className = "picks-strip";
@@ -979,7 +1144,7 @@
         atsBlock.innerHTML = `
           <div class="pick-label">Against The Spread</div>
           <div class="pick-main">
-            ${g.ats.team ? g.ats.text : "No spread / model"}
+            ${g.ats.team ? g.ats.text : "No strong edge vs spread"}
           </div>
           <div class="pick-sub">
             ${atsConf !== null ? `<span class="conf">${atsConf}% confidence</span>` : '<span class="conf">N/A</span>'}
@@ -1018,6 +1183,44 @@
         btn.classList.toggle("active", btn.dataset.sport === sport);
       });
       renderGames();
+      renderAccuracy();
+    }
+
+    async function loadAccuracyData() {
+      // Preferred: accuracy_summary.json
+      try {
+        const res = await fetch("accuracy_summary.json?v=" + Date.now(), { cache: "no-store" });
+        if (res.ok) {
+          const json = await res.json();
+          const overall = json.overall || null;
+          const bySport = json.by_sport || json.bySport || {};
+          const since = json.since || json.start_date || null;
+
+          state.accuracy.overall = overall;
+          state.accuracy.bySport = bySport;
+          state.accuracy.since = since;
+          return;
+        }
+      } catch (e) {
+        console.warn("No accuracy_summary.json found, falling back to performance_log.json");
+      }
+
+      // Fallback: performance_log.json (overall only)
+      try {
+        const res = await fetch("performance_log.json?v=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) return;
+        const log = await res.json();
+        if (!Array.isArray(log) || !log.length) return;
+        const last = log[log.length - 1];
+
+        state.accuracy.overall = {
+          su: last.SU_accuracy ?? last.su_pct ?? 0,
+          ats: last.ATS_accuracy ?? last.ats_pct ?? 0,
+          ou: last.OU_accuracy ?? last.ou_pct ?? 0
+        };
+      } catch (e) {
+        console.warn("No performance_log.json available");
+      }
     }
 
     async function loadData() {
@@ -1054,7 +1257,9 @@
         });
 
         state.allGames = views;
+        await loadAccuracyData();
         renderStats();
+        renderAccuracy();
         renderGames();
       } catch (err) {
         console.error("Error loading data", err);
