@@ -1,60 +1,102 @@
 #!/usr/bin/env python3
 """
-Convert weather_raw.json into weather_risk1.json with proper risk scoring.
+weather_risk1.py
+
+Takes per-game weather from weather_raw.json and computes a simple
+risk score for football-style weather impact.
+
+Input:  weather_raw.json
+Output: weather.json
 """
 
 import json
-from pathlib import Path
+import os
+from datetime import datetime, timezone
 
-RAW = Path("weather_raw.json")
-OUT = Path("weather_risk1.json")
+RAW_FILE = "weather_raw.json"
+OUT_FILE = "weather.json"
 
-def load_raw():
-    if not RAW.exists():
-        print("❌ weather_raw.json missing")
-        return []
-    with open(RAW, "r") as f:
-        js = json.load(f)
-        return js.get("data", [])
 
-def weather_risk(entry):
-    """Simple scoring."""
-    if "error" in entry:
+def load_json(path):
+    if not os.path.exists(path):
         return None
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-    temp = entry.get("temperatureF")
-    wind = entry.get("windSpeedMph")
 
-    if temp is None or wind is None:
-        return None
+def save_json(path, obj):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2)
 
+
+def classify_risk(temp_f, wind_mph, summary: str):
+    """
+    Return an integer risk level 0–3.
+    0 = minimal
+    1 = mild
+    2 = moderate
+    3 = high
+    """
     risk = 0
-    if temp < 35: risk += 1
-    if temp < 25: risk += 1
-    if wind > 15: risk += 1
-    if wind > 25: risk += 1
+    summary_l = (summary or "").lower()
 
+    # Temperature extremes
+    if temp_f is not None:
+        if temp_f <= 25 or temp_f >= 90:
+            risk += 1
+
+    # Wind
+    if wind_mph is not None:
+        if wind_mph >= 15:
+            risk += 1
+        if wind_mph >= 25:
+            risk += 1
+
+    # Precipitation / storms
+    bad_words = [
+        "rain", "showers", "storm", "thunder", "snow",
+        "sleet", "freezing", "hail"
+    ]
+    if any(w in summary_l for w in bad_words):
+        risk += 1
+
+    if risk > 3:
+        risk = 3
     return risk
 
+
 def main():
-    raw = load_raw()
-    out = []
+    raw = load_json(RAW_FILE)
+    if not raw or "data" not in raw or not raw["data"]:
+        print("❌ weather_raw.json missing or empty")
+        return
 
-    for e in raw:
-        r = weather_risk(e)
-        out.append({
-            "key": e.get("key"),
-            "team_id": e.get("team_id"),
-            "risk": r,
-            "temperatureF": e.get("temperatureF"),
-            "windSpeedMph": e.get("windSpeedMph"),
-            "shortForecast": e.get("shortForecast"),
-        })
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
+    out_data = {}
 
-    with open(OUT, "w") as f:
-        json.dump({"data": out}, f, indent=2)
+    for key, entry in raw["data"].items():
+        temp = entry.get("temperatureF")
+        wind = entry.get("windSpeedMph")
+        summary = entry.get("shortForecast") or entry.get("summary")
 
-    print(f"✅ Weather risk written → {OUT}")
+        risk = classify_risk(temp, wind, summary)
+
+        out_data[str(key)] = {
+            "temperatureF": temp,
+            "windSpeedMph": wind,
+            "shortForecast": summary,
+            "detailedForecast": entry.get("detailedForecast"),
+            "risk": risk,
+        }
+
+    payload = {
+        "timestamp": ts,
+        "count": len(out_data),
+        "data": out_data,
+    }
+    save_json(OUT_FILE, payload)
+    print(f"✅ Weather risk written → {OUT_FILE}")
+
 
 if __name__ == "__main__":
     main()
