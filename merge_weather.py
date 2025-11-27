@@ -1,61 +1,53 @@
-import json
-import datetime
+#!/usr/bin/env python3
+"""
+Merge weather_risk1.json into combined.json.
+"""
 
-WEATHER_FILE = "weather.json"
-VENUES_FILE = "fbs_stadiums.json"
-OUTPUT_FILE = "weather_merged.json"
+import json, datetime
+from pathlib import Path
 
-def merge():
-    # Load venue/stadium data
-    with open(VENUES_FILE, "r") as f:
-        venues = json.load(f)
+COMBINED = Path("combined.json")
+WEATHER = Path("weather_risk1.json")
 
-    # Load weather data
-    with open(WEATHER_FILE, "r") as f:
-        raw_weather = json.load(f)
+def load(path):
+    if not path.exists():
+        return None
+    with open(path, "r") as f:
+        return json.load(f)
 
-    weather = {}
+def normalize(name):
+    return name.lower().strip() if name else ""
 
-    # FIX: Only add entries that are valid dicts with lat/lon
-    for w in raw_weather:
-        if isinstance(w, dict) and "lat" in w and "lon" in w:
-            key = f"{w['lat']},{w['lon']}"
-            weather[key] = w
-        else:
-            print(f"[WARN] Skipped invalid weather entry: {w}")
+def main():
+    combined = load(COMBINED)
+    weather = load(WEATHER)
 
-    merged = {}
+    if not combined or "data" not in combined:
+        print("❌ combined.json invalid")
+        return
 
-    # Merge weather → venue by coordinate match
-    for venue_id, venue in venues.items():
-        if not venue:
-            merged[venue_id] = venue
-            continue
+    wx_map = {}
+    for w in weather.get("data", []):
+        key = normalize(w["key"])
+        wx_map[key] = w
 
-        lat = venue.get("lat")
-        lon = venue.get("lon")
+    for g in combined["data"]:
+        venue_name = normalize(g.get("venue", {}).get("name"))
+        wx = wx_map.get(venue_name)
+        if wx:
+            g["weather"] = {
+                "temperatureF": wx.get("temperatureF"),
+                "windSpeedMph": wx.get("windSpeedMph"),
+                "shortForecast": wx.get("shortForecast"),
+            }
+            g["weatherRisk"] = {"risk": wx.get("risk")}
 
-        key = f"{lat},{lon}"
+    combined["timestamp"] = datetime.datetime.utcnow().isoformat()
 
-        venue_copy = dict(venue)
+    with open(COMBINED, "w") as f:
+        json.dump(combined, f, indent=2)
 
-        if key in weather:
-            venue_copy["weather"] = weather[key]
-        else:
-            venue_copy["weather"] = None
-
-        merged[venue_id] = venue_copy
-
-    out = {
-        "timestamp": datetime.datetime.utcnow().isoformat(),
-        "venues": merged
-    }
-
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(out, f, indent=2)
-
-    print("Weather merged successfully →", OUTPUT_FILE)
-
+    print("✅ Weather merged into combined.json")
 
 if __name__ == "__main__":
-    merge()
+    main()
