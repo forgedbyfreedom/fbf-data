@@ -332,7 +332,6 @@
       background: radial-gradient(circle at top, rgba(22, 163, 74, 0.45), rgba(15, 23, 42, 0.96));
     }
 
-    /* Glow per pick when >= 80% */
     .pick-block.glow {
       border-color: var(--accent);
       box-shadow:
@@ -461,10 +460,14 @@
     }
 
     function safeNumber(val) {
-      return typeof val === "number" && !Number.isNaN(val) ? val : null;
+      if (typeof val === "number" && !Number.isNaN(val)) return val;
+      if (typeof val === "string") {
+        const num = parseFloat(val);
+        if (!Number.isNaN(num)) return num;
+      }
+      return null;
     }
 
-    // Parse odds to identify favorite, dog, and the spread magnitude
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
       const details = odds.details || "";
@@ -478,7 +481,6 @@
       let spreadMag = safeNumber(odds.spread);
       let favoriteName = null;
 
-      // Try to parse from "TEAM -7.5" in odds.details
       const m = details.match(/([A-Za-z.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
       if (m) {
         const teamToken = m[1].trim();
@@ -537,7 +539,6 @@
 
       const indoor = !!(venue.indoor || (weather && weather.indoor));
 
-      // Prediction core
       const predCore = pred?.prediction || {};
       const projHome = safeNumber(predCore.projected_home_score);
       const projAway = safeNumber(predCore.projected_away_score);
@@ -549,7 +550,6 @@
         if (projSpread !== null) {
           modelMarginHome = projSpread;
         } else if (projHome !== null && projAway !== null) {
-          // Positive if home projected to win, negative if away
           modelMarginHome = projHome - projAway;
         }
       }
@@ -564,12 +564,11 @@
         }
       }
 
-      // ---------- Straight Up (using win probability) ----------
+      // ---------- Straight Up (use win probability when available) ----------
       let suTeam = null;
       let suConf = null;
 
       if (winProbHome !== null) {
-        // Home probability vs Away probability
         if (winProbHome >= 0.5) {
           suTeam = homeName;
           suConf = Math.round(winProbHome * 100);
@@ -583,7 +582,7 @@
         suConf = Math.round(base);
       }
 
-      // ---------- ATS (favorite cover probability; flip < 50% to dog) ----------
+      // ---------- ATS (favorite vs dog, flip below 50%, keep real spread signs) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
@@ -592,38 +591,40 @@
       if (spreadInfo && modelMarginHome !== null) {
         const { favoriteName, dogName, line, homeName: hName, awayName: aName } = spreadInfo;
 
-        // Convert model margin to favorite perspective
-        // modelMarginHome is home - away; flip sign if favorite is away
+        // Predicted margin from favorite's perspective
         let predFavMargin;
         if (favoriteName === hName) {
           predFavMargin = modelMarginHome;
-        } else if (favoriteName === aName) {
-          predFavMargin = -modelMarginHome;
         } else {
-          // Fallback: assume favorite is home if something weird happens
-          predFavMargin = modelMarginHome;
+          predFavMargin = -modelMarginHome;
         }
 
-        // diff > 0 → model thinks favorite wins by more than line
         const diff = predFavMargin - line;
+        const edgePts = Math.abs(diff);
+        const minEdgeForPick = 1.0;
 
-        // Map diff (in points) to favorite cover probability, centered at 50%
-        // Smaller scale than before to avoid silly 99% on huge spreads
-        const SCALE_ATS = 3.0; // ~1pt edge → +3% over 50
-        let probFavCovers = 50 + diff * SCALE_ATS;
-        probFavCovers = clamp(probFavCovers, 1, 99);
+        if (edgePts >= minEdgeForPick) {
+          const coversFavorite = diff >= 0;
+          let sideName = coversFavorite ? favoriteName : dogName;
+          let sideSpread = coversFavorite ? `-${line}` : `+${line}`;
 
-        if (probFavCovers >= 50) {
-          // Favorite against the spread
-          atsTeam = favoriteName;
-          atsConf = Math.round(probFavCovers);
-          atsText = `${favoriteName} -${line}`;
-        } else {
-          // Underdog with the points
-          const probDogCovers = clamp(100 - probFavCovers, 1, 99);
-          atsTeam = dogName;
-          atsConf = Math.round(probDogCovers);
-          atsText = `${dogName} +${line}`;
+          let rawConf = clamp(edgePts * 6.25, 5, 99);
+          rawConf = Math.round(rawConf);
+
+          if (rawConf < 50) {
+            rawConf = 100 - rawConf;
+            if (coversFavorite) {
+              sideName = dogName;
+              sideSpread = `+${line}`;
+            } else {
+              sideName = favoriteName;
+              sideSpread = `-${line}`;
+            }
+          }
+
+          atsTeam = sideName;
+          atsConf = rawConf;
+          atsText = `${sideName} ${sideSpread}`;
         }
       }
 
@@ -725,7 +726,7 @@
 
       const summary = wx.summary || wx.condition || wx.description;
 
-      let parts = [];
+      const parts = [];
       if (summary) parts.push(summary);
       if (temp !== null) parts.push(`${temp}°F`);
       if (wind !== null) parts.push(`wind ${wind} mph`);
@@ -780,7 +781,6 @@
           card.appendChild(chip);
         }
 
-        // Top row
         const top = document.createElement("div");
         top.className = "game-top";
         top.innerHTML = `
@@ -789,7 +789,6 @@
         `;
         card.appendChild(top);
 
-        // Main matchup
         const main = document.createElement("div");
         main.className = "game-main";
         main.innerHTML = `
@@ -804,7 +803,6 @@
         `;
         card.appendChild(main);
 
-        // Meta row (venue / weather / risk)
         const metaRow = document.createElement("div");
         metaRow.className = "game-meta-row";
 
@@ -827,11 +825,15 @@
           riskPill.className = "pill";
           riskPill.innerHTML = `<span class="key">Wx Risk</span><span class="val">${g.risk.risk}</span>`;
           metaRow.appendChild(riskPill);
+        } else if (g.weatherRisk && g.weatherRisk.risk != null) {
+          const riskPill = document.createElement("div");
+          riskPill.className = "pill";
+          riskPill.innerHTML = `<span class="key">Wx Risk</span><span class="val">${g.weatherRisk.risk}</span>`;
+          metaRow.appendChild(riskPill);
         }
 
         card.appendChild(metaRow);
 
-        // Picks strip: Straight Up / ATS / Total
         const picksStrip = document.createElement("div");
         picksStrip.className = "picks-strip";
 
