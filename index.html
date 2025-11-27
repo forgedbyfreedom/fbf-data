@@ -94,36 +94,15 @@
       margin-top: 6px;
     }
 
-    /* NEW: ACCURACY TRACKER IN HERO */
+    /* Accuracy header (visual only for now) */
     .hero-accuracy-title {
-      margin-top: 14px;
-      font-size: 0.85rem;
+      margin-top: 10px;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: #fbbf24;
+      letter-spacing: 0.18em;
+      color: #fde68a;
     }
-
     .hero-accuracy-line {
-      margin-top: 4px;
-      font-size: 0.88rem;
-      color: #e5e7eb;
-    }
-
-    .hero-accuracy-line span.label {
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.75rem;
-      margin-right: 4px;
-    }
-
-    .hero-accuracy-line span.val {
-      font-weight: 600;
-      color: #fef3c7;
-      margin-right: 10px;
-    }
-
-    .hero-accuracy-by-sport {
       margin-top: 4px;
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -439,14 +418,10 @@
       <p class="hero-sub">Visit us for all your fitness, nutrition and supplement program needs.</p>
       <p class="hero-disclaimer">No gambling advice. This dashboard is for informational and entertainment use only.</p>
 
-      <!-- ACCURACY TRACKER -->
-      <p class="hero-accuracy-title">Accuracy Tracker (Games After Nov 26, 2025)</p>
-      <p class="hero-accuracy-line">
-        <span class="label">Straight Up</span><span class="val" id="acc-su">--%</span>
-        <span class="label">ATS</span><span class="val" id="acc-ats">--%</span>
-        <span class="label">O/U</span><span class="val" id="acc-ou">--%</span>
+      <p class="hero-accuracy-title">Accuracy Tracker (since 11/27/2025)</p>
+      <p class="hero-accuracy-line" id="accuracy-overall">
+        SU: -- &nbsp;•&nbsp; ATS: -- &nbsp;•&nbsp; O/U: --
       </p>
-      <p class="hero-accuracy-by-sport" id="acc-by-sport"></p>
     </section>
 
     <!-- STATS -->
@@ -491,8 +466,7 @@
     const state = {
       allGames: [],
       activeSport: "all",
-      lastUpdated: null,
-      accuracy: null
+      lastUpdated: null
     };
 
     function normalizeSport(code) {
@@ -513,83 +487,94 @@
       return null;
     }
 
+    function computeConfidenceFromEdge(edgePts) {
+      if (!Number.isFinite(edgePts)) return null;
+      const conf = 50 + edgePts * 7; // 1-pt edge ≈57%, 3-pt ≈71%, 5-pt ≈85%
+      return clamp(Math.round(conf), 50, 99);
+    }
+
     function buildSpreadInfo(game, pred) {
-      const odds = game.odds || (pred && pred.odds) || {};
-      const details = odds.details || "";
+      const odds = game.odds || pred?.odds || {};
 
       const homeTeamObj = game.home_team || {};
       const awayTeamObj = game.away_team || {};
 
-      const homeName = homeTeamObj.name || game.home || (pred && pred.home) || "Home";
-      const awayName = awayTeamObj.name || game.away || (pred && pred.away) || "Away";
+      const homeName = homeTeamObj.name || game.home || pred?.home || "Home";
+      const awayName = awayTeamObj.name || game.away || pred?.away || "Away";
 
-      let spreadMag = safeNumber(odds.spread);
-      let favoriteName = null;
+      let favoriteName =
+        game.favorite_team ||
+        odds.favorite ||
+        null;
 
-      const m = details.match(/([A-Za-z.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
-      if (m) {
-        const teamToken = m[1].trim();
-        const lineStr = m[2];
-        const lineVal = parseFloat(lineStr);
+      let dogName =
+        game.dog_team ||
+        odds.dog ||
+        null;
 
-        if (!Number.isNaN(lineVal)) {
-          spreadMag = Math.abs(lineVal);
-          const tok = teamToken.toUpperCase();
+      let favSpread = safeNumber(
+        game.fav_spread ??
+        game.favorite_spread ??
+        odds.spread ??
+        odds.line
+      );
 
-          function matches(label) {
-            if (!label) return false;
-            const up = label.toUpperCase();
-            return up.includes(tok) || tok.includes(up);
-          }
-
-          if (matches(homeName)) {
-            favoriteName = homeName;
-          } else if (matches(awayName)) {
-            favoriteName = awayName;
-          }
-        }
-      }
-
-      if (!spreadMag || !favoriteName) {
+      if (favoriteName == null || favSpread == null) {
         return null;
       }
 
-      const dogName = favoriteName === homeName ? awayName : homeName;
+      // Fallback: if dog missing, infer from home/away
+      if (!dogName) {
+        if (favoriteName === homeName) dogName = awayName;
+        else if (favoriteName === awayName) dogName = homeName;
+      }
+
+      if (!dogName) {
+        // Final fallback: assume "other team" is dog
+        dogName = favoriteName === homeName ? awayName : homeName;
+      }
+
+      const line = Math.abs(favSpread);
 
       return {
         favoriteName,
         dogName,
-        line: spreadMag,
+        line,
+        favSpread,
         homeName,
         awayName
       };
     }
 
     function buildGameView(game, pred) {
-      const sport = normalizeSport(game.sport || (pred && pred.sport));
+      const sport = normalizeSport(game.sport || pred?.sport);
 
       const homeTeam = game.home_team || {};
       const awayTeam = game.away_team || {};
 
-      const homeName = homeTeam.name || game.home || (pred && pred.home) || "Home";
-      const awayName = awayTeam.name || game.away || (pred && pred.away) || "Away";
+      const homeName = homeTeam.name || game.home || pred?.home || "Home";
+      const awayName = awayTeam.name || game.away || pred?.away || "Away";
 
-      const odds = game.odds || (pred && pred.odds) || {};
+      const odds = game.odds || pred?.odds || {};
       const oddsDetails = typeof odds.details === "string" ? odds.details : null;
-      const totalLine = safeNumber(odds.total);
+      const totalLine = safeNumber(
+        game.total ??
+        odds.total ??
+        odds.over_under
+      );
 
-      const venue = game.venue || (pred && pred.venue) || {};
-      const weather = game.weather || (pred && pred.weather) || null;
-      const risk = game.weatherRisk || game.risk || (pred && pred.risk) || null;
+      const venue = game.venue || pred?.venue || {};
+      const weather = game.weather || pred?.weather || null;
+      const risk = game.weatherRisk || game.risk || pred?.risk || null;
 
       const indoor = !!(venue.indoor || (weather && weather.indoor));
 
-      const predCore = pred && pred.prediction ? pred.prediction : {};
+      const predCore = pred?.prediction || {};
       const projHome = safeNumber(predCore.projected_home_score);
       const projAway = safeNumber(predCore.projected_away_score);
       const winProbHome = safeNumber(predCore.win_probability_home);
 
-      let modelMarginHome = safeNumber(pred && pred.pred_margin);
+      let modelMarginHome = safeNumber(pred?.pred_margin);
       if (modelMarginHome === null) {
         const projSpread = safeNumber(predCore.projected_spread);
         if (projSpread !== null) {
@@ -599,7 +584,7 @@
         }
       }
 
-      let modelTotal = safeNumber(pred && pred.pred_total);
+      let modelTotal = safeNumber(pred?.pred_total);
       if (modelTotal === null) {
         const projTotal = safeNumber(predCore.projected_total);
         if (projTotal !== null) {
@@ -609,7 +594,7 @@
         }
       }
 
-      // Straight Up
+      // ---------- Straight Up (uses win probability when available) ----------
       let suTeam = null;
       let suConf = null;
 
@@ -623,19 +608,20 @@
         }
       } else if (modelMarginHome !== null) {
         suTeam = modelMarginHome >= 0 ? homeName : awayName;
-        const base = clamp(Math.abs(modelMarginHome) * 6.25, 5, 99);
+        const base = clamp(Math.abs(modelMarginHome) * 6.25 + 50, 50, 99);
         suConf = Math.round(base);
       }
 
-      // ATS
+      // ---------- ATS (use favorite/line from combined.json; always make a pick when possible) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
-      let atsText = "No strong edge vs spread";
+      let atsText = "No ATS line";
       let atsConf = null;
 
       if (spreadInfo && modelMarginHome !== null) {
-        const { favoriteName, dogName, line, homeName: hName, awayName: aName } = spreadInfo;
+        const { favoriteName, dogName, line, homeName: hName } = spreadInfo;
 
+        // Predicted margin from favorite's point of view
         let predFavMargin;
         if (favoriteName === hName) {
           predFavMargin = modelMarginHome;
@@ -643,53 +629,37 @@
           predFavMargin = -modelMarginHome;
         }
 
-        const diff = predFavMargin - line;
+        const diff = predFavMargin - line; // >0 => favorite covers
+        const coversFavorite = diff >= 0;
         const edgePts = Math.abs(diff);
-        const minEdgeForPick = 1.0;
 
-        if (edgePts >= minEdgeForPick) {
-          const coversFavorite = diff >= 0;
-          let sideName = coversFavorite ? favoriteName : dogName;
-          let sideSpread = coversFavorite ? `-${line}` : `+${line}`;
+        const conf = computeConfidenceFromEdge(edgePts);
 
-          let rawConf = clamp(edgePts * 6.25, 5, 99);
-          rawConf = Math.round(rawConf);
-
-          if (rawConf < 50) {
-            rawConf = 100 - rawConf;
-            if (coversFavorite) {
-              sideName = dogName;
-              sideSpread = `+${line}`;
-            } else {
-              sideName = favoriteName;
-              sideSpread = `-${line}`;
-            }
-          }
-
-          atsTeam = sideName;
-          atsConf = rawConf;
-          atsText = `${sideName} ${sideSpread}`;
-        }
+        atsTeam = coversFavorite ? favoriteName : dogName;
+        const sideSpread = coversFavorite ? `-${line}` : `+${line}`;
+        atsText = `${atsTeam} ${sideSpread}`;
+        atsConf = conf;
       }
 
-      // TOTAL
+      // ---------- TOTAL (O/U) — confidence always ≥ 50% on the chosen side ----------
       let totalPick = null;
       let totalText = "No total edge";
       let totalConf = null;
 
       if (totalLine !== null && modelTotal !== null) {
-        const diff = modelTotal - totalLine;
+        const diff = modelTotal - totalLine; // >0 Over, <0 Under
         const edgePts = Math.abs(diff);
-        const minEdgeForTotal = 1.0;
 
+        // If model is basically on the number, skip O/U pick
+        const minEdgeForTotal = 0.5;
         if (edgePts >= minEdgeForTotal) {
           const pick = diff > 0 ? "Over" : "Under";
           const lineText = typeof totalLine === "number" ? totalLine.toFixed(1) : String(totalLine);
           totalPick = pick;
           totalText = `${pick} ${lineText}`;
-
-          let rawConf = clamp(edgePts * 6.25, 5, 99);
-          totalConf = Math.round(rawConf);
+          totalConf = computeConfidenceFromEdge(edgePts);
+        } else {
+          totalText = "No total edge";
         }
       } else if (totalLine === null) {
         totalText = "No total line";
@@ -697,7 +667,7 @@
 
       const hasPrediction = !!pred;
       const highConfidence =
-        !!(pred && pred.highlight) ||
+        !!pred?.highlight ||
         (suConf !== null && suConf >= 80) ||
         (atsConf !== null && atsConf >= 80) ||
         (totalConf !== null && totalConf >= 80);
@@ -796,41 +766,6 @@
       } else {
         meta.textContent = "Awaiting data...";
       }
-    }
-
-    function renderAccuracy() {
-      const acc = state.accuracy;
-      const suEl = document.getElementById("acc-su");
-      const atsEl = document.getElementById("acc-ats");
-      const ouEl = document.getElementById("acc-ou");
-      const bySportEl = document.getElementById("acc-by-sport");
-
-      if (!acc) {
-        suEl.textContent = "--%";
-        atsEl.textContent = "--%";
-        ouEl.textContent = "--%";
-        bySportEl.textContent = "";
-        return;
-      }
-
-      const su = typeof acc.SU_accuracy === "number" ? acc.SU_accuracy.toFixed(1) : "0.0";
-      const ats = typeof acc.ATS_accuracy === "number" ? acc.ATS_accuracy.toFixed(1) : "0.0";
-      const ou = typeof acc.OU_accuracy === "number" ? acc.OU_accuracy.toFixed(1) : "0.0";
-
-      suEl.textContent = `${su}%`;
-      atsEl.textContent = `${ats}%`;
-      ouEl.textContent = `${ou}%`;
-
-      const bySport = acc.by_sport || {};
-      const parts = [];
-      for (const key of Object.keys(bySport).sort()) {
-        const s = bySport[key];
-        const s_su = typeof s.SU_accuracy === "number" ? s.SU_accuracy.toFixed(1) : "0.0";
-        const s_ats = typeof s.ATS_accuracy === "number" ? s.ATS_accuracy.toFixed(1) : "0.0";
-        const s_ou = typeof s.OU_accuracy === "number" ? s.OU_accuracy.toFixed(1) : "0.0";
-        parts.push(`${key.toUpperCase()}: ${s_su}% SU / ${s_ats}% ATS / ${s_ou}% O/U`);
-      }
-      bySportEl.textContent = parts.join(" • ");
     }
 
     function renderGames() {
@@ -949,7 +884,7 @@
         atsBlock.innerHTML = `
           <div class="pick-label">Against The Spread</div>
           <div class="pick-main">
-            ${g.ats.team ? g.ats.text : "No strong edge vs spread"}
+            ${g.ats.team ? g.ats.text : "No ATS line"}
           </div>
           <div class="pick-sub">
             ${atsConf !== null ? `<span class="conf">${atsConf}% confidence</span>` : '<span class="conf">N/A</span>'}
@@ -990,21 +925,24 @@
       renderGames();
     }
 
-    async function loadAccuracy() {
+    async function loadAccuracyHeader() {
+      // Simple hook to read latest performance_log.json if present.
       try {
         const res = await fetch("performance_log.json?v=" + Date.now(), { cache: "no-store" });
-        if (!res.ok) {
-          throw new Error("no accuracy file");
+        if (!res.ok) return;
+        const log = await res.json();
+        if (!Array.isArray(log) || !log.length) return;
+        const latest = log[log.length - 1];
+        const su = typeof latest.SU_accuracy === "number" ? latest.SU_accuracy.toFixed(1) + "%" : "--";
+        const ats = typeof latest.ATS_accuracy === "number" ? latest.ATS_accuracy.toFixed(1) + "%" : "--";
+        const ou = typeof latest.OU_accuracy === "number" ? latest.OU_accuracy.toFixed(1) + "%" : "--";
+        const el = document.getElementById("accuracy-overall");
+        if (el) {
+          el.textContent = `SU: ${su} • ATS: ${ats} • O/U: ${ou}`;
         }
-        const data = await res.json();
-        const arr = Array.isArray(data) ? data : [data];
-        const latest = arr[arr.length - 1];
-        state.accuracy = latest || null;
-      } catch (err) {
-        console.warn("Accuracy data not available:", err);
-        state.accuracy = null;
+      } catch (e) {
+        console.warn("Accuracy header load failed", e);
       }
-      renderAccuracy();
     }
 
     async function loadData() {
@@ -1058,7 +996,7 @@
       });
 
       loadData();
-      loadAccuracy();
+      loadAccuracyHeader();
     });
   </script>
 </body>
