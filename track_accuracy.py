@@ -9,7 +9,7 @@ import json, os, requests
 from datetime import datetime, timezone
 
 OUTPUT = "accuracy.json"
-DATE_CUTOFF = datetime(2025, 11, 26)
+DATE_CUTOFF = datetime(2025, 11, 27)
 
 LEAGUE_MAP = {
     "nfl": "football/leagues/nfl",
