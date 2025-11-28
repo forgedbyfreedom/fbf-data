@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251128_2256",
+  "timestamp": "20251128_2334",
   "count": 60,
   "data": [
     {
@@ -167,9 +167,9 @@
         "slug": "colorado-avalanche",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png"
       },
-      "home_score": 2.0,
+      "home_score": 3.0,
       "away_score": 2.0,
-      "total_points": 4.0,
+      "total_points": 5.0,
       "odds": {
         "details": "COL -195",
         "spread": 1.5,
@@ -240,8 +240,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nj.png"
       },
       "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "away_score": 4.0,
+      "total_points": 4.0,
       "odds": {
         "details": "BUF -110",
         "spread": -1.5,
@@ -311,9 +311,9 @@
         "slug": "calgary-flames",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/cgy.png"
       },
-      "home_score": 2.0,
+      "home_score": 3.0,
       "away_score": 4.0,
-      "total_points": 6.0,
+      "total_points": 7.0,
       "odds": {
         "details": "FLA -175",
         "spread": -1.5,
@@ -455,9 +455,9 @@
         "slug": "ottawa-senators",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ott.png"
       },
-      "home_score": 1.0,
-      "away_score": 2.0,
-      "total_points": 3.0,
+      "home_score": 4.0,
+      "away_score": 3.0,
+      "total_points": 7.0,
       "odds": {
         "details": "OTT -115",
         "spread": 1.5,
@@ -527,9 +527,9 @@
         "slug": "montreal-canadiens",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png"
       },
-      "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "home_score": 1.0,
+      "away_score": 4.0,
+      "total_points": 5.0,
       "odds": {
         "details": "VGK -200",
         "spread": -1.5,
@@ -599,9 +599,9 @@
         "slug": "los-angeles-kings",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/la.png"
       },
-      "home_score": 2.0,
-      "away_score": 2.0,
-      "total_points": 4.0,
+      "home_score": 4.0,
+      "away_score": 4.0,
+      "total_points": 8.0,
       "odds": {
         "details": "LA -135",
         "spread": 1.5,
@@ -743,9 +743,9 @@
         "slug": "toronto-maple-leafs",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tor.png"
       },
-      "home_score": null,
-      "away_score": 1.0,
-      "total_points": 1.0,
+      "home_score": 1.0,
+      "away_score": 2.0,
+      "total_points": 3.0,
       "odds": {
         "details": "WSH -170",
         "spread": -1.5,
@@ -816,8 +816,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wpg.png"
       },
       "home_score": 1.0,
-      "away_score": null,
-      "total_points": 1.0,
+      "away_score": 1.0,
+      "total_points": 2.0,
       "odds": {
         "details": "CAR -200",
         "spread": -1.5,
@@ -975,7 +975,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Dylan Blujus",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Kendrick Nicholson",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Shandor Alphonso",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Mike Sullivan",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -1014,7 +1047,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Gord Dwyer",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Andrew Smith",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Jonathan Deschamps",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Stephen Hiff",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -1040,7 +1106,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "NYR -115",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "ESPN BET"
+      },
       "venue": {
         "name": "Madison Square Garden",
         "city": "New York",
@@ -1075,7 +1146,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MTL +180",
+        "details": "MTL +210",
         "spread": null,
         "total": 6.5,
         "provider": "Draft Kings"
