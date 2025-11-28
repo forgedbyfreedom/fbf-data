@@ -1,6 +1,6 @@
 {
-  "timestamp": "20251127_2355",
-  "count": 28,
+  "timestamp": "20251128_0340",
+  "count": 29,
   "data": [
     {
       "sport": "ncaab",
@@ -215,9 +215,9 @@
         "slug": "byu-cougars",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png"
       },
-      "home_score": 53.0,
-      "away_score": 63.0,
-      "total_points": 116.0,
+      "home_score": 62.0,
+      "away_score": 72.0,
+      "total_points": 134.0,
       "odds": {
         "details": "BYU -7.5",
         "spread": 7.5,
@@ -234,6 +234,14 @@
       "officials": [
         {
           "name": "Sean Hull",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "A.J. Desai",
           "role": {
             "name": "Referee",
             "displayName": "Referee",
@@ -271,13 +279,13 @@
         "slug": "duke-blue-devils",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 71.0,
+      "away_score": 80.0,
+      "total_points": 151.0,
       "odds": {
         "details": "DUKE -12.5",
         "spread": 12.5,
-        "total": 160.5,
+        "total": 159.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -287,7 +295,32 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Ron Groover",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Steven Anderson",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Courtney Green",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "ncaab",
@@ -404,23 +437,23 @@
     {
       "sport": "ncaab",
       "id": "401831223",
-      "name": "Florida Gators at TBD",
-      "shortName": "FLA VS TBD",
+      "name": "Providence Friars at Florida Gators",
+      "shortName": "PROV VS FLA",
       "date_utc": "2025-11-28T20:00Z",
       "date_local": "2025-11-28 03:00 PM ET",
       "home_team": {
-        "id": "-1",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
-      },
-      "away_team": {
         "id": "57",
         "name": "Florida Gators",
         "abbr": "FLA",
         "slug": "florida-gators",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png"
+      },
+      "away_team": {
+        "id": "2507",
+        "name": "Providence Friars",
+        "abbr": "PROV",
+        "slug": "providence-friars",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2507.png"
       },
       "home_score": null,
       "away_score": null,
@@ -430,6 +463,40 @@
         "name": "Jenny Craig Pavilion",
         "city": "San Diego",
         "state": "CA",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaab",
+      "id": "401830886",
+      "name": "BYU Cougars at Dayton Flyers",
+      "shortName": "BYU VS DAY",
+      "date_utc": "2025-11-29T02:30Z",
+      "date_local": "2025-11-28 09:30 PM ET",
+      "home_team": {
+        "id": "2168",
+        "name": "Dayton Flyers",
+        "abbr": "DAY",
+        "slug": "dayton-flyers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2168.png"
+      },
+      "away_team": {
+        "id": "252",
+        "name": "BYU Cougars",
+        "abbr": "BYU",
+        "slug": "byu-cougars",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "State Farm Field House",
+        "city": "Kissimmee",
+        "state": "FL",
         "indoor": true,
         "grass": false
       },
