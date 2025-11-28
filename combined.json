@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251128_2150",
+  "timestamp": "20251128_2242",
   "count": 230,
   "data": [
     {
@@ -37,13 +37,22 @@
         "city": "Starkville",
         "state": "MS",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4638745,
+        "lon": -88.8152074
       },
       "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 51,
+        "temp": 51,
+        "windSpeedMph": 0.0,
+        "wind": 0.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -80,24 +89,22 @@
         "city": "Lawrence",
         "state": "KS",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.9719137,
+        "lon": -95.2359403
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Light Rain",
         "description": "",
-        "temperatureF": 38,
-        "temp": 38,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 37,
+        "temp": 37,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
-        "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 2
+      }
     },
     {
       "sport": "ncaaf",
@@ -134,24 +141,22 @@
         "city": "Lincoln",
         "state": "NE",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.8088861,
+        "lon": -96.7077751
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Light Snow",
+        "summary": "Chance Freezing Drizzle",
         "description": "",
-        "temperatureF": 27,
-        "temp": 27,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 28,
+        "temp": 28,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -188,11 +193,13 @@
         "city": "Buffalo",
         "state": "NY",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.8867166,
+        "lon": -78.8783922
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Slight Chance Snow Showers",
         "description": "",
         "temperatureF": 34,
         "temp": 34,
@@ -200,12 +207,8 @@
         "wind": 17.0
       },
       "weatherRisk": {
-        "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 2
+      }
     },
     {
       "sport": "ncaaf",
@@ -242,7 +245,9 @@
         "city": "Dekalb",
         "state": "IL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 41.8903447,
+        "lon": -88.7713953
       },
       "officials": [],
       "weather": {
@@ -250,16 +255,12 @@
         "description": "",
         "temperatureF": 28,
         "temp": 28,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaab",
@@ -296,7 +297,9 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": [
         {
@@ -323,11 +326,7 @@
             "id": "40"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -364,7 +363,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": [
         {
@@ -399,11 +400,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "ncaab",
@@ -440,7 +437,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": [
         {
@@ -467,11 +466,7 @@
             "id": "40"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "ncaab",
@@ -508,7 +503,9 @@
         "city": "Nassau",
         "state": "Bahamas",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": null,
+        "lon": null
       },
       "officials": [
         {
@@ -535,11 +532,7 @@
             "id": "40"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -576,7 +569,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
       "officials": [
         {
@@ -611,11 +606,7 @@
             "id": "24"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nfl",
@@ -638,9 +629,9 @@
         "slug": "chicago-bears",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png"
       },
-      "home_score": 3.0,
-      "away_score": 10.0,
-      "total_points": 13.0,
+      "home_score": 9.0,
+      "away_score": 24.0,
+      "total_points": 33.0,
       "odds": {
         "details": "PHI -7",
         "spread": -7.0,
@@ -652,7 +643,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": [
         {
@@ -722,11 +715,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -749,9 +738,9 @@
         "slug": "air-force-falcons",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2005.png"
       },
-      "home_score": 7.0,
-      "away_score": 21.0,
-      "total_points": 28.0,
+      "home_score": 14.0,
+      "away_score": 35.0,
+      "total_points": 49.0,
       "odds": {
         "details": "AF -2.5",
         "spread": 2.5,
@@ -763,24 +752,22 @@
         "city": "Fort Collins",
         "state": "CO",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.5871782,
+        "lon": -105.0770113
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 53,
-        "temp": 53,
+        "temperatureF": 54,
+        "temp": 54,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaab",
@@ -803,9 +790,9 @@
         "slug": "providence-friars",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2507.png"
       },
-      "home_score": 69.0,
-      "away_score": 57.0,
-      "total_points": 126.0,
+      "home_score": 90.0,
+      "away_score": 78.0,
+      "total_points": 168.0,
       "odds": {
         "details": "FLA -12.5",
         "spread": -12.5,
@@ -817,7 +804,9 @@
         "city": "San Diego",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7174202,
+        "lon": -117.162772
       },
       "officials": [
         {
@@ -844,11 +833,7 @@
             "id": "40"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "ncaaf",
@@ -872,8 +857,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png"
       },
       "home_score": 3.0,
-      "away_score": 3.0,
-      "total_points": 6.0,
+      "away_score": 13.0,
+      "total_points": 16.0,
       "odds": {
         "details": "UGA -15.5",
         "spread": 15.5,
@@ -885,13 +870,11 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -914,9 +897,9 @@
         "slug": "san-diego-state-aztecs",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/21.png"
       },
-      "home_score": 10.0,
-      "away_score": 7.0,
-      "total_points": 17.0,
+      "home_score": 17.0,
+      "away_score": 14.0,
+      "total_points": 31.0,
       "odds": {
         "details": "SDSU -1.5",
         "spread": 1.5,
@@ -928,24 +911,22 @@
         "city": "Albuquerque",
         "state": "NM",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.0841034,
+        "lon": -106.650985
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 59,
-        "temp": 59,
+        "temperatureF": 61,
+        "temp": 61,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -968,9 +949,9 @@
         "slug": "temple-owls",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/218.png"
       },
-      "home_score": 21.0,
+      "home_score": 35.0,
       "away_score": 7.0,
-      "total_points": 28.0,
+      "total_points": 42.0,
       "odds": {
         "details": "UNT -20.5",
         "spread": -20.5,
@@ -982,24 +963,22 @@
         "city": "Denton",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.1838787,
+        "lon": -97.1413417
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Cloudy",
         "description": "",
-        "temperatureF": 57,
-        "temp": 57,
+        "temperatureF": 58,
+        "temp": 58,
         "windSpeedMph": 15.0,
         "wind": 15.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nhl",
@@ -1022,9 +1001,9 @@
         "slug": "colorado-avalanche",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png"
       },
-      "home_score": null,
+      "home_score": 2.0,
       "away_score": 1.0,
-      "total_points": 1.0,
+      "total_points": 3.0,
       "odds": {
         "details": "COL -195",
         "spread": 1.5,
@@ -1036,7 +1015,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": [
         {
@@ -1071,11 +1052,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "ncaaf",
@@ -1098,9 +1075,9 @@
         "slug": "boise-state-broncos",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png"
       },
-      "home_score": 7.0,
-      "away_score": 3.0,
-      "total_points": 10.0,
+      "home_score": 14.0,
+      "away_score": 10.0,
+      "total_points": 24.0,
       "odds": {
         "details": "BOIS -1.5",
         "spread": 1.5,
@@ -1112,24 +1089,22 @@
         "city": "Logan",
         "state": "UT",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 41.7313063,
+        "lon": -111.834914
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Light Rain",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
+        "temperatureF": 47,
+        "temp": 47,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nhl",
@@ -1153,8 +1128,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nj.png"
       },
       "home_score": null,
-      "away_score": 1.0,
-      "total_points": 1.0,
+      "away_score": 2.0,
+      "total_points": 2.0,
       "odds": {
         "details": "BUF -110",
         "spread": -1.5,
@@ -1166,7 +1141,9 @@
         "city": "Buffalo",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.8867166,
+        "lon": -78.8783922
       },
       "officials": [
         {
@@ -1201,11 +1178,7 @@
             "id": "24"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1229,8 +1202,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/cgy.png"
       },
       "home_score": 2.0,
-      "away_score": 2.0,
-      "total_points": 4.0,
+      "away_score": 3.0,
+      "total_points": 5.0,
       "odds": {
         "details": "FLA -175",
         "spread": -1.5,
@@ -1242,7 +1215,9 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
       "officials": [
         {
@@ -1277,11 +1252,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1304,9 +1275,9 @@
         "slug": "philadelphia-flyers",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/phi.png"
       },
-      "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "home_score": 3.0,
+      "away_score": 3.0,
+      "total_points": 6.0,
       "odds": {
         "details": "NYI -140",
         "spread": -1.5,
@@ -1318,7 +1289,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": [
         {
@@ -1353,11 +1326,7 @@
             "id": "24"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1380,9 +1349,9 @@
         "slug": "ottawa-senators",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ott.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 1.0,
+      "away_score": 2.0,
+      "total_points": 3.0,
       "odds": {
         "details": "OTT -115",
         "spread": 1.5,
@@ -1394,7 +1363,9 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
       "officials": [
         {
@@ -1429,11 +1400,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1457,8 +1424,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png"
       },
       "home_score": null,
-      "away_score": 1.0,
-      "total_points": 1.0,
+      "away_score": 2.0,
+      "total_points": 2.0,
       "odds": {
         "details": "VGK -200",
         "spread": -1.5,
@@ -1470,7 +1437,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": [
         {
@@ -1505,11 +1474,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1532,9 +1497,9 @@
         "slug": "los-angeles-kings",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/la.png"
       },
-      "home_score": null,
-      "away_score": 1.0,
-      "total_points": 1.0,
+      "home_score": 2.0,
+      "away_score": 2.0,
+      "total_points": 4.0,
       "odds": {
         "details": "LA -135",
         "spread": 1.5,
@@ -1546,7 +1511,9 @@
         "city": "Anaheim",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.8347516,
+        "lon": -117.911732
       },
       "officials": [
         {
@@ -1581,11 +1548,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1608,9 +1571,9 @@
         "slug": "vancouver-canucks",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/van.png"
       },
-      "home_score": 1.0,
-      "away_score": 1.0,
-      "total_points": 2.0,
+      "home_score": 2.0,
+      "away_score": 2.0,
+      "total_points": 4.0,
       "odds": {
         "details": "VAN -120",
         "spread": 1.5,
@@ -1622,7 +1585,9 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
       "officials": [
         {
@@ -1657,11 +1622,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1685,8 +1646,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tor.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
         "details": "WSH -170",
         "spread": -1.5,
@@ -1698,7 +1659,9 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
       "officials": [
         {
@@ -1733,11 +1696,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1760,11 +1719,11 @@
         "slug": "winnipeg-jets",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wpg.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 1.0,
       "odds": {
-        "details": "CAR -210",
+        "details": "CAR -200",
         "spread": -1.5,
         "total": 6.5,
         "provider": "ESPN BET"
@@ -1774,7 +1733,9 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
       "officials": [
         {
@@ -1809,11 +1770,7 @@
             "id": "25"
           }
         }
-      ],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      ]
     },
     {
       "sport": "nhl",
@@ -1840,7 +1797,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CBJ -135",
+        "details": "CBJ -140",
         "spread": -1.5,
         "total": 6.5,
         "provider": "ESPN BET"
@@ -1850,13 +1807,44 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": [
+        {
+          "name": "Furman South",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Jesse Marquis",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Brandon Blandina",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Ryan Jackson",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "ncaaf",
@@ -1893,24 +1881,22 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 33,
-        "temp": 33,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 31,
+        "temp": 31,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -1947,24 +1933,22 @@
         "city": "Austin",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 30.2711286,
+        "lon": -97.7436995
       },
       "officials": [],
       "weather": {
-        "summary": "Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 67,
+        "temp": 67,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nba",
@@ -1991,8 +1975,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CLE -6.5",
-        "spread": 6.5,
+        "details": "CLE -5.5",
+        "spread": 5.5,
         "total": 236.5,
         "provider": "ESPN BET"
       },
@@ -2001,13 +1985,11 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2034,8 +2016,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "PHI -6.5",
-        "spread": 6.5,
+        "details": "PHI -7.5",
+        "spread": 7.5,
         "total": 222.5,
         "provider": "ESPN BET"
       },
@@ -2044,13 +2026,11 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2087,13 +2067,11 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2130,13 +2108,11 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2173,13 +2149,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2216,13 +2190,36 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": [
+        {
+          "name": "Curtis Blair",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Brent Barnaky",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Michael Smith",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -2259,13 +2256,11 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -2302,13 +2297,11 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -2345,24 +2338,22 @@
         "city": "Tempe",
         "state": "AZ",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4255117,
+        "lon": -111.940016
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
+        "temperatureF": 75,
+        "temp": 75,
         "windSpeedMph": 0.0,
         "wind": 0.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nba",
@@ -2399,13 +2390,11 @@
         "city": "Oklahoma City",
         "state": "OK",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2442,13 +2431,11 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2477,7 +2464,7 @@
       "odds": {
         "details": "UTAH -2.5",
         "spread": -2.5,
-        "total": 241.5,
+        "total": 242.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -2485,13 +2472,11 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -2528,13 +2513,11 @@
         "city": "Kissimmee",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 28.2918995,
+        "lon": -81.4075838
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2571,13 +2554,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -2614,13 +2595,11 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -2657,24 +2636,22 @@
         "city": "Ann Arbor",
         "state": "MI",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.2813722,
+        "lon": -83.7484616
       },
       "officials": [],
       "weather": {
         "summary": "Chance Snow Showers",
         "description": "",
-        "temperatureF": 32,
-        "temp": 32,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 31,
+        "temp": 31,
+        "windSpeedMph": 13.0,
+        "wind": 13.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2711,24 +2688,22 @@
         "city": "Morgantown",
         "state": "WV",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.6296809,
+        "lon": -79.9559437
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
+        "temperatureF": 33,
+        "temp": 33,
         "windSpeedMph": 14.0,
         "wind": 14.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2765,24 +2740,22 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4416941,
+        "lon": -79.9900861
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Rain And Snow Showers",
+        "summary": "Chance Snow Showers",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
+        "temperatureF": 34,
+        "temp": 34,
         "windSpeedMph": 18.0,
         "wind": 18.0
       },
       "weatherRisk": {
         "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2819,24 +2792,22 @@
         "city": "Louisville",
         "state": "KY",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.2542376,
+        "lon": -85.759407
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 37,
-        "temp": 37,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 35,
+        "temp": 35,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2873,24 +2844,22 @@
         "city": "Columbia",
         "state": "SC",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 34.000754,
+        "lon": -81.0352313
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 50,
-        "temp": 50,
+        "temperatureF": 51,
+        "temp": 51,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2927,24 +2896,22 @@
         "city": "Waco",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 31.5491899,
+        "lon": -97.1474628
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 59,
-        "temp": 59,
+        "temperatureF": 55,
+        "temp": 55,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -2981,24 +2948,22 @@
         "city": "Manhattan",
         "state": "KS",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.1836082,
+        "lon": -96.5716694
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Light Rain",
         "description": "",
-        "temperatureF": 39,
-        "temp": 39,
-        "windSpeedMph": 15.0,
-        "wind": 15.0
+        "temperatureF": 38,
+        "temp": 38,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
-        "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 1
+      }
     },
     {
       "sport": "ncaaf",
@@ -3035,24 +3000,22 @@
         "city": "Stillwater",
         "state": "OK",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1156306,
+        "lon": -97.0585717
       },
       "officials": [],
       "weather": {
         "summary": "Cloudy",
         "description": "",
-        "temperatureF": 54,
-        "temp": 54,
-        "windSpeedMph": 12.0,
-        "wind": 12.0
+        "temperatureF": 51,
+        "temp": 51,
+        "windSpeedMph": 16.0,
+        "wind": 16.0
       },
       "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 1
+      }
     },
     {
       "sport": "ncaaf",
@@ -3089,7 +3052,9 @@
         "city": "Boca Raton",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.3586885,
+        "lon": -80.0830984
       },
       "officials": [],
       "weather": {
@@ -3102,11 +3067,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3135,7 +3096,7 @@
       "odds": {
         "details": "TOL -10.5",
         "spread": 10.5,
-        "total": 44.5,
+        "total": 45.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -3143,24 +3104,22 @@
         "city": "Mount Pleasant",
         "state": "MI",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 43.597646,
+        "lon": -84.7668495
       },
       "officials": [],
       "weather": {
         "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 29,
-        "temp": 29,
-        "windSpeedMph": 12.0,
-        "wind": 12.0
+        "temperatureF": 28,
+        "temp": 28,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3197,7 +3156,9 @@
         "city": "Oxford",
         "state": "OH",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.5103048,
+        "lon": -84.7420519
       },
       "officials": [],
       "weather": {
@@ -3210,11 +3171,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaab",
@@ -3246,13 +3203,11 @@
         "city": "Bloomington",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.1670396,
+        "lon": -86.5342881
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -3289,24 +3244,22 @@
         "city": "Provo",
         "state": "UT",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.2337289,
+        "lon": -111.6587085
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 56,
-        "temp": 56,
+        "temperatureF": 55,
+        "temp": 55,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3343,7 +3296,9 @@
         "city": "Newark",
         "state": "DE",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.6828358,
+        "lon": -75.7515682
       },
       "officials": [],
       "weather": {
@@ -3356,11 +3311,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3397,24 +3348,22 @@
         "city": "Houston",
         "state": "TX",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 66,
+        "temp": 66,
         "windSpeedMph": 15.0,
         "wind": 15.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3451,13 +3400,22 @@
         "city": "Huntington",
         "state": "WV",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.4192496,
+        "lon": -82.445154
       },
       "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 36,
+        "temp": 36,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3494,24 +3452,22 @@
         "city": "Jacksonville",
         "state": "AL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.8137919,
+        "lon": -85.7612872
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
+        "temperatureF": 45,
+        "temp": 45,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3548,24 +3504,22 @@
         "city": "Springfield",
         "state": "MO",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 37.2081729,
+        "lon": -93.2922715
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
-        "windSpeedMph": 9.0,
-        "wind": 9.0
+        "temperatureF": 47,
+        "temp": 47,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3602,24 +3556,22 @@
         "city": "Norfolk",
         "state": "VA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.8493695,
+        "lon": -76.2899539
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 44,
+        "temp": 44,
+        "windSpeedMph": 16.0,
+        "wind": 16.0
       },
       "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 1
+      }
     },
     {
       "sport": "nhl",
@@ -3651,13 +3603,11 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -3694,24 +3644,22 @@
         "city": "Boone",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.2187873,
+        "lon": -81.684004
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 29,
-        "temp": 29,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 28,
+        "temp": 28,
+        "windSpeedMph": 13.0,
+        "wind": 13.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3748,13 +3696,11 @@
         "city": "Syracuse",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0481221,
+        "lon": -76.1474244
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -3791,24 +3737,22 @@
         "city": "Las Cruces",
         "state": "NM",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 32.3140354,
+        "lon": -106.779807
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 55,
+        "temp": 55,
+        "windSpeedMph": 2.0,
+        "wind": 2.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -3835,8 +3779,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "UL -8.5",
-        "spread": -8.5,
+        "details": "UL -9.5",
+        "spread": -9.5,
         "total": 47.5,
         "provider": "ESPN BET"
       },
@@ -3845,24 +3789,11 @@
         "city": "Lafayette",
         "state": "LA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 30.2262187,
+        "lon": -92.0178202
       },
-      "officials": [],
-      "weather": {
-        "summary": "Mostly Sunny",
-        "description": "",
-        "temperatureF": 62,
-        "temp": 62,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -3899,24 +3830,22 @@
         "city": "San Marcos",
         "state": "TX",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 29.8826436,
+        "lon": -97.9405828
       },
       "officials": [],
       "weather": {
-        "summary": "Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 1
+      }
     },
     {
       "sport": "ncaaf",
@@ -3953,7 +3882,9 @@
         "city": "Tulsa",
         "state": "OK",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1563122,
+        "lon": -95.9927516
       },
       "officials": [],
       "weather": {
@@ -3966,11 +3897,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nhl",
@@ -4007,13 +3934,11 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -4050,7 +3975,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "weather": {
@@ -4063,11 +3990,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaab",
@@ -4099,13 +4022,11 @@
         "city": "Tucson",
         "state": "AZ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.2228765,
+        "lon": -110.974847
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4142,13 +4063,11 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4180,13 +4099,11 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4218,13 +4135,11 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4261,13 +4176,11 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4299,13 +4212,11 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4337,13 +4248,11 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4416941,
+        "lon": -79.9900861
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4375,13 +4284,11 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4413,13 +4320,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4451,13 +4356,11 @@
         "city": "Miami",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 25.7741566,
+        "lon": -80.1935973
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4489,13 +4392,11 @@
         "city": "Milwaukee",
         "state": "WI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0386475,
+        "lon": -87.9090751
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4527,13 +4428,11 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4565,13 +4464,11 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4603,13 +4500,11 @@
         "city": "San Francisco",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.7932754,
+        "lon": -122.3963589
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4641,13 +4536,11 @@
         "city": "Phoenix",
         "state": "AZ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -4679,13 +4572,11 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4722,13 +4613,11 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -4760,13 +4649,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -4803,7 +4690,9 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": [],
       "weather": {
@@ -4816,11 +4705,7 @@
       },
       "weatherRisk": {
         "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -4857,24 +4742,22 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 45,
-        "temp": 45,
+        "temperatureF": 44,
+        "temp": 44,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -4911,13 +4794,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -4946,7 +4827,7 @@
       "odds": {
         "details": "MIA -5.5",
         "spread": -5.5,
-        "total": 42.5,
+        "total": 41.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -4954,7 +4835,9 @@
         "city": "Miami Gardens",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 25.9420377,
+        "lon": -80.2456045
       },
       "officials": [],
       "weather": {
@@ -4967,11 +4850,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -5008,24 +4887,22 @@
         "city": "East Rutherford",
         "state": "NJ",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.833989,
+        "lon": -74.0970865
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
+        "temperatureF": 42,
+        "temp": 42,
         "windSpeedMph": 18.0,
         "wind": 18.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -5062,24 +4939,22 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
+        "temperatureF": 61,
+        "temp": 61,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -5116,7 +4991,9 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": [],
       "weather": {
@@ -5129,11 +5006,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nhl",
@@ -5165,13 +5038,11 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5203,13 +5074,11 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -5241,13 +5110,11 @@
         "city": "Lubbock",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.5855677,
+        "lon": -101.8470215
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -5279,13 +5146,11 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -5322,7 +5187,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "weather": {
@@ -5335,11 +5202,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -5376,24 +5239,22 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4416941,
+        "lon": -79.9900861
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Rain And Snow Showers",
+        "summary": "Chance Snow Showers",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
+        "temperatureF": 34,
+        "temp": 34,
         "windSpeedMph": 18.0,
         "wind": 18.0
       },
       "weatherRisk": {
         "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -5430,13 +5291,11 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -5468,13 +5327,11 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5506,13 +5363,11 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5544,13 +5399,11 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5582,13 +5435,11 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5620,13 +5471,11 @@
         "city": "Portland",
         "state": "OR",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5202471,
+        "lon": -122.674194
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -5658,13 +5507,11 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5696,13 +5543,11 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -5731,7 +5576,7 @@
       "odds": {
         "details": "DEN -5.5",
         "spread": 5.5,
-        "total": 43.5,
+        "total": 42.5,
         "provider": "ESPN BET"
       },
       "venue": {
@@ -5739,7 +5584,9 @@
         "city": "Landover",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 38.9253129,
+        "lon": -76.8815433
       },
       "officials": [],
       "weather": {
@@ -5752,11 +5599,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nba",
@@ -5788,13 +5631,11 @@
         "city": "Sacramento",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5826,13 +5667,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5864,13 +5703,11 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5902,13 +5739,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -5940,13 +5775,11 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -5978,13 +5811,11 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6016,13 +5847,11 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6054,13 +5883,11 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6092,13 +5919,11 @@
         "city": "Miami",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 25.7741566,
+        "lon": -80.1935973
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6130,13 +5955,11 @@
         "city": "Orlando",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 28.5421218,
+        "lon": -81.379045
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6168,13 +5991,11 @@
         "city": "Buffalo",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.8867166,
+        "lon": -78.8783922
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6206,13 +6027,11 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -6249,24 +6068,22 @@
         "city": "Foxborough",
         "state": "MA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.0653768,
+        "lon": -71.2478308
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 39,
-        "temp": 39,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 40,
+        "temp": 40,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 1
+      }
     },
     {
       "sport": "nba",
@@ -6298,13 +6115,11 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6336,13 +6151,11 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6374,13 +6187,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6412,13 +6223,11 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6450,13 +6259,11 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -6488,13 +6295,11 @@
         "city": "East Lansing",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.7320307,
+        "lon": -84.4721678
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -6526,13 +6331,11 @@
         "city": "Syracuse",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0481221,
+        "lon": -76.1474244
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6564,13 +6367,11 @@
         "city": "Montreal",
         "state": "QC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6602,13 +6403,11 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6640,13 +6439,11 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6678,13 +6475,11 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6716,13 +6511,11 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -6754,13 +6547,11 @@
         "city": "Durham",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.996653,
+        "lon": -78.9018053
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6792,13 +6583,11 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6830,13 +6619,11 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6868,13 +6655,11 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -6906,13 +6691,11 @@
         "city": "San Antonio",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.4246002,
+        "lon": -98.4951405
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -6940,17 +6723,15 @@
       "total_points": 0,
       "odds": null,
       "venue": {
-        "name": "Jersey Mike’s Arena",
+        "name": "Jersey Mike\u2019s Arena",
         "city": "Piscataway",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.5464326,
+        "lon": -74.4660542
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -6982,13 +6763,11 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7020,13 +6799,11 @@
         "city": "Lawrence",
         "state": "KS",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.9719137,
+        "lon": -95.2359403
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7058,13 +6835,11 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7096,13 +6871,11 @@
         "city": "Edmonton",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.9800563,
+        "lon": -85.6121906
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7134,13 +6907,11 @@
         "city": "Lexington",
         "state": "KY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.0464066,
+        "lon": -84.4970393
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7172,13 +6943,11 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7210,13 +6979,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7248,13 +7015,11 @@
         "city": "San Francisco",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.7932754,
+        "lon": -122.3963589
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7286,13 +7051,11 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7324,13 +7087,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7362,13 +7123,11 @@
         "city": "Orlando",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 28.5421218,
+        "lon": -81.379045
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7400,13 +7159,11 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7438,13 +7195,11 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7476,13 +7231,11 @@
         "city": "Fayetteville",
         "state": "AR",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.0625843,
+        "lon": -94.1574328
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7514,13 +7267,11 @@
         "city": "Tuscaloosa",
         "state": "AL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.2095614,
+        "lon": -87.5675258
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7552,13 +7303,11 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7590,13 +7339,11 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7628,13 +7375,11 @@
         "city": "Montreal",
         "state": "QC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -7666,13 +7411,11 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7704,13 +7447,11 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7742,13 +7483,11 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7780,13 +7519,11 @@
         "city": "Milwaukee",
         "state": "WI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0386475,
+        "lon": -87.9090751
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7818,13 +7555,11 @@
         "city": "Ames",
         "state": "IA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.0267567,
+        "lon": -93.6170448
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -7856,13 +7591,11 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7894,13 +7627,11 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7932,13 +7663,11 @@
         "city": "Auburn",
         "state": "AL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.6098566,
+        "lon": -85.4807825
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -7970,13 +7699,11 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8008,13 +7735,11 @@
         "city": "Anaheim",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.8347516,
+        "lon": -117.911732
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8046,13 +7771,11 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -8084,13 +7807,11 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -8122,13 +7843,11 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -8160,13 +7879,11 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8198,13 +7915,11 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3554334,
+        "lon": -71.060511
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8236,13 +7951,11 @@
         "city": "Ottawa",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.6419261,
+        "lon": -86.1655501
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8274,13 +7987,11 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8312,13 +8023,11 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8350,13 +8059,11 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8388,13 +8095,11 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -8426,13 +8131,11 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -8464,13 +8167,11 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8502,13 +8203,11 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nba",
@@ -8540,13 +8239,11 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -8583,13 +8280,11 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8621,13 +8316,11 @@
         "city": "Calgary",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 31.6174004,
+        "lon": -94.1193622
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8659,13 +8352,11 @@
         "city": "Edmonton",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.9800563,
+        "lon": -85.6121906
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nhl",
@@ -8697,13 +8388,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8731,11 +8420,7 @@
       "total_points": 0,
       "odds": null,
       "venue": null,
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8763,11 +8448,7 @@
       "total_points": 0,
       "odds": null,
       "venue": null,
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8799,24 +8480,22 @@
         "city": "Harrisonburg",
         "state": "VA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 38.4493315,
+        "lon": -78.8688833
       },
       "officials": [],
       "weather": {
-        "summary": "Scattered Snow Showers",
+        "summary": "Partly Sunny",
         "description": "",
         "temperatureF": 32,
         "temp": 32,
-        "windSpeedMph": 13.0,
-        "wind": 13.0
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
-        "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+        "risk": 0
+      }
     },
     {
       "sport": "ncaab",
@@ -8848,13 +8527,11 @@
         "city": "Lexington",
         "state": "KY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.0464066,
+        "lon": -84.4970393
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -8886,13 +8563,11 @@
         "city": "Storrs",
         "state": "CT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8056456,
+        "lon": -72.2541329
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8920,11 +8595,7 @@
       "total_points": 0,
       "odds": null,
       "venue": null,
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8956,13 +8627,11 @@
         "city": "Arlington",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7355816,
+        "lon": -97.1071186
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8994,13 +8663,11 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9032,13 +8699,11 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9070,13 +8735,11 @@
         "city": "East Lansing",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.7320307,
+        "lon": -84.4721678
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9108,13 +8771,11 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9146,13 +8807,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -9184,13 +8843,11 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9222,13 +8879,11 @@
         "city": "Ann Arbor",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.2813722,
+        "lon": -83.7484616
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9260,24 +8915,22 @@
         "city": "North Little Rock",
         "state": "AR",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 34.769536,
+        "lon": -92.2670941
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 53,
-        "temp": 53,
+        "temperatureF": 52,
+        "temp": 52,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaab",
@@ -9309,13 +8962,11 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -9347,7 +8998,9 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": [],
       "weather": {
@@ -9360,11 +9013,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -9396,13 +9045,11 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9434,13 +9081,11 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9472,13 +9117,11 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9510,13 +9153,11 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaab",
@@ -9548,13 +9189,11 @@
         "city": "Tucson",
         "state": "AZ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.2228765,
+        "lon": -110.974847
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -9591,13 +9230,11 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -9634,7 +9271,9 @@
         "city": "Orchard Park",
         "state": "NY",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.7670376,
+        "lon": -78.7435517
       },
       "officials": [],
       "weather": {
@@ -9647,11 +9286,7 @@
       },
       "weatherRisk": {
         "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -9688,7 +9323,9 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": [],
       "weather": {
@@ -9701,11 +9338,7 @@
       },
       "weatherRisk": {
         "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -9737,13 +9370,11 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -9775,24 +9406,22 @@
         "city": "East Rutherford",
         "state": "NJ",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.833989,
+        "lon": -74.0970865
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 41,
-        "temp": 41,
-        "windSpeedMph": 17.0,
-        "wind": 17.0
+        "temperatureF": 43,
+        "temp": 43,
+        "windSpeedMph": 18.0,
+        "wind": 18.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -9824,24 +9453,22 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
+        "temperatureF": 61,
+        "temp": 61,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -9878,7 +9505,9 @@
         "city": "Jacksonville",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 30.3321838,
+        "lon": -81.655651
       },
       "officials": [],
       "weather": {
@@ -9891,11 +9520,7 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -9932,7 +9557,9 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
       "officials": [],
       "weather": {
@@ -9945,11 +9572,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -9981,13 +9604,11 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": true
+        "grass": true,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -10024,24 +9645,22 @@
         "city": "Green Bay",
         "state": "WI",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 44.5126379,
+        "lon": -88.0125794
       },
       "officials": [],
       "weather": {
         "summary": "Chance Snow Showers",
         "description": "",
-        "temperatureF": 29,
-        "temp": 29,
-        "windSpeedMph": 8.0,
-        "wind": 8.0
+        "temperatureF": 28,
+        "temp": 28,
+        "windSpeedMph": 7.0,
+        "wind": 7.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -10073,13 +9692,11 @@
         "city": "Glendale",
         "state": "AZ",
         "indoor": true,
-        "grass": true
+        "grass": true,
+        "lat": 33.5386858,
+        "lon": -112.185994
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -10116,24 +9733,22 @@
         "city": "Kansas City",
         "state": "MO",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.100105,
+        "lon": -94.5781416
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Light Rain",
         "description": "",
-        "temperatureF": 38,
-        "temp": 38,
-        "windSpeedMph": 9.0,
-        "wind": 9.0
+        "temperatureF": 40,
+        "temp": 40,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "nfl",
@@ -10165,13 +9780,11 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -10203,24 +9816,22 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
+        "temperatureF": 61,
+        "temp": 61,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -10252,13 +9863,11 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -10290,7 +9899,9 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
       "officials": [],
       "weather": {
@@ -10303,11 +9914,7 @@
       },
       "weatherRisk": {
         "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -10339,13 +9946,11 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -10377,7 +9982,9 @@
         "city": "Montgomery",
         "state": "AL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 32.3777111,
+        "lon": -86.3090775
       },
       "officials": [],
       "weather": {
@@ -10390,14 +9997,8 @@
       },
       "weatherRisk": {
         "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0
+      }
     }
   ],
-  "weather_merged_at": "2025-11-28T21:50:50.644621",
-  "injuries_source": "UNKNOWN",
-  "injuries_merged_games": 0
+  "weather_merged_at": "2025-11-28T22:44:03.586478"
 }
