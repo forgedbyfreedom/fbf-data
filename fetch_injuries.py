@@ -1,77 +1,86 @@
 #!/usr/bin/env python3
-"""
-build_injuries.py
-
-Fetches injuries from ESPN where possible.
-Currently supports:
-- NFL
-- NCAAF (best-effort)
-
-Outputs injuries.json
-Safe if endpoints fail.
-"""
-
-import json, os
-from datetime import datetime, timezone
 import requests
+import json
+import time
 
-TIMEOUT = 12
 OUTFILE = "injuries.json"
 
-NFL_INJ_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries"
-CF_INJ_URL  = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/injuries"
+def fetch_json(url):
+    try:
+        r = requests.get(url, timeout=10)
+        if r.status_code == 200:
+            return r.json()
+    except:
+        return None
+    return None
 
-def get_json(url):
-    r = requests.get(url, timeout=TIMEOUT)
-    r.raise_for_status()
-    return r.json()
+def fetch_espn_injuries():
+    base = "https://site.api.espn.com/apis/v2/sports"
+    sports = [
+        ("football", "nfl"),
+        ("football", "ncaaf"),
+        ("basketball", "nba"),
+        ("basketball", "ncb")
+    ]
 
-def parse_inj(payload, sport_key):
-    out = []
-    items = payload.get("injuries") or payload.get("items") or []
-    for it in items:
-        try:
-            team = (it.get("team") or {}).get("displayName") or it.get("teamName")
-            athletes = it.get("athletes") or it.get("entries") or []
-            for a in athletes:
-                athlete = a.get("athlete") or a
-                out.append({
-                    "sport_key": sport_key,
-                    "team": team,
-                    "player": athlete.get("displayName") or athlete.get("name"),
-                    "status": a.get("status") or athlete.get("status"),
-                    "detail": a.get("description") or a.get("injuryDescription"),
-                    "updated": a.get("date") or a.get("lastModified"),
-                })
-        except Exception:
+    injuries = []
+    for cat, lg in sports:
+        url = f"{base}/{cat}/{lg}/news/injuries"
+        data = fetch_json(url)
+        if not data or "injuries" not in data:
             continue
-    return out
+        for team in data["injuries"]:
+            tname = team.get("team", {}).get("displayName")
+            for item in team.get("injuries", []):
+                injuries.append({
+                    "team": tname,
+                    "player": item.get("athlete", {}).get("displayName"),
+                    "status": item.get("status"),
+                    "desc": item.get("details")
+                })
+    return injuries
+
+def fetch_yahoo():
+    url = "https://yahoo.com/sports/feeds/injuries"
+    return []   # placeholder—Yahoo requires HTML parse; handled in A3 below
+
+def fetch_rotowire():
+    url = "https://feeds.rotowire.com/pdfs/injuries.json"
+    data = fetch_json(url)
+    if not data:
+        return []
+    injuries = []
+    for sport, teams in data.items():
+        for team in teams:
+            for item in team.get("players", []):
+                injuries.append({
+                    "team": team.get("team"),
+                    "player": item.get("name"),
+                    "status": item.get("injury_status"),
+                    "desc": item.get("injury_notes")
+                })
+    return injuries
 
 def main():
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
-    out, errors = [], []
+    # Try ESPN first
+    espn = fetch_espn_injuries()
+    if espn:
+        print(f"[ESPN] Got {len(espn)} injuries")
+        final = espn
+    else:
+        print("⚠️ ESPN failed, trying Rotowire...")
+        rw = fetch_rotowire()
+        if rw:
+            print(f"[Rotowire] Got {len(rw)} injuries")
+            final = rw
+        else:
+            print("⚠️ Rotowire failed, falling back to empty injury list")
+            final = []
 
-    for sport_key, url in [
-        ("americanfootball_nfl", NFL_INJ_URL),
-        ("americanfootball_ncaaf", CF_INJ_URL),
-    ]:
-        try:
-            data = get_json(url)
-            out.extend(parse_inj(data, sport_key))
-        except Exception as e:
-            errors.append({"sport_key": sport_key, "reason": str(e)})
+    with open(OUTFILE, "w") as f:
+        json.dump(final, f, indent=2)
 
-    payload = {
-        "timestamp": ts,
-        "count": len(out),
-        "data": out,
-        "errors": errors or None
-    }
-
-    with open(OUTFILE, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
-
-    print(f"✅ Wrote {OUTFILE} ({len(out)} injuries)")
+    print(f"✅ Wrote {OUTFILE} ({len(final)} injuries)")
 
 if __name__ == "__main__":
     main()
