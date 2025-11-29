@@ -553,13 +553,6 @@
       }
     };
 
-    // Confidence caps
-    const CONF_CAPS = {
-      su: 95,
-      ats: 90,
-      total: 90
-    };
-
     function normalizeSport(code) {
       if (!code) return "other";
       return String(code).toLowerCase();
@@ -583,7 +576,7 @@
       return `${x.toFixed(1)}%`;
     }
 
-    // Normalizes long team names for fuzzy matching
+    // NEW: robust team-name normalizer so we match favorite_team correctly
     function normalizeTeamName(name) {
       return String(name || "")
         .toLowerCase()
@@ -593,17 +586,8 @@
         .trim();
     }
 
-    // Magnitude-based probability from edge (delta in points)
-    // Returns probability between 0.5 and ~0.95
-    function oddsProbFromEdgeMag(absDelta, maxEdge, maxBoost = 0.30) {
-      const clamped = clamp(Math.abs(absDelta), 0, maxEdge);
-      const frac = maxEdge > 0 ? clamped / maxEdge : 0;
-      const prob = 0.5 + frac * maxBoost; // 0.5 -> 0.5+maxBoost
-      return clamp(prob, 0.5, 0.95);
-    }
-
-    // Build spread info (favorite, dog, line) using favorite_team / fav_spread
-    // and falling back to odds.details (supports abbreviations like "MSU -19.5").
+    // UPDATED: use favorite_team + fav_spread from combined.json first;
+    // only fall back to parsing the odds text as a last resort.
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
       const details = odds.details || "";
@@ -613,9 +597,6 @@
 
       const homeName = homeTeamObj.name || game.home || pred?.home || "Home";
       const awayName = awayTeamObj.name || game.away || pred?.away || "Away";
-
-      const homeAbbr = (homeTeamObj.abbr || "").toLowerCase();
-      const awayAbbr = (awayTeamObj.abbr || "").toLowerCase();
 
       const normHome = normalizeTeamName(homeName);
       const normAway = normalizeTeamName(awayName);
@@ -630,7 +611,7 @@
         pred?.favorite_team ||
         null;
 
-      // 1) If backend gives us favorite_team + fav_spread, use that first.
+      // 1) Primary: favorite_team + fav_spread from backend
       if (favRaw) {
         const normFav = normalizeTeamName(favRaw);
         const favIsHome = normHome.includes(normFav) || normFav.includes(normHome);
@@ -645,35 +626,18 @@
         }
       }
 
-      // 2) Fallback: parse odds.details like "MSU -19.5"
+      // 2) Fallback: parse odds.details ONLY if we still don't know the favorite
       if (!favoriteName && typeof details === "string") {
         const m = details.match(/([A-Za-z0-9.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
         if (m) {
-          const teamToken = m[1].trim(); // e.g., "MSU"
+          const teamToken = m[1].trim();
           const lineStr = m[2];
           const lineVal = parseFloat(lineStr);
           if (!Number.isNaN(lineVal)) {
             if (spreadMag == null) spreadMag = Math.abs(lineVal);
-
-            const tokenLower = teamToken.toLowerCase();
-            const tokenNorm = normalizeTeamName(teamToken);
-
-            let matchHome = false;
-            let matchAway = false;
-
-            // Match by normalized full name OR abbreviation
-            if (normHome && tokenNorm && (normHome.includes(tokenNorm) || tokenNorm.includes(normHome))) {
-              matchHome = true;
-            }
-            if (normAway && tokenNorm && (normAway.includes(tokenNorm) || tokenNorm.includes(normAway))) {
-              matchAway = true;
-            }
-            if (homeAbbr && tokenLower === homeAbbr) {
-              matchHome = true;
-            }
-            if (awayAbbr && tokenLower === awayAbbr) {
-              matchAway = true;
-            }
+            const tok = normalizeTeamName(teamToken);
+            const matchHome = normHome.includes(tok) || tok.includes(normHome);
+            const matchAway = normAway.includes(tok) || tok.includes(normAway);
 
             if (matchHome && !matchAway) {
               favoriteName = homeName;
@@ -700,6 +664,17 @@
         homeName,
         awayName
       };
+    }
+
+    // Edge-based probability mapping used for ATS and Totals
+    function oddsBasedProbFromEdge(delta, maxEdge, maxBoost = 0.45) {
+      if (delta === null || delta === undefined) return null;
+      const sign = delta === 0 ? 0 : (delta > 0 ? 1 : -1);
+      const edgeUnits = clamp(Math.abs(delta), 0, maxEdge);
+      const frac = edgeUnits / maxEdge;
+      let prob = 0.5 + sign * frac * maxBoost;
+      prob = clamp(prob, 0.05, 0.95); // 5%–95% cap
+      return prob;
     }
 
     function extractInjurySummary(raw, pred) {
@@ -836,15 +811,11 @@
       } else if (modelMarginHome !== null) {
         suTeam = modelMarginHome >= 0 ? homeName : awayName;
         const edgePts = Math.abs(modelMarginHome);
-        const prob = 0.5 + clamp(edgePts, 0, 20) / 20 * 0.35; // softer boost
+        const prob = 0.5 + clamp(edgePts, 0, 20) / 20 * 0.45;
         suConf = Math.round(prob * 100);
       }
 
-      if (suConf !== null) {
-        suConf = clamp(suConf, 50, CONF_CAPS.su);
-      }
-
-      // ---------- ATS (probability-based, never > SU, threshold on edge) ----------
+      // ---------- ATS (favorite vs dog, with flip logic) ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
@@ -853,52 +824,50 @@
       if (spreadInfo && modelMarginHome !== null) {
         const { favoriteName, dogName, line, homeName: hName } = spreadInfo;
 
-        // Margin from favorite's perspective
+        // interpret model margin in favorite space
         let predFavMargin = favoriteName === hName ? modelMarginHome : -modelMarginHome;
-        const favDelta = predFavMargin - line; // positive: model thinks favorite covers by this much
-        const absDelta = Math.abs(favDelta);
-        const EDGE_THRESHOLD = 1.0; // ignore edges under 1 point
+        const favDelta = predFavMargin - line;
+        const probFavCovers = oddsBasedProbFromEdge(favDelta, 10, 0.45);
 
-        if (absDelta >= EDGE_THRESHOLD) {
-          const prob = oddsProbFromEdgeMag(absDelta, 10, 0.30); // up to ~80-85%
-          const takeFavorite = favDelta > 0;
-
-          const pickTeam = takeFavorite ? favoriteName : dogName;
-          const pickSpread = takeFavorite ? `-${line}` : `+${line}`;
-
-          let confPct = Math.round(prob * 100);
-          confPct = clamp(confPct, 50, CONF_CAPS.ats);
-          if (suConf !== null) {
-            confPct = Math.min(confPct, suConf); // ATS cannot be more confident than SU
+        if (probFavCovers !== null) {
+          let pickTeam, pickSpread, displayProb;
+          if (probFavCovers >= 0.5) {
+            pickTeam = favoriteName;
+            pickSpread = `-${line}`;
+            displayProb = probFavCovers;
+          } else {
+            pickTeam = dogName;
+            pickSpread = `+${line}`;
+            displayProb = 1 - probFavCovers;
           }
-
           atsTeam = pickTeam;
+          atsConf = Math.round(displayProb * 100);
           atsText = `${pickTeam} ${pickSpread}`;
-          atsConf = confPct;
         }
       }
 
-      // ---------- TOTAL (O/U) probability-based ----------
+      // ---------- TOTAL (O/U) with flip logic ----------
       let totalPick = null;
       let totalText = "No total edge";
       let totalConf = null;
 
       if (totalLine !== null && modelTotal !== null) {
         const delta = modelTotal - totalLine;
-        const absDiff = Math.abs(delta);
-        const TOTAL_THRESHOLD = 1.5; // ignore tiny <1.5 pt edges
+        const probOver = oddsBasedProbFromEdge(delta, 20, 0.45);
 
-        if (absDiff >= TOTAL_THRESHOLD) {
-          const prob = oddsProbFromEdgeMag(absDiff, 20, 0.30);
-          const pick = delta > 0 ? "Over" : "Under";
-
-          let confPct = Math.round(prob * 100);
-          confPct = clamp(confPct, 50, CONF_CAPS.total);
-
+        if (probOver !== null) {
+          let pick, displayProb;
+          if (probOver >= 0.5) {
+            pick = "Over";
+            displayProb = probOver;
+          } else {
+            pick = "Under";
+            displayProb = 1 - probOver;
+          }
           totalPick = pick;
           const lineText = typeof totalLine === "number" ? totalLine.toFixed(1) : String(totalLine);
           totalText = `${pick} ${lineText}`;
-          totalConf = confPct;
+          totalConf = Math.round(displayProb * 100);
         }
       } else if (totalLine === null) {
         totalText = "No total line";
@@ -1055,12 +1024,20 @@
         sportLine.style.display = "none";
       }
 
+      // Tracking line: force tracking start AFTER Nov 27, 2025
       const sinceLine = document.getElementById("acc-since-line");
+      const cutoffLabel = "2025-11-28";
+      let displaySince = cutoffLabel;
+
       if (since) {
-        sinceLine.textContent = `Tracking from ${since} onward`;
-      } else {
-        sinceLine.textContent = "";
+        const cutoffDate = new Date("2025-11-28T00:00:00");
+        const parsed = new Date(since);
+        if (!isNaN(parsed.getTime()) && parsed >= cutoffDate) {
+          displaySince = since;
+        }
       }
+
+      sinceLine.textContent = `Tracking from ${displaySince} onward`;
     }
 
     function renderGames() {
