@@ -347,7 +347,7 @@
       color: #e5e7eb;
     }
 
-    /* INJURIES + REFS */
+    /* INJURIES + REFS (Option C display) */
     .injuries-block {
       margin-top: 4px;
       padding-top: 4px;
@@ -372,6 +372,11 @@
     .injuries-body span.chip {
       display: inline-block;
       margin-right: 6px;
+      margin-bottom: 2px;
+    }
+
+    .injuries-body span.players {
+      opacity: 0.9;
     }
 
     .refs-pill {
@@ -542,7 +547,10 @@
   </div>
 
   <script>
-    const TRACKING_SINCE = "2025-11-28"; // games starting AFTER Nov 27, 2025
+    const MAX_CONF_SU = 95;
+    const MAX_CONF_ATS = 90;
+    const MAX_CONF_TOTAL = 90;
+    const TRACKING_START = "2025-11-28";
 
     const state = {
       allGames: [],
@@ -578,7 +586,7 @@
       return `${x.toFixed(1)}%`;
     }
 
-    // robust team-name normalizer so we match favorite_team correctly
+    // robust team-name normalizer
     function normalizeTeamName(name) {
       return String(name || "")
         .toLowerCase()
@@ -588,8 +596,7 @@
         .trim();
     }
 
-    // use favorite_team + fav_spread from combined.json first;
-    // only fall back to parsing the odds text as a last resort.
+    // use favorite_team + fav_spread when available
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
       const details = odds.details || "";
@@ -613,7 +620,6 @@
         pred?.favorite_team ||
         null;
 
-      // 1) Primary: favorite_team + fav_spread from backend
       if (favRaw) {
         const normFav = normalizeTeamName(favRaw);
         const favIsHome = normHome.includes(normFav) || normFav.includes(normHome);
@@ -628,7 +634,6 @@
         }
       }
 
-      // 2) Fallback: parse odds.details ONLY if we still don't know the favorite
       if (!favoriteName && typeof details === "string") {
         const m = details.match(/([A-Za-z0-9.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
         if (m) {
@@ -668,7 +673,6 @@
       };
     }
 
-    // edge -> probability helper
     function oddsBasedProbFromEdge(delta, maxEdge, maxBoost = 0.45) {
       if (delta === null || delta === undefined) return null;
       const sign = delta === 0 ? 0 : (delta > 0 ? 1 : -1);
@@ -679,38 +683,62 @@
       return prob;
     }
 
+    // Hybrid injury system: combined.json + prediction injuries
     function extractInjurySummary(raw, pred) {
-      const src = raw.injuries || raw.injury || pred?.injuries || null;
-      if (!src) return null;
+      let homeList = [];
+      let awayList = [];
+      let total = 0;
 
-      let home = [];
-      let away = [];
+      // 1) Combined-style top-level fields
+      if (Array.isArray(raw.home_injuries)) {
+        homeList = homeList.concat(raw.home_injuries);
+      }
+      if (Array.isArray(raw.away_injuries)) {
+        awayList = awayList.concat(raw.away_injuries);
+      }
+
+      const countHome = typeof raw.injury_count_home === "number" ? raw.injury_count_home : null;
+      const countAway = typeof raw.injury_count_away === "number" ? raw.injury_count_away : null;
+
+      // 2) Generic injuries blob on game or prediction
+      const src = raw.injuries || raw.injury || pred?.injuries || pred?.prediction?.injuries || null;
 
       if (Array.isArray(src)) {
-        if (!src.length) return null;
+        // array of injury objects, not split by home/away
+        const flat = src.filter(Boolean);
+        total = flat.length;
+        const keyPlayers = flat
+          .map(it => {
+            const name = it.name || it.player || it.full_name || it.displayName;
+            const status = it.status || it.injury_status || it.designation;
+            if (!name) return null;
+            return status ? `${name} (${status})` : name;
+          })
+          .filter(Boolean)
+          .slice(0, 4);
+
+        if (!total && !homeList.length && !awayList.length) return null;
+
         return {
-          total: src.length,
-          homeCount: null,
-          awayCount: null,
-          keyPlayers: src
-            .map(it => {
-              if (!it) return null;
-              const name = it.name || it.player || it.full_name || it.displayName;
-              const status = it.status || it.injury_status || it.designation;
-              if (!name) return null;
-              return status ? `${name} (${status})` : name;
-            })
-            .filter(Boolean)
-            .slice(0, 4)
+          total: total || (countHome ?? 0) + (countAway ?? 0),
+          homeCount: countHome,
+          awayCount: countAway,
+          keyPlayers
         };
       }
 
-      if (Array.isArray(src.home)) home = src.home;
-      if (Array.isArray(src.away)) away = src.away;
-      if (Array.isArray(src.home_injuries)) home = src.home_injuries;
-      if (Array.isArray(src.away_injuries)) away = src.away_injuries;
+      if (src && typeof src === "object") {
+        if (Array.isArray(src.home)) homeList = homeList.concat(src.home);
+        if (Array.isArray(src.away)) awayList = awayList.concat(src.away);
+        if (Array.isArray(src.home_injuries)) homeList = homeList.concat(src.home_injuries);
+        if (Array.isArray(src.away_injuries)) awayList = awayList.concat(src.away_injuries);
+      }
 
-      const total = home.length + away.length;
+      total = (countHome ?? 0) + (countAway ?? 0);
+      if (!total) {
+        total = homeList.length + awayList.length;
+      }
+
       if (!total) return null;
 
       const keyPlayers = [];
@@ -724,13 +752,13 @@
           keyPlayers.push(status ? `${name} (${status})` : name);
         }
       }
-      collect(home);
-      collect(away);
+      collect(homeList);
+      collect(awayList);
 
       return {
         total,
-        homeCount: home.length,
-        awayCount: away.length,
+        homeCount: countHome ?? homeList.length || null,
+        awayCount: countAway ?? awayList.length || null,
         keyPlayers
       };
     }
@@ -801,30 +829,26 @@
       // ---------- Straight Up ----------
       let suTeam = null;
       let suConf = null;
-      let suProb = null;
 
       if (winProbHome !== null) {
         if (winProbHome >= 0.5) {
           suTeam = homeName;
-          suProb = winProbHome;
+          suConf = Math.round(winProbHome * 100);
         } else {
           suTeam = awayName;
-          suProb = 1 - winProbHome;
+          suConf = Math.round((1 - winProbHome) * 100);
         }
       } else if (modelMarginHome !== null) {
         suTeam = modelMarginHome >= 0 ? homeName : awayName;
         const edgePts = Math.abs(modelMarginHome);
-        // map margin to probability (0.5..~0.9) then clamp later
-        suProb = 0.5 + (clamp(edgePts, 0, 20) / 20) * 0.45;
+        const prob = 0.5 + (clamp(edgePts, 0, 20) / 20) * 0.45;
+        suConf = Math.round(prob * 100);
+      }
+      if (suConf !== null) {
+        suConf = clamp(suConf, 1, MAX_CONF_SU);
       }
 
-      if (suProb !== null) {
-        suProb = clamp(suProb, 0.5, 0.95);
-        suConf = Math.round(suProb * 100);
-        suConf = Math.round(clamp(suConf, 55, 95)); // SU caps
-      }
-
-      // ---------- ATS (favorite vs dog, flip logic, never > straight up for same team) ----------
+      // ---------- ATS ----------
       const spreadInfo = buildSpreadInfo(game, pred);
       let atsTeam = null;
       let atsText = "No strong edge vs spread";
@@ -849,21 +873,13 @@
             displayProb = 1 - probFavCovers;
           }
           atsTeam = pickTeam;
-          let rawConf = Math.round(displayProb * 100);
-          // ATS caps
-          rawConf = Math.round(clamp(rawConf, 52, 90));
-          // if same team as SU pick, don't let ATS be more confident than SU
-          if (suTeam && atsTeam &&
-              normalizeTeamName(atsTeam) === normalizeTeamName(suTeam) &&
-              suConf !== null) {
-            rawConf = Math.min(rawConf, suConf);
-          }
-          atsConf = rawConf;
+          atsConf = Math.round(displayProb * 100);
+          atsConf = clamp(atsConf, 1, MAX_CONF_ATS);
           atsText = `${pickTeam} ${pickSpread}`;
         }
       }
 
-      // ---------- TOTAL (O/U) with probability + caps ----------
+      // ---------- TOTAL (O/U) ----------
       let totalPick = null;
       let totalText = "No total edge";
       let totalConf = null;
@@ -884,9 +900,8 @@
           totalPick = pick;
           const lineText = typeof totalLine === "number" ? totalLine.toFixed(1) : String(totalLine);
           totalText = `${pick} ${lineText}`;
-          let rawConf = Math.round(displayProb * 100);
-          rawConf = Math.round(clamp(rawConf, 52, 90)); // O/U caps
-          totalConf = rawConf;
+          totalConf = Math.round(displayProb * 100);
+          totalConf = clamp(totalConf, 1, MAX_CONF_TOTAL);
         }
       } else if (totalLine === null) {
         totalText = "No total line";
@@ -1044,8 +1059,9 @@
       }
 
       const sinceLine = document.getElementById("acc-since-line");
-      if (since) {
-        sinceLine.textContent = `Tracking from ${since} onward`;
+      const labelDate = TRACKING_START || since;
+      if (labelDate) {
+        sinceLine.textContent = `Tracking from ${labelDate} onward`;
       } else {
         sinceLine.textContent = "";
       }
@@ -1143,20 +1159,20 @@
           const injDiv = document.createElement("div");
           injDiv.className = "injuries-block";
 
-          const counts = [];
-          if (inj.homeCount != null) counts.push(`Home ${inj.homeCount}`);
-          if (inj.awayCount != null) counts.push(`Away ${inj.awayCount}`);
-          const countText = counts.length ? counts.join(" • ") : `${inj.total} listed`;
+          const homeCount = inj.homeCount != null ? inj.homeCount : "—";
+          const awayCount = inj.awayCount != null ? inj.awayCount : "—";
+
+          const countChip = `Home ${homeCount} • Away ${awayCount} • Total ${inj.total}`;
 
           const playersText = (inj.keyPlayers && inj.keyPlayers.length)
             ? inj.keyPlayers.join(" • ")
             : "";
 
           injDiv.innerHTML = `
-            <div class="injuries-title">Injuries (${inj.total})</div>
+            <div class="injuries-title">Injuries</div>
             <div class="injuries-body">
-              <span class="chip">${countText}</span>
-              ${playersText ? `<span class="chip">${playersText}</span>` : ""}
+              <span class="chip">${countChip}</span>
+              ${playersText ? `<span class="chip players">${playersText}</span>` : ""}
             </div>
           `;
           card.appendChild(injDiv);
@@ -1169,7 +1185,7 @@
         const suBlock = document.createElement("div");
         suBlock.className = "pick-block straight";
         const suTeam = g.su.team;
-        const suConf = g.su.confidence;
+        let suConf = g.su.confidence;
 
         if (suConf !== null && suConf >= 80 && suTeam) {
           suBlock.classList.add("glow");
@@ -1189,7 +1205,7 @@
         // ATS block
         const atsBlock = document.createElement("div");
         atsBlock.className = "pick-block ats";
-        const atsConf = g.ats.confidence;
+        let atsConf = g.ats.confidence;
 
         if (atsConf !== null && atsConf >= 80 && g.ats.team) {
           atsBlock.classList.add("glow");
@@ -1209,7 +1225,7 @@
         // Total block
         const totBlock = document.createElement("div");
         totBlock.className = "pick-block total";
-        const totConf = g.total.confidence;
+        let totConf = g.total.confidence;
 
         if (totConf !== null && totConf >= 80 && g.total.pick) {
           totBlock.classList.add("glow");
@@ -1247,15 +1263,11 @@
           const json = await res.json();
           const overall = json.overall || null;
           const bySport = json.by_sport || json.bySport || {};
-          const sinceRaw = json.since || json.start_date || null;
+          const since = json.since || json.start_date || null;
 
           state.accuracy.overall = overall;
           state.accuracy.bySport = bySport;
-
-          let sinceStr = sinceRaw || TRACKING_SINCE;
-          // force tracking window to start no earlier than TRACKING_SINCE
-          if (sinceStr < TRACKING_SINCE) sinceStr = TRACKING_SINCE;
-          state.accuracy.since = sinceStr;
+          state.accuracy.since = since;
           return;
         }
       } catch (e) {
@@ -1274,13 +1286,8 @@
           ats: last.ATS_accuracy ?? last.ats_pct ?? 0,
           ou: last.OU_accuracy ?? last.ou_pct ?? 0
         };
-        state.accuracy.since = TRACKING_SINCE;
       } catch (e) {
         console.warn("No performance_log.json available");
-      }
-
-      if (!state.accuracy.since) {
-        state.accuracy.since = TRACKING_SINCE;
       }
     }
 
