@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251130_1555",
+  "timestamp": "20251130_1649",
   "count": 51,
   "data": [
     {
@@ -39,7 +39,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Dan Kelly",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Kelly Sutherland",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "David Brisebois",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Michael Markovic",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -216,7 +249,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "PIT +130",
+        "spread": null,
+        "total": null,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Xfinity Mobile Arena",
         "city": "Philadelphia",
