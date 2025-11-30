@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-
 import json
 import asyncio
 from playwright.async_api import async_playwright
 
-SPORT_URLS = {
+SPORTS = {
     "nfl": "https://www.oddstrader.com/nfl/injuries/",
     "ncaaf": "https://www.oddstrader.com/ncaa-college-football/injuries/",
     "nba": "https://www.oddstrader.com/nba/injuries/",
@@ -12,56 +11,63 @@ SPORT_URLS = {
     "nhl": "https://www.oddstrader.com/nhl/injuries/",
 }
 
-async def fetch_injuries(page, sport, url):
-    print(f"🔍 Fetching injuries for {sport.upper()} …")
+async def scrape_injuries(playwright):
+    browser = await playwright.chromium.launch(headless=True)
+    page = await browser.new_page()
 
-    await page.goto(url, wait_until="networkidle")
-    await page.wait_for_timeout(2000)
-
-    injury_rows = await page.locator("div.injuries-table tbody tr").all()
-
-    injuries = []
-    for row in injury_rows:
-        try:
-            player = await row.locator("td:nth-child(1)").inner_text()
-            position = await row.locator("td:nth-child(2)").inner_text()
-            team = await row.locator("td:nth-child(3)").inner_text()
-            status = await row.locator("td:nth-child(4)").inner_text()
-            notes = await row.locator("td:nth-child(5)").inner_text()
-
-            injuries.append({
-                "sport": sport,
-                "player": player.strip(),
-                "position": position.strip(),
-                "team": team.strip(),
-                "status": status.strip(),
-                "notes": notes.strip()
-            })
-        except:
-            continue
-
-    print(f"   → Found {len(injuries)} injuries")
-    return injuries
-
-async def main():
     all_injuries = []
 
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
+    for sport, url in SPORTS.items():
+        print(f"\n🔍 Fetching {sport.upper()} injuries from Oddstrader…")
 
-        for sport, url in SPORT_URLS.items():
-            rows = await fetch_injuries(page, sport, url)
-            all_injuries.extend(rows)
+        try:
+            await page.goto(url, timeout=60000)
+            await page.wait_for_selector("table", timeout=60000)
 
-        await browser.close()
+            # Extract rows dynamically rendered by JS
+            rows = await page.query_selector_all("table tbody tr")
 
-    print(f"\n📦 Total injuries scraped: {len(all_injuries)}")
+            if not rows:
+                print(f"⚠️ No injury rows found for {sport}")
+                continue
 
-    with open("injuries.json", "w") as f:
-        json.dump(all_injuries, f, indent=2)
+            for r in rows:
+                cells = await r.query_selector_all("td")
+                if len(cells) < 4:
+                    continue
 
-    print("🎉 Saved injuries.json")
+                player = (await cells[0].inner_text()).strip()
+                team = (await cells[1].inner_text()).strip()
+                status = (await cells[2].inner_text()).strip()
+                detail = (await cells[3].inner_text()).strip()
+
+                all_injuries.append({
+                    "sport": sport,
+                    "player": player,
+                    "team": team,
+                    "status": status,
+                    "detail": detail,
+                })
+
+            print(f"✅ Found {len(rows)} rows for {sport}")
+
+        except Exception as e:
+            print(f"❌ Error scraping {sport}: {e}")
+
+    await browser.close()
+    return all_injuries
+
+
+async def main():
+    async with async_playwright() as playwright:
+        injuries = await scrape_injuries(playwright)
+
+        print(f"\n📦 Total injuries scraped: {len(injuries)}")
+
+        with open("injuries.json", "w") as f:
+            json.dump({"injuries": injuries}, f, indent=2)
+
+        print("\n🎉 Saved injuries.json")
 
 if __name__ == "__main__":
     asyncio.run(main())
