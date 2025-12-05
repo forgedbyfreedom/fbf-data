@@ -1,0 +1,79 @@
+name: 🌙 Nightly + Manual ForgedByFreedom Pinecone Sync
+
+on:
+  workflow_dispatch:  # 🔘 allows manual trigger from GitHub mobile or desktop
+    inputs:
+      run_reason:
+        description: "Reason for manual sync (optional)"
+        required: false
+        default: "Manual trigger"
+  schedule:
+    - cron: "0 3 * * *"  # 🕒 Every night at 3 AM UTC
+
+permissions:
+  contents: write
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
+  PINECONE_INDEX: forged-freedom-ai
+  PINECONE_ENV: us-east1-gcp
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧭 Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai pinecone-client tqdm python-dotenv requests
+
+      - name: 🔄 Pull transcript repositories
+        run: |
+          mkdir -p transcripts
+          if [ ! -d "thinkbig-transcripts" ]; then
+            git clone https://github.com/forgedbyfreedom/thinkbig-transcripts.git
+          else
+            (cd thinkbig-transcripts && git pull)
+          fi
+          if [ ! -d "fbf-data" ]; then
+            git clone https://github.com/forgedbyfreedom/fbf-data.git
+          else
+            (cd fbf-data && git pull)
+          fi
+
+      - name: 🧠 Run Pinecone sync
+        run: |
+          python transcripts/sync_all_to_pinecone.py
+
+      - name: 📧 Send status email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "📘 ForgedByFreedom AI Sync — ${{ job.status }}"
+          to: bryan@forgedbyfreedom.org
+          from: "Coach Bryan AI <${{ secrets.SMTP_USERNAME }}>"
+          body: |
+            Hey Coach Bryan,
+
+            The Pinecone + OpenAI transcript sync has **${{ job.status }}**.
+
+            Triggered by: ${{ github.event.inputs.run_reason }}
+            Repository: ${{ github.repository }}
+            Workflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            — ForgedByFreedom Automation 🤖
