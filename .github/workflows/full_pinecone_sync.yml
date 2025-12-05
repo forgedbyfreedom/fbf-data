@@ -1,11 +1,4 @@
-name: 🌙 Nightly + Manual ForgedByFreedom Pinecone Sync
-
-on:
-  workflow_dispatch:  # 🔘 allows manual trigger from GitHub mobile or desktop
-    inputs:
-      run_reason:
-        description: "Reason for manual sync (optional)"
-        required: false
+b: false
         default: "Manual trigger"
   schedule:
     - cron: "0 3 * * *"  # 🕒 Every night at 3 AM UTC
