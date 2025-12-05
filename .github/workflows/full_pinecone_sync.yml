@@ -1,72 +1,128 @@
-b: false
-        default: "Manual trigger"
-  schedule:
-    - cron: "0 3 * * *"  # 🕒 Every night at 3 AM UTC
+#!/usr/bin/env python3
+"""
+Full replacement: sync_all_to_pinecone.py
+Counts and optionally uploads all transcripts from thinkbig, fbf-data, and transcripts directories.
+"""
 
-permissions:
-  contents: write
+import os
+import json
+import time
+from pathlib import Path
+from tqdm import tqdm
+from pinecone import Pinecone
+from openai import OpenAI
 
-env:
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-  PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
-  PINECONE_INDEX: forged-freedom-ai
-  PINECONE_ENV: us-east1-gcp
+# === CONFIG ===
+UPLOAD = False  # set to True to sync to Pinecone
+REPORT_PATH = "transcript_report.json"
 
-jobs:
-  sync:
-    runs-on: ubuntu-latest
+SOURCE_DIRS = [
+    "thinkbig-transcripts",
+    "fbf-data",
+    "transcripts"
+]
 
-    steps:
-      - name: 🧭 Checkout main repo
-        uses: actions/checkout@v4
+# === ENV ===
+OPENAI_KEY = os.getenv("OPENAI_API_KEY")
+PINECONE_KEY = os.getenv("PINECONE_API_KEY")
+PINECONE_INDEX = os.getenv("PINECONE_INDEX", "forged-freedom-ai")
 
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+client = OpenAI(api_key=OPENAI_KEY) if OPENAI_KEY else None
+pc = Pinecone(api_key=PINECONE_KEY) if PINECONE_KEY else None
 
-      - name: 📦 Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install openai pinecone-client tqdm python-dotenv requests
+if PINECONE_KEY and UPLOAD:
+    try:
+        index = pc.Index(PINECONE_INDEX)
+        print(f"✅ Connected to Pinecone index: {PINECONE_INDEX}")
+    except Exception as e:
+        print(f"⚠️ Pinecone connection failed: {e}")
+        UPLOAD = False
 
-      - name: 🔄 Pull transcript repositories
-        run: |
-          mkdir -p transcripts
-          if [ ! -d "thinkbig-transcripts" ]; then
-            git clone https://github.com/forgedbyfreedom/thinkbig-transcripts.git
-          else
-            (cd thinkbig-transcripts && git pull)
-          fi
-          if [ ! -d "fbf-data" ]; then
-            git clone https://github.com/forgedbyfreedom/fbf-data.git
-          else
-            (cd fbf-data && git pull)
-          fi
 
-      - name: 🧠 Run Pinecone sync
-        run: |
-          python transcripts/sync_all_to_pinecone.py
+# === HELPERS ===
 
-      - name: 📧 Send status email
-        if: always()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "📘 ForgedByFreedom AI Sync — ${{ job.status }}"
-          to: bryan@forgedbyfreedom.org
-          from: "Coach Bryan AI <${{ secrets.SMTP_USERNAME }}>"
-          body: |
-            Hey Coach Bryan,
+def clean_text(text: str):
+    lines = []
+    seen = set()
+    for line in text.splitlines():
+        norm = line.strip().lower()
+        if norm and norm not in seen:
+            seen.add(norm)
+            lines.append(line.strip())
+    return "\n".join(lines)
 
-            The Pinecone + OpenAI transcript sync has **${{ job.status }}**.
 
-            Triggered by: ${{ github.event.inputs.run_reason }}
-            Repository: ${{ github.repository }}
-            Workflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+def get_transcripts():
+    all_files = []
+    for src in SOURCE_DIRS:
+        base = Path(src)
+        if base.exists():
+            for txt in base.rglob("*.txt"):
+                all_files.append(txt)
+    return all_files
 
-            — ForgedByFreedom Automation 🤖
+
+# === MAIN ===
+
+def main():
+    print("🔍 Scanning all transcript sources...")
+    files = get_transcripts()
+    print(f"📂 Found {len(files)} transcript files")
+
+    total_words = 0
+    episode_count = 0
+    titles = set()
+    report = []
+
+    for path in tqdm(files, desc="Processing transcripts"):
+        try:
+            with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                text = f.read()
+            cleaned = clean_text(text)
+            words = len(cleaned.split())
+            total_words += words
+            episode_count += 1
+            title = path.parent.name
+            titles.add(title)
+
+            report.append({
+                "file": str(path),
+                "title": title,
+                "word_count": words,
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+            })
+
+            if UPLOAD and pc:
+                try:
+                    vector = client.embeddings.create(
+                        model="text-embedding-3-large",
+                        input=cleaned[:8000]
+                    ).data[0].embedding
+                    index.upsert(vectors=[{"id": path.stem, "values": vector}])
+                except Exception as e:
+                    print(f"⚠️ Upload failed for {path}: {e}")
+
+        except Exception as e:
+            print(f"⚠️ Error reading {path}: {e}")
+
+    summary = {
+        "total_titles": len(titles),
+        "total_episodes": episode_count,
+        "total_words": total_words,
+        "sources": SOURCE_DIRS,
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S")
+    }
+
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        json.dump({"summary": summary, "details": report}, f, indent=2)
+
+    print("\n📊 === TRANSCRIPT SUMMARY ===")
+    print(f"🎙 Podcast Titles: {len(titles)}")
+    print(f"📻 Episodes: {episode_count}")
+    print(f"🧾 Word Count: {total_words:,}")
+    print(f"💾 Report saved to: {REPORT_PATH}")
+    print("=============================")
+
+
+if __name__ == "__main__":
+    main()
