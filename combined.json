@@ -1,48 +1,7 @@
 {
-  "timestamp": "20251206_1958",
+  "timestamp": "20251206_2041",
   "count": 274,
   "data": [
-    {
-      "sport": "ncaaf",
-      "id": "401777327",
-      "name": "BYU Cougars at Texas Tech Red Raiders",
-      "shortName": "BYU VS TTU",
-      "date_utc": "2025-12-06T17:00Z",
-      "date_local": "2025-12-06 12:00 PM ET",
-      "home_team": {
-        "id": "2641",
-        "name": "Texas Tech Red Raiders",
-        "abbr": "TTU",
-        "slug": "texas-tech-red-raiders",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png"
-      },
-      "away_team": {
-        "id": "252",
-        "name": "BYU Cougars",
-        "abbr": "BYU",
-        "slug": "byu-cougars",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png"
-      },
-      "home_score": 24.0,
-      "away_score": 7.0,
-      "total_points": 31.0,
-      "odds": {
-        "details": "TTU -12.5",
-        "spread": -12.5,
-        "total": 50.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "AT&T Stadium",
-        "city": "Arlington",
-        "state": "TX",
-        "indoor": true,
-        "grass": false,
-        "lat": 32.7355816,
-        "lon": -97.1071186
-      },
-      "officials": []
-    },
     {
       "sport": "ncaaf",
       "id": "401777329",
@@ -65,8 +24,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/193.png"
       },
       "home_score": 23.0,
-      "away_score": 6.0,
-      "total_points": 29.0,
+      "away_score": 13.0,
+      "total_points": 36.0,
       "odds": {
         "details": "WMU -2.5",
         "spread": -2.5,
@@ -81,6 +40,47 @@
         "grass": false,
         "lat": 42.3315509,
         "lon": -83.0466403
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401777327",
+      "name": "BYU Cougars at Texas Tech Red Raiders",
+      "shortName": "BYU VS TTU",
+      "date_utc": "2025-12-06T17:00Z",
+      "date_local": "2025-12-06 12:00 PM ET",
+      "home_team": {
+        "id": "2641",
+        "name": "Texas Tech Red Raiders",
+        "abbr": "TTU",
+        "slug": "texas-tech-red-raiders",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png"
+      },
+      "away_team": {
+        "id": "252",
+        "name": "BYU Cougars",
+        "abbr": "BYU",
+        "slug": "byu-cougars",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png"
+      },
+      "home_score": 34.0,
+      "away_score": 7.0,
+      "total_points": 41.0,
+      "odds": {
+        "details": "TTU -12.5",
+        "spread": -12.5,
+        "total": 50.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "AT&T Stadium",
+        "city": "Arlington",
+        "state": "TX",
+        "indoor": true,
+        "grass": false,
+        "lat": 32.7355816,
+        "lon": -97.1071186
       },
       "officials": []
     },
@@ -237,9 +237,9 @@
         "slug": "colorado-avalanche",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png"
       },
-      "home_score": 1.0,
-      "away_score": 1.0,
-      "total_points": 2.0,
+      "home_score": 2.0,
+      "away_score": 3.0,
+      "total_points": 5.0,
       "odds": {
         "details": "COL -175",
         "spread": 1.5,
@@ -311,9 +311,9 @@
         "slug": "indiana-hoosiers",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png"
       },
-      "home_score": 29.0,
-      "away_score": 18.0,
-      "total_points": 47.0,
+      "home_score": 52.0,
+      "away_score": 39.0,
+      "total_points": 91.0,
       "odds": {
         "details": "LOU -3.5",
         "spread": -3.5,
@@ -510,7 +510,32 @@
         "lat": 42.2813722,
         "lon": -83.7484616
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Tim Comer",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Chad Barlow",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Jason Phillips",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "ncaab",
@@ -551,12 +576,29 @@
         "lat": 34.769536,
         "lon": -92.2670941
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Olandis Poole",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Todd Austin",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ],
       "weather": {
-        "summary": "Patchy Fog",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 48,
-        "temp": 48,
+        "temperatureF": 49,
+        "temp": 49,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -673,7 +715,7 @@
       "odds": {
         "details": "ATL -9.5",
         "spread": 9.5,
-        "total": 236.5,
+        "total": 237.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -960,7 +1002,7 @@
       "odds": {
         "details": "CLE -7.5",
         "spread": -7.5,
-        "total": 227.5,
+        "total": 229.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1099,10 +1141,10 @@
       "weather": {
         "summary": "Cloudy",
         "description": "",
-        "temperatureF": 41,
-        "temp": 41,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 45,
+        "temp": 45,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
@@ -1215,8 +1257,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "HOU -15.5",
-        "spread": -15.5,
+        "details": "HOU -13.5",
+        "spread": -13.5,
         "total": 144.5,
         "provider": "Draft Kings"
       },
@@ -1420,8 +1462,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "ARIZ -8.5",
-        "spread": -8.5,
+        "details": "ARIZ -9.5",
+        "spread": -9.5,
         "total": 161.5,
         "provider": "Draft Kings"
       },
@@ -1663,7 +1705,7 @@
       "odds": {
         "details": "BUF -6",
         "spread": -6.0,
-        "total": 53.5,
+        "total": 52.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1679,10 +1721,10 @@
       "weather": {
         "summary": "Snow Showers Likely",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
-        "windSpeedMph": 12.0,
-        "wind": 12.0
+        "temperatureF": 32,
+        "temp": 32,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 1
@@ -1731,8 +1773,8 @@
       "weather": {
         "summary": "Slight Chance Light Snow",
         "description": "",
-        "temperatureF": 33,
-        "temp": 33,
+        "temperatureF": 34,
+        "temp": 34,
         "windSpeedMph": 14.0,
         "wind": 14.0
       },
@@ -1824,8 +1866,8 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 41,
-        "temp": 41,
+        "temperatureF": 42,
+        "temp": 42,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -1874,15 +1916,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Areas Of Fog",
+        "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -1930,8 +1972,8 @@
         "description": "",
         "temperatureF": 62,
         "temp": 62,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "windSpeedMph": 8.0,
+        "wind": 8.0
       },
       "weatherRisk": {
         "risk": 0
@@ -1982,8 +2024,8 @@
         "description": "",
         "temperatureF": 42,
         "temp": 42,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
@@ -2261,15 +2303,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Scattered Snow Showers",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 21,
-        "temp": 21,
+        "temperatureF": 22,
+        "temp": 22,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       }
     },
     {
@@ -2297,8 +2339,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "LAR -9.5",
-        "spread": 9.5,
+        "details": "LAR -10",
+        "spread": 10.0,
         "total": 47.5,
         "provider": "Draft Kings"
       },
@@ -2857,12 +2899,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Cloudy",
         "description": "",
-        "temperatureF": 39,
-        "temp": 39,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 40,
+        "temp": 40,
+        "windSpeedMph": 7.0,
+        "wind": 7.0
       },
       "weatherRisk": {
         "risk": 0
@@ -4770,15 +4812,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Areas Of Fog",
+        "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -5582,8 +5624,8 @@
         "description": "",
         "temperatureF": 42,
         "temp": 42,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6116,8 +6158,8 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
+        "temperatureF": 37,
+        "temp": 37,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -6166,12 +6208,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Cloudy",
         "description": "",
-        "temperatureF": 39,
-        "temp": 39,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 40,
+        "temp": 40,
+        "windSpeedMph": 7.0,
+        "wind": 7.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6218,7 +6260,7 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
         "temperatureF": 37,
         "temp": 37,
@@ -6272,8 +6314,8 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 41,
-        "temp": 41,
+        "temperatureF": 42,
+        "temp": 42,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -6322,10 +6364,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Drizzle",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 38,
-        "temp": 38,
+        "temperatureF": 43,
+        "temp": 43,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -6376,10 +6418,10 @@
       "weather": {
         "summary": "Cloudy",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
-        "windSpeedMph": 7.0,
-        "wind": 7.0
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 8.0,
+        "wind": 8.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6467,15 +6509,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Slight Chance Rain And Snow Showers",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 48,
+        "temp": 48,
+        "windSpeedMph": 17.0,
+        "wind": 17.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 2
       }
     },
     {
@@ -6601,12 +6643,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 55,
+        "temp": 55,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6653,12 +6695,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Light Rain Likely",
+        "summary": "Light Rain",
         "description": "",
-        "temperatureF": 47,
-        "temp": 47,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 50,
+        "temp": 50,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
         "risk": 1
@@ -6746,10 +6788,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Cloudy",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
+        "temperatureF": 37,
+        "temp": 37,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -6795,8 +6837,8 @@
       "weather": {
         "summary": "Chance Light Rain",
         "description": "",
-        "temperatureF": 47,
-        "temp": 47,
+        "temperatureF": 50,
+        "temp": 50,
         "windSpeedMph": 0.0,
         "wind": 0.0
       },
@@ -6840,10 +6882,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Rain Showers",
+        "summary": "Chance Rain Showers",
         "description": "",
-        "temperatureF": 82,
-        "temp": 82,
+        "temperatureF": 80,
+        "temp": 80,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -6889,8 +6931,8 @@
       "weather": {
         "summary": "Rain Showers Likely",
         "description": "",
-        "temperatureF": 51,
-        "temp": 51,
+        "temperatureF": 52,
+        "temp": 52,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -6934,12 +6976,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Light Rain Likely",
+        "summary": "Light Rain",
         "description": "",
-        "temperatureF": 47,
-        "temp": 47,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 50,
+        "temp": 50,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
         "risk": 1
@@ -7015,18 +7057,7 @@
         "lat": 33.8360035,
         "lon": -79.0478143
       },
-      "officials": [],
-      "weather": {
-        "summary": "Light Rain",
-        "description": "",
-        "temperatureF": 45,
-        "temp": 45,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -7064,15 +7095,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Areas Of Fog",
+        "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -7141,8 +7172,8 @@
       "weather": {
         "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 40,
-        "temp": 40,
+        "temperatureF": 42,
+        "temp": 42,
         "windSpeedMph": 3.0,
         "wind": 3.0
       },
@@ -10726,5 +10757,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-12-06T19:58:28.420456"
+  "weather_merged_at": "2025-12-06T20:42:32.246904"
 }
