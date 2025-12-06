@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251206_1537",
+  "timestamp": "20251206_1558",
   "count": 274,
   "predictions": [
     {
@@ -33,20 +33,20 @@
       "home": "WMU",
       "away": "M-OH",
       "odds": {
-        "details": "WMU -1.5",
-        "spread": -1.5,
+        "details": "WMU -2.5",
+        "spread": -2.5,
         "total": 43.5,
         "provider": "Draft Kings"
       },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 22.5,
-        "projected_away_score": 21.0,
+        "projected_home_score": 23.0,
+        "projected_away_score": 20.5,
         "projected_total": 43.5,
-        "projected_spread": 1.5,
-        "win_probability_home": 0.562,
-        "confidence": 12
+        "projected_spread": 2.5,
+        "win_probability_home": 0.603,
+        "confidence": 20
       }
     },
     {
@@ -58,15 +58,15 @@
       "odds": {
         "details": "PUR -5.5",
         "spread": -5.5,
-        "total": 155.5,
+        "total": 154.5,
         "provider": "Draft Kings"
       },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 80.5,
-        "projected_away_score": 75.0,
-        "projected_total": 155.5,
+        "projected_home_score": 80.0,
+        "projected_away_score": 74.5,
+        "projected_total": 154.5,
         "projected_spread": 5.5,
         "win_probability_home": 0.714,
         "confidence": 44
@@ -223,8 +223,17 @@
         "total": 158.5,
         "provider": "Draft Kings"
       },
-      "weather": null,
-      "risk": null,
+      "weather": {
+        "summary": "Areas Of Fog",
+        "description": "",
+        "temperatureF": 37,
+        "temp": 37,
+        "windSpeedMph": 0.0,
+        "wind": 0.0
+      },
+      "risk": {
+        "risk": 0
+      },
       "prediction": {
         "projected_home_score": 89.5,
         "projected_away_score": 69.0,
@@ -244,15 +253,15 @@
       "odds": {
         "details": "BKN -3.5",
         "spread": -3.5,
-        "total": 226.5,
+        "total": 227.5,
         "provider": "Draft Kings"
       },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 115.0,
-        "projected_away_score": 111.5,
-        "projected_total": 226.5,
+        "projected_home_score": 115.5,
+        "projected_away_score": 112.0,
+        "projected_total": 227.5,
         "projected_spread": 3.5,
         "win_probability_home": 0.642,
         "confidence": 28
@@ -290,15 +299,15 @@
       "odds": {
         "details": "ATL -9.5",
         "spread": 9.5,
-        "total": 234.5,
+        "total": 235.5,
         "provider": "Draft Kings"
       },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 112.5,
-        "projected_away_score": 122.0,
-        "projected_total": 234.5,
+        "projected_home_score": 113.0,
+        "projected_away_score": 122.5,
+        "projected_total": 235.5,
         "projected_spread": -9.5,
         "win_probability_home": 0.17,
         "confidence": 76
@@ -575,20 +584,20 @@
       "home": "MIN",
       "away": "LAC",
       "odds": {
-        "details": "MIN -10.5",
-        "spread": -10.5,
-        "total": 228.5,
+        "details": "MIN -9.5",
+        "spread": -9.5,
+        "total": 227.5,
         "provider": "Draft Kings"
       },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 119.5,
+        "projected_home_score": 118.5,
         "projected_away_score": 109.0,
-        "projected_total": 228.5,
-        "projected_spread": 10.5,
-        "win_probability_home": 0.852,
-        "confidence": 84
+        "projected_total": 227.5,
+        "projected_spread": 9.5,
+        "win_probability_home": 0.83,
+        "confidence": 76
       },
       "highlight": true
     },
@@ -716,21 +725,22 @@
       "home": "ARIZ",
       "away": "AUB",
       "odds": {
-        "details": "ARIZ -8.5",
-        "spread": -8.5,
+        "details": "ARIZ -9.5",
+        "spread": -9.5,
         "total": 161.5,
         "provider": "Draft Kings"
       },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 85.0,
-        "projected_away_score": 76.5,
+        "projected_home_score": 85.5,
+        "projected_away_score": 76.0,
         "projected_total": 161.5,
-        "projected_spread": 8.5,
-        "win_probability_home": 0.805,
-        "confidence": 68
-      }
+        "projected_spread": 9.5,
+        "win_probability_home": 0.83,
+        "confidence": 76
+      },
+      "highlight": true
     },
     {
       "id": "401802801",
@@ -1086,16 +1096,21 @@
       "matchup": "Colorado Avalanche at Philadelphia Flyers",
       "home": "PHI",
       "away": "COL",
-      "odds": null,
+      "odds": {
+        "details": "COL -162",
+        "spread": 1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 9.2,
+        "projected_away_score": 10.8,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": -1.5,
+        "win_probability_home": 0.438,
+        "confidence": 12
       }
     },
     {
@@ -1254,16 +1269,21 @@
       "matchup": "New York Islanders at Florida Panthers",
       "home": "FLA",
       "away": "NYI",
-      "odds": null,
+      "odds": {
+        "details": "FLA -170",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 12
       }
     },
     {
@@ -1272,16 +1292,21 @@
       "matchup": "San Jose Sharks at Carolina Hurricanes",
       "home": "CAR",
       "away": "SJ",
-      "odds": null,
+      "odds": {
+        "details": "CAR -290",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 12
       }
     },
     {
@@ -1326,16 +1351,21 @@
       "matchup": "Pittsburgh Penguins at Dallas Stars",
       "home": "DAL",
       "away": "PIT",
-      "odds": null,
+      "odds": {
+        "details": "DAL -225",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 12
       }
     },
     {
@@ -1362,16 +1392,21 @@
       "matchup": "St. Louis Blues at Montreal Canadiens",
       "home": "MTL",
       "away": "STL",
-      "odds": null,
+      "odds": {
+        "details": "MTL -135",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 12
       }
     },
     {
@@ -1380,16 +1415,21 @@
       "matchup": "Vegas Golden Knights at New York Rangers",
       "home": "NYR",
       "away": "VGK",
-      "odds": null,
+      "odds": {
+        "details": "VGK -148",
+        "spread": 1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 9.2,
+        "projected_away_score": 10.8,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": -1.5,
+        "win_probability_home": 0.438,
+        "confidence": 12
       }
     },
     {
@@ -1398,16 +1438,21 @@
       "matchup": "Columbus Blue Jackets at Washington Capitals",
       "home": "WSH",
       "away": "CBJ",
-      "odds": null,
+      "odds": {
+        "details": "WSH -205",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 12
       }
     },
     {
@@ -1452,16 +1497,21 @@
       "matchup": "Chicago Blackhawks at Anaheim Ducks",
       "home": "ANA",
       "away": "CHI",
-      "odds": null,
+      "odds": {
+        "details": "ANA -218",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "weather": null,
       "risk": null,
       "prediction": {
-        "projected_home_score": 10.0,
-        "projected_away_score": 10.0,
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
         "projected_total": 20.0,
-        "projected_spread": 0.0,
-        "win_probability_home": 0.5,
-        "confidence": 5
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 12
       }
     },
     {
@@ -3442,16 +3492,16 @@
         "description": "",
         "temperatureF": 42,
         "temp": 42,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "windSpeedMph": 2.0,
+        "wind": 2.0
       },
       "risk": {
         "risk": 0
       },
       "prediction": {
-        "projected_home_score": 27.1,
-        "projected_away_score": 14.6,
-        "projected_total": 41.8,
+        "projected_home_score": 27.2,
+        "projected_away_score": 14.8,
+        "projected_total": 42.0,
         "projected_spread": 12.5,
         "win_probability_home": 0.889,
         "confidence": 100
