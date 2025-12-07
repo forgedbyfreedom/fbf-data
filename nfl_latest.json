@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251207_2154",
+  "timestamp": "20251207_2237",
   "count": 32,
   "data": [
     {
@@ -792,8 +792,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png"
       },
       "home_score": 7.0,
-      "away_score": 7.0,
-      "total_points": 14.0,
+      "away_score": 14.0,
+      "total_points": 21.0,
       "odds": {
         "details": "DEN -8.5",
         "spread": 8.5,
@@ -887,14 +887,14 @@
         "slug": "chicago-bears",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 7.0,
+      "away_score": 3.0,
+      "total_points": 10.0,
       "odds": {
         "details": "GB -6.5",
         "spread": -6.5,
-        "total": 36.5,
-        "provider": "Draft Kings - Live Odds"
+        "total": 44.5,
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lambeau Field",
@@ -983,10 +983,15 @@
         "slug": "los-angeles-rams",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png"
       },
-      "home_score": 7.0,
-      "away_score": 9.0,
-      "total_points": 16.0,
-      "odds": null,
+      "home_score": 10.0,
+      "away_score": 17.0,
+      "total_points": 27.0,
+      "odds": {
+        "details": "LAR -9.5",
+        "spread": 9.5,
+        "total": 49.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "State Farm Stadium",
         "city": "Glendale",
@@ -1090,7 +1095,64 @@
         "indoor": false,
         "grass": true
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Greg Bradley",
+          "role": {
+            "name": "Line Judge",
+            "displayName": "Line Judge",
+            "id": "113"
+          }
+        },
+        {
+          "name": "Paul King",
+          "role": {
+            "name": "Umpire",
+            "displayName": "Umpire",
+            "id": "116"
+          }
+        },
+        {
+          "name": "Dale Shaw",
+          "role": {
+            "name": "Side Judge",
+            "displayName": "Side Judge",
+            "id": "115"
+          }
+        },
+        {
+          "name": "John Jenkins",
+          "role": {
+            "name": "Field Judge",
+            "displayName": "Field Judge",
+            "id": "111"
+          }
+        },
+        {
+          "name": "Alan Eck",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "114"
+          }
+        },
+        {
+          "name": "David Oliver",
+          "role": {
+            "name": "Down Judge",
+            "displayName": "Down Judge",
+            "id": "112"
+          }
+        },
+        {
+          "name": "Grantis Bell",
+          "role": {
+            "name": "Back Judge",
+            "displayName": "Back Judge",
+            "id": "110"
+          }
+        }
+      ]
     },
     {
       "sport": "nfl",
