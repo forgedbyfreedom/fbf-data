@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251207_0355",
+  "timestamp": "20251207_0458",
   "count": 273,
   "data": [
     {
@@ -605,10 +605,10 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 41,
-        "temp": 41,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
+        "temperatureF": 39,
+        "temp": 39,
+        "windSpeedMph": 0.0,
+        "wind": 0.0
       },
       "weatherRisk": {
         "risk": 0
@@ -1390,6 +1390,58 @@
     },
     {
       "sport": "ncaaf",
+      "id": "401777328",
+      "name": "Duke Blue Devils at Virginia Cavaliers",
+      "shortName": "DUKE VS UVA",
+      "date_utc": "2025-12-07T01:00Z",
+      "date_local": "2025-12-06 08:00 PM ET",
+      "home_team": {
+        "id": "258",
+        "name": "Virginia Cavaliers",
+        "abbr": "UVA",
+        "slug": "virginia-cavaliers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png"
+      },
+      "away_team": {
+        "id": "150",
+        "name": "Duke Blue Devils",
+        "abbr": "DUKE",
+        "slug": "duke-blue-devils",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png"
+      },
+      "home_score": 20.0,
+      "away_score": 20.0,
+      "total_points": 40.0,
+      "odds": {
+        "details": "UVA -3.5",
+        "spread": -3.5,
+        "total": 58.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Bank of America Stadium",
+        "city": "Charlotte",
+        "state": "NC",
+        "indoor": false,
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Patchy Fog",
+        "description": "",
+        "temperatureF": 37,
+        "temp": 37,
+        "windSpeedMph": 0.0,
+        "wind": 0.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
+    },
+    {
+      "sport": "ncaaf",
       "id": "401777353",
       "name": "Indiana Hoosiers at Ohio State Buckeyes",
       "shortName": "IU VS OSU",
@@ -1428,58 +1480,6 @@
         "lon": -86.1583502
       },
       "officials": []
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401777328",
-      "name": "Duke Blue Devils at Virginia Cavaliers",
-      "shortName": "DUKE VS UVA",
-      "date_utc": "2025-12-07T01:00Z",
-      "date_local": "2025-12-06 08:00 PM ET",
-      "home_team": {
-        "id": "258",
-        "name": "Virginia Cavaliers",
-        "abbr": "UVA",
-        "slug": "virginia-cavaliers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png"
-      },
-      "away_team": {
-        "id": "150",
-        "name": "Duke Blue Devils",
-        "abbr": "DUKE",
-        "slug": "duke-blue-devils",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png"
-      },
-      "home_score": 10.0,
-      "away_score": 17.0,
-      "total_points": 27.0,
-      "odds": {
-        "details": "UVA -3.5",
-        "spread": -3.5,
-        "total": 58.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "Bank of America Stadium",
-        "city": "Charlotte",
-        "state": "NC",
-        "indoor": false,
-        "grass": false,
-        "lat": 35.2272086,
-        "lon": -80.8430827
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Patchy Fog",
-        "description": "",
-        "temperatureF": 38,
-        "temp": 38,
-        "windSpeedMph": 0.0,
-        "wind": 0.0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
     },
     {
       "sport": "nba",
@@ -1898,9 +1898,9 @@
         "slug": "chicago-blackhawks",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/chi.png"
       },
-      "home_score": 3.0,
+      "home_score": 6.0,
       "away_score": null,
-      "total_points": 3.0,
+      "total_points": 6.0,
       "odds": {
         "details": "LA -198",
         "spread": -1.5,
@@ -1972,9 +1972,9 @@
         "slug": "auburn-tigers",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2.png"
       },
-      "home_score": 44.0,
-      "away_score": 26.0,
-      "total_points": 70.0,
+      "home_score": 83.0,
+      "away_score": 59.0,
+      "total_points": 142.0,
       "odds": {
         "details": "ARIZ -11.5",
         "spread": -11.5,
@@ -2038,9 +2038,9 @@
         "slug": "winnipeg-jets",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wpg.png"
       },
-      "home_score": 4.0,
+      "home_score": 5.0,
       "away_score": null,
-      "total_points": 4.0,
+      "total_points": 5.0,
       "odds": {
         "details": "EDM -192",
         "spread": -1.5,
@@ -2112,9 +2112,9 @@
         "slug": "minnesota-wild",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/min.png"
       },
-      "home_score": null,
+      "home_score": 3.0,
       "away_score": 1.0,
-      "total_points": 1.0,
+      "total_points": 4.0,
       "odds": {
         "details": "MIN -162",
         "spread": 1.5,
@@ -2186,9 +2186,9 @@
         "slug": "detroit-red-wings",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png"
       },
-      "home_score": 1.0,
-      "away_score": 1.0,
-      "total_points": 2.0,
+      "home_score": 3.0,
+      "away_score": 3.0,
+      "total_points": 6.0,
       "odds": {
         "details": "DET -120",
         "spread": 1.5,
@@ -2418,8 +2418,8 @@
         "description": "",
         "temperatureF": 32,
         "temp": 32,
-        "windSpeedMph": 7.0,
-        "wind": 7.0
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 0
@@ -2597,7 +2597,7 @@
       "odds": {
         "details": "IND -1.5",
         "spread": 1.5,
-        "total": 45.5,
+        "total": 46.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2663,10 +2663,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Clear",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
+        "temperatureF": 34,
+        "temp": 34,
         "windSpeedMph": 3.0,
         "wind": 3.0
       },
@@ -3204,7 +3204,7 @@
       "odds": {
         "details": "MEM -1.5",
         "spread": -1.5,
-        "total": 235.5,
+        "total": 233.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3810,7 +3810,7 @@
       "odds": {
         "details": "PHI -2.5",
         "spread": 2.5,
-        "total": 42.5,
+        "total": 41.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -5507,10 +5507,10 @@
       "weather": {
         "summary": "Chance Rain Showers",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "temperatureF": 74,
+        "temp": 74,
+        "windSpeedMph": 3.0,
+        "wind": 3.0
       },
       "weatherRisk": {
         "risk": 1
@@ -6277,10 +6277,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Clear",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
+        "temperatureF": 34,
+        "temp": 34,
         "windSpeedMph": 3.0,
         "wind": 3.0
       },
@@ -6815,10 +6815,10 @@
       "weather": {
         "summary": "Cloudy",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 38,
+        "temp": 38,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
@@ -7023,8 +7023,8 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
+        "temperatureF": 33,
+        "temp": 33,
         "windSpeedMph": 0.0,
         "wind": 0.0
       },
@@ -7166,15 +7166,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Slight Chance Rain And Snow Showers",
         "description": "",
-        "temperatureF": 35,
-        "temp": 35,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 47,
+        "temp": 47,
+        "windSpeedMph": 18.0,
+        "wind": 18.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 2
       }
     },
     {
@@ -7354,8 +7354,8 @@
       "weather": {
         "summary": "Chance Light Rain",
         "description": "",
-        "temperatureF": 50,
-        "temp": 50,
+        "temperatureF": 49,
+        "temp": 49,
         "windSpeedMph": 9.0,
         "wind": 9.0
       },
@@ -7445,12 +7445,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
         "temperatureF": 31,
         "temp": 31,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
@@ -7490,7 +7490,18 @@
         "lat": 32.3777111,
         "lon": -86.3090775
       },
-      "officials": []
+      "officials": [],
+      "weather": {
+        "summary": "Cloudy",
+        "description": "",
+        "temperatureF": 46,
+        "temp": 46,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -7530,10 +7541,10 @@
       "weather": {
         "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 1
@@ -7624,8 +7635,8 @@
       "weather": {
         "summary": "Chance Light Rain",
         "description": "",
-        "temperatureF": 50,
-        "temp": 50,
+        "temperatureF": 49,
+        "temp": 49,
         "windSpeedMph": 9.0,
         "wind": 9.0
       },
@@ -7703,18 +7714,7 @@
         "lat": 33.8360035,
         "lon": -79.0478143
       },
-      "officials": [],
-      "weather": {
-        "summary": "Chance Rain Showers",
-        "description": "",
-        "temperatureF": 45,
-        "temp": 45,
-        "windSpeedMph": 0.0,
-        "wind": 0.0
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -7754,10 +7754,10 @@
       "weather": {
         "summary": "Chance Rain Showers",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "temperatureF": 74,
+        "temp": 74,
+        "windSpeedMph": 3.0,
+        "wind": 3.0
       },
       "weatherRisk": {
         "risk": 1
@@ -7825,18 +7825,7 @@
         "lat": 38.9253129,
         "lon": -76.8815433
       },
-      "officials": [],
-      "weather": {
-        "summary": "Mostly Clear",
-        "description": "",
-        "temperatureF": 33,
-        "temp": 33,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "nfl",
@@ -11414,5 +11403,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-12-07T03:56:52.391449"
+  "weather_merged_at": "2025-12-07T04:59:24.441400"
 }
