@@ -1,6 +1,6 @@
 {
-  "timestamp": "20251210_0421",
-  "count": 28,
+  "timestamp": "20251210_0455",
+  "count": 29,
   "data": [
     {
       "sport": "nba",
@@ -196,7 +196,7 @@
       "odds": {
         "details": "LAL -5.5",
         "spread": -5.5,
-        "total": 236.5,
+        "total": 237.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -274,7 +274,7 @@
       "odds": {
         "details": "BOS -7.5",
         "spread": 7.5,
-        "total": 227.5,
+        "total": 226.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -605,28 +605,33 @@
     {
       "sport": "nba",
       "id": "401809837",
-      "name": "TBD at TBD",
-      "shortName": "TBD VS TBD",
+      "name": "New York Knicks at Orlando Magic",
+      "shortName": "NY VS ORL",
       "date_utc": "2025-12-13T22:30Z",
       "date_local": "2025-12-13 05:30 PM ET",
       "home_team": {
-        "id": "-1",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
+        "id": "19",
+        "name": "Orlando Magic",
+        "abbr": "ORL",
+        "slug": "orlando-magic",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/orl.png"
       },
       "away_team": {
-        "id": "-2",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
+        "id": "18",
+        "name": "New York Knicks",
+        "abbr": "NY",
+        "slug": "new-york-knicks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ny.png"
       },
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "NY -4.5",
+        "spread": 4.5,
+        "total": 224.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "T-Mobile Arena",
         "city": "Las Vegas",
@@ -937,6 +942,40 @@
         "name": "TD Garden",
         "city": "Boston",
         "state": "MA",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "nba",
+      "id": "401839023",
+      "name": "Toronto Raptors at Miami Heat",
+      "shortName": "TOR @ MIA",
+      "date_utc": "2025-12-16T00:30Z",
+      "date_local": "2025-12-15 07:30 PM ET",
+      "home_team": {
+        "id": "14",
+        "name": "Miami Heat",
+        "abbr": "MIA",
+        "slug": "miami-heat",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mia.png"
+      },
+      "away_team": {
+        "id": "28",
+        "name": "Toronto Raptors",
+        "abbr": "TOR",
+        "slug": "toronto-raptors",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Kaseya Center",
+        "city": "Miami",
+        "state": "FL",
         "indoor": true,
         "grass": false
       },
