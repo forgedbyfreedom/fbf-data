@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251211_0049",
+  "timestamp": "20251211_0209",
   "count": 53,
   "data": [
     {
@@ -23,9 +23,9 @@
         "slug": "new-york-rangers",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png"
       },
-      "home_score": null,
+      "home_score": 2.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 2.0,
       "odds": {
         "details": "NYR -148",
         "spread": 1.5,
@@ -96,8 +96,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 2.0,
+      "total_points": 2.0,
       "odds": {
         "details": "DET -115",
         "spread": 1.5,
@@ -255,7 +255,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Travis Gawryletz",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Cody Beach",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Wes McCauley",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Kilian McNamara",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -479,7 +512,7 @@
       "odds": {
         "details": "CAR -115",
         "spread": 1.5,
-        "total": 5.5,
+        "total": 6.5,
         "provider": "Draft Kings"
       },
       "venue": {

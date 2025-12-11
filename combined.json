@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251211_0049",
+  "timestamp": "20251211_0209",
   "count": 261,
   "data": [
     {
@@ -23,9 +23,9 @@
         "slug": "minnesota-golden-gophers",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png"
       },
-      "home_score": 35.0,
-      "away_score": 32.0,
-      "total_points": 67.0,
+      "home_score": 85.0,
+      "away_score": 57.0,
+      "total_points": 142.0,
       "odds": {
         "details": "PUR -19.5",
         "spread": -19.5,
@@ -37,7 +37,9 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": [
         {
@@ -87,9 +89,9 @@
         "slug": "phoenix-suns",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/phx.png"
       },
-      "home_score": 9.0,
-      "away_score": 2.0,
-      "total_points": 11.0,
+      "home_score": 86.0,
+      "away_score": 56.0,
+      "total_points": 142.0,
       "odds": {
         "details": "OKC -15.5",
         "spread": -15.5,
@@ -101,7 +103,9 @@
         "city": "Oklahoma City",
         "state": "OK",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": [
         {
@@ -151,9 +155,9 @@
         "slug": "new-york-rangers",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png"
       },
-      "home_score": null,
+      "home_score": 2.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 2.0,
       "odds": {
         "details": "NYR -148",
         "spread": 1.5,
@@ -165,7 +169,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [
         {
@@ -223,9 +229,9 @@
         "slug": "jackson-state-tigers",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2296.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 40.0,
+      "away_score": 16.0,
+      "total_points": 56.0,
       "odds": {
         "details": "HOU -40.5",
         "spread": -40.5,
@@ -237,7 +243,9 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": [
         {
@@ -288,8 +296,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 2.0,
+      "total_points": 2.0,
       "odds": {
         "details": "DET -115",
         "spread": 1.5,
@@ -301,7 +309,9 @@
         "city": "Calgary",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 31.6174004,
+        "lon": -94.1193622
       },
       "officials": [
         {
@@ -373,9 +383,28 @@
         "city": "Lincoln",
         "state": "NE",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.8088861,
+        "lon": -96.7077751
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "D.J. Carstensen",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Jeffrey Anderson",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -412,7 +441,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": [
         {
@@ -476,7 +507,7 @@
       "odds": {
         "details": "LAL -7.5",
         "spread": -7.5,
-        "total": 241.5,
+        "total": 242.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -484,7 +515,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -523,9 +556,44 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Travis Gawryletz",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Cody Beach",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Wes McCauley",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Kilian McNamara",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -562,7 +630,9 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
       "officials": []
     },
@@ -601,7 +671,9 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
       "officials": []
     },
@@ -640,7 +712,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": []
     },
@@ -679,7 +753,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -718,7 +794,9 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4406968,
+        "lon": -80.0025666
       },
       "officials": []
     },
@@ -749,7 +827,7 @@
       "odds": {
         "details": "CAR -115",
         "spread": 1.5,
-        "total": 5.5,
+        "total": 6.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -757,7 +835,9 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
       "officials": []
     },
@@ -796,7 +876,9 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
       "officials": []
     },
@@ -835,7 +917,9 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": []
     },
@@ -874,7 +958,9 @@
         "city": "Milwaukee",
         "state": "WI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 43.0386475,
+        "lon": -87.9090751
       },
       "officials": []
     },
@@ -913,7 +999,9 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
       "officials": []
     },
@@ -952,7 +1040,9 @@
         "city": "Ames",
         "state": "IA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.0267567,
+        "lon": -93.6170448
       },
       "officials": []
     },
@@ -991,7 +1081,9 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": []
     },
@@ -1030,7 +1122,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": []
     },
@@ -1069,7 +1163,9 @@
         "city": "Winnipeg",
         "state": "MB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.6044889,
+        "lon": -92.30222
       },
       "officials": []
     },
@@ -1108,14 +1204,16 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 65,
+        "temp": 65,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -1158,7 +1256,9 @@
         "city": "Edmonton",
         "state": "AB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.9800563,
+        "lon": -85.6121906
       },
       "officials": []
     },
@@ -1197,7 +1297,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -1226,9 +1328,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DEN -9.5",
-        "spread": 9.5,
-        "total": 239.5,
+        "details": "DEN -10.5",
+        "spread": 10.5,
+        "total": 238.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1236,7 +1338,9 @@
         "city": "Sacramento",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": []
     },
@@ -1275,7 +1379,9 @@
         "city": "Vancouver",
         "state": "BC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.6306954,
+        "lon": -122.6744557
       },
       "officials": []
     },
@@ -1309,7 +1415,9 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": []
     },
@@ -1343,7 +1451,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -1377,7 +1487,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -1411,7 +1523,9 @@
         "city": "Washington",
         "state": "DC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
       },
       "officials": []
     },
@@ -1445,7 +1559,9 @@
         "city": "Memphis",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.1460249,
+        "lon": -90.0517638
       },
       "officials": []
     },
@@ -1479,7 +1595,9 @@
         "city": "Hartford",
         "state": "CT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.764582,
+        "lon": -72.6908547
       },
       "officials": []
     },
@@ -1513,7 +1631,9 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
       "officials": []
     },
@@ -1547,7 +1667,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -1581,7 +1703,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": []
     },
@@ -1620,7 +1744,9 @@
         "city": "San Francisco",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.7879363,
+        "lon": -122.4075201
       },
       "officials": []
     },
@@ -1654,7 +1780,9 @@
         "city": "University Park",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.8025835,
+        "lon": -77.8559383
       },
       "officials": []
     },
@@ -1688,7 +1816,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -1722,7 +1852,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -1756,7 +1888,9 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
       "officials": []
     },
@@ -1790,7 +1924,9 @@
         "city": "West Lafayette",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": []
     },
@@ -1824,7 +1960,9 @@
         "city": "Chapel Hill",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.9131542,
+        "lon": -79.05578
       },
       "officials": []
     },
@@ -1858,7 +1996,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": []
     },
@@ -1892,7 +2032,9 @@
         "city": "Sunrise",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.1666888,
+        "lon": -80.2787573
       },
       "officials": []
     },
@@ -1931,14 +2073,16 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
+        "temperatureF": 42,
+        "temp": 42,
         "windSpeedMph": 9.0,
         "wind": 9.0
       },
@@ -1976,7 +2120,9 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": []
     },
@@ -2010,7 +2156,9 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4406968,
+        "lon": -80.0025666
       },
       "officials": []
     },
@@ -2044,7 +2192,9 @@
         "city": "Louisville",
         "state": "KY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.2542376,
+        "lon": -85.759407
       },
       "officials": []
     },
@@ -2078,7 +2228,9 @@
         "city": "Elmont",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7053335,
+        "lon": -73.7078294
       },
       "officials": []
     },
@@ -2112,7 +2264,9 @@
         "city": "Champaign",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.1164841,
+        "lon": -88.2430932
       },
       "officials": []
     },
@@ -2146,7 +2300,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -2185,7 +2341,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -2219,7 +2377,9 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
       "officials": []
     },
@@ -2253,7 +2413,9 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": []
     },
@@ -2287,7 +2449,9 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
       "officials": []
     },
@@ -2321,7 +2485,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -2355,7 +2521,9 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": []
     },
@@ -2389,7 +2557,9 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
       "officials": []
     },
@@ -2423,7 +2593,9 @@
         "city": "Winnipeg",
         "state": "MB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.6044889,
+        "lon": -92.30222
       },
       "officials": []
     },
@@ -2462,7 +2634,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -2496,7 +2670,9 @@
         "city": "College Park",
         "state": "MD",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.980666,
+        "lon": -76.9369189
       },
       "officials": []
     },
@@ -2530,7 +2706,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": []
     },
@@ -2564,7 +2742,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -2598,7 +2778,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -2632,7 +2814,9 @@
         "city": "Provo",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.2337289,
+        "lon": -111.6587085
       },
       "officials": []
     },
@@ -2666,7 +2850,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -2700,7 +2886,9 @@
         "city": "Birmingham",
         "state": "AL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.5206824,
+        "lon": -86.8024326
       },
       "officials": []
     },
@@ -2734,7 +2922,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -2768,7 +2958,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": []
     },
@@ -2802,7 +2994,9 @@
         "city": "Newark",
         "state": "NJ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.735657,
+        "lon": -74.1723667
       },
       "officials": []
     },
@@ -2841,11 +3035,13 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Snow",
+        "summary": "Cloudy",
         "description": "",
         "temperatureF": 28,
         "temp": 28,
@@ -2853,7 +3049,7 @@
         "wind": 20.0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       }
     },
     {
@@ -2881,8 +3077,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "BAL -2.5",
-        "spread": 2.5,
+        "details": "BAL -1.5",
+        "spread": 1.5,
         "total": 52.5,
         "provider": "Draft Kings"
       },
@@ -2891,16 +3087,18 @@
         "city": "Cincinnati",
         "state": "OH",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 39.1014537,
+        "lon": -84.5124602
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Rain And Snow Showers",
+        "summary": "Chance Snow Showers",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
-        "windSpeedMph": 13.0,
-        "wind": 13.0
+        "temperatureF": 33,
+        "temp": 33,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 1
@@ -2941,16 +3139,18 @@
         "city": "Kansas City",
         "state": "MO",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.100105,
+        "lon": -94.5781416
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 39,
-        "temp": 39,
-        "windSpeedMph": 1.0,
-        "wind": 1.0
+        "temperatureF": 36,
+        "temp": 36,
+        "windSpeedMph": 3.0,
+        "wind": 3.0
       },
       "weatherRisk": {
         "risk": 0
@@ -2991,19 +3191,21 @@
         "city": "Foxborough",
         "state": "MA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 42.0653768,
+        "lon": -71.2478308
       },
       "officials": [],
       "weather": {
-        "summary": "Cloudy",
+        "summary": "Light Rain Likely",
         "description": "",
-        "temperatureF": 45,
-        "temp": 45,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 41,
+        "temp": 41,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -3041,14 +3243,16 @@
         "city": "East Rutherford",
         "state": "NJ",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.833989,
+        "lon": -74.0970865
       },
       "officials": [],
       "weather": {
         "summary": "Light Rain Likely",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
+        "temperatureF": 43,
+        "temp": 43,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -3091,19 +3295,21 @@
         "city": "Philadelphia",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Light Rain",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
-        "windSpeedMph": 15.0,
-        "wind": 15.0
+        "temperatureF": 40,
+        "temp": 40,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       }
     },
     {
@@ -3141,7 +3347,9 @@
         "city": "Jacksonville",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 30.3321838,
+        "lon": -81.655651
       },
       "officials": [],
       "weather": {
@@ -3191,7 +3399,9 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": []
     },
@@ -3225,7 +3435,9 @@
         "city": "Ames",
         "state": "IA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.0267567,
+        "lon": -93.6170448
       },
       "officials": []
     },
@@ -3259,7 +3471,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -3293,7 +3507,9 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4406968,
+        "lon": -80.0025666
       },
       "officials": []
     },
@@ -3327,7 +3543,9 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": []
     },
@@ -3366,7 +3584,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": [],
       "weather": {
@@ -3416,7 +3636,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -3455,7 +3677,9 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
       "officials": []
     },
@@ -3494,16 +3718,18 @@
         "city": "Santa Clara",
         "state": "CA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 37.3541132,
+        "lon": -121.955174
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 57,
-        "temp": 57,
-        "windSpeedMph": 7.0,
-        "wind": 7.0
+        "temperatureF": 50,
+        "temp": 50,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
@@ -3544,16 +3770,18 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "weather": {
-        "summary": "Rain",
+        "summary": "Rain Likely",
         "description": "",
-        "temperatureF": 56,
-        "temp": 56,
-        "windSpeedMph": 17.0,
-        "wind": 17.0
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 18.0,
+        "wind": 18.0
       },
       "weatherRisk": {
         "risk": 2
@@ -3589,7 +3817,9 @@
         "city": "Raleigh",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
       },
       "officials": []
     },
@@ -3623,7 +3853,9 @@
         "city": "Atlanta",
         "state": "GA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": []
     },
@@ -3657,7 +3889,9 @@
         "city": "Brooklyn",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.6526006,
+        "lon": -73.9497211
       },
       "officials": []
     },
@@ -3691,7 +3925,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": []
     },
@@ -3725,7 +3961,9 @@
         "city": "Minneapolis",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
       "officials": []
     },
@@ -3759,7 +3997,9 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": []
     },
@@ -3793,7 +4033,9 @@
         "city": "Montreal",
         "state": "QC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
       },
       "officials": []
     },
@@ -3827,7 +4069,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": []
     },
@@ -3866,7 +4110,9 @@
         "city": "Arlington",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7355816,
+        "lon": -97.1071186
       },
       "officials": []
     },
@@ -3900,7 +4146,9 @@
         "city": "Portland",
         "state": "OR",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5202471,
+        "lon": -122.674194
       },
       "officials": []
     },
@@ -3934,7 +4182,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3588336,
+        "lon": -71.0578303
       },
       "officials": []
     },
@@ -3968,7 +4218,9 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": []
     },
@@ -4002,7 +4254,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -4036,7 +4290,9 @@
         "city": "Miami",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 25.7741566,
+        "lon": -80.1935973
       },
       "officials": []
     },
@@ -4070,7 +4326,9 @@
         "city": "Winnipeg",
         "state": "MB",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.6044889,
+        "lon": -92.30222
       },
       "officials": []
     },
@@ -4104,7 +4362,9 @@
         "city": "St. Louis",
         "state": "MO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.6280278,
+        "lon": -90.1910154
       },
       "officials": []
     },
@@ -4138,7 +4398,9 @@
         "city": "Dallas",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7762719,
+        "lon": -96.7968559
       },
       "officials": []
     },
@@ -4177,7 +4439,9 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 40.4406968,
+        "lon": -80.0025666
       },
       "officials": [],
       "weather": {
@@ -4222,7 +4486,9 @@
         "city": "Salt Lake City",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": []
     },
@@ -4256,7 +4522,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": []
     },
@@ -4290,7 +4558,9 @@
         "city": "Inglewood",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.9562003,
+        "lon": -118.353132
       },
       "officials": []
     },
@@ -4324,7 +4594,9 @@
         "city": "Durham",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.996653,
+        "lon": -78.9018053
       },
       "officials": []
     },
@@ -4358,7 +4630,9 @@
         "city": "East Lansing",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.7320307,
+        "lon": -84.4721678
       },
       "officials": []
     },
@@ -4392,7 +4666,9 @@
         "city": "Knoxville",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.9603948,
+        "lon": -83.9210261
       },
       "officials": []
     },
@@ -4426,7 +4702,9 @@
         "city": "Queens",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7135078,
+        "lon": -73.8283132
       },
       "officials": []
     },
@@ -4460,7 +4738,9 @@
         "city": "Boston",
         "state": "MA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3588336,
+        "lon": -71.0578303
       },
       "officials": []
     },
@@ -4494,7 +4774,9 @@
         "city": "Toronto",
         "state": "ON",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
       },
       "officials": []
     },
@@ -4528,7 +4810,9 @@
         "city": "Montreal",
         "state": "QC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
       },
       "officials": []
     },
@@ -4562,7 +4846,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -4596,7 +4882,9 @@
         "city": "New York",
         "state": "NY",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
       },
       "officials": []
     },
@@ -4630,7 +4918,9 @@
         "city": "Columbus",
         "state": "OH",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
       },
       "officials": []
     },
@@ -4664,7 +4954,9 @@
         "city": "Pittsburgh",
         "state": "PA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.4406968,
+        "lon": -80.0025666
       },
       "officials": []
     },
@@ -4698,7 +4990,9 @@
         "city": "Chapel Hill",
         "state": "NC",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.9131542,
+        "lon": -79.05578
       },
       "officials": []
     },
@@ -4732,7 +5026,9 @@
         "city": "Lubbock",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.5855677,
+        "lon": -101.8470215
       },
       "officials": []
     },
@@ -4766,7 +5062,9 @@
         "city": "Saint Paul",
         "state": "MN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
       },
       "officials": []
     },
@@ -4800,7 +5098,9 @@
         "city": "Las Vegas",
         "state": "NV",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -4834,7 +5134,9 @@
         "city": "Hartford",
         "state": "CT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 41.764582,
+        "lon": -72.6908547
       },
       "officials": []
     },
@@ -4873,14 +5175,16 @@
         "city": "Montgomery",
         "state": "AL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 32.3777111,
+        "lon": -86.3090775
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 57,
-        "temp": 57,
+        "temperatureF": 51,
+        "temp": 51,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -4918,7 +5222,9 @@
         "city": "Tucson",
         "state": "AZ",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.2228765,
+        "lon": -110.974847
       },
       "officials": []
     },
@@ -4952,7 +5258,9 @@
         "city": "Provo",
         "state": "UT",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 40.2337289,
+        "lon": -111.6587085
       },
       "officials": []
     },
@@ -4986,7 +5294,9 @@
         "city": "Fayetteville",
         "state": "AR",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 36.0625843,
+        "lon": -94.1574328
       },
       "officials": []
     },
@@ -5020,7 +5330,9 @@
         "city": "Lawrence",
         "state": "KS",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 38.9719137,
+        "lon": -95.2359403
       },
       "officials": []
     },
@@ -5054,7 +5366,9 @@
         "city": "San Jose",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 37.3361663,
+        "lon": -121.890591
       },
       "officials": []
     },
@@ -5088,7 +5402,9 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": []
     },
@@ -5127,14 +5443,16 @@
         "city": "Orlando",
         "state": "FL",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 28.5421218,
+        "lon": -81.379045
       },
       "officials": [],
       "weather": {
-        "summary": "Clear",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 59,
-        "temp": 59,
+        "temperatureF": 57,
+        "temp": 57,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -5172,7 +5490,9 @@
         "city": "Gainesville",
         "state": "FL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.6519684,
+        "lon": -82.3249846
       },
       "officials": []
     },
@@ -5206,7 +5526,9 @@
         "city": "Memphis",
         "state": "TN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 35.1460249,
+        "lon": -90.0517638
       },
       "officials": []
     },
@@ -5240,7 +5562,9 @@
         "city": "Tuscaloosa",
         "state": "AL",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.2095614,
+        "lon": -87.5675258
       },
       "officials": []
     },
@@ -5279,14 +5603,16 @@
         "city": "Mobile",
         "state": "AL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 30.6913462,
+        "lon": -88.0437509
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
+        "temperatureF": 62,
+        "temp": 62,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -5324,7 +5650,9 @@
         "city": "Spokane",
         "state": "WA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 47.6571934,
+        "lon": -117.42351
       },
       "officials": []
     },
@@ -5358,7 +5686,9 @@
         "city": "Los Angeles",
         "state": "CA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": []
     },
@@ -5397,16 +5727,18 @@
         "city": "Seattle",
         "state": "WA",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "weather": {
-        "summary": "Rain",
+        "summary": "Rain Likely",
         "description": "",
-        "temperatureF": 56,
-        "temp": 56,
-        "windSpeedMph": 17.0,
-        "wind": 17.0
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 18.0,
+        "wind": 18.0
       },
       "weatherRisk": {
         "risk": 2
@@ -5447,7 +5779,9 @@
         "city": "Frisco",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 33.1505998,
+        "lon": -96.8238183
       },
       "officials": []
     },
@@ -5486,14 +5820,16 @@
         "city": "Conway",
         "state": "SC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.8360035,
+        "lon": -79.0478143
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 46,
-        "temp": 46,
+        "temperatureF": 48,
+        "temp": 48,
         "windSpeedMph": 7.0,
         "wind": 7.0
       },
@@ -5536,14 +5872,16 @@
         "city": "Tampa",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 65,
+        "temp": 65,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -5586,19 +5924,21 @@
         "city": "Norman",
         "state": "OK",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 35.2225717,
+        "lon": -97.4394816
       },
       "officials": [],
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
-        "windSpeedMph": 23.0,
-        "wind": 23.0
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 14.0,
+        "wind": 14.0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       }
     },
     {
@@ -5636,14 +5976,16 @@
         "city": "College Station",
         "state": "TX",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 30.6183939,
+        "lon": -96.3455991
       },
       "officials": [],
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 61,
-        "temp": 61,
+        "temperatureF": 54,
+        "temp": 54,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -5686,19 +6028,21 @@
         "city": "Oxford",
         "state": "MS",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 34.3663773,
+        "lon": -89.5187664
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 57,
-        "temp": 57,
-        "windSpeedMph": 15.0,
-        "wind": 15.0
+        "temperatureF": 41,
+        "temp": 41,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       }
     },
     {
@@ -5736,16 +6080,18 @@
         "city": "Landover",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 38.9253129,
+        "lon": -76.8815433
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 44,
-        "temp": 44,
-        "windSpeedMph": 12.0,
-        "wind": 12.0
+        "temperatureF": 43,
+        "temp": 43,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
@@ -5786,19 +6132,21 @@
         "city": "Eugene",
         "state": "OR",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 44.0505054,
+        "lon": -123.0950506
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 59,
-        "temp": 59,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -5836,11 +6184,13 @@
         "city": "Chicago",
         "state": "IL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Snow",
+        "summary": "Cloudy",
         "description": "",
         "temperatureF": 28,
         "temp": 28,
@@ -5848,7 +6198,7 @@
         "wind": 20.0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       }
     },
     {
@@ -5886,19 +6236,21 @@
         "city": "Cleveland",
         "state": "OH",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 41.4996574,
+        "lon": -81.6936772
       },
       "officials": [],
       "weather": {
-        "summary": "Light Snow Likely",
+        "summary": "Snow Showers Likely",
         "description": "",
-        "temperatureF": 34,
-        "temp": 34,
-        "windSpeedMph": 25.0,
-        "wind": 25.0
+        "temperatureF": 30,
+        "temp": 30,
+        "windSpeedMph": 23.0,
+        "wind": 23.0
       },
       "weatherRisk": {
-        "risk": 3
+        "risk": 2
       }
     },
     {
@@ -5936,7 +6288,9 @@
         "city": "Arlington",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 32.7355816,
+        "lon": -97.1071186
       },
       "officials": []
     },
@@ -5975,16 +6329,18 @@
         "city": "Nashville",
         "state": "TN",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
-        "windSpeedMph": 20.0,
-        "wind": 20.0
+        "temperatureF": 40,
+        "temp": 40,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
         "risk": 1
@@ -6025,7 +6381,9 @@
         "city": "Miami Gardens",
         "state": "FL",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 25.9420377,
+        "lon": -80.2456045
       },
       "officials": [],
       "weather": {
@@ -6075,7 +6433,9 @@
         "city": "New Orleans",
         "state": "LA",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.9559145,
+        "lon": -90.0730259
       },
       "officials": []
     },
@@ -6114,14 +6474,16 @@
         "city": "East Rutherford",
         "state": "NJ",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 40.833989,
+        "lon": -74.0970865
       },
       "officials": [],
       "weather": {
-        "summary": "Light Rain",
+        "summary": "Light Rain Likely",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
+        "temperatureF": 43,
+        "temp": 43,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -6164,16 +6526,18 @@
         "city": "Charlotte",
         "state": "NC",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 35.2272086,
+        "lon": -80.8430827
       },
       "officials": [],
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 45,
+        "temp": 45,
+        "windSpeedMph": 10.0,
+        "wind": 10.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6214,7 +6578,9 @@
         "city": "Denver",
         "state": "CO",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.7392364,
+        "lon": -104.984862
       },
       "officials": [],
       "weather": {
@@ -6264,7 +6630,9 @@
         "city": "Glendale",
         "state": "AZ",
         "indoor": true,
-        "grass": true
+        "grass": true,
+        "lat": 33.5386858,
+        "lon": -112.185994
       },
       "officials": []
     },
@@ -6303,7 +6671,9 @@
         "city": "Detroit",
         "state": "MI",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 42.3315509,
+        "lon": -83.0466403
       },
       "officials": []
     },
@@ -6342,7 +6712,9 @@
         "city": "Houston",
         "state": "TX",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": []
     },
@@ -6381,14 +6753,16 @@
         "city": "Baltimore",
         "state": "MD",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 39.2908816,
+        "lon": -76.610759
       },
       "officials": [],
       "weather": {
         "summary": "Slight Chance Rain Showers",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
+        "temperatureF": 42,
+        "temp": 42,
         "windSpeedMph": 9.0,
         "wind": 9.0
       },
@@ -6431,7 +6805,9 @@
         "city": "Indianapolis",
         "state": "IN",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 39.7683331,
+        "lon": -86.1583502
       },
       "officials": []
     },
@@ -6465,7 +6841,9 @@
         "city": "Sarasota",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.3365805,
+        "lon": -82.5308545
       },
       "officials": []
     },
@@ -6499,7 +6877,9 @@
         "city": "Mesa",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4151005,
+        "lon": -111.831455
       },
       "officials": []
     },
@@ -6533,7 +6913,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -6567,7 +6949,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -6601,7 +6985,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -6635,7 +7021,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -6669,7 +7057,9 @@
         "city": "Sarasota",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.3365805,
+        "lon": -82.5308545
       },
       "officials": []
     },
@@ -6703,7 +7093,9 @@
         "city": "Mesa",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4151005,
+        "lon": -111.831455
       },
       "officials": []
     },
@@ -6737,7 +7129,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -6771,7 +7165,9 @@
         "city": "Goodyear",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4672279,
+        "lon": -112.3853489
       },
       "officials": []
     },
@@ -6805,7 +7201,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -6839,7 +7237,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -6873,7 +7273,9 @@
         "city": "Fort Myers",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": []
     },
@@ -6907,7 +7309,9 @@
         "city": "Port St. Lucie",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.2939333,
+        "lon": -80.3503283
       },
       "officials": []
     },
@@ -6941,7 +7345,9 @@
         "city": "Tampa",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": []
     },
@@ -6975,7 +7381,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -7009,7 +7417,9 @@
         "city": "Jupiter",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.9342246,
+        "lon": -80.0942087
       },
       "officials": []
     },
@@ -7043,7 +7453,9 @@
         "city": "Port Charlotte",
         "state": "Florida",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.9761707,
+        "lon": -82.0906448
       },
       "officials": []
     },
@@ -7077,7 +7489,9 @@
         "city": "Dunedin",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 28.0116627,
+        "lon": -82.7893788
       },
       "officials": []
     },
@@ -7111,7 +7525,9 @@
         "city": "Palm Beach",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.6279798,
+        "lon": -80.4494174
       },
       "officials": []
     },
@@ -7145,7 +7561,9 @@
         "city": "Tempe",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4255117,
+        "lon": -111.940016
       },
       "officials": []
     },
@@ -7179,7 +7597,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -7213,7 +7633,9 @@
         "city": "Sacramento",
         "state": "California",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": []
     },
@@ -7247,7 +7669,9 @@
         "city": "North Port",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.044224,
+        "lon": -82.2359254
       },
       "officials": []
     },
@@ -7281,7 +7705,9 @@
         "city": "Fort Myers",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": []
     },
@@ -7315,7 +7741,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -7349,7 +7777,9 @@
         "city": "Goodyear",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4672279,
+        "lon": -112.3853489
       },
       "officials": []
     },
@@ -7383,7 +7813,9 @@
         "city": "Lakeland",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 28.0394654,
+        "lon": -81.9498042
       },
       "officials": []
     },
@@ -7417,7 +7849,9 @@
         "city": "Palm Beach",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.6279798,
+        "lon": -80.4494174
       },
       "officials": []
     },
@@ -7451,7 +7885,9 @@
         "city": "Jupiter",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.9342246,
+        "lon": -80.0942087
       },
       "officials": []
     },
@@ -7485,7 +7921,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -7519,7 +7957,9 @@
         "city": "Tampa",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": []
     },
@@ -7553,7 +7993,9 @@
         "city": "Clearwater",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9658533,
+        "lon": -82.8001026
       },
       "officials": []
     },
@@ -7587,7 +8029,9 @@
         "city": "Bradenton",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.4989278,
+        "lon": -82.5748194
       },
       "officials": []
     },
@@ -7621,7 +8065,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -7655,7 +8101,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -7689,7 +8137,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -7723,7 +8173,9 @@
         "city": "Sarasota",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.3365805,
+        "lon": -82.5308545
       },
       "officials": []
     },
@@ -7757,7 +8209,9 @@
         "city": "Goodyear",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4672279,
+        "lon": -112.3853489
       },
       "officials": []
     },
@@ -7791,7 +8245,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -7825,7 +8281,9 @@
         "city": "Lakeland",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 28.0394654,
+        "lon": -81.9498042
       },
       "officials": []
     },
@@ -7859,7 +8317,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -7893,7 +8353,9 @@
         "city": "Tempe",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4255117,
+        "lon": -111.940016
       },
       "officials": []
     },
@@ -7927,7 +8389,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -7961,7 +8425,9 @@
         "city": "Bradenton",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.4989278,
+        "lon": -82.5748194
       },
       "officials": []
     },
@@ -7995,7 +8461,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -8029,7 +8497,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -8063,7 +8533,9 @@
         "city": "Jupiter",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.9342246,
+        "lon": -80.0942087
       },
       "officials": []
     },
@@ -8097,7 +8569,9 @@
         "city": "Port Charlotte",
         "state": "Florida",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.9761707,
+        "lon": -82.0906448
       },
       "officials": []
     },
@@ -8131,7 +8605,9 @@
         "city": "Dunedin",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 28.0116627,
+        "lon": -82.7893788
       },
       "officials": []
     },
@@ -8165,7 +8641,9 @@
         "city": "Palm Beach",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.6279798,
+        "lon": -80.4494174
       },
       "officials": []
     },
@@ -8199,7 +8677,9 @@
         "city": "Sacramento",
         "state": "California",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": []
     },
@@ -8233,7 +8713,9 @@
         "city": "North Port",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.044224,
+        "lon": -82.2359254
       },
       "officials": []
     },
@@ -8267,7 +8749,9 @@
         "city": "Fort Myers",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": []
     },
@@ -8301,7 +8785,9 @@
         "city": "Mesa",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4151005,
+        "lon": -111.831455
       },
       "officials": []
     },
@@ -8335,7 +8821,9 @@
         "city": "Goodyear",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4672279,
+        "lon": -112.3853489
       },
       "officials": []
     },
@@ -8369,7 +8857,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -8403,7 +8893,9 @@
         "city": "Tempe",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4255117,
+        "lon": -111.940016
       },
       "officials": []
     },
@@ -8437,7 +8929,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -8471,7 +8965,9 @@
         "city": "Jupiter",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.9342246,
+        "lon": -80.0942087
       },
       "officials": []
     },
@@ -8505,7 +9001,9 @@
         "city": "Fort Myers",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": []
     },
@@ -8539,7 +9037,9 @@
         "city": "Port St. Lucie",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.2939333,
+        "lon": -80.3503283
       },
       "officials": []
     },
@@ -8573,7 +9073,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -8607,7 +9109,9 @@
         "city": "Port Charlotte",
         "state": "Florida",
         "indoor": true,
-        "grass": false
+        "grass": false,
+        "lat": 26.9761707,
+        "lon": -82.0906448
       },
       "officials": []
     },
@@ -8641,7 +9145,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -8675,7 +9181,9 @@
         "city": "Dunedin",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 28.0116627,
+        "lon": -82.7893788
       },
       "officials": []
     },
@@ -8709,7 +9217,9 @@
         "city": "Palm Beach",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.6279798,
+        "lon": -80.4494174
       },
       "officials": []
     },
@@ -8743,7 +9253,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -8777,7 +9289,9 @@
         "city": "North Port",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.044224,
+        "lon": -82.2359254
       },
       "officials": []
     },
@@ -8811,7 +9325,9 @@
         "city": "Sarasota",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.3365805,
+        "lon": -82.5308545
       },
       "officials": []
     },
@@ -8845,7 +9361,9 @@
         "city": "Mesa",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4151005,
+        "lon": -111.831455
       },
       "officials": []
     },
@@ -8879,7 +9397,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -8913,7 +9433,9 @@
         "city": "Goodyear",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4672279,
+        "lon": -112.3853489
       },
       "officials": []
     },
@@ -8947,7 +9469,9 @@
         "city": "Lakeland",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 28.0394654,
+        "lon": -81.9498042
       },
       "officials": []
     },
@@ -8981,7 +9505,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -9015,7 +9541,9 @@
         "city": "Jupiter",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.9342246,
+        "lon": -80.0942087
       },
       "officials": []
     },
@@ -9049,7 +9577,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -9083,7 +9613,9 @@
         "city": "Fort Myers",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": []
     },
@@ -9117,7 +9649,9 @@
         "city": "Port St. Lucie",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.2939333,
+        "lon": -80.3503283
       },
       "officials": []
     },
@@ -9151,7 +9685,9 @@
         "city": "Tampa",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": []
     },
@@ -9185,7 +9721,9 @@
         "city": "Clearwater",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9658533,
+        "lon": -82.8001026
       },
       "officials": []
     },
@@ -9219,7 +9757,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -9253,7 +9793,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -9287,7 +9829,9 @@
         "city": "Sacramento",
         "state": "California",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": []
     },
@@ -9321,7 +9865,9 @@
         "city": "Sarasota",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.3365805,
+        "lon": -82.5308545
       },
       "officials": []
     },
@@ -9355,7 +9901,9 @@
         "city": "Fort Myers",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.640628,
+        "lon": -81.8723084
       },
       "officials": []
     },
@@ -9389,7 +9937,9 @@
         "city": "Goodyear",
         "state": "Arizona",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 33.4672279,
+        "lon": -112.3853489
       },
       "officials": []
     },
@@ -9423,7 +9973,9 @@
         "city": "Palm Beach",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 26.6279798,
+        "lon": -80.4494174
       },
       "officials": []
     },
@@ -9457,7 +10009,9 @@
         "city": "Tempe",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4255117,
+        "lon": -111.940016
       },
       "officials": []
     },
@@ -9491,7 +10045,9 @@
         "city": "Phoenix",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
       },
       "officials": []
     },
@@ -9525,7 +10081,9 @@
         "city": "Tampa",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
       },
       "officials": []
     },
@@ -9559,7 +10117,9 @@
         "city": "Clearwater",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 27.9658533,
+        "lon": -82.8001026
       },
       "officials": []
     },
@@ -9593,7 +10153,9 @@
         "city": "Bradenton",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 27.4989278,
+        "lon": -82.5748194
       },
       "officials": []
     },
@@ -9627,7 +10189,9 @@
         "city": "Scottsdale",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": []
     },
@@ -9661,7 +10225,9 @@
         "city": "Peoria",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.5806115,
+        "lon": -112.237294
       },
       "officials": []
     },
@@ -9695,7 +10261,9 @@
         "city": "Jupiter",
         "state": "Florida",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 26.9342246,
+        "lon": -80.0942087
       },
       "officials": []
     },
@@ -9729,7 +10297,9 @@
         "city": "Surprise",
         "state": "Arizona",
         "indoor": false,
-        "grass": false
+        "grass": false,
+        "lat": 33.629247,
+        "lon": -112.3681428
       },
       "officials": []
     },
@@ -9763,10 +10333,12 @@
         "city": "Dunedin",
         "state": "Florida",
         "indoor": false,
-        "grass": true
+        "grass": true,
+        "lat": 28.0116627,
+        "lon": -82.7893788
       },
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-12-11T00:54:41.511804"
+  "weather_merged_at": "2025-12-11T02:09:22.905274"
 }
