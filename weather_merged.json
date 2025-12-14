@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251214_2345",
+  "timestamp": "20251214_2357",
   "count": 286,
   "data": [
     {
@@ -283,10 +283,10 @@
         }
       ],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 8,
-        "temp": 8,
+        "temperatureF": 6,
+        "temp": 6,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -394,8 +394,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 22,
-        "temp": 22,
+        "temperatureF": 23,
+        "temp": 23,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -501,10 +501,10 @@
         }
       ],
       "weather": {
-        "summary": "Chance Snow Showers",
+        "summary": "Chance Light Snow",
         "description": "",
-        "temperatureF": 26,
-        "temp": 26,
+        "temperatureF": 27,
+        "temp": 27,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -719,10 +719,10 @@
         }
       ],
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 21,
-        "temp": 21,
+        "temperatureF": 22,
+        "temp": 22,
         "windSpeedMph": 15.0,
         "wind": 15.0
       },
@@ -1230,9 +1230,9 @@
         "slug": "green-bay-packers",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png"
       },
-      "home_score": 21.0,
+      "home_score": 27.0,
       "away_score": 23.0,
-      "total_points": 44.0,
+      "total_points": 50.0,
       "odds": {
         "details": "GB -1.5",
         "spread": 1.5,
@@ -1309,8 +1309,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
+        "temperatureF": 66,
+        "temp": 66,
         "windSpeedMph": 2.0,
         "wind": 2.0
       },
@@ -1339,9 +1339,9 @@
         "slug": "detroit-lions",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png"
       },
-      "home_score": 27.0,
+      "home_score": 34.0,
       "away_score": 24.0,
-      "total_points": 51.0,
+      "total_points": 58.0,
       "odds": {
         "details": "LAR -5.5",
         "spread": -5.5,
@@ -1536,8 +1536,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png"
       },
       "home_score": 31.0,
-      "away_score": 10.0,
-      "total_points": 41.0,
+      "away_score": 17.0,
+      "total_points": 48.0,
       "odds": {
         "details": "SF -12.5",
         "spread": -12.5,
@@ -1644,9 +1644,9 @@
         "slug": "indianapolis-colts",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png"
       },
-      "home_score": 9.0,
+      "home_score": 12.0,
       "away_score": 13.0,
-      "total_points": 22.0,
+      "total_points": 25.0,
       "odds": {
         "details": "SEA -12.5",
         "spread": -12.5,
@@ -1827,9 +1827,9 @@
         "slug": "philadelphia-76ers",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/phi.png"
       },
-      "home_score": 41.0,
-      "away_score": 35.0,
-      "total_points": 76.0,
+      "home_score": 46.0,
+      "away_score": 47.0,
+      "total_points": 93.0,
       "odds": {
         "details": "ATL -4.5",
         "spread": -4.5,
@@ -1893,9 +1893,9 @@
         "slug": "milwaukee-bucks",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mil.png"
       },
-      "home_score": 39.0,
-      "away_score": 27.0,
-      "total_points": 66.0,
+      "home_score": 52.0,
+      "away_score": 34.0,
+      "total_points": 86.0,
       "odds": {
         "details": "MIL -1.5",
         "spread": 1.5,
@@ -2257,7 +2257,32 @@
         "lat": 33.4484367,
         "lon": -112.074141
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Tyler Ford",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Scott Twardoski",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Jenna Schroeder",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -2778,7 +2803,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "DAL -2.5",
+        "spread": 2.5,
+        "total": 236.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Delta Center",
         "city": "Salt Lake City",
@@ -2814,7 +2844,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "DEN -1.5",
+        "spread": -1.5,
+        "total": 233.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Ball Arena",
         "city": "Denver",
@@ -4133,10 +4168,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 51,
-        "temp": 51,
+        "temperatureF": 52,
+        "temp": 52,
         "windSpeedMph": 20.0,
         "wind": 20.0
       },
@@ -5178,12 +5213,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Clear",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
-        "windSpeedMph": 13.0,
-        "wind": 13.0
+        "temperatureF": 47,
+        "temp": 47,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
         "risk": 0
@@ -5232,8 +5267,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 76,
-        "temp": 76,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -5500,10 +5535,10 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 30,
-        "temp": 30,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "temperatureF": 32,
+        "temp": 32,
+        "windSpeedMph": 1.0,
+        "wind": 1.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6158,12 +6193,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 22,
-        "temp": 22,
-        "windSpeedMph": 22.0,
-        "wind": 22.0
+        "temperatureF": 19,
+        "temp": 19,
+        "windSpeedMph": 20.0,
+        "wind": 20.0
       },
       "weatherRisk": {
         "risk": 2
@@ -7218,8 +7253,8 @@
         "description": "",
         "temperatureF": 22,
         "temp": 22,
-        "windSpeedMph": 20.0,
-        "wind": 20.0
+        "windSpeedMph": 21.0,
+        "wind": 21.0
       },
       "weatherRisk": {
         "risk": 3
@@ -7702,8 +7737,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
+        "temperatureF": 66,
+        "temp": 66,
         "windSpeedMph": 2.0,
         "wind": 2.0
       },
@@ -8021,10 +8056,10 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 22,
-        "temp": 22,
-        "windSpeedMph": 21.0,
-        "wind": 21.0
+        "temperatureF": 20,
+        "temp": 20,
+        "windSpeedMph": 18.0,
+        "wind": 18.0
       },
       "weatherRisk": {
         "risk": 2
@@ -8073,8 +8108,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 51,
-        "temp": 51,
+        "temperatureF": 50,
+        "temp": 50,
         "windSpeedMph": 3.0,
         "wind": 3.0
       },
@@ -8509,12 +8544,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 22,
-        "temp": 22,
-        "windSpeedMph": 22.0,
-        "wind": 22.0
+        "temperatureF": 19,
+        "temp": 19,
+        "windSpeedMph": 20.0,
+        "wind": 20.0
       },
       "weatherRisk": {
         "risk": 2
@@ -8594,8 +8629,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 22,
-        "temp": 22,
+        "temperatureF": 23,
+        "temp": 23,
         "windSpeedMph": 5.0,
         "wind": 5.0
       },
@@ -12132,5 +12167,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-12-14T23:45:32.647176"
+  "weather_merged_at": "2025-12-14T23:57:28.395412"
 }
