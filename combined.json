@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251214_2103",
+  "timestamp": "20251214_2130",
   "count": 286,
   "data": [
     {
@@ -394,10 +394,10 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 21,
-        "temp": 21,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "temperatureF": 22,
+        "temp": 22,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 1
@@ -501,12 +501,12 @@
         }
       ],
       "weather": {
-        "summary": "Light Snow",
+        "summary": "Light Snow Likely",
         "description": "",
         "temperatureF": 32,
         "temp": 32,
-        "windSpeedMph": 3.0,
-        "wind": 3.0
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 1
@@ -623,6 +623,115 @@
     },
     {
       "sport": "nfl",
+      "id": "401772906",
+      "name": "Las Vegas Raiders at Philadelphia Eagles",
+      "shortName": "LV @ PHI",
+      "date_utc": "2025-12-14T18:00Z",
+      "date_local": "2025-12-14 01:00 PM ET",
+      "home_team": {
+        "id": "21",
+        "name": "Philadelphia Eagles",
+        "abbr": "PHI",
+        "slug": "philadelphia-eagles",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png"
+      },
+      "away_team": {
+        "id": "13",
+        "name": "Las Vegas Raiders",
+        "abbr": "LV",
+        "slug": "las-vegas-raiders",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png"
+      },
+      "home_score": 31.0,
+      "away_score": null,
+      "total_points": 31.0,
+      "odds": {
+        "details": "PHI -12.5",
+        "spread": -12.5,
+        "total": 36.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Lincoln Financial Field",
+        "city": "Philadelphia",
+        "state": "PA",
+        "indoor": false,
+        "grass": true,
+        "lat": 39.9527237,
+        "lon": -75.1635262
+      },
+      "officials": [
+        {
+          "name": "Greg Wilson",
+          "role": {
+            "name": "Back Judge",
+            "displayName": "Back Judge",
+            "id": "110"
+          }
+        },
+        {
+          "name": "Clay Martin",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "114"
+          }
+        },
+        {
+          "name": "Steven Woods",
+          "role": {
+            "name": "Umpire",
+            "displayName": "Umpire",
+            "id": "116"
+          }
+        },
+        {
+          "name": "Jerod Phillips",
+          "role": {
+            "name": "Down Judge",
+            "displayName": "Down Judge",
+            "id": "112"
+          }
+        },
+        {
+          "name": "Dave Hawkshaw",
+          "role": {
+            "name": "Field Judge",
+            "displayName": "Field Judge",
+            "id": "111"
+          }
+        },
+        {
+          "name": "Lo van Pham",
+          "role": {
+            "name": "Side Judge",
+            "displayName": "Side Judge",
+            "id": "115"
+          }
+        },
+        {
+          "name": "Brian Perry",
+          "role": {
+            "name": "Line Judge",
+            "displayName": "Line Judge",
+            "id": "113"
+          }
+        }
+      ],
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 23,
+        "temp": 23,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
+      },
+      "weatherRisk": {
+        "risk": 2
+      }
+    },
+    {
+      "sport": "nfl",
       "id": "401772797",
       "name": "New York Jets at Jacksonville Jaguars",
       "shortName": "NYJ @ JAX",
@@ -723,8 +832,8 @@
         "description": "",
         "temperatureF": 73,
         "temp": 73,
-        "windSpeedMph": 12.0,
-        "wind": 12.0
+        "windSpeedMph": 14.0,
+        "wind": 14.0
       },
       "weatherRisk": {
         "risk": 0
@@ -829,115 +938,6 @@
       ]
     },
     {
-      "sport": "nfl",
-      "id": "401772906",
-      "name": "Las Vegas Raiders at Philadelphia Eagles",
-      "shortName": "LV @ PHI",
-      "date_utc": "2025-12-14T18:00Z",
-      "date_local": "2025-12-14 01:00 PM ET",
-      "home_team": {
-        "id": "21",
-        "name": "Philadelphia Eagles",
-        "abbr": "PHI",
-        "slug": "philadelphia-eagles",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png"
-      },
-      "away_team": {
-        "id": "13",
-        "name": "Las Vegas Raiders",
-        "abbr": "LV",
-        "slug": "las-vegas-raiders",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png"
-      },
-      "home_score": 31.0,
-      "away_score": null,
-      "total_points": 31.0,
-      "odds": {
-        "details": "PHI -12.5",
-        "spread": -12.5,
-        "total": 36.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "Lincoln Financial Field",
-        "city": "Philadelphia",
-        "state": "PA",
-        "indoor": false,
-        "grass": true,
-        "lat": 39.9527237,
-        "lon": -75.1635262
-      },
-      "officials": [
-        {
-          "name": "Greg Wilson",
-          "role": {
-            "name": "Back Judge",
-            "displayName": "Back Judge",
-            "id": "110"
-          }
-        },
-        {
-          "name": "Clay Martin",
-          "role": {
-            "name": "Referee",
-            "displayName": "Referee",
-            "id": "114"
-          }
-        },
-        {
-          "name": "Steven Woods",
-          "role": {
-            "name": "Umpire",
-            "displayName": "Umpire",
-            "id": "116"
-          }
-        },
-        {
-          "name": "Jerod Phillips",
-          "role": {
-            "name": "Down Judge",
-            "displayName": "Down Judge",
-            "id": "112"
-          }
-        },
-        {
-          "name": "Dave Hawkshaw",
-          "role": {
-            "name": "Side Judge",
-            "displayName": "Side Judge",
-            "id": "115"
-          }
-        },
-        {
-          "name": "Lo van Pham",
-          "role": {
-            "name": "Side Judge",
-            "displayName": "Side Judge",
-            "id": "115"
-          }
-        },
-        {
-          "name": "Brian Perry",
-          "role": {
-            "name": "Line Judge",
-            "displayName": "Line Judge",
-            "id": "113"
-          }
-        }
-      ],
-      "weather": {
-        "summary": "Heavy Snow",
-        "description": "",
-        "temperatureF": 32,
-        "temp": 32,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
-    },
-    {
       "sport": "ncaab",
       "id": "401819879",
       "name": "Eastern Illinois Panthers at Iowa State Cyclones",
@@ -1024,9 +1024,9 @@
         "slug": "washington-wizards",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/wsh.png"
       },
-      "home_score": 40.0,
-      "away_score": 43.0,
-      "total_points": 83.0,
+      "home_score": 47.0,
+      "away_score": 62.0,
+      "total_points": 109.0,
       "odds": {
         "details": "IND -10.5",
         "spread": -10.5,
@@ -1090,9 +1090,9 @@
         "slug": "utah-mammoth",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/uta.png"
       },
-      "home_score": 2.0,
+      "home_score": 3.0,
       "away_score": null,
-      "total_points": 2.0,
+      "total_points": 3.0,
       "odds": {
         "details": "UTAH -130",
         "spread": 1.5,
@@ -1164,14 +1164,14 @@
         "slug": "charlotte-hornets",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/cha.png"
       },
-      "home_score": 22.0,
-      "away_score": 29.0,
-      "total_points": 51.0,
+      "home_score": 39.0,
+      "away_score": 49.0,
+      "total_points": 88.0,
       "odds": {
-        "details": "CLE -12.5",
-        "spread": -12.5,
-        "total": 230.5,
-        "provider": "Draft Kings - Live Odds"
+        "details": "CLE -11.5",
+        "spread": -11.5,
+        "total": 232.5,
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Rocket Arena",
@@ -1309,8 +1309,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 60,
-        "temp": 60,
+        "temperatureF": 66,
+        "temp": 66,
         "windSpeedMph": 2.0,
         "wind": 2.0
       },
@@ -1342,12 +1342,7 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": {
-        "details": "LAR -5.5",
-        "spread": -5.5,
-        "total": 54.5,
-        "provider": "Draft Kings"
-      },
+      "odds": null,
       "venue": {
         "name": "SoFi Stadium",
         "city": "Inglewood",
@@ -1440,12 +1435,7 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": {
-        "details": "CAR -2.5",
-        "spread": 2.5,
-        "total": 41.5,
-        "provider": "Draft Kings"
-      },
+      "odds": null,
       "venue": {
         "name": "Caesars Superdome",
         "city": "New Orleans",
@@ -1538,12 +1528,7 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": {
-        "details": "SF -12.5",
-        "spread": -12.5,
-        "total": 44.5,
-        "provider": "Draft Kings"
-      },
+      "odds": null,
       "venue": {
         "name": "Levi's Stadium",
         "city": "Santa Clara",
@@ -1612,12 +1597,12 @@
         }
       ],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
         "temperatureF": 53,
         "temp": 53,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "windSpeedMph": 3.0,
+        "wind": 3.0
       },
       "weatherRisk": {
         "risk": 0
@@ -1647,12 +1632,7 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": {
-        "details": "SEA -13.5",
-        "spread": -13.5,
-        "total": 41.5,
-        "provider": "Draft Kings"
-      },
+      "odds": null,
       "venue": {
         "name": "Lumen Field",
         "city": "Seattle",
@@ -1721,12 +1701,12 @@
         }
       ],
       "weather": {
-        "summary": "Chance Light Rain",
+        "summary": "Slight Chance Light Rain",
         "description": "",
-        "temperatureF": 50,
-        "temp": 50,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 52,
+        "temp": 52,
+        "windSpeedMph": 8.0,
+        "wind": 8.0
       },
       "weatherRisk": {
         "risk": 1
@@ -1831,9 +1811,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "ATL -4.5",
-        "spread": -4.5,
-        "total": 224.5,
+        "details": "ATL -5.5",
+        "spread": -5.5,
+        "total": 225.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1927,7 +1907,40 @@
         "lat": 44.9497487,
         "lon": -93.0931028
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Matt MacPherson",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Justin Kea",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Jon McIsaac",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "James Tobias",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nba",
@@ -2079,7 +2092,7 @@
       "odds": {
         "details": "LAL -1.5",
         "spread": 1.5,
-        "total": 230.5,
+        "total": 231.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3543,10 +3556,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 77,
-        "temp": 77,
+        "temperatureF": 76,
+        "temp": 76,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -3921,8 +3934,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 49,
-        "temp": 49,
+        "temperatureF": 50,
+        "temp": 50,
         "windSpeedMph": 20.0,
         "wind": 20.0
       },
@@ -4619,12 +4632,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Light Rain",
+        "summary": "Slight Chance Light Rain",
         "description": "",
-        "temperatureF": 50,
-        "temp": 50,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 52,
+        "temp": 52,
+        "windSpeedMph": 8.0,
+        "wind": 8.0
       },
       "weatherRisk": {
         "risk": 1
@@ -4966,8 +4979,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 45,
-        "temp": 45,
+        "temperatureF": 46,
+        "temp": 46,
         "windSpeedMph": 14.0,
         "wind": 14.0
       },
@@ -7238,7 +7251,7 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Slight Chance Snow Showers",
         "description": "",
         "temperatureF": 26,
         "temp": 26,
@@ -7246,7 +7259,7 @@
         "wind": 18.0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 2
       }
     },
     {
@@ -7292,10 +7305,10 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 43,
-        "temp": 43,
-        "windSpeedMph": 16.0,
-        "wind": 16.0
+        "temperatureF": 37,
+        "temp": 37,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
         "risk": 1
@@ -7488,8 +7501,8 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 60,
-        "temp": 60,
+        "temperatureF": 66,
+        "temp": 66,
         "windSpeedMph": 2.0,
         "wind": 2.0
       },
@@ -7859,10 +7872,10 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 33,
-        "temp": 33,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "temperatureF": 50,
+        "temp": 50,
+        "windSpeedMph": 3.0,
+        "wind": 3.0
       },
       "weatherRisk": {
         "risk": 0
@@ -8168,8 +8181,8 @@
       "weather": {
         "summary": "Slight Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 78,
-        "temp": 78,
+        "temperatureF": 80,
+        "temp": 80,
         "windSpeedMph": 8.0,
         "wind": 8.0
       },
@@ -8380,10 +8393,10 @@
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 21,
-        "temp": 21,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "temperatureF": 22,
+        "temp": 22,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 1
@@ -11918,5 +11931,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-12-14T21:03:18.794140"
+  "weather_merged_at": "2025-12-14T21:30:25.399421"
 }
