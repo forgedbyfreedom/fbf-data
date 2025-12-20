@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251220_2005",
+  "timestamp": "20251220_2048",
   "count": 68,
   "data": [
     {
@@ -23,9 +23,9 @@
         "slug": "philadelphia-flyers",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/phi.png"
       },
-      "home_score": 3.0,
+      "home_score": 5.0,
       "away_score": 4.0,
-      "total_points": 7.0,
+      "total_points": 9.0,
       "odds": {
         "details": "NYR -155",
         "spread": -1.5,
@@ -167,9 +167,9 @@
         "slug": "chicago-blackhawks",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/chi.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 1.0,
       "odds": {
         "details": "OTT -278",
         "spread": -1.5,
@@ -239,9 +239,9 @@
         "slug": "edmonton-oilers",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/edm.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 2.0,
+      "away_score": 2.0,
+      "total_points": 4.0,
       "odds": {
         "details": "MIN -135",
         "spread": -1.5,
@@ -327,7 +327,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Matt MacPherson",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Furman South",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Brandon Schrader",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Kilian McNamara",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -627,7 +660,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "SJ -115",
+        "details": "SJ -122",
         "spread": -1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -939,7 +972,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "UTAH -118",
+        "details": "UTAH -122",
         "spread": -1.5,
         "total": 5.5,
         "provider": "Draft Kings"
