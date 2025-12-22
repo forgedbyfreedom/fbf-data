@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251221_2345",
+  "timestamp": "20251222_0001",
   "count": 320,
   "data": [
     {
@@ -166,15 +166,15 @@
         }
       ],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 28,
-        "temp": 28,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 29,
+        "temp": 29,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -741,12 +741,12 @@
         }
       ],
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
@@ -1385,8 +1385,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png"
       },
       "home_score": 10.0,
-      "away_score": 15.0,
-      "total_points": 25.0,
+      "away_score": 22.0,
+      "total_points": 32.0,
       "odds": {
         "details": "DET -7.5",
         "spread": -7.5,
@@ -1646,9 +1646,9 @@
         "slug": "toronto-raptors",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png"
       },
-      "home_score": 26.0,
-      "away_score": 28.0,
-      "total_points": 54.0,
+      "home_score": 36.0,
+      "away_score": 34.0,
+      "total_points": 70.0,
       "odds": {
         "details": "TOR -3.5",
         "spread": 3.5,
@@ -1712,9 +1712,9 @@
         "slug": "miami-heat",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mia.png"
       },
-      "home_score": 43.0,
-      "away_score": 47.0,
-      "total_points": 90.0,
+      "home_score": 56.0,
+      "away_score": 57.0,
+      "total_points": 113.0,
       "odds": {
         "details": "NY -7.5",
         "spread": -7.5,
@@ -1778,9 +1778,9 @@
         "slug": "long-beach-state-beach",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/299.png"
       },
-      "home_score": 53.0,
-      "away_score": 16.0,
-      "total_points": 69.0,
+      "home_score": 57.0,
+      "away_score": 20.0,
+      "total_points": 77.0,
       "odds": {
         "details": "ISU -37.5",
         "spread": -37.5,
@@ -1844,9 +1844,9 @@
         "slug": "gonzaga-bulldogs",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png"
       },
-      "home_score": 35.0,
-      "away_score": 37.0,
-      "total_points": 72.0,
+      "home_score": 39.0,
+      "away_score": 42.0,
+      "total_points": 81.0,
       "odds": {
         "details": "GONZ -12.5",
         "spread": 12.5,
@@ -1895,8 +1895,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
         "details": "COL -170",
         "spread": 1.5,
@@ -2178,7 +2178,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "NJ -166",
+        "details": "NJ -180",
         "spread": -1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -2589,7 +2589,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "EDM -135",
+        "details": "EDM -130",
         "spread": -1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -2677,12 +2677,69 @@
         "lat": 39.2908816,
         "lon": -76.610759
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "James Coleman",
+          "role": {
+            "name": "Side Judge",
+            "displayName": "Side Judge",
+            "id": "115"
+          }
+        },
+        {
+          "name": "Greg Yette",
+          "role": {
+            "name": "Back Judge",
+            "displayName": "Back Judge",
+            "id": "110"
+          }
+        },
+        {
+          "name": "Patrick Turner",
+          "role": {
+            "name": "Down Judge",
+            "displayName": "Down Judge",
+            "id": "112"
+          }
+        },
+        {
+          "name": "Bryan Neale",
+          "role": {
+            "name": "Umpire",
+            "displayName": "Umpire",
+            "id": "116"
+          }
+        },
+        {
+          "name": "Kevin Codey",
+          "role": {
+            "name": "Line Judge",
+            "displayName": "Line Judge",
+            "id": "113"
+          }
+        },
+        {
+          "name": "Brad Rogers",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "114"
+          }
+        },
+        {
+          "name": "Joe Blubaugh",
+          "role": {
+            "name": "Field Judge",
+            "displayName": "Field Judge",
+            "id": "111"
+          }
+        }
+      ],
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
+        "temperatureF": 41,
+        "temp": 41,
         "windSpeedMph": 10.0,
         "wind": 10.0
       },
@@ -3553,7 +3610,7 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Slight Chance Rain Showers",
+        "summary": "Partly Sunny",
         "description": "",
         "temperatureF": 77,
         "temp": 77,
@@ -3561,7 +3618,7 @@
         "wind": 10.0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       }
     },
     {
@@ -4697,10 +4754,10 @@
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 6.0,
-        "wind": 6.0
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
         "risk": 0
@@ -4772,9 +4829,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DAL -3.5",
-        "spread": 3.5,
-        "total": 51.5,
+        "details": "DAL -4.5",
+        "spread": 4.5,
+        "total": 49.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -5004,10 +5061,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 46,
-        "temp": 46,
+        "temperatureF": 44,
+        "temp": 44,
         "windSpeedMph": 6.0,
         "wind": 6.0
       },
@@ -5557,8 +5614,8 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 45,
-        "temp": 45,
+        "temperatureF": 40,
+        "temp": 40,
         "windSpeedMph": 9.0,
         "wind": 9.0
       },
@@ -6268,12 +6325,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Clear",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 61,
-        "temp": 61,
-        "windSpeedMph": 8.0,
-        "wind": 8.0
+        "temperatureF": 70,
+        "temp": 70,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6847,10 +6904,10 @@
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
-        "windSpeedMph": 1.0,
-        "wind": 1.0
+        "temperatureF": 33,
+        "temp": 33,
+        "windSpeedMph": 0.0,
+        "wind": 0.0
       },
       "weatherRisk": {
         "risk": 0
@@ -6897,15 +6954,15 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 28,
-        "temp": 28,
-        "windSpeedMph": 14.0,
-        "wind": 14.0
+        "temperatureF": 29,
+        "temp": 29,
+        "windSpeedMph": 15.0,
+        "wind": 15.0
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       }
     },
     {
@@ -7078,9 +7135,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "NE -9.5",
-        "spread": 9.5,
-        "total": 43.5,
+        "details": "NE -12.5",
+        "spread": 12.5,
+        "total": 42.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -7132,7 +7189,7 @@
       "odds": {
         "details": "SEA -7.5",
         "spread": 7.5,
-        "total": 42.5,
+        "total": 43.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -7146,12 +7203,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Partly Sunny",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
-        "windSpeedMph": 5.0,
-        "wind": 5.0
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 6.0,
+        "wind": 6.0
       },
       "weatherRisk": {
         "risk": 0
@@ -7351,11 +7408,11 @@
         "description": "",
         "temperatureF": 23,
         "temp": 23,
-        "windSpeedMph": 16.0,
-        "wind": 16.0
+        "windSpeedMph": 14.0,
+        "wind": 14.0
       },
       "weatherRisk": {
-        "risk": 3
+        "risk": 2
       }
     },
     {
@@ -8770,10 +8827,10 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 62,
-        "temp": 62,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 60,
+        "temp": 60,
+        "windSpeedMph": 5.0,
+        "wind": 5.0
       },
       "weatherRisk": {
         "risk": 0
@@ -9452,11 +9509,11 @@
         "description": "",
         "temperatureF": 23,
         "temp": 23,
-        "windSpeedMph": 16.0,
-        "wind": 16.0
+        "windSpeedMph": 14.0,
+        "wind": 14.0
       },
       "weatherRisk": {
-        "risk": 3
+        "risk": 2
       }
     },
     {
@@ -9544,10 +9601,10 @@
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 36,
-        "temp": 36,
-        "windSpeedMph": 1.0,
-        "wind": 1.0
+        "temperatureF": 33,
+        "temp": 33,
+        "windSpeedMph": 0.0,
+        "wind": 0.0
       },
       "weatherRisk": {
         "risk": 0
@@ -10026,12 +10083,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Clear",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 61,
-        "temp": 61,
-        "windSpeedMph": 8.0,
-        "wind": 8.0
+        "temperatureF": 70,
+        "temp": 70,
+        "windSpeedMph": 9.0,
+        "wind": 9.0
       },
       "weatherRisk": {
         "risk": 0
@@ -13602,5 +13659,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2025-12-21T23:45:43.061010"
+  "weather_merged_at": "2025-12-22T00:01:53.965331"
 }
