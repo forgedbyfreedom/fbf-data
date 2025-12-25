@@ -35,6 +35,16 @@ However, the current fbf-data repository already contains all sports gaming rela
 - **Decision**: REMOVED ✓
 - **Date**: 2025-12-25
 
+### Files Moved/Fixed
+
+#### 1. full_pinecone_sync.yml → sync_all_to_pinecone.py
+- **Issue**: File was misnamed with .yml extension but was actually a Python script
+- **Location**: Incorrectly placed in .github/workflows/ directory
+- **Fix**: Moved to root directory and corrected to sync_all_to_pinecone.py
+- **Impact**: Fixes workflow directory validation; script is now properly categorized
+- **Decision**: MOVED ✓
+- **Date**: 2025-12-25
+
 ### Files Retained (Active in Workflows)
 
 The following Python scripts are actively used in GitHub Actions workflows:
@@ -133,6 +143,17 @@ The following files are NOT currently used in automated workflows but have been 
 
 12. **gpu_backend.py**
     - **Purpose**: GPU acceleration support for ML operations
+    - **Current Status**: Optional performance enhancement
+    - **Retention Reason**: Enables GPU acceleration in environments where available
+    - **Decision**: RETAINED for performance optimization
+    - **Related**: requirements-gpu.txt also retained
+
+13. **sync_all_to_pinecone.py**
+    - **Purpose**: Syncs transcript data to Pinecone vector database
+    - **Current Status**: Optional feature for vector search functionality
+    - **Retention Reason**: Enables semantic search across transcript data; may be activated later
+    - **Decision**: RETAINED for optional vector search feature
+    - **Note**: Was previously misnamed as full_pinecone_sync.yml in workflows directory
     - **Current Status**: Optional performance enhancement
     - **Retention Reason**: Enables GPU acceleration in environments where available
     - **Decision**: RETAINED for performance optimization
@@ -241,19 +262,25 @@ These files are essential and must never be removed:
 
 ### Actions Taken
 - ✓ Removed 1 duplicate file (APP.JS)
+- ✓ Moved 1 misplaced file (full_pinecone_sync.yml → sync_all_to_pinecone.py)
 - ✓ Created comprehensive README.md
 - ✓ Created this CONSOLIDATION_NOTES.md
 - ✓ Documented all file purposes and retention decisions
+- ✓ Validated all workflow YAML files
+- ✓ Verified critical Python scripts can execute
 
 ### Files Removed: 1
 - APP.JS (duplicate)
 
+### Files Moved/Fixed: 1
+- full_pinecone_sync.yml → sync_all_to_pinecone.py (misnamed, moved from workflows to root)
+
 ### Files Retained: All others
 - Active scripts: 13
-- Backup/legacy scripts: 11
+- Backup/legacy scripts: 12 (including sync_all_to_pinecone.py)
 - Data files: All
 - Web interface: All
-- Workflows: All
+- Workflows: 3 (all valid YAML)
 - Config: All
 
 ### Net Result

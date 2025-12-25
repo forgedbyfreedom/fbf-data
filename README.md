@@ -52,6 +52,7 @@ These files are not actively used in automated workflows but may have historical
 - **referee_trends.py** - Referee trend analysis (feature not currently active)
 - **track_accuracy.py** - Accuracy tracking for predictions (not currently automated)
 - **gpu_backend.py** - GPU acceleration support (optional performance enhancement)
+- **sync_all_to_pinecone.py** - Syncs transcript data to Pinecone vector database (optional feature)
 
 **Retention Rationale**: These files are kept as they may contain useful logic for future features or serve as fallback systems. They represent significant development work and could be reactivated if needed.
 
@@ -122,12 +123,14 @@ Alternative pipeline with similar functionality (kept for backup).
 
 ### Utility Workflows
 - **diagnose.yml** - Diagnostic and debugging utilities
-- **full_pinecone_sync.yml** - Vector database synchronization (if applicable)
 
 ## File Consolidation Notes
 
 ### Removed Files
 - **APP.JS** - Duplicate of app.js (identical content, removed to avoid confusion)
+
+### Moved/Fixed Files
+- **full_pinecone_sync.yml** - Was misnamed; actually a Python script. Moved to **sync_all_to_pinecone.py** in root directory
 
 ### Files Retained Despite Not Being in Active Workflows
 
@@ -135,7 +138,7 @@ The following files are NOT currently used in automated workflows but have been 
 
 1. **Backup/Fallback Systems**: prediction_fallback.py, predictions_fallback.json
 2. **Alternative Data Sources**: fetch_injuries_oddstrader.py, injuries_oddstrader_playwright.py, injury_scraper.py
-3. **Optional Features**: referee_trends.py, build_ref_trends.py, ref_trends.json, referee_trends.json
+3. **Optional Features**: referee_trends.py, build_ref_trends.py, ref_trends.json, referee_trends.json, sync_all_to_pinecone.py
 4. **Performance Optimization**: gpu_backend.py
 5. **Analysis Tools**: track_accuracy.py, feature_engineering.py
 6. **Legacy but Functional**: build_historical.py
