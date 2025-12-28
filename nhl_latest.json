@@ -1,5 +1,5 @@
 {
-  "timestamp": "20251228_0001",
+  "timestamp": "20251228_0053",
   "count": 56,
   "data": [
     {
@@ -96,8 +96,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/bos.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
         "details": "BUF -135",
         "spread": -1.5,
@@ -167,11 +167,11 @@
         "slug": "ottawa-senators",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ott.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 2.0,
+      "away_score": 1.0,
+      "total_points": 3.0,
       "odds": {
-        "details": "OTT -130",
+        "details": "OTT -125",
         "spread": 1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -239,11 +239,11 @@
         "slug": "tampa-bay-lightning",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tb.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 1.0,
+      "away_score": 2.0,
+      "total_points": 3.0,
       "odds": {
-        "details": "TB -112",
+        "details": "TB -118",
         "spread": 1.5,
         "total": 5.5,
         "provider": "Draft Kings"
@@ -312,8 +312,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wsh.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
         "details": "NJ -120",
         "spread": -1.5,
@@ -384,8 +384,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
         "details": "CAR -170",
         "spread": -1.5,
@@ -455,9 +455,9 @@
         "slug": "minnesota-wild",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/min.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 1.0,
       "odds": {
         "details": "MIN -115",
         "spread": 1.5,
@@ -603,7 +603,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DAL -360",
+        "details": "DAL -375",
         "spread": -1.5,
         "total": 5.5,
         "provider": "Draft Kings"
@@ -759,7 +759,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Trevor Hanson",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Bevan Mills",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Michael Markovic",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Caleb Apperson",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -837,7 +870,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Jonny Murray",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Jon McIsaac",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Brandon Gawryletz",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Chris Schlenker",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
