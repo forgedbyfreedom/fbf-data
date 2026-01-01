@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260101_1529",
+  "timestamp": "20260101_1549",
   "count": 50,
   "data": [
     {
@@ -39,7 +39,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Riley Brace",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Pierre Lambert",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "James Tobias",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Jeremy Faucher",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -338,7 +371,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "VGK -142",
+        "spread": 1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Enterprise Center",
         "city": "St. Louis",
@@ -411,7 +449,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "VAN -192",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Rogers Arena",
         "city": "Vancouver",
@@ -445,7 +488,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "MIN -115",
+        "spread": 1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Honda Center",
         "city": "Anaheim",
