@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260112_2302",
+  "timestamp": "20260112_2322",
   "count": 50,
   "data": [
     {
@@ -39,7 +39,32 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "James Williams",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Brent Barnaky",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Simone Jelks",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nba",
@@ -324,7 +349,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "HOU -11.5",
+        "spread": -11.5,
+        "total": 225.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Toyota Center (Houston)",
         "city": "Houston",
