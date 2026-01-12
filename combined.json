@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260112_2226",
+  "timestamp": "20260112_2247",
   "count": 273,
   "data": [
     {
@@ -345,7 +345,32 @@
         "lat": 39.7683331,
         "lon": -86.1583502
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Pat Fraher",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Eric Dalen",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Brandon Schwab",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nba",
@@ -427,7 +452,40 @@
         "lat": 45.5046474,
         "lon": -73.5658213
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Dan Kelly",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Steve Barton",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Dan O'Rourke",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Pierre Lambert",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        }
+      ]
     },
     {
       "sport": "nhl",
@@ -568,12 +626,12 @@
         }
       ],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 38,
-        "temp": 38,
-        "windSpeedMph": 13.0,
-        "wind": 13.0
+        "temperatureF": 37,
+        "temp": 37,
+        "windSpeedMph": 12.0,
+        "wind": 12.0
       },
       "weatherRisk": {
         "risk": 0
@@ -827,6 +885,47 @@
     },
     {
       "sport": "ncaab",
+      "id": "401825438",
+      "name": "Indiana Hoosiers at Michigan State Spartans",
+      "shortName": "IU @ MSU",
+      "date_utc": "2026-01-14T00:00Z",
+      "date_local": "2026-01-13 07:00 PM ET",
+      "home_team": {
+        "id": "127",
+        "name": "Michigan State Spartans",
+        "abbr": "MSU",
+        "slug": "michigan-state-spartans",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png"
+      },
+      "away_team": {
+        "id": "84",
+        "name": "Indiana Hoosiers",
+        "abbr": "IU",
+        "slug": "indiana-hoosiers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "MSU -6.5",
+        "spread": -6.5,
+        "total": 141.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Breslin Center",
+        "city": "East Lansing",
+        "state": "MI",
+        "indoor": true,
+        "grass": false,
+        "lat": 42.7320307,
+        "lon": -84.4721678
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaab",
       "id": "401820669",
       "name": "Virginia Cavaliers at Louisville Cardinals",
       "shortName": "UVA @ LOU",
@@ -852,7 +951,7 @@
       "odds": {
         "details": "LOU -3.5",
         "spread": -3.5,
-        "total": 154.5,
+        "total": 155.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -893,7 +992,7 @@
       "odds": {
         "details": "CLEM -16.5",
         "spread": -16.5,
-        "total": 130.5,
+        "total": 131.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1136,7 +1235,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "PHX -1.5",
+        "spread": 1.5,
+        "total": 230.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Kaseya Center",
         "city": "Miami",
@@ -1406,7 +1510,7 @@
       "odds": {
         "details": "CONN -5.5",
         "spread": 5.5,
-        "total": 129.5,
+        "total": 130.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1417,47 +1521,6 @@
         "grass": false,
         "lat": 40.735657,
         "lon": -74.1723667
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaab",
-      "id": "401825438",
-      "name": "Indiana Hoosiers at Michigan State Spartans",
-      "shortName": "IU @ MSU",
-      "date_utc": "2026-01-14T01:00Z",
-      "date_local": "2026-01-13 08:00 PM ET",
-      "home_team": {
-        "id": "127",
-        "name": "Michigan State Spartans",
-        "abbr": "MSU",
-        "slug": "michigan-state-spartans",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png"
-      },
-      "away_team": {
-        "id": "84",
-        "name": "Indiana Hoosiers",
-        "abbr": "IU",
-        "slug": "indiana-hoosiers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": {
-        "details": "MSU -6.5",
-        "spread": -6.5,
-        "total": 139.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "Breslin Center",
-        "city": "East Lansing",
-        "state": "MI",
-        "indoor": true,
-        "grass": false,
-        "lat": 42.7320307,
-        "lon": -84.4721678
       },
       "officials": []
     },
@@ -1568,9 +1631,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "HOU -11.5",
-        "spread": -11.5,
-        "total": 127.5,
+        "details": "HOU -12.5",
+        "spread": -12.5,
+        "total": 129.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1611,7 +1674,7 @@
       "odds": {
         "details": "ISU -3.5",
         "spread": 3.5,
-        "total": 144.5,
+        "total": 146.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1693,7 +1756,7 @@
       "odds": {
         "details": "ALA -7.5",
         "spread": 7.5,
-        "total": 173.5,
+        "total": 171.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1734,7 +1797,7 @@
       "odds": {
         "details": "FLA -5.5",
         "spread": 5.5,
-        "total": 154.5,
+        "total": 153.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3941,10 +4004,10 @@
       "weather": {
         "summary": "Chance Light Rain",
         "description": "",
-        "temperatureF": 52,
-        "temp": 52,
-        "windSpeedMph": 10.0,
-        "wind": 10.0
+        "temperatureF": 51,
+        "temp": 51,
+        "windSpeedMph": 13.0,
+        "wind": 13.0
       },
       "weatherRisk": {
         "risk": 1
@@ -10253,5 +10316,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2026-01-12T22:26:26.214760"
+  "weather_merged_at": "2026-01-12T22:47:44.529560"
 }

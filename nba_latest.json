@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260112_2225",
+  "timestamp": "20260112_2246",
   "count": 50,
   "data": [
     {
@@ -78,7 +78,32 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Pat Fraher",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Eric Dalen",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Brandon Schwab",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nba",
@@ -260,7 +285,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "PHX -1.5",
+        "spread": 1.5,
+        "total": 230.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Kaseya Center",
         "city": "Miami",
