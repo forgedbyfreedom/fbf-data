@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260122_1159",
+  "timestamp": "20260122_1224",
   "count": 244,
   "predictions": [
     {
@@ -2729,8 +2729,17 @@
       "home": "TBD",
       "away": "TBD",
       "odds": null,
-      "weather": null,
-      "risk": null,
+      "weather": {
+        "summary": "Areas Of Fog",
+        "description": "",
+        "temperatureF": 45,
+        "temp": 45,
+        "windSpeedMph": 1.0,
+        "wind": 1.0
+      },
+      "risk": {
+        "risk": 0
+      },
       "prediction": {
         "projected_home_score": 10.0,
         "projected_away_score": 10.0,
