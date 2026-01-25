@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260125_2104",
+  "timestamp": "20260125_2130",
   "count": 248,
   "data": [
     {
@@ -23,8 +23,8 @@
         "slug": "colorado-avalanche",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png"
       },
-      "home_score": null,
-      "away_score": 5.0,
+      "home_score": 1.0,
+      "away_score": 4.0,
       "total_points": 5.0,
       "odds": {
         "details": "COL -175",
@@ -96,8 +96,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png"
       },
       "home_score": 7.0,
-      "away_score": null,
-      "total_points": 7.0,
+      "away_score": 7.0,
+      "total_points": 14.0,
       "odds": {
         "details": "NE -3.5",
         "spread": 3.5,
@@ -202,9 +202,9 @@
         "slug": "sacramento-kings",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/sac.png"
       },
-      "home_score": 52.0,
-      "away_score": 42.0,
-      "total_points": 94.0,
+      "home_score": 78.0,
+      "away_score": 67.0,
+      "total_points": 145.0,
       "odds": {
         "details": "DET -12.5",
         "spread": -12.5,
@@ -266,9 +266,9 @@
         "slug": "new-jersey-devils",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nj.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": 1.0,
-      "total_points": 1.0,
+      "total_points": 2.0,
       "odds": {
         "details": "NJ -125",
         "spread": 1.5,
@@ -453,9 +453,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MIN -7.5",
-        "spread": -7.5,
-        "total": 235.5,
+        "details": "MIN -6.5",
+        "spread": -6.5,
+        "total": 236.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -504,7 +504,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Travis Gawryletz",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Carter Sandlak",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Garrett Rank",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Bevan Mills",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ]
     },
     {
       "sport": "nfl",
@@ -547,10 +580,10 @@
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 42,
-        "temp": 42,
-        "windSpeedMph": 2.0,
-        "wind": 2.0
+        "temperatureF": 41,
+        "temp": 41,
+        "windSpeedMph": 1.0,
+        "wind": 1.0
       },
       "weatherRisk": {
         "risk": 0
@@ -661,7 +694,7 @@
       "odds": {
         "details": "SA -11.5",
         "spread": -11.5,
-        "total": 239.5,
+        "total": 240.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -831,11 +864,45 @@
     },
     {
       "sport": "nba",
+      "id": "401810514",
+      "name": "Indiana Pacers at Atlanta Hawks",
+      "shortName": "IND @ ATL",
+      "date_utc": "2026-01-26T18:30Z",
+      "date_local": "2026-01-26 01:30 PM ET",
+      "home_team": {
+        "id": "1",
+        "name": "Atlanta Hawks",
+        "abbr": "ATL",
+        "slug": "atlanta-hawks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png"
+      },
+      "away_team": {
+        "id": "11",
+        "name": "Indiana Pacers",
+        "abbr": "IND",
+        "slug": "indiana-pacers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ind.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "State Farm Arena",
+        "city": "Atlanta",
+        "state": "GA",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "nba",
       "id": "401810512",
       "name": "Philadelphia 76ers at Charlotte Hornets",
       "shortName": "PHI @ CHA",
-      "date_utc": "2026-01-27T00:00Z",
-      "date_local": "2026-01-26 07:00 PM ET",
+      "date_utc": "2026-01-26T20:00Z",
+      "date_local": "2026-01-26 03:00 PM ET",
       "home_team": {
         "id": "30",
         "name": "Charlotte Hornets",
@@ -1087,40 +1154,6 @@
         "name": "Nationwide Arena",
         "city": "Columbus",
         "state": "OH",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "nba",
-      "id": "401810514",
-      "name": "Indiana Pacers at Atlanta Hawks",
-      "shortName": "IND @ ATL",
-      "date_utc": "2026-01-27T00:30Z",
-      "date_local": "2026-01-26 07:30 PM ET",
-      "home_team": {
-        "id": "1",
-        "name": "Atlanta Hawks",
-        "abbr": "ATL",
-        "slug": "atlanta-hawks",
-        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png"
-      },
-      "away_team": {
-        "id": "11",
-        "name": "Indiana Pacers",
-        "abbr": "IND",
-        "slug": "indiana-pacers",
-        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ind.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "State Farm Arena",
-        "city": "Atlanta",
-        "state": "GA",
         "indoor": true,
         "grass": false
       },
@@ -8769,5 +8802,5 @@
       "officials": []
     }
   ],
-  "weather_merged_at": "2026-01-25T21:08:47.936608"
+  "weather_merged_at": "2026-01-25T21:35:07.498707"
 }
