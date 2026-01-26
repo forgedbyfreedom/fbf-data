@@ -1,6 +1,6 @@
 {
-  "timestamp": "20260126_1819",
-  "count": 38,
+  "timestamp": "20260126_1857",
+  "count": 37,
   "data": [
     {
       "sport": "ncaab",
@@ -155,40 +155,6 @@
     },
     {
       "sport": "ncaab",
-      "id": "401820703",
-      "name": "Virginia Cavaliers at Notre Dame Fighting Irish",
-      "shortName": "UVA @ ND",
-      "date_utc": "2026-01-28T00:00Z",
-      "date_local": "2026-01-27 07:00 PM ET",
-      "home_team": {
-        "id": "87",
-        "name": "Notre Dame Fighting Irish",
-        "abbr": "ND",
-        "slug": "notre-dame-fighting-irish",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png"
-      },
-      "away_team": {
-        "id": "258",
-        "name": "Virginia Cavaliers",
-        "abbr": "UVA",
-        "slug": "virginia-cavaliers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Purcell Pavilion",
-        "city": "South Bend",
-        "state": "IN",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaab",
       "id": "401808206",
       "name": "Arkansas Razorbacks at Oklahoma Sooners",
       "shortName": "ARK @ OU",
@@ -211,11 +177,55 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "ARK -2.5",
+        "spread": 2.5,
+        "total": 167.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Lloyd Noble Center",
         "city": "Norman",
         "state": "OK",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaab",
+      "id": "401820703",
+      "name": "Virginia Cavaliers at Notre Dame Fighting Irish",
+      "shortName": "UVA @ ND",
+      "date_utc": "2026-01-28T00:00Z",
+      "date_local": "2026-01-27 07:00 PM ET",
+      "home_team": {
+        "id": "87",
+        "name": "Notre Dame Fighting Irish",
+        "abbr": "ND",
+        "slug": "notre-dame-fighting-irish",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png"
+      },
+      "away_team": {
+        "id": "258",
+        "name": "Virginia Cavaliers",
+        "abbr": "UVA",
+        "slug": "virginia-cavaliers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "UVA -6.5",
+        "spread": 6.5,
+        "total": 140.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Purcell Pavilion",
+        "city": "South Bend",
+        "state": "IN",
         "indoor": true,
         "grass": false
       },
@@ -245,45 +255,16 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "CONN -15.5",
+        "spread": -15.5,
+        "total": 156.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Gampel Pavilion",
         "city": "Storrs",
         "state": "CT",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaab",
-      "id": "401808204",
-      "name": "Missouri Tigers at Alabama Crimson Tide",
-      "shortName": "MIZ @ ALA",
-      "date_utc": "2026-01-28T01:00Z",
-      "date_local": "2026-01-27 08:00 PM ET",
-      "home_team": {
-        "id": "333",
-        "name": "Alabama Crimson Tide",
-        "abbr": "ALA",
-        "slug": "alabama-crimson-tide",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png"
-      },
-      "away_team": {
-        "id": "142",
-        "name": "Missouri Tigers",
-        "abbr": "MIZ",
-        "slug": "missouri-tigers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Coleman Coliseum",
-        "city": "Tuscaloosa",
-        "state": "AL",
         "indoor": true,
         "grass": false
       },
@@ -325,6 +306,40 @@
     },
     {
       "sport": "ncaab",
+      "id": "401808204",
+      "name": "Missouri Tigers at Alabama Crimson Tide",
+      "shortName": "MIZ @ ALA",
+      "date_utc": "2026-01-28T01:00Z",
+      "date_local": "2026-01-27 08:00 PM ET",
+      "home_team": {
+        "id": "333",
+        "name": "Alabama Crimson Tide",
+        "abbr": "ALA",
+        "slug": "alabama-crimson-tide",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png"
+      },
+      "away_team": {
+        "id": "142",
+        "name": "Missouri Tigers",
+        "abbr": "MIZ",
+        "slug": "missouri-tigers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Coleman Coliseum",
+        "city": "Tuscaloosa",
+        "state": "AL",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaab",
       "id": "401825473",
       "name": "Purdue Boilermakers at Indiana Hoosiers",
       "shortName": "PUR @ IU",
@@ -347,7 +362,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "PUR -4.5",
+        "spread": 4.5,
+        "total": 151.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Simon Skjodt Assembly Hall",
         "city": "Bloomington",
@@ -381,7 +401,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "VAN -6.5",
+        "spread": -6.5,
+        "total": 158.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Memorial Gymnasium (TN)",
         "city": "Nashville",
@@ -427,33 +452,33 @@
     },
     {
       "sport": "ncaab",
-      "id": "401808201",
-      "name": "Tennessee Volunteers at Georgia Bulldogs",
-      "shortName": "TENN @ UGA",
+      "id": "401822919",
+      "name": "Butler Bulldogs at St. John's Red Storm",
+      "shortName": "BUT @ SJU",
       "date_utc": "2026-01-29T00:00Z",
       "date_local": "2026-01-28 07:00 PM ET",
       "home_team": {
-        "id": "61",
-        "name": "Georgia Bulldogs",
-        "abbr": "UGA",
-        "slug": "georgia-bulldogs",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png"
+        "id": "2599",
+        "name": "St. John's Red Storm",
+        "abbr": "SJU",
+        "slug": "st-johns-red-storm",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2599.png"
       },
       "away_team": {
-        "id": "2633",
-        "name": "Tennessee Volunteers",
-        "abbr": "TENN",
-        "slug": "tennessee-volunteers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2633.png"
+        "id": "2086",
+        "name": "Butler Bulldogs",
+        "abbr": "BUT",
+        "slug": "butler-bulldogs",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2086.png"
       },
       "home_score": null,
       "away_score": null,
       "total_points": 0,
       "odds": null,
       "venue": {
-        "name": "Stegeman Coliseum",
-        "city": "Athens",
-        "state": "GA",
+        "name": "Madison Square Garden",
+        "city": "New York",
+        "state": "NY",
         "indoor": true,
         "grass": false
       },
@@ -794,40 +819,6 @@
         "name": "Littlejohn Coliseum",
         "city": "Clemson",
         "state": "SC",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaab",
-      "id": "401808209",
-      "name": "Texas A&M Aggies at Georgia Bulldogs",
-      "shortName": "TA&M @ UGA",
-      "date_utc": "2026-01-31T18:00Z",
-      "date_local": "2026-01-31 01:00 PM ET",
-      "home_team": {
-        "id": "61",
-        "name": "Georgia Bulldogs",
-        "abbr": "UGA",
-        "slug": "georgia-bulldogs",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png"
-      },
-      "away_team": {
-        "id": "245",
-        "name": "Texas A&M Aggies",
-        "abbr": "TA&M",
-        "slug": "texas-am-aggies",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/245.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Stegeman Coliseum",
-        "city": "Athens",
-        "state": "GA",
         "indoor": true,
         "grass": false
       },
