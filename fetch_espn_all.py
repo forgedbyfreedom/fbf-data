@@ -2,12 +2,13 @@
 """
 fetch_espn_all.py
 
-Hardened version:
-- Fixes ESPN bot blocking by using real browser headers
-- Adds retry logic + backoff
-- Ensures whitelist calendar works
-- Ensures TEAM, VENUE, ODDS, OFFICIALS resolve cleanly
-- Guarantees combined.json is populated (no more empty output)
+Hardened ESPN data fetcher:
+- Real browser headers to avoid bot blocking
+- Retry logic + backoff
+- Whitelist calendar for upcoming dates
+- Resolves TEAM, VENUE, ODDS, OFFICIALS
+- Special UFC handling: each bout = separate game record
+- Supports: NFL, NCAAF, NBA, NCAAB, NCAAW, MLB, NHL, UFC
 """
 
 import json, os, requests, time
@@ -26,10 +27,14 @@ LEAGUES = {
     "ncaaf": "football/leagues/college-football",
     "nba":   "basketball/leagues/nba",
     "ncaab": "basketball/leagues/mens-college-basketball",
+    "ncaaw": "basketball/leagues/womens-college-basketball",
     "mlb":   "baseball/leagues/mlb",
     "nhl":   "hockey/leagues/nhl",
-    "arts":  "mma/leagues/ufc",
+    "ufc":   "mma/leagues/ufc",
 }
+
+# Sports where each event has multiple competitions (bouts/fights)
+MULTI_COMP_SPORTS = {"ufc"}
 
 BASE = "https://sports.core.api.espn.com/v2/sports"
 
@@ -38,6 +43,7 @@ TEAM_CACHE = {}
 VENUE_CACHE = {}
 ODDS_CACHE = {}
 OFFICIALS_CACHE = {}
+ATHLETE_CACHE = {}
 
 # ------------------------------------------------------------
 #  HARDENED FETCH WITH RETRIES + REAL BROWSER HEADERS
@@ -59,11 +65,10 @@ def get_json(url):
             r.raise_for_status()
             return r.json()
         except Exception as ex:
-            print(f"[WARN] GET failed ({attempt+1}/{RETRIES}): {url}")
             if attempt < RETRIES - 1:
                 time.sleep(BACKOFF * (attempt + 1))
             else:
-                print(f"[ERR] Total failure on: {url} — {ex}")
+                print(f"[ERR] GET failed: {url} -- {ex}")
                 return None
 
 
@@ -98,7 +103,7 @@ def get_next_7_whitelist_dates(league_path, today_local):
 
 
 # ------------------------------------------------------------
-#  RESOLVERS (TEAM, VENUE, ODDS, OFFICIALS)
+#  RESOLVERS (TEAM, VENUE, ODDS, OFFICIALS, ATHLETE)
 # ------------------------------------------------------------
 def resolve_team(ref):
     if not ref:
@@ -176,8 +181,18 @@ def resolve_officials(ref):
     return out
 
 
+def resolve_athlete(ref):
+    """Resolve an athlete $ref (used by UFC/MMA)."""
+    if not ref:
+        return None
+    if ref in ATHLETE_CACHE:
+        return ATHLETE_CACHE[ref]
+    ATHLETE_CACHE[ref] = get_json(ref)
+    return ATHLETE_CACHE[ref]
+
+
 # ------------------------------------------------------------
-#  EVENT EXTRACTION
+#  EVENT EXTRACTION - TEAM SPORTS
 # ------------------------------------------------------------
 def extract_competition(ev):
     comps = ev.get("competitions") or []
@@ -225,6 +240,44 @@ def extract_scores_and_teams(comp):
     )
 
 
+# ------------------------------------------------------------
+#  EVENT EXTRACTION - UFC/MMA (athlete-based)
+# ------------------------------------------------------------
+def extract_ufc_fighters(comp):
+    """Extract two fighters from a UFC bout competition."""
+    competitors = comp.get("competitors") or []
+    if len(competitors) < 2:
+        return None, None
+
+    fighters = []
+    for c in competitors:
+        # UFC uses athlete refs, not team refs
+        athlete_ref = (c.get("athlete") or {}).get("$ref")
+        athlete = resolve_athlete(athlete_ref) if athlete_ref else None
+
+        if athlete:
+            name = athlete.get("displayName") or athlete.get("fullName") or "Unknown"
+            fighter = {
+                "id": str(athlete.get("id", "")),
+                "name": name,
+                "abbr": name.split()[-1].upper()[:4] if name else "UNK",
+                "slug": athlete.get("slug", ""),
+                "logo": (athlete.get("headshot") or {}).get("href") or "",
+            }
+        else:
+            fighter = {
+                "id": str(c.get("id", "")),
+                "name": "Unknown Fighter",
+                "abbr": "UNK",
+                "slug": "",
+                "logo": "",
+            }
+        fighters.append((fighter, c.get("winner", False)))
+
+    # Fighter 1 = "home" (red corner), Fighter 2 = "away" (blue corner)
+    return fighters[0][0], fighters[1][0]
+
+
 def extract_odds_from_comp(comp):
     ref = (comp.get("odds") or {}).get("$ref")
     o = resolve_odds(ref)
@@ -256,9 +309,19 @@ def extract_venue_from_comp(comp):
 
 
 # ------------------------------------------------------------
-#  GAME RECORD BUILDER
+#  GAME RECORD BUILDERS
 # ------------------------------------------------------------
+def format_local_time(dt_utc_str):
+    try:
+        dt = datetime.fromisoformat(dt_utc_str.replace("Z", "+00:00"))
+        local = dt.astimezone(NY_TZ)
+        return local.strftime("%Y-%m-%d %I:%M %p ET")
+    except:
+        return dt_utc_str
+
+
 def build_game_record(sport_key, ev):
+    """Build a single game record for team sports."""
     comp = extract_competition(ev)
     if not comp:
         return None
@@ -271,14 +334,7 @@ def build_game_record(sport_key, ev):
     venue = extract_venue_from_comp(comp)
     officials = resolve_officials((comp.get("officials") or {}).get("$ref"))
 
-    # time
     dt_utc = ev.get("date")
-    try:
-        dt = datetime.fromisoformat(dt_utc.replace("Z", "+00:00"))
-        local = dt.astimezone(NY_TZ)
-        dt_local = local.strftime("%Y-%m-%d %I:%M %p ET")
-    except:
-        dt_local = dt_utc
 
     return {
         "sport": sport_key,
@@ -286,18 +342,83 @@ def build_game_record(sport_key, ev):
         "name": ev.get("name"),
         "shortName": ev.get("shortName"),
         "date_utc": dt_utc,
-        "date_local": dt_local,
-
+        "date_local": format_local_time(dt_utc),
         "home_team": home_team,
         "away_team": away_team,
         "home_score": home_score,
         "away_score": away_score,
         "total_points": (home_score or 0) + (away_score or 0),
-
         "odds": odds,
         "venue": venue,
         "officials": officials,
     }
+
+
+def build_ufc_records(ev):
+    """Build one record per bout for UFC events."""
+    comps = ev.get("competitions") or []
+    if not comps:
+        return []
+
+    dt_utc = ev.get("date")
+    event_name = ev.get("name") or "UFC Event"
+    records = []
+
+    # Get venue from the first competition (shared across all bouts)
+    venue = extract_venue_from_comp(comps[0])
+
+    for i, comp in enumerate(comps):
+        fighter1, fighter2 = extract_ufc_fighters(comp)
+        if not fighter1 or not fighter2:
+            continue
+
+        odds = extract_odds_from_comp(comp)
+
+        # Use bout date if available, else event date
+        bout_date = comp.get("date") or dt_utc
+        bout_name = comp.get("description") or f"{fighter1['name']} vs {fighter2['name']}"
+
+        # Card segment (main card, prelims, early prelims)
+        segment = comp.get("cardSegment") or ""
+        match_num = comp.get("matchNumber")
+
+        # Check winner status
+        status = comp.get("status") or {}
+        if isinstance(status, dict) and "$ref" in status:
+            status_data = get_json(status["$ref"]) or {}
+        else:
+            status_data = status
+        status_name = status_data.get("type", {}).get("name") if isinstance(status_data, dict) else None
+
+        # Scores for UFC: winner=True on competitor
+        competitors = comp.get("competitors") or []
+        home_score = None
+        away_score = None
+        if status_name in ("STATUS_FINAL", "STATUS_COMPLETED"):
+            home_score = 1 if (competitors[0].get("winner") if len(competitors) > 0 else False) else 0
+            away_score = 1 if (competitors[1].get("winner") if len(competitors) > 1 else False) else 0
+
+        records.append({
+            "sport": "ufc",
+            "id": f"{ev.get('id')}_{comp.get('id', i)}",
+            "name": bout_name,
+            "shortName": f"{fighter1['abbr']} vs {fighter2['abbr']}",
+            "date_utc": bout_date,
+            "date_local": format_local_time(bout_date),
+            "event_name": event_name,
+            "card_segment": segment,
+            "match_number": match_num,
+            "home_team": fighter1,   # red corner
+            "away_team": fighter2,   # blue corner
+            "home_score": home_score,
+            "away_score": away_score,
+            "total_points": 0,
+            "odds": odds,
+            "venue": venue,
+            "officials": [],
+        })
+
+    return records
 
 
 # ------------------------------------------------------------
@@ -341,7 +462,7 @@ def write_latest_file(key, data):
     }
     with open(fn, "w") as f:
         json.dump(payload, f, indent=2)
-    print(f"✅ Wrote {fn} ({len(data)} games)")
+    print(f"  [{key}] {len(data)} games -> {fn}")
     return fn
 
 
@@ -350,6 +471,8 @@ def main():
     combined = []
 
     for key, path in LEAGUES.items():
+        print(f"[fetch] {key}...")
+
         # whitelist dates preferred
         wl = get_next_7_whitelist_dates(path, today_local)
 
@@ -362,17 +485,23 @@ def main():
             evs.extend(events_for_range(path, today_local, end_d))
 
         games = []
-        for ev in evs:
-            rec = build_game_record(key, ev)
-            if rec:
-                games.append(rec)
+        if key in MULTI_COMP_SPORTS:
+            # UFC: each event has multiple bouts
+            for ev in evs:
+                games.extend(build_ufc_records(ev))
+        else:
+            # Team sports: one game per event
+            for ev in evs:
+                rec = build_game_record(key, ev)
+                if rec:
+                    games.append(rec)
 
-        games.sort(key=lambda g: g["date_utc"] or "")
+        games.sort(key=lambda g: g.get("date_utc") or "")
         write_latest_file(key, games)
 
         combined.extend(games)
 
-    combined.sort(key=lambda g: g["date_utc"] or "")
+    combined.sort(key=lambda g: g.get("date_utc") or "")
     combined_payload = {
         "timestamp": datetime.now(timezone.utc).strftime("%Y%m%d_%H%M"),
         "count": len(combined),
@@ -382,7 +511,15 @@ def main():
     with open("combined.json", "w") as f:
         json.dump(combined_payload, f, indent=2)
 
-    print(f"✅ Wrote combined.json ({len(combined)} games)")
+    # Summary
+    sport_counts = {}
+    for g in combined:
+        s = g.get("sport", "?")
+        sport_counts[s] = sport_counts.get(s, 0) + 1
+
+    print(f"\nWrote combined.json ({len(combined)} total)")
+    for s, c in sorted(sport_counts.items()):
+        print(f"  {s}: {c}")
 
 
 if __name__ == "__main__":

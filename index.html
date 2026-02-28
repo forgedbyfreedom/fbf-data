@@ -132,6 +132,12 @@
       font-weight: 600;
     }
 
+    .accuracy-line span.metric span.record {
+      font-size: 0.72rem;
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
     .accuracy-line span.sport-name {
       text-transform: uppercase;
       letter-spacing: 0.18em;
@@ -482,7 +488,7 @@
   <div class="page-shell">
     <!-- HERO (unchanged) -->
     <section class="hero">
-      <p class="hero-kicker">LIVE ODDS + PICKS UPDATED EVERY 15 MINUTES • FOR ENTERTAINMENT ONLY</p>
+      <p class="hero-kicker">LIVE ODDS + PICKS UPDATED EVERY 30 MINUTES • FOR ENTERTAINMENT ONLY</p>
       <p class="hero-provided">Provided to you by ForgedByFreedom.org</p>
       <h1 class="hero-title">FORGED BY FREEDOM STRENGTH &amp; NUTRITION</h1>
       <p class="hero-tagline">STRENGTH • DISCIPLINE • FREEDOM</p>
@@ -495,15 +501,16 @@
       <div class="accuracy-title">Accuracy Tracker</div>
       <div class="accuracy-line" id="acc-overall-line">
         <span class="label">All Sports</span>
-        <span class="metric">SU: <span class="value" id="acc-overall-su">--%</span></span> •
-        <span class="metric">ATS: <span class="value" id="acc-overall-ats">--%</span></span> •
-        <span class="metric">O/U: <span class="value" id="acc-overall-ou">--%</span></span>
+        <span class="metric">SU: <span class="value" id="acc-overall-su">--%</span> <span class="record" id="acc-overall-su-rec"></span></span> •
+        <span class="metric">ATS: <span class="value" id="acc-overall-ats">--%</span> <span class="record" id="acc-overall-ats-rec"></span></span> •
+        <span class="metric">O/U: <span class="value" id="acc-overall-ou">--%</span> <span class="record" id="acc-overall-ou-rec"></span></span>
       </div>
+      <div class="accuracy-line" id="acc-graded-line" style="font-size:0.76rem;"></div>
       <div class="accuracy-line" id="acc-sport-line" style="display:none;">
         <span class="sport-name" id="acc-sport-name"></span>
-        <span class="metric">SU: <span class="value" id="acc-sport-su">--%</span></span> •
-        <span class="metric">ATS: <span class="value" id="acc-sport-ats">--%</span></span> •
-        <span class="metric">O/U: <span class="value" id="acc-sport-ou">--%</span></span>
+        <span class="metric">SU: <span class="value" id="acc-sport-su">--%</span> <span class="record" id="acc-sport-su-rec"></span></span> •
+        <span class="metric">ATS: <span class="value" id="acc-sport-ats">--%</span> <span class="record" id="acc-sport-ats-rec"></span></span> •
+        <span class="metric">O/U: <span class="value" id="acc-sport-ou">--%</span> <span class="record" id="acc-sport-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-since-line" style="font-size:0.76rem;"></div>
     </section>
@@ -513,7 +520,7 @@
       <div class="stat-card">
         <div class="stat-label">Total Games</div>
         <div class="stat-value" id="stat-total-games">0</div>
-        <div class="stat-sub">Across NFL, NCAAF, NBA, NCAAB, NHL</div>
+        <div class="stat-sub">Across NFL, NCAAF, NBA, NCAAB, NCAAW, NHL, MLB, UFC</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">High-Confidence Picks</div>
@@ -535,14 +542,17 @@
       <button class="filter-pill" data-sport="ncaaf">NCAAF</button>
       <button class="filter-pill" data-sport="nba">NBA</button>
       <button class="filter-pill" data-sport="ncaab">NCAAB</button>
+      <button class="filter-pill" data-sport="ncaaw">NCAAW</button>
       <button class="filter-pill" data-sport="nhl">NHL</button>
+      <button class="filter-pill" data-sport="mlb">MLB</button>
+      <button class="filter-pill" data-sport="ufc">UFC</button>
       <div class="filters-meta" id="last-updated"></div>
     </section>
 
     <!-- GRID -->
     <section id="games-grid" class="grid"></section>
     <div id="no-games" class="no-games" style="display:none;">
-      No games available for this filter. Check back after the next 15-minute update.
+      No games available for this filter. Check back after the next 30-minute update.
     </div>
   </div>
 
@@ -596,7 +606,7 @@
         .trim();
     }
 
-    // use favorite_team + fav_spread when available
+    // use fav_team/dog_team structured fields first, fall back to details parsing
     function buildSpreadInfo(game, pred) {
       const odds = game.odds || pred?.odds || {};
       const details = odds.details || "";
@@ -612,28 +622,46 @@
 
       let favoriteName = null;
       let dogName = null;
-      let spreadMag = safeNumber(game.fav_spread ?? odds.spread);
+      let spreadMag = null;
 
-      const favRaw =
-        game.favorite_team ||
-        odds.favorite_team ||
-        pred?.favorite_team ||
-        null;
+      // Priority 1: Use structured fav_team/dog_team from tag_favorites.py
+      if (game.fav_team && game.dog_team) {
+        favoriteName = game.fav_team;
+        dogName = game.dog_team;
+        spreadMag = game.fav_spread != null ? Math.abs(game.fav_spread) : safeNumber(odds.spread);
+      }
 
-      if (favRaw) {
-        const normFav = normalizeTeamName(favRaw);
-        const favIsHome = normHome.includes(normFav) || normFav.includes(normHome);
-        const favIsAway = normAway.includes(normFav) || normFav.includes(normAway);
+      // Priority 2: Check prediction-level fav/dog fields
+      if (!favoriteName && pred?.fav_team && pred?.dog_team) {
+        favoriteName = pred.fav_team;
+        dogName = pred.dog_team;
+        spreadMag = pred.fav_spread != null ? Math.abs(pred.fav_spread) : safeNumber(odds.spread);
+      }
 
-        if (favIsHome && !favIsAway) {
-          favoriteName = homeName;
-          dogName = awayName;
-        } else if (favIsAway && !favIsHome) {
-          favoriteName = awayName;
-          dogName = homeName;
+      // Priority 3: Legacy favorite_team field
+      if (!favoriteName) {
+        const favRaw =
+          game.favorite_team ||
+          odds.favorite_team ||
+          pred?.favorite_team ||
+          null;
+
+        if (favRaw) {
+          const normFav = normalizeTeamName(favRaw);
+          const favIsHome = normHome.includes(normFav) || normFav.includes(normHome);
+          const favIsAway = normAway.includes(normFav) || normFav.includes(normAway);
+
+          if (favIsHome && !favIsAway) {
+            favoriteName = homeName;
+            dogName = awayName;
+          } else if (favIsAway && !favIsHome) {
+            favoriteName = awayName;
+            dogName = homeName;
+          }
         }
       }
 
+      // Priority 4: Parse details string as last resort
       if (!favoriteName && typeof details === "string") {
         const m = details.match(/([A-Za-z0-9.&\s]+)\s*([+-]?\d+(\.\d+)?)/);
         if (m) {
@@ -657,6 +685,7 @@
         }
       }
 
+      if (spreadMag == null) spreadMag = safeNumber(game.fav_spread ?? odds.spread);
       if (spreadMag == null) return null;
       if (!favoriteName) return null;
 
@@ -826,11 +855,21 @@
         }
       }
 
+      // ---------- Monte Carlo picks (from predictions.json) ----------
+      const mcPicks = pred?.picks || {};
+      const mcSim = pred?.simulation || {};
+
       // ---------- Straight Up ----------
       let suTeam = null;
       let suConf = null;
 
-      if (winProbHome !== null) {
+      // Priority 1: Monte Carlo simulation pick
+      if (mcPicks.su_pick) {
+        suTeam = mcPicks.su_pick;
+        suConf = Math.round(mcPicks.su_confidence || 50);
+      }
+      // Priority 2: Rule-based win probability
+      else if (winProbHome !== null) {
         if (winProbHome >= 0.5) {
           suTeam = homeName;
           suConf = Math.round(winProbHome * 100);
@@ -854,7 +893,20 @@
       let atsText = "No strong edge vs spread";
       let atsConf = null;
 
-      if (spreadInfo && modelMarginHome !== null) {
+      // Priority 1: Monte Carlo ATS pick
+      if (mcPicks.ats_pick) {
+        atsTeam = mcPicks.ats_pick;
+        atsConf = Math.round(mcPicks.ats_confidence || 50);
+        atsConf = clamp(atsConf, 1, MAX_CONF_ATS);
+        const spreadVal = mcPicks.ats_spread;
+        if (spreadVal != null) {
+          atsText = `${mcPicks.ats_pick_abbr || atsTeam} ${spreadVal > 0 ? "+" : ""}${spreadVal}`;
+        } else {
+          atsText = atsTeam;
+        }
+      }
+      // Priority 2: Rule-based spread analysis
+      else if (spreadInfo && modelMarginHome !== null) {
         const { favoriteName, dogName, line, homeName: hName } = spreadInfo;
 
         let predFavMargin = favoriteName === hName ? modelMarginHome : -modelMarginHome;
@@ -884,7 +936,16 @@
       let totalText = "No total edge";
       let totalConf = null;
 
-      if (totalLine !== null && modelTotal !== null) {
+      // Priority 1: Monte Carlo O/U pick
+      if (mcPicks.ou_pick) {
+        totalPick = mcPicks.ou_pick;
+        totalConf = Math.round(mcPicks.ou_confidence || 50);
+        totalConf = clamp(totalConf, 1, MAX_CONF_TOTAL);
+        const lineText = mcPicks.ou_line != null ? Number(mcPicks.ou_line).toFixed(1) : "";
+        totalText = `${totalPick} ${lineText}`.trim();
+      }
+      // Priority 2: Rule-based total
+      else if (totalLine !== null && modelTotal !== null) {
         const delta = modelTotal - totalLine;
         const probOver = oddsBasedProbFromEdge(delta, 20, 0.45);
 
@@ -1018,27 +1079,48 @@
     function renderAccuracy() {
       const overall = state.accuracy.overall;
       const bySport = state.accuracy.bySport || {};
-      const since = state.accuracy.since;
+      const graded = state.accuracy.graded || 0;
 
       const overallSU = document.getElementById("acc-overall-su");
       const overallATS = document.getElementById("acc-overall-ats");
       const overallOU = document.getElementById("acc-overall-ou");
+      const overallSURec = document.getElementById("acc-overall-su-rec");
+      const overallATSRec = document.getElementById("acc-overall-ats-rec");
+      const overallOURec = document.getElementById("acc-overall-ou-rec");
 
       if (overall) {
-        overallSU.textContent = formatPct(overall.su ?? overall.SU ?? 0);
-        overallATS.textContent = formatPct(overall.ats ?? overall.ATS ?? 0);
-        overallOU.textContent = formatPct(overall.ou ?? overall.OU ?? 0);
+        overallSU.textContent = formatPct(overall.su);
+        overallATS.textContent = formatPct(overall.ats);
+        overallOU.textContent = formatPct(overall.ou);
+        overallSURec.textContent = overall.su_record ? `(${overall.su_record})` : "";
+        overallATSRec.textContent = overall.ats_record ? `(${overall.ats_record})` : "";
+        overallOURec.textContent = overall.ou_record ? `(${overall.ou_record})` : "";
       } else {
         overallSU.textContent = "--%";
         overallATS.textContent = "--%";
         overallOU.textContent = "--%";
+        overallSURec.textContent = "";
+        overallATSRec.textContent = "";
+        overallOURec.textContent = "";
       }
 
+      // Graded count
+      const gradedLine = document.getElementById("acc-graded-line");
+      if (graded > 0) {
+        gradedLine.textContent = `${graded} predictions graded`;
+      } else {
+        gradedLine.textContent = "No predictions graded yet";
+      }
+
+      // Per-sport line
       const sportLine = document.getElementById("acc-sport-line");
       const sportNameEl = document.getElementById("acc-sport-name");
       const sportSU = document.getElementById("acc-sport-su");
       const sportATS = document.getElementById("acc-sport-ats");
       const sportOU = document.getElementById("acc-sport-ou");
+      const sportSURec = document.getElementById("acc-sport-su-rec");
+      const sportATSRec = document.getElementById("acc-sport-ats-rec");
+      const sportOURec = document.getElementById("acc-sport-ou-rec");
 
       if (state.activeSport && state.activeSport !== "all") {
         const sAcc = bySport[state.activeSport] || null;
@@ -1046,25 +1128,26 @@
         sportNameEl.textContent = state.activeSport.toUpperCase();
 
         if (sAcc) {
-          sportSU.textContent = formatPct(sAcc.su ?? sAcc.SU ?? 0);
-          sportATS.textContent = formatPct(sAcc.ats ?? sAcc.ATS ?? 0);
-          sportOU.textContent = formatPct(sAcc.ou ?? sAcc.OU ?? 0);
+          sportSU.textContent = formatPct(sAcc.su);
+          sportATS.textContent = formatPct(sAcc.ats);
+          sportOU.textContent = formatPct(sAcc.ou);
+          sportSURec.textContent = sAcc.su_record ? `(${sAcc.su_record})` : "";
+          sportATSRec.textContent = sAcc.ats_record ? `(${sAcc.ats_record})` : "";
+          sportOURec.textContent = sAcc.ou_record ? `(${sAcc.ou_record})` : "";
         } else {
           sportSU.textContent = "--%";
           sportATS.textContent = "--%";
           sportOU.textContent = "--%";
+          sportSURec.textContent = "";
+          sportATSRec.textContent = "";
+          sportOURec.textContent = "";
         }
       } else {
         sportLine.style.display = "none";
       }
 
       const sinceLine = document.getElementById("acc-since-line");
-      const labelDate = TRACKING_START || since;
-      if (labelDate) {
-        sinceLine.textContent = `Tracking from ${labelDate} onward`;
-      } else {
-        sinceLine.textContent = "";
-      }
+      sinceLine.textContent = `Tracking from ${TRACKING_START} onward`;
     }
 
     function renderGames() {
@@ -1258,36 +1341,42 @@
 
     async function loadAccuracyData() {
       try {
-        const res = await fetch("accuracy_summary.json?v=" + Date.now(), { cache: "no-store" });
-        if (res.ok) {
-          const json = await res.json();
-          const overall = json.overall || null;
-          const bySport = json.by_sport || json.bySport || {};
-          const since = json.since || json.start_date || null;
-
-          state.accuracy.overall = overall;
-          state.accuracy.bySport = bySport;
-          state.accuracy.since = since;
+        const res = await fetch("accuracy.json?v=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) {
+          console.warn("accuracy.json not found");
           return;
         }
-      } catch (e) {
-        console.warn("No accuracy_summary.json found, falling back to performance_log.json");
-      }
+        const json = await res.json();
+        const sports = json.sports || {};
+        const allSport = sports["ALL"] || {};
 
-      try {
-        const res = await fetch("performance_log.json?v=" + Date.now(), { cache: "no-store" });
-        if (!res.ok) return;
-        const log = await res.json();
-        if (!Array.isArray(log) || !log.length) return;
-        const last = log[log.length - 1];
-
+        state.accuracy.graded = json.predictions_graded || 0;
         state.accuracy.overall = {
-          su: last.SU_accuracy ?? last.su_pct ?? 0,
-          ats: last.ATS_accuracy ?? last.ats_pct ?? 0,
-          ou: last.OU_accuracy ?? last.ou_pct ?? 0
+          su: allSport.SU_pct || 0,
+          ats: allSport.ATS_pct || 0,
+          ou: allSport.OU_pct || 0,
+          su_record: allSport.SU_record || "",
+          ats_record: allSport.ATS_record || "",
+          ou_record: allSport.OU_record || "",
         };
+
+        // Map per-sport data (keyed uppercase in accuracy.json)
+        const bySport = {};
+        for (const [key, val] of Object.entries(sports)) {
+          if (key === "ALL") continue;
+          bySport[key.toLowerCase()] = {
+            su: val.SU_pct || 0,
+            ats: val.ATS_pct || 0,
+            ou: val.OU_pct || 0,
+            su_record: val.SU_record || "",
+            ats_record: val.ATS_record || "",
+            ou_record: val.OU_record || "",
+          };
+        }
+        state.accuracy.bySport = bySport;
+        state.accuracy.since = json.timestamp ? json.timestamp.slice(0, 10) : null;
       } catch (e) {
-        console.warn("No performance_log.json available");
+        console.warn("Could not load accuracy.json:", e);
       }
     }
 
