@@ -179,11 +179,15 @@ def build_expected_values(game):
         risk_score = safe_float(risk.get("risk"), 0)
         weather_penalty = wind * 0.15 + rain * 0.08 + risk_score * 1.5
 
-    # Referee trends
-    ref_home_bias = 0.0  # Will be set from referee data if available
-    ref_over_bias = 0.0
+    # Referee trends (merged by merge_features.py)
+    ref_home_bias = safe_float(game.get("ref_home_bias"), 0)
+    ref_over_bias = safe_float(game.get("ref_over_bias"), 0)
 
-    expected_margin = base_margin + injury_shift + rest_shift + elo_shift + h2h_shift + ref_home_bias
+    # Travel fatigue (away team traveling far = home advantage)
+    travel_km = safe_float(game.get("travel_km"), 0)
+    travel_shift = travel_km * 0.0005  # ~0.5 pts per 1000km of travel difference
+
+    expected_margin = base_margin + injury_shift + rest_shift + elo_shift + h2h_shift + ref_home_bias + travel_shift
     expected_total = max(0, base_total - weather_penalty + ref_over_bias)
 
     has_odds = spread_line is not None

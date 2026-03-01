@@ -101,6 +101,9 @@ jobs:
       - name: Build referee trends
         run: python3 build_ref_trends.py || echo "Ref trends skipped"
 
+      - name: Merge all features onto games
+        run: python3 merge_features.py || echo "Feature merge skipped"
+
       #####################################################################
       # 11) HISTORICAL DATA + ML
       #####################################################################
