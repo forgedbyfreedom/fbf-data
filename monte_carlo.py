@@ -92,9 +92,11 @@ def simulate_game(expected_margin, expected_total, margin_stdev, total_stdev,
 
         # ATS: did home team cover the spread?
         # spread_line is home team's spread (negative = home favored)
-        # home covers if margin > spread_line (e.g., margin=10, line=-7 -> 10 > -7 = covers)
+        # Home covers if margin + spread > 0
+        # e.g., spread=-6.5 (home -6.5): margin must be > 6.5 to cover
+        # e.g., spread=+3.5 (home +3.5): margin must be > -3.5 to cover (home can lose by up to 3)
         if spread_line is not None:
-            if sim_margin > spread_line:
+            if sim_margin + spread_line > 0:
                 home_covers += 1
 
         # O/U: did total go over?
@@ -190,13 +192,48 @@ def build_expected_values(game):
 
 
 def make_picks(sim_result, spread_line, total_line, home_name, away_name,
-               home_abbr, away_abbr, fav_team=None, dog_team=None):
+               home_abbr, away_abbr, fav_team=None, dog_team=None,
+               fav_abbr=None, dog_abbr=None):
     """
     Generate explicit SU, ATS, O/U picks from simulation results.
+
+    ATS logic is based on favorite/underdog, NOT home/away.
+    The favorite is whoever has the negative spread (gives points).
     """
     picks = {}
 
-    # SU PICK
+    # --- Determine favorite and underdog ---
+    # spread_line is from home team's perspective
+    # negative = home is favorite, positive = away is favorite
+    if spread_line is not None and spread_line < 0:
+        # Home is favorite
+        fav_name = fav_team or home_name
+        dog_name = dog_team or away_name
+        f_abbr = fav_abbr or home_abbr
+        d_abbr = dog_abbr or away_abbr
+        fav_spread = spread_line        # e.g., -6.5
+        dog_spread = -spread_line       # e.g., +6.5
+        fav_is_home = True
+    elif spread_line is not None and spread_line > 0:
+        # Away is favorite
+        fav_name = fav_team or away_name
+        dog_name = dog_team or home_name
+        f_abbr = fav_abbr or away_abbr
+        d_abbr = dog_abbr or home_abbr
+        fav_spread = -spread_line       # e.g., -7.5 (away gives points)
+        dog_spread = spread_line        # e.g., +7.5 (home gets points)
+        fav_is_home = False
+    else:
+        # Pick'em or no spread — treat as even
+        fav_name = home_name
+        dog_name = away_name
+        f_abbr = home_abbr
+        d_abbr = away_abbr
+        fav_spread = 0
+        dog_spread = 0
+        fav_is_home = True
+
+    # --- SU PICK: who wins straight up ---
     home_win_pct = sim_result["home_win_pct"]
     if home_win_pct >= 0.5:
         picks["su_pick"] = home_name
@@ -207,33 +244,37 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         picks["su_pick_abbr"] = away_abbr
         picks["su_confidence"] = round((1 - home_win_pct) * 100, 1)
 
-    # ATS PICK — always make a pick
+    # --- ATS PICK: who covers the spread ---
+    # home_cover_pct = % of sims where home team covered
+    # If favorite is home: fav_cover_pct = home_cover_pct
+    # If favorite is away: fav_cover_pct = 1 - home_cover_pct
     cover_pct = sim_result.get("home_cover_pct")
     if cover_pct is not None:
-        if cover_pct >= 0.5:
-            picks["ats_pick"] = home_name
-            picks["ats_pick_abbr"] = home_abbr
-            picks["ats_spread"] = spread_line
-            picks["ats_confidence"] = round(cover_pct * 100, 1)
+        if fav_is_home:
+            fav_cover_pct = cover_pct
         else:
-            picks["ats_pick"] = away_name
-            picks["ats_pick_abbr"] = away_abbr
-            picks["ats_spread"] = -spread_line if spread_line is not None else 0
-            picks["ats_confidence"] = round((1 - cover_pct) * 100, 1)
-    else:
-        # Fallback: use expected margin to determine pick
-        if home_win_pct >= 0.5:
-            picks["ats_pick"] = home_name
-            picks["ats_pick_abbr"] = home_abbr
-            picks["ats_spread"] = spread_line or 0
-            picks["ats_confidence"] = round(home_win_pct * 100, 1)
-        else:
-            picks["ats_pick"] = away_name
-            picks["ats_pick_abbr"] = away_abbr
-            picks["ats_spread"] = -(spread_line or 0)
-            picks["ats_confidence"] = round((1 - home_win_pct) * 100, 1)
+            fav_cover_pct = 1.0 - cover_pct
 
-    # O/U PICK — always make a pick
+        if fav_cover_pct >= 0.5:
+            # Pick the favorite to cover
+            picks["ats_pick"] = fav_name
+            picks["ats_pick_abbr"] = f_abbr
+            picks["ats_spread"] = fav_spread
+            picks["ats_confidence"] = round(fav_cover_pct * 100, 1)
+        else:
+            # Pick the underdog to cover
+            picks["ats_pick"] = dog_name
+            picks["ats_pick_abbr"] = d_abbr
+            picks["ats_spread"] = dog_spread
+            picks["ats_confidence"] = round((1 - fav_cover_pct) * 100, 1)
+    else:
+        # No simulation data — use SU winner as fallback
+        picks["ats_pick"] = picks["su_pick"]
+        picks["ats_pick_abbr"] = picks["su_pick_abbr"]
+        picks["ats_spread"] = 0
+        picks["ats_confidence"] = picks["su_confidence"]
+
+    # --- O/U PICK ---
     over_pct = sim_result.get("over_pct")
     if over_pct is not None:
         if over_pct >= 0.5:
@@ -245,7 +286,6 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             picks["ou_line"] = total_line
             picks["ou_confidence"] = round((1 - over_pct) * 100, 1)
     else:
-        # Fallback: use expected total vs line
         picks["ou_pick"] = "Over"
         picks["ou_line"] = total_line
         picks["ou_confidence"] = 50.0
@@ -308,6 +348,8 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         away_abbr=away_abbr,
         fav_team=game.get("fav_team"),
         dog_team=game.get("dog_team"),
+        fav_abbr=game.get("fav_abbr"),
+        dog_abbr=game.get("dog_abbr"),
     )
 
     # Flag whether picks are based on real Vegas lines or projections
