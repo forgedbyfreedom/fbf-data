@@ -7594,6 +7594,85 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803301",
+      "sport": "nhl",
+      "matchup": "Winnipeg Jets at San Jose Sharks",
+      "shortName": "WPG @ SJ",
+      "date_utc": "2026-03-01T21:00Z",
+      "date_local": "2026-03-01 04:00 PM ET",
+      "home": "SJ",
+      "away": "WPG",
+      "home_team": {
+        "id": "18",
+        "name": "San Jose Sharks",
+        "abbr": "SJ",
+        "slug": "san-jose-sharks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/sj.png"
+      },
+      "away_team": {
+        "id": "28",
+        "name": "Winnipeg Jets",
+        "abbr": "WPG",
+        "slug": "winnipeg-jets",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/wpg.png"
+      },
+      "odds": {
+        "details": "WPG -120",
+        "spread": 1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "SAP Center at San Jose",
+        "city": "San Jose",
+        "state": "CA",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Winnipeg Jets",
+      "dog_team": "San Jose Sharks",
+      "fav_abbr": "WPG",
+      "dog_abbr": "SJ",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 2,
+      "injury_count_away": 5,
+      "prediction": {
+        "projected_home_score": 9.7,
+        "projected_away_score": 10.3,
+        "projected_total": 20.0,
+        "projected_spread": -0.6,
+        "win_probability_home": 0.475,
+        "confidence": 53
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3892,
+        "away_win_pct": 0.6108,
+        "home_cover_pct": 0.6577,
+        "over_pct": 0.503,
+        "avg_simulated_margin": -0.63,
+        "avg_simulated_total": 5.5
+      },
+      "picks": {
+        "su_pick": "Winnipeg Jets",
+        "su_pick_abbr": "WPG",
+        "su_confidence": 61.1,
+        "ats_pick": "San Jose Sharks",
+        "ats_pick_abbr": "SJ",
+        "ats_spread": 1.5,
+        "ats_confidence": 65.8,
+        "ou_pick": "Over",
+        "ou_line": 5.5,
+        "ou_confidence": 50.3,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
