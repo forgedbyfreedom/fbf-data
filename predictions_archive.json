@@ -7515,6 +7515,85 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401810727",
+      "sport": "nba",
+      "matchup": "Memphis Grizzlies at Indiana Pacers",
+      "shortName": "MEM @ IND",
+      "date_utc": "2026-03-01T22:00Z",
+      "date_local": "2026-03-01 05:00 PM ET",
+      "home": "IND",
+      "away": "MEM",
+      "home_team": {
+        "id": "11",
+        "name": "Indiana Pacers",
+        "abbr": "IND",
+        "slug": "indiana-pacers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ind.png"
+      },
+      "away_team": {
+        "id": "29",
+        "name": "Memphis Grizzlies",
+        "abbr": "MEM",
+        "slug": "memphis-grizzlies",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mem.png"
+      },
+      "odds": {
+        "details": "IND -1.5",
+        "spread": -1.5,
+        "total": 236.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Gainbridge Fieldhouse",
+        "city": "Indianapolis",
+        "state": "IN",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Indiana Pacers",
+      "dog_team": "Memphis Grizzlies",
+      "fav_abbr": "IND",
+      "dog_abbr": "MEM",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 6,
+      "injury_count_away": 8,
+      "prediction": {
+        "projected_home_score": 119.3,
+        "projected_away_score": 117.2,
+        "projected_total": 236.5,
+        "projected_spread": 2.1,
+        "win_probability_home": 0.587,
+        "confidence": 62
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5774,
+        "away_win_pct": 0.4226,
+        "home_cover_pct": 0.5229,
+        "over_pct": 0.51,
+        "avg_simulated_margin": 2.21,
+        "avg_simulated_total": 236.55
+      },
+      "picks": {
+        "su_pick": "Indiana Pacers",
+        "su_pick_abbr": "IND",
+        "su_confidence": 57.7,
+        "ats_pick": "Indiana Pacers",
+        "ats_pick_abbr": "IND",
+        "ats_spread": -1.5,
+        "ats_confidence": 52.3,
+        "ou_pick": "Over",
+        "ou_line": 236.5,
+        "ou_confidence": 51.0,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
