@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260301_1645",
+  "timestamp": "20260301_1712",
   "count": 368,
   "data": [
     {
@@ -23,9 +23,9 @@
         "slug": "texas-longhorns",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 4.0,
+      "away_score": 9.0,
+      "total_points": 13.0,
       "odds": {
         "details": "TEX -17.5",
         "spread": 17.5,
@@ -74,18 +74,18 @@
       "spread": -17.5,
       "favorite": "TEX -17.5",
       "underdog": "ALA +17.5",
-      "tagged_at": "2026-03-01T16:45:02.073428+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966855+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -5.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -109,9 +109,9 @@
         "slug": "duke-blue-devils",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 3.0,
+      "away_score": 10.0,
+      "total_points": 13.0,
       "odds": {
         "details": "DUKE -2.5",
         "spread": 2.5,
@@ -160,18 +160,18 @@
       "spread": -2.5,
       "favorite": "DUKE -2.5",
       "underdog": "UNC +2.5",
-      "tagged_at": "2026-03-01T16:45:02.073451+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966872+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -7.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -195,12 +195,12 @@
         "slug": "ohio-state-buckeyes",
         "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 2.0,
+      "away_score": 9.0,
+      "total_points": 11.0,
       "odds": {
-        "details": "MSU -2.5",
-        "spread": -2.5,
+        "details": "MSU -1.5",
+        "spread": -1.5,
         "total": 157.5,
         "provider": "DraftKings"
       },
@@ -241,23 +241,23 @@
       "dog_team": "Ohio State Buckeyes",
       "fav_abbr": "MSU",
       "dog_abbr": "OSU",
-      "fav_spread": -2.5,
-      "dog_spread": 2.5,
-      "spread": -2.5,
-      "favorite": "MSU -2.5",
-      "underdog": "OSU +2.5",
-      "tagged_at": "2026-03-01T16:45:02.073458+00:00",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "MSU -1.5",
+      "underdog": "OSU +1.5",
+      "tagged_at": "2026-03-01T17:12:55.966878+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -7.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -285,8 +285,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "NY -1.5",
-        "spread": -1.5,
+        "details": "SA -1.5",
+        "spread": 1.5,
         "total": 227.5,
         "provider": "Draft Kings"
       },
@@ -297,17 +297,42 @@
         "indoor": true,
         "grass": false
       },
-      "officials": [],
-      "fav_team": "New York Knicks",
-      "dog_team": "San Antonio Spurs",
-      "fav_abbr": "NY",
-      "dog_abbr": "SA",
+      "officials": [
+        {
+          "name": "Curtis Blair",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Kevin Cutler",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "JD Ralls",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ],
+      "fav_team": "San Antonio Spurs",
+      "dog_team": "New York Knicks",
+      "fav_abbr": "SA",
+      "dog_abbr": "NY",
       "fav_spread": -1.5,
       "dog_spread": 1.5,
       "spread": -1.5,
-      "favorite": "NY -1.5",
-      "underdog": "SA +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073463+00:00",
+      "favorite": "SA -1.5",
+      "underdog": "NY +1.5",
+      "tagged_at": "2026-03-01T17:12:55.966883+00:00",
       "home_injuries": [
         {
           "player": "Miles McBride",
@@ -423,7 +448,7 @@
       "spread": -1.5,
       "favorite": "VGK -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073467+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966903+00:00",
       "home_injuries": [
         {
           "player": "Filip Hallander",
@@ -789,8 +814,18 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Sawyer Gipson-Long",
+          "status": "Mar 4",
+          "position": "RP"
+        },
+        {
+          "player": "Tyler Owens",
+          "status": "Mar 6",
+          "position": "SP"
+        },
+        {
           "player": "Beau Brieske",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "RP"
         },
         {
@@ -814,11 +849,6 @@
           "position": "RP"
         },
         {
-          "player": "Sawyer Gipson-Long",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Trey Sweeney",
           "status": "Mar 6",
           "position": "SS"
@@ -829,29 +859,19 @@
           "position": "SP"
         },
         {
-          "player": "Tyler Owens",
-          "status": "Mar 1",
-          "position": "SP"
-        },
-        {
           "player": "Bailey Horn",
           "status": "Mar 15",
           "position": "RP"
         },
         {
           "player": "Dugan Darnell",
-          "status": "Mar 1",
+          "status": "Mar 10",
           "position": "RP"
         },
         {
           "player": "Jake Miller",
           "status": "May 1",
           "position": "SP"
-        },
-        {
-          "player": "Sean Guenther",
-          "status": "Mar 1",
-          "position": "RP"
         },
         {
           "player": "Reese Olson",
@@ -891,18 +911,13 @@
           "position": "RF"
         },
         {
-          "player": "Angel Bastardo",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Jake Bloss",
           "status": "Jul 1",
           "position": "SP"
         }
       ],
-      "injury_count_home": 14,
-      "injury_count_away": 8,
+      "injury_count_home": 13,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -1143,7 +1158,7 @@
       "away_injuries": [
         {
           "player": "Cody Bellinger",
-          "status": "Mar 3",
+          "status": "Mar 5",
           "position": "LF"
         },
         {
@@ -1351,6 +1366,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Dylan Crews",
+          "status": "Mar 5",
+          "position": "RF"
+        },
+        {
           "player": "Trevor Williams",
           "status": "Jun 1",
           "position": "SP"
@@ -1423,7 +1443,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -1614,7 +1634,7 @@
       "spread": -5.5,
       "favorite": "PUR -5.5",
       "underdog": "OSU +5.5",
-      "tagged_at": "2026-03-01T16:45:02.073472+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966908+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1622,7 +1642,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -1675,7 +1695,7 @@
       "spread": -13.5,
       "favorite": "SC -13.5",
       "underdog": "UK +13.5",
-      "tagged_at": "2026-03-01T16:45:02.073476+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966912+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1736,7 +1756,7 @@
       "spread": -4.5,
       "favorite": "VAN -4.5",
       "underdog": "TENN +4.5",
-      "tagged_at": "2026-03-01T16:45:02.073480+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966915+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1797,7 +1817,7 @@
       "spread": -20.5,
       "favorite": "WVU -20.5",
       "underdog": "CIN +20.5",
-      "tagged_at": "2026-03-01T16:45:02.073484+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966919+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1858,7 +1878,7 @@
       "spread": -4.5,
       "favorite": "MINN -4.5",
       "underdog": "ILL +4.5",
-      "tagged_at": "2026-03-01T16:45:02.073487+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966923+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1896,7 +1916,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "IOWA -16.5",
+        "spread": 16.5,
+        "total": 144.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Kohl Center",
         "city": "Madison",
@@ -1905,6 +1930,16 @@
         "grass": false
       },
       "officials": [],
+      "fav_team": "Iowa Hawkeyes",
+      "dog_team": "Wisconsin Badgers",
+      "fav_abbr": "IOWA",
+      "dog_abbr": "WIS",
+      "fav_spread": -16.5,
+      "dog_spread": 16.5,
+      "spread": -16.5,
+      "favorite": "IOWA -16.5",
+      "underdog": "WIS +16.5",
+      "tagged_at": "2026-03-01T17:12:55.966926+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1942,7 +1977,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "MISS -18.5",
+        "spread": -18.5,
+        "total": 132.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "The Sandy and John Black Pavilion at Ole Miss",
         "city": "Oxford",
@@ -1951,6 +1991,16 @@
         "grass": false
       },
       "officials": [],
+      "fav_team": "Ole Miss Rebels",
+      "dog_team": "Texas A&M Aggies",
+      "fav_abbr": "MISS",
+      "dog_abbr": "TA&M",
+      "fav_spread": -18.5,
+      "dog_spread": 18.5,
+      "spread": -18.5,
+      "favorite": "MISS -18.5",
+      "underdog": "TA&M +18.5",
+      "tagged_at": "2026-03-01T17:12:55.966930+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1988,7 +2038,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "TTU -10.5",
+        "spread": -10.5,
+        "total": 128.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "United Supermarkets Arena",
         "city": "Lubbock",
@@ -1997,6 +2052,16 @@
         "grass": false
       },
       "officials": [],
+      "fav_team": "Texas Tech Lady Raiders",
+      "dog_team": "Arizona State Sun Devils",
+      "fav_abbr": "TTU",
+      "dog_abbr": "ASU",
+      "fav_spread": -10.5,
+      "dog_spread": 10.5,
+      "spread": -10.5,
+      "favorite": "TTU -10.5",
+      "underdog": "ASU +10.5",
+      "tagged_at": "2026-03-01T17:12:55.966939+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2369,6 +2434,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Jett Williams",
+          "status": "Mar 4",
+          "position": "SS"
+        },
+        {
           "player": "Eduardo Garcia",
           "status": "Mar 26",
           "position": "OF"
@@ -2400,7 +2470,7 @@
         }
       ],
       "injury_count_home": 3,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -3050,9 +3120,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CLE -11.5",
-        "spread": 11.5,
-        "total": 222.5,
+        "details": "CLE -12.5",
+        "spread": 12.5,
+        "total": 223.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3067,12 +3137,12 @@
       "dog_team": "Brooklyn Nets",
       "fav_abbr": "CLE",
       "dog_abbr": "BKN",
-      "fav_spread": -11.5,
-      "dog_spread": 11.5,
-      "spread": -11.5,
-      "favorite": "CLE -11.5",
-      "underdog": "BKN +11.5",
-      "tagged_at": "2026-03-01T16:45:02.073492+00:00",
+      "fav_spread": -12.5,
+      "dog_spread": 12.5,
+      "spread": -12.5,
+      "favorite": "CLE -12.5",
+      "underdog": "BKN +12.5",
+      "tagged_at": "2026-03-01T17:12:55.966943+00:00",
       "home_injuries": [
         {
           "player": "Nic Claxton",
@@ -3170,7 +3240,7 @@
       "spread": -3.5,
       "favorite": "MIL -3.5",
       "underdog": "CHI +3.5",
-      "tagged_at": "2026-03-01T16:45:02.073495+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966947+00:00",
       "home_injuries": [
         {
           "player": "Patrick Williams",
@@ -3273,7 +3343,7 @@
       "spread": -2.5,
       "favorite": "DEN -2.5",
       "underdog": "MIN +2.5",
-      "tagged_at": "2026-03-01T16:45:02.073503+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966951+00:00",
       "home_injuries": [
         {
           "player": "Spencer Jones",
@@ -3344,8 +3414,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MSU -2.5",
-        "spread": 2.5,
+        "details": "MSU -1.5",
+        "spread": 1.5,
         "total": 144.5,
         "provider": "Draft Kings"
       },
@@ -3361,12 +3431,12 @@
       "dog_team": "Indiana Hoosiers",
       "fav_abbr": "MSU",
       "dog_abbr": "IU",
-      "fav_spread": -2.5,
-      "dog_spread": 2.5,
-      "spread": -2.5,
-      "favorite": "MSU -2.5",
-      "underdog": "IU +2.5",
-      "tagged_at": "2026-03-01T16:45:02.073507+00:00",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "MSU -1.5",
+      "underdog": "IU +1.5",
+      "tagged_at": "2026-03-01T17:12:55.966954+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3374,7 +3444,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -3450,7 +3520,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "OU -19.5",
+        "spread": 19.5,
+        "total": 163.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Mizzou Arena",
         "city": "Columbia",
@@ -3459,6 +3534,16 @@
         "grass": false
       },
       "officials": [],
+      "fav_team": "Oklahoma Sooners",
+      "dog_team": "Missouri Tigers",
+      "fav_abbr": "OU",
+      "dog_abbr": "MIZ",
+      "fav_spread": -19.5,
+      "dog_spread": 19.5,
+      "spread": -19.5,
+      "favorite": "OU -19.5",
+      "underdog": "MIZ +19.5",
+      "tagged_at": "2026-03-01T17:12:55.966958+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3565,7 +3650,7 @@
       "spread": -9.5,
       "favorite": "TCU -9.5",
       "underdog": "BAY +9.5",
-      "tagged_at": "2026-03-01T16:45:02.073511+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966963+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3626,7 +3711,7 @@
       "spread": -1.5,
       "favorite": "UTA -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073514+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966969+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -3708,7 +3793,7 @@
       "spread": -1.5,
       "favorite": "WPG -1.5",
       "underdog": "SJ +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073518+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966972+00:00",
       "home_injuries": [
         {
           "player": "Ty Dellandrea",
@@ -3806,7 +3891,7 @@
       "spread": -1.5,
       "favorite": "IND -1.5",
       "underdog": "MEM +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073521+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966975+00:00",
       "home_injuries": [
         {
           "player": "Aaron Nesmith",
@@ -3944,7 +4029,7 @@
       "spread": -1.5,
       "favorite": "MIN -1.5",
       "underdog": "STL +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073527+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966978+00:00",
       "home_injuries": [
         {
           "player": "Jonas Brodin",
@@ -4022,7 +4107,7 @@
       "spread": -5.5,
       "favorite": "ATL -5.5",
       "underdog": "POR +5.5",
-      "tagged_at": "2026-03-01T16:45:02.073534+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966984+00:00",
       "home_injuries": [
         {
           "player": "Nickeil Alexander-Walker",
@@ -4115,7 +4200,7 @@
       "spread": -5.5,
       "favorite": "DET -5.5",
       "underdog": "ORL +5.5",
-      "tagged_at": "2026-03-01T16:45:02.073538+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966987+00:00",
       "home_injuries": [
         {
           "player": "Franz Wagner",
@@ -4228,7 +4313,7 @@
       "spread": -1.5,
       "favorite": "FLA -1.5",
       "underdog": "NYI +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073541+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966991+00:00",
       "home_injuries": [
         {
           "player": "Kyle Palmieri",
@@ -4239,6 +4324,11 @@
       "away_injuries": [
         {
           "player": "Uvis Balinskis",
+          "status": "Mar 3",
+          "position": "D"
+        },
+        {
+          "player": "Dmitry Kulikov",
           "status": "Mar 1",
           "position": "D"
         },
@@ -4249,17 +4339,17 @@
         },
         {
           "player": "Seth Jones",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "D"
         },
         {
           "player": "Jonah Gadjovich",
-          "status": "Mar 1",
+          "status": "Mar 6",
           "position": "LW"
         }
       ],
       "injury_count_home": 1,
-      "injury_count_away": 4,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -4316,7 +4406,7 @@
       "spread": -33.5,
       "favorite": "CONN -33.5",
       "underdog": "SJU +33.5",
-      "tagged_at": "2026-03-01T16:45:02.073545+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966995+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -4377,7 +4467,7 @@
       "spread": -9.5,
       "favorite": "BOS -9.5",
       "underdog": "PHI +9.5",
-      "tagged_at": "2026-03-01T16:45:02.073551+00:00",
+      "tagged_at": "2026-03-01T17:12:55.966998+00:00",
       "home_injuries": [
         {
           "player": "Baylor Scheierman",
@@ -4460,7 +4550,7 @@
       "spread": -16.5,
       "favorite": "OKC -16.5",
       "underdog": "DAL +16.5",
-      "tagged_at": "2026-03-01T16:45:02.073554+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967004+00:00",
       "home_injuries": [
         {
           "player": "Caleb Martin",
@@ -4578,7 +4668,7 @@
       "spread": -1.5,
       "favorite": "ANA -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073558+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967007+00:00",
       "home_injuries": [
         {
           "player": "Ryan Strome",
@@ -4676,7 +4766,7 @@
       "spread": -8.5,
       "favorite": "LAC -8.5",
       "underdog": "NO +8.5",
-      "tagged_at": "2026-03-01T16:45:02.073561+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967010+00:00",
       "home_injuries": [
         {
           "player": "Darius Garland",
@@ -4769,7 +4859,7 @@
       "spread": -12.5,
       "favorite": "LAL -12.5",
       "underdog": "SAC +12.5",
-      "tagged_at": "2026-03-01T16:45:02.073565+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967014+00:00",
       "home_injuries": [
         {
           "player": "Rui Hachimura",
@@ -4850,8 +4940,18 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Sawyer Gipson-Long",
+          "status": "Mar 4",
+          "position": "RP"
+        },
+        {
+          "player": "Tyler Owens",
+          "status": "Mar 6",
+          "position": "SP"
+        },
+        {
           "player": "Beau Brieske",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "RP"
         },
         {
@@ -4875,11 +4975,6 @@
           "position": "RP"
         },
         {
-          "player": "Sawyer Gipson-Long",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Trey Sweeney",
           "status": "Mar 6",
           "position": "SS"
@@ -4890,29 +4985,19 @@
           "position": "SP"
         },
         {
-          "player": "Tyler Owens",
-          "status": "Mar 1",
-          "position": "SP"
-        },
-        {
           "player": "Bailey Horn",
           "status": "Mar 15",
           "position": "RP"
         },
         {
           "player": "Dugan Darnell",
-          "status": "Mar 1",
+          "status": "Mar 10",
           "position": "RP"
         },
         {
           "player": "Jake Miller",
           "status": "May 1",
           "position": "SP"
-        },
-        {
-          "player": "Sean Guenther",
-          "status": "Mar 1",
-          "position": "RP"
         },
         {
           "player": "Reese Olson",
@@ -4977,7 +5062,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 14,
+      "injury_count_home": 13,
       "injury_count_away": 11,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -5075,6 +5160,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Dylan Crews",
+          "status": "Mar 5",
+          "position": "RF"
+        },
+        {
           "player": "Trevor Williams",
           "status": "Jun 1",
           "position": "SP"
@@ -5106,7 +5196,7 @@
         }
       ],
       "injury_count_home": 10,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -5442,11 +5532,6 @@
           "position": "RF"
         },
         {
-          "player": "Angel Bastardo",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Jake Bloss",
           "status": "Jul 1",
           "position": "SP"
@@ -5509,7 +5594,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 7,
       "injury_count_away": 11,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -5567,7 +5652,7 @@
       "spread": -1.5,
       "favorite": "NSH -1.5",
       "underdog": "DET +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073571+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967017+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -6324,6 +6409,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Leaky Black",
+          "status": "Mar 3",
+          "position": "F"
+        },
+        {
           "player": "Trae Young",
           "status": "Mar 2",
           "position": "G"
@@ -6371,7 +6461,7 @@
           "position": "G"
         }
       ],
-      "injury_count_home": 5,
+      "injury_count_home": 6,
       "injury_count_away": 4,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -6422,7 +6512,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -6475,7 +6565,7 @@
       "spread": -1.5,
       "favorite": "CBJ -1.5",
       "underdog": "NYR +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073575+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967023+00:00",
       "home_injuries": [
         {
           "player": "Adam Edstrom",
@@ -6615,7 +6705,7 @@
       "spread": -1.5,
       "favorite": "TOR -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073578+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967029+00:00",
       "home_injuries": [
         {
           "player": "Chris Tanev",
@@ -6930,7 +7020,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073582+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967033+00:00",
       "home_injuries": [
         {
           "player": "Tyler Myers",
@@ -7038,7 +7128,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "SEA +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073586+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967036+00:00",
       "home_injuries": [
         {
           "player": "Ryan Lindgren",
@@ -7116,7 +7206,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "LA +1.5",
-      "tagged_at": "2026-03-01T16:45:02.073591+00:00",
+      "tagged_at": "2026-03-01T17:12:55.967040+00:00",
       "home_injuries": [
         {
           "player": "Drew Doughty",
@@ -7858,7 +7948,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -8060,6 +8150,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Leaky Black",
+          "status": "Mar 3",
+          "position": "F"
+        },
+        {
           "player": "Trae Young",
           "status": "Mar 2",
           "position": "G"
@@ -8086,7 +8181,7 @@
         }
       ],
       "injury_count_home": 1,
-      "injury_count_away": 5,
+      "injury_count_away": 6,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -8274,7 +8369,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -8509,6 +8604,11 @@
       "away_injuries": [
         {
           "player": "Uvis Balinskis",
+          "status": "Mar 3",
+          "position": "D"
+        },
+        {
+          "player": "Dmitry Kulikov",
           "status": "Mar 1",
           "position": "D"
         },
@@ -8519,17 +8619,17 @@
         },
         {
           "player": "Seth Jones",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "D"
         },
         {
           "player": "Jonah Gadjovich",
-          "status": "Mar 1",
+          "status": "Mar 6",
           "position": "LW"
         }
       ],
       "injury_count_home": 2,
-      "injury_count_away": 4,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -10061,7 +10161,7 @@
       "away_injuries": [
         {
           "player": "Cody Bellinger",
-          "status": "Mar 3",
+          "status": "Mar 5",
           "position": "LF"
         },
         {
@@ -10427,6 +10527,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Jett Williams",
+          "status": "Mar 4",
+          "position": "SS"
+        },
+        {
           "player": "Eduardo Garcia",
           "status": "Mar 26",
           "position": "OF"
@@ -10494,7 +10599,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -10618,7 +10723,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -11744,18 +11849,13 @@
           "position": "RF"
         },
         {
-          "player": "Angel Bastardo",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Jake Bloss",
           "status": "Jul 1",
           "position": "SP"
         }
       ],
       "injury_count_home": 11,
-      "injury_count_away": 8,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -11801,7 +11901,7 @@
       "home_injuries": [
         {
           "player": "Cody Bellinger",
-          "status": "Mar 3",
+          "status": "Mar 5",
           "position": "LF"
         },
         {
@@ -12337,6 +12437,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Dylan Crews",
+          "status": "Mar 5",
+          "position": "RF"
+        },
+        {
           "player": "Trevor Williams",
           "status": "Jun 1",
           "position": "SP"
@@ -12404,7 +12509,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -12941,6 +13046,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Jett Williams",
+          "status": "Mar 4",
+          "position": "SS"
+        },
+        {
           "player": "Eduardo Garcia",
           "status": "Mar 26",
           "position": "OF"
@@ -12972,7 +13082,7 @@
         }
       ],
       "injury_count_home": 13,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -13286,6 +13396,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Leaky Black",
+          "status": "Mar 3",
+          "position": "F"
+        },
+        {
           "player": "Trae Young",
           "status": "Mar 2",
           "position": "G"
@@ -13338,7 +13453,7 @@
           "position": "C"
         }
       ],
-      "injury_count_home": 5,
+      "injury_count_home": 6,
       "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -13589,6 +13704,11 @@
       "away_injuries": [
         {
           "player": "Uvis Balinskis",
+          "status": "Mar 3",
+          "position": "D"
+        },
+        {
+          "player": "Dmitry Kulikov",
           "status": "Mar 1",
           "position": "D"
         },
@@ -13599,17 +13719,17 @@
         },
         {
           "player": "Seth Jones",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "D"
         },
         {
           "player": "Jonah Gadjovich",
-          "status": "Mar 1",
+          "status": "Mar 6",
           "position": "LW"
         }
       ],
       "injury_count_home": 0,
-      "injury_count_away": 4,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -14001,7 +14121,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -14961,8 +15081,18 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Sawyer Gipson-Long",
+          "status": "Mar 4",
+          "position": "RP"
+        },
+        {
+          "player": "Tyler Owens",
+          "status": "Mar 6",
+          "position": "SP"
+        },
+        {
           "player": "Beau Brieske",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "RP"
         },
         {
@@ -14986,11 +15116,6 @@
           "position": "RP"
         },
         {
-          "player": "Sawyer Gipson-Long",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Trey Sweeney",
           "status": "Mar 6",
           "position": "SS"
@@ -15001,29 +15126,19 @@
           "position": "SP"
         },
         {
-          "player": "Tyler Owens",
-          "status": "Mar 1",
-          "position": "SP"
-        },
-        {
           "player": "Bailey Horn",
           "status": "Mar 15",
           "position": "RP"
         },
         {
           "player": "Dugan Darnell",
-          "status": "Mar 1",
+          "status": "Mar 10",
           "position": "RP"
         },
         {
           "player": "Jake Miller",
           "status": "May 1",
           "position": "SP"
-        },
-        {
-          "player": "Sean Guenther",
-          "status": "Mar 1",
-          "position": "RP"
         },
         {
           "player": "Reese Olson",
@@ -15088,7 +15203,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 14,
+      "injury_count_home": 13,
       "injury_count_away": 11,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -15186,6 +15301,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Dylan Crews",
+          "status": "Mar 5",
+          "position": "RF"
+        },
+        {
           "player": "Trevor Williams",
           "status": "Jun 1",
           "position": "SP"
@@ -15217,7 +15337,7 @@
         }
       ],
       "injury_count_home": 10,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -15420,11 +15540,6 @@
           "position": "RF"
         },
         {
-          "player": "Angel Bastardo",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Jake Bloss",
           "status": "Jul 1",
           "position": "SP"
@@ -15462,7 +15577,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 7,
       "injury_count_away": 6,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -16168,6 +16283,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Jett Williams",
+          "status": "Mar 4",
+          "position": "SS"
+        },
+        {
           "player": "Eduardo Garcia",
           "status": "Mar 26",
           "position": "OF"
@@ -16295,7 +16415,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 19,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -16485,7 +16605,7 @@
       "home_injuries": [
         {
           "player": "Cody Bellinger",
-          "status": "Mar 3",
+          "status": "Mar 5",
           "position": "LF"
         },
         {
@@ -16779,6 +16899,11 @@
       "away_injuries": [
         {
           "player": "Uvis Balinskis",
+          "status": "Mar 3",
+          "position": "D"
+        },
+        {
+          "player": "Dmitry Kulikov",
           "status": "Mar 1",
           "position": "D"
         },
@@ -16789,17 +16914,17 @@
         },
         {
           "player": "Seth Jones",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "D"
         },
         {
           "player": "Jonah Gadjovich",
-          "status": "Mar 1",
+          "status": "Mar 6",
           "position": "LW"
         }
       ],
       "injury_count_home": 0,
-      "injury_count_away": 4,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -18906,8 +19031,18 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Sawyer Gipson-Long",
+          "status": "Mar 4",
+          "position": "RP"
+        },
+        {
+          "player": "Tyler Owens",
+          "status": "Mar 6",
+          "position": "SP"
+        },
+        {
           "player": "Beau Brieske",
-          "status": "Mar 1",
+          "status": "Mar 3",
           "position": "RP"
         },
         {
@@ -18931,11 +19066,6 @@
           "position": "RP"
         },
         {
-          "player": "Sawyer Gipson-Long",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Trey Sweeney",
           "status": "Mar 6",
           "position": "SS"
@@ -18946,29 +19076,19 @@
           "position": "SP"
         },
         {
-          "player": "Tyler Owens",
-          "status": "Mar 1",
-          "position": "SP"
-        },
-        {
           "player": "Bailey Horn",
           "status": "Mar 15",
           "position": "RP"
         },
         {
           "player": "Dugan Darnell",
-          "status": "Mar 1",
+          "status": "Mar 10",
           "position": "RP"
         },
         {
           "player": "Jake Miller",
           "status": "May 1",
           "position": "SP"
-        },
-        {
-          "player": "Sean Guenther",
-          "status": "Mar 1",
-          "position": "RP"
         },
         {
           "player": "Reese Olson",
@@ -19008,7 +19128,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 14,
+      "injury_count_home": 13,
       "injury_count_away": 6,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -19136,18 +19256,13 @@
           "position": "RF"
         },
         {
-          "player": "Angel Bastardo",
-          "status": "Mar 1",
-          "position": "RP"
-        },
-        {
           "player": "Jake Bloss",
           "status": "Jul 1",
           "position": "SP"
         }
       ],
       "injury_count_home": 10,
-      "injury_count_away": 8,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -20140,6 +20255,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Jett Williams",
+          "status": "Mar 4",
+          "position": "SS"
+        },
+        {
           "player": "Eduardo Garcia",
           "status": "Mar 26",
           "position": "OF"
@@ -20171,7 +20291,7 @@
         }
       ],
       "injury_count_home": 7,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -21167,6 +21287,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Dylan Crews",
+          "status": "Mar 5",
+          "position": "RF"
+        },
+        {
           "player": "Trevor Williams",
           "status": "Jun 1",
           "position": "SP"
@@ -21200,7 +21325,7 @@
       "away_injuries": [
         {
           "player": "Cody Bellinger",
-          "status": "Mar 3",
+          "status": "Mar 5",
           "position": "LF"
         },
         {
@@ -21239,7 +21364,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -21289,7 +21414,7 @@
       "injury_count_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 7.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
       "home_elo": 1500,
@@ -22270,7 +22395,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -26312,7 +26437,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -27009,7 +27134,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -27739,7 +27864,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -28478,5 +28603,5 @@
       "travel_km": 0
     }
   ],
-  "weather_merged_at": "2026-03-01T16:45:48.150493"
+  "weather_merged_at": "2026-03-01T17:13:44.961632"
 }
