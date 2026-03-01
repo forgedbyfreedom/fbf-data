@@ -207,30 +207,35 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         picks["su_pick_abbr"] = away_abbr
         picks["su_confidence"] = round((1 - home_win_pct) * 100, 1)
 
-    # ATS PICK
-    if spread_line is not None and sim_result.get("home_cover_pct") is not None:
-        cover_pct = sim_result["home_cover_pct"]
+    # ATS PICK — always make a pick
+    cover_pct = sim_result.get("home_cover_pct")
+    if cover_pct is not None:
         if cover_pct >= 0.5:
-            # Home covers
             picks["ats_pick"] = home_name
             picks["ats_pick_abbr"] = home_abbr
             picks["ats_spread"] = spread_line
             picks["ats_confidence"] = round(cover_pct * 100, 1)
         else:
-            # Away covers
             picks["ats_pick"] = away_name
             picks["ats_pick_abbr"] = away_abbr
-            picks["ats_spread"] = -spread_line
+            picks["ats_spread"] = -spread_line if spread_line is not None else 0
             picks["ats_confidence"] = round((1 - cover_pct) * 100, 1)
     else:
-        picks["ats_pick"] = None
-        picks["ats_pick_abbr"] = None
-        picks["ats_spread"] = None
-        picks["ats_confidence"] = None
+        # Fallback: use expected margin to determine pick
+        if home_win_pct >= 0.5:
+            picks["ats_pick"] = home_name
+            picks["ats_pick_abbr"] = home_abbr
+            picks["ats_spread"] = spread_line or 0
+            picks["ats_confidence"] = round(home_win_pct * 100, 1)
+        else:
+            picks["ats_pick"] = away_name
+            picks["ats_pick_abbr"] = away_abbr
+            picks["ats_spread"] = -(spread_line or 0)
+            picks["ats_confidence"] = round((1 - home_win_pct) * 100, 1)
 
-    # O/U PICK
-    if total_line is not None and sim_result.get("over_pct") is not None:
-        over_pct = sim_result["over_pct"]
+    # O/U PICK — always make a pick
+    over_pct = sim_result.get("over_pct")
+    if over_pct is not None:
         if over_pct >= 0.5:
             picks["ou_pick"] = "Over"
             picks["ou_line"] = total_line
@@ -240,9 +245,10 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             picks["ou_line"] = total_line
             picks["ou_confidence"] = round((1 - over_pct) * 100, 1)
     else:
-        picks["ou_pick"] = None
-        picks["ou_line"] = None
-        picks["ou_confidence"] = None
+        # Fallback: use expected total vs line
+        picks["ou_pick"] = "Over"
+        picks["ou_line"] = total_line
+        picks["ou_confidence"] = 50.0
 
     return picks
 
@@ -250,7 +256,8 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
 def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     """
     Full pipeline: build expected values, run simulations, make picks.
-    Returns dict with simulation results + explicit picks.
+    Always generates SU, ATS, and O/U picks for every game.
+    When no Vegas line exists, uses projected values as the line.
     """
     sport = (game.get("sport") or "").lower()
     odds = game.get("odds") or {}
@@ -263,14 +270,19 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
 
     expected_margin, expected_total, has_odds = build_expected_values(game)
 
+    # When no Vegas line, use pick'em (0) for spread and sport default for total
+    # This ensures every game gets ATS and O/U picks
+    sim_spread = spread_line if spread_line is not None else 0.0
+    sim_total = total_line if total_line is not None else expected_total
+
     # Run simulation
     sim = simulate_game(
         expected_margin=expected_margin,
         expected_total=expected_total,
         margin_stdev=margin_stdev,
         total_stdev=total_stdev,
-        spread_line=spread_line,
-        total_line=total_line,
+        spread_line=sim_spread,
+        total_line=sim_total,
         n_sims=n_sims,
     )
 
@@ -282,10 +294,14 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     home_abbr = home_team.get("abbr", "") if isinstance(home_team, dict) else ""
     away_abbr = away_team.get("abbr", "") if isinstance(away_team, dict) else ""
 
+    # Use actual Vegas lines for picks display, fall back to projected values
+    pick_spread = spread_line if spread_line is not None else round(-expected_margin, 1)
+    pick_total = total_line if total_line is not None else round(expected_total, 1)
+
     picks = make_picks(
         sim_result=sim,
-        spread_line=spread_line,
-        total_line=total_line,
+        spread_line=pick_spread,
+        total_line=pick_total,
         home_name=home_name,
         away_name=away_name,
         home_abbr=home_abbr,
@@ -293,6 +309,10 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         fav_team=game.get("fav_team"),
         dog_team=game.get("dog_team"),
     )
+
+    # Flag whether picks are based on real Vegas lines or projections
+    picks["has_vegas_spread"] = spread_line is not None
+    picks["has_vegas_total"] = total_line is not None
 
     return {
         "simulation": sim,

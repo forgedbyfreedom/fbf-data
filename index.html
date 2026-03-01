@@ -1050,11 +1050,16 @@
     }
 
     function renderStats() {
-      const totalGames = state.allGames.length;
-      const withPicks = state.allGames.filter(g =>
+      const hasLine = g => {
+        const odds = g.odds || {};
+        return typeof odds.spread === "number" || typeof odds.total === "number";
+      };
+      const gamesWithLines = state.allGames.filter(hasLine);
+      const totalGames = gamesWithLines.length;
+      const withPicks = gamesWithLines.filter(g =>
         g.su.team || g.ats.team || g.total.pick
       ).length;
-      const highConf = state.allGames.filter(g => g.highConfidence).length;
+      const highConf = gamesWithLines.filter(g => g.highConfidence).length;
 
       document.getElementById("stat-total-games").textContent = totalGames;
       document.getElementById("stat-with-picks").textContent = withPicks;
@@ -1149,6 +1154,11 @@
 
       const filtered = state.allGames
         .filter(g => state.activeSport === "all" || g.sport === state.activeSport)
+        .filter(g => {
+          // Only show games that have a betting line (spread or total)
+          const odds = g.odds || {};
+          return typeof odds.spread === "number" || typeof odds.total === "number";
+        })
         .sort(gameSort);
 
       grid.innerHTML = "";
