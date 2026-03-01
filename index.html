@@ -685,7 +685,7 @@
         }
       }
 
-      if (spreadMag == null) spreadMag = safeNumber(game.fav_spread ?? odds.spread);
+      if (spreadMag == null) spreadMag = safeNumber(game.fav_spread != null ? game.fav_spread : odds.spread);
       if (spreadMag == null) return null;
       if (!favoriteName) return null;
 
@@ -749,7 +749,7 @@
         if (!total && !homeList.length && !awayList.length) return null;
 
         return {
-          total: total || (countHome ?? 0) + (countAway ?? 0),
+          total: total || ((countHome != null ? countHome : 0) + (countAway != null ? countAway : 0)),
           homeCount: countHome,
           awayCount: countAway,
           keyPlayers
@@ -763,7 +763,7 @@
         if (Array.isArray(src.away_injuries)) awayList = awayList.concat(src.away_injuries);
       }
 
-      total = (countHome ?? 0) + (countAway ?? 0);
+      total = (countHome != null ? countHome : 0) + (countAway != null ? countAway : 0);
       if (!total) {
         total = homeList.length + awayList.length;
       }
@@ -786,8 +786,8 @@
 
       return {
         total,
-        homeCount: countHome ?? homeList.length || null,
-        awayCount: countAway ?? awayList.length || null,
+        homeCount: countHome != null ? countHome : (homeList.length || null),
+        awayCount: countAway != null ? countAway : (awayList.length || null),
         keyPlayers
       };
     }
@@ -1036,15 +1036,8 @@
       if (view.indoor) return "Indoor";
 
       const wx = view.weather || {};
-      const temp =
-        safeNumber(wx.temperatureF) ??
-        safeNumber(wx.temp) ??
-        safeNumber(wx.temperature);
-
-      const wind =
-        safeNumber(wx.windSpeedMph) ??
-        safeNumber(wx.wind_mph) ??
-        safeNumber(wx.wind);
+      const temp = safeNumber(wx.temperatureF) || safeNumber(wx.temp) || safeNumber(wx.temperature);
+      const wind = safeNumber(wx.windSpeedMph) || safeNumber(wx.wind_mph) || safeNumber(wx.wind);
 
       const summary = wx.summary || wx.condition || wx.description;
 
