@@ -46,7 +46,13 @@ jobs:
           pip install -r requirements.txt
 
       #####################################################################
-      # 5) FETCH ESPN DATA
+      # 5) SAVE COMPLETED SCORES (before ESPN refresh overwrites them)
+      #####################################################################
+      - name: Save completed scores
+        run: python3 save_completed_scores.py || echo "Score save skipped"
+
+      #####################################################################
+      # 6) FETCH ESPN DATA
       #####################################################################
       - name: Fetch ESPN odds
         run: python3 fetch_espn_all.py

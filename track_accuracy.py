@@ -13,6 +13,7 @@ from datetime import datetime, timezone, timedelta
 
 OUTPUT = "accuracy.json"
 COMBINED_FILE = "combined.json"
+SCORES_FILE = "completed_scores.json"
 LOCKED_FILE = "predictions_locked.json"
 ARCHIVE_FILE = "predictions_archive.json"
 
@@ -39,22 +40,36 @@ def parse_date(s):
         return None
 
 
-def main():
-    # Load completed games
+def load_json(path, default=None):
     try:
-        with open(COMBINED_FILE) as f:
-            combined = json.load(f)
-    except Exception as e:
-        print(f"[accuracy] Cannot load combined.json: {e}")
-        return
+        with open(path) as f:
+            return json.load(f)
+    except Exception:
+        return default
 
+
+def main():
+    # Load completed game scores from persistent file (primary source)
+    scores_data = load_json(SCORES_FILE, {})
+    completed = {}
+
+    # 1. Load from completed_scores.json (persisted across workflow runs)
+    for gid, score in scores_data.get("scores", {}).items():
+        completed[str(gid)] = {
+            "home_score": score["home_score"],
+            "away_score": score["away_score"],
+            "sport": (score.get("sport") or "").upper(),
+            "date_utc": score.get("date_utc"),
+            "odds": score.get("odds") or {},
+        }
+
+    # 2. Also check combined.json for any newly completed games not yet saved
+    combined = load_json(COMBINED_FILE, {})
     games = combined.get("data", [])
 
-    # Build completed games map
-    completed = {}
     for g in games:
         gid = str(g.get("id") or g.get("event_id") or "")
-        if not gid:
+        if not gid or gid in completed:
             continue
         home_score = safe_float(g.get("home_score"))
         away_score = safe_float(g.get("away_score"))
@@ -67,6 +82,8 @@ def main():
             "date_utc": g.get("date_utc"),
             "odds": g.get("odds") or {},
         }
+
+    print(f"[accuracy] Found {len(completed)} completed games with scores")
 
     # Load locked picks (primary) + archive (fallback)
     all_preds = []
@@ -173,14 +190,15 @@ def main():
             # Determine if the ATS pick was for home or away
             pick_is_home = (ats_pick == home_name) or (picks.get("ats_pick_abbr") == pred.get("home"))
 
+            # Home covers when actual_margin + spread_line > 0
+            # (same formula used in monte_carlo.py simulation)
+            home_covered = actual_margin + spread_line > 0
+            push = abs(actual_margin + spread_line) < 0.01
+
             if pick_is_home:
-                # Picked home to cover: home covers if margin > spread_line
-                covered = actual_margin > spread_line
-                push = abs(actual_margin - spread_line) < 0.01
+                covered = home_covered
             else:
-                # Picked away to cover: away covers if margin < spread_line
-                covered = actual_margin < spread_line
-                push = abs(actual_margin - spread_line) < 0.01
+                covered = not home_covered and not push
 
             if push:
                 stats["ALL"]["ATS"]["pushes"] += 1
