@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260302_1922",
+  "timestamp": "20260302_1946",
   "count": 376,
   "data": [
     {
@@ -24,8 +24,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/atl.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 3.0,
+      "total_points": 3.0,
       "odds": null,
       "venue": {
         "name": "Publix Field at Joker Marchant Stadium",
@@ -182,8 +182,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png"
       },
       "home_score": 1.0,
-      "away_score": 2.0,
-      "total_points": 3.0,
+      "away_score": 3.0,
+      "total_points": 4.0,
       "odds": null,
       "venue": {
         "name": "CACTI Park of the Palm Beaches",
@@ -276,7 +276,7 @@
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": -1.0,
+      "h2h_margin_avg": -2.0,
       "rest_diff_days": 0,
       "elo_diff": -20.0,
       "home_elo": 1490.0,
@@ -560,9 +560,9 @@
         "slug": "boston-red-sox",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png"
       },
-      "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "home_score": 5.0,
+      "away_score": 4.0,
+      "total_points": 9.0,
       "odds": null,
       "venue": {
         "name": "TD Ballpark",
@@ -660,11 +660,11 @@
       "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -688,9 +688,9 @@
         "slug": "detroit-red-wings",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": 1.0,
-      "total_points": 1.0,
+      "total_points": 2.0,
       "odds": {
         "details": "DET -112",
         "spread": 1.5,
@@ -747,18 +747,18 @@
       "spread": -1.5,
       "favorite": "DET -1.5",
       "underdog": "NSH +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884469+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267720+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 0.0,
+      "home_elo": 1500.0,
+      "away_elo": 1500.0,
       "travel_km": 0
     },
     {
@@ -1212,6 +1212,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Gavin Stone",
+          "status": "Apr 10",
+          "position": "SP"
+        },
+        {
           "player": "Keston Hiura",
           "status": "Mar 4",
           "position": "1B"
@@ -1253,7 +1258,7 @@
         }
       ],
       "injury_count_home": 11,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -1401,6 +1406,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Matt Waldron",
+          "status": "Apr 9",
+          "position": "SP"
+        },
+        {
           "player": "Blake Hunt",
           "status": "Mar 5",
           "position": "C"
@@ -1414,11 +1424,6 @@
           "player": "Yuki Matsui",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Matt Waldron",
-          "status": "Mar 10",
-          "position": "SP"
         },
         {
           "player": "Jason Adam",
@@ -1481,7 +1486,7 @@
       "odds": {
         "details": "HOU -14.5",
         "spread": 14.5,
-        "total": 224.5,
+        "total": 225.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1501,8 +1506,13 @@
       "spread": -14.5,
       "favorite": "HOU -14.5",
       "underdog": "WSH +14.5",
-      "tagged_at": "2026-03-02T19:22:49.884489+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267737+00:00",
       "home_injuries": [
+        {
+          "player": "Tristan Vukcevic",
+          "status": "Mar 3",
+          "position": "F"
+        },
         {
           "player": "Leaky Black",
           "status": "Mar 3",
@@ -1514,11 +1524,6 @@
           "position": "G"
         },
         {
-          "player": "Kyshawn George",
-          "status": "Mar 2",
-          "position": "F"
-        },
-        {
           "player": "Trae Young",
           "status": "Mar 3",
           "position": "G"
@@ -1526,11 +1531,6 @@
         {
           "player": "Anthony Gill",
           "status": "Mar 2",
-          "position": "F"
-        },
-        {
-          "player": "Tristan Vukcevic",
-          "status": "Mar 3",
           "position": "F"
         },
         {
@@ -1571,7 +1571,7 @@
           "position": "G"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 4,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -1629,7 +1629,7 @@
       "spread": -9.5,
       "favorite": "DUKE -9.5",
       "underdog": "NCSU +9.5",
-      "tagged_at": "2026-03-02T19:22:49.884495+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267743+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1690,7 +1690,7 @@
       "spread": -1.5,
       "favorite": "CBJ -1.5",
       "underdog": "NYR +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884500+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267747+00:00",
       "home_injuries": [
         {
           "player": "Adam Edstrom",
@@ -1740,9 +1740,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "BOS -1.5",
-        "spread": 1.5,
-        "total": 216.5,
+        "details": "BOS -2.5",
+        "spread": 2.5,
+        "total": 215.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1757,20 +1757,20 @@
       "dog_team": "Milwaukee Bucks",
       "fav_abbr": "BOS",
       "dog_abbr": "MIL",
-      "fav_spread": -1.5,
-      "dog_spread": 1.5,
-      "spread": -1.5,
-      "favorite": "BOS -1.5",
-      "underdog": "MIL +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884504+00:00",
+      "fav_spread": -2.5,
+      "dog_spread": 2.5,
+      "spread": -2.5,
+      "favorite": "BOS -2.5",
+      "underdog": "MIL +2.5",
+      "tagged_at": "2026-03-02T19:46:01.267751+00:00",
       "home_injuries": [
         {
-          "player": "Thanasis Antetokounmpo",
+          "player": "Giannis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
         {
-          "player": "Giannis Antetokounmpo",
+          "player": "Thanasis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
@@ -1845,7 +1845,7 @@
       "spread": -1.5,
       "favorite": "TOR -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884508+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267755+00:00",
       "home_injuries": [
         {
           "player": "Chris Tanev",
@@ -1928,7 +1928,7 @@
       "spread": -11.5,
       "favorite": "DEN -11.5",
       "underdog": "UTAH +11.5",
-      "tagged_at": "2026-03-02T19:22:49.884511+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267759+00:00",
       "home_injuries": [
         {
           "player": "Kevin Love",
@@ -2046,7 +2046,7 @@
       "spread": -7.5,
       "favorite": "ARIZ -7.5",
       "underdog": "ISU +7.5",
-      "tagged_at": "2026-03-02T19:22:49.884515+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267762+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2107,7 +2107,7 @@
       "spread": -1.5,
       "favorite": "LAC -1.5",
       "underdog": "GS +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884523+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267769+00:00",
       "home_injuries": [
         {
           "player": "Gary Payton II",
@@ -2220,7 +2220,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884526+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267773+00:00",
       "home_injuries": [
         {
           "player": "Tyler Myers",
@@ -2328,7 +2328,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "SEA +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884530+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267779+00:00",
       "home_injuries": [
         {
           "player": "Ryan Lindgren",
@@ -2384,7 +2384,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "COL -166",
+        "details": "COL -170",
         "spread": 1.5,
         "total": 5.5,
         "provider": "Draft Kings"
@@ -2406,7 +2406,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "LA +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884534+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267787+00:00",
       "home_injuries": [
         {
           "player": "Drew Doughty",
@@ -2795,6 +2795,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Matt Waldron",
+          "status": "Apr 9",
+          "position": "SP"
+        },
+        {
           "player": "Blake Hunt",
           "status": "Mar 5",
           "position": "C"
@@ -2808,11 +2813,6 @@
           "player": "Yuki Matsui",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Matt Waldron",
-          "status": "Mar 10",
-          "position": "SP"
         },
         {
           "player": "Jason Adam",
@@ -2903,6 +2903,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Gavin Stone",
+          "status": "Apr 10",
+          "position": "SP"
+        },
+        {
           "player": "Keston Hiura",
           "status": "Mar 4",
           "position": "1B"
@@ -2944,7 +2949,7 @@
         }
       ],
       "injury_count_home": 5,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -3345,6 +3350,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Tristan Vukcevic",
+          "status": "Mar 3",
+          "position": "F"
+        },
+        {
           "player": "Leaky Black",
           "status": "Mar 3",
           "position": "F"
@@ -3355,11 +3365,6 @@
           "position": "G"
         },
         {
-          "player": "Kyshawn George",
-          "status": "Mar 2",
-          "position": "F"
-        },
-        {
           "player": "Trae Young",
           "status": "Mar 3",
           "position": "G"
@@ -3367,11 +3372,6 @@
         {
           "player": "Anthony Gill",
           "status": "Mar 2",
-          "position": "F"
-        },
-        {
-          "player": "Tristan Vukcevic",
-          "status": "Mar 3",
           "position": "F"
         },
         {
@@ -3391,7 +3391,7 @@
         }
       ],
       "injury_count_home": 2,
-      "injury_count_away": 9,
+      "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -3678,7 +3678,7 @@
       "spread": -1.5,
       "favorite": "BOS -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884543+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267803+00:00",
       "home_injuries": [
         {
           "player": "Dans Locmelis",
@@ -3771,7 +3771,7 @@
       "spread": -1.5,
       "favorite": "BUF -1.5",
       "underdog": "VGK +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884547+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267810+00:00",
       "home_injuries": [
         {
           "player": "Jordan Greenway",
@@ -3849,7 +3849,7 @@
       "spread": -1.5,
       "favorite": "NJ -1.5",
       "underdog": "FLA +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884550+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267815+00:00",
       "home_injuries": [
         {
           "player": "Zack MacEwen",
@@ -3942,7 +3942,7 @@
       "spread": -1.5,
       "favorite": "WSH -1.5",
       "underdog": "UTA +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884554+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267821+00:00",
       "home_injuries": [
         {
           "player": "John Carlson",
@@ -4014,7 +4014,7 @@
       "spread": -1.5,
       "favorite": "CBJ -1.5",
       "underdog": "NSH +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884557+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267826+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -4022,7 +4022,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -4153,10 +4153,15 @@
       "spread": -2.5,
       "favorite": "NY -2.5",
       "underdog": "TOR +2.5",
-      "tagged_at": "2026-03-02T19:22:49.884561+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267832+00:00",
       "home_injuries": [
         {
           "player": "Collin Murray-Boyles",
+          "status": "Mar 5",
+          "position": "F"
+        },
+        {
+          "player": "Scottie Barnes",
           "status": "Mar 3",
           "position": "F"
         },
@@ -4173,7 +4178,7 @@
           "position": "G"
         }
       ],
-      "injury_count_home": 2,
+      "injury_count_home": 3,
       "injury_count_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -4231,7 +4236,7 @@
       "spread": -6.5,
       "favorite": "SA -6.5",
       "underdog": "PHI +6.5",
-      "tagged_at": "2026-03-02T19:22:49.884566+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267841+00:00",
       "home_injuries": [
         {
           "player": "Johni Broome",
@@ -4550,7 +4555,7 @@
       "spread": -1.5,
       "favorite": "WPG -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884570+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267847+00:00",
       "home_injuries": [
         {
           "player": "Nino Niederreiter",
@@ -4796,7 +4801,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884573+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267854+00:00",
       "home_injuries": [
         {
           "player": "Jonathan Huberdeau",
@@ -4889,7 +4894,7 @@
       "spread": -1.5,
       "favorite": "EDM -1.5",
       "underdog": "OTT +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884577+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267860+00:00",
       "home_injuries": [
         {
           "player": "Mattias Janmark",
@@ -4967,11 +4972,11 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884580+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267867+00:00",
       "home_injuries": [
         {
           "player": "Marcus Foligno",
-          "status": "Mar 3",
+          "status": "Mar 8",
           "position": "LW"
         },
         {
@@ -5055,7 +5060,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "ANA +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884585+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267877+00:00",
       "home_injuries": [
         {
           "player": "Mikael Granlund",
@@ -5148,7 +5153,7 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "SJ +1.5",
-      "tagged_at": "2026-03-02T19:22:49.884589+00:00",
+      "tagged_at": "2026-03-02T19:46:01.267882+00:00",
       "home_injuries": [
         {
           "player": "Ty Dellandrea",
@@ -5548,7 +5553,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -6139,7 +6144,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -6747,12 +6752,12 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Thanasis Antetokounmpo",
+          "player": "Giannis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
         {
-          "player": "Giannis Antetokounmpo",
+          "player": "Thanasis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
@@ -7305,7 +7310,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -7581,7 +7586,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -8233,6 +8238,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Gavin Stone",
+          "status": "Apr 10",
+          "position": "SP"
+        },
+        {
           "player": "Keston Hiura",
           "status": "Mar 4",
           "position": "1B"
@@ -8274,7 +8284,7 @@
         }
       ],
       "injury_count_home": 4,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -8735,6 +8745,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Matt Waldron",
+          "status": "Apr 9",
+          "position": "SP"
+        },
+        {
           "player": "Blake Hunt",
           "status": "Mar 5",
           "position": "C"
@@ -8748,11 +8763,6 @@
           "player": "Yuki Matsui",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Matt Waldron",
-          "status": "Mar 10",
-          "position": "SP"
         },
         {
           "player": "Jason Adam",
@@ -9001,6 +9011,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Tristan Vukcevic",
+          "status": "Mar 3",
+          "position": "F"
+        },
+        {
           "player": "Leaky Black",
           "status": "Mar 3",
           "position": "F"
@@ -9011,11 +9026,6 @@
           "position": "G"
         },
         {
-          "player": "Kyshawn George",
-          "status": "Mar 2",
-          "position": "F"
-        },
-        {
           "player": "Trae Young",
           "status": "Mar 3",
           "position": "G"
@@ -9023,11 +9033,6 @@
         {
           "player": "Anthony Gill",
           "status": "Mar 2",
-          "position": "F"
-        },
-        {
-          "player": "Tristan Vukcevic",
-          "status": "Mar 3",
           "position": "F"
         },
         {
@@ -9078,7 +9083,7 @@
           "position": "C"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 6,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -9582,6 +9587,11 @@
       "away_injuries": [
         {
           "player": "Collin Murray-Boyles",
+          "status": "Mar 5",
+          "position": "F"
+        },
+        {
+          "player": "Scottie Barnes",
           "status": "Mar 3",
           "position": "F"
         },
@@ -9592,7 +9602,7 @@
         }
       ],
       "injury_count_home": 0,
-      "injury_count_away": 2,
+      "injury_count_away": 3,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -9802,7 +9812,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -10990,7 +11000,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -11112,7 +11122,7 @@
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": -1.0,
+      "h2h_margin_avg": -2.0,
       "rest_diff_days": 0,
       "elo_diff": -20.0,
       "home_elo": 1490.0,
@@ -11354,10 +11364,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 10.0,
+      "home_elo": 1510.0,
+      "away_elo": 1500.0,
       "travel_km": 0
     },
     {
@@ -12993,7 +13003,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -13369,6 +13379,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Gavin Stone",
+          "status": "Apr 10",
+          "position": "SP"
+        },
+        {
           "player": "Keston Hiura",
           "status": "Mar 4",
           "position": "1B"
@@ -13426,7 +13441,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 9,
       "injury_count_away": 3,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -13472,6 +13487,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Matt Waldron",
+          "status": "Apr 9",
+          "position": "SP"
+        },
+        {
           "player": "Blake Hunt",
           "status": "Mar 5",
           "position": "C"
@@ -13485,11 +13505,6 @@
           "player": "Yuki Matsui",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Matt Waldron",
-          "status": "Mar 10",
-          "position": "SP"
         },
         {
           "player": "Jason Adam",
@@ -14286,7 +14301,7 @@
       "away_injuries": [
         {
           "player": "Marcus Foligno",
-          "status": "Mar 3",
+          "status": "Mar 8",
           "position": "LW"
         },
         {
@@ -15250,10 +15265,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": -10.0,
+      "home_elo": 1490.0,
+      "away_elo": 1500.0,
       "travel_km": 0
     },
     {
@@ -15526,7 +15541,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -16170,6 +16185,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Matt Waldron",
+          "status": "Apr 9",
+          "position": "SP"
+        },
+        {
           "player": "Blake Hunt",
           "status": "Mar 5",
           "position": "C"
@@ -16183,11 +16203,6 @@
           "player": "Yuki Matsui",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Matt Waldron",
-          "status": "Mar 10",
-          "position": "SP"
         },
         {
           "player": "Jason Adam",
@@ -17287,7 +17302,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -18299,12 +18314,12 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Thanasis Antetokounmpo",
+          "player": "Giannis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
         {
-          "player": "Giannis Antetokounmpo",
+          "player": "Thanasis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
@@ -18391,6 +18406,11 @@
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "Gavin Stone",
+          "status": "Apr 10",
+          "position": "SP"
+        },
         {
           "player": "Keston Hiura",
           "status": "Mar 4",
@@ -18489,7 +18509,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 9,
       "injury_count_away": 11,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -19385,7 +19405,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -19651,10 +19671,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 10.0,
+      "home_elo": 1500.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -19906,7 +19926,7 @@
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 1.0,
+      "h2h_margin_avg": 2.0,
       "rest_diff_days": 0,
       "elo_diff": 20.0,
       "home_elo": 1510.0,
@@ -20055,7 +20075,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -20365,7 +20385,7 @@
       "away_injuries": [
         {
           "player": "Marcus Foligno",
-          "status": "Mar 3",
+          "status": "Mar 8",
           "position": "LW"
         },
         {
@@ -20618,6 +20638,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Gavin Stone",
+          "status": "Apr 10",
+          "position": "SP"
+        },
+        {
           "player": "Keston Hiura",
           "status": "Mar 4",
           "position": "1B"
@@ -20659,7 +20684,7 @@
         }
       ],
       "injury_count_home": 1,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -21452,6 +21477,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Matt Waldron",
+          "status": "Apr 9",
+          "position": "SP"
+        },
+        {
           "player": "Blake Hunt",
           "status": "Mar 5",
           "position": "C"
@@ -21465,11 +21495,6 @@
           "player": "Yuki Matsui",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Matt Waldron",
-          "status": "Mar 10",
-          "position": "SP"
         },
         {
           "player": "Jason Adam",
@@ -21793,6 +21818,11 @@
       "home_injuries": [
         {
           "player": "Collin Murray-Boyles",
+          "status": "Mar 5",
+          "position": "F"
+        },
+        {
+          "player": "Scottie Barnes",
           "status": "Mar 3",
           "position": "F"
         },
@@ -21839,7 +21869,7 @@
           "position": "C"
         }
       ],
-      "injury_count_home": 2,
+      "injury_count_home": 3,
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -22053,6 +22083,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Tristan Vukcevic",
+          "status": "Mar 3",
+          "position": "F"
+        },
+        {
           "player": "Leaky Black",
           "status": "Mar 3",
           "position": "F"
@@ -22063,11 +22098,6 @@
           "position": "G"
         },
         {
-          "player": "Kyshawn George",
-          "status": "Mar 2",
-          "position": "F"
-        },
-        {
           "player": "Trae Young",
           "status": "Mar 3",
           "position": "G"
@@ -22075,11 +22105,6 @@
         {
           "player": "Anthony Gill",
           "status": "Mar 2",
-          "position": "F"
-        },
-        {
-          "player": "Tristan Vukcevic",
-          "status": "Mar 3",
           "position": "F"
         },
         {
@@ -22099,7 +22124,7 @@
         }
       ],
       "injury_count_home": 1,
-      "injury_count_away": 9,
+      "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -22160,7 +22185,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -22201,12 +22226,12 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Thanasis Antetokounmpo",
+          "player": "Giannis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
         {
-          "player": "Giannis Antetokounmpo",
+          "player": "Thanasis Antetokounmpo",
           "status": "Mar 2",
           "position": "F"
         },
@@ -28475,5 +28500,5 @@
       "travel_km": 0
     }
   ],
-  "weather_merged_at": "2026-03-02T19:23:14.447702"
+  "weather_merged_at": "2026-03-02T19:46:55.189293"
 }

@@ -8700,6 +8700,160 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401833045",
+      "sport": "mlb",
+      "matchup": "Boston Red Sox at Toronto Blue Jays",
+      "shortName": "BOS @ TOR",
+      "date_utc": "2026-03-02T18:07Z",
+      "date_local": "2026-03-02 01:07 PM ET",
+      "home": "TOR",
+      "away": "BOS",
+      "home_team": {
+        "id": "14",
+        "name": "Toronto Blue Jays",
+        "abbr": "TOR",
+        "slug": "toronto-blue-jays",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tor.png"
+      },
+      "away_team": {
+        "id": "2",
+        "name": "Boston Red Sox",
+        "abbr": "BOS",
+        "slug": "boston-red-sox",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "TD Ballpark",
+        "city": "Dunedin",
+        "state": "Florida",
+        "indoor": false,
+        "grass": true
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 7,
+      "injury_count_away": 9,
+      "prediction": {
+        "projected_home_score": 10.3,
+        "projected_away_score": 9.7,
+        "projected_total": 20.0,
+        "projected_spread": 0.6,
+        "win_probability_home": 0.525,
+        "confidence": 33
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5667,
+        "away_win_pct": 0.4333,
+        "home_cover_pct": 0.5667,
+        "over_pct": 0.5077,
+        "avg_simulated_margin": 0.58,
+        "avg_simulated_total": 8.54
+      },
+      "picks": {
+        "su_pick": "Toronto Blue Jays",
+        "su_pick_abbr": "TOR",
+        "su_confidence": 56.7,
+        "ats_pick": "Toronto Blue Jays",
+        "ats_pick_abbr": "TOR",
+        "ats_spread": -0.6,
+        "ats_confidence": 56.7,
+        "ou_pick": "Over",
+        "ou_line": 8.5,
+        "ou_confidence": 50.8,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
+    },
+    {
+      "id": "401803306",
+      "sport": "nhl",
+      "matchup": "Detroit Red Wings at Nashville Predators",
+      "shortName": "DET @ NSH",
+      "date_utc": "2026-03-02T19:00Z",
+      "date_local": "2026-03-02 02:00 PM ET",
+      "home": "NSH",
+      "away": "DET",
+      "home_team": {
+        "id": "27",
+        "name": "Nashville Predators",
+        "abbr": "NSH",
+        "slug": "nashville-predators",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nsh.png"
+      },
+      "away_team": {
+        "id": "5",
+        "name": "Detroit Red Wings",
+        "abbr": "DET",
+        "slug": "detroit-red-wings",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/det.png"
+      },
+      "odds": {
+        "details": "DET -112",
+        "spread": 1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Bridgestone Arena",
+        "city": "Nashville",
+        "state": "TN",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Detroit Red Wings",
+      "dog_team": "Nashville Predators",
+      "fav_abbr": "DET",
+      "dog_abbr": "NSH",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 9.2,
+        "projected_away_score": 10.8,
+        "projected_total": 20.0,
+        "projected_spread": -1.5,
+        "win_probability_home": 0.438,
+        "confidence": 59
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.2427,
+        "away_win_pct": 0.7573,
+        "home_cover_pct": 0.5004,
+        "over_pct": 0.5126,
+        "avg_simulated_margin": -1.51,
+        "avg_simulated_total": 6.56
+      },
+      "picks": {
+        "su_pick": "Detroit Red Wings",
+        "su_pick_abbr": "DET",
+        "su_confidence": 75.7,
+        "ats_pick": "Nashville Predators",
+        "ats_pick_abbr": "NSH",
+        "ats_spread": 1.5,
+        "ats_confidence": 50.0,
+        "ou_pick": "Over",
+        "ou_line": 6.5,
+        "ou_confidence": 51.3,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
     }
   ]
 }
