@@ -10321,6 +10321,80 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401833050",
+      "sport": "mlb",
+      "matchup": "Philadelphia Phillies at Tampa Bay Rays",
+      "shortName": "PHI @ TB",
+      "date_utc": "2026-03-03T18:05Z",
+      "date_local": "2026-03-03 01:05 PM ET",
+      "home": "TB",
+      "away": "PHI",
+      "home_team": {
+        "id": "30",
+        "name": "Tampa Bay Rays",
+        "abbr": "TB",
+        "slug": "tampa-bay-rays",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tb.png"
+      },
+      "away_team": {
+        "id": "22",
+        "name": "Philadelphia Phillies",
+        "abbr": "PHI",
+        "slug": "philadelphia-phillies",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/phi.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Charlotte Sports Park",
+        "city": "Port Charlotte",
+        "state": "Florida",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 8,
+      "injury_count_away": 9,
+      "prediction": {
+        "projected_home_score": 9.4,
+        "projected_away_score": 10.6,
+        "projected_total": 20.0,
+        "projected_spread": -1.2,
+        "win_probability_home": 0.45,
+        "confidence": 37
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.401,
+        "away_win_pct": 0.599,
+        "home_cover_pct": 0.401,
+        "over_pct": 0.4988,
+        "avg_simulated_margin": -0.9,
+        "avg_simulated_total": 8.47
+      },
+      "picks": {
+        "su_pick": "Philadelphia Phillies",
+        "su_pick_abbr": "PHI",
+        "su_confidence": 59.9,
+        "ats_pick": "Philadelphia Phillies",
+        "ats_pick_abbr": "PHI",
+        "ats_spread": -0.9,
+        "ats_confidence": 59.9,
+        "ou_pick": "Under",
+        "ou_line": 8.5,
+        "ou_confidence": 50.1,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
