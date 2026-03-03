@@ -9688,6 +9688,86 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803305",
+      "sport": "nhl",
+      "matchup": "Philadelphia Flyers at Toronto Maple Leafs",
+      "shortName": "PHI @ TOR",
+      "date_utc": "2026-03-03T00:30Z",
+      "date_local": "2026-03-02 07:30 PM ET",
+      "home": "TOR",
+      "away": "PHI",
+      "home_team": {
+        "id": "21",
+        "name": "Toronto Maple Leafs",
+        "abbr": "TOR",
+        "slug": "toronto-maple-leafs",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tor.png"
+      },
+      "away_team": {
+        "id": "15",
+        "name": "Philadelphia Flyers",
+        "abbr": "PHI",
+        "slug": "philadelphia-flyers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/phi.png"
+      },
+      "odds": {
+        "details": "TOR -135",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Scotiabank Arena",
+        "city": "Toronto",
+        "state": "ON",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Toronto Maple Leafs",
+      "dog_team": "Philadelphia Flyers",
+      "fav_abbr": "TOR",
+      "dog_abbr": "PHI",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 11.1,
+        "projected_away_score": 8.9,
+        "projected_total": 20.0,
+        "projected_spread": 2.1,
+        "win_probability_home": 0.587,
+        "confidence": 62
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8311,
+        "away_win_pct": 0.1689,
+        "home_cover_pct": 0.6031,
+        "over_pct": 0.4978,
+        "avg_simulated_margin": 2.07,
+        "avg_simulated_total": 6.49
+      },
+      "picks": {
+        "su_pick": "Toronto Maple Leafs",
+        "su_pick_abbr": "TOR",
+        "su_confidence": 83.1,
+        "ats_pick": "Toronto Maple Leafs",
+        "ats_pick_abbr": "TOR",
+        "ats_spread": -1.5,
+        "ats_confidence": 60.3,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 50.2,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
     }
   ]
 }
