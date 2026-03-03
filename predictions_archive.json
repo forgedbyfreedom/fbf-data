@@ -9609,6 +9609,85 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401810735",
+      "sport": "nba",
+      "matchup": "Boston Celtics at Milwaukee Bucks",
+      "shortName": "BOS @ MIL",
+      "date_utc": "2026-03-03T00:30Z",
+      "date_local": "2026-03-02 07:30 PM ET",
+      "home": "MIL",
+      "away": "BOS",
+      "home_team": {
+        "id": "15",
+        "name": "Milwaukee Bucks",
+        "abbr": "MIL",
+        "slug": "milwaukee-bucks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mil.png"
+      },
+      "away_team": {
+        "id": "2",
+        "name": "Boston Celtics",
+        "abbr": "BOS",
+        "slug": "boston-celtics",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/bos.png"
+      },
+      "odds": {
+        "details": "BOS -2.5",
+        "spread": 2.5,
+        "total": 216.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Fiserv Forum",
+        "city": "Milwaukee",
+        "state": "WI",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Boston Celtics",
+      "dog_team": "Milwaukee Bucks",
+      "fav_abbr": "BOS",
+      "dog_abbr": "MIL",
+      "fav_spread": -2.5,
+      "dog_spread": 2.5,
+      "injury_count_home": 1,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 107.3,
+        "projected_away_score": 109.2,
+        "projected_total": 216.5,
+        "projected_spread": -1.9,
+        "win_probability_home": 0.421,
+        "confidence": 61
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4317,
+        "away_win_pct": 0.5683,
+        "home_cover_pct": 0.5215,
+        "over_pct": 0.5086,
+        "avg_simulated_margin": -1.93,
+        "avg_simulated_total": 216.59
+      },
+      "picks": {
+        "su_pick": "Boston Celtics",
+        "su_pick_abbr": "BOS",
+        "su_confidence": 56.8,
+        "ats_pick": "Milwaukee Bucks",
+        "ats_pick_abbr": "MIL",
+        "ats_spread": 2.5,
+        "ats_confidence": 52.1,
+        "ou_pick": "Over",
+        "ou_line": 216.5,
+        "ou_confidence": 50.9,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
