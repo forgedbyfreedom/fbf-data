@@ -13333,6 +13333,80 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401833052",
+      "sport": "mlb",
+      "matchup": "Houston Astros at Baltimore Orioles",
+      "shortName": "HOU @ BAL",
+      "date_utc": "2026-03-04T18:00Z",
+      "date_local": "2026-03-04 01:00 PM ET",
+      "home": "BAL",
+      "away": "HOU",
+      "home_team": {
+        "id": "1",
+        "name": "Baltimore Orioles",
+        "abbr": "BAL",
+        "slug": "baltimore-orioles",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bal.png"
+      },
+      "away_team": {
+        "id": "18",
+        "name": "Houston Astros",
+        "abbr": "HOU",
+        "slug": "houston-astros",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/hou.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Ed Smith Stadium",
+        "city": "Sarasota",
+        "state": "Florida",
+        "indoor": false,
+        "grass": true
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 8,
+      "injury_count_away": 8,
+      "prediction": {
+        "projected_home_score": 10.0,
+        "projected_away_score": 10.0,
+        "projected_total": 20.0,
+        "projected_spread": 0.0,
+        "win_probability_home": 0.5,
+        "confidence": 30
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4953,
+        "away_win_pct": 0.5047,
+        "home_cover_pct": 0.4953,
+        "over_pct": 0.499,
+        "avg_simulated_margin": -0.05,
+        "avg_simulated_total": 8.48
+      },
+      "picks": {
+        "su_pick": "Houston Astros",
+        "su_pick_abbr": "HOU",
+        "su_confidence": 50.5,
+        "ats_pick": "Houston Astros",
+        "ats_pick_abbr": "HOU",
+        "ats_spread": 0,
+        "ats_confidence": 50.5,
+        "ou_pick": "Under",
+        "ou_line": 8.5,
+        "ou_confidence": 50.1,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
