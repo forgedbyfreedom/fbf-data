@@ -15897,6 +15897,81 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401833062",
+      "sport": "mlb",
+      "matchup": "Athletics Athletics at Los Angeles Angels",
+      "shortName": "ATH @ LAA",
+      "date_utc": "2026-03-05T20:10Z",
+      "date_local": "2026-03-05 03:10 PM ET",
+      "home": "LAA",
+      "away": "ATH",
+      "home_team": {
+        "id": "3",
+        "name": "Los Angeles Angels",
+        "abbr": "LAA",
+        "slug": "los-angeles-angels",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/laa.png"
+      },
+      "away_team": {
+        "id": "11",
+        "name": "Athletics",
+        "abbr": "ATH",
+        "slug": "athletics",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Tempe Diablo Stadium",
+        "city": "Tempe",
+        "state": "Arizona",
+        "indoor": false,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 8,
+      "injury_count_away": 1,
+      "prediction": {
+        "projected_home_score": 8.9,
+        "projected_away_score": 11.1,
+        "projected_total": 20.0,
+        "projected_spread": -2.1,
+        "win_probability_home": 0.413,
+        "confidence": 42
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.2727,
+        "away_win_pct": 0.7273,
+        "home_cover_pct": 0.2727,
+        "over_pct": 0.5009,
+        "avg_simulated_margin": -2.08,
+        "avg_simulated_total": 8.49
+      },
+      "picks": {
+        "su_pick": "Athletics",
+        "su_pick_abbr": "ATH",
+        "su_confidence": 72.7,
+        "ats_pick": "Athletics",
+        "ats_pick_abbr": "ATH",
+        "ats_spread": -2.1,
+        "ats_confidence": 72.7,
+        "ou_pick": "Over",
+        "ou_line": 8.5,
+        "ou_confidence": 50.1,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "highlight": true
     }
   ]
 }
