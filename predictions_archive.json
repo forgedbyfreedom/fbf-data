@@ -17719,6 +17719,85 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401803333",
+      "sport": "nhl",
+      "matchup": "New York Islanders at Los Angeles Kings",
+      "shortName": "NYI @ LA",
+      "date_utc": "2026-03-06T02:30Z",
+      "date_local": "2026-03-05 09:30 PM ET",
+      "home": "LA",
+      "away": "NYI",
+      "home_team": {
+        "id": "8",
+        "name": "Los Angeles Kings",
+        "abbr": "LA",
+        "slug": "los-angeles-kings",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/la.png"
+      },
+      "away_team": {
+        "id": "12",
+        "name": "New York Islanders",
+        "abbr": "NYI",
+        "slug": "new-york-islanders",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nyi.png"
+      },
+      "odds": {
+        "details": "LA -120",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "crypto.com Arena",
+        "city": "Los Angeles",
+        "state": "CA",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Los Angeles Kings",
+      "dog_team": "New York Islanders",
+      "fav_abbr": "LA",
+      "dog_abbr": "NYI",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 4,
+      "injury_count_away": 1,
+      "prediction": {
+        "projected_home_score": 10.3,
+        "projected_away_score": 9.7,
+        "projected_total": 20.0,
+        "projected_spread": 0.6,
+        "win_probability_home": 0.525,
+        "confidence": 53
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.6052,
+        "away_win_pct": 0.3948,
+        "home_cover_pct": 0.3394,
+        "over_pct": 0.4949,
+        "avg_simulated_margin": 0.6,
+        "avg_simulated_total": 5.51
+      },
+      "picks": {
+        "su_pick": "Los Angeles Kings",
+        "su_pick_abbr": "LA",
+        "su_confidence": 60.5,
+        "ats_pick": "New York Islanders",
+        "ats_pick_abbr": "NYI",
+        "ats_spread": 1.5,
+        "ats_confidence": 66.1,
+        "ou_pick": "Under",
+        "ou_line": 5.5,
+        "ou_confidence": 50.5,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
