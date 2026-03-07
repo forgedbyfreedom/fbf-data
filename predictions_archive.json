@@ -23587,6 +23587,81 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401833099",
+      "sport": "mlb",
+      "matchup": "Chicago White Sox at Seattle Mariners",
+      "shortName": "CHW @ SEA",
+      "date_utc": "2026-03-07T20:10Z",
+      "date_local": "2026-03-07 03:10 PM ET",
+      "home": "SEA",
+      "away": "CHW",
+      "home_team": {
+        "id": "12",
+        "name": "Seattle Mariners",
+        "abbr": "SEA",
+        "slug": "seattle-mariners",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sea.png"
+      },
+      "away_team": {
+        "id": "4",
+        "name": "Chicago White Sox",
+        "abbr": "CHW",
+        "slug": "chicago-white-sox",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chw.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Peoria Stadium",
+        "city": "Peoria",
+        "state": "Arizona",
+        "indoor": false,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 3,
+      "injury_count_away": 8,
+      "prediction": {
+        "projected_home_score": 10.8,
+        "projected_away_score": 9.2,
+        "projected_total": 20.0,
+        "projected_spread": 1.5,
+        "win_probability_home": 0.562,
+        "confidence": 39
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.6635,
+        "away_win_pct": 0.3365,
+        "home_cover_pct": 0.6635,
+        "over_pct": 0.5014,
+        "avg_simulated_margin": 1.52,
+        "avg_simulated_total": 8.5
+      },
+      "picks": {
+        "su_pick": "Seattle Mariners",
+        "su_pick_abbr": "SEA",
+        "su_confidence": 66.3,
+        "ats_pick": "Seattle Mariners",
+        "ats_pick_abbr": "SEA",
+        "ats_spread": -1.5,
+        "ats_confidence": 66.3,
+        "ou_pick": "Over",
+        "ou_line": 8.5,
+        "ou_confidence": 50.1,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "highlight": true
     }
   ]
 }
