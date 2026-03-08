@@ -27453,6 +27453,161 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401833102",
+      "sport": "mlb",
+      "matchup": "Los Angeles Angels at Athletics Athletics",
+      "shortName": "LAA @ ATH",
+      "date_utc": "2026-03-08T20:05Z",
+      "date_local": "2026-03-08 04:05 PM ET",
+      "home": "ATH",
+      "away": "LAA",
+      "home_team": {
+        "id": "11",
+        "name": "Athletics",
+        "abbr": "ATH",
+        "slug": "athletics",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png"
+      },
+      "away_team": {
+        "id": "3",
+        "name": "Los Angeles Angels",
+        "abbr": "LAA",
+        "slug": "los-angeles-angels",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/laa.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Las Vegas Ballpark",
+        "city": "Las Vegas",
+        "state": "Nevada",
+        "indoor": false,
+        "grass": true
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 1,
+      "injury_count_away": 8,
+      "prediction": {
+        "projected_home_score": 11.8,
+        "projected_away_score": 8.2,
+        "projected_total": 20.0,
+        "projected_spread": 3.6,
+        "win_probability_home": 0.646,
+        "confidence": 51
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8273,
+        "away_win_pct": 0.1727,
+        "home_cover_pct": 0.8273,
+        "over_pct": 0.5052,
+        "avg_simulated_margin": 3.34,
+        "avg_simulated_total": 8.53
+      },
+      "picks": {
+        "su_pick": "Athletics",
+        "su_pick_abbr": "ATH",
+        "su_confidence": 82.7,
+        "ats_pick": "Athletics",
+        "ats_pick_abbr": "ATH",
+        "ats_spread": -3.3,
+        "ats_confidence": 82.7,
+        "ou_pick": "Over",
+        "ou_line": 8.5,
+        "ou_confidence": 50.5,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "highlight": true
+    },
+    {
+      "id": "401825568",
+      "sport": "ncaab",
+      "matchup": "Michigan State Spartans at Michigan Wolverines",
+      "shortName": "MSU @ MICH",
+      "date_utc": "2026-03-08T20:30Z",
+      "date_local": "2026-03-08 04:30 PM ET",
+      "home": "MICH",
+      "away": "MSU",
+      "home_team": {
+        "id": "130",
+        "name": "Michigan Wolverines",
+        "abbr": "MICH",
+        "slug": "michigan-wolverines",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png"
+      },
+      "away_team": {
+        "id": "127",
+        "name": "Michigan State Spartans",
+        "abbr": "MSU",
+        "slug": "michigan-state-spartans",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png"
+      },
+      "odds": {
+        "details": "MICH -10.5",
+        "spread": -10.5,
+        "total": 152.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Crisler Center",
+        "city": "Ann Arbor",
+        "state": "MI",
+        "indoor": true,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Michigan Wolverines",
+      "dog_team": "Michigan State Spartans",
+      "fav_abbr": "MICH",
+      "dog_abbr": "MSU",
+      "fav_spread": -10.5,
+      "dog_spread": 10.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 81.5,
+        "projected_away_score": 71.0,
+        "projected_total": 152.5,
+        "projected_spread": 10.5,
+        "win_probability_home": 0.852,
+        "confidence": 93
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8124,
+        "away_win_pct": 0.1876,
+        "home_cover_pct": 0.5072,
+        "over_pct": 0.5003,
+        "avg_simulated_margin": 10.46,
+        "avg_simulated_total": 152.55
+      },
+      "picks": {
+        "su_pick": "Michigan Wolverines",
+        "su_pick_abbr": "MICH",
+        "su_confidence": 81.2,
+        "ats_pick": "Michigan Wolverines",
+        "ats_pick_abbr": "MICH",
+        "ats_spread": -10.5,
+        "ats_confidence": 50.7,
+        "ou_pick": "Over",
+        "ou_line": 152.5,
+        "ou_confidence": 50.0,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
     }
   ]
 }
