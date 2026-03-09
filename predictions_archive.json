@@ -29684,6 +29684,81 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401833119",
+      "sport": "mlb",
+      "matchup": "Seattle Mariners at Arizona Diamondbacks",
+      "shortName": "SEA @ ARI",
+      "date_utc": "2026-03-09T20:10Z",
+      "date_local": "2026-03-09 04:10 PM ET",
+      "home": "ARI",
+      "away": "SEA",
+      "home_team": {
+        "id": "29",
+        "name": "Arizona Diamondbacks",
+        "abbr": "ARI",
+        "slug": "arizona-diamondbacks",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ari.png"
+      },
+      "away_team": {
+        "id": "12",
+        "name": "Seattle Mariners",
+        "abbr": "SEA",
+        "slug": "seattle-mariners",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sea.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Salt River Fields at Talking Stick",
+        "city": "Scottsdale",
+        "state": "Arizona",
+        "indoor": false,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 14,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 8.3,
+        "projected_away_score": 11.7,
+        "projected_total": 20.0,
+        "projected_spread": -3.3,
+        "win_probability_home": 0.366,
+        "confidence": 49
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.1778,
+        "away_win_pct": 0.8222,
+        "home_cover_pct": 0.1778,
+        "over_pct": 0.5088,
+        "avg_simulated_margin": -3.27,
+        "avg_simulated_total": 8.54
+      },
+      "picks": {
+        "su_pick": "Seattle Mariners",
+        "su_pick_abbr": "SEA",
+        "su_confidence": 82.2,
+        "ats_pick": "Seattle Mariners",
+        "ats_pick_abbr": "SEA",
+        "ats_spread": -3.3,
+        "ats_confidence": 82.2,
+        "ou_pick": "Over",
+        "ou_line": 8.5,
+        "ou_confidence": 50.9,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "highlight": true
     }
   ]
 }
