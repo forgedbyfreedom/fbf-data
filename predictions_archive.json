@@ -29086,6 +29086,80 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401833121",
+      "sport": "mlb",
+      "matchup": "Philadelphia Phillies at Boston Red Sox",
+      "shortName": "PHI @ BOS",
+      "date_utc": "2026-03-09T17:05Z",
+      "date_local": "2026-03-09 01:05 PM ET",
+      "home": "BOS",
+      "away": "PHI",
+      "home_team": {
+        "id": "2",
+        "name": "Boston Red Sox",
+        "abbr": "BOS",
+        "slug": "boston-red-sox",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png"
+      },
+      "away_team": {
+        "id": "22",
+        "name": "Philadelphia Phillies",
+        "abbr": "PHI",
+        "slug": "philadelphia-phillies",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/phi.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "JetBlue Park at Fenway South",
+        "city": "Fort Myers",
+        "state": "Florida",
+        "indoor": false,
+        "grass": false
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 9,
+      "injury_count_away": 7,
+      "prediction": {
+        "projected_home_score": 9.7,
+        "projected_away_score": 10.3,
+        "projected_total": 20.0,
+        "projected_spread": -0.6,
+        "win_probability_home": 0.475,
+        "confidence": 33
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4389,
+        "away_win_pct": 0.5611,
+        "home_cover_pct": 0.4389,
+        "over_pct": 0.4921,
+        "avg_simulated_margin": -0.54,
+        "avg_simulated_total": 8.47
+      },
+      "picks": {
+        "su_pick": "Philadelphia Phillies",
+        "su_pick_abbr": "PHI",
+        "su_confidence": 56.1,
+        "ats_pick": "Philadelphia Phillies",
+        "ats_pick_abbr": "PHI",
+        "ats_spread": -0.6,
+        "ats_confidence": 56.1,
+        "ou_pick": "Under",
+        "ou_line": 8.5,
+        "ou_confidence": 50.8,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
