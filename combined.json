@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260309_1749",
+  "timestamp": "20260309_1822",
   "count": 354,
   "data": [
     {
@@ -24,8 +24,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/min.png"
       },
       "home_score": 8.0,
-      "away_score": null,
-      "total_points": 8.0,
+      "away_score": 4.0,
+      "total_points": 12.0,
       "odds": null,
       "venue": {
         "name": "CoolToday Park",
@@ -133,11 +133,11 @@
       "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 4.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -161,9 +161,9 @@
         "slug": "philadelphia-phillies",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/phi.png"
       },
-      "home_score": 1.0,
-      "away_score": 2.0,
-      "total_points": 3.0,
+      "home_score": 4.0,
+      "away_score": 3.0,
+      "total_points": 7.0,
       "odds": null,
       "venue": {
         "name": "JetBlue Park at Fenway South",
@@ -261,11 +261,11 @@
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": -1.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": -20.0,
-      "home_elo": 1490.0,
-      "away_elo": 1510.0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -290,8 +290,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tb.png"
       },
       "home_score": 3.0,
-      "away_score": null,
-      "total_points": 3.0,
+      "away_score": 2.0,
+      "total_points": 5.0,
       "odds": null,
       "venue": {
         "name": "Publix Field at Joker Marchant Stadium",
@@ -429,11 +429,11 @@
       "injury_count_away": 12,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -457,9 +457,9 @@
         "slug": "st-louis-cardinals",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/stl.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": 2.0,
-      "total_points": 2.0,
+      "total_points": 3.0,
       "odds": null,
       "venue": {
         "name": "CACTI Park of the Palm Beaches",
@@ -562,11 +562,11 @@
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -19.7,
+      "home_elo": 1490.0,
+      "away_elo": 1509.7,
       "travel_km": 0
     },
     {
@@ -591,8 +591,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bal.png"
       },
       "home_score": 2.0,
-      "away_score": null,
-      "total_points": 2.0,
+      "away_score": 2.0,
+      "total_points": 4.0,
       "odds": null,
       "venue": {
         "name": "Roger Dean Chevrolet Stadium",
@@ -690,11 +690,11 @@
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 9.4,
+      "home_elo": 1509.7,
+      "away_elo": 1500.3,
       "travel_km": 0
     },
     {
@@ -734,7 +734,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Pierre Lambert",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Peter MacDougall",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Tyson Baker",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Kilian McNamara",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        }
+      ],
       "fav_team": "Columbus Blue Jackets",
       "dog_team": "Los Angeles Kings",
       "fav_abbr": "CBJ",
@@ -744,7 +777,7 @@
       "spread": -1.5,
       "favorite": "CBJ -1.5",
       "underdog": "LA +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440396+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912423+00:00",
       "home_injuries": [
         {
           "player": "Dante Fabbro",
@@ -815,11 +848,6 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
-        {
           "player": "Drew Thorpe",
           "status": "Jun 1",
           "position": "SP"
@@ -846,6 +874,11 @@
         }
       ],
       "away_injuries": [
+        {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
         {
           "player": "McCade Brown",
           "status": "Mar 11",
@@ -887,8 +920,8 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 6,
-      "injury_count_away": 8,
+      "injury_count_home": 5,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -965,13 +998,18 @@
       ],
       "away_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
         }
       ],
       "injury_count_home": 6,
-      "injury_count_away": 1,
+      "injury_count_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -1673,6 +1711,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -1688,11 +1736,6 @@
           "position": "SP"
         },
         {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
-        },
-        {
           "player": "Ronny Henriquez",
           "status": "Feb 1",
           "position": "RP"
@@ -1704,7 +1747,7 @@
         }
       ],
       "injury_count_home": 9,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -1839,7 +1882,7 @@
       "odds": {
         "details": "CLE -13.5",
         "spread": -13.5,
-        "total": 226.5,
+        "total": 227.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -1859,7 +1902,7 @@
       "spread": -13.5,
       "favorite": "CLE -13.5",
       "underdog": "PHI +13.5",
-      "tagged_at": "2026-03-09T17:49:24.440411+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912439+00:00",
       "home_injuries": [
         {
           "player": "Max Strus",
@@ -1957,7 +2000,7 @@
       "spread": -28.5,
       "favorite": "CONN -28.5",
       "underdog": "VILL +28.5",
-      "tagged_at": "2026-03-09T17:49:24.440417+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912446+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2018,7 +2061,7 @@
       "spread": -1.5,
       "favorite": "PHI -1.5",
       "underdog": "NYR +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440422+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912455+00:00",
       "home_injuries": [
         {
           "player": "Nick Seeler",
@@ -2116,7 +2159,7 @@
       "spread": -1.5,
       "favorite": "WSH -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440440+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912460+00:00",
       "home_injuries": [
         {
           "player": "Eriks Mateiko",
@@ -2179,7 +2222,7 @@
       "odds": {
         "details": "MEM -1.5",
         "spread": 1.5,
-        "total": 222.5,
+        "total": 220.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2199,7 +2242,7 @@
       "spread": -1.5,
       "favorite": "MEM -1.5",
       "underdog": "BKN +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440445+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912464+00:00",
       "home_injuries": [
         {
           "player": "Michael Porter Jr.",
@@ -2322,7 +2365,7 @@
       "spread": -6.5,
       "favorite": "OKC -6.5",
       "underdog": "DEN +6.5",
-      "tagged_at": "2026-03-09T17:49:24.440448+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912468+00:00",
       "home_injuries": [
         {
           "player": "Branden Carlson",
@@ -2425,7 +2468,7 @@
       "spread": -1.5,
       "favorite": "UTA -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440452+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912475+00:00",
       "home_injuries": [
         {
           "player": "Spencer Knight",
@@ -2513,7 +2556,7 @@
       "spread": -7.5,
       "favorite": "GS -7.5",
       "underdog": "UTAH +7.5",
-      "tagged_at": "2026-03-09T17:49:24.440455+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912479+00:00",
       "home_injuries": [
         {
           "player": "Isaiah Collier",
@@ -2624,8 +2667,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "GONZ -19.5",
-        "spread": -19.5,
+        "details": "GONZ -18.5",
+        "spread": -18.5,
         "total": 143.5,
         "provider": "Draft Kings"
       },
@@ -2641,12 +2684,12 @@
       "dog_team": "Oregon State Beavers",
       "fav_abbr": "GONZ",
       "dog_abbr": "ORST",
-      "fav_spread": -19.5,
-      "dog_spread": 19.5,
-      "spread": -19.5,
-      "favorite": "GONZ -19.5",
-      "underdog": "ORST +19.5",
-      "tagged_at": "2026-03-09T17:49:24.440459+00:00",
+      "fav_spread": -18.5,
+      "dog_spread": 18.5,
+      "spread": -18.5,
+      "favorite": "GONZ -18.5",
+      "underdog": "ORST +18.5",
+      "tagged_at": "2026-03-09T18:22:35.912483+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2707,7 +2750,7 @@
       "spread": -1.5,
       "favorite": "OTT -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440462+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912486+00:00",
       "home_injuries": [
         {
           "player": "Pierre-Olivier Joseph",
@@ -2805,7 +2848,7 @@
       "spread": -2.5,
       "favorite": "NY -2.5",
       "underdog": "LAC +2.5",
-      "tagged_at": "2026-03-09T17:49:24.440469+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912490+00:00",
       "home_injuries": [
         {
           "player": "John Collins",
@@ -2873,7 +2916,7 @@
       "odds": {
         "details": "SMC -4.5",
         "spread": -4.5,
-        "total": 149.5,
+        "total": 148.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2893,7 +2936,7 @@
       "spread": -4.5,
       "favorite": "SMC -4.5",
       "underdog": "SCU +4.5",
-      "tagged_at": "2026-03-09T17:49:24.440475+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912495+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3054,10 +3097,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1510.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -3188,9 +3231,9 @@
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -10.3,
+      "home_elo": 1490.0,
+      "away_elo": 1500.3,
       "travel_km": 0
     },
     {
@@ -3454,9 +3497,9 @@
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -3571,7 +3614,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -3612,6 +3655,16 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -3625,11 +3678,6 @@
           "player": "Thomas White",
           "status": "Mar 27",
           "position": "SP"
-        },
-        {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
         },
         {
           "player": "Ronny Henriquez",
@@ -3679,7 +3727,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -3817,7 +3865,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -3858,17 +3906,17 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
         }
       ],
       "away_injuries": [
-        {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
         {
           "player": "Drew Thorpe",
           "status": "Jun 1",
@@ -3895,8 +3943,8 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 1,
-      "injury_count_away": 6,
+      "injury_count_home": 2,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -4345,6 +4393,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
+        {
           "player": "McCade Brown",
           "status": "Mar 11",
           "position": "SP"
@@ -4417,7 +4470,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 9,
       "injury_count_away": 6,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -4799,7 +4852,7 @@
       "spread": -1.5,
       "favorite": "BOS -1.5",
       "underdog": "LA +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440480+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912500+00:00",
       "home_injuries": [
         {
           "player": "Dans Locmelis",
@@ -4882,7 +4935,7 @@
       "spread": -1.5,
       "favorite": "BUF -1.5",
       "underdog": "SJ +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440483+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912504+00:00",
       "home_injuries": [
         {
           "player": "Tyson Kozak",
@@ -4975,7 +5028,7 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "TOR +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440486+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912507+00:00",
       "home_injuries": [
         {
           "player": "Patrik Laine",
@@ -5048,7 +5101,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "CBJ +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440490+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912510+00:00",
       "home_injuries": [
         {
           "player": "Gage Goncalves",
@@ -5136,8 +5189,13 @@
       "spread": -1.5,
       "favorite": "FLA -1.5",
       "underdog": "DET +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440493+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912513+00:00",
       "home_injuries": [
+        {
+          "player": "Brad Marchand",
+          "status": "Mar 12",
+          "position": "LW"
+        },
         {
           "player": "Seth Jones",
           "status": "Mar 10",
@@ -5171,7 +5229,7 @@
           "position": "LW"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 4,
       "injury_count_away": 3,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -5229,7 +5287,7 @@
       "spread": -1.5,
       "favorite": "NYR -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440498+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912518+00:00",
       "home_injuries": [
         {
           "player": "Taylor Raddysh",
@@ -5322,7 +5380,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440501+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912522+00:00",
       "home_injuries": [
         {
           "player": "Shayne Gostisbehere",
@@ -5659,7 +5717,7 @@
       "spread": -1.5,
       "favorite": "NYI -1.5",
       "underdog": "STL +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440505+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912526+00:00",
       "home_injuries": [
         {
           "player": "Colton Parayko",
@@ -5966,7 +6024,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "VGK +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440509+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912530+00:00",
       "home_injuries": [
         {
           "player": "Roope Hintz",
@@ -6054,7 +6112,7 @@
       "spread": -1.5,
       "favorite": "MIN -1.5",
       "underdog": "UTA +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440512+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912533+00:00",
       "home_injuries": [
         {
           "player": "Marcus Johansson",
@@ -6132,7 +6190,7 @@
       "spread": -1.5,
       "favorite": "WPG -1.5",
       "underdog": "ANA +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440518+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912538+00:00",
       "home_injuries": [
         {
           "player": "Nino Niederreiter",
@@ -6499,7 +6557,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "EDM +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440521+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912542+00:00",
       "home_injuries": [
         {
           "player": "Logan O'Connor",
@@ -6592,7 +6650,7 @@
       "spread": -1.5,
       "favorite": "SEA -1.5",
       "underdog": "NSH +1.5",
-      "tagged_at": "2026-03-09T17:49:24.440524+00:00",
+      "tagged_at": "2026-03-09T18:22:35.912546+00:00",
       "home_injuries": [
         {
           "player": "Frederick Gaudreau",
@@ -6890,9 +6948,9 @@
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -6997,7 +7055,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -7151,9 +7209,9 @@
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -7273,7 +7331,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -7314,6 +7372,16 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -7327,11 +7395,6 @@
           "player": "Thomas White",
           "status": "Mar 27",
           "position": "SP"
-        },
-        {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
         },
         {
           "player": "Ronny Henriquez",
@@ -7391,8 +7454,54 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 9,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 3,
+      "elo_diff": 0,
+      "home_elo": 1500,
+      "away_elo": 1500,
+      "travel_km": 0
+    },
+    {
+      "sport": "ncaab",
+      "id": "401851174",
+      "name": "TBD at Louisville Cardinals",
+      "shortName": "TBD VS LOU",
+      "date_utc": "2026-03-11T18:30Z",
+      "date_local": "2026-03-11 02:30 PM ET",
+      "home_team": {
+        "id": "97",
+        "name": "Louisville Cardinals",
+        "abbr": "LOU",
+        "slug": "louisville-cardinals",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png"
+      },
+      "away_team": {
+        "id": "-2",
+        "name": "TBD",
+        "abbr": "TBD",
+        "slug": "tbd",
+        "logo": null
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Spectrum Center",
+        "city": "Charlotte",
+        "state": "NC",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": [],
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -7540,11 +7649,6 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
-        {
           "player": "Drew Thorpe",
           "status": "Jun 1",
           "position": "SP"
@@ -7607,7 +7711,7 @@
           "position": "3B"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 5,
       "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -7941,13 +8045,18 @@
       ],
       "away_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
         }
       ],
       "injury_count_home": 14,
-      "injury_count_away": 1,
+      "injury_count_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -8009,6 +8118,11 @@
       ],
       "away_injuries": [
         {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
+        {
           "player": "McCade Brown",
           "status": "Mar 11",
           "position": "SP"
@@ -8050,7 +8164,7 @@
         }
       ],
       "injury_count_home": 3,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -9072,7 +9186,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -9210,10 +9324,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -9451,7 +9565,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -9459,17 +9573,17 @@
     },
     {
       "sport": "ncaab",
-      "id": "401851178",
-      "name": "TBD at Miami Hurricanes",
-      "shortName": "TBD VS MIA",
+      "id": "401851376",
+      "name": "TBD at Wisconsin Badgers",
+      "shortName": "TBD VS WIS",
       "date_utc": "2026-03-12T18:30Z",
       "date_local": "2026-03-12 02:30 PM ET",
       "home_team": {
-        "id": "2390",
-        "name": "Miami Hurricanes",
-        "abbr": "MIA",
-        "slug": "miami-hurricanes",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2390.png"
+        "id": "275",
+        "name": "Wisconsin Badgers",
+        "abbr": "WIS",
+        "slug": "wisconsin-badgers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png"
       },
       "away_team": {
         "id": "-2",
@@ -9483,9 +9597,9 @@
       "total_points": 0,
       "odds": null,
       "venue": {
-        "name": "Spectrum Center",
-        "city": "Charlotte",
-        "state": "NC",
+        "name": "United Center",
+        "city": "Chicago",
+        "state": "IL",
         "indoor": true,
         "grass": false
       },
@@ -9790,13 +9904,18 @@
       ],
       "away_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
         }
       ],
       "injury_count_home": 11,
-      "injury_count_away": 1,
+      "injury_count_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -9913,6 +10032,11 @@
       ],
       "away_injuries": [
         {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
+        {
           "player": "McCade Brown",
           "status": "Mar 11",
           "position": "SP"
@@ -9954,7 +10078,7 @@
         }
       ],
       "injury_count_home": 14,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -10086,7 +10210,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -10199,7 +10323,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -10563,52 +10687,6 @@
     },
     {
       "sport": "ncaab",
-      "id": "401851313",
-      "name": "TBD at UConn Huskies",
-      "shortName": "TBD VS CONN",
-      "date_utc": "2026-03-12T23:00Z",
-      "date_local": "2026-03-12 07:00 PM ET",
-      "home_team": {
-        "id": "41",
-        "name": "UConn Huskies",
-        "abbr": "CONN",
-        "slug": "uconn-huskies",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/41.png"
-      },
-      "away_team": {
-        "id": "-2",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Madison Square Garden",
-        "city": "New York",
-        "state": "NY",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
-      "travel_km": 0
-    },
-    {
-      "sport": "ncaab",
       "id": "401851300",
       "name": "TBD at Houston Cougars",
       "shortName": "TBD VS HOU",
@@ -10636,6 +10714,52 @@
         "name": "T-Mobile Center",
         "city": "Kansas City",
         "state": "MO",
+        "indoor": true,
+        "grass": false
+      },
+      "officials": [],
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 0,
+      "home_elo": 1500,
+      "away_elo": 1500,
+      "travel_km": 0
+    },
+    {
+      "sport": "ncaab",
+      "id": "401851313",
+      "name": "TBD at UConn Huskies",
+      "shortName": "TBD VS CONN",
+      "date_utc": "2026-03-12T23:00Z",
+      "date_local": "2026-03-12 07:00 PM ET",
+      "home_team": {
+        "id": "41",
+        "name": "UConn Huskies",
+        "abbr": "CONN",
+        "slug": "uconn-huskies",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/41.png"
+      },
+      "away_team": {
+        "id": "-2",
+        "name": "TBD",
+        "abbr": "TBD",
+        "slug": "tbd",
+        "logo": null
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Madison Square Garden",
+        "city": "New York",
+        "state": "NY",
         "indoor": true,
         "grass": false
       },
@@ -10975,6 +11099,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Brad Marchand",
+          "status": "Mar 12",
+          "position": "LW"
+        },
+        {
           "player": "Seth Jones",
           "status": "Mar 10",
           "position": "D"
@@ -10997,7 +11126,7 @@
           "position": "D"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 4,
       "injury_count_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -12106,11 +12235,6 @@
       ],
       "away_injuries": [
         {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
-        {
           "player": "Drew Thorpe",
           "status": "Jun 1",
           "position": "SP"
@@ -12137,7 +12261,7 @@
         }
       ],
       "injury_count_home": 7,
-      "injury_count_away": 6,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -12759,52 +12883,6 @@
     },
     {
       "sport": "ncaab",
-      "id": "401851270",
-      "name": "TBD at Saint Louis Billikens",
-      "shortName": "TBD VS SLU",
-      "date_utc": "2026-03-13T15:30Z",
-      "date_local": "2026-03-13 11:30 AM ET",
-      "home_team": {
-        "id": "139",
-        "name": "Saint Louis Billikens",
-        "abbr": "SLU",
-        "slug": "saint-louis-billikens",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/139.png"
-      },
-      "away_team": {
-        "id": "-2",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "PPG Paints Arena",
-        "city": "Pittsburgh",
-        "state": "PA",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": [],
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
-      "travel_km": 0
-    },
-    {
-      "sport": "ncaab",
       "id": "401851380",
       "name": "TBD at Michigan Wolverines",
       "shortName": "TBD VS MICH",
@@ -13012,7 +13090,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -13165,10 +13243,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -13288,10 +13366,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": -10.3,
+      "home_elo": 1490.0,
+      "away_elo": 1500.3,
       "travel_km": 0
     },
     {
@@ -13406,7 +13484,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -13539,6 +13617,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
@@ -13591,7 +13674,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 1,
+      "injury_count_home": 2,
       "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -13636,11 +13719,6 @@
       },
       "officials": [],
       "home_injuries": [
-        {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
         {
           "player": "Drew Thorpe",
           "status": "Jun 1",
@@ -13709,7 +13787,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 5,
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -13754,6 +13832,11 @@
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
         {
           "player": "McCade Brown",
           "status": "Mar 11",
@@ -13852,7 +13935,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 9,
       "injury_count_away": 11,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -14038,13 +14121,18 @@
       ],
       "away_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
         }
       ],
       "injury_count_home": 8,
-      "injury_count_away": 1,
+      "injury_count_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -14222,7 +14310,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -14354,11 +14442,11 @@
       "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 19.7,
+      "home_elo": 1509.7,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -14571,6 +14659,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -14586,11 +14684,6 @@
           "position": "SP"
         },
         {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
-        },
-        {
           "player": "Ronny Henriquez",
           "status": "Feb 1",
           "position": "RP"
@@ -14602,7 +14695,7 @@
         }
       ],
       "injury_count_home": 9,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -16139,6 +16232,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -16154,11 +16257,6 @@
           "position": "SP"
         },
         {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
-        },
-        {
           "player": "Ronny Henriquez",
           "status": "Feb 1",
           "position": "RP"
@@ -16170,7 +16268,7 @@
         }
       ],
       "injury_count_home": 7,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -16479,9 +16577,9 @@
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -16699,7 +16797,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -16832,7 +16930,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -16873,6 +16971,16 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -16886,11 +16994,6 @@
           "player": "Thomas White",
           "status": "Mar 27",
           "position": "SP"
-        },
-        {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
         },
         {
           "player": "Ronny Henriquez",
@@ -16945,12 +17048,12 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 7,
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -17278,6 +17381,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
@@ -17300,7 +17408,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 1,
+      "injury_count_home": 2,
       "injury_count_away": 3,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -17345,11 +17453,6 @@
       },
       "officials": [],
       "home_injuries": [
-        {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
         {
           "player": "Drew Thorpe",
           "status": "Jun 1",
@@ -17423,7 +17526,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 6,
+      "injury_count_home": 5,
       "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -17903,6 +18006,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
+        {
           "player": "McCade Brown",
           "status": "Mar 11",
           "position": "SP"
@@ -17985,7 +18093,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 8,
+      "injury_count_home": 9,
       "injury_count_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -18171,6 +18279,11 @@
       ],
       "away_injuries": [
         {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
+        {
           "player": "McCade Brown",
           "status": "Mar 11",
           "position": "SP"
@@ -18212,7 +18325,7 @@
         }
       ],
       "injury_count_home": 8,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -19042,10 +19155,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1510.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -19180,7 +19293,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -20738,10 +20851,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0
     },
     {
@@ -20826,6 +20939,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Joe Mack",
+          "status": "Mar 10",
+          "position": "C"
+        },
+        {
+          "player": "Graham Pauley",
+          "status": "Mar 9",
+          "position": "3B"
+        },
+        {
           "player": "Kyle Stowers",
           "status": "Mar 13",
           "position": "LF"
@@ -20841,11 +20964,6 @@
           "position": "SP"
         },
         {
-          "player": "Graham Pauley",
-          "status": "Mar 9",
-          "position": "3B"
-        },
-        {
           "player": "Ronny Henriquez",
           "status": "Feb 1",
           "position": "RP"
@@ -20857,11 +20975,11 @@
         }
       ],
       "injury_count_home": 9,
-      "injury_count_away": 6,
+      "injury_count_away": 7,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -20999,7 +21117,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -21127,10 +21245,10 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0
     },
     {
@@ -21250,7 +21368,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -21378,7 +21496,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -21994,13 +22112,18 @@
       ],
       "away_injuries": [
         {
+          "player": "Ben Bowden",
+          "status": "Mar 11",
+          "position": "RP"
+        },
+        {
           "player": "Colby Thomas",
           "status": "Mar 10",
           "position": "RF"
         }
       ],
       "injury_count_home": 3,
-      "injury_count_away": 1,
+      "injury_count_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -22062,11 +22185,6 @@
       ],
       "away_injuries": [
         {
-          "player": "Tanner Murray",
-          "status": "Mar 10",
-          "position": "2B"
-        },
-        {
           "player": "Drew Thorpe",
           "status": "Jun 1",
           "position": "SP"
@@ -22093,7 +22211,7 @@
         }
       ],
       "injury_count_home": 3,
-      "injury_count_away": 6,
+      "injury_count_away": 5,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -22609,6 +22727,11 @@
       ],
       "away_injuries": [
         {
+          "player": "RJ Petit",
+          "status": "Jun 1",
+          "position": "RP"
+        },
+        {
           "player": "McCade Brown",
           "status": "Mar 11",
           "position": "SP"
@@ -22650,7 +22773,7 @@
         }
       ],
       "injury_count_home": 7,
-      "injury_count_away": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -23011,7 +23134,7 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -23371,6 +23494,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Brad Marchand",
+          "status": "Mar 12",
+          "position": "LW"
+        },
+        {
           "player": "Seth Jones",
           "status": "Mar 10",
           "position": "D"
@@ -23387,7 +23515,7 @@
         }
       ],
       "injury_count_home": 5,
-      "injury_count_away": 3,
+      "injury_count_away": 4,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "h2h_margin_avg": 0.0,
@@ -28797,5 +28925,5 @@
       "travel_km": 0
     }
   ],
-  "weather_merged_at": "2026-03-09T17:58:58.476111"
+  "weather_merged_at": "2026-03-09T18:31:43.688496"
 }
