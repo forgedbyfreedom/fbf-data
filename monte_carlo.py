@@ -37,13 +37,13 @@ SPORT_STDEV = {
 # Slightly reduced from pure historical stdev to allow our adjustments
 # to produce meaningful over/under edges in the simulation
 TOTAL_STDEV = {
-    "nfl": 8.5,
-    "ncaaf": 10.0,
-    "nba": 8.5,
-    "ncaab": 9.0,
-    "ncaaw": 9.0,
-    "nhl": 1.5,
-    "mlb": 2.5,
+    "nfl": 6.5,
+    "ncaaf": 7.5,
+    "nba": 6.5,
+    "ncaab": 7.0,
+    "ncaaw": 7.0,
+    "nhl": 1.2,
+    "mlb": 2.0,
     "ufc": 0.3,
 }
 
@@ -242,7 +242,7 @@ def build_expected_values(game):
 
     # ── TOTAL ADJUSTMENTS ────────────────────────────────────────────
 
-    # Weather (outdoor sports only) — AMPLIFIED for meaningful O/U signal
+    # Weather (outdoor sports only) — strong O/U signal
     venue = game.get("venue") or {}
     weather = game.get("weather") or {}
     risk = game.get("weatherRisk") or {}
@@ -251,10 +251,10 @@ def build_expected_values(game):
         wind = safe_float(weather.get("windSpeedMph"), 0)
         rain = safe_float(weather.get("rainChancePct"), 0)
         risk_score = safe_float(risk.get("risk"), 0)
-        weather_penalty = wind * 0.25 + rain * 0.12 + risk_score * 2.5
+        weather_penalty = wind * 0.35 + rain * 0.15 + risk_score * 3.0
 
     # Referee over/under bias — amplified
-    ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * 1.5
+    ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * 2.5
 
     # Pace — high-pace teams push totals
     # pace_avg is avg combined points of both teams historically
@@ -262,11 +262,11 @@ def build_expected_values(game):
     pace_avg = safe_float(game.get("pace_avg"), 0)
     pace_shift = 0.0
     if pace_avg > 0 and total_line is not None and total_line > 0:
-        pace_shift = (pace_avg - total_line) * 0.25  # 8-pt pace edge = 2 pts total shift
+        pace_shift = (pace_avg - total_line) * 0.40  # 5-pt pace edge = 2 pts total shift
 
     # Total line movement (sharp money on totals) — amplified
     total_delta = safe_float(game.get("total_delta"), 0)
-    total_line_shift = total_delta * 0.5
+    total_line_shift = total_delta * 0.8
 
     # ── COMBINE ──────────────────────────────────────────────────────
 
