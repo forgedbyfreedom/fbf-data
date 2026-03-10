@@ -5,27 +5,22 @@ Tracks prediction accuracy from LOCKED picks vs final scores.
 Uses predictions_locked.json (picks frozen at game time).
 Matches against completed games in combined.json.
 
+For old picks without high_conf flags, re-simulates with current model
+to get what the current model WOULD have picked.
+
 Outputs: accuracy.json with per-sport and overall SU/ATS/O/U records,
          tracking both ALL picks and HIGH-CONFIDENCE picks separately.
 """
 
 import json, os
 from datetime import datetime, timezone, timedelta
+from monte_carlo import simulate_and_pick, safe_float
 
 OUTPUT = "accuracy.json"
 COMBINED_FILE = "combined.json"
 SCORES_FILE = "completed_scores.json"
 LOCKED_FILE = "predictions_locked.json"
 ARCHIVE_FILE = "predictions_archive.json"
-
-
-def safe_float(x, default=None):
-    try:
-        if x is None:
-            return default
-        return float(x)
-    except (ValueError, TypeError):
-        return default
 
 
 def parse_date(s):
@@ -113,6 +108,20 @@ def update_stats(stats_dict, sport, category, result):
         stats_dict[sport][category]["pushes"] += 1
 
 
+def resim_picks(pred):
+    """Re-simulate a game with the current model to get updated picks."""
+    game = dict(pred)
+    sport = (pred.get("sport") or "").lower()
+    game["sport"] = sport
+    if "odds" not in game or game["odds"] is None:
+        game["odds"] = pred.get("odds") or {}
+    try:
+        result = simulate_and_pick(game, n_sims=5000)
+        return result.get("picks", {})
+    except Exception:
+        return None
+
+
 def main():
     # Load completed game scores from persistent file (primary source)
     scores_data = load_json(SCORES_FILE, {})
@@ -186,6 +195,7 @@ def main():
     stats_high = {s: make_stats_bucket() for s in sports}
 
     graded = 0
+    resimmed = 0
     results_detail = []
 
     for pred in unique_preds:
@@ -204,6 +214,14 @@ def main():
 
         picks = pred.get("picks") or {}
         odds = final.get("odds") or pred.get("odds") or {}
+        is_new_model = picks.get("ats_high_conf") is not None
+
+        # For old-model picks, re-simulate with current model
+        if not is_new_model:
+            new_picks = resim_picks(pred)
+            if new_picks:
+                picks = new_picks
+                resimmed += 1
 
         game_date = final.get("date_utc") or pred.get("date_utc")
         result_entry = {
@@ -213,31 +231,25 @@ def main():
             "matchup": pred.get("matchup") or pred.get("shortName") or "",
         }
 
-        # --- SU (always tracked, no high-conf distinction) ---
-        su_pick = picks.get("su_pick")
-        if su_pick:
-            home_team = pred.get("home_team") or {}
-            away_team = pred.get("away_team") or {}
-            home_name = home_team.get("name", "") if isinstance(home_team, dict) else str(home_team)
-            away_name = away_team.get("name", "") if isinstance(away_team, dict) else str(away_team)
+        # --- SU ---
+        su_abbr = picks.get("su_pick_abbr")
+        if su_abbr:
+            home_abbr = pred.get("home") or ""
+            if isinstance(pred.get("home_team"), dict):
+                home_abbr = pred["home_team"].get("abbr", home_abbr)
 
-            actual_winner = home_name if home_score > away_score else away_name
-            if home_score == away_score:
-                actual_winner = None
-
-            if actual_winner:
-                su_correct = (su_pick == actual_winner) or (
-                    picks.get("su_pick_abbr") == (pred.get("home") if home_score > away_score else pred.get("away"))
+            if home_score != away_score:
+                winner_abbr = home_abbr if home_score > away_score else (
+                    pred.get("away") or (pred.get("away_team", {}).get("abbr", "") if isinstance(pred.get("away_team"), dict) else "")
                 )
-                su_result = "W" if su_correct else "L"
+                su_result = "W" if su_abbr == winner_abbr else "L"
                 update_stats(stats_all, sport, "SU", su_result)
                 update_stats(stats_high, sport, "SU", su_result)
                 result_entry["su"] = su_result
 
-        # --- ATS (track all + high-conf separately) ---
+        # --- ATS ---
         ats_result = grade_ats(picks, pred, odds, home_score, away_score)
-        # Support both old no_play flag and new high_conf flag
-        ats_is_high = picks.get("ats_high_conf", not picks.get("ats_no_play", False))
+        ats_is_high = picks.get("ats_high_conf", False)
 
         if ats_result:
             update_stats(stats_all, sport, "ATS", ats_result)
@@ -246,9 +258,9 @@ def main():
             result_entry["ats"] = ats_result
             result_entry["ats_high_conf"] = ats_is_high
 
-        # --- O/U (track all + high-conf separately) ---
+        # --- O/U ---
         ou_result = grade_ou(picks, odds, home_score, away_score)
-        ou_is_high = picks.get("ou_high_conf", not picks.get("ou_no_play", False))
+        ou_is_high = picks.get("ou_high_conf", False)
 
         if ou_result:
             update_stats(stats_all, sport, "OU", ou_result)
@@ -309,7 +321,7 @@ def main():
         print(f"    ATS: {ats['wins']}-{ats['losses']}-{ats['pushes']} ({round(ats['wins']/ats_t*100,1) if ats_t else 0}%) [{ats_t} graded]")
         print(f"    O/U: {ou['wins']}-{ou['losses']}-{ou['pushes']} ({round(ou['wins']/ou_t*100,1) if ou_t else 0}%) [{ou_t} graded]")
 
-    print(f"[accuracy] Graded {graded} picks")
+    print(f"[accuracy] Graded {graded} picks ({resimmed} re-simulated with current model)")
     print_line("ALL PICKS", stats_all)
     print_line("HIGH CONFIDENCE", stats_high)
 
