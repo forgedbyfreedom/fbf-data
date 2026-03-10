@@ -46,9 +46,10 @@ def main():
 
     sports = ["ALL", "NFL", "NCAAF", "NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"]
 
-    # Stats for OLD model and NEW model
+    # Stats for OLD model and NEW model (all + high-conf)
     old = {s: {"su_w": 0, "su_l": 0, "ats_w": 0, "ats_l": 0, "ou_w": 0, "ou_l": 0} for s in sports}
-    new = {s: {"su_w": 0, "su_l": 0, "ats_w": 0, "ats_l": 0, "ats_skip": 0, "ou_w": 0, "ou_l": 0, "ou_skip": 0} for s in sports}
+    new = {s: {"su_w": 0, "su_l": 0, "ats_w": 0, "ats_l": 0, "ou_w": 0, "ou_l": 0} for s in sports}
+    new_high = {s: {"ats_w": 0, "ats_l": 0, "ou_w": 0, "ou_l": 0} for s in sports}
 
     graded = 0
     details = []
@@ -153,11 +154,9 @@ def main():
                     new["ALL"]["su_l"] += 1; new[sport]["su_l"] += 1
                     detail["new_su"] = "L"
 
-        # New ATS
-        if new_picks.get("ats_no_play"):
-            new["ALL"]["ats_skip"] += 1; new[sport]["ats_skip"] += 1
-            detail["new_ats"] = "SKIP"
-        elif spread is not None:
+        # New ATS (always grade, track high-conf separately)
+        ats_high = new_picks.get("ats_high_conf", False)
+        if spread is not None:
             new_ats_abbr = new_picks.get("ats_pick_abbr")
             pick_home = (new_ats_abbr == home_abbr)
             home_covered = actual_margin + spread > 0
@@ -167,15 +166,17 @@ def main():
                 if covered:
                     new["ALL"]["ats_w"] += 1; new[sport]["ats_w"] += 1
                     detail["new_ats"] = "W"
+                    if ats_high:
+                        new_high["ALL"]["ats_w"] += 1; new_high[sport]["ats_w"] += 1
                 else:
                     new["ALL"]["ats_l"] += 1; new[sport]["ats_l"] += 1
                     detail["new_ats"] = "L"
+                    if ats_high:
+                        new_high["ALL"]["ats_l"] += 1; new_high[sport]["ats_l"] += 1
 
-        # New O/U
-        if new_picks.get("ou_no_play"):
-            new["ALL"]["ou_skip"] += 1; new[sport]["ou_skip"] += 1
-            detail["new_ou"] = "SKIP"
-        elif total is not None:
+        # New O/U (always grade, track high-conf separately)
+        ou_high = new_picks.get("ou_high_conf", False)
+        if total is not None:
             new_ou = new_picks.get("ou_pick")
             push = abs(actual_total - total) < 0.01
             if not push:
@@ -183,12 +184,18 @@ def main():
                    (new_ou == "Under" and actual_total < total):
                     new["ALL"]["ou_w"] += 1; new[sport]["ou_w"] += 1
                     detail["new_ou"] = "W"
+                    if ou_high:
+                        new_high["ALL"]["ou_w"] += 1; new_high[sport]["ou_w"] += 1
                 else:
                     new["ALL"]["ou_l"] += 1; new[sport]["ou_l"] += 1
                     detail["new_ou"] = "L"
+                    if ou_high:
+                        new_high["ALL"]["ou_l"] += 1; new_high[sport]["ou_l"] += 1
 
         detail["new_ats_conf"] = new_picks.get("ats_confidence")
         detail["new_ou_conf"] = new_picks.get("ou_confidence")
+        detail["ats_high_conf"] = ats_high
+        detail["ou_high_conf"] = ou_high
         details.append(detail)
 
     # ── PRINT COMPARISON ──
@@ -199,23 +206,24 @@ def main():
     def record(w, l):
         return f"{w}-{l}"
 
-    print(f"\n{'':8s} │ {'OLD MODEL SU':15s} │ {'NEW MODEL SU':15s} │ {'OLD ATS':15s} │ {'NEW ATS':22s} │ {'OLD O/U':15s} │ {'NEW O/U':22s}")
-    print("─" * 130)
+    print(f"\n{'':8s} │ {'OLD MODEL SU':15s} │ {'NEW ALL SU':15s} │ {'OLD ATS':15s} │ {'NEW ALL ATS':15s} │ {'NEW HIGH ATS':15s} │ {'OLD O/U':15s} │ {'NEW ALL O/U':15s} │ {'NEW HIGH O/U':15s}")
+    print("─" * 160)
 
     for s in sports:
-        o, n = old[s], new[s]
+        o, n, nh = old[s], new[s], new_high[s]
 
         o_su = f"{record(o['su_w'], o['su_l']):8s} {pct(o['su_w'], o['su_l']):>5s}"
         n_su = f"{record(n['su_w'], n['su_l']):8s} {pct(n['su_w'], n['su_l']):>5s}"
 
         o_ats = f"{record(o['ats_w'], o['ats_l']):8s} {pct(o['ats_w'], o['ats_l']):>5s}"
-        n_ats_t = n['ats_w'] + n['ats_l']
-        n_ats = f"{record(n['ats_w'], n['ats_l']):8s} {pct(n['ats_w'], n['ats_l']):>5s} sk:{n['ats_skip']}"
+        n_ats = f"{record(n['ats_w'], n['ats_l']):8s} {pct(n['ats_w'], n['ats_l']):>5s}"
+        nh_ats = f"{record(nh['ats_w'], nh['ats_l']):8s} {pct(nh['ats_w'], nh['ats_l']):>5s}"
 
         o_ou = f"{record(o['ou_w'], o['ou_l']):8s} {pct(o['ou_w'], o['ou_l']):>5s}"
-        n_ou = f"{record(n['ou_w'], n['ou_l']):8s} {pct(n['ou_w'], n['ou_l']):>5s} sk:{n['ou_skip']}"
+        n_ou = f"{record(n['ou_w'], n['ou_l']):8s} {pct(n['ou_w'], n['ou_l']):>5s}"
+        nh_ou = f"{record(nh['ou_w'], nh['ou_l']):8s} {pct(nh['ou_w'], nh['ou_l']):>5s}"
 
-        print(f"{s:8s} │ {o_su:15s} │ {n_su:15s} │ {o_ats:15s} │ {n_ats:22s} │ {o_ou:15s} │ {n_ou:22s}")
+        print(f"{s:8s} │ {o_su:15s} │ {n_su:15s} │ {o_ats:15s} │ {n_ats:15s} │ {nh_ats:15s} │ {o_ou:15s} │ {n_ou:15s} │ {nh_ou:15s}")
 
     # Save detailed results
     with open("backtest_live_results.json", "w") as f:
@@ -223,6 +231,7 @@ def main():
             "graded": graded,
             "old_model": {s: old[s] for s in sports},
             "new_model": {s: new[s] for s in sports},
+            "new_model_high_conf": {s: new_high[s] for s in sports},
             "details": details,
         }, f, indent=2)
 

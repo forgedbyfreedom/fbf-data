@@ -373,6 +373,19 @@
       font-weight: 600;
       box-shadow: 0 0 16px rgba(249, 115, 22, 0.85);
     }
+    .best-bet-badge {
+      display: inline-block;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #FF6A00, #facc15);
+      color: #111827;
+      font-weight: 700;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
 
     .game-top {
       display: flex;
@@ -711,10 +724,15 @@
     <section class="accuracy-wrap">
       <div class="accuracy-title">Accuracy Tracker</div>
       <div class="accuracy-line" id="acc-overall-line">
-        <span class="label">All Sports</span>
+        <span class="label">All Picks</span>
         <span class="metric">SU: <span class="value" id="acc-overall-su">--%</span> <span class="record" id="acc-overall-su-rec"></span></span> •
         <span class="metric">ATS: <span class="value" id="acc-overall-ats">--%</span> <span class="record" id="acc-overall-ats-rec"></span></span> •
         <span class="metric">O/U: <span class="value" id="acc-overall-ou">--%</span> <span class="record" id="acc-overall-ou-rec"></span></span>
+      </div>
+      <div class="accuracy-line" id="acc-high-line">
+        <span class="label" style="color:#FF6A00;">Best Bets</span>
+        <span class="metric">ATS: <span class="value" id="acc-high-ats">--%</span> <span class="record" id="acc-high-ats-rec"></span></span> •
+        <span class="metric">O/U: <span class="value" id="acc-high-ou">--%</span> <span class="record" id="acc-high-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-graded-line" style="font-size:0.76rem;"></div>
       <div class="accuracy-line" id="acc-sport-line" style="display:none;">
@@ -788,6 +806,7 @@
       refTrends: {},
       accuracy: {
         overall: null,
+        high: null,
         bySport: {},
         since: null
       }
@@ -1292,12 +1311,14 @@
         ats: {
           team: atsTeam,
           confidence: atsConf,
-          text: atsText
+          text: atsText,
+          highConf: !!(mcPicks.ats_high_conf)
         },
         total: {
           pick: totalPick,
           confidence: totalConf,
-          text: totalText
+          text: totalText,
+          highConf: !!(mcPicks.ou_high_conf)
         },
         injuries,
         refsInfo,
@@ -1393,6 +1414,19 @@
         overallSURec.textContent = "";
         overallATSRec.textContent = "";
         overallOURec.textContent = "";
+      }
+
+      // High confidence line
+      const high = state.accuracy.high;
+      const highATS = document.getElementById("acc-high-ats");
+      const highOU = document.getElementById("acc-high-ou");
+      const highATSRec = document.getElementById("acc-high-ats-rec");
+      const highOURec = document.getElementById("acc-high-ou-rec");
+      if (high) {
+        highATS.textContent = formatPct(high.ats);
+        highOU.textContent = formatPct(high.ou);
+        highATSRec.textContent = high.ats_record ? `(${high.ats_record})` : "";
+        highOURec.textContent = high.ou_record ? `(${high.ou_record})` : "";
       }
 
       // Graded count
@@ -1683,7 +1717,7 @@
         }
 
         atsBlock.innerHTML = `
-          <div class="pick-label">Against The Spread</div>
+          <div class="pick-label">Against The Spread${g.ats.highConf ? ' <span class="best-bet-badge">BEST BET</span>' : ''}</div>
           <div class="pick-main">
             ${g.ats.team ? g.ats.text : "No strong edge vs spread"}
           </div>
@@ -1703,7 +1737,7 @@
         }
 
         totBlock.innerHTML = `
-          <div class="pick-label">Total (O/U)</div>
+          <div class="pick-label">Total (O/U)${g.total.highConf ? ' <span class="best-bet-badge">BEST BET</span>' : ''}</div>
           <div class="pick-main">
             ${g.total.text}
           </div>
@@ -1748,6 +1782,16 @@
           ou_record: allSport.OU_record || "",
         };
 
+        // High confidence stats
+        const highConf = json.high_confidence || {};
+        const highAll = highConf["ALL"] || {};
+        state.accuracy.high = {
+          ats: highAll.ATS_pct || 0,
+          ou: highAll.OU_pct || 0,
+          ats_record: highAll.ATS_record || "",
+          ou_record: highAll.OU_record || "",
+        };
+
         // Map per-sport data (keyed uppercase in accuracy.json)
         const bySport = {};
         for (const [key, val] of Object.entries(sports)) {
@@ -1777,67 +1821,117 @@
         const subtitle = document.getElementById("model-perf-subtitle");
         const grid = document.getElementById("model-perf-grid");
         const sportGrid = document.getElementById("model-perf-sport-grid");
-        const all = json.sports?.ALL;
-        if (!all || !json.graded) return;
 
-        section.style.display = "block";
-        subtitle.textContent = `Retroactive backtest on ${json.graded} completed games`;
+        if (!json.graded) return;
 
-        function delta(newPct, oldPct) {
-          const d = (newPct - oldPct).toFixed(1);
+        const oldAll = json.old_model?.ALL || {};
+        const newAll = json.new_model?.ALL || {};
+        const highAll = json.new_model_high_conf?.ALL || {};
+
+        function pct(w, l) { const t = w + l; return t ? ((w / t) * 100).toFixed(1) : "0.0"; }
+        function rec(w, l) { return `${w}-${l}`; }
+        function delta(newP, oldP) {
+          const d = (parseFloat(newP) - parseFloat(oldP)).toFixed(1);
           if (d > 0) return `<span class="perf-badge up">+${d}%</span>`;
           if (d < 0) return `<span class="perf-badge down">${d}%</span>`;
           return "";
         }
-        function cls(pct) { return pct >= 52.4 ? "positive" : pct >= 48 ? "neutral" : "negative"; }
+        function cls(p) { const v = parseFloat(p); return v >= 52.4 ? "positive" : v >= 48 ? "neutral" : "negative"; }
+
+        section.style.display = "block";
+        subtitle.textContent = `Retroactive backtest on ${json.graded} completed games`;
+
+        const oldSU = pct(oldAll.su_w || 0, oldAll.su_l || 0);
+        const newSU = pct(newAll.su_w || 0, newAll.su_l || 0);
+        const oldATS = pct(oldAll.ats_w || 0, oldAll.ats_l || 0);
+        const newATS = pct(newAll.ats_w || 0, newAll.ats_l || 0);
+        const highATS = pct(highAll.ats_w || 0, highAll.ats_l || 0);
+        const oldOU = pct(oldAll.ou_w || 0, oldAll.ou_l || 0);
+        const newOU = pct(newAll.ou_w || 0, newAll.ou_l || 0);
+        const highOU = pct(highAll.ou_w || 0, highAll.ou_l || 0);
+
+        const newATSTotal = (newAll.ats_w || 0) + (newAll.ats_l || 0);
+        const highATSTotal = (highAll.ats_w || 0) + (highAll.ats_l || 0);
+        const newOUTotal = (newAll.ou_w || 0) + (newAll.ou_l || 0);
+        const highOUTotal = (highAll.ou_w || 0) + (highAll.ou_l || 0);
+
+        let html = "";
 
         // SU card
-        let html = "";
         html += `<div class="perf-card">
           <div class="perf-card-label">Straight Up</div>
-          <div class="perf-old"><span class="perf-val">${all.old_su_pct}%</span> old</div>
-          <div class="perf-new ${cls(all.new_su_pct)}">${all.new_su_pct}%${delta(all.new_su_pct, all.old_su_pct)}</div>
-          <div class="perf-record">${all.new_su_record}</div>
+          <div class="perf-old"><span class="perf-val">${oldSU}%</span> old</div>
+          <div class="perf-new ${cls(newSU)}">${newSU}%${delta(newSU, oldSU)}</div>
+          <div class="perf-record">${rec(newAll.su_w || 0, newAll.su_l || 0)}</div>
         </div>`;
 
-        // ATS card
+        // ATS card (all picks)
         html += `<div class="perf-card">
-          <div class="perf-card-label">Against the Spread</div>
-          <div class="perf-old"><span class="perf-val">${all.old_ats_pct}%</span> old</div>
-          <div class="perf-new ${cls(all.new_ats_pct)}">${all.new_ats_pct}%${delta(all.new_ats_pct, all.old_ats_pct)}</div>
-          <div class="perf-record">${all.new_ats_record} (${all.new_ats_played} played, ${all.new_ats_skipped} skipped)</div>
+          <div class="perf-card-label">ATS (All Picks)</div>
+          <div class="perf-old"><span class="perf-val">${oldATS}%</span> old</div>
+          <div class="perf-new ${cls(newATS)}">${newATS}%${delta(newATS, oldATS)}</div>
+          <div class="perf-record">${rec(newAll.ats_w || 0, newAll.ats_l || 0)} (${newATSTotal} games)</div>
         </div>`;
 
-        // O/U card
-        if (all.new_ou_played > 0) {
+        // ATS card (high confidence)
+        if (highATSTotal > 0) {
           html += `<div class="perf-card">
-            <div class="perf-card-label">Over / Under</div>
-            <div class="perf-old"><span class="perf-val">${all.old_ou_pct}%</span> old</div>
-            <div class="perf-new ${cls(all.new_ou_pct)}">${all.new_ou_pct}%${delta(all.new_ou_pct, all.old_ou_pct)}</div>
-            <div class="perf-record">${all.new_ou_record} (${all.new_ou_played} played, ${all.new_ou_skipped} skipped)</div>
+            <div class="perf-card-label">ATS (Best Bets)</div>
+            <div class="perf-old"><span class="perf-val">${oldATS}%</span> old</div>
+            <div class="perf-new ${cls(highATS)}">${highATS}%${delta(highATS, oldATS)}</div>
+            <div class="perf-record">${rec(highAll.ats_w || 0, highAll.ats_l || 0)} (${highATSTotal} games)</div>
           </div>`;
-        } else {
+        }
+
+        // O/U card (all picks)
+        if (newOUTotal > 0) {
           html += `<div class="perf-card">
-            <div class="perf-card-label">Over / Under</div>
-            <div class="perf-old"><span class="perf-val">${all.old_ou_pct}%</span> old (all games)</div>
-            <div class="perf-new neutral">N/A</div>
-            <div class="perf-record">No O/U data on retroactive games<br>Live picks active going forward</div>
+            <div class="perf-card-label">O/U (All Picks)</div>
+            <div class="perf-old"><span class="perf-val">${oldOU}%</span> old</div>
+            <div class="perf-new ${cls(newOU)}">${newOU}%${delta(newOU, oldOU)}</div>
+            <div class="perf-record">${rec(newAll.ou_w || 0, newAll.ou_l || 0)} (${newOUTotal} games)</div>
+          </div>`;
+        }
+
+        // O/U card (high confidence)
+        if (highOUTotal > 0) {
+          html += `<div class="perf-card">
+            <div class="perf-card-label">O/U (Best Bets)</div>
+            <div class="perf-old"><span class="perf-val">${oldOU}%</span> old</div>
+            <div class="perf-new ${cls(highOU)}">${highOU}%${delta(highOU, oldOU)}</div>
+            <div class="perf-record">${rec(highAll.ou_w || 0, highAll.ou_l || 0)} (${highOUTotal} games)</div>
           </div>`;
         }
         grid.innerHTML = html;
 
         // Per-sport breakdown
         let sportHtml = "";
-        const sportOrder = ["NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"];
+        const sportOrder = ["NFL", "NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"];
         for (const s of sportOrder) {
-          const sp = json.sports[s];
-          if (!sp || (sp.old_su_pct === 0 && sp.new_su_pct === 0)) continue;
-          const atsClass = sp.new_ats_pct >= 52.4 ? "win" : sp.new_ats_pct > 0 ? "lose" : "";
+          const oldSp = json.old_model?.[s] || {};
+          const newSp = json.new_model?.[s] || {};
+          const highSp = json.new_model_high_conf?.[s] || {};
+
+          const oSU = (oldSp.su_w || 0) + (oldSp.su_l || 0);
+          const nSU = (newSp.su_w || 0) + (newSp.su_l || 0);
+          if (oSU === 0 && nSU === 0) continue;
+
+          const oSUpct = pct(oldSp.su_w || 0, oldSp.su_l || 0);
+          const nSUpct = pct(newSp.su_w || 0, newSp.su_l || 0);
+          const oATSpct = pct(oldSp.ats_w || 0, oldSp.ats_l || 0);
+          const nATSpct = pct(newSp.ats_w || 0, newSp.ats_l || 0);
+          const hATSpct = pct(highSp.ats_w || 0, highSp.ats_l || 0);
+          const nATStot = (newSp.ats_w || 0) + (newSp.ats_l || 0);
+          const hATStot = (highSp.ats_w || 0) + (highSp.ats_l || 0);
+
+          const atsClass = parseFloat(nATSpct) >= 52.4 ? "win" : "lose";
+          const hAtsClass = parseFloat(hATSpct) >= 52.4 ? "win" : "lose";
+
           sportHtml += `<div class="sport-perf-card">
             <div class="sport-perf-name">${s}</div>
-            <div class="sport-perf-row">SU <span class="spv">${sp.old_su_pct}%</span> → <span class="spv">${sp.new_su_pct}%</span></div>
-            <div class="sport-perf-row">ATS <span class="spv">${sp.old_ats_pct}%</span> → <span class="spv ${atsClass}">${sp.new_ats_played > 0 ? sp.new_ats_pct + "%" : "—"}</span></div>
-            ${sp.new_ats_played > 0 ? `<div class="sport-perf-row" style="font-size:0.62rem;color:#6b7280;">${sp.new_ats_record} (${sp.new_ats_played} plays)</div>` : ""}
+            <div class="sport-perf-row">SU <span class="spv">${oSUpct}%</span> → <span class="spv">${nSUpct}%</span></div>
+            <div class="sport-perf-row">ATS <span class="spv">${oATSpct}%</span> → <span class="spv ${atsClass}">${nATStot > 0 ? nATSpct + "%" : "—"}</span> (${nATStot}g)</div>
+            ${hATStot > 0 ? `<div class="sport-perf-row">Best Bets <span class="spv ${hAtsClass}">${hATSpct}%</span> (${hATStot}g)</div>` : ""}
           </div>`;
         }
         sportGrid.innerHTML = sportHtml;

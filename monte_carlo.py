@@ -60,9 +60,10 @@ FAV_COVER_BASE = {
     "ufc": 0.50,
 }
 
-# Minimum confidence to emit a pick (below this → "no_play")
-ATS_MIN_CONFIDENCE = 0.53
-OU_MIN_CONFIDENCE = 0.53
+# High-confidence threshold — picks above this are tracked as "best bets"
+# All games still get a pick, but only high-conf picks are highlighted
+ATS_HIGH_CONF = 0.55
+OU_HIGH_CONF = 0.52
 
 
 def safe_float(x, default=0.0):
@@ -373,16 +374,15 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             picks["ats_spread"] = dog_spread
             picks["ats_confidence"] = round((1 - fav_cover_pct) * 100, 1)
 
-        # Confidence filter: if edge is too thin, mark as no_play
+        # High confidence flag
         ats_conf = picks["ats_confidence"] / 100.0
-        if ats_conf < ATS_MIN_CONFIDENCE:
-            picks["ats_no_play"] = True
+        picks["ats_high_conf"] = ats_conf >= ATS_HIGH_CONF
     else:
         picks["ats_pick"] = picks["su_pick"]
         picks["ats_pick_abbr"] = picks["su_pick_abbr"]
         picks["ats_spread"] = 0
         picks["ats_confidence"] = picks["su_confidence"]
-        picks["ats_no_play"] = True
+        picks["ats_high_conf"] = False
 
     # --- O/U PICK ---
     over_pct = sim_result.get("over_pct")
@@ -396,15 +396,14 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             picks["ou_line"] = total_line
             picks["ou_confidence"] = round((1 - over_pct) * 100, 1)
 
-        # Confidence filter
+        # High confidence flag
         ou_conf = picks["ou_confidence"] / 100.0
-        if ou_conf < OU_MIN_CONFIDENCE:
-            picks["ou_no_play"] = True
+        picks["ou_high_conf"] = ou_conf >= OU_HIGH_CONF
     else:
         picks["ou_pick"] = "Over"
         picks["ou_line"] = total_line
         picks["ou_confidence"] = 50.0
-        picks["ou_no_play"] = True
+        picks["ou_high_conf"] = False
 
     return picks
 
