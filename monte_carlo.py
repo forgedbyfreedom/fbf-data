@@ -34,16 +34,35 @@ SPORT_STDEV = {
 }
 
 # Standard deviation of actual total around expected total
+# Slightly reduced from pure historical stdev to allow our adjustments
+# to produce meaningful over/under edges in the simulation
 TOTAL_STDEV = {
-    "nfl": 10.0,
-    "ncaaf": 12.0,
-    "nba": 10.0,
-    "ncaab": 11.0,
-    "ncaaw": 11.0,
-    "nhl": 1.8,
-    "mlb": 3.0,
+    "nfl": 8.5,
+    "ncaaf": 10.0,
+    "nba": 8.5,
+    "ncaab": 9.0,
+    "ncaaw": 9.0,
+    "nhl": 1.5,
+    "mlb": 2.5,
     "ufc": 0.3,
 }
+
+# Historical favorite cover rates by sport — used to correct simulation bias
+# Favorites cover slightly less than 50% historically (the vig + public bias)
+FAV_COVER_BASE = {
+    "nfl": 0.48,
+    "ncaaf": 0.48,
+    "nba": 0.49,
+    "ncaab": 0.48,
+    "ncaaw": 0.49,
+    "nhl": 0.45,   # puck line (1.5) underdogs cover ~55% — favorites rarely win by 2+
+    "mlb": 0.50,
+    "ufc": 0.50,
+}
+
+# Minimum confidence to emit a pick (below this → "no_play")
+ATS_MIN_CONFIDENCE = 0.53
+OU_MIN_CONFIDENCE = 0.53
 
 
 def safe_float(x, default=0.0):
@@ -131,6 +150,7 @@ def build_expected_values(game):
     Returns (expected_margin, expected_total, has_odds).
     """
     odds = game.get("odds") or {}
+    sport = (game.get("sport") or "").lower()
     spread_line = safe_float(odds.get("spread"), None)
     total_line = safe_float(odds.get("total"), None)
 
@@ -143,18 +163,18 @@ def build_expected_values(game):
     if total_line is not None:
         base_total = total_line
     else:
-        # Sport-specific defaults
-        sport = (game.get("sport") or "").lower()
         sport_defaults = {
             "nfl": 44.0, "ncaaf": 52.0, "nba": 225.0, "ncaab": 145.0,
             "ncaaw": 140.0, "nhl": 6.0, "mlb": 8.5, "ufc": 1.0,
         }
         base_total = sport_defaults.get(sport, 100.0)
 
-    # Adjustments from features
+    # ── CORE MARGIN ADJUSTMENTS ──────────────────────────────────────
+
+    # Injuries
     injury_home = safe_float(game.get("injury_count_home"), 0)
     injury_away = safe_float(game.get("injury_count_away"), 0)
-    injury_shift = (injury_away - injury_home) * 0.3  # each injury ~0.3 pts
+    injury_shift = (injury_away - injury_home) * 0.3
 
     # Rest days
     rest_diff = safe_float(game.get("rest_diff_days"), 0)
@@ -162,13 +182,66 @@ def build_expected_values(game):
 
     # Elo
     elo_diff = safe_float(game.get("elo_diff"), 0)
-    elo_shift = elo_diff * 0.03  # 100 Elo ~ 3 pts
+    elo_shift = elo_diff * 0.03
 
     # H2H
     h2h_margin = safe_float(game.get("h2h_margin_avg"), 0)
     h2h_shift = h2h_margin * 0.1
 
-    # Weather (outdoor sports only)
+    # Referee home bias
+    ref_home_bias = safe_float(game.get("ref_home_bias"), 0)
+
+    # Travel fatigue
+    travel_km = safe_float(game.get("travel_km"), 0)
+    travel_shift = travel_km * 0.0005
+
+    # ── ADVANCED MARGIN ADJUSTMENTS ──────────────────────────────────
+
+    # Power ratings
+    power_diff = safe_float(game.get("power_diff"), 0)
+    power_shift = power_diff * 0.06  # 10-pt gap ~ 0.6 pts
+
+    off_def_mismatch = safe_float(game.get("off_def_mismatch"), 0)
+    mismatch_shift = off_def_mismatch * 0.03
+
+    # Home/away splits
+    home_split_edge = safe_float(game.get("home_split_edge"), 0)
+    split_shift = home_split_edge * 0.02
+
+    # Momentum (recent form)
+    momentum_diff = safe_float(game.get("momentum_diff"), 0)
+    momentum_shift = momentum_diff * 0.03
+
+    # Situational spots (B2B, revenge, divisional, timezone — pre-calibrated in pts)
+    spot_score = safe_float(game.get("spot_score"), 0)
+    spot_shift = spot_score * 0.5
+
+    # Public betting fade — contrarian signal
+    fade_signal = safe_float(game.get("fade_signal"), 0)
+    public_home_pct = safe_float(game.get("public_home_pct"), 50)
+    public_shift = 0.0
+    if fade_signal >= 2:  # 70%+ public on one side
+        if public_home_pct > 65:
+            public_shift = -0.8  # fade the home team
+        elif public_home_pct < 35:
+            public_shift = 0.8   # fade the away team
+
+    # Line movement (sharp money)
+    spread_delta = safe_float(game.get("spread_delta"), 0)
+    line_shift = spread_delta * 0.3  # 2-pt move = 0.6 pts
+
+    # Starting pitcher / goalie quality
+    starter_shift = 0.0
+    if sport == "mlb":
+        era_diff = safe_float(game.get("starter_era_diff"), 0)
+        starter_shift = era_diff * 0.4  # 1.0 ERA advantage = 0.4 runs
+    elif sport == "nhl":
+        sv_diff = safe_float(game.get("goalie_sv_diff"), 0)
+        starter_shift = sv_diff * 8.0  # 0.010 SV% diff = 0.08 goals
+
+    # ── TOTAL ADJUSTMENTS ────────────────────────────────────────────
+
+    # Weather (outdoor sports only) — AMPLIFIED for meaningful O/U signal
     venue = game.get("venue") or {}
     weather = game.get("weather") or {}
     risk = game.get("weatherRisk") or {}
@@ -177,18 +250,33 @@ def build_expected_values(game):
         wind = safe_float(weather.get("windSpeedMph"), 0)
         rain = safe_float(weather.get("rainChancePct"), 0)
         risk_score = safe_float(risk.get("risk"), 0)
-        weather_penalty = wind * 0.15 + rain * 0.08 + risk_score * 1.5
+        weather_penalty = wind * 0.25 + rain * 0.12 + risk_score * 2.5
 
-    # Referee trends (merged by merge_features.py)
-    ref_home_bias = safe_float(game.get("ref_home_bias"), 0)
-    ref_over_bias = safe_float(game.get("ref_over_bias"), 0)
+    # Referee over/under bias — amplified
+    ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * 1.5
 
-    # Travel fatigue (away team traveling far = home advantage)
-    travel_km = safe_float(game.get("travel_km"), 0)
-    travel_shift = travel_km * 0.0005  # ~0.5 pts per 1000km of travel difference
+    # Pace — high-pace teams push totals
+    # pace_avg is avg combined points of both teams historically
+    # When pace_avg > total_line, teams tend to score MORE than Vegas expects
+    pace_avg = safe_float(game.get("pace_avg"), 0)
+    pace_shift = 0.0
+    if pace_avg > 0 and total_line is not None and total_line > 0:
+        pace_shift = (pace_avg - total_line) * 0.25  # 8-pt pace edge = 2 pts total shift
 
-    expected_margin = base_margin + injury_shift + rest_shift + elo_shift + h2h_shift + ref_home_bias + travel_shift
-    expected_total = max(0, base_total - weather_penalty + ref_over_bias)
+    # Total line movement (sharp money on totals) — amplified
+    total_delta = safe_float(game.get("total_delta"), 0)
+    total_line_shift = total_delta * 0.5
+
+    # ── COMBINE ──────────────────────────────────────────────────────
+
+    expected_margin = (base_margin + injury_shift + rest_shift + elo_shift
+                       + h2h_shift + ref_home_bias + travel_shift
+                       + power_shift + mismatch_shift + split_shift
+                       + momentum_shift + spot_shift + public_shift
+                       + line_shift + starter_shift)
+
+    expected_total = max(0, base_total - weather_penalty + ref_over_bias
+                         + pace_shift + total_line_shift)
 
     has_odds = spread_line is not None
 
@@ -197,38 +285,39 @@ def build_expected_values(game):
 
 def make_picks(sim_result, spread_line, total_line, home_name, away_name,
                home_abbr, away_abbr, fav_team=None, dog_team=None,
-               fav_abbr=None, dog_abbr=None):
+               fav_abbr=None, dog_abbr=None, sport=""):
     """
     Generate explicit SU, ATS, O/U picks from simulation results.
 
     ATS logic is based on favorite/underdog, NOT home/away.
     The favorite is whoever has the negative spread (gives points).
+
+    Includes:
+    - Favorite cover regression (historical fav cover rate ~48-49%)
+    - Confidence filtering (skip low-edge ATS/O/U picks)
+    - Sport-specific ATS calibration
     """
     picks = {}
+    sport_lower = sport.lower() if sport else ""
 
     # --- Determine favorite and underdog ---
-    # spread_line is from home team's perspective
-    # negative = home is favorite, positive = away is favorite
     if spread_line is not None and spread_line < 0:
-        # Home is favorite
         fav_name = fav_team or home_name
         dog_name = dog_team or away_name
         f_abbr = fav_abbr or home_abbr
         d_abbr = dog_abbr or away_abbr
-        fav_spread = spread_line        # e.g., -6.5
-        dog_spread = -spread_line       # e.g., +6.5
+        fav_spread = spread_line
+        dog_spread = -spread_line
         fav_is_home = True
     elif spread_line is not None and spread_line > 0:
-        # Away is favorite
         fav_name = fav_team or away_name
         dog_name = dog_team or home_name
         f_abbr = fav_abbr or away_abbr
         d_abbr = dog_abbr or home_abbr
-        fav_spread = -spread_line       # e.g., -7.5 (away gives points)
-        dog_spread = spread_line        # e.g., +7.5 (home gets points)
+        fav_spread = -spread_line
+        dog_spread = spread_line
         fav_is_home = False
     else:
-        # Pick'em or no spread — treat as even
         fav_name = home_name
         dog_name = away_name
         f_abbr = home_abbr
@@ -249,34 +338,51 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         picks["su_confidence"] = round((1 - home_win_pct) * 100, 1)
 
     # --- ATS PICK: who covers the spread ---
-    # home_cover_pct = % of sims where home team covered
-    # If favorite is home: fav_cover_pct = home_cover_pct
-    # If favorite is away: fav_cover_pct = 1 - home_cover_pct
     cover_pct = sim_result.get("home_cover_pct")
     if cover_pct is not None:
         if fav_is_home:
-            fav_cover_pct = cover_pct
+            raw_fav_cover = cover_pct
         else:
-            fav_cover_pct = 1.0 - cover_pct
+            raw_fav_cover = 1.0 - cover_pct
+
+        # REGRESSION: blend simulation result toward historical base rate
+        # This prevents overconfident favorite picks.
+        # Vegas spreads are ~50/50 by design; our edge is small.
+        # Use 60% simulation / 40% historical base rate blend.
+        base_rate = FAV_COVER_BASE.get(sport_lower, 0.49)
+        fav_cover_pct = raw_fav_cover * 0.60 + base_rate * 0.40
+
+        # Large spread penalty: favorites covering big spreads is harder
+        # than the simulation suggests. Apply extra dog lean for spreads > 7.
+        abs_spread = abs(spread_line) if spread_line else 0
+        if abs_spread > 7:
+            # Each point beyond 7 adds 0.5% to underdog cover probability
+            big_spread_adj = (abs_spread - 7) * 0.005
+            fav_cover_pct -= big_spread_adj
+
+        fav_cover_pct = max(0.01, min(0.99, fav_cover_pct))
 
         if fav_cover_pct >= 0.5:
-            # Pick the favorite to cover
             picks["ats_pick"] = fav_name
             picks["ats_pick_abbr"] = f_abbr
             picks["ats_spread"] = fav_spread
             picks["ats_confidence"] = round(fav_cover_pct * 100, 1)
         else:
-            # Pick the underdog to cover
             picks["ats_pick"] = dog_name
             picks["ats_pick_abbr"] = d_abbr
             picks["ats_spread"] = dog_spread
             picks["ats_confidence"] = round((1 - fav_cover_pct) * 100, 1)
+
+        # Confidence filter: if edge is too thin, mark as no_play
+        ats_conf = picks["ats_confidence"] / 100.0
+        if ats_conf < ATS_MIN_CONFIDENCE:
+            picks["ats_no_play"] = True
     else:
-        # No simulation data — use SU winner as fallback
         picks["ats_pick"] = picks["su_pick"]
         picks["ats_pick_abbr"] = picks["su_pick_abbr"]
         picks["ats_spread"] = 0
         picks["ats_confidence"] = picks["su_confidence"]
+        picks["ats_no_play"] = True
 
     # --- O/U PICK ---
     over_pct = sim_result.get("over_pct")
@@ -289,10 +395,16 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             picks["ou_pick"] = "Under"
             picks["ou_line"] = total_line
             picks["ou_confidence"] = round((1 - over_pct) * 100, 1)
+
+        # Confidence filter
+        ou_conf = picks["ou_confidence"] / 100.0
+        if ou_conf < OU_MIN_CONFIDENCE:
+            picks["ou_no_play"] = True
     else:
         picks["ou_pick"] = "Over"
         picks["ou_line"] = total_line
         picks["ou_confidence"] = 50.0
+        picks["ou_no_play"] = True
 
     return picks
 
@@ -302,6 +414,11 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     Full pipeline: build expected values, run simulations, make picks.
     Always generates SU, ATS, and O/U picks for every game.
     When no Vegas line exists, uses projected values as the line.
+
+    Includes stdev adjustments for:
+    - Referee consistency (predictable refs → tighter sims)
+    - Team-specific volatility (blend with sport default)
+    - Divisional games (play tighter historically)
     """
     sport = (game.get("sport") or "").lower()
     odds = game.get("odds") or {}
@@ -314,12 +431,33 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
 
     expected_margin, expected_total, has_odds = build_expected_values(game)
 
-    # When no Vegas line, use pick'em (0) for spread and sport default for total
-    # This ensures every game gets ATS and O/U picks
+    # ── STDEV ADJUSTMENTS ────────────────────────────────────────────
+
+    # Referee consistency: predictable refs → tighter simulations
+    ref_consistency = safe_float(game.get("ref_consistency"), 0)
+    if ref_consistency > 0:
+        sport_default_stdev = TOTAL_STDEV.get(sport, 10.0)
+        consistency_ratio = ref_consistency / sport_default_stdev
+        adjustment = max(0.85, min(1.15, consistency_ratio))
+        total_stdev *= adjustment
+        margin_stdev *= (1.0 + (adjustment - 1.0) * 0.5)
+
+    # Team-specific margin volatility: blend 60% sport / 40% team
+    home_margin_stdev = safe_float(game.get("home_margin_stdev"), 0)
+    away_margin_stdev = safe_float(game.get("away_margin_stdev"), 0)
+    if home_margin_stdev > 0 and away_margin_stdev > 0:
+        team_stdev = (home_margin_stdev + away_margin_stdev) / 2
+        margin_stdev = margin_stdev * 0.6 + team_stdev * 0.4
+
+    # Divisional games play tighter (8% reduction)
+    if game.get("divisional"):
+        margin_stdev *= 0.92
+
+    # ── SIMULATION ───────────────────────────────────────────────────
+
     sim_spread = spread_line if spread_line is not None else 0.0
     sim_total = total_line if total_line is not None else expected_total
 
-    # Run simulation
     sim = simulate_game(
         expected_margin=expected_margin,
         expected_total=expected_total,
@@ -330,7 +468,8 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         n_sims=n_sims,
     )
 
-    # Extract team info
+    # ── PICKS ────────────────────────────────────────────────────────
+
     home_team = game.get("home_team") or {}
     away_team = game.get("away_team") or {}
     home_name = home_team.get("name", "") if isinstance(home_team, dict) else str(home_team)
@@ -338,7 +477,6 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     home_abbr = home_team.get("abbr", "") if isinstance(home_team, dict) else ""
     away_abbr = away_team.get("abbr", "") if isinstance(away_team, dict) else ""
 
-    # Use actual Vegas lines for picks display, fall back to projected values
     pick_spread = spread_line if spread_line is not None else round(-expected_margin, 1)
     pick_total = total_line if total_line is not None else round(expected_total, 1)
 
@@ -354,9 +492,9 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         dog_team=game.get("dog_team"),
         fav_abbr=game.get("fav_abbr"),
         dog_abbr=game.get("dog_abbr"),
+        sport=sport,
     )
 
-    # Flag whether picks are based on real Vegas lines or projections
     picks["has_vegas_spread"] = spread_line is not None
     picks["has_vegas_total"] = total_line is not None
 

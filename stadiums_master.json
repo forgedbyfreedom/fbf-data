@@ -1,4 +1,64 @@
 {
+  "coleman coliseum": {
+    "name": "Coleman Coliseum",
+    "norm": "coleman coliseum",
+    "city": "Tuscaloosa",
+    "state": "AL",
+    "indoor": true,
+    "grass": false,
+    "lat": 33.2095614,
+    "lon": -87.5675258
+  },
+  "carmichael arena": {
+    "name": "Carmichael Arena",
+    "norm": "carmichael arena",
+    "city": "Chapel Hill",
+    "state": "NC",
+    "indoor": true,
+    "grass": false,
+    "lat": 35.9131542,
+    "lon": -79.05578
+  },
+  "breslin center": {
+    "name": "Breslin Center",
+    "norm": "breslin center",
+    "city": "East Lansing",
+    "state": "MI",
+    "indoor": true,
+    "grass": false,
+    "lat": 42.7320307,
+    "lon": -84.4721678
+  },
+  "madison square garden": {
+    "name": "Madison Square Garden",
+    "norm": "madison square garden",
+    "city": "New York",
+    "state": "NY",
+    "indoor": true,
+    "grass": false,
+    "lat": 40.7127281,
+    "lon": -74.0060152
+  },
+  "ppg paints arena": {
+    "name": "PPG Paints Arena",
+    "norm": "ppg paints arena",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "indoor": true,
+    "grass": false,
+    "lat": 40.4406968,
+    "lon": -80.0025666
+  },
+  "cooltoday park": {
+    "name": "CoolToday Park",
+    "norm": "cooltoday park",
+    "city": "North Port",
+    "state": "Florida",
+    "indoor": false,
+    "grass": true,
+    "lat": 27.044224,
+    "lon": -82.2359254
+  },
   "jetblue park at fenway south": {
     "name": "JetBlue Park at Fenway South",
     "norm": "jetblue park at fenway south",
@@ -9,15 +69,25 @@
     "lat": 26.640628,
     "lon": -81.8723084
   },
-  "cacti park of the palm beaches": {
-    "name": "CACTI Park of the Palm Beaches",
-    "norm": "cacti park of the palm beaches",
-    "city": "Palm Beach",
+  "publix field at joker marchant stadium": {
+    "name": "Publix Field at Joker Marchant Stadium",
+    "norm": "publix field at joker marchant stadium",
+    "city": "Lakeland",
+    "state": "Florida",
+    "indoor": false,
+    "grass": false,
+    "lat": 28.0394654,
+    "lon": -81.9498042
+  },
+  "lee health sports complex": {
+    "name": "Lee Health Sports Complex",
+    "norm": "lee health sports complex",
+    "city": "Fort Myers",
     "state": "Florida",
     "indoor": false,
     "grass": true,
-    "lat": 26.6279798,
-    "lon": -80.4494174
+    "lat": 26.640628,
+    "lon": -81.8723084
   },
   "baycare ballpark": {
     "name": "BayCare Ballpark",
@@ -29,26 +99,6 @@
     "lat": 27.9658533,
     "lon": -82.8001026
   },
-  "charlotte sports park": {
-    "name": "Charlotte Sports Park",
-    "norm": "charlotte sports park",
-    "city": "Port Charlotte",
-    "state": "Florida",
-    "indoor": true,
-    "grass": false,
-    "lat": 26.98242,
-    "lon": -82.1068873
-  },
-  "td ballpark": {
-    "name": "TD Ballpark",
-    "norm": "td ballpark",
-    "city": "Dunedin",
-    "state": "Florida",
-    "indoor": false,
-    "grass": true,
-    "lat": 28.0116627,
-    "lon": -82.7893788
-  },
   "roger dean chevrolet stadium": {
     "name": "Roger Dean Chevrolet Stadium",
     "norm": "roger dean chevrolet stadium",
@@ -58,6 +108,16 @@
     "grass": false,
     "lat": 26.9342246,
     "lon": -80.0942087
+  },
+  "cacti park of the palm beaches": {
+    "name": "CACTI Park of the Palm Beaches",
+    "norm": "cacti park of the palm beaches",
+    "city": "Palm Beach",
+    "state": "Florida",
+    "indoor": false,
+    "grass": true,
+    "lat": 26.6279798,
+    "lon": -80.4494174
   },
   "clover park": {
     "name": "Clover Park",
@@ -69,13 +129,103 @@
     "lat": 27.2939333,
     "lon": -80.3503283
   },
-  "hohokam stadium": {
-    "name": "Hohokam Stadium",
-    "norm": "hohokam stadium",
+  "value city arena": {
+    "name": "Value City Arena",
+    "norm": "value city arena",
+    "city": "Columbus",
+    "state": "OH",
+    "indoor": true,
+    "grass": false,
+    "lat": 39.9622601,
+    "lon": -83.0007065
+  },
+  "memorial coliseum ky": {
+    "name": "Memorial Coliseum (KY)",
+    "norm": "memorial coliseum ky",
+    "city": "Lexington",
+    "state": "KY",
+    "indoor": true,
+    "grass": false,
+    "lat": 38.0464066,
+    "lon": -84.4970393
+  },
+  "food city center": {
+    "name": "Food City Center",
+    "norm": "food city center",
+    "city": "Knoxville",
+    "state": "TN",
+    "indoor": true,
+    "grass": false,
+    "lat": 35.9603948,
+    "lon": -83.9210261
+  },
+  "wvu coliseum": {
+    "name": "WVU Coliseum",
+    "norm": "wvu coliseum",
+    "city": "Morgantown",
+    "state": "WV",
+    "indoor": true,
+    "grass": false,
+    "lat": 39.6296809,
+    "lon": -79.9559437
+  },
+  "state farm center": {
+    "name": "State Farm Center",
+    "norm": "state farm center",
+    "city": "Champaign",
+    "state": "IL",
+    "indoor": true,
+    "grass": false,
+    "lat": 40.1164841,
+    "lon": -88.2430932
+  },
+  "kohl center": {
+    "name": "Kohl Center",
+    "norm": "kohl center",
+    "city": "Madison",
+    "state": "WI",
+    "indoor": true,
+    "grass": false,
+    "lat": 43.07469,
+    "lon": -89.3841663
+  },
+  "the sandy and john black pavilion at ole miss": {
+    "name": "The Sandy and John Black Pavilion at Ole Miss",
+    "norm": "the sandy and john black pavilion at ole miss",
+    "city": "Oxford",
+    "state": "MS",
+    "indoor": true,
+    "grass": false,
+    "lat": 34.3663773,
+    "lon": -89.5187664
+  },
+  "united supermarkets arena": {
+    "name": "United Supermarkets Arena",
+    "norm": "united supermarkets arena",
+    "city": "Lubbock",
+    "state": "TX",
+    "indoor": true,
+    "grass": false,
+    "lat": 33.5855677,
+    "lon": -101.8470215
+  },
+  "stegeman coliseum": {
+    "name": "Stegeman Coliseum",
+    "norm": "stegeman coliseum",
+    "city": "Athens",
+    "state": "GA",
+    "indoor": true,
+    "grass": false,
+    "lat": 33.9597677,
+    "lon": -83.376398
+  },
+  "sloan park": {
+    "name": "Sloan Park",
+    "norm": "sloan park",
     "city": "Mesa",
     "state": "Arizona",
     "indoor": false,
-    "grass": false,
+    "grass": true,
     "lat": 33.4151005,
     "lon": -111.831455
   },
@@ -89,6 +239,16 @@
     "lat": 33.4672279,
     "lon": -112.3853489
   },
+  "surprise stadium": {
+    "name": "Surprise Stadium",
+    "norm": "surprise stadium",
+    "city": "Surprise",
+    "state": "Arizona",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.629247,
+    "lon": -112.3681428
+  },
   "camelback ranch glendale": {
     "name": "Camelback Ranch - Glendale",
     "norm": "camelback ranch glendale",
@@ -99,15 +259,25 @@
     "lat": 33.4484367,
     "lon": -112.074141
   },
-  "surprise stadium": {
-    "name": "Surprise Stadium",
-    "norm": "surprise stadium",
-    "city": "Surprise",
+  "scottsdale stadium": {
+    "name": "Scottsdale Stadium",
+    "norm": "scottsdale stadium",
+    "city": "Scottsdale",
     "state": "Arizona",
     "indoor": false,
     "grass": false,
-    "lat": 33.629247,
-    "lon": -112.3681428
+    "lat": 33.4942189,
+    "lon": -111.926018
+  },
+  "hohokam stadium": {
+    "name": "Hohokam Stadium",
+    "norm": "hohokam stadium",
+    "city": "Mesa",
+    "state": "Arizona",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.4151005,
+    "lon": -111.831455
   },
   "salt river fields at talking stick": {
     "name": "Salt River Fields at Talking Stick",
@@ -119,16 +289,6 @@
     "lat": 33.4942189,
     "lon": -111.926018
   },
-  "tempe diablo stadium": {
-    "name": "Tempe Diablo Stadium",
-    "norm": "tempe diablo stadium",
-    "city": "Tempe",
-    "state": "Arizona",
-    "indoor": false,
-    "grass": false,
-    "lat": 33.4255117,
-    "lon": -111.940016
-  },
   "peoria stadium": {
     "name": "Peoria Stadium",
     "norm": "peoria stadium",
@@ -139,15 +299,165 @@
     "lat": 33.5806115,
     "lon": -112.237294
   },
-  "xfinity mobile arena": {
-    "name": "Xfinity Mobile Arena",
-    "norm": "xfinity mobile arena",
-    "city": "Philadelphia",
-    "state": "PA",
+  "barclays center": {
+    "name": "Barclays Center",
+    "norm": "barclays center",
+    "city": "Brooklyn",
+    "state": "NY",
     "indoor": true,
     "grass": false,
-    "lat": 39.9527237,
-    "lon": -75.1635262
+    "lat": 40.6526006,
+    "lon": -73.9497211
+  },
+  "united center": {
+    "name": "United Center",
+    "norm": "united center",
+    "city": "Chicago",
+    "state": "IL",
+    "indoor": true,
+    "grass": false,
+    "lat": 41.8755616,
+    "lon": -87.6244212
+  },
+  "ball arena": {
+    "name": "Ball Arena",
+    "norm": "ball arena",
+    "city": "Denver",
+    "state": "CO",
+    "indoor": true,
+    "grass": false,
+    "lat": 39.7392364,
+    "lon": -104.984862
+  },
+  "simon skjodt assembly hall": {
+    "name": "Simon Skjodt Assembly Hall",
+    "norm": "simon skjodt assembly hall",
+    "city": "Bloomington",
+    "state": "IN",
+    "indoor": true,
+    "grass": false,
+    "lat": 39.1670396,
+    "lon": -86.5342881
+  },
+  "humphrey coliseum": {
+    "name": "Humphrey Coliseum",
+    "norm": "humphrey coliseum",
+    "city": "Starkville",
+    "state": "MS",
+    "indoor": true,
+    "grass": false,
+    "lat": 33.4638745,
+    "lon": -88.8152074
+  },
+  "mizzou arena": {
+    "name": "Mizzou Arena",
+    "norm": "mizzou arena",
+    "city": "Columbia",
+    "state": "MO",
+    "indoor": true,
+    "grass": false,
+    "lat": 38.951883,
+    "lon": -92.3337366
+  },
+  "kfc yum center": {
+    "name": "KFC Yum! Center",
+    "norm": "kfc yum center",
+    "city": "Louisville",
+    "state": "KY",
+    "indoor": true,
+    "grass": false,
+    "lat": 38.2542376,
+    "lon": -85.759407
+  },
+  "schollmaier arena": {
+    "name": "Schollmaier Arena",
+    "norm": "schollmaier arena",
+    "city": "Fort Worth",
+    "state": "TX",
+    "indoor": true,
+    "grass": false,
+    "lat": 32.753177,
+    "lon": -97.3327459
+  },
+  "delta center": {
+    "name": "Delta Center",
+    "norm": "delta center",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "indoor": true,
+    "grass": false,
+    "lat": 40.7596198,
+    "lon": -111.886797
+  },
+  "sap center at san jose": {
+    "name": "SAP Center at San Jose",
+    "norm": "sap center at san jose",
+    "city": "San Jose",
+    "state": "CA",
+    "indoor": true,
+    "grass": false,
+    "lat": 37.3361663,
+    "lon": -121.890591
+  },
+  "gainbridge fieldhouse": {
+    "name": "Gainbridge Fieldhouse",
+    "norm": "gainbridge fieldhouse",
+    "city": "Indianapolis",
+    "state": "IN",
+    "indoor": true,
+    "grass": false,
+    "lat": 39.7683331,
+    "lon": -86.1583502
+  },
+  "grand casino arena": {
+    "name": "Grand Casino Arena",
+    "norm": "grand casino arena",
+    "city": "Saint Paul",
+    "state": "MN",
+    "indoor": true,
+    "grass": false,
+    "lat": 44.9497487,
+    "lon": -93.0931028
+  },
+  "state farm arena": {
+    "name": "State Farm Arena",
+    "norm": "state farm arena",
+    "city": "Atlanta",
+    "state": "GA",
+    "indoor": true,
+    "grass": false,
+    "lat": 33.7544657,
+    "lon": -84.3898151
+  },
+  "kia center": {
+    "name": "Kia Center",
+    "norm": "kia center",
+    "city": "Orlando",
+    "state": "FL",
+    "indoor": true,
+    "grass": false,
+    "lat": 28.5421218,
+    "lon": -81.379045
+  },
+  "galen center": {
+    "name": "Galen Center",
+    "norm": "galen center",
+    "city": "Los Angeles",
+    "state": "CA",
+    "indoor": true,
+    "grass": false,
+    "lat": 34.0536909,
+    "lon": -118.242766
+  },
+  "ubs arena": {
+    "name": "UBS Arena",
+    "norm": "ubs arena",
+    "city": "Elmont",
+    "state": "NY",
+    "indoor": true,
+    "grass": false,
+    "lat": 40.7053335,
+    "lon": -73.7078294
   },
   "td garden": {
     "name": "TD Garden",
@@ -159,51 +469,91 @@
     "lat": 42.3588336,
     "lon": -71.0578303
   },
-  "keybank center": {
-    "name": "KeyBank Center",
-    "norm": "keybank center",
-    "city": "Buffalo",
-    "state": "NY",
+  "american airlines center": {
+    "name": "American Airlines Center",
+    "norm": "american airlines center",
+    "city": "Dallas",
+    "state": "TX",
     "indoor": true,
     "grass": false,
-    "lat": 42.8864163,
-    "lon": -78.8781493
+    "lat": 32.7762719,
+    "lon": -96.7968559
   },
-  "bell centre": {
-    "name": "Bell Centre",
-    "norm": "bell centre",
-    "city": "Montreal",
-    "state": "QC",
+  "honda center": {
+    "name": "Honda Center",
+    "norm": "honda center",
+    "city": "Anaheim",
+    "state": "CA",
     "indoor": true,
     "grass": false,
-    "lat": 45.5046474,
-    "lon": -73.5658213
+    "lat": 33.8347516,
+    "lon": -117.911732
   },
-  "benchmark international arena": {
-    "name": "Benchmark International Arena",
-    "norm": "benchmark international arena",
-    "city": "Tampa",
-    "state": "FL",
+  "intuit dome": {
+    "name": "Intuit Dome",
+    "norm": "intuit dome",
+    "city": "Inglewood",
+    "state": "CA",
     "indoor": true,
     "grass": false,
-    "lat": 27.9449854,
-    "lon": -82.4583107
+    "lat": 33.9562003,
+    "lon": -118.353132
   },
-  "amerant bank arena": {
-    "name": "Amerant Bank Arena",
-    "norm": "amerant bank arena",
-    "city": "Sunrise",
-    "state": "FL",
+  "cryptocom arena": {
+    "name": "crypto.com Arena",
+    "norm": "cryptocom arena",
+    "city": "Los Angeles",
+    "state": "CA",
     "indoor": true,
     "grass": false,
-    "lat": 26.1666888,
-    "lon": -80.2787573
+    "lat": 34.0536909,
+    "lon": -118.242766
   },
-  "madison square garden": {
-    "name": "Madison Square Garden",
-    "norm": "madison square garden",
-    "city": "New York",
-    "state": "NY",
+  "lecom park": {
+    "name": "LECOM Park",
+    "norm": "lecom park",
+    "city": "Bradenton",
+    "state": "Florida",
+    "indoor": false,
+    "grass": true,
+    "lat": 27.4989278,
+    "lon": -82.5748194
+  },
+  "td ballpark": {
+    "name": "TD Ballpark",
+    "norm": "td ballpark",
+    "city": "Dunedin",
+    "state": "Florida",
+    "indoor": false,
+    "grass": true,
+    "lat": 28.0243,
+    "lon": -82.7453
+  },
+  "bridgestone arena": {
+    "name": "Bridgestone Arena",
+    "norm": "bridgestone arena",
+    "city": "Nashville",
+    "state": "TN",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "tempe diablo stadium": {
+    "name": "Tempe Diablo Stadium",
+    "norm": "tempe diablo stadium",
+    "city": "Tempe",
+    "state": "Arizona",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.3934,
+    "lon": -111.961
+  },
+  "capital one arena": {
+    "name": "Capital One Arena",
+    "norm": "capital one arena",
+    "city": "Washington",
+    "state": "DC",
     "indoor": true,
     "grass": false,
     "lat": null,
@@ -219,361 +569,11 @@
     "lat": null,
     "lon": null
   },
-  "barclays center": {
-    "name": "Barclays Center",
-    "norm": "barclays center",
-    "city": "Brooklyn",
-    "state": "NY",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "kaseya center": {
-    "name": "Kaseya Center",
-    "norm": "kaseya center",
-    "city": "Miami",
-    "state": "FL",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "state farm arena": {
-    "name": "State Farm Arena",
-    "norm": "state farm arena",
-    "city": "Atlanta",
-    "state": "GA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "enterprise center": {
-    "name": "Enterprise Center",
-    "norm": "enterprise center",
-    "city": "St. Louis",
-    "state": "MO",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "toyota center houston": {
-    "name": "Toyota Center (Houston)",
-    "norm": "toyota center houston",
-    "city": "Houston",
-    "state": "TX",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
   "fiserv forum": {
     "name": "Fiserv Forum",
     "norm": "fiserv forum",
     "city": "Milwaukee",
     "state": "WI",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "frost bank center": {
-    "name": "Frost Bank Center",
-    "norm": "frost bank center",
-    "city": "San Antonio",
-    "state": "TX",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "american airlines center": {
-    "name": "American Airlines Center",
-    "norm": "american airlines center",
-    "city": "Dallas",
-    "state": "TX",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "grand casino arena": {
-    "name": "Grand Casino Arena",
-    "norm": "grand casino arena",
-    "city": "Saint Paul",
-    "state": "MN",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "canada life centre": {
-    "name": "Canada Life Centre",
-    "norm": "canada life centre",
-    "city": "Winnipeg",
-    "state": "MB",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "orleans arena": {
-    "name": "Orleans Arena",
-    "norm": "orleans arena",
-    "city": "Las Vegas",
-    "state": "NV",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "chase center": {
-    "name": "Chase Center",
-    "norm": "chase center",
-    "city": "San Francisco",
-    "state": "CA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "moda center": {
-    "name": "Moda Center",
-    "norm": "moda center",
-    "city": "Portland",
-    "state": "OR",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "golden 1 center": {
-    "name": "Golden 1 Center",
-    "norm": "golden 1 center",
-    "city": "Sacramento",
-    "state": "CA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "ball arena": {
-    "name": "Ball Arena",
-    "norm": "ball arena",
-    "city": "Denver",
-    "state": "CO",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "climate pledge arena": {
-    "name": "Climate Pledge Arena",
-    "norm": "climate pledge arena",
-    "city": "Seattle",
-    "state": "WA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "cryptocom arena": {
-    "name": "crypto.com Arena",
-    "norm": "cryptocom arena",
-    "city": "Los Angeles",
-    "state": "CA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "tmobile center": {
-    "name": "T-Mobile Center",
-    "norm": "tmobile center",
-    "city": "Kansas City",
-    "state": "MO",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "cooltoday park": {
-    "name": "CoolToday Park",
-    "norm": "cooltoday park",
-    "city": "North Port",
-    "state": "Florida",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "ed smith stadium": {
-    "name": "Ed Smith Stadium",
-    "norm": "ed smith stadium",
-    "city": "Sarasota",
-    "state": "Florida",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "lee health sports complex": {
-    "name": "Lee Health Sports Complex",
-    "norm": "lee health sports complex",
-    "city": "Fort Myers",
-    "state": "Florida",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "spectrum center": {
-    "name": "Spectrum Center",
-    "norm": "spectrum center",
-    "city": "Charlotte",
-    "state": "NC",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "sloan park": {
-    "name": "Sloan Park",
-    "norm": "sloan park",
-    "city": "Mesa",
-    "state": "Arizona",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "george m steinbrenner field": {
-    "name": "George M. Steinbrenner Field",
-    "norm": "george m steinbrenner field",
-    "city": "Tampa",
-    "state": "Florida",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "kia center": {
-    "name": "Kia Center",
-    "norm": "kia center",
-    "city": "Orlando",
-    "state": "FL",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "canadian tire centre": {
-    "name": "Canadian Tire Centre",
-    "norm": "canadian tire centre",
-    "city": "Ottawa",
-    "state": "ON",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "smoothie king center": {
-    "name": "Smoothie King Center",
-    "norm": "smoothie king center",
-    "city": "New Orleans",
-    "state": "LA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "delta center": {
-    "name": "Delta Center",
-    "norm": "delta center",
-    "city": "Salt Lake City",
-    "state": "UT",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "intuit dome": {
-    "name": "Intuit Dome",
-    "norm": "intuit dome",
-    "city": "Inglewood",
-    "state": "CA",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "rocket arena": {
-    "name": "Rocket Arena",
-    "norm": "rocket arena",
-    "city": "Cleveland",
-    "state": "OH",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "publix field at joker marchant stadium": {
-    "name": "Publix Field at Joker Marchant Stadium",
-    "norm": "publix field at joker marchant stadium",
-    "city": "Lakeland",
-    "state": "Florida",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "united center": {
-    "name": "United Center",
-    "norm": "united center",
-    "city": "Chicago",
-    "state": "IL",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "bridgestone arena": {
-    "name": "Bridgestone Arena",
-    "norm": "bridgestone arena",
-    "city": "Nashville",
-    "state": "TN",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "lecom park": {
-    "name": "LECOM Park",
-    "norm": "lecom park",
-    "city": "Bradenton",
-    "state": "Florida",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "little caesars arena": {
-    "name": "Little Caesars Arena",
-    "norm": "little caesars arena",
-    "city": "Detroit",
-    "state": "MI",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "gainbridge fieldhouse": {
-    "name": "Gainbridge Fieldhouse",
-    "norm": "gainbridge fieldhouse",
-    "city": "Indianapolis",
-    "state": "IN",
     "indoor": true,
     "grass": false,
     "lat": null,
@@ -589,41 +589,21 @@
     "lat": null,
     "lon": null
   },
-  "prudential center": {
-    "name": "Prudential Center",
-    "norm": "prudential center",
-    "city": "Newark",
-    "state": "NJ",
+  "mckale memorial center": {
+    "name": "McKale Memorial Center",
+    "norm": "mckale memorial center",
+    "city": "Tucson",
+    "state": "AZ",
     "indoor": true,
     "grass": false,
     "lat": null,
     "lon": null
   },
-  "fedexforum": {
-    "name": "FedExForum",
-    "norm": "fedexforum",
-    "city": "Memphis",
-    "state": "TN",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "scottsdale stadium": {
-    "name": "Scottsdale Stadium",
-    "norm": "scottsdale stadium",
-    "city": "Scottsdale",
-    "state": "Arizona",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "paycom center": {
-    "name": "Paycom Center",
-    "norm": "paycom center",
-    "city": "Oklahoma City",
-    "state": "OK",
+  "chase center": {
+    "name": "Chase Center",
+    "norm": "chase center",
+    "city": "San Francisco",
+    "state": "CA",
     "indoor": true,
     "grass": false,
     "lat": null,
@@ -639,61 +619,191 @@
     "lat": null,
     "lon": null
   },
-  "tmobile arena": {
-    "name": "T-Mobile Arena",
-    "norm": "tmobile arena",
-    "city": "Las Vegas",
-    "state": "NV",
+  "climate pledge arena": {
+    "name": "Climate Pledge Arena",
+    "norm": "climate pledge arena",
+    "city": "Seattle",
+    "state": "WA",
     "indoor": true,
     "grass": false,
     "lat": null,
     "lon": null
   },
-  "american family fields of phoenix": {
-    "name": "American Family Fields of Phoenix",
-    "norm": "american family fields of phoenix",
-    "city": "Phoenix",
-    "state": "Arizona",
-    "indoor": false,
-    "grass": true,
+  "charlotte sports park": {
+    "name": "Charlotte Sports Park",
+    "norm": "charlotte sports park",
+    "city": "Port Charlotte",
+    "state": "Florida",
+    "indoor": true,
+    "grass": false,
     "lat": null,
     "lon": null
   },
-  "newman arena": {
-    "name": "Newman Arena",
-    "norm": "newman arena",
-    "city": "Ithaca",
+  "colonial life arena": {
+    "name": "Colonial Life Arena",
+    "norm": "colonial life arena",
+    "city": "Columbia",
+    "state": "SC",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "spectrum center": {
+    "name": "Spectrum Center",
+    "norm": "spectrum center",
+    "city": "Charlotte",
+    "state": "NC",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "rocket arena": {
+    "name": "Rocket Arena",
+    "norm": "rocket arena",
+    "city": "Cleveland",
+    "state": "OH",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "john paul jones arena": {
+    "name": "John Paul Jones Arena",
+    "norm": "john paul jones arena",
+    "city": "Charlottesville",
+    "state": "VA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "dean e smith center": {
+    "name": "Dean E. Smith Center",
+    "norm": "dean e smith center",
+    "city": "Chapel Hill",
+    "state": "NC",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "millett hall": {
+    "name": "Millett Hall",
+    "norm": "millett hall",
+    "city": "Oxford",
+    "state": "OH",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "keybank center": {
+    "name": "KeyBank Center",
+    "norm": "keybank center",
+    "city": "Buffalo",
     "state": "NY",
     "indoor": true,
     "grass": false,
     "lat": null,
     "lon": null
   },
-  "ubs arena": {
-    "name": "UBS Arena",
-    "norm": "ubs arena",
-    "city": "Elmont",
-    "state": "NY",
+  "prudential center": {
+    "name": "Prudential Center",
+    "norm": "prudential center",
+    "city": "Newark",
+    "state": "NJ",
     "indoor": true,
     "grass": false,
     "lat": null,
     "lon": null
   },
-  "capital one arena": {
-    "name": "Capital One Arena",
-    "norm": "capital one arena",
-    "city": "Washington",
-    "state": "DC",
+  "nationwide arena": {
+    "name": "Nationwide Arena",
+    "norm": "nationwide arena",
+    "city": "Columbus",
+    "state": "OH",
     "indoor": true,
     "grass": false,
     "lat": null,
     "lon": null
   },
-  "meta apex": {
-    "name": "Meta APEX",
-    "norm": "meta apex",
-    "city": "Las Vegas",
-    "state": "NV",
+  "kaseya center": {
+    "name": "Kaseya Center",
+    "norm": "kaseya center",
+    "city": "Miami",
+    "state": "FL",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "xfinity mobile arena": {
+    "name": "Xfinity Mobile Arena",
+    "norm": "xfinity mobile arena",
+    "city": "Philadelphia",
+    "state": "PA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "target center": {
+    "name": "Target Center",
+    "norm": "target center",
+    "city": "Minneapolis",
+    "state": "MN",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "stephen c oconnell center": {
+    "name": "Stephen C. O'Connell Center",
+    "norm": "stephen c oconnell center",
+    "city": "Gainesville",
+    "state": "FL",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "canada life centre": {
+    "name": "Canada Life Centre",
+    "norm": "canada life centre",
+    "city": "Winnipeg",
+    "state": "MB",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "desert financial arena": {
+    "name": "Desert Financial Arena",
+    "norm": "desert financial arena",
+    "city": "Tempe",
+    "state": "AZ",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "fifth third arena": {
+    "name": "Fifth Third Arena",
+    "norm": "fifth third arena",
+    "city": "Cincinnati",
+    "state": "OH",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "scotiabank saddledome": {
+    "name": "Scotiabank Saddledome",
+    "norm": "scotiabank saddledome",
+    "city": "Calgary",
+    "state": "AB",
     "indoor": true,
     "grass": false,
     "lat": null,
@@ -704,6 +814,316 @@
     "norm": "rogers place",
     "city": "Edmonton",
     "state": "AB",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "golden 1 center": {
+    "name": "Golden 1 Center",
+    "norm": "golden 1 center",
+    "city": "Sacramento",
+    "state": "CA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "pauley pavilion": {
+    "name": "Pauley Pavilion",
+    "norm": "pauley pavilion",
+    "city": "Los Angeles",
+    "state": "CA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "ed smith stadium": {
+    "name": "Ed Smith Stadium",
+    "norm": "ed smith stadium",
+    "city": "Sarasota",
+    "state": "Florida",
+    "indoor": false,
+    "grass": true,
+    "lat": 27.3381,
+    "lon": -82.529
+  },
+  "american family fields of phoenix": {
+    "name": "American Family Fields of Phoenix",
+    "norm": "american family fields of phoenix",
+    "city": "Phoenix",
+    "state": "Arizona",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.3928,
+    "lon": -112.183
+  },
+  "bud walton arena": {
+    "name": "Bud Walton Arena",
+    "norm": "bud walton arena",
+    "city": "Fayetteville",
+    "state": "AR",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "little caesars arena": {
+    "name": "Little Caesars Arena",
+    "norm": "little caesars arena",
+    "city": "Detroit",
+    "state": "MI",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "fedexforum": {
+    "name": "FedExForum",
+    "norm": "fedexforum",
+    "city": "Memphis",
+    "state": "TN",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "chaifetz arena": {
+    "name": "Chaifetz Arena",
+    "norm": "chaifetz arena",
+    "city": "St. Louis",
+    "state": "MO",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "welshryan arena": {
+    "name": "Welsh-Ryan Arena",
+    "norm": "welshryan arena",
+    "city": "Evanston",
+    "state": "IL",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "fertitta center": {
+    "name": "Fertitta Center",
+    "norm": "fertitta center",
+    "city": "Houston",
+    "state": "TX",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "george m steinbrenner field": {
+    "name": "George M. Steinbrenner Field",
+    "norm": "george m steinbrenner field",
+    "city": "Tampa",
+    "state": "Florida",
+    "indoor": false,
+    "grass": false,
+    "lat": 27.9786,
+    "lon": -82.5067
+  },
+  "toyota center houston": {
+    "name": "Toyota Center (Houston)",
+    "norm": "toyota center houston",
+    "city": "Houston",
+    "state": "TX",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "frost bank center": {
+    "name": "Frost Bank Center",
+    "norm": "frost bank center",
+    "city": "San Antonio",
+    "state": "TX",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "carverhawkeye arena": {
+    "name": "Carver-Hawkeye Arena",
+    "norm": "carverhawkeye arena",
+    "city": "Iowa City",
+    "state": "IA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "mortgage matchup center": {
+    "name": "Mortgage Matchup Center",
+    "norm": "mortgage matchup center",
+    "city": "Phoenix",
+    "state": "AZ",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "convocation center oh": {
+    "name": "Convocation Center (OH)",
+    "norm": "convocation center oh",
+    "city": "Athens",
+    "state": "OH",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "tmobile arena": {
+    "name": "T-Mobile Arena",
+    "norm": "tmobile arena",
+    "city": "Las Vegas",
+    "state": "NV",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "gallagheriba arena": {
+    "name": "Gallagher-Iba Arena",
+    "norm": "gallagheriba arena",
+    "city": "Stillwater",
+    "state": "OK",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "hilton coliseum": {
+    "name": "Hilton Coliseum",
+    "norm": "hilton coliseum",
+    "city": "Ames",
+    "state": "IA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "allen fieldhouse": {
+    "name": "Allen Fieldhouse",
+    "norm": "allen fieldhouse",
+    "city": "Lawrence",
+    "state": "KS",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "watsco center": {
+    "name": "Watsco Center",
+    "norm": "watsco center",
+    "city": "Coral Gables",
+    "state": "FL",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "jadwin gymnasium": {
+    "name": "Jadwin Gymnasium",
+    "norm": "jadwin gymnasium",
+    "city": "Princeton",
+    "state": "NJ",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "rupp arena": {
+    "name": "Rupp Arena",
+    "norm": "rupp arena",
+    "city": "Lexington",
+    "state": "KY",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "mackey arena": {
+    "name": "Mackey Arena",
+    "norm": "mackey arena",
+    "city": "West Lafayette",
+    "state": "IN",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "eaglebank arena": {
+    "name": "EagleBank Arena",
+    "norm": "eaglebank arena",
+    "city": "Fairfax",
+    "state": "VA",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "las vegas ballpark": {
+    "name": "Las Vegas Ballpark",
+    "norm": "las vegas ballpark",
+    "city": "Las Vegas",
+    "state": "Nevada",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.0919,
+    "lon": -115.1819
+  },
+  "cameron indoor stadium": {
+    "name": "Cameron Indoor Stadium",
+    "norm": "cameron indoor stadium",
+    "city": "Durham",
+    "state": "NC",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "paycom center": {
+    "name": "Paycom Center",
+    "norm": "paycom center",
+    "city": "Oklahoma City",
+    "state": "OK",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "marriott center": {
+    "name": "Marriott Center",
+    "norm": "marriott center",
+    "city": "Provo",
+    "state": "UT",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "cu events center": {
+    "name": "CU Events Center",
+    "norm": "cu events center",
+    "city": "Boulder",
+    "state": "CO",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "meta apex": {
+    "name": "Meta APEX",
+    "norm": "meta apex",
+    "city": "Las Vegas",
+    "state": "NV",
     "indoor": true,
     "grass": false,
     "lat": null,
@@ -726,8 +1146,8 @@
     "state": null,
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 53.3353,
+    "lon": -6.2285
   },
   "stanford stadium": {
     "name": "Stanford Stadium",
@@ -736,8 +1156,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 37.4346,
+    "lon": -122.1609
   },
   "nilton santos stadium": {
     "name": "Nilton Santos Stadium",
@@ -746,8 +1166,8 @@
     "state": null,
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": -22.8918,
+    "lon": -43.2877
   },
   "doak campbell stadium": {
     "name": "Doak Campbell Stadium",
@@ -756,8 +1176,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 30.4382,
+    "lon": -84.3044
   },
   "allegiant stadium": {
     "name": "Allegiant Stadium",
@@ -766,8 +1186,8 @@
     "state": "NV",
     "indoor": true,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 36.0907,
+    "lon": -115.1835
   },
   "acrisure bounce house": {
     "name": "Acrisure Bounce House",
@@ -776,8 +1196,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 28.608,
+    "lon": -81.1928
   },
   "riceeccles stadium": {
     "name": "Rice-Eccles Stadium",
@@ -786,8 +1206,8 @@
     "state": "UT",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 40.76,
+    "lon": -111.8488
   },
   "bobby dodd stadium": {
     "name": "Bobby Dodd Stadium",
@@ -796,8 +1216,8 @@
     "state": "GA",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 33.7723,
+    "lon": -84.3927
   },
   "allegacy federal credit union stadium": {
     "name": "Allegacy Federal Credit Union Stadium",
@@ -806,8 +1226,8 @@
     "state": "NC",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.0815,
+    "lon": -80.2787
   },
   "huntington bank stadium": {
     "name": "Huntington Bank Stadium",
@@ -816,8 +1236,8 @@
     "state": "MN",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 44.9765,
+    "lon": -93.2248
   },
   "shi stadium": {
     "name": "SHI Stadium",
@@ -826,8 +1246,8 @@
     "state": "NJ",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 40.5135,
+    "lon": -74.4647
   },
   "david booth kansas memorial stadium": {
     "name": "David Booth Kansas Memorial Stadium",
@@ -836,8 +1256,8 @@
     "state": "KS",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 38.9584,
+    "lon": -95.2524
   },
   "bryantdenny stadium": {
     "name": "Bryant-Denny Stadium",
@@ -846,8 +1266,8 @@
     "state": "AL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 33.2084,
+    "lon": -87.5504
   },
   "razorback stadium": {
     "name": "Razorback Stadium",
@@ -856,8 +1276,8 @@
     "state": "AR",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.0688,
+    "lon": -94.1793
   },
   "mercedesbenz stadium": {
     "name": "Mercedes-Benz Stadium",
@@ -876,8 +1296,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 29.65,
+    "lon": -82.3486
   },
   "sanford stadium": {
     "name": "Sanford Stadium",
@@ -886,8 +1306,8 @@
     "state": "GA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 33.9497,
+    "lon": -83.3733
   },
   "kroger field": {
     "name": "Kroger Field",
@@ -896,8 +1316,8 @@
     "state": "KY",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 38.0223,
+    "lon": -84.5053
   },
   "tiger stadium la": {
     "name": "Tiger Stadium (LA)",
@@ -906,8 +1326,8 @@
     "state": "LA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 30.412,
+    "lon": -91.1837
   },
   "nissan stadium": {
     "name": "Nissan Stadium",
@@ -916,8 +1336,8 @@
     "state": "TN",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.1664,
+    "lon": -86.7713
   },
   "davis wade stadium": {
     "name": "Davis Wade Stadium",
@@ -926,8 +1346,8 @@
     "state": "MS",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 33.4563,
+    "lon": -88.7938
   },
   "memorial stadium": {
     "name": "Memorial Stadium",
@@ -936,8 +1356,8 @@
     "state": "MO",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 38.9358,
+    "lon": -92.3334
   },
   "memorial stadium norman ok": {
     "name": "Memorial Stadium (Norman, OK)",
@@ -946,8 +1366,8 @@
     "state": "OK",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 35.2058,
+    "lon": -97.4424
   },
   "williamsbrice stadium": {
     "name": "Williams-Brice Stadium",
@@ -956,8 +1376,8 @@
     "state": "SC",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 33.9727,
+    "lon": -81.0191
   },
   "neyland stadium": {
     "name": "Neyland Stadium",
@@ -966,8 +1386,8 @@
     "state": "TN",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 35.955,
+    "lon": -83.925
   },
   "dkrtexas memorial stadium": {
     "name": "DKR-Texas Memorial Stadium",
@@ -976,8 +1396,8 @@
     "state": "TX",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 30.2836,
+    "lon": -97.7326
   },
   "kyle field": {
     "name": "Kyle Field",
@@ -986,8 +1406,8 @@
     "state": "TX",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 30.6101,
+    "lon": -96.34
   },
   "firstbank stadium": {
     "name": "FirstBank Stadium",
@@ -996,8 +1416,8 @@
     "state": "TN",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.1702,
+    "lon": -86.7689
   },
   "jones att stadium": {
     "name": "Jones AT&T Stadium",
@@ -1006,8 +1426,8 @@
     "state": "TX",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 33.5908,
+    "lon": -101.8725
   },
   "bill snyder family stadium": {
     "name": "Bill Snyder Family Stadium",
@@ -1016,8 +1436,8 @@
     "state": "KS",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 39.2017,
+    "lon": -96.5942
   },
   "chapman stadium": {
     "name": "Chapman Stadium",
@@ -1026,8 +1446,8 @@
     "state": "OK",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.1497,
+    "lon": -95.9459
   },
   "arizona stadium": {
     "name": "Arizona Stadium",
@@ -1036,8 +1456,8 @@
     "state": "AZ",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 32.2284,
+    "lon": -110.9489
   },
   "mountain america stadium": {
     "name": "Mountain America Stadium",
@@ -1046,8 +1466,8 @@
     "state": "AZ",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 33.4264,
+    "lon": -111.9327
   },
   "lavell edwards stadium": {
     "name": "LaVell Edwards Stadium",
@@ -1056,8 +1476,8 @@
     "state": "UT",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 40.2573,
+    "lon": -111.6545
   },
   "nippert stadium": {
     "name": "Nippert Stadium",
@@ -1066,8 +1486,8 @@
     "state": "OH",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 39.1319,
+    "lon": -84.5168
   },
   "tdecu stadium": {
     "name": "TDECU Stadium",
@@ -1076,8 +1496,8 @@
     "state": "TX",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 29.7221,
+    "lon": -95.35
   },
   "jack trice stadium": {
     "name": "Jack Trice Stadium",
@@ -1086,8 +1506,8 @@
     "state": "IA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 42.014,
+    "lon": -93.6358
   },
   "lambeau field": {
     "name": "Lambeau Field",
@@ -1096,8 +1516,8 @@
     "state": "WI",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 44.5013,
+    "lon": -88.0622
   },
   "hard rock stadium": {
     "name": "Hard Rock Stadium",
@@ -1106,7 +1526,2790 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 25.958,
+    "lon": -80.2389
+  },
+  "jordanhare stadium": {
+    "name": "Jordan-Hare Stadium",
+    "norm": "jordanhare stadium",
+    "city": "Auburn",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.6025,
+    "lon": -85.49,
+    "team": "Auburn"
+  },
+  "tiger stadium": {
+    "name": "Tiger Stadium",
+    "norm": "tiger stadium",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.412,
+    "lon": -91.1837,
+    "team": "LSU"
+  },
+  "gaylord family oklahoma memorial stadium": {
+    "name": "Gaylord Family Oklahoma Memorial Stadium",
+    "norm": "gaylord family oklahoma memorial stadium",
+    "city": "Norman",
+    "state": "OK",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.2058,
+    "lon": -97.4424,
+    "team": "Oklahoma"
+  },
+  "vaughthemingway stadium": {
+    "name": "Vaught-Hemingway Stadium",
+    "norm": "vaughthemingway stadium",
+    "city": "Oxford",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.3618,
+    "lon": -89.5345,
+    "team": "Ole Miss"
+  },
+  "kinnick stadium": {
+    "name": "Kinnick Stadium",
+    "norm": "kinnick stadium",
+    "city": "Iowa City",
+    "state": "IA",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.6589,
+    "lon": -91.551,
+    "team": "Iowa"
+  },
+  "secu stadium": {
+    "name": "SECU Stadium",
+    "norm": "secu stadium",
+    "city": "College Park",
+    "state": "MD",
+    "indoor": false,
+    "grass": false,
+    "lat": 38.9907,
+    "lon": -76.9488,
+    "team": "Maryland"
+  },
+  "michigan stadium": {
+    "name": "Michigan Stadium",
+    "norm": "michigan stadium",
+    "city": "Ann Arbor",
+    "state": "MI",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.2658,
+    "lon": -83.7486,
+    "team": "Michigan"
+  },
+  "spartan stadium": {
+    "name": "Spartan Stadium",
+    "norm": "spartan stadium",
+    "city": "East Lansing",
+    "state": "MI",
+    "indoor": false,
+    "grass": false,
+    "lat": 42.7284,
+    "lon": -84.4816,
+    "team": "Michigan State"
+  },
+  "ryan field": {
+    "name": "Ryan Field",
+    "norm": "ryan field",
+    "city": "Evanston",
+    "state": "IL",
+    "indoor": false,
+    "grass": false,
+    "lat": 42.0659,
+    "lon": -87.6731,
+    "team": "Northwestern"
+  },
+  "ohio stadium": {
+    "name": "Ohio Stadium",
+    "norm": "ohio stadium",
+    "city": "Columbus",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.0017,
+    "lon": -83.0196,
+    "team": "Ohio State"
+  },
+  "autzen stadium": {
+    "name": "Autzen Stadium",
+    "norm": "autzen stadium",
+    "city": "Eugene",
+    "state": "OR",
+    "indoor": false,
+    "grass": false,
+    "lat": 44.0582,
+    "lon": -123.0676,
+    "team": "Oregon"
+  },
+  "beaver stadium": {
+    "name": "Beaver Stadium",
+    "norm": "beaver stadium",
+    "city": "University Park",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.8122,
+    "lon": -77.8564,
+    "team": "Penn State"
+  },
+  "rossade stadium": {
+    "name": "Ross-Ade Stadium",
+    "norm": "rossade stadium",
+    "city": "West Lafayette",
+    "state": "IN",
+    "indoor": false,
+    "grass": false,
+    "lat": 40.4319,
+    "lon": -86.9189,
+    "team": "Purdue"
+  },
+  "rose bowl": {
+    "name": "Rose Bowl",
+    "norm": "rose bowl",
+    "city": "Pasadena",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.1613,
+    "lon": -118.1676,
+    "team": "UCLA"
+  },
+  "los angeles memorial coliseum": {
+    "name": "Los Angeles Memorial Coliseum",
+    "norm": "los angeles memorial coliseum",
+    "city": "Los Angeles",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.0141,
+    "lon": -118.2879,
+    "team": "USC"
+  },
+  "husky stadium": {
+    "name": "Husky Stadium",
+    "norm": "husky stadium",
+    "city": "Seattle",
+    "state": "WA",
+    "indoor": false,
+    "grass": false,
+    "lat": 47.6505,
+    "lon": -122.3017,
+    "team": "Washington"
+  },
+  "camp randall stadium": {
+    "name": "Camp Randall Stadium",
+    "norm": "camp randall stadium",
+    "city": "Madison",
+    "state": "WI",
+    "indoor": false,
+    "grass": true,
+    "lat": 43.07,
+    "lon": -89.4128,
+    "team": "Wisconsin"
+  },
+  "mclane stadium": {
+    "name": "McLane Stadium",
+    "norm": "mclane stadium",
+    "city": "Waco",
+    "state": "TX",
+    "indoor": false,
+    "grass": false,
+    "lat": 31.5589,
+    "lon": -97.1153,
+    "team": "Baylor"
+  },
+  "folsom field": {
+    "name": "Folsom Field",
+    "norm": "folsom field",
+    "city": "Boulder",
+    "state": "CO",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.0094,
+    "lon": -105.2669,
+    "team": "Colorado"
+  },
+  "boone pickens stadium": {
+    "name": "Boone Pickens Stadium",
+    "norm": "boone pickens stadium",
+    "city": "Stillwater",
+    "state": "OK",
+    "indoor": false,
+    "grass": false,
+    "lat": 36.1256,
+    "lon": -97.0667,
+    "team": "Oklahoma State"
+  },
+  "amon g carter stadium": {
+    "name": "Amon G. Carter Stadium",
+    "norm": "amon g carter stadium",
+    "city": "Fort Worth",
+    "state": "TX",
+    "indoor": false,
+    "grass": false,
+    "lat": 32.7098,
+    "lon": -97.3685,
+    "team": "TCU"
+  },
+  "fbc mortgage stadium": {
+    "name": "FBC Mortgage Stadium",
+    "norm": "fbc mortgage stadium",
+    "city": "Orlando",
+    "state": "FL",
+    "indoor": false,
+    "grass": false,
+    "lat": 28.608,
+    "lon": -81.1928,
+    "team": "UCF"
+  },
+  "milan puskar stadium": {
+    "name": "Milan Puskar Stadium",
+    "norm": "milan puskar stadium",
+    "city": "Morgantown",
+    "state": "WV",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.65,
+    "lon": -79.9539,
+    "team": "West Virginia"
+  },
+  "alumni stadium": {
+    "name": "Alumni Stadium",
+    "norm": "alumni stadium",
+    "city": "Chestnut Hill",
+    "state": "MA",
+    "indoor": false,
+    "grass": false,
+    "lat": 42.3354,
+    "lon": -71.1663,
+    "team": "Boston College"
+  },
+  "wallace wade stadium": {
+    "name": "Wallace Wade Stadium",
+    "norm": "wallace wade stadium",
+    "city": "Durham",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.0019,
+    "lon": -78.9428,
+    "team": "Duke"
+  },
+  "ln federal credit union stadium": {
+    "name": "L&N Federal Credit Union Stadium",
+    "norm": "ln federal credit union stadium",
+    "city": "Louisville",
+    "state": "KY",
+    "indoor": false,
+    "grass": false,
+    "lat": 38.213,
+    "lon": -85.759,
+    "team": "Louisville"
+  },
+  "carterfinley stadium": {
+    "name": "Carter-Finley Stadium",
+    "norm": "carterfinley stadium",
+    "city": "Raleigh",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.8037,
+    "lon": -78.7196,
+    "team": "NC State"
+  },
+  "kenan memorial stadium": {
+    "name": "Kenan Memorial Stadium",
+    "norm": "kenan memorial stadium",
+    "city": "Chapel Hill",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.905,
+    "lon": -79.047,
+    "team": "North Carolina"
+  },
+  "acrisure stadium": {
+    "name": "Acrisure Stadium",
+    "norm": "acrisure stadium",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.4468,
+    "lon": -80.0158,
+    "team": "Pittsburgh"
+  },
+  "gerald j ford stadium": {
+    "name": "Gerald J. Ford Stadium",
+    "norm": "gerald j ford stadium",
+    "city": "Dallas",
+    "state": "TX",
+    "indoor": false,
+    "grass": false,
+    "lat": 32.8363,
+    "lon": -96.783,
+    "team": "SMU"
+  },
+  "jma wireless dome": {
+    "name": "JMA Wireless Dome",
+    "norm": "jma wireless dome",
+    "city": "Syracuse",
+    "state": "NY",
+    "indoor": true,
+    "grass": false,
+    "lat": 43.0362,
+    "lon": -76.1363,
+    "team": "Syracuse"
+  },
+  "scott stadium": {
+    "name": "Scott Stadium",
+    "norm": "scott stadium",
+    "city": "Charlottesville",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.0314,
+    "lon": -78.5133,
+    "team": "Virginia"
+  },
+  "lane stadium": {
+    "name": "Lane Stadium",
+    "norm": "lane stadium",
+    "city": "Blacksburg",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.22,
+    "lon": -80.4179,
+    "team": "Virginia Tech"
+  },
+  "california memorial stadium": {
+    "name": "California Memorial Stadium",
+    "norm": "california memorial stadium",
+    "city": "Berkeley",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.8709,
+    "lon": -122.2507,
+    "team": "Cal"
+  },
+  "michie stadium": {
+    "name": "Michie Stadium",
+    "norm": "michie stadium",
+    "city": "West Point",
+    "state": "NY",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.3884,
+    "lon": -73.9658,
+    "team": "Army"
+  },
+  "jerry richardson stadium": {
+    "name": "Jerry Richardson Stadium",
+    "norm": "jerry richardson stadium",
+    "city": "Charlotte",
+    "state": "NC",
+    "indoor": false,
+    "grass": false,
+    "lat": 35.3112,
+    "lon": -80.7344,
+    "team": "Charlotte"
+  },
+  "dowdyficklen stadium": {
+    "name": "Dowdy-Ficklen Stadium",
+    "norm": "dowdyficklen stadium",
+    "city": "Greenville",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.6043,
+    "lon": -77.364,
+    "team": "East Carolina"
+  },
+  "fau stadium": {
+    "name": "FAU Stadium",
+    "norm": "fau stadium",
+    "city": "Boca Raton",
+    "state": "FL",
+    "indoor": false,
+    "grass": false,
+    "lat": 26.3719,
+    "lon": -80.102,
+    "team": "FAU"
+  },
+  "simmons bank liberty stadium": {
+    "name": "Simmons Bank Liberty Stadium",
+    "norm": "simmons bank liberty stadium",
+    "city": "Memphis",
+    "state": "TN",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.1529,
+    "lon": -90.0568,
+    "team": "Memphis"
+  },
+  "navymarine corps memorial stadium": {
+    "name": "Navy-Marine Corps Memorial Stadium",
+    "norm": "navymarine corps memorial stadium",
+    "city": "Annapolis",
+    "state": "MD",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.9893,
+    "lon": -76.4814,
+    "team": "Navy"
+  },
+  "apogee stadium": {
+    "name": "Apogee Stadium",
+    "norm": "apogee stadium",
+    "city": "Denton",
+    "state": "TX",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.2147,
+    "lon": -97.151,
+    "team": "North Texas"
+  },
+  "rice stadium": {
+    "name": "Rice Stadium",
+    "norm": "rice stadium",
+    "city": "Houston",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.7163,
+    "lon": -95.4094,
+    "team": "Rice"
+  },
+  "raymond james stadium": {
+    "name": "Raymond James Stadium",
+    "norm": "raymond james stadium",
+    "city": "Tampa",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 27.9759,
+    "lon": -82.5033,
+    "team": "South Florida"
+  },
+  "lincoln financial field": {
+    "name": "Lincoln Financial Field",
+    "norm": "lincoln financial field",
+    "city": "Philadelphia",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.9008,
+    "lon": -75.1675,
+    "team": "Temple"
+  },
+  "yulman stadium": {
+    "name": "Yulman Stadium",
+    "norm": "yulman stadium",
+    "city": "New Orleans",
+    "state": "LA",
+    "indoor": false,
+    "grass": false,
+    "lat": 29.9446,
+    "lon": -90.1191,
+    "team": "Tulane"
+  },
+  "protective stadium": {
+    "name": "Protective Stadium",
+    "norm": "protective stadium",
+    "city": "Birmingham",
+    "state": "AL",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.5243,
+    "lon": -86.8094,
+    "team": "UAB"
+  },
+  "alamodome": {
+    "name": "Alamodome",
+    "norm": "alamodome",
+    "city": "San Antonio",
+    "state": "TX",
+    "indoor": true,
+    "grass": false,
+    "lat": 29.417,
+    "lon": -98.479,
+    "team": "UTSA"
+  },
+  "pitbull stadium": {
+    "name": "Pitbull Stadium",
+    "norm": "pitbull stadium",
+    "city": "Miami",
+    "state": "FL",
+    "indoor": false,
+    "grass": false,
+    "lat": 25.7564,
+    "lon": -80.3733,
+    "team": "FIU"
+  },
+  "burgesssnow field": {
+    "name": "Burgess-Snow Field",
+    "norm": "burgesssnow field",
+    "city": "Jacksonville",
+    "state": "AL",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.8212,
+    "lon": -85.7646,
+    "team": "Jacksonville State"
+  },
+  "fifth third bank stadium": {
+    "name": "Fifth Third Bank Stadium",
+    "norm": "fifth third bank stadium",
+    "city": "Kennesaw",
+    "state": "GA",
+    "indoor": false,
+    "grass": false,
+    "lat": 34.0332,
+    "lon": -84.5756,
+    "team": "Kennesaw State"
+  },
+  "williams stadium": {
+    "name": "Williams Stadium",
+    "norm": "williams stadium",
+    "city": "Lynchburg",
+    "state": "VA",
+    "indoor": false,
+    "grass": false,
+    "lat": 37.3521,
+    "lon": -79.1765,
+    "team": "Liberty"
+  },
+  "joe aillet stadium": {
+    "name": "Joe Aillet Stadium",
+    "norm": "joe aillet stadium",
+    "city": "Ruston",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.526,
+    "lon": -92.6557,
+    "team": "Louisiana Tech"
+  },
+  "floyd stadium": {
+    "name": "Floyd Stadium",
+    "norm": "floyd stadium",
+    "city": "Murfreesboro",
+    "state": "TN",
+    "indoor": false,
+    "grass": false,
+    "lat": 35.8504,
+    "lon": -86.362,
+    "team": "Middle Tennessee"
+  },
+  "aggie memorial stadium": {
+    "name": "Aggie Memorial Stadium",
+    "norm": "aggie memorial stadium",
+    "city": "Las Cruces",
+    "state": "NM",
+    "indoor": false,
+    "grass": false,
+    "lat": 32.2803,
+    "lon": -106.748,
+    "team": "New Mexico State"
+  },
+  "bowers stadium": {
+    "name": "Bowers Stadium",
+    "norm": "bowers stadium",
+    "city": "Huntsville",
+    "state": "TX",
+    "indoor": false,
+    "grass": false,
+    "lat": 30.7141,
+    "lon": -95.5406,
+    "team": "Sam Houston"
+  },
+  "sun bowl": {
+    "name": "Sun Bowl",
+    "norm": "sun bowl",
+    "city": "El Paso",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.7712,
+    "lon": -106.5088,
+    "team": "UTEP"
+  },
+  "lt smith stadium": {
+    "name": "L.T. Smith Stadium",
+    "norm": "lt smith stadium",
+    "city": "Bowling Green",
+    "state": "KY",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.9868,
+    "lon": -86.4432,
+    "team": "Western Kentucky"
+  },
+  "infocision stadium": {
+    "name": "InfoCision Stadium",
+    "norm": "infocision stadium",
+    "city": "Akron",
+    "state": "OH",
+    "indoor": false,
+    "grass": false,
+    "lat": 41.0743,
+    "lon": -81.5085,
+    "team": "Akron"
+  },
+  "scheumann stadium": {
+    "name": "Scheumann Stadium",
+    "norm": "scheumann stadium",
+    "city": "Muncie",
+    "state": "IN",
+    "indoor": false,
+    "grass": false,
+    "lat": 40.2072,
+    "lon": -85.4014,
+    "team": "Ball State"
+  },
+  "doyt perry stadium": {
+    "name": "Doyt Perry Stadium",
+    "norm": "doyt perry stadium",
+    "city": "Bowling Green",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.3783,
+    "lon": -83.6315,
+    "team": "Bowling Green"
+  },
+  "ub stadium": {
+    "name": "UB Stadium",
+    "norm": "ub stadium",
+    "city": "Amherst",
+    "state": "NY",
+    "indoor": false,
+    "grass": false,
+    "lat": 43.0005,
+    "lon": -78.7787,
+    "team": "Buffalo"
+  },
+  "kellyshorts stadium": {
+    "name": "Kelly/Shorts Stadium",
+    "norm": "kellyshorts stadium",
+    "city": "Mount Pleasant",
+    "state": "MI",
+    "indoor": false,
+    "grass": false,
+    "lat": 43.592,
+    "lon": -84.7744,
+    "team": "Central Michigan"
+  },
+  "rynearson stadium": {
+    "name": "Rynearson Stadium",
+    "norm": "rynearson stadium",
+    "city": "Ypsilanti",
+    "state": "MI",
+    "indoor": false,
+    "grass": false,
+    "lat": 42.2501,
+    "lon": -83.6249,
+    "team": "Eastern Michigan"
+  },
+  "dix stadium": {
+    "name": "Dix Stadium",
+    "norm": "dix stadium",
+    "city": "Kent",
+    "state": "OH",
+    "indoor": false,
+    "grass": false,
+    "lat": 41.1467,
+    "lon": -81.3564,
+    "team": "Kent State"
+  },
+  "yager stadium": {
+    "name": "Yager Stadium",
+    "norm": "yager stadium",
+    "city": "Oxford",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.5107,
+    "lon": -84.7346,
+    "team": "Miami (OH)"
+  },
+  "huskie stadium": {
+    "name": "Huskie Stadium",
+    "norm": "huskie stadium",
+    "city": "DeKalb",
+    "state": "IL",
+    "indoor": false,
+    "grass": false,
+    "lat": 41.9352,
+    "lon": -88.7792,
+    "team": "Northern Illinois"
+  },
+  "peden stadium": {
+    "name": "Peden Stadium",
+    "norm": "peden stadium",
+    "city": "Athens",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.3218,
+    "lon": -82.0944,
+    "team": "Ohio"
+  },
+  "glass bowl": {
+    "name": "Glass Bowl",
+    "norm": "glass bowl",
+    "city": "Toledo",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.6568,
+    "lon": -83.6114,
+    "team": "Toledo"
+  },
+  "waldo stadium": {
+    "name": "Waldo Stadium",
+    "norm": "waldo stadium",
+    "city": "Kalamazoo",
+    "state": "MI",
+    "indoor": false,
+    "grass": false,
+    "lat": 42.2851,
+    "lon": -85.6024,
+    "team": "Western Michigan"
+  },
+  "falcon stadium": {
+    "name": "Falcon Stadium",
+    "norm": "falcon stadium",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.9984,
+    "lon": -104.845,
+    "team": "Air Force"
+  },
+  "albertsons stadium": {
+    "name": "Albertsons Stadium",
+    "norm": "albertsons stadium",
+    "city": "Boise",
+    "state": "ID",
+    "indoor": false,
+    "grass": false,
+    "lat": 43.603,
+    "lon": -116.1975,
+    "team": "Boise State"
+  },
+  "canvas stadium": {
+    "name": "Canvas Stadium",
+    "norm": "canvas stadium",
+    "city": "Fort Collins",
+    "state": "CO",
+    "indoor": false,
+    "grass": false,
+    "lat": 40.5766,
+    "lon": -105.0852,
+    "team": "Colorado State"
+  },
+  "valley childrens stadium": {
+    "name": "Valley Children's Stadium",
+    "norm": "valley childrens stadium",
+    "city": "Fresno",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.7158,
+    "lon": -119.731,
+    "team": "Fresno State"
+  },
+  "ching athletics complex": {
+    "name": "Ching Athletics Complex",
+    "norm": "ching athletics complex",
+    "city": "Honolulu",
+    "state": "HI",
+    "indoor": false,
+    "grass": false,
+    "lat": 21.297,
+    "lon": -157.8169,
+    "team": "Hawaii"
+  },
+  "mackay stadium": {
+    "name": "Mackay Stadium",
+    "norm": "mackay stadium",
+    "city": "Reno",
+    "state": "NV",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.5472,
+    "lon": -119.8159,
+    "team": "Nevada"
+  },
+  "university stadium": {
+    "name": "University Stadium",
+    "norm": "university stadium",
+    "city": "Albuquerque",
+    "state": "NM",
+    "indoor": false,
+    "grass": false,
+    "lat": 35.0638,
+    "lon": -106.6276,
+    "team": "New Mexico"
+  },
+  "snapdragon stadium": {
+    "name": "Snapdragon Stadium",
+    "norm": "snapdragon stadium",
+    "city": "San Diego",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.7836,
+    "lon": -117.1198,
+    "team": "San Diego State"
+  },
+  "cefcu stadium": {
+    "name": "CEFCU Stadium",
+    "norm": "cefcu stadium",
+    "city": "San Jose",
+    "state": "CA",
+    "indoor": false,
+    "grass": false,
+    "lat": 37.3203,
+    "lon": -121.8689,
+    "team": "San Jose State"
+  },
+  "maverik stadium": {
+    "name": "Maverik Stadium",
+    "norm": "maverik stadium",
+    "city": "Logan",
+    "state": "UT",
+    "indoor": false,
+    "grass": false,
+    "lat": 41.7517,
+    "lon": -111.813,
+    "team": "Utah State"
+  },
+  "war memorial stadium": {
+    "name": "War Memorial Stadium",
+    "norm": "war memorial stadium",
+    "city": "Laramie",
+    "state": "WY",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.3164,
+    "lon": -105.5676,
+    "team": "Wyoming"
+  },
+  "kidd brewer stadium": {
+    "name": "Kidd Brewer Stadium",
+    "norm": "kidd brewer stadium",
+    "city": "Boone",
+    "state": "NC",
+    "indoor": false,
+    "grass": false,
+    "lat": 36.2132,
+    "lon": -81.6847,
+    "team": "Appalachian State"
+  },
+  "centennial bank stadium": {
+    "name": "Centennial Bank Stadium",
+    "norm": "centennial bank stadium",
+    "city": "Jonesboro",
+    "state": "AR",
+    "indoor": false,
+    "grass": false,
+    "lat": 35.842,
+    "lon": -90.6785,
+    "team": "Arkansas State"
+  },
+  "brooks stadium": {
+    "name": "Brooks Stadium",
+    "norm": "brooks stadium",
+    "city": "Conway",
+    "state": "SC",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.7964,
+    "lon": -79.0188,
+    "team": "Coastal Carolina"
+  },
+  "paulson stadium": {
+    "name": "Paulson Stadium",
+    "norm": "paulson stadium",
+    "city": "Statesboro",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.4228,
+    "lon": -81.7831,
+    "team": "Georgia Southern"
+  },
+  "center parc stadium": {
+    "name": "Center Parc Stadium",
+    "norm": "center parc stadium",
+    "city": "Atlanta",
+    "state": "GA",
+    "indoor": false,
+    "grass": false,
+    "lat": 33.7396,
+    "lon": -84.3952,
+    "team": "Georgia State"
+  },
+  "bridgeforth stadium": {
+    "name": "Bridgeforth Stadium",
+    "norm": "bridgeforth stadium",
+    "city": "Harrisonburg",
+    "state": "VA",
+    "indoor": false,
+    "grass": false,
+    "lat": 38.4352,
+    "lon": -78.8684,
+    "team": "James Madison"
+  },
+  "cajun field": {
+    "name": "Cajun Field",
+    "norm": "cajun field",
+    "city": "Lafayette",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.2132,
+    "lon": -92.0151,
+    "team": "Louisiana"
+  },
+  "joan c edwards stadium": {
+    "name": "Joan C. Edwards Stadium",
+    "norm": "joan c edwards stadium",
+    "city": "Huntington",
+    "state": "WV",
+    "indoor": false,
+    "grass": false,
+    "lat": 38.4232,
+    "lon": -82.4293,
+    "team": "Marshall"
+  },
+  "sb ballard stadium": {
+    "name": "S.B. Ballard Stadium",
+    "norm": "sb ballard stadium",
+    "city": "Norfolk",
+    "state": "VA",
+    "indoor": false,
+    "grass": false,
+    "lat": 36.8845,
+    "lon": -76.3042,
+    "team": "Old Dominion"
+  },
+  "hancock whitney stadium": {
+    "name": "Hancock Whitney Stadium",
+    "norm": "hancock whitney stadium",
+    "city": "Mobile",
+    "state": "AL",
+    "indoor": false,
+    "grass": false,
+    "lat": 30.697,
+    "lon": -88.178,
+    "team": "South Alabama"
+  },
+  "mm roberts stadium": {
+    "name": "M.M. Roberts Stadium",
+    "norm": "mm roberts stadium",
+    "city": "Hattiesburg",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.328,
+    "lon": -89.3375,
+    "team": "Southern Miss"
+  },
+  "ufcu stadium": {
+    "name": "UFCU Stadium",
+    "norm": "ufcu stadium",
+    "city": "San Marcos",
+    "state": "TX",
+    "indoor": false,
+    "grass": false,
+    "lat": 29.8913,
+    "lon": -97.929,
+    "team": "Texas State"
+  },
+  "veterans memorial stadium": {
+    "name": "Veterans Memorial Stadium",
+    "norm": "veterans memorial stadium",
+    "city": "Troy",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.7956,
+    "lon": -85.9699,
+    "team": "Troy"
+  },
+  "malone stadium": {
+    "name": "Malone Stadium",
+    "norm": "malone stadium",
+    "city": "Monroe",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.5285,
+    "lon": -92.0736,
+    "team": "UL Monroe"
+  },
+  "notre dame stadium": {
+    "name": "Notre Dame Stadium",
+    "norm": "notre dame stadium",
+    "city": "Notre Dame",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.6984,
+    "lon": -86.234,
+    "team": "Notre Dame"
+  },
+  "pratt whitney stadium": {
+    "name": "Pratt & Whitney Stadium",
+    "norm": "pratt whitney stadium",
+    "city": "East Hartford",
+    "state": "CT",
+    "indoor": false,
+    "grass": false,
+    "lat": 41.7626,
+    "lon": -72.619,
+    "team": "UConn"
+  },
+  "warren mcguirk alumni stadium": {
+    "name": "Warren McGuirk Alumni Stadium",
+    "norm": "warren mcguirk alumni stadium",
+    "city": "Amherst",
+    "state": "MA",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.3879,
+    "lon": -72.5364,
+    "team": "UMass"
+  },
+  "alex box stadium": {
+    "name": "Alex Box Stadium",
+    "norm": "alex box stadium",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.4065,
+    "lon": -91.1855,
+    "team": "LSU",
+    "sport_type": "colb"
+  },
+  "baumwalker stadium": {
+    "name": "Baum-Walker Stadium",
+    "norm": "baumwalker stadium",
+    "city": "Fayetteville",
+    "state": "AR",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.0685,
+    "lon": -94.1745,
+    "team": "Arkansas",
+    "sport_type": "colb"
+  },
+  "dudy noble field": {
+    "name": "Dudy Noble Field",
+    "norm": "dudy noble field",
+    "city": "Starkville",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.4528,
+    "lon": -88.7895,
+    "team": "Mississippi State",
+    "sport_type": "colb"
+  },
+  "swayze field": {
+    "name": "Swayze Field",
+    "norm": "swayze field",
+    "city": "Oxford",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.365,
+    "lon": -89.537,
+    "team": "Ole Miss",
+    "sport_type": "colb"
+  },
+  "plainsman park": {
+    "name": "Plainsman Park",
+    "norm": "plainsman park",
+    "city": "Auburn",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.6055,
+    "lon": -85.4848,
+    "team": "Auburn",
+    "sport_type": "colb"
+  },
+  "sewellthomas stadium": {
+    "name": "Sewell-Thomas Stadium",
+    "norm": "sewellthomas stadium",
+    "city": "Tuscaloosa",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.2128,
+    "lon": -87.5439,
+    "team": "Alabama",
+    "sport_type": "colb"
+  },
+  "condron family ballpark": {
+    "name": "Condron Family Ballpark",
+    "norm": "condron family ballpark",
+    "city": "Gainesville",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.646,
+    "lon": -82.344,
+    "team": "Florida",
+    "sport_type": "colb"
+  },
+  "foley field": {
+    "name": "Foley Field",
+    "norm": "foley field",
+    "city": "Athens",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.9518,
+    "lon": -83.3695,
+    "team": "Georgia",
+    "sport_type": "colb"
+  },
+  "kentucky proud park": {
+    "name": "Kentucky Proud Park",
+    "norm": "kentucky proud park",
+    "city": "Lexington",
+    "state": "KY",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.0285,
+    "lon": -84.5005,
+    "team": "Kentucky",
+    "sport_type": "colb"
+  },
+  "lindsey nelson stadium": {
+    "name": "Lindsey Nelson Stadium",
+    "norm": "lindsey nelson stadium",
+    "city": "Knoxville",
+    "state": "TN",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.9585,
+    "lon": -83.9285,
+    "team": "Tennessee",
+    "sport_type": "colb"
+  },
+  "blue bell park": {
+    "name": "Blue Bell Park",
+    "norm": "blue bell park",
+    "city": "College Station",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.6045,
+    "lon": -96.3365,
+    "team": "Texas A&M",
+    "sport_type": "colb"
+  },
+  "ufcu dischfalk field": {
+    "name": "UFCU Disch-Falk Field",
+    "norm": "ufcu dischfalk field",
+    "city": "Austin",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.2835,
+    "lon": -97.7275,
+    "team": "Texas",
+    "sport_type": "colb"
+  },
+  "hawkins field": {
+    "name": "Hawkins Field",
+    "norm": "hawkins field",
+    "city": "Nashville",
+    "state": "TN",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.1475,
+    "lon": -86.8065,
+    "team": "Vanderbilt",
+    "sport_type": "colb"
+  },
+  "taylor stadium": {
+    "name": "Taylor Stadium",
+    "norm": "taylor stadium",
+    "city": "Columbia",
+    "state": "MO",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.9398,
+    "lon": -92.3305,
+    "team": "Missouri",
+    "sport_type": "colb"
+  },
+  "founders park": {
+    "name": "Founders Park",
+    "norm": "founders park",
+    "city": "Columbia",
+    "state": "SC",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.997,
+    "lon": -81.0265,
+    "team": "South Carolina",
+    "sport_type": "colb"
+  },
+  "l dale mitchell park": {
+    "name": "L. Dale Mitchell Park",
+    "norm": "l dale mitchell park",
+    "city": "Norman",
+    "state": "OK",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.2095,
+    "lon": -97.4385,
+    "team": "Oklahoma",
+    "sport_type": "colb"
+  },
+  "ray fisher stadium": {
+    "name": "Ray Fisher Stadium",
+    "norm": "ray fisher stadium",
+    "city": "Ann Arbor",
+    "state": "MI",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.2695,
+    "lon": -83.7455,
+    "team": "Michigan",
+    "sport_type": "colb"
+  },
+  "bill davis stadium": {
+    "name": "Bill Davis Stadium",
+    "norm": "bill davis stadium",
+    "city": "Columbus",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.0065,
+    "lon": -83.0245,
+    "team": "Ohio State",
+    "sport_type": "colb"
+  },
+  "us steel yard": {
+    "name": "U.S. Steel Yard",
+    "norm": "us steel yard",
+    "city": "Gary",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.593,
+    "lon": -87.336,
+    "team": "Purdue",
+    "sport_type": "colb"
+  },
+  "alexander field": {
+    "name": "Alexander Field",
+    "norm": "alexander field",
+    "city": "West Lafayette",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.4355,
+    "lon": -86.9225,
+    "team": "Purdue",
+    "sport_type": "colb"
+  },
+  "siebert field": {
+    "name": "Siebert Field",
+    "norm": "siebert field",
+    "city": "Minneapolis",
+    "state": "MN",
+    "indoor": false,
+    "grass": true,
+    "lat": 44.978,
+    "lon": -93.2225,
+    "team": "Minnesota",
+    "sport_type": "colb"
+  },
+  "duane banks field": {
+    "name": "Duane Banks Field",
+    "norm": "duane banks field",
+    "city": "Iowa City",
+    "state": "IA",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.6615,
+    "lon": -91.5475,
+    "team": "Iowa",
+    "sport_type": "colb"
+  },
+  "haymarket park": {
+    "name": "Haymarket Park",
+    "norm": "haymarket park",
+    "city": "Lincoln",
+    "state": "NE",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.835,
+    "lon": -96.712,
+    "team": "Nebraska",
+    "sport_type": "colb"
+  },
+  "mclane baseball stadium": {
+    "name": "McLane Baseball Stadium",
+    "norm": "mclane baseball stadium",
+    "city": "State College",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.8085,
+    "lon": -77.8525,
+    "team": "Penn State",
+    "sport_type": "colb"
+  },
+  "bainton field": {
+    "name": "Bainton Field",
+    "norm": "bainton field",
+    "city": "Piscataway",
+    "state": "NJ",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.5155,
+    "lon": -74.4615,
+    "team": "Rutgers",
+    "sport_type": "colb"
+  },
+  "pk park": {
+    "name": "PK Park",
+    "norm": "pk park",
+    "city": "Eugene",
+    "state": "OR",
+    "indoor": false,
+    "grass": true,
+    "lat": 44.0595,
+    "lon": -123.0635,
+    "team": "Oregon",
+    "sport_type": "colb"
+  },
+  "baileybrayton field": {
+    "name": "Bailey-Brayton Field",
+    "norm": "baileybrayton field",
+    "city": "Pullman",
+    "state": "WA",
+    "indoor": false,
+    "grass": true,
+    "lat": 46.7315,
+    "lon": -117.1755,
+    "team": "Washington State",
+    "sport_type": "colb"
+  },
+  "husky ballpark": {
+    "name": "Husky Ballpark",
+    "norm": "husky ballpark",
+    "city": "Seattle",
+    "state": "WA",
+    "indoor": false,
+    "grass": true,
+    "lat": 47.6518,
+    "lon": -122.3045,
+    "team": "Washington",
+    "sport_type": "colb"
+  },
+  "dedeaux field": {
+    "name": "Dedeaux Field",
+    "norm": "dedeaux field",
+    "city": "Los Angeles",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.0175,
+    "lon": -118.2835,
+    "team": "USC",
+    "sport_type": "colb"
+  },
+  "jackie robinson stadium": {
+    "name": "Jackie Robinson Stadium",
+    "norm": "jackie robinson stadium",
+    "city": "Los Angeles",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.0725,
+    "lon": -118.4485,
+    "team": "UCLA",
+    "sport_type": "colb"
+  },
+  "rocky miller park": {
+    "name": "Rocky Miller Park",
+    "norm": "rocky miller park",
+    "city": "Evanston",
+    "state": "IL",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.0625,
+    "lon": -87.6705,
+    "team": "Northwestern",
+    "sport_type": "colb"
+  },
+  "kobs field": {
+    "name": "Kobs Field",
+    "norm": "kobs field",
+    "city": "East Lansing",
+    "state": "MI",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.7315,
+    "lon": -84.4785,
+    "team": "Michigan State",
+    "sport_type": "colb"
+  },
+  "bart kaufman field": {
+    "name": "Bart Kaufman Field",
+    "norm": "bart kaufman field",
+    "city": "Bloomington",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1785,
+    "lon": -86.5215,
+    "team": "Indiana",
+    "sport_type": "colb"
+  },
+  "dan law field at rip griffin park": {
+    "name": "Dan Law Field at Rip Griffin Park",
+    "norm": "dan law field at rip griffin park",
+    "city": "Lubbock",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.5875,
+    "lon": -101.8745,
+    "team": "Texas Tech",
+    "sport_type": "colb"
+  },
+  "baylor ballpark": {
+    "name": "Baylor Ballpark",
+    "norm": "baylor ballpark",
+    "city": "Waco",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.5565,
+    "lon": -97.1185,
+    "team": "Baylor",
+    "sport_type": "colb"
+  },
+  "lupton stadium": {
+    "name": "Lupton Stadium",
+    "norm": "lupton stadium",
+    "city": "Fort Worth",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.7125,
+    "lon": -97.3655,
+    "team": "TCU",
+    "sport_type": "colb"
+  },
+  "allie p reynolds stadium": {
+    "name": "Allie P. Reynolds Stadium",
+    "norm": "allie p reynolds stadium",
+    "city": "Stillwater",
+    "state": "OK",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.1285,
+    "lon": -97.0635,
+    "team": "Oklahoma State",
+    "sport_type": "colb"
+  },
+  "tointon family stadium": {
+    "name": "Tointon Family Stadium",
+    "norm": "tointon family stadium",
+    "city": "Manhattan",
+    "state": "KS",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1985,
+    "lon": -96.5975,
+    "team": "Kansas State",
+    "sport_type": "colb"
+  },
+  "hoglund ballpark": {
+    "name": "Hoglund Ballpark",
+    "norm": "hoglund ballpark",
+    "city": "Lawrence",
+    "state": "KS",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.9545,
+    "lon": -95.2565,
+    "team": "Kansas",
+    "sport_type": "colb"
+  },
+  "hi corbett field": {
+    "name": "Hi Corbett Field",
+    "norm": "hi corbett field",
+    "city": "Tucson",
+    "state": "AZ",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.2225,
+    "lon": -110.9395,
+    "team": "Arizona",
+    "sport_type": "colb"
+  },
+  "phoenix municipal stadium": {
+    "name": "Phoenix Municipal Stadium",
+    "norm": "phoenix municipal stadium",
+    "city": "Tempe",
+    "state": "AZ",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.4275,
+    "lon": -111.9285,
+    "team": "Arizona State",
+    "sport_type": "colb"
+  },
+  "schroeder park": {
+    "name": "Schroeder Park",
+    "norm": "schroeder park",
+    "city": "Houston",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.7195,
+    "lon": -95.3485,
+    "team": "Houston",
+    "sport_type": "colb"
+  },
+  "monongalia county ballpark": {
+    "name": "Monongalia County Ballpark",
+    "norm": "monongalia county ballpark",
+    "city": "Granville",
+    "state": "WV",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.6515,
+    "lon": -79.9495,
+    "team": "West Virginia",
+    "sport_type": "colb"
+  },
+  "larry h miller field": {
+    "name": "Larry H. Miller Field",
+    "norm": "larry h miller field",
+    "city": "Provo",
+    "state": "UT",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.2535,
+    "lon": -111.6575,
+    "team": "BYU",
+    "sport_type": "colb"
+  },
+  "smiths ballpark": {
+    "name": "Smith's Ballpark",
+    "norm": "smiths ballpark",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.7715,
+    "lon": -111.9005,
+    "team": "Utah",
+    "sport_type": "colb"
+  },
+  "cougar field": {
+    "name": "Cougar Field",
+    "norm": "cougar field",
+    "city": "Houston",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.7245,
+    "lon": -95.3455,
+    "team": "Houston",
+    "sport_type": "colb"
+  },
+  "john smith field": {
+    "name": "John Smith Field",
+    "norm": "john smith field",
+    "city": "Orlando",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 28.6035,
+    "lon": -81.1965,
+    "team": "UCF",
+    "sport_type": "colb"
+  },
+  "nippert baseball stadium": {
+    "name": "Nippert Baseball Stadium",
+    "norm": "nippert baseball stadium",
+    "city": "Cincinnati",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1345,
+    "lon": -84.5135,
+    "team": "Cincinnati",
+    "sport_type": "colb"
+  },
+  "karl kuchs diamond": {
+    "name": "Karl Kuchs Diamond",
+    "norm": "karl kuchs diamond",
+    "city": "Fort Collins",
+    "state": "CO",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.5775,
+    "lon": -105.0825,
+    "team": "Colorado State",
+    "sport_type": "colb"
+  },
+  "doug kingsmore stadium": {
+    "name": "Doug Kingsmore Stadium",
+    "norm": "doug kingsmore stadium",
+    "city": "Clemson",
+    "state": "SC",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.6815,
+    "lon": -82.8375,
+    "team": "Clemson",
+    "sport_type": "colb"
+  },
+  "durham bulls athletic park": {
+    "name": "Durham Bulls Athletic Park",
+    "norm": "durham bulls athletic park",
+    "city": "Durham",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.994,
+    "lon": -78.902,
+    "team": "Duke",
+    "sport_type": "colb"
+  },
+  "dick howser stadium": {
+    "name": "Dick Howser Stadium",
+    "norm": "dick howser stadium",
+    "city": "Tallahassee",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.4405,
+    "lon": -84.3075,
+    "team": "Florida State",
+    "sport_type": "colb"
+  },
+  "russ chandler stadium": {
+    "name": "Russ Chandler Stadium",
+    "norm": "russ chandler stadium",
+    "city": "Atlanta",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.7725,
+    "lon": -84.3895,
+    "team": "Georgia Tech",
+    "sport_type": "colb"
+  },
+  "jim patterson stadium": {
+    "name": "Jim Patterson Stadium",
+    "norm": "jim patterson stadium",
+    "city": "Louisville",
+    "state": "KY",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.2155,
+    "lon": -85.7625,
+    "team": "Louisville",
+    "sport_type": "colb"
+  },
+  "mark light field": {
+    "name": "Mark Light Field",
+    "norm": "mark light field",
+    "city": "Coral Gables",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 25.7145,
+    "lon": -80.2745,
+    "team": "Miami",
+    "sport_type": "colb"
+  },
+  "doak field": {
+    "name": "Doak Field",
+    "norm": "doak field",
+    "city": "Raleigh",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.7885,
+    "lon": -78.7065,
+    "team": "NC State",
+    "sport_type": "colb"
+  },
+  "boshamer stadium": {
+    "name": "Boshamer Stadium",
+    "norm": "boshamer stadium",
+    "city": "Chapel Hill",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.9085,
+    "lon": -79.0455,
+    "team": "North Carolina",
+    "sport_type": "colb"
+  },
+  "charles l cost field": {
+    "name": "Charles L. Cost Field",
+    "norm": "charles l cost field",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.4445,
+    "lon": -79.9585,
+    "team": "Pittsburgh",
+    "sport_type": "colb"
+  },
+  "frank eck stadium": {
+    "name": "Frank Eck Stadium",
+    "norm": "frank eck stadium",
+    "city": "Notre Dame",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.7015,
+    "lon": -86.2365,
+    "team": "Notre Dame",
+    "sport_type": "colb"
+  },
+  "klein field at sunken diamond": {
+    "name": "Klein Field at Sunken Diamond",
+    "norm": "klein field at sunken diamond",
+    "city": "Stanford",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.4345,
+    "lon": -122.1635,
+    "team": "Stanford",
+    "sport_type": "colb"
+  },
+  "davenport field": {
+    "name": "Davenport Field",
+    "norm": "davenport field",
+    "city": "Charlottesville",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.0335,
+    "lon": -78.5105,
+    "team": "Virginia",
+    "sport_type": "colb"
+  },
+  "english field": {
+    "name": "English Field",
+    "norm": "english field",
+    "city": "Blacksburg",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.2215,
+    "lon": -80.4195,
+    "team": "Virginia Tech",
+    "sport_type": "colb"
+  },
+  "david f couch ballpark": {
+    "name": "David F. Couch Ballpark",
+    "norm": "david f couch ballpark",
+    "city": "Winston-Salem",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.0835,
+    "lon": -80.2775,
+    "team": "Wake Forest",
+    "sport_type": "colb"
+  },
+  "evans diamond": {
+    "name": "Evans Diamond",
+    "norm": "evans diamond",
+    "city": "Berkeley",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.8715,
+    "lon": -122.2525,
+    "team": "Cal",
+    "sport_type": "colb"
+  },
+  "perkins stadium": {
+    "name": "Perkins Stadium",
+    "norm": "perkins stadium",
+    "city": "Dallas",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.8385,
+    "lon": -96.7815,
+    "team": "SMU",
+    "sport_type": "colb"
+  },
+  "carrier dome": {
+    "name": "Carrier Dome",
+    "norm": "carrier dome",
+    "city": "Syracuse",
+    "state": "NY",
+    "indoor": false,
+    "grass": false,
+    "lat": 43.0362,
+    "lon": -76.1363,
+    "team": "Syracuse",
+    "sport_type": "colb"
+  },
+  "fedexpark": {
+    "name": "FedExPark",
+    "norm": "fedexpark",
+    "city": "Memphis",
+    "state": "TN",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.1185,
+    "lon": -89.9375,
+    "team": "Memphis",
+    "sport_type": "colb"
+  },
+  "max muncy stadium": {
+    "name": "Max Muncy Stadium",
+    "norm": "max muncy stadium",
+    "city": "Beaumont",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.0675,
+    "lon": -94.1385,
+    "team": "Lamar",
+    "sport_type": "colb"
+  },
+  "turchin stadium": {
+    "name": "Turchin Stadium",
+    "norm": "turchin stadium",
+    "city": "New Orleans",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.9455,
+    "lon": -90.1175,
+    "team": "Tulane",
+    "sport_type": "colb"
+  },
+  "pat kenelly diamond": {
+    "name": "Pat Kenelly Diamond",
+    "norm": "pat kenelly diamond",
+    "city": "Hattiesburg",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.3305,
+    "lon": -89.3345,
+    "team": "Southern Miss",
+    "sport_type": "colb"
+  },
+  "spectrum field": {
+    "name": "Spectrum Field",
+    "norm": "spectrum field",
+    "city": "Clearwater",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 27.9665,
+    "lon": -82.8015,
+    "team": "USF",
+    "sport_type": "colb"
+  },
+  "mike martin field at dick howser stadium": {
+    "name": "Mike Martin Field at Dick Howser Stadium",
+    "norm": "mike martin field at dick howser stadium",
+    "city": "Tallahassee",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.4395,
+    "lon": -84.3085,
+    "team": "FSU",
+    "sport_type": "colb"
+  },
+  "pelican park": {
+    "name": "Pelican Park",
+    "norm": "pelican park",
+    "city": "Lafayette",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.2165,
+    "lon": -92.0125,
+    "team": "Louisiana",
+    "sport_type": "colb"
+  },
+  "springs brooks stadium": {
+    "name": "Springs Brooks Stadium",
+    "norm": "springs brooks stadium",
+    "city": "Conway",
+    "state": "SC",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.7975,
+    "lon": -79.0165,
+    "team": "Coastal Carolina",
+    "sport_type": "colb"
+  },
+  "ji clements stadium": {
+    "name": "J.I. Clements Stadium",
+    "norm": "ji clements stadium",
+    "city": "Statesboro",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.4255,
+    "lon": -81.7805,
+    "team": "Georgia Southern",
+    "sport_type": "colb"
+  },
+  "stanky field": {
+    "name": "Stanky Field",
+    "norm": "stanky field",
+    "city": "Mobile",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.6945,
+    "lon": -88.1815,
+    "team": "South Alabama",
+    "sport_type": "colb"
+  },
+  "riddlepace field": {
+    "name": "Riddle-Pace Field",
+    "norm": "riddlepace field",
+    "city": "Troy",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.7985,
+    "lon": -85.9665,
+    "team": "Troy",
+    "sport_type": "colb"
+  },
+  "warhawk field": {
+    "name": "Warhawk Field",
+    "norm": "warhawk field",
+    "city": "Monroe",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.5315,
+    "lon": -92.0715,
+    "team": "UL Monroe",
+    "sport_type": "colb"
+  },
+  "appalachian state baseball complex": {
+    "name": "Appalachian State Baseball Complex",
+    "norm": "appalachian state baseball complex",
+    "city": "Boone",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.2155,
+    "lon": -81.6825,
+    "team": "Appalachian State",
+    "sport_type": "colb"
+  },
+  "tony gwynn stadium": {
+    "name": "Tony Gwynn Stadium",
+    "norm": "tony gwynn stadium",
+    "city": "San Diego",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.7745,
+    "lon": -117.0715,
+    "team": "San Diego State",
+    "sport_type": "colb"
+  },
+  "pete beiden field": {
+    "name": "Pete Beiden Field",
+    "norm": "pete beiden field",
+    "city": "Fresno",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.7175,
+    "lon": -119.7285,
+    "team": "Fresno State",
+    "sport_type": "colb"
+  },
+  "peccole park": {
+    "name": "Peccole Park",
+    "norm": "peccole park",
+    "city": "Reno",
+    "state": "NV",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.5485,
+    "lon": -119.8135,
+    "team": "Nevada",
+    "sport_type": "colb"
+  },
+  "jc love field": {
+    "name": "J.C. Love Field",
+    "norm": "jc love field",
+    "city": "Ruston",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.5275,
+    "lon": -92.6535,
+    "team": "Louisiana Tech",
+    "sport_type": "colb"
+  },
+  "liberty baseball stadium": {
+    "name": "Liberty Baseball Stadium",
+    "norm": "liberty baseball stadium",
+    "city": "Lynchburg",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.3535,
+    "lon": -79.1745,
+    "team": "Liberty",
+    "sport_type": "colb"
+  },
+  "oestrike stadium": {
+    "name": "Oestrike Stadium",
+    "norm": "oestrike stadium",
+    "city": "Ypsilanti",
+    "state": "MI",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.2515,
+    "lon": -83.6235,
+    "team": "Eastern Michigan",
+    "sport_type": "colb"
+  },
+  "schoonover stadium": {
+    "name": "Schoonover Stadium",
+    "norm": "schoonover stadium",
+    "city": "Kent",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.1485,
+    "lon": -81.3545,
+    "team": "Kent State",
+    "sport_type": "colb"
+  },
+  "mckie field": {
+    "name": "McKie Field",
+    "norm": "mckie field",
+    "city": "Oxford",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.5095,
+    "lon": -84.7315,
+    "team": "Miami OH",
+    "sport_type": "colb"
+  },
+  "marita hynes field": {
+    "name": "Marita Hynes Field",
+    "norm": "marita hynes field",
+    "city": "Norman",
+    "state": "OK",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.1985,
+    "lon": -97.4415,
+    "team": "Oklahoma",
+    "sport_type": "cols"
+  },
+  "tiger park": {
+    "name": "Tiger Park",
+    "norm": "tiger park",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.4035,
+    "lon": -91.1875,
+    "team": "LSU",
+    "sport_type": "cols"
+  },
+  "katie seashole pressly stadium": {
+    "name": "Katie Seashole Pressly Stadium",
+    "norm": "katie seashole pressly stadium",
+    "city": "Gainesville",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.6485,
+    "lon": -82.3515,
+    "team": "Florida",
+    "sport_type": "cols"
+  },
+  "rhoads stadium": {
+    "name": "Rhoads Stadium",
+    "norm": "rhoads stadium",
+    "city": "Tuscaloosa",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.2055,
+    "lon": -87.5475,
+    "team": "Alabama",
+    "sport_type": "cols"
+  },
+  "nettie gann stadium": {
+    "name": "Nettie Gann Stadium",
+    "norm": "nettie gann stadium",
+    "city": "Starkville",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.4545,
+    "lon": -88.7865,
+    "team": "Mississippi State",
+    "sport_type": "cols"
+  },
+  "jane b moore field": {
+    "name": "Jane B. Moore Field",
+    "norm": "jane b moore field",
+    "city": "Auburn",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.6005,
+    "lon": -85.4875,
+    "team": "Auburn",
+    "sport_type": "cols"
+  },
+  "jack turner stadium": {
+    "name": "Jack Turner Stadium",
+    "norm": "jack turner stadium",
+    "city": "Athens",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.9475,
+    "lon": -83.3755,
+    "team": "Georgia",
+    "sport_type": "cols"
+  },
+  "sherri parker lee stadium": {
+    "name": "Sherri Parker Lee Stadium",
+    "norm": "sherri parker lee stadium",
+    "city": "Knoxville",
+    "state": "TN",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.9575,
+    "lon": -83.9215,
+    "team": "Tennessee",
+    "sport_type": "cols"
+  },
+  "davis diamond": {
+    "name": "Davis Diamond",
+    "norm": "davis diamond",
+    "city": "College Station",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.6075,
+    "lon": -96.3345,
+    "team": "Texas A&M",
+    "sport_type": "cols"
+  },
+  "red charline mccombs field": {
+    "name": "Red & Charline McCombs Field",
+    "norm": "red charline mccombs field",
+    "city": "Austin",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.2845,
+    "lon": -97.7295,
+    "team": "Texas",
+    "sport_type": "cols"
+  },
+  "bogle park": {
+    "name": "Bogle Park",
+    "norm": "bogle park",
+    "city": "Fayetteville",
+    "state": "AR",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.0675,
+    "lon": -94.1765,
+    "team": "Arkansas",
+    "sport_type": "cols"
+  },
+  "john cropp stadium": {
+    "name": "John Cropp Stadium",
+    "norm": "john cropp stadium",
+    "city": "Lexington",
+    "state": "KY",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.0245,
+    "lon": -84.5025,
+    "team": "Kentucky",
+    "sport_type": "cols"
+  },
+  "ole miss softball complex": {
+    "name": "Ole Miss Softball Complex",
+    "norm": "ole miss softball complex",
+    "city": "Oxford",
+    "state": "MS",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.3635,
+    "lon": -89.5355,
+    "team": "Ole Miss",
+    "sport_type": "cols"
+  },
+  "hawkins field softball": {
+    "name": "Hawkins Field Softball",
+    "norm": "hawkins field softball",
+    "city": "Nashville",
+    "state": "TN",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.1465,
+    "lon": -86.8045,
+    "team": "Vanderbilt",
+    "sport_type": "cols"
+  },
+  "mizzou softball stadium": {
+    "name": "Mizzou Softball Stadium",
+    "norm": "mizzou softball stadium",
+    "city": "Columbia",
+    "state": "MO",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.9375,
+    "lon": -92.3285,
+    "team": "Missouri",
+    "sport_type": "cols"
+  },
+  "beckham field": {
+    "name": "Beckham Field",
+    "norm": "beckham field",
+    "city": "Columbia",
+    "state": "SC",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.9945,
+    "lon": -81.0285,
+    "team": "South Carolina",
+    "sport_type": "cols"
+  },
+  "alumni field": {
+    "name": "Alumni Field",
+    "norm": "alumni field",
+    "city": "Ann Arbor",
+    "state": "MI",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.2675,
+    "lon": -83.7475,
+    "team": "Michigan",
+    "sport_type": "colb"
+  },
+  "buckeye field": {
+    "name": "Buckeye Field",
+    "norm": "buckeye field",
+    "city": "Columbus",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.0035,
+    "lon": -83.0215,
+    "team": "Ohio State",
+    "sport_type": "cols"
+  },
+  "bittinger stadium": {
+    "name": "Bittinger Stadium",
+    "norm": "bittinger stadium",
+    "city": "West Lafayette",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.4335,
+    "lon": -86.9205,
+    "team": "Purdue",
+    "sport_type": "cols"
+  },
+  "jane sage cowles stadium": {
+    "name": "Jane Sage Cowles Stadium",
+    "norm": "jane sage cowles stadium",
+    "city": "Minneapolis",
+    "state": "MN",
+    "indoor": false,
+    "grass": true,
+    "lat": 44.9755,
+    "lon": -93.2255,
+    "team": "Minnesota",
+    "sport_type": "cols"
+  },
+  "bob pearl field": {
+    "name": "Bob Pearl Field",
+    "norm": "bob pearl field",
+    "city": "Iowa City",
+    "state": "IA",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.6605,
+    "lon": -91.5495,
+    "team": "Iowa",
+    "sport_type": "cols"
+  },
+  "bowlin stadium": {
+    "name": "Bowlin Stadium",
+    "norm": "bowlin stadium",
+    "city": "Lincoln",
+    "state": "NE",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.8335,
+    "lon": -96.7145,
+    "team": "Nebraska",
+    "sport_type": "cols"
+  },
+  "beard field": {
+    "name": "Beard Field",
+    "norm": "beard field",
+    "city": "State College",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.8065,
+    "lon": -77.8555,
+    "team": "Penn State",
+    "sport_type": "cols"
+  },
+  "husky softball stadium": {
+    "name": "Husky Softball Stadium",
+    "norm": "husky softball stadium",
+    "city": "Seattle",
+    "state": "WA",
+    "indoor": false,
+    "grass": true,
+    "lat": 47.6495,
+    "lon": -122.3035,
+    "team": "Washington",
+    "sport_type": "cols"
+  },
+  "sharon j drysdale field": {
+    "name": "Sharon J. Drysdale Field",
+    "norm": "sharon j drysdale field",
+    "city": "Evanston",
+    "state": "IL",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.0635,
+    "lon": -87.6695,
+    "team": "Northwestern",
+    "sport_type": "cols"
+  },
+  "secchia stadium": {
+    "name": "Secchia Stadium",
+    "norm": "secchia stadium",
+    "city": "East Lansing",
+    "state": "MI",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.7305,
+    "lon": -84.4775,
+    "team": "Michigan State",
+    "sport_type": "cols"
+  },
+  "andy mohr field": {
+    "name": "Andy Mohr Field",
+    "norm": "andy mohr field",
+    "city": "Bloomington",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1775,
+    "lon": -86.5235,
+    "team": "Indiana",
+    "sport_type": "cols"
+  },
+  "easton diamond": {
+    "name": "Easton Diamond",
+    "norm": "easton diamond",
+    "city": "Los Angeles",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.0165,
+    "lon": -118.2855,
+    "team": "USC",
+    "sport_type": "cols"
+  },
+  "rocky johnson field": {
+    "name": "Rocky Johnson Field",
+    "norm": "rocky johnson field",
+    "city": "Lubbock",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.5865,
+    "lon": -101.8755,
+    "team": "Texas Tech",
+    "sport_type": "cols"
+  },
+  "getterman stadium": {
+    "name": "Getterman Stadium",
+    "norm": "getterman stadium",
+    "city": "Waco",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.5555,
+    "lon": -97.1195,
+    "team": "Baylor",
+    "sport_type": "cols"
+  },
+  "mary nutter collegiate classic": {
+    "name": "Mary Nutter Collegiate Classic",
+    "norm": "mary nutter collegiate classic",
+    "city": "Cathedral City",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.7805,
+    "lon": -116.4695,
+    "team": "neutral",
+    "sport_type": "cols"
+  },
+  "hillenbrand stadium": {
+    "name": "Hillenbrand Stadium",
+    "norm": "hillenbrand stadium",
+    "city": "Tucson",
+    "state": "AZ",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.2295,
+    "lon": -110.9475,
+    "team": "Arizona",
+    "sport_type": "cols"
+  },
+  "alberta b farrington softball stadium": {
+    "name": "Alberta B. Farrington Softball Stadium",
+    "norm": "alberta b farrington softball stadium",
+    "city": "Tempe",
+    "state": "AZ",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.4255,
+    "lon": -111.9345,
+    "team": "Arizona State",
+    "sport_type": "cols"
+  },
+  "marita hynes field at ou softball complex": {
+    "name": "Marita Hynes Field at OU Softball Complex",
+    "norm": "marita hynes field at ou softball complex",
+    "city": "Norman",
+    "state": "OK",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.1975,
+    "lon": -97.4425,
+    "team": "Oklahoma",
+    "sport_type": "cols"
+  },
+  "cowgirl stadium": {
+    "name": "Cowgirl Stadium",
+    "norm": "cowgirl stadium",
+    "city": "Stillwater",
+    "state": "OK",
+    "indoor": false,
+    "grass": true,
+    "lat": 36.1245,
+    "lon": -97.0685,
+    "team": "Oklahoma State",
+    "sport_type": "cols"
+  },
+  "tointon family softball stadium": {
+    "name": "Tointon Family Softball Stadium",
+    "norm": "tointon family softball stadium",
+    "city": "Manhattan",
+    "state": "KS",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1975,
+    "lon": -96.5965,
+    "team": "Kansas State",
+    "sport_type": "cols"
+  },
+  "arrocha ballpark": {
+    "name": "Arrocha Ballpark",
+    "norm": "arrocha ballpark",
+    "city": "Lawrence",
+    "state": "KS",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.9535,
+    "lon": -95.2575,
+    "team": "Kansas",
+    "sport_type": "cols"
+  },
+  "cougar softball stadium": {
+    "name": "Cougar Softball Stadium",
+    "norm": "cougar softball stadium",
+    "city": "Houston",
+    "state": "TX",
+    "indoor": false,
+    "grass": true,
+    "lat": 29.7215,
+    "lon": -95.3475,
+    "team": "Houston",
+    "sport_type": "cols"
+  },
+  "ucf softball complex": {
+    "name": "UCF Softball Complex",
+    "norm": "ucf softball complex",
+    "city": "Orlando",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 28.6055,
+    "lon": -81.1945,
+    "team": "UCF",
+    "sport_type": "cols"
+  },
+  "gettler stadium": {
+    "name": "Gettler Stadium",
+    "norm": "gettler stadium",
+    "city": "Cincinnati",
+    "state": "OH",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1335,
+    "lon": -84.5145,
+    "team": "Cincinnati",
+    "sport_type": "cols"
+  },
+  "mcwhorter stadium": {
+    "name": "McWhorter Stadium",
+    "norm": "mcwhorter stadium",
+    "city": "Clemson",
+    "state": "SC",
+    "indoor": false,
+    "grass": true,
+    "lat": 34.6795,
+    "lon": -82.8395,
+    "team": "Clemson",
+    "sport_type": "cols"
+  },
+  "joanne graf field": {
+    "name": "JoAnne Graf Field",
+    "norm": "joanne graf field",
+    "city": "Tallahassee",
+    "state": "FL",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.4415,
+    "lon": -84.3055,
+    "team": "Florida State",
+    "sport_type": "cols"
+  },
+  "mewborn field": {
+    "name": "Mewborn Field",
+    "norm": "mewborn field",
+    "city": "Atlanta",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.7735,
+    "lon": -84.3885,
+    "team": "Georgia Tech",
+    "sport_type": "cols"
+  },
+  "ulmer stadium": {
+    "name": "Ulmer Stadium",
+    "norm": "ulmer stadium",
+    "city": "Louisville",
+    "state": "KY",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.2145,
+    "lon": -85.7615,
+    "team": "Louisville",
+    "sport_type": "cols"
+  },
+  "anderson family field": {
+    "name": "Anderson Family Field",
+    "norm": "anderson family field",
+    "city": "Chapel Hill",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.9065,
+    "lon": -79.0475,
+    "team": "North Carolina",
+    "sport_type": "cols"
+  },
+  "dail softball stadium": {
+    "name": "Dail Softball Stadium",
+    "norm": "dail softball stadium",
+    "city": "Raleigh",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": 35.7875,
+    "lon": -78.7075,
+    "team": "NC State",
+    "sport_type": "cols"
+  },
+  "vadas field": {
+    "name": "Vadas Field",
+    "norm": "vadas field",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.4435,
+    "lon": -79.9575,
+    "team": "Pittsburgh",
+    "sport_type": "cols"
+  },
+  "palmer stadium": {
+    "name": "Palmer Stadium",
+    "norm": "palmer stadium",
+    "city": "Stanford",
+    "state": "CA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.4365,
+    "lon": -122.1595,
+    "team": "Stanford",
+    "sport_type": "cols"
+  },
+  "the park": {
+    "name": "The Park",
+    "norm": "the park",
+    "city": "Charlottesville",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.0325,
+    "lon": -78.5115,
+    "team": "Virginia",
+    "sport_type": "cols"
+  },
+  "tech softball park": {
+    "name": "Tech Softball Park",
+    "norm": "tech softball park",
+    "city": "Blacksburg",
+    "state": "VA",
+    "indoor": false,
+    "grass": true,
+    "lat": 37.2205,
+    "lon": -80.4185,
+    "team": "Virginia Tech",
+    "sport_type": "cols"
+  },
+  "melissa cook stadium": {
+    "name": "Melissa Cook Stadium",
+    "norm": "melissa cook stadium",
+    "city": "Notre Dame",
+    "state": "IN",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.7005,
+    "lon": -86.2355,
+    "team": "Notre Dame",
+    "sport_type": "cols"
+  },
+  "yvette girouard field": {
+    "name": "Yvette Girouard Field",
+    "norm": "yvette girouard field",
+    "city": "Lafayette",
+    "state": "LA",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.2145,
+    "lon": -92.0135,
+    "team": "Louisiana",
+    "sport_type": "cols"
+  },
+  "ccu softball stadium": {
+    "name": "CCU Softball Stadium",
+    "norm": "ccu softball stadium",
+    "city": "Conway",
+    "state": "SC",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.7955,
+    "lon": -79.0175,
+    "team": "Coastal Carolina",
+    "sport_type": "cols"
+  },
+  "eagle field softball": {
+    "name": "Eagle Field Softball",
+    "norm": "eagle field softball",
+    "city": "Statesboro",
+    "state": "GA",
+    "indoor": false,
+    "grass": true,
+    "lat": 32.4245,
+    "lon": -81.7815,
+    "team": "Georgia Southern",
+    "sport_type": "cols"
+  },
+  "jaguar field": {
+    "name": "Jaguar Field",
+    "norm": "jaguar field",
+    "city": "Mobile",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 30.6955,
+    "lon": -88.1795,
+    "team": "South Alabama",
+    "sport_type": "cols"
+  },
+  "troy softball complex": {
+    "name": "Troy Softball Complex",
+    "norm": "troy softball complex",
+    "city": "Troy",
+    "state": "AL",
+    "indoor": false,
+    "grass": true,
+    "lat": 31.7975,
+    "lon": -85.9675,
+    "team": "Troy",
+    "sport_type": "cols"
   }
 }

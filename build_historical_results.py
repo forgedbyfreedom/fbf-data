@@ -16,6 +16,7 @@ Each record includes:
 
 import json, os, time, math, datetime as dt
 from typing import Dict, Any, List, Optional
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 
 OUTFILE = "historical_results.json"
@@ -23,39 +24,44 @@ YEARS_BACK = 3  # 3 seasons instead of 5 to reduce runtime
 
 SPORTS = {
     "nfl": {
-        "events_url": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/2/events?limit=500",
     },
     "ncaaf": {
-        "events_url": "http://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{season}/types/2/events?limit=500",
     },
     "nba": {
-        "events_url": "http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/seasons/{season}/types/2/events?limit=500",
     },
     "ncaab": {
-        "events_url": "http://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{season}/types/2/events?limit=500",
     },
     "nhl": {
-        "events_url": "http://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/seasons/{season}/types/2/events?limit=500",
     },
 }
 
 HEADERS = {
-    "User-Agent": "fbf-data-historical (contact@forgedbyfreedom.com)"
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.espn.com/",
 }
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
 
-def get_json(url: str, tries: int = 3, sleep: float = 0.6) -> Optional[Dict[str, Any]]:
+def get_json(url: str, tries: int = 3) -> Optional[Dict[str, Any]]:
     for i in range(tries):
         try:
-            r = SESSION.get(url, timeout=20)
+            r = SESSION.get(url, timeout=30)
             if r.status_code == 200:
                 return r.json()
-            time.sleep(sleep)
-        except Exception:
-            time.sleep(sleep)
+            print(f"  [warn] HTTP {r.status_code} for {url[:120]}")
+            time.sleep(0.6 * (2 ** i))  # exponential backoff: 0.6, 1.2, 2.4
+        except Exception as e:
+            print(f"  [warn] Request failed (attempt {i+1}/{tries}): {type(e).__name__}: {e} — {url[:120]}")
+            time.sleep(0.6 * (2 ** i))
     return None
 
 
@@ -68,8 +74,22 @@ def safe_float(x):
         return None
 
 
+def resolve_ref(obj):
+    """If obj is a dict with $ref, resolve it. Otherwise return obj as-is."""
+    if isinstance(obj, dict) and "$ref" in obj:
+        return get_json(obj["$ref"].replace("http://", "https://")) or {}
+    return obj or {}
+
+
 def parse_competitors(comp: Dict[str, Any]) -> Dict[str, Any]:
     competitors = comp.get("competitors", [])
+    # competitors might be a $ref itself
+    if isinstance(competitors, dict) and "$ref" in competitors:
+        competitors_data = get_json(competitors["$ref"].replace("http://", "https://"))
+        competitors = (competitors_data or {}).get("items", [])
+        # Resolve each competitor ref
+        competitors = [resolve_ref(c) for c in competitors]
+
     home, away = None, None
     for c in competitors:
         if c.get("homeAway") == "home":
@@ -80,31 +100,72 @@ def parse_competitors(comp: Dict[str, Any]) -> Dict[str, Any]:
     def pack(team_blob):
         if not team_blob:
             return {"id": None, "name": None, "abbr": None, "score": None}
-        team = team_blob.get("team", {}) or {}
+        # Resolve team $ref
+        team = team_blob.get("team", {})
+        if isinstance(team, dict) and "$ref" in team:
+            team = get_json(team["$ref"].replace("http://", "https://")) or {}
+        # Resolve score $ref
+        score_val = team_blob.get("score")
+        if isinstance(score_val, dict) and "$ref" in score_val:
+            score_data = get_json(score_val["$ref"].replace("http://", "https://")) or {}
+            score_val = score_data.get("value") or score_data.get("displayValue")
         return {
             "id": str(team.get("id")) if team.get("id") else None,
             "name": team.get("displayName") or team.get("name"),
             "abbr": team.get("abbreviation"),
-            "score": safe_float(team_blob.get("score")),
+            "score": safe_float(score_val),
         }
 
     return {"home": pack(home), "away": pack(away)}
 
 
 def parse_odds(comp: Dict[str, Any]) -> Dict[str, Any]:
-    odds_list = comp.get("odds") or []
-    if not odds_list or not isinstance(odds_list, list):
+    odds_ref = comp.get("odds") or []
+    # odds can be a $ref
+    if isinstance(odds_ref, dict) and "$ref" in odds_ref:
+        odds_data = get_json(odds_ref["$ref"].replace("http://", "https://")) or {}
+        odds_list = odds_data.get("items", [])
+        # Resolve individual odds refs
+        if odds_list and isinstance(odds_list[0], dict) and "$ref" in odds_list[0]:
+            odds_list = [resolve_ref(o) for o in odds_list[:1]]
+    elif isinstance(odds_ref, list):
+        odds_list = odds_ref
+    else:
+        odds_list = []
+
+    if not odds_list:
         return {"spread": None, "total": None, "favorite": None, "details": None, "provider": None}
 
     o = odds_list[0] or {}
     details = o.get("details")
     spread = safe_float(o.get("spread"))
     total = safe_float(o.get("overUnder")) or safe_float(o.get("total"))
-    provider = o.get("provider", {}).get("name") if isinstance(o.get("provider"), dict) else o.get("provider")
+
+    # Resolve provider $ref
+    provider_obj = o.get("provider", {})
+    if isinstance(provider_obj, dict) and "$ref" in provider_obj:
+        provider_obj = resolve_ref(provider_obj)
+    provider = provider_obj.get("name") if isinstance(provider_obj, dict) else provider_obj
+
+    # Core API v2 nests odds in bettingOdds.teamOdds
+    if spread is None or total is None:
+        betting = o.get("bettingOdds", {})
+        team_odds = betting.get("teamOdds", {})
+        if team_odds:
+            if spread is None:
+                sh = team_odds.get("preMatchSpreadHandicapHome", {})
+                spread = safe_float(sh.get("value")) if sh else None
+            if total is None:
+                th = team_odds.get("preMatchTotalHandicap", {})
+                total = safe_float(th.get("value")) if th else None
 
     favorite = None
     if details and isinstance(details, str):
         favorite = details.split(" ")[0].strip()
+    elif spread is not None and spread != 0:
+        # Derive favorite from spread sign — negative spread = home favored
+        # We'll set favorite later using team abbrs in fetch_event_detail
+        pass
 
     return {
         "spread": spread,
@@ -146,28 +207,45 @@ def compute_ou(home_score, away_score, total):
 
 
 def fetch_event_detail(event_url: str) -> Optional[Dict[str, Any]]:
+    # Ensure HTTPS for any $ref URLs returned by the API
+    event_url = event_url.replace("http://", "https://")
+
     ev = get_json(event_url)
     if not ev:
         return None
 
     comps_ref = ev.get("competitions")
-    if isinstance(comps_ref, dict) and comps_ref.get("$ref"):
-        comps = get_json(comps_ref["$ref"])
-    else:
-        comps = comps_ref
 
-    if not comps or "items" not in comps:
-        return None
+    # competitions can be: a list of dicts with $ref, a dict with $ref, or a dict with items
+    comp = None
+    if isinstance(comps_ref, list) and comps_ref:
+        # List of competition objects (most common) — resolve $ref if needed
+        first = comps_ref[0]
+        if isinstance(first, dict) and "$ref" in first:
+            comp = get_json(first["$ref"].replace("http://", "https://"))
+        elif isinstance(first, dict):
+            comp = first  # already resolved
+    elif isinstance(comps_ref, dict):
+        if "$ref" in comps_ref:
+            comps_data = get_json(comps_ref["$ref"].replace("http://", "https://"))
+            if comps_data and "items" in comps_data:
+                comp_url = comps_data["items"][0].get("$ref")
+                if comp_url:
+                    comp = get_json(comp_url.replace("http://", "https://"))
+        elif "items" in comps_ref:
+            comp_url = comps_ref["items"][0].get("$ref")
+            if comp_url:
+                comp = get_json(comp_url.replace("http://", "https://"))
 
-    comp_url = comps["items"][0].get("$ref")
-    if not comp_url:
-        return None
-
-    comp = get_json(comp_url)
     if not comp:
         return None
 
-    status = comp.get("status", {}).get("type", {}).get("name")
+    # Resolve status — can be a $ref
+    status_obj = comp.get("status", {})
+    status_obj = resolve_ref(status_obj)
+    type_obj = status_obj.get("type", {})
+    type_obj = resolve_ref(type_obj)
+    status = type_obj.get("name")
     if status not in ("STATUS_FINAL", "STATUS_COMPLETED"):
         return None
 
@@ -178,12 +256,12 @@ def fetch_event_detail(event_url: str) -> Optional[Dict[str, Any]]:
     officials = []
     officials_ref = comp.get("officials")
     if isinstance(officials_ref, dict) and officials_ref.get("$ref"):
-        off_data = get_json(officials_ref["$ref"])
+        off_data = get_json(officials_ref["$ref"].replace("http://", "https://"))
         if off_data and "items" in off_data:
             for item in off_data["items"]:
                 ref_url = item.get("$ref")
                 if ref_url:
-                    ref_data = get_json(ref_url)
+                    ref_data = get_json(ref_url.replace("http://", "https://"))
                     if ref_data:
                         officials.append({
                             "name": ref_data.get("fullName") or ref_data.get("displayName"),
@@ -200,6 +278,13 @@ def fetch_event_detail(event_url: str) -> Optional[Dict[str, Any]]:
     date_utc = comp.get("date") or ev.get("date")
     home = teams["home"]
     away = teams["away"]
+
+    # Derive favorite from spread if not set from details
+    if not odds["favorite"] and odds["spread"] is not None and odds["spread"] != 0:
+        # Spread is from home perspective: negative = home favored
+        odds["favorite"] = home["abbr"] if odds["spread"] < 0 else away["abbr"]
+        # Store spread as absolute value (standard convention)
+        odds["spread"] = abs(odds["spread"])
 
     ats = compute_ats(
         home["score"], away["score"],
@@ -224,40 +309,77 @@ def fetch_event_detail(event_url: str) -> Optional[Dict[str, Any]]:
     }
 
 
+def _fetch_one_event(args):
+    """Worker for concurrent event fetching."""
+    ref, sport_key, season_year = args
+    detail = fetch_event_detail(ref)
+    if detail:
+        detail["sport"] = sport_key
+        detail["season"] = season_year
+    return detail
+
+
 def fetch_events_for_season(sport_key: str, season_year: int) -> List[Dict[str, Any]]:
     sport = SPORTS[sport_key]
     url = sport["events_url"].format(season=season_year)
-    out = []
+    all_refs = []
+    page_num = 0
 
+    # First collect all event refs
     while url:
+        page_num += 1
         page = get_json(url)
         if not page:
+            print(f"    [warn] Failed to fetch page {page_num} for {sport_key} {season_year}")
             break
 
         items = page.get("items") or []
         for it in items:
             ref = it.get("$ref")
-            if not ref:
-                continue
-            detail = fetch_event_detail(ref)
-            if detail:
-                detail["sport"] = sport_key
-                detail["season"] = season_year
-                out.append(detail)
+            if ref:
+                all_refs.append(ref.replace("http://", "https://"))
+
+        if items:
+            print(f"    page {page_num}: {len(items)} event refs collected ({len(all_refs)} total)")
 
         nxt = page.get("next", {})
         url = nxt.get("$ref")
-        time.sleep(0.25)
+        if url:
+            url = url.replace("http://", "https://")
+        time.sleep(0.15)
+
+    if not all_refs:
+        return []
+
+    print(f"    Fetching {len(all_refs)} events with 6 concurrent workers...")
+
+    # Fetch events concurrently (6 workers — polite but much faster)
+    out = []
+    args_list = [(ref, sport_key, season_year) for ref in all_refs]
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        futures = {executor.submit(_fetch_one_event, args): args for args in args_list}
+        done = 0
+        for future in as_completed(futures):
+            done += 1
+            try:
+                detail = future.result()
+                if detail:
+                    out.append(detail)
+            except Exception as e:
+                print(f"    [warn] Event fetch error: {e}")
+            if done % 50 == 0:
+                print(f"    progress: {done}/{len(all_refs)} events processed, {len(out)} games fetched")
 
     return out
 
 
 def main():
-    now = dt.datetime.utcnow()
+    now = dt.datetime.now(dt.timezone.utc)
     end_year = now.year
     start_year = end_year - YEARS_BACK
 
     # Incremental mode: load existing data and skip already-fetched seasons
+    # But reset if existing data has 0 records (indicates previous failure)
     existing = {}
     existing_rows = []
     if os.path.exists(OUTFILE):
@@ -265,14 +387,19 @@ def main():
             with open(OUTFILE, "r") as f:
                 old = json.load(f)
             existing_rows = old.get("data", [])
-            for r in existing_rows:
-                s = r.get("sport")
-                y = r.get("season")
-                if s and y:
-                    existing.setdefault(s, set()).add(y)
-            print(f"[historical] Loaded {len(existing_rows)} existing records")
-        except Exception:
-            pass
+            if len(existing_rows) == 0:
+                print(f"[historical] Existing file has 0 records — resetting for full fetch")
+                existing_rows = []
+                existing = {}
+            else:
+                for r in existing_rows:
+                    s = r.get("sport")
+                    y = r.get("season")
+                    if s and y:
+                        existing.setdefault(s, set()).add(y)
+                print(f"[historical] Loaded {len(existing_rows)} existing records")
+        except Exception as e:
+            print(f"[historical] Error loading existing file: {e} — starting fresh")
 
     new_rows = []
     for sport_key in SPORTS.keys():

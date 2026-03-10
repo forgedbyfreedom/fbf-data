@@ -282,11 +282,15 @@ def main():
     # Summary
     ensemble_count = sum(1 for r in output["predictions"] if r.get("model_used") == "ensemble")
     picks_with_su = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("su_pick"))
-    picks_with_ats = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ats_pick"))
-    picks_with_ou = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ou_pick"))
+    picks_with_ats = sum(1 for r in output["predictions"]
+                         if (r.get("picks") or {}).get("ats_pick") and not (r.get("picks") or {}).get("ats_no_play"))
+    picks_with_ou = sum(1 for r in output["predictions"]
+                        if (r.get("picks") or {}).get("ou_pick") and not (r.get("picks") or {}).get("ou_no_play"))
+    ats_no_play = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ats_no_play"))
+    ou_no_play = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ou_no_play"))
 
     print(f"[predictions] {output['count']} games | {ensemble_count} ensemble, {output['count'] - ensemble_count} rule-based")
-    print(f"[picks] SU: {picks_with_su} | ATS: {picks_with_ats} | O/U: {picks_with_ou}")
+    print(f"[picks] SU: {picks_with_su} | ATS: {picks_with_ats} (skip {ats_no_play}) | O/U: {picks_with_ou} (skip {ou_no_play})")
     print(f"[locked] {len(all_locked)} total locked picks")
 
 

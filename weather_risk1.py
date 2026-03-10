@@ -78,12 +78,14 @@ def main():
         temp = entry.get("temperatureF")
         wind = entry.get("windSpeedMph")
         summary = entry.get("shortForecast") or entry.get("summary")
+        rain_pct = entry.get("rainChancePct", 0)
 
         risk = classify_risk(temp, wind, summary)
 
         out_data[str(key)] = {
             "temperatureF": temp,
             "windSpeedMph": wind,
+            "rainChancePct": rain_pct,
             "shortForecast": summary,
             "detailedForecast": entry.get("detailedForecast"),
             "risk": risk,

@@ -64,12 +64,27 @@ jobs:
         run: python3 tag_favorites.py
 
       #####################################################################
+      # 6b) UFC ODDS (ESPN doesn't carry UFC odds, scrape from BestFightOdds)
+      #####################################################################
+      - name: Scrape UFC odds
+        run: python3 scrape_ufc_odds.py || echo "UFC odds scrape skipped"
+
+      - name: Merge UFC odds
+        run: python3 merge_ufc_odds.py || echo "UFC odds merge skipped"
+
+      #####################################################################
       # 7) BUILD STADIUM FILES
       #####################################################################
       - name: Build FBS Stadiums
         run: |
           python3 build_fbs_stadiums.py
           echo "Stadium files built."
+
+      #####################################################################
+      # 7b) ENRICH VENUES WITH COORDINATES (from stadiums_master.json)
+      #####################################################################
+      - name: Enrich venue coordinates
+        run: python3 build_venues_from_combined.py || echo "Venue enrichment skipped"
 
       #####################################################################
       # 8) WEATHER PIPELINE
@@ -107,14 +122,29 @@ jobs:
       - name: Build referee trends
         run: python3 build_ref_trends.py || echo "Ref trends skipped"
 
+      - name: Build power ratings
+        run: python3 build_power_ratings.py || echo "Power ratings skipped"
+
+      - name: Build situational spots
+        run: python3 build_situational.py || echo "Situational spots skipped"
+
+      - name: Fetch starting pitchers and goalies
+        run: python3 fetch_starters.py || echo "Starters fetch skipped"
+
+      - name: Scrape public betting consensus
+        run: python3 scrape_public_betting.py || echo "Public betting skipped"
+
+      - name: Track line movement
+        run: python3 track_line_movement.py || echo "Line movement skipped"
+
       - name: Merge all features onto games
         run: python3 merge_features.py || echo "Feature merge skipped"
 
       #####################################################################
       # 11) HISTORICAL DATA + ML
       #####################################################################
-      - name: Build historical results (incremental)
-        run: timeout 300 python3 build_historical_results.py || echo "Historical results skipped/timed out"
+      - name: Build historical results (incremental, fallback)
+        run: timeout 600 python3 build_historical_results.py || echo "Historical results skipped/timed out (runs nightly via build_historical.yml)"
 
       - name: Train ML model
         run: python3 train_model.py || echo "ML training skipped"

@@ -53,6 +53,8 @@ def main():
         summary = wk.get("shortForecast") or wk.get("summary")
         risk_val = wk.get("risk")
 
+        rain_pct = wk.get("rainChancePct", 0)
+
         g["weather"] = {
             "summary": summary,
             "description": wk.get("detailedForecast"),
@@ -60,6 +62,7 @@ def main():
             "temp": temp,
             "windSpeedMph": wind,
             "wind": wind,
+            "rainChancePct": rain_pct,
         }
         g["weatherRisk"] = {"risk": risk_val}
         attached += 1

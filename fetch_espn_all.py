@@ -49,6 +49,10 @@ ATHLETE_CACHE = {}
 #  HARDENED FETCH WITH RETRIES + REAL BROWSER HEADERS
 # ------------------------------------------------------------
 def get_json(url):
+    # ESPN Core API returns $ref URLs with http:// — force https
+    if url and url.startswith("http://"):
+        url = url.replace("http://", "https://", 1)
+
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "

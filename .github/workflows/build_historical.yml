@@ -1,0 +1,76 @@
+name: Nightly Historical Data Build
+
+on:
+  schedule:
+    - cron: "0 4 * * *"  # 4 AM UTC daily
+  workflow_dispatch:
+
+jobs:
+  build-historical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build historical results
+        run: python3 build_historical_results.py
+
+      - name: Scrape NFL referee penalties
+        run: python3 scrape_nfl_penalties.py || echo "NFL penalty scrape skipped"
+
+      - name: Scrape MLB umpire stats
+        run: python3 scrape_mlb_umpires.py || echo "MLB umpire scrape skipped"
+
+      - name: Build referee trends from historical data
+        run: python3 build_ref_trends.py
+
+      - name: Validate historical data
+        run: |
+          python3 -c "
+          import json, sys, os
+          with open('historical_results.json') as f:
+              data = json.load(f)
+          count = data.get('count', 0)
+          print(f'Historical records: {count}')
+          if count == 0:
+              print('WARNING: 0 historical records')
+              sys.exit(1)
+          with open('referee_trends.json') as f:
+              refs = json.load(f)
+          ref_count = len(refs.get('refs', {}))
+          print(f'Referee trends: {ref_count} refs')
+          for f_name in ['nfl_ref_penalties.json', 'mlb_ump_data.json']:
+              if os.path.exists(f_name):
+                  with open(f_name) as f:
+                      d = json.load(f)
+                  k = 'refs' if 'refs' in d else 'umps'
+                  print(f'{f_name}: {len(d.get(k, {}))} entries')
+              else:
+                  print(f'{f_name}: not found (scraper may have failed)')
+          print('Historical build passed')
+          "
+
+      - name: Commit & Push historical data
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+          git add historical_results.json referee_trends.json nfl_ref_penalties.json mlb_ump_data.json
+          git commit -m "Nightly historical data update $(date -u +"%Y-%m-%d")" || echo "Nothing to commit"
+
+          git pull --rebase --autostash || true
+          git push || echo "Nothing to push"

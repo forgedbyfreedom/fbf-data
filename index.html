@@ -392,6 +392,115 @@
       border: 1px dashed rgba(248, 250, 252, 0.35);
     }
 
+    .ref-detail {
+      margin-top: 4px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      font-size: 0.72rem;
+    }
+
+    .ref-crew-name {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .ref-trends {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .ref-trend-item {
+      color: var(--text-muted);
+    }
+
+    .ref-trend-item .trend-val {
+      font-weight: 600;
+    }
+
+    .ref-trend-item .trend-val.trend-green { color: #22c55e; }
+    .ref-trend-item .trend-val.trend-red { color: #ef4444; }
+    .ref-trend-item .trend-val.trend-neutral { color: var(--text-muted); }
+
+    .ref-games-count {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    .ref-recent-indicator {
+      font-size: 0.65rem;
+      margin-left: 2px;
+    }
+
+    .ref-penalties {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      align-items: center;
+    }
+
+    .pen-header {
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-right: 2px;
+    }
+
+    .pen-item {
+      background: rgba(30, 41, 59, 0.6);
+      padding: 1px 5px;
+      border-radius: 4px;
+      cursor: help;
+      white-space: nowrap;
+    }
+
+    /* EDGE SIGNALS */
+    .edge-signals {
+      padding: 8px 12px;
+      border-top: 1px solid #2a2a2a;
+    }
+    .edge-title {
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .edge-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .edge-pill {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #1a2a1a;
+      color: #7fba7f;
+      border: 1px solid #2a3a2a;
+      cursor: help;
+      white-space: nowrap;
+    }
+    .edge-strong { background: #1a3a1a; color: #4fda4f; border-color: #2a5a2a; }
+    .edge-mild { background: #1a2a1a; color: #8fca8f; }
+    .edge-fade { background: #3a1a1a; color: #da7f4f; border-color: #5a2a2a; }
+    .edge-line { background: #1a1a3a; color: #7f7fda; border-color: #2a2a5a; }
+    .edge-spot { background: #2a2a1a; color: #caca7f; border-color: #3a3a2a; }
+    .edge-div { background: #2a1a2a; color: #ca7fca; border-color: #3a2a3a; }
+    .edge-streak { background: #1a2a2a; color: #7fcaca; border-color: #2a3a3a; }
+    .edge-starter { background: #1a1a1a; color: #aaa; border-color: #333; }
+    .edge-momentum { background: #2a1a1a; color: #da9a7f; border-color: #3a2a2a; }
+
     /* PICKS STRIP */
     .picks-strip {
       display: grid;
@@ -566,6 +675,7 @@
       allGames: [],
       activeSport: "all",
       lastUpdated: null,
+      refTrends: {},
       accuracy: {
         overall: null,
         bySport: {},
@@ -793,22 +903,95 @@
     }
 
     function extractRefInfo(raw, pred) {
-      const ref = raw.ref_info || raw.referee || raw.officials || raw.ref_trend || pred?.ref_info || pred?.referee;
-      if (!ref) return null;
+      // First try to get ref info from the game data itself
+      const ref = raw.ref_info || raw.referee || raw.ref_trend || pred?.ref_info || pred?.referee;
+      const officials = raw.officials || pred?.officials;
 
-      if (typeof ref === "string") {
-        return ref;
+      // Get the crew chief name (first official or from ref_info)
+      let crewChief = null;
+      if (officials && Array.isArray(officials) && officials.length > 0) {
+        const chief = officials[0];
+        crewChief = typeof chief === "string" ? chief : (chief.name || chief.fullName || chief.displayName);
+      }
+      if (!crewChief && ref) {
+        if (typeof ref === "string") crewChief = ref;
+        else crewChief = ref.crew_name || ref.referee || ref.name || ref.crew;
       }
 
-      const name = ref.crew_name || ref.referee || ref.name || ref.crew;
-      const ats = ref.ats_home || ref.ats_trend || ref.ats_edge;
-      const total = ref.ou_over || ref.total_trend;
+      if (!crewChief) return null;
 
-      let parts = [];
-      if (name) parts.push(String(name));
-      if (ats !== undefined && ats !== null) parts.push(`ATS: ${ats}`);
-      if (total !== undefined && total !== null) parts.push(`O/U: ${total}`);
-      return parts.length ? parts.join(" • ") : null;
+      // Look up enriched ref trends from state.refTrends (loaded from referee_trends.json)
+      const sport = (raw.sport || pred?.sport || "").toLowerCase();
+      const trends = state.refTrends || {};
+      const refData = trends[crewChief] || trends[crewChief?.toLowerCase()?.trim()] || null;
+
+      if (!refData) {
+        return { name: crewChief, html: crewChief };
+      }
+
+      // Get sport-specific data if available
+      const sportData = refData.by_sport?.[sport];
+      const games = sportData?.games || refData.games || 0;
+      const overPct = sportData?.over_pct ?? refData.over_pct ?? 50;
+      const favCoverPct = sportData?.fav_cover_pct ?? refData.fav_cover_pct ?? 50;
+      const homeWinPct = sportData?.home_win_pct ?? refData.home_win_pct ?? 50;
+      const recentOverPct = refData.recent_over_pct ?? overPct;
+
+      // Color-code: green for strong trends (>55% or <45%), neutral otherwise
+      function trendClass(val) {
+        if (val > 55) return "trend-green";
+        if (val < 45) return "trend-red";
+        return "trend-neutral";
+      }
+
+      // Recent form indicator (arrow up/down vs career average)
+      let recentIndicator = "";
+      if (recentOverPct > overPct + 3) recentIndicator = ' <span class="ref-recent-indicator" title="Recent trend: more overs">&#9650;</span>';
+      else if (recentOverPct < overPct - 3) recentIndicator = ' <span class="ref-recent-indicator" title="Recent trend: more unders">&#9660;</span>';
+
+      const shortName = crewChief.split(" ").map((w, i) => i === 0 ? w[0] + "." : w).join(" ");
+
+      // Build penalty detail section (NFL only, from merged game data)
+      let penaltyHtml = "";
+      const penDetail = raw.ref_penalty_detail;
+      const penPg = raw.ref_penalties_per_game;
+      if (penDetail && typeof penDetail === "object" && Object.keys(penDetail).length > 0) {
+        const penLabels = {
+          "defensive pass interference": "DPI",
+          "offensive pass interference": "OPI",
+          "offensive holding": "Hold",
+          "defensive holding": "D-Hold",
+          "roughing the passer": "RTP",
+          "unnecessary roughness": "UR",
+          "unsportsmanlike conduct": "UC",
+          "face mask": "Facemask",
+          "face mask (15 yards)": "Facemask",
+          "illegal use of hands": "Ill. Hands",
+        };
+        const penItems = [];
+        for (const [name, data] of Object.entries(penDetail)) {
+          const label = penLabels[name] || name;
+          if (!label || !data?.per_game) continue;
+          const ratioStr = data.h_a_ratio != null ? ` (${data.h_a_ratio > 1.15 ? "H" : data.h_a_ratio < 0.85 ? "A" : "="})` : "";
+          penItems.push(`<span class="pen-item" title="${name}: ${data.per_game}/g | Home:${data.home} Away:${data.away}">${label} ${data.per_game}${ratioStr}</span>`);
+        }
+        if (penItems.length > 0) {
+          const pgStr = penPg ? ` | ${penPg} flags/g` : "";
+          penaltyHtml = `<div class="ref-penalties"><span class="pen-header">Penalties${pgStr}:</span> ${penItems.join(" ")} </div>`;
+        }
+      }
+
+      const html = `<div class="ref-detail">
+        <div class="ref-crew-name">${shortName} <span class="ref-games-count">(${games}g)</span></div>
+        <div class="ref-trends">
+          <span class="ref-trend-item">O/U: <span class="trend-val ${trendClass(overPct)}">${overPct.toFixed(1)}% Over</span>${recentIndicator}</span>
+          <span class="ref-trend-item">ATS: <span class="trend-val ${trendClass(100 - favCoverPct)}">Fav ${favCoverPct.toFixed(1)}%</span></span>
+          <span class="ref-trend-item">Home: <span class="trend-val ${trendClass(homeWinPct)}">${homeWinPct.toFixed(1)}%</span></span>
+        </div>
+        ${penaltyHtml}
+      </div>`;
+
+      return { name: crewChief, html, games, overPct, favCoverPct };
     }
 
     function buildGameView(game, pred) {
@@ -1232,10 +1415,19 @@
         }
 
         if (g.refsInfo) {
-          const refPill = document.createElement("div");
-          refPill.className = "refs-pill";
-          refPill.innerHTML = `<span class="key">Refs</span> <span class="val">${g.refsInfo}</span>`;
-          metaRow.appendChild(refPill);
+          if (typeof g.refsInfo === "object" && g.refsInfo.html) {
+            // Enriched ref display with trends
+            const refDiv = document.createElement("div");
+            refDiv.innerHTML = g.refsInfo.html;
+            card.appendChild(refDiv.firstElementChild);
+          } else {
+            // Fallback: simple pill display
+            const refPill = document.createElement("div");
+            refPill.className = "refs-pill";
+            const text = typeof g.refsInfo === "object" ? g.refsInfo.name : g.refsInfo;
+            refPill.innerHTML = `<span class="key">Refs</span> <span class="val">${text}</span>`;
+            metaRow.appendChild(refPill);
+          }
         }
 
         card.appendChild(metaRow);
@@ -1262,6 +1454,89 @@
             </div>
           `;
           card.appendChild(injDiv);
+        }
+
+        // --- EDGE SIGNALS SECTION ---
+        const edgePills = [];
+        const raw = g.raw;
+
+        // Power rating differential
+        const powerDiff = raw.power_diff;
+        if (typeof powerDiff === "number" && Math.abs(powerDiff) > 3) {
+          const side = powerDiff > 0 ? "Home" : "Away";
+          edgePills.push(`<span class="edge-pill ${powerDiff > 5 ? 'edge-strong' : 'edge-mild'}" title="Net rating differential: ${powerDiff > 0 ? '+' : ''}${powerDiff.toFixed(1)}">PWR ${side} ${Math.abs(powerDiff).toFixed(0)}</span>`);
+        }
+
+        // Public betting fade signal
+        const fadeSig = raw.fade_signal;
+        if (typeof fadeSig === "number" && fadeSig >= 2) {
+          const pubSide = raw.public_side || "?";
+          const pubPct = raw.public_pct || 0;
+          edgePills.push(`<span class="edge-pill edge-fade" title="Public is ${pubPct}% on ${pubSide} — contrarian value on the other side">FADE ${pubSide} (${pubPct}%)</span>`);
+        }
+
+        // Line movement
+        const spreadDelta = raw.spread_delta;
+        if (typeof spreadDelta === "number" && Math.abs(spreadDelta) >= 1.0) {
+          const dir = raw.spread_direction || "stable";
+          const label = dir === "toward_favorite" ? "Sharp: FAV" : dir === "toward_underdog" ? "Sharp: DOG" : `Move ${spreadDelta > 0 ? '+' : ''}${spreadDelta.toFixed(1)}`;
+          edgePills.push(`<span class="edge-pill edge-line" title="Spread moved ${spreadDelta > 0 ? '+' : ''}${spreadDelta.toFixed(1)} pts since open">${label}</span>`);
+        }
+
+        // Situational spots
+        if (raw.home_b2b || raw.away_b2b) {
+          const b2bSide = raw.home_b2b ? "Home" : "Away";
+          edgePills.push(`<span class="edge-pill edge-spot" title="${b2bSide} team on back-to-back">B2B ${b2bSide}</span>`);
+        }
+        if (raw.revenge_home) {
+          edgePills.push(`<span class="edge-pill edge-spot" title="Home team lost last meeting — revenge game">Revenge Home</span>`);
+        } else if (raw.revenge_away) {
+          edgePills.push(`<span class="edge-pill edge-spot" title="Away team lost last meeting — revenge game">Revenge Away</span>`);
+        }
+        if (raw.divisional) {
+          edgePills.push(`<span class="edge-pill edge-div" title="Division/rivalry game — tends to play tighter">Divisional</span>`);
+        }
+
+        // Streaks
+        const homeStrk = raw.home_streak;
+        const awayStrk = raw.away_streak;
+        if (typeof homeStrk === "number" && Math.abs(homeStrk) >= 5) {
+          edgePills.push(`<span class="edge-pill edge-streak" title="Home team ${homeStrk > 0 ? 'winning' : 'losing'} streak">${homeStrk > 0 ? 'W' : 'L'}${Math.abs(homeStrk)} Home</span>`);
+        }
+        if (typeof awayStrk === "number" && Math.abs(awayStrk) >= 5) {
+          edgePills.push(`<span class="edge-pill edge-streak" title="Away team ${awayStrk > 0 ? 'winning' : 'losing'} streak">${awayStrk > 0 ? 'W' : 'L'}${Math.abs(awayStrk)} Away</span>`);
+        }
+
+        // Starting pitcher/goalie
+        if (raw.home_starter && raw.home_starter.name) {
+          const era = raw.home_starter.era != null ? ` (${raw.home_starter.era} ERA)` : "";
+          edgePills.push(`<span class="edge-pill edge-starter" title="Home starting pitcher${era}">SP: ${raw.home_starter.name}${era}</span>`);
+        }
+        if (raw.away_starter && raw.away_starter.name) {
+          const era = raw.away_starter.era != null ? ` (${raw.away_starter.era} ERA)` : "";
+          edgePills.push(`<span class="edge-pill edge-starter" title="Away starting pitcher${era}">SP: ${raw.away_starter.name}${era}</span>`);
+        }
+        if (raw.home_goalie && raw.home_goalie.name) {
+          const sv = raw.home_goalie.save_pct != null ? ` (.${Math.round(raw.home_goalie.save_pct * 1000)})` : "";
+          edgePills.push(`<span class="edge-pill edge-starter" title="Home starting goalie${sv}">G: ${raw.home_goalie.name}${sv}</span>`);
+        }
+        if (raw.away_goalie && raw.away_goalie.name) {
+          const sv = raw.away_goalie.save_pct != null ? ` (.${Math.round(raw.away_goalie.save_pct * 1000)})` : "";
+          edgePills.push(`<span class="edge-pill edge-starter" title="Away starting goalie${sv}">G: ${raw.away_goalie.name}${sv}</span>`);
+        }
+
+        // Momentum
+        const momDiff = raw.momentum_diff;
+        if (typeof momDiff === "number" && Math.abs(momDiff) > 3) {
+          const side = momDiff > 0 ? "Home" : "Away";
+          edgePills.push(`<span class="edge-pill edge-momentum" title="Momentum differential: ${momDiff > 0 ? '+' : ''}${momDiff.toFixed(1)} (last 5 vs prior 5 game avg margin)">${side} Hot</span>`);
+        }
+
+        if (edgePills.length > 0) {
+          const edgeDiv = document.createElement("div");
+          edgeDiv.className = "edge-signals";
+          edgeDiv.innerHTML = `<div class="edge-title">Edge Signals</div><div class="edge-pills">${edgePills.join(" ")}</div>`;
+          card.appendChild(edgeDiv);
         }
 
         const picksStrip = document.createElement("div");
@@ -1385,13 +1660,26 @@
 
     async function loadData() {
       try {
-        const [combinedRes, predsRes] = await Promise.all([
+        const [combinedRes, predsRes, refTrendsRes] = await Promise.all([
           fetch("combined.json?v=" + Date.now(), { cache: "no-store" }),
-          fetch("predictions.json?v=" + Date.now(), { cache: "no-store" })
+          fetch("predictions.json?v=" + Date.now(), { cache: "no-store" }),
+          fetch("referee_trends.json?v=" + Date.now(), { cache: "no-store" }).catch(() => null)
         ]);
 
         const combinedJson = await combinedRes.json();
         const predsJson = await predsRes.json();
+
+        // Load referee trends into state for use by extractRefInfo
+        try {
+          if (refTrendsRes && refTrendsRes.ok) {
+            const refTrendsJson = await refTrendsRes.json();
+            state.refTrends = refTrendsJson.refs || {};
+          } else {
+            state.refTrends = {};
+          }
+        } catch (e) {
+          state.refTrends = {};
+        }
 
         const gamesRaw =
           combinedJson.data ||

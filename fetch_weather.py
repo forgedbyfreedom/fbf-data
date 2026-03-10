@@ -112,6 +112,25 @@ def parse_wind_mph(raw_wind):
     return None
 
 
+def estimate_rain_chance(forecast_text):
+    """Estimate rain chance % from NOAA shortForecast text when numeric value is unavailable."""
+    if not forecast_text:
+        return 0
+    text = forecast_text.lower()
+    precip_words = ["rain", "showers", "storm", "thunder", "snow", "sleet", "freezing", "hail", "drizzle"]
+    has_precip = any(w in text for w in precip_words)
+    if not has_precip:
+        return 0
+    if "slight chance" in text:
+        return 20
+    if "chance" in text and "slight" not in text:
+        return 50
+    if "likely" in text:
+        return 70
+    # Words like "rain", "showers" without qualifiers = high chance
+    return 80
+
+
 def main():
     combined = load_json(COMBINED_FILE)
     if not combined or "data" not in combined:
@@ -147,15 +166,17 @@ def main():
             lat, lon = geocode(city, state)
 
         if lat is None or lon is None:
-            # No usable coordinates
+            print(f"  [skip] {gid}: no coordinates for venue {venue.get('name', '?')} ({venue.get('city')}, {venue.get('state')})")
             continue
 
         point_url = fetch_point(lat, lon)
         if not point_url:
+            print(f"  [skip] {gid}: NOAA point lookup failed for ({lat}, {lon})")
             continue
 
         hourly = fetch_hourly(point_url)
         if not hourly or "properties" not in hourly:
+            print(f"  [skip] {gid}: hourly forecast fetch failed")
             continue
 
         periods = hourly["properties"].get("periods") or []
@@ -169,9 +190,17 @@ def main():
         short = props.get("shortForecast")
         detailed = props.get("detailedForecast")
 
+        # Extract precipitation probability from NOAA data
+        precip_raw = props.get("probabilityOfPrecipitation") or {}
+        precip_pct = precip_raw.get("value")  # NOAA provides this as a numeric %
+        if precip_pct is None:
+            # Estimate from shortForecast text if NOAA doesn't provide numeric value
+            precip_pct = estimate_rain_chance(short)
+
         weather_map[str(gid)] = {
             "temperatureF": temp,
             "windSpeedMph": wind_mph,
+            "rainChancePct": precip_pct,
             "shortForecast": short,
             "detailedForecast": detailed,
         }

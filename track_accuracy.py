@@ -180,8 +180,9 @@ def main():
 
         # --- ATS ---
         ats_pick = picks.get("ats_pick")
+        ats_no_play = picks.get("ats_no_play", False)
         spread_line = safe_float(odds.get("spread"))
-        if ats_pick and spread_line is not None:
+        if ats_pick and spread_line is not None and not ats_no_play:
             actual_margin = home_score - away_score
 
             home_team = pred.get("home_team") or {}
@@ -215,8 +216,9 @@ def main():
 
         # --- O/U ---
         ou_pick = picks.get("ou_pick")
+        ou_no_play = picks.get("ou_no_play", False)
         total_line = safe_float(odds.get("total"))
-        if ou_pick and total_line is not None:
+        if ou_pick and total_line is not None and not ou_no_play:
             actual_total = home_score + away_score
             push = abs(actual_total - total_line) < 0.01
 
