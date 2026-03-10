@@ -146,6 +146,108 @@
       margin-right: 6px;
     }
 
+    /* MODEL PERFORMANCE COMPARISON */
+    .model-perf-wrap {
+      text-align: center;
+      margin: 0 auto 22px;
+      max-width: 720px;
+      padding: 0 12px;
+    }
+    .model-perf-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #fed7aa;
+      margin-bottom: 2px;
+    }
+    .model-perf-subtitle {
+      font-size: 0.72rem;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+    .model-perf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .perf-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 8px;
+    }
+    .perf-card-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+    .perf-old {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 2px;
+    }
+    .perf-old .perf-val {
+      text-decoration: line-through;
+    }
+    .perf-new {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .perf-new.positive { color: #22c55e; }
+    .perf-new.negative { color: #ef4444; }
+    .perf-new.neutral { color: #fbbf24; }
+    .perf-record {
+      font-size: 0.68rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+    .perf-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .perf-badge.up { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .perf-badge.down { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .perf-badge.skip { background: rgba(107,114,128,0.15); color: #9ca3af; }
+    .model-perf-sport-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .sport-perf-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    .sport-perf-name {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #cbd5f5;
+      margin-bottom: 3px;
+    }
+    .sport-perf-row {
+      font-size: 0.7rem;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      margin: 1px 0;
+    }
+    .sport-perf-row .spv { font-weight: 600; }
+    .sport-perf-row .spv.win { color: #22c55e; }
+    .sport-perf-row .spv.lose { color: #ef4444; }
+
     /* STATS BAR */
     .stats-row {
       display: grid;
@@ -622,6 +724,14 @@
         <span class="metric">O/U: <span class="value" id="acc-sport-ou">--%</span> <span class="record" id="acc-sport-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-since-line" style="font-size:0.76rem;"></div>
+    </section>
+
+    <!-- MODEL PERFORMANCE COMPARISON -->
+    <section class="model-perf-wrap" id="model-perf-section" style="display:none;">
+      <div class="model-perf-title">Model Performance</div>
+      <div class="model-perf-subtitle" id="model-perf-subtitle"></div>
+      <div class="model-perf-grid" id="model-perf-grid"></div>
+      <div class="model-perf-sport-grid" id="model-perf-sport-grid"></div>
     </section>
 
     <!-- STATS -->
@@ -1658,6 +1768,84 @@
       }
     }
 
+    async function loadBacktestData() {
+      try {
+        const res = await fetch("backtest_live_results.json?v=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) return;
+        const json = await res.json();
+        const section = document.getElementById("model-perf-section");
+        const subtitle = document.getElementById("model-perf-subtitle");
+        const grid = document.getElementById("model-perf-grid");
+        const sportGrid = document.getElementById("model-perf-sport-grid");
+        const all = json.sports?.ALL;
+        if (!all || !json.graded) return;
+
+        section.style.display = "block";
+        subtitle.textContent = `Retroactive backtest on ${json.graded} completed games`;
+
+        function delta(newPct, oldPct) {
+          const d = (newPct - oldPct).toFixed(1);
+          if (d > 0) return `<span class="perf-badge up">+${d}%</span>`;
+          if (d < 0) return `<span class="perf-badge down">${d}%</span>`;
+          return "";
+        }
+        function cls(pct) { return pct >= 52.4 ? "positive" : pct >= 48 ? "neutral" : "negative"; }
+
+        // SU card
+        let html = "";
+        html += `<div class="perf-card">
+          <div class="perf-card-label">Straight Up</div>
+          <div class="perf-old"><span class="perf-val">${all.old_su_pct}%</span> old</div>
+          <div class="perf-new ${cls(all.new_su_pct)}">${all.new_su_pct}%${delta(all.new_su_pct, all.old_su_pct)}</div>
+          <div class="perf-record">${all.new_su_record}</div>
+        </div>`;
+
+        // ATS card
+        html += `<div class="perf-card">
+          <div class="perf-card-label">Against the Spread</div>
+          <div class="perf-old"><span class="perf-val">${all.old_ats_pct}%</span> old</div>
+          <div class="perf-new ${cls(all.new_ats_pct)}">${all.new_ats_pct}%${delta(all.new_ats_pct, all.old_ats_pct)}</div>
+          <div class="perf-record">${all.new_ats_record} (${all.new_ats_played} played, ${all.new_ats_skipped} skipped)</div>
+        </div>`;
+
+        // O/U card
+        if (all.new_ou_played > 0) {
+          html += `<div class="perf-card">
+            <div class="perf-card-label">Over / Under</div>
+            <div class="perf-old"><span class="perf-val">${all.old_ou_pct}%</span> old</div>
+            <div class="perf-new ${cls(all.new_ou_pct)}">${all.new_ou_pct}%${delta(all.new_ou_pct, all.old_ou_pct)}</div>
+            <div class="perf-record">${all.new_ou_record} (${all.new_ou_played} played, ${all.new_ou_skipped} skipped)</div>
+          </div>`;
+        } else {
+          html += `<div class="perf-card">
+            <div class="perf-card-label">Over / Under</div>
+            <div class="perf-old"><span class="perf-val">${all.old_ou_pct}%</span> old (all games)</div>
+            <div class="perf-new neutral">N/A</div>
+            <div class="perf-record">No O/U data on retroactive games<br>Live picks active going forward</div>
+          </div>`;
+        }
+        grid.innerHTML = html;
+
+        // Per-sport breakdown
+        let sportHtml = "";
+        const sportOrder = ["NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"];
+        for (const s of sportOrder) {
+          const sp = json.sports[s];
+          if (!sp || (sp.old_su_pct === 0 && sp.new_su_pct === 0)) continue;
+          const atsClass = sp.new_ats_pct >= 52.4 ? "win" : sp.new_ats_pct > 0 ? "lose" : "";
+          sportHtml += `<div class="sport-perf-card">
+            <div class="sport-perf-name">${s}</div>
+            <div class="sport-perf-row">SU <span class="spv">${sp.old_su_pct}%</span> → <span class="spv">${sp.new_su_pct}%</span></div>
+            <div class="sport-perf-row">ATS <span class="spv">${sp.old_ats_pct}%</span> → <span class="spv ${atsClass}">${sp.new_ats_played > 0 ? sp.new_ats_pct + "%" : "—"}</span></div>
+            ${sp.new_ats_played > 0 ? `<div class="sport-perf-row" style="font-size:0.62rem;color:#6b7280;">${sp.new_ats_record} (${sp.new_ats_played} plays)</div>` : ""}
+          </div>`;
+        }
+        sportGrid.innerHTML = sportHtml;
+      } catch (e) {
+        console.warn("Could not load backtest data:", e);
+      }
+    }
+
     async function loadData() {
       try {
         const [combinedRes, predsRes, refTrendsRes] = await Promise.all([
@@ -1706,6 +1894,7 @@
 
         state.allGames = views;
         await loadAccuracyData();
+        await loadBacktestData();
         renderStats();
         renderAccuracy();
         renderGames();
