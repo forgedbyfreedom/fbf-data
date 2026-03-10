@@ -153,6 +153,20 @@
       max-width: 720px;
       padding: 0 12px;
     }
+    .model-perf-toggle {
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .model-perf-toggle .arrow {
+      font-size: 0.6rem;
+      transition: transform 0.2s;
+    }
+    .model-perf-toggle.open .arrow {
+      transform: rotate(90deg);
+    }
     .model-perf-title {
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -165,90 +179,52 @@
       color: #6b7280;
       margin-bottom: 10px;
     }
-    .model-perf-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 8px;
-      margin-bottom: 12px;
+    .model-perf-body {
+      overflow: hidden;
+      transition: max-height 0.3s ease;
     }
-    .perf-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 10px 8px;
+    .model-perf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      margin-top: 6px;
     }
-    .perf-card-label {
-      font-size: 0.68rem;
+    .model-perf-table th {
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9ca3af;
-      margin-bottom: 6px;
-    }
-    .perf-old {
-      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      font-size: 0.62rem;
       color: #6b7280;
-      margin-bottom: 2px;
+      font-weight: 500;
+      padding: 4px 6px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-subtle);
     }
-    .perf-old .perf-val {
-      text-decoration: line-through;
-    }
-    .perf-new {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-    .perf-new.positive { color: #22c55e; }
-    .perf-new.negative { color: #ef4444; }
-    .perf-new.neutral { color: #fbbf24; }
-    .perf-record {
-      font-size: 0.68rem;
-      color: #6b7280;
-      margin-top: 2px;
-    }
-    .perf-badge {
-      display: inline-block;
-      font-size: 0.6rem;
-      font-weight: 600;
-      padding: 1px 6px;
-      border-radius: 4px;
-      margin-left: 4px;
-      vertical-align: middle;
-    }
-    .perf-badge.up { background: rgba(34,197,94,0.15); color: #22c55e; }
-    .perf-badge.down { background: rgba(239,68,68,0.15); color: #ef4444; }
-    .perf-badge.skip { background: rgba(107,114,128,0.15); color: #9ca3af; }
-    .model-perf-sport-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .sport-perf-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 6px 8px;
+    .model-perf-table th:first-child {
       text-align: left;
     }
-    .sport-perf-name {
-      font-size: 0.7rem;
+    .model-perf-table td {
+      padding: 5px 6px;
+      text-align: center;
+      color: #e5e7eb;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+    .model-perf-table td:first-child {
+      text-align: left;
       font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .model-perf-table .pct-up { color: #22c55e; font-weight: 600; }
+    .model-perf-table .pct-down { color: #ef4444; }
+    .model-perf-table .pct-neutral { color: #fbbf24; }
+    .model-perf-table .pct-muted { color: #6b7280; }
+    .model-perf-table .rec { font-size: 0.62rem; color: #6b7280; }
+    .model-perf-table .best-label {
+      font-size: 0.55rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #cbd5f5;
-      margin-bottom: 3px;
+      letter-spacing: 0.08em;
+      color: #f97316;
+      font-weight: 600;
     }
-    .sport-perf-row {
-      font-size: 0.7rem;
-      color: #9ca3af;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 2px 0;
-      gap: 4px;
-    }
-    .sport-perf-row .spv { font-weight: 600; color: #e5e7eb; }
-    .sport-perf-row .spv.win { color: #22c55e; }
-    .sport-perf-row .spv.lose { color: #ef4444; }
 
     /* STATS BAR */
     .stats-row {
@@ -754,10 +730,14 @@
 
     <!-- MODEL PERFORMANCE COMPARISON -->
     <section class="model-perf-wrap" id="model-perf-section" style="display:none;">
-      <div class="model-perf-title">Model Performance</div>
+      <div class="model-perf-toggle" id="model-perf-toggle" onclick="toggleModelPerf()">
+        <span class="arrow">&#9654;</span>
+        <span class="model-perf-title">Model Performance</span>
+      </div>
       <div class="model-perf-subtitle" id="model-perf-subtitle"></div>
-      <div class="model-perf-grid" id="model-perf-grid"></div>
-      <div class="model-perf-sport-grid" id="model-perf-sport-grid"></div>
+      <div class="model-perf-body" id="model-perf-body" style="max-height:0;">
+        <div id="model-perf-content"></div>
+      </div>
     </section>
 
     <!-- STATS -->
@@ -1390,7 +1370,19 @@
       const ts = state.lastUpdated;
       const meta = document.getElementById("last-updated");
       if (ts) {
-        meta.textContent = `Data loaded • ${ts}`;
+        // Format "20260310_1955" → "Mar 10, 2026 7:55 PM" or ISO → readable
+        let display = ts;
+        const m = ts.match(/^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})$/);
+        if (m) {
+          const d = new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
+          display = d.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+        } else {
+          try {
+            const d = new Date(ts);
+            if (!isNaN(d)) display = d.toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+          } catch (e) {}
+        }
+        meta.textContent = `Last updated ${display}`;
       } else {
         meta.textContent = "Awaiting data...";
       }
@@ -1760,6 +1752,13 @@
       }
     }
 
+    function toggleModelPerf() {
+      const toggle = document.getElementById("model-perf-toggle");
+      const body = document.getElementById("model-perf-body");
+      const isOpen = toggle.classList.toggle("open");
+      body.style.maxHeight = isOpen ? body.scrollHeight + "px" : "0";
+    }
+
     function setActiveFilter(sport) {
       state.activeSport = sport;
       document.querySelectorAll(".filter-pill").forEach(btn => {
@@ -1827,122 +1826,70 @@
         const json = await res.json();
         const section = document.getElementById("model-perf-section");
         const subtitle = document.getElementById("model-perf-subtitle");
-        const grid = document.getElementById("model-perf-grid");
-        const sportGrid = document.getElementById("model-perf-sport-grid");
+        const content = document.getElementById("model-perf-content");
 
         if (!json.graded) return;
 
-        const oldAll = json.old_model?.ALL || {};
-        const newAll = json.new_model?.ALL || {};
-        const highAll = json.new_model_high_conf?.ALL || {};
-
-        function pct(w, l) { const t = w + l; return t ? ((w / t) * 100).toFixed(1) : "0.0"; }
-        function rec(w, l) { return `${w}-${l}`; }
-        function delta(newP, oldP) {
-          const d = (parseFloat(newP) - parseFloat(oldP)).toFixed(1);
-          if (d > 0) return `<span class="perf-badge up">+${d}%</span>`;
-          if (d < 0) return `<span class="perf-badge down">${d}%</span>`;
-          return "";
+        function p(w, l) { const t = w + l; return t ? ((w / t) * 100).toFixed(1) : "—"; }
+        function r(w, l) { return `${w}-${l}`; }
+        function cls(v) {
+          const n = parseFloat(v);
+          if (isNaN(n)) return "pct-muted";
+          return n >= 52.4 ? "pct-up" : n >= 48 ? "pct-neutral" : "pct-down";
         }
-        function cls(p) { const v = parseFloat(p); return v >= 52.4 ? "positive" : v >= 48 ? "neutral" : "negative"; }
 
         section.style.display = "block";
-        subtitle.textContent = `Retroactive backtest on ${json.graded} completed games`;
+        subtitle.textContent = `Retroactive backtest on ${json.graded} completed games (click to expand)`;
 
-        const oldSU = pct(oldAll.su_w || 0, oldAll.su_l || 0);
-        const newSU = pct(newAll.su_w || 0, newAll.su_l || 0);
-        const oldATS = pct(oldAll.ats_w || 0, oldAll.ats_l || 0);
-        const newATS = pct(newAll.ats_w || 0, newAll.ats_l || 0);
-        const highATS = pct(highAll.ats_w || 0, highAll.ats_l || 0);
-        const oldOU = pct(oldAll.ou_w || 0, oldAll.ou_l || 0);
-        const newOU = pct(newAll.ou_w || 0, newAll.ou_l || 0);
-        const highOU = pct(highAll.ou_w || 0, highAll.ou_l || 0);
+        // Build one clean table with all data
+        const sportOrder = ["ALL", "NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"];
+        let rows = "";
 
-        const newATSTotal = (newAll.ats_w || 0) + (newAll.ats_l || 0);
-        const highATSTotal = (highAll.ats_w || 0) + (highAll.ats_l || 0);
-        const newOUTotal = (newAll.ou_w || 0) + (newAll.ou_l || 0);
-        const highOUTotal = (highAll.ou_w || 0) + (highAll.ou_l || 0);
-
-        let html = "";
-
-        // SU card
-        html += `<div class="perf-card">
-          <div class="perf-card-label">Straight Up</div>
-          <div class="perf-old"><span class="perf-val">${oldSU}%</span> old</div>
-          <div class="perf-new ${cls(newSU)}">${newSU}%${delta(newSU, oldSU)}</div>
-          <div class="perf-record">${rec(newAll.su_w || 0, newAll.su_l || 0)}</div>
-        </div>`;
-
-        // ATS card (all picks)
-        html += `<div class="perf-card">
-          <div class="perf-card-label">ATS (All Picks)</div>
-          <div class="perf-old"><span class="perf-val">${oldATS}%</span> old</div>
-          <div class="perf-new ${cls(newATS)}">${newATS}%${delta(newATS, oldATS)}</div>
-          <div class="perf-record">${rec(newAll.ats_w || 0, newAll.ats_l || 0)} (${newATSTotal} games)</div>
-        </div>`;
-
-        // ATS card (high confidence)
-        if (highATSTotal > 0) {
-          html += `<div class="perf-card">
-            <div class="perf-card-label">ATS (Best Bets)</div>
-            <div class="perf-old"><span class="perf-val">${oldATS}%</span> old</div>
-            <div class="perf-new ${cls(highATS)}">${highATS}%${delta(highATS, oldATS)}</div>
-            <div class="perf-record">${rec(highAll.ats_w || 0, highAll.ats_l || 0)} (${highATSTotal} games)</div>
-          </div>`;
-        }
-
-        // O/U card (all picks)
-        if (newOUTotal > 0) {
-          html += `<div class="perf-card">
-            <div class="perf-card-label">O/U (All Picks)</div>
-            <div class="perf-old"><span class="perf-val">${oldOU}%</span> old</div>
-            <div class="perf-new ${cls(newOU)}">${newOU}%${delta(newOU, oldOU)}</div>
-            <div class="perf-record">${rec(newAll.ou_w || 0, newAll.ou_l || 0)} (${newOUTotal} games)</div>
-          </div>`;
-        }
-
-        // O/U card (high confidence)
-        if (highOUTotal > 0) {
-          html += `<div class="perf-card">
-            <div class="perf-card-label">O/U (Best Bets)</div>
-            <div class="perf-old"><span class="perf-val">${oldOU}%</span> old</div>
-            <div class="perf-new ${cls(highOU)}">${highOU}%${delta(highOU, oldOU)}</div>
-            <div class="perf-record">${rec(highAll.ou_w || 0, highAll.ou_l || 0)} (${highOUTotal} games)</div>
-          </div>`;
-        }
-        grid.innerHTML = html;
-
-        // Per-sport breakdown
-        let sportHtml = "";
-        const sportOrder = ["NFL", "NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"];
         for (const s of sportOrder) {
-          const oldSp = json.old_model?.[s] || {};
-          const newSp = json.new_model?.[s] || {};
-          const highSp = json.new_model_high_conf?.[s] || {};
+          const o = json.old_model?.[s] || {};
+          const n = json.new_model?.[s] || {};
+          const h = json.new_model_high_conf?.[s] || {};
 
-          const oSU = (oldSp.su_w || 0) + (oldSp.su_l || 0);
-          const nSU = (newSp.su_w || 0) + (newSp.su_l || 0);
-          if (oSU === 0 && nSU === 0) continue;
+          const oSUtot = (o.su_w || 0) + (o.su_l || 0);
+          const nSUtot = (n.su_w || 0) + (n.su_l || 0);
+          if (oSUtot === 0 && nSUtot === 0) continue;
 
-          const oSUpct = pct(oldSp.su_w || 0, oldSp.su_l || 0);
-          const nSUpct = pct(newSp.su_w || 0, newSp.su_l || 0);
-          const oATSpct = pct(oldSp.ats_w || 0, oldSp.ats_l || 0);
-          const nATSpct = pct(newSp.ats_w || 0, newSp.ats_l || 0);
-          const hATSpct = pct(highSp.ats_w || 0, highSp.ats_l || 0);
-          const nATStot = (newSp.ats_w || 0) + (newSp.ats_l || 0);
-          const hATStot = (highSp.ats_w || 0) + (highSp.ats_l || 0);
+          const oSU = p(o.su_w || 0, o.su_l || 0);
+          const nSU = p(n.su_w || 0, n.su_l || 0);
+          const oATS = p(o.ats_w || 0, o.ats_l || 0);
+          const nATStot = (n.ats_w || 0) + (n.ats_l || 0);
+          const nATS = nATStot > 0 ? p(n.ats_w || 0, n.ats_l || 0) : "—";
+          const hATStot = (h.ats_w || 0) + (h.ats_l || 0);
+          const hATS = hATStot > 0 ? p(h.ats_w || 0, h.ats_l || 0) : "—";
 
-          const atsClass = parseFloat(nATSpct) >= 52.4 ? "win" : "lose";
-          const hAtsClass = parseFloat(hATSpct) >= 52.4 ? "win" : "lose";
+          const label = s === "ALL" ? "Overall" : s;
+          const bold = s === "ALL" ? ' style="font-size:0.82rem;"' : "";
 
-          sportHtml += `<div class="sport-perf-card">
-            <div class="sport-perf-name">${s}</div>
-            <div class="sport-perf-row">SU <span class="spv">${oSUpct}%</span> → <span class="spv">${nSUpct}%</span></div>
-            <div class="sport-perf-row">ATS <span class="spv">${oATSpct}%</span> → <span class="spv ${atsClass}">${nATStot > 0 ? nATSpct + "%" : "—"}</span> (${nATStot}g)</div>
-            ${hATStot > 0 ? `<div class="sport-perf-row">Best Bets <span class="spv ${hAtsClass}">${hATSpct}%</span> (${hATStot}g)</div>` : ""}
-          </div>`;
+          rows += `<tr${bold}>
+            <td>${label}</td>
+            <td class="pct-muted">${oSU}%</td>
+            <td class="${cls(nSU)}">${nSU}%</td>
+            <td class="pct-muted">${oATS}%</td>
+            <td class="${cls(nATS)}">${nATS === "—" ? "—" : nATS + "%"}<br><span class="rec">${nATStot > 0 ? r(n.ats_w || 0, n.ats_l || 0) : ""}</span></td>
+            <td class="${cls(hATS)}">${hATS === "—" ? "—" : hATS + "%"}<br><span class="rec">${hATStot > 0 ? r(h.ats_w || 0, h.ats_l || 0) + " (" + hATStot + "g)" : ""}</span></td>
+          </tr>`;
         }
-        sportGrid.innerHTML = sportHtml;
+
+        content.innerHTML = `
+          <table class="model-perf-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>SU Old</th>
+                <th>SU New</th>
+                <th>ATS Old</th>
+                <th>ATS New</th>
+                <th><span class="best-label">Best Bets</span></th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
       } catch (e) {
         console.warn("Could not load backtest data:", e);
       }
