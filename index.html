@@ -167,13 +167,13 @@
     }
     .model-perf-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 8px;
       margin-bottom: 12px;
     }
     .perf-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
       border-radius: 8px;
       padding: 10px 8px;
     }
@@ -223,8 +223,8 @@
       margin-top: 8px;
     }
     .sport-perf-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
       border-radius: 6px;
       padding: 6px 8px;
       text-align: left;
@@ -242,9 +242,11 @@
       color: #9ca3af;
       display: flex;
       justify-content: space-between;
-      margin: 1px 0;
+      align-items: center;
+      margin: 2px 0;
+      gap: 4px;
     }
-    .sport-perf-row .spv { font-weight: 600; }
+    .sport-perf-row .spv { font-weight: 600; color: #e5e7eb; }
     .sport-perf-row .spv.win { color: #22c55e; }
     .sport-perf-row .spv.lose { color: #ef4444; }
 
@@ -704,6 +706,12 @@
       }
       .picks-strip {
         grid-template-columns: 1fr;
+      }
+      .model-perf-grid {
+        grid-template-columns: 1fr;
+      }
+      .model-perf-sport-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
