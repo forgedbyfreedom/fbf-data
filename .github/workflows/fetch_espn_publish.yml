@@ -119,6 +119,9 @@ jobs:
       - name: Build H2H matchup data
         run: python3 build_h2h.py || echo "H2H data skipped"
 
+      - name: Fetch referee assignments (external sources)
+        run: python3 fetch_referees.py || echo "Referee fetch skipped"
+
       - name: Build referee trends
         run: python3 build_ref_trends.py || echo "Ref trends skipped"
 
