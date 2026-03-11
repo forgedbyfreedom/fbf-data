@@ -32858,6 +32858,90 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401803365",
+      "sport": "nhl",
+      "matchup": "Toronto Maple Leafs at Montreal Canadiens",
+      "shortName": "TOR @ MTL",
+      "date_utc": "2026-03-10T23:00Z",
+      "date_local": "2026-03-10 07:00 PM ET",
+      "home": "MTL",
+      "away": "TOR",
+      "home_team": {
+        "id": "10",
+        "name": "Montreal Canadiens",
+        "abbr": "MTL",
+        "slug": "montreal-canadiens",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png"
+      },
+      "away_team": {
+        "id": "21",
+        "name": "Toronto Maple Leafs",
+        "abbr": "TOR",
+        "slug": "toronto-maple-leafs",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tor.png"
+      },
+      "odds": {
+        "details": "MTL -170",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Bell Centre",
+        "city": "Montreal",
+        "state": "QC",
+        "indoor": true,
+        "grass": false,
+        "lat": 45.5046474,
+        "lon": -73.5658213
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Montreal Canadiens",
+      "dog_team": "Toronto Maple Leafs",
+      "fav_abbr": "MTL",
+      "dog_abbr": "TOR",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 1,
+      "prediction": {
+        "projected_home_score": 7.0,
+        "projected_away_score": 7.6,
+        "projected_total": 14.7,
+        "projected_spread": -0.6,
+        "win_probability_home": 0.474,
+        "confidence": 60
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.2707,
+        "away_win_pct": 0.7293,
+        "home_cover_pct": 0.1079,
+        "over_pct": 0.8539,
+        "avg_simulated_margin": -1.54,
+        "avg_simulated_total": 7.93
+      },
+      "picks": {
+        "su_pick": "Toronto Maple Leafs",
+        "su_pick_abbr": "TOR",
+        "su_confidence": 72.9,
+        "ats_pick": "Toronto Maple Leafs",
+        "ats_pick_abbr": "TOR",
+        "ats_spread": 1.5,
+        "ats_confidence": 75.5,
+        "ats_high_conf": true,
+        "ou_pick": "Over",
+        "ou_line": 6.5,
+        "ou_confidence": 85.4,
+        "ou_high_conf": true,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
     }
   ]
 }
