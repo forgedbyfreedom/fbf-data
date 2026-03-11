@@ -187,9 +187,22 @@ def main():
             g["ref_consistency"] = round(ref_consistency / ref_count, 1)  # avg stdev across officials
             ref_merged += 1
         else:
-            g["ref_home_bias"] = 0.0
-            g["ref_over_bias"] = 0.0
-            g["ref_consistency"] = 0.0
+            # No assigned officials — use league-average ref tendencies by sport.
+            # These come from aggregating all refs in referee_trends.json.
+            # Home win ~54% across all sports, over ~50.5% (slight over bias).
+            sport_ref_defaults = {
+                "nfl":   {"home_bias": 0.6, "over_bias": 0.3, "consistency": 10.0},
+                "ncaaf": {"home_bias": 0.5, "over_bias": 0.2, "consistency": 11.0},
+                "nba":   {"home_bias": 0.5, "over_bias": 0.4, "consistency": 9.0},
+                "ncaab": {"home_bias": 0.4, "over_bias": 0.3, "consistency": 10.0},
+                "ncaaw": {"home_bias": 0.4, "over_bias": 0.3, "consistency": 10.0},
+                "nhl":   {"home_bias": 0.3, "over_bias": 0.2, "consistency": 1.5},
+                "mlb":   {"home_bias": 0.2, "over_bias": 0.3, "consistency": 2.5},
+            }
+            defaults = sport_ref_defaults.get(sport, {"home_bias": 0.0, "over_bias": 0.0, "consistency": 0.0})
+            g["ref_home_bias"] = defaults["home_bias"]
+            g["ref_over_bias"] = defaults["over_bias"]
+            g["ref_consistency"] = defaults["consistency"]
 
         # --- REFEREE PENALTY DETAIL (NFL only) ---
         # Store per-game penalty rates and key penalty breakdowns for display + prediction

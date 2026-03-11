@@ -77,14 +77,21 @@ def grade_ats(picks, pred, odds, home_score, away_score):
         return "W" if (not home_covered) else "L"
 
 
-def grade_ou(picks, odds, home_score, away_score):
+def grade_ou(picks, odds, home_score, away_score, sport=""):
     """Grade an O/U pick. Returns 'W', 'L', 'P', or None."""
     ou_pick = picks.get("ou_pick")
     total_line = safe_float(odds.get("total"))
-    if not ou_pick or total_line is None:
-        return None
+    if not ou_pick or total_line is None or total_line < 0.5:
+        return None  # Skip if no line or line is 0
 
     actual_total = home_score + away_score
+
+    # Sanity check: reject scores that look like partials
+    min_totals = {"NBA": 160, "NCAAB": 100, "NCAAW": 90, "NFL": 6, "NCAAF": 10}
+    min_t = min_totals.get(sport.upper(), 0)
+    if actual_total < min_t:
+        return None  # Bad score data
+
     push = abs(actual_total - total_line) < 0.01
 
     if push:
@@ -210,18 +217,40 @@ def main():
 
         home_score = final["home_score"]
         away_score = final["away_score"]
+
+        # Skip games with obviously bad/partial scores
+        total = home_score + away_score
+        min_totals = {"NBA": 160, "NCAAB": 100, "NCAAW": 90, "NFL": 6, "NCAAF": 10}
+        if total < min_totals.get(sport, 0):
+            continue
+
+        # Skip if score < 50% of total line (likely partial/in-progress score)
+        game_odds = final.get("odds") or pred.get("odds") or {}
+        total_line_check = safe_float(game_odds.get("total"))
+        if total_line_check and total_line_check > 0 and total < total_line_check * 0.5:
+            continue
+
         graded += 1
 
-        picks = pred.get("picks") or {}
+        original_picks = pred.get("picks") or {}
         odds = final.get("odds") or pred.get("odds") or {}
-        is_new_model = picks.get("ats_high_conf") is not None
+        is_new_model = original_picks.get("ats_high_conf") is not None
 
-        # For old-model picks, re-simulate with current model
+        # For old-model picks, re-simulate with current model for SU/ATS
+        # but keep original O/U picks (re-sim has no features to shift totals)
         if not is_new_model:
             new_picks = resim_picks(pred)
             if new_picks:
+                # Use re-simmed picks for SU/ATS but preserve original O/U
                 picks = new_picks
+                picks["ou_pick"] = original_picks.get("ou_pick")
+                picks["ou_confidence"] = original_picks.get("ou_confidence", 50)
+                picks["ou_high_conf"] = False  # old picks are never high-conf
                 resimmed += 1
+            else:
+                picks = original_picks
+        else:
+            picks = original_picks
 
         game_date = final.get("date_utc") or pred.get("date_utc")
         result_entry = {
@@ -259,7 +288,7 @@ def main():
             result_entry["ats_high_conf"] = ats_is_high
 
         # --- O/U ---
-        ou_result = grade_ou(picks, odds, home_score, away_score)
+        ou_result = grade_ou(picks, odds, home_score, away_score, sport)
         ou_is_high = picks.get("ou_high_conf", False)
 
         if ou_result:

@@ -16,6 +16,18 @@ COMBINED = "combined.json"
 SCORES_FILE = "completed_scores.json"
 MAX_AGE_DAYS = 90  # prune scores older than 90 days
 
+# Minimum realistic final-game totals per sport (used to reject partial scores)
+MIN_TOTAL = {
+    "NBA": 160,    # lowest modern NBA game ~150; typical ~210-230
+    "NCAAB": 100,  # lowest realistic finals ~100-110; halftimes can be 60-70
+    "NCAAW": 90,   # lowest realistic finals ~90-100
+    "NFL": 6,      # 3-0 games happen but are rare
+    "NCAAF": 10,
+    "NHL": 1,      # 1-0 games happen
+    "MLB": 1,      # 1-0 games happen
+    "UFC": 0,      # N/A
+}
+
 
 def load_json(path, default=None):
     try:
@@ -34,6 +46,22 @@ def safe_float(x, default=None):
         return default
 
 
+def score_looks_final(sport, home_score, away_score, odds=None):
+    """Check if scores look like a real final score (not partial/quarter)."""
+    total = home_score + away_score
+    min_total = MIN_TOTAL.get(sport.upper(), 0)
+    if total < min_total:
+        return False
+
+    # Extra check: if score is less than 50% of the total line, it's likely partial
+    if odds:
+        total_line = safe_float(odds.get("total"))
+        if total_line and total_line > 0 and total < total_line * 0.5:
+            return False
+
+    return True
+
+
 def main():
     combined = load_json(COMBINED, {})
     games = combined.get("data", [])
@@ -42,6 +70,17 @@ def main():
     scores_data = load_json(SCORES_FILE, {"scores": {}})
     existing = scores_data.get("scores", {})
     initial_count = len(existing)
+
+    # First pass: fix bad existing scores (overwrite partial/bogus scores)
+    fixed = 0
+    for gid, score in list(existing.items()):
+        sport = (score.get("sport") or "").upper()
+        if not score_looks_final(sport, score["home_score"], score["away_score"], score.get("odds")):
+            # Mark as bad so it can be overwritten
+            existing[gid]["_suspect"] = True
+            fixed += 1
+    if fixed:
+        print(f"[save_scores] Found {fixed} suspect scores (partial/in-progress) to re-check")
 
     # Extract completed games with scores
     new_count = 0
@@ -55,15 +94,22 @@ def main():
         if home_score is None or away_score is None:
             continue
 
-        # Only add if not already saved (don't overwrite)
-        if gid not in existing:
+        sport = (g.get("sport") or "").upper()
+
+        # Skip scores that look like partial/in-progress
+        game_odds = g.get("odds") or {}
+        if not score_looks_final(sport, home_score, away_score, game_odds):
+            continue
+
+        # Add if new OR if existing score was suspect (partial)
+        if gid not in existing or existing.get(gid, {}).get("_suspect"):
             home_team = g.get("home_team") or {}
             away_team = g.get("away_team") or {}
 
             existing[gid] = {
                 "home_score": home_score,
                 "away_score": away_score,
-                "sport": (g.get("sport") or "").upper(),
+                "sport": sport,
                 "date_utc": g.get("date_utc"),
                 "odds": g.get("odds") or {},
                 "home_team": home_team if isinstance(home_team, dict) else {"name": str(home_team)},

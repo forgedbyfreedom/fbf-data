@@ -63,7 +63,7 @@ FAV_COVER_BASE = {
 # High-confidence threshold — picks above this are tracked as "best bets"
 # All games still get a pick, but only high-conf picks are highlighted
 ATS_HIGH_CONF = 0.55
-OU_HIGH_CONF = 0.52
+OU_HIGH_CONF = 0.53
 
 
 def safe_float(x, default=0.0):
@@ -256,17 +256,37 @@ def build_expected_values(game):
     # Referee over/under bias — amplified
     ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * 2.5
 
-    # Pace — high-pace teams push totals
-    # pace_avg is avg combined points of both teams historically
-    # When pace_avg > total_line, teams tend to score MORE than Vegas expects
+    # Pace — THE primary O/U signal
+    # pace_avg = avg combined points of both teams historically
+    # When pace_avg diverges from total_line, that's our edge
     pace_avg = safe_float(game.get("pace_avg"), 0)
     pace_shift = 0.0
     if pace_avg > 0 and total_line is not None and total_line > 0:
-        pace_shift = (pace_avg - total_line) * 0.40  # 5-pt pace edge = 2 pts total shift
+        pace_gap = pace_avg - total_line
+        # Scale pace weight by sport (larger impact in lower-scoring sports)
+        pace_weights = {"nhl": 0.60, "mlb": 0.50, "nfl": 0.45, "ncaaf": 0.45,
+                        "nba": 0.35, "ncaab": 0.35, "ncaaw": 0.35}
+        pace_w = pace_weights.get(sport, 0.40)
+        pace_shift = pace_gap * pace_w
 
-    # Total line movement (sharp money on totals) — amplified
+    # Total line movement (sharp money on totals)
+    # Scale by sport — a 0.5 move in NHL (line ~6) is much more meaningful than in NBA (line ~225)
     total_delta = safe_float(game.get("total_delta"), 0)
-    total_line_shift = total_delta * 0.8
+    total_move_weights = {"nhl": 0.3, "mlb": 0.4, "nfl": 0.5, "ncaaf": 0.5,
+                          "nba": 0.6, "ncaab": 0.6, "ncaaw": 0.6}
+    total_line_shift = total_delta * total_move_weights.get(sport, 0.5)
+
+    # Offensive/defensive mismatch affects totals too
+    # High off_def_mismatch means one team's offense >> other's defense → more scoring
+    total_mismatch_shift = abs(off_def_mismatch) * 0.02 if off_def_mismatch != 0 else 0.0
+
+    # Big spread games tend to go Under (garbage time, running clock)
+    spread_total_adj = 0.0
+    if spread_line is not None and total_line is not None:
+        abs_spread = abs(spread_line)
+        if abs_spread > 10:
+            # Scale: every point of spread beyond 10 nudges 0.15 toward Under
+            spread_total_adj = -(abs_spread - 10) * 0.15
 
     # ── COMBINE ──────────────────────────────────────────────────────
 
@@ -277,7 +297,8 @@ def build_expected_values(game):
                        + line_shift + starter_shift)
 
     expected_total = max(0, base_total - weather_penalty + ref_over_bias
-                         + pace_shift + total_line_shift)
+                         + pace_shift + total_line_shift
+                         + total_mismatch_shift + spread_total_adj)
 
     has_odds = spread_line is not None
 
@@ -351,7 +372,7 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         # Vegas spreads are ~50/50 by design; our edge is small.
         # Use 60% simulation / 40% historical base rate blend.
         base_rate = FAV_COVER_BASE.get(sport_lower, 0.49)
-        fav_cover_pct = raw_fav_cover * 0.60 + base_rate * 0.40
+        fav_cover_pct = raw_fav_cover * 0.50 + base_rate * 0.50
 
         # Large spread penalty: favorites covering big spreads is harder
         # than the simulation suggests. Apply extra dog lean for spreads > 7.
