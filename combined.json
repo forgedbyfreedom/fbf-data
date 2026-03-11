@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260311_1426",
+  "timestamp": "20260311_1453",
   "count": 344,
   "data": [
     {
@@ -30,7 +30,7 @@
         "details": "ISU -11.5",
         "spread": -11.5,
         "total": 148.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "T-Mobile Center",
@@ -51,7 +51,7 @@
       "spread": -11.5,
       "favorite": "ISU -11.5",
       "underdog": "ASU +11.5",
-      "tagged_at": "2026-03-11T14:26:48.994651+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158827+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -81,10 +81,10 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": -5,
-      "public_pct": 52,
-      "public_side": "ISU",
+      "public_pct": 51,
+      "public_side": "ASU",
       "fade_signal": 0,
-      "public_home_pct": 52,
+      "public_home_pct": 49,
       "spread_delta": 0,
       "total_delta": 2.0,
       "spread_direction": "stable",
@@ -719,6 +719,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Hunter Dobbins",
+          "status": "Mar 26",
+          "position": "SP"
+        },
+        {
           "player": "Ivan Herrera",
           "status": "Mar 11",
           "position": "C"
@@ -732,11 +737,6 @@
           "player": "Zack Thompson",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Hunter Dobbins",
-          "status": "Mar 26",
-          "position": "SP"
         },
         {
           "player": "Ixan Henderson",
@@ -994,7 +994,7 @@
         "details": "LOU -6.5",
         "spread": -6.5,
         "total": 163.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Spectrum Center",
@@ -1015,7 +1015,7 @@
       "spread": -6.5,
       "favorite": "LOU -6.5",
       "underdog": "SMU +6.5",
-      "tagged_at": "2026-03-11T14:26:48.994686+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158846+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1045,10 +1045,10 @@
       "divisional": false,
       "home_streak": 2,
       "away_streak": -4,
-      "public_pct": 53,
+      "public_pct": 51,
       "public_side": "LOU",
       "fade_signal": 0,
-      "public_home_pct": 53,
+      "public_home_pct": 51,
       "spread_delta": 2.0,
       "total_delta": -2.0,
       "spread_direction": "toward_underdog",
@@ -1525,7 +1525,24 @@
         "lat": 33.629247,
         "lon": -112.3681428
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Edwin Jimenez",
+          "role": "home plate"
+        },
+        {
+          "name": "Nic Lentz",
+          "role": "first base"
+        },
+        {
+          "name": "Malachi Moore",
+          "role": "second base"
+        },
+        {
+          "name": "Jen Pawol",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [
         {
           "player": "Nick Loftin",
@@ -1592,9 +1609,9 @@
       ],
       "injury_count_home": 5,
       "injury_count_away": 7,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.749,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -2120,7 +2137,7 @@
       "spread": -3.5,
       "favorite": "CLE -3.5",
       "underdog": "ORL +3.5",
-      "tagged_at": "2026-03-11T14:26:48.994701+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158854+00:00",
       "home_injuries": [
         {
           "player": "Jase Richardson",
@@ -2187,10 +2204,10 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": 2,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 41,
+      "public_home_pct": 42,
       "spread_delta": -1.0,
       "total_delta": 0,
       "spread_direction": "toward_favorite",
@@ -2222,10 +2239,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "OTT -166",
+        "details": "OTT -192",
         "spread": -1.5,
         "total": 6.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Canadian Tire Centre",
@@ -2246,7 +2263,7 @@
       "spread": -1.5,
       "favorite": "OTT -1.5",
       "underdog": "MTL +1.5",
-      "tagged_at": "2026-03-11T14:26:48.994710+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158859+00:00",
       "home_injuries": [
         {
           "player": "Jake Sanderson",
@@ -2302,6 +2319,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Linus Ullmark",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Sam Montembeault",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -2332,7 +2359,7 @@
         "details": "WSH -122",
         "spread": 1.5,
         "total": 6.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Xfinity Mobile Arena",
@@ -2353,7 +2380,7 @@
       "spread": -1.5,
       "favorite": "WSH -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-03-11T14:26:48.994722+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158863+00:00",
       "home_injuries": [
         {
           "player": "Ty Murchison",
@@ -2405,15 +2432,25 @@
       "divisional": true,
       "home_streak": -1,
       "away_streak": -3,
-      "public_pct": 50,
-      "public_side": "",
+      "public_pct": 51,
+      "public_side": "WSH",
       "fade_signal": 0,
-      "public_home_pct": 50,
+      "public_home_pct": 49,
       "spread_delta": 0,
       "total_delta": 1.0,
       "spread_direction": "stable",
       "total_direction": "up",
       "spread_moves": 1,
+      "home_goalie": {
+        "name": "Samuel Ersson",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Logan Thompson",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -2441,9 +2478,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "TOR -1.5",
-        "spread": 1.5,
-        "total": 233.5,
+        "details": "TOR -2.5",
+        "spread": 2.5,
+        "total": 234.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2460,12 +2497,12 @@
       "dog_team": "New Orleans Pelicans",
       "fav_abbr": "TOR",
       "dog_abbr": "NO",
-      "fav_spread": -1.5,
-      "dog_spread": 1.5,
-      "spread": -1.5,
-      "favorite": "TOR -1.5",
-      "underdog": "NO +1.5",
-      "tagged_at": "2026-03-11T14:26:48.994731+00:00",
+      "fav_spread": -2.5,
+      "dog_spread": 2.5,
+      "spread": -2.5,
+      "favorite": "TOR -2.5",
+      "underdog": "NO +2.5",
+      "tagged_at": "2026-03-11T14:53:11.158867+00:00",
       "home_injuries": [
         {
           "player": "Bryce McGowens",
@@ -2496,7 +2533,7 @@
         },
         {
           "player": "Chucky Hepburn",
-          "status": "Mar 11",
+          "status": "Mar 13",
           "position": "G"
         }
       ],
@@ -2531,11 +2568,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 1.0,
-      "spread_direction": "stable",
+      "spread_delta": -1.0,
+      "total_delta": 2.0,
+      "spread_direction": "toward_favorite",
       "total_direction": "up",
-      "spread_moves": 2
+      "spread_moves": 3
     },
     {
       "sport": "nba",
@@ -2586,7 +2623,7 @@
       "spread": -13.5,
       "favorite": "NY -13.5",
       "underdog": "UTAH +13.5",
-      "tagged_at": "2026-03-11T14:26:48.994738+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158870+00:00",
       "home_injuries": [
         {
           "player": "John Konchar",
@@ -2695,7 +2732,7 @@
       "odds": {
         "details": "DEN -5.5",
         "spread": -5.5,
-        "total": 230.5,
+        "total": 231.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2717,7 +2754,7 @@
       "spread": -5.5,
       "favorite": "DEN -5.5",
       "underdog": "HOU +5.5",
-      "tagged_at": "2026-03-11T14:26:48.994744+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158874+00:00",
       "home_injuries": [
         {
           "player": "Peyton Watson",
@@ -2784,10 +2821,10 @@
       "fade_signal": 0,
       "public_home_pct": 59,
       "spread_delta": 0,
-      "total_delta": 3.0,
+      "total_delta": 4.0,
       "spread_direction": "stable",
       "total_direction": "up",
-      "spread_moves": 7
+      "spread_moves": 8
     },
     {
       "sport": "nba",
@@ -2825,8 +2862,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": [],
       "fav_team": "Charlotte Hornets",
@@ -2838,7 +2875,7 @@
       "spread": -12.5,
       "favorite": "CHA -12.5",
       "underdog": "SAC +12.5",
-      "tagged_at": "2026-03-11T14:26:48.994751+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158877+00:00",
       "home_injuries": [
         {
           "player": "Malik Monk",
@@ -2873,6 +2910,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Grant Williams",
+          "status": "Mar 11",
+          "position": "F"
+        },
+        {
           "player": "Coby White",
           "status": "Mar 11",
           "position": "G"
@@ -2889,7 +2931,7 @@
         }
       ],
       "injury_count_home": 6,
-      "injury_count_away": 3,
+      "injury_count_away": 4,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -2915,10 +2957,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": -2,
-      "public_pct": 54,
+      "public_pct": 52,
       "public_side": "CHA",
       "fade_signal": 0,
-      "public_home_pct": 46,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": -3.0,
       "spread_direction": "stable",
@@ -2952,7 +2994,7 @@
       "odds": {
         "details": "LAC -1.5",
         "spread": -1.5,
-        "total": 226.5,
+        "total": 227.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2974,7 +3016,7 @@
       "spread": -1.5,
       "favorite": "LAC -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-03-11T14:26:48.994758+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158881+00:00",
       "home_injuries": [
         {
           "player": "John Collins",
@@ -3020,15 +3062,15 @@
       "divisional": false,
       "home_streak": 5,
       "away_streak": -1,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "LAC",
       "fade_signal": 0,
-      "public_home_pct": 59,
+      "public_home_pct": 58,
       "spread_delta": 0,
-      "total_delta": 1.0,
+      "total_delta": 2.0,
       "spread_direction": "stable",
       "total_direction": "up",
-      "spread_moves": 4
+      "spread_moves": 5
     },
     {
       "sport": "ncaab",
@@ -3057,8 +3099,8 @@
       "odds": {
         "details": "M-OH -7.5",
         "spread": -7.5,
-        "total": 165.5,
-        "provider": "DraftKings"
+        "total": 166.5,
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Rocket Arena",
@@ -3079,7 +3121,7 @@
       "spread": -7.5,
       "favorite": "M-OH -7.5",
       "underdog": "MASS +7.5",
-      "tagged_at": "2026-03-11T14:26:48.994767+00:00",
+      "tagged_at": "2026-03-11T14:53:11.158885+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3114,10 +3156,10 @@
       "fade_signal": 0,
       "public_home_pct": 46,
       "spread_delta": 0,
-      "total_delta": -1.0,
+      "total_delta": 0,
       "spread_direction": "stable",
-      "total_direction": "down",
-      "spread_moves": 1
+      "total_direction": "stable",
+      "spread_moves": 2
     },
     {
       "sport": "ncaab",
@@ -3224,8 +3266,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -3859,6 +3901,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Hunter Dobbins",
+          "status": "Mar 26",
+          "position": "SP"
+        },
+        {
           "player": "Ivan Herrera",
           "status": "Mar 11",
           "position": "C"
@@ -3872,11 +3919,6 @@
           "player": "Zack Thompson",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Hunter Dobbins",
-          "status": "Mar 26",
-          "position": "SP"
         },
         {
           "player": "Ixan Henderson",
@@ -4010,8 +4052,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [],
@@ -5002,8 +5044,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [],
@@ -5567,8 +5609,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -5641,8 +5683,8 @@
         "state": "MA",
         "indoor": true,
         "grass": false,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -5733,8 +5775,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 42.8864163,
-        "lon": -78.8781493
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -5840,8 +5882,8 @@
         "state": "ON",
         "indoor": true,
         "grass": false,
-        "lat": 39.7594645,
-        "lon": -87.5011149
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -5937,8 +5979,8 @@
         "state": "FL",
         "indoor": true,
         "grass": false,
-        "lat": 27.9449854,
-        "lon": -82.4583107
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6054,8 +6096,8 @@
         "state": "FL",
         "indoor": true,
         "grass": false,
-        "lat": 26.1666888,
-        "lon": -80.2787573
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6160,8 +6202,8 @@
         "state": "NJ",
         "indoor": true,
         "grass": false,
-        "lat": 40.735657,
-        "lon": -74.1723667
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -7552,8 +7594,8 @@
         "state": "Arizona",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": [],
       "home_injuries": [
@@ -7846,8 +7888,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": [],
       "home_injuries": [
@@ -8110,8 +8152,8 @@
         "state": "BC",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 45.6306954,
+        "lon": -122.6744557
       },
       "officials": [],
       "home_injuries": [
@@ -8222,8 +8264,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": [],
       "home_injuries": [
@@ -8344,8 +8386,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [
@@ -8456,8 +8498,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": [],
       "home_injuries": [
@@ -8582,8 +8624,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [],
@@ -9348,8 +9390,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [],
@@ -10463,6 +10505,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Hunter Dobbins",
+          "status": "Mar 26",
+          "position": "SP"
+        },
+        {
           "player": "Ivan Herrera",
           "status": "Mar 11",
           "position": "C"
@@ -10476,11 +10523,6 @@
           "player": "Zack Thompson",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Hunter Dobbins",
-          "status": "Mar 26",
-          "position": "SP"
         },
         {
           "player": "Ixan Henderson",
@@ -10928,8 +10970,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [],
@@ -11173,8 +11215,8 @@
         "state": "Arizona",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": [],
       "home_injuries": [
@@ -11557,8 +11599,8 @@
         "state": "ON",
         "indoor": true,
         "grass": false,
-        "lat": 39.7594645,
-        "lon": -87.5011149
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -11584,7 +11626,7 @@
         },
         {
           "player": "Chucky Hepburn",
-          "status": "Mar 11",
+          "status": "Mar 13",
           "position": "G"
         }
       ],
@@ -11977,8 +12019,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [],
@@ -13924,6 +13966,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Hunter Dobbins",
+          "status": "Mar 26",
+          "position": "SP"
+        },
+        {
           "player": "Ivan Herrera",
           "status": "Mar 11",
           "position": "C"
@@ -13937,11 +13984,6 @@
           "player": "Zack Thompson",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Hunter Dobbins",
-          "status": "Mar 26",
-          "position": "SP"
         },
         {
           "player": "Ixan Henderson",
@@ -14244,6 +14286,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Grant Williams",
+          "status": "Mar 11",
+          "position": "F"
+        },
+        {
           "player": "Coby White",
           "status": "Mar 11",
           "position": "G"
@@ -14260,7 +14307,7 @@
         }
       ],
       "injury_count_home": 3,
-      "injury_count_away": 3,
+      "injury_count_away": 4,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -14880,8 +14927,8 @@
         "state": "Arizona",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": [],
       "home_injuries": [
@@ -15834,9 +15881,9 @@
       "total_points": 0,
       "odds": {
         "provider": "BestFightOdds (consensus)",
-        "home_ml": 120,
-        "away_ml": -149,
-        "spread": 0.7,
+        "home_ml": 123,
+        "away_ml": -155,
+        "spread": 0.8,
         "total": null,
         "over_2_5": null,
         "under_2_5": null,
@@ -15853,9 +15900,9 @@
         "lon": null
       },
       "officials": [],
-      "home_ml": 120,
-      "away_ml": -149,
-      "spread": 0.7,
+      "home_ml": 123,
+      "away_ml": -155,
+      "spread": 0.8,
       "favorite": "RODR",
       "home_injuries": [],
       "away_injuries": [],
@@ -15890,11 +15937,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": 0,
+      "spread_delta": 0.1,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
-      "spread_moves": 0
+      "spread_moves": 1
     },
     {
       "sport": "ufc",
@@ -16119,8 +16166,8 @@
       "total_points": 0,
       "odds": {
         "provider": "BestFightOdds (consensus)",
-        "home_ml": 185,
-        "away_ml": -236,
+        "home_ml": 188,
+        "away_ml": -240,
         "spread": 1.7,
         "total": null,
         "over_2_5": null,
@@ -16138,8 +16185,8 @@
         "lon": null
       },
       "officials": [],
-      "home_ml": 185,
-      "away_ml": -236,
+      "home_ml": 188,
+      "away_ml": -240,
       "spread": 1.7,
       "favorite": "SOSA",
       "home_injuries": [],
@@ -16217,11 +16264,11 @@
         "home_ml": -276,
         "away_ml": 214,
         "spread": -2.0,
-        "total": null,
-        "over_2_5": null,
-        "under_2_5": null,
-        "over_1_5": null,
-        "under_1_5": null
+        "total": 2.5,
+        "over_2_5": -104,
+        "under_2_5": -130,
+        "over_1_5": -215,
+        "under_1_5": 155
       },
       "venue": {
         "name": "Meta APEX",
@@ -16236,6 +16283,9 @@
       "home_ml": -276,
       "away_ml": 214,
       "spread": -2.0,
+      "total": 2.5,
+      "total_over_ml": -104,
+      "total_under_ml": -130,
       "favorite": "SOUS",
       "home_injuries": [],
       "away_injuries": [],
@@ -16274,7 +16324,7 @@
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
-      "spread_moves": 0
+      "spread_moves": 1
     },
     {
       "sport": "ufc",
@@ -16312,11 +16362,11 @@
         "home_ml": 228,
         "away_ml": -298,
         "spread": 2.1,
-        "total": null,
-        "over_2_5": null,
-        "under_2_5": null,
-        "over_1_5": null,
-        "under_1_5": null
+        "total": 2.5,
+        "over_2_5": -167,
+        "under_2_5": 125,
+        "over_1_5": -315,
+        "under_1_5": 215
       },
       "venue": {
         "name": "Meta APEX",
@@ -16331,6 +16381,9 @@
       "home_ml": 228,
       "away_ml": -298,
       "spread": 2.1,
+      "total": 2.5,
+      "total_over_ml": -167,
+      "total_under_ml": 125,
       "favorite": "OROL",
       "home_injuries": [],
       "away_injuries": [],
@@ -16369,7 +16422,7 @@
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
-      "spread_moves": 2
+      "spread_moves": 3
     },
     {
       "sport": "ufc",
@@ -16502,8 +16555,8 @@
       "total_points": 0,
       "odds": {
         "provider": "BestFightOdds (consensus)",
-        "home_ml": 165,
-        "away_ml": -206,
+        "home_ml": 162,
+        "away_ml": -201,
         "spread": 1.4,
         "total": 2.5,
         "over_2_5": -190,
@@ -16521,8 +16574,8 @@
         "lon": null
       },
       "officials": [],
-      "home_ml": 165,
-      "away_ml": -206,
+      "home_ml": 162,
+      "away_ml": -201,
       "spread": 1.4,
       "total": 2.5,
       "total_over_ml": -190,
@@ -16598,8 +16651,8 @@
         "state": "MA",
         "indoor": true,
         "grass": false,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17150,8 +17203,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 42.8864163,
-        "lon": -78.8781493
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17349,8 +17402,8 @@
         "state": "FL",
         "indoor": true,
         "grass": false,
-        "lat": 27.9449854,
-        "lon": -82.4583107
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17461,8 +17514,8 @@
         "state": "NJ",
         "indoor": true,
         "grass": false,
-        "lat": 40.735657,
-        "lon": -74.1723667
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -18187,8 +18240,8 @@
       "total_points": 0,
       "odds": {
         "provider": "BestFightOdds (consensus)",
-        "home_ml": 264,
-        "away_ml": -349,
+        "home_ml": 267,
+        "away_ml": -353,
         "spread": 2.4,
         "total": 2.5,
         "over_2_5": 138,
@@ -18206,8 +18259,8 @@
         "lon": null
       },
       "officials": [],
-      "home_ml": 264,
-      "away_ml": -349,
+      "home_ml": 267,
+      "away_ml": -353,
       "spread": 2.4,
       "total": 2.5,
       "total_over_ml": 138,
@@ -18481,9 +18534,9 @@
       "total_points": 0,
       "odds": {
         "provider": "BestFightOdds (consensus)",
-        "home_ml": 418,
-        "away_ml": -602,
-        "spread": 3.2,
+        "home_ml": 413,
+        "away_ml": -587,
+        "spread": 3.1,
         "total": 2.5,
         "over_2_5": -188,
         "under_2_5": 137,
@@ -18500,9 +18553,9 @@
         "lon": null
       },
       "officials": [],
-      "home_ml": 418,
-      "away_ml": -602,
-      "spread": 3.2,
+      "home_ml": 413,
+      "away_ml": -587,
+      "spread": 3.1,
       "total": 2.5,
       "total_over_ml": -188,
       "total_under_ml": 137,
@@ -18540,11 +18593,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": 0,
+      "spread_delta": -0.1,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
-      "spread_moves": 0
+      "spread_moves": 1
     },
     {
       "sport": "nba",
@@ -18577,8 +18630,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": [],
       "home_injuries": [
@@ -18805,8 +18858,8 @@
         "state": "BC",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 45.6306954,
+        "lon": -122.6744557
       },
       "officials": [],
       "home_injuries": [
@@ -18927,8 +18980,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": [],
       "home_injuries": [
@@ -19150,8 +19203,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": [],
       "home_injuries": [
@@ -19919,6 +19972,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Hunter Dobbins",
+          "status": "Mar 26",
+          "position": "SP"
+        },
+        {
           "player": "Ivan Herrera",
           "status": "Mar 11",
           "position": "C"
@@ -19932,11 +19990,6 @@
           "player": "Zack Thompson",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Hunter Dobbins",
-          "status": "Mar 26",
-          "position": "SP"
         },
         {
           "player": "Ixan Henderson",
@@ -20552,8 +20605,8 @@
         "state": "ON",
         "indoor": true,
         "grass": false,
-        "lat": 39.7594645,
-        "lon": -87.5011149
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -20579,7 +20632,7 @@
         },
         {
           "player": "Chucky Hepburn",
-          "status": "Mar 11",
+          "status": "Mar 13",
           "position": "G"
         }
       ],
@@ -21377,8 +21430,8 @@
         "state": "Arizona",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 33.4942189,
+        "lon": -111.926018
       },
       "officials": [],
       "home_injuries": [
@@ -22529,8 +22582,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -22757,8 +22810,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [
@@ -22879,8 +22932,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": [],
       "home_injuries": [
@@ -24919,8 +24972,8 @@
         "state": "NJ",
         "indoor": true,
         "grass": false,
-        "lat": 40.735657,
-        "lon": -74.1723667
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25016,8 +25069,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25224,8 +25277,8 @@
         "state": "MA",
         "indoor": true,
         "grass": false,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25320,8 +25373,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [
@@ -27165,6 +27218,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Hunter Dobbins",
+          "status": "Mar 26",
+          "position": "SP"
+        },
+        {
           "player": "Ivan Herrera",
           "status": "Mar 11",
           "position": "C"
@@ -27178,11 +27236,6 @@
           "player": "Zack Thompson",
           "status": "Mar 26",
           "position": "RP"
-        },
-        {
-          "player": "Hunter Dobbins",
-          "status": "Mar 26",
-          "position": "SP"
         },
         {
           "player": "Ixan Henderson",
@@ -27828,6 +27881,11 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Grant Williams",
+          "status": "Mar 11",
+          "position": "F"
+        },
+        {
           "player": "Coby White",
           "status": "Mar 11",
           "position": "G"
@@ -27875,7 +27933,7 @@
           "position": "G"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 4,
       "injury_count_away": 6,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -28185,8 +28243,8 @@
         "state": "ON",
         "indoor": true,
         "grass": false,
-        "lat": 39.7594645,
-        "lon": -87.5011149
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28450,8 +28508,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28566,8 +28624,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 41.8755616,
+        "lon": -87.6244212
       },
       "officials": [],
       "home_injuries": [
@@ -29615,8 +29673,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 38.5810606,
+        "lon": -121.493895
       },
       "officials": [],
       "home_injuries": [
@@ -29736,8 +29794,8 @@
         "state": "BC",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 45.6306954,
+        "lon": -122.6744557
       },
       "officials": [],
       "home_injuries": [
@@ -29873,8 +29931,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": [],
       "home_injuries": [
@@ -29975,8 +30033,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [
@@ -31429,8 +31487,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31510,8 +31568,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31591,8 +31649,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31672,8 +31730,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31753,8 +31811,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31834,8 +31892,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31915,8 +31973,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -31996,8 +32054,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -32077,8 +32135,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -32158,8 +32216,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -32239,8 +32297,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_injuries": [],
@@ -32330,8 +32388,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 47.6038321,
+        "lon": -122.330062
       },
       "officials": [],
       "home_ml": -109,
@@ -38192,5 +38250,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-03-11T14:35:36.858776"
+  "weather_merged_at": "2026-03-11T15:02:14.756415"
 }
