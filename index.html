@@ -1903,6 +1903,9 @@
           fetch("referee_trends.json?v=" + Date.now(), { cache: "no-store" }).catch(() => null)
         ]);
 
+        if (!combinedRes.ok || !predsRes.ok) {
+          throw new Error("HTTP " + (combinedRes.status || predsRes.status));
+        }
         const combinedJson = await combinedRes.json();
         const predsJson = await predsRes.json();
 
@@ -1936,10 +1939,15 @@
           if (p && p.id != null) predMap.set(String(p.id), p);
         }
 
-        const views = gamesRaw.map(g => {
-          const p = predMap.get(String(g.id)) || null;
-          return buildGameView(g, p);
-        });
+        const views = [];
+        for (const g of gamesRaw) {
+          try {
+            const p = predMap.get(String(g.id)) || null;
+            views.push(buildGameView(g, p));
+          } catch (e) {
+            console.warn("Skipping game", g.id, e);
+          }
+        }
 
         state.allGames = views;
         await loadAccuracyData();
@@ -1950,7 +1958,14 @@
       } catch (err) {
         console.error("Error loading data", err);
         const grid = document.getElementById("games-grid");
-        grid.innerHTML = '<div class="no-games">Error loading JSON data. Check that combined.json and predictions.json are present.</div>';
+        // Retry once after 5 seconds (may have caught a mid-deploy partial file)
+        if (!window._retried) {
+          window._retried = true;
+          grid.innerHTML = '<div class="no-games">Loading...</div>';
+          setTimeout(loadData, 5000);
+        } else {
+          grid.innerHTML = '<div class="no-games">Error loading data: ' + (err.message || err) + '. Try refreshing.</div>';
+        }
       }
     }
 
