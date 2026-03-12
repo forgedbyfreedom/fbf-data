@@ -14,7 +14,7 @@ Outputs: accuracy.json with per-sport and overall SU/ATS/O/U records,
 
 import json, os
 from datetime import datetime, timezone, timedelta
-from monte_carlo import simulate_and_pick, safe_float
+from monte_carlo import safe_float
 
 OUTPUT = "accuracy.json"
 COMBINED_FILE = "combined.json"
@@ -115,19 +115,6 @@ def update_stats(stats_dict, sport, category, result):
         stats_dict[sport][category]["pushes"] += 1
 
 
-def resim_picks(pred):
-    """Re-simulate a game with the current model to get updated picks."""
-    game = dict(pred)
-    sport = (pred.get("sport") or "").lower()
-    game["sport"] = sport
-    if "odds" not in game or game["odds"] is None:
-        game["odds"] = pred.get("odds") or {}
-    try:
-        result = simulate_and_pick(game, n_sims=5000)
-        return result.get("picks", {})
-    except Exception:
-        return None
-
 
 def main():
     # Load completed game scores from persistent file (primary source)
@@ -202,7 +189,8 @@ def main():
     stats_high = {s: make_stats_bucket() for s in sports}
 
     graded = 0
-    resimmed = 0
+    skipped_no_odds = 0
+    skipped_old_model = 0
     results_detail = []
 
     for pred in unique_preds:
@@ -230,27 +218,25 @@ def main():
         if total_line_check and total_line_check > 0 and total < total_line_check * 0.5:
             continue
 
-        graded += 1
-
-        original_picks = pred.get("picks") or {}
+        picks = pred.get("picks") or {}
         odds = final.get("odds") or pred.get("odds") or {}
-        is_new_model = original_picks.get("ats_high_conf") is not None
 
-        # For old-model picks, re-simulate with current model for SU/ATS
-        # but keep original O/U picks (re-sim has no features to shift totals)
+        # Only grade picks from the current model (has high_conf flags).
+        # Old picks without high_conf were made by a different model and
+        # re-simulating them retroactively inflates accuracy numbers.
+        is_new_model = picks.get("ats_high_conf") is not None
         if not is_new_model:
-            new_picks = resim_picks(pred)
-            if new_picks:
-                # Use re-simmed picks for SU/ATS but preserve original O/U
-                picks = new_picks
-                picks["ou_pick"] = original_picks.get("ou_pick")
-                picks["ou_confidence"] = original_picks.get("ou_confidence", 50)
-                picks["ou_high_conf"] = False  # old picks are never high-conf
-                resimmed += 1
-            else:
-                picks = original_picks
-        else:
-            picks = original_picks
+            skipped_old_model += 1
+            continue
+
+        # Skip preseason / no-odds games (e.g. MLB spring training)
+        has_spread = odds.get("spread") is not None
+        has_total = odds.get("total") is not None
+        if not has_spread and not has_total:
+            skipped_no_odds += 1
+            continue
+
+        graded += 1
 
         game_date = final.get("date_utc") or pred.get("date_utc")
         result_entry = {
@@ -352,7 +338,7 @@ def main():
         print(f"    ATS: {ats['wins']}-{ats['losses']}-{ats['pushes']} ({round(ats['wins']/ats_t*100,1) if ats_t else 0}%) [{ats_t} graded]")
         print(f"    O/U: {ou['wins']}-{ou['losses']}-{ou['pushes']} ({round(ou['wins']/ou_t*100,1) if ou_t else 0}%) [{ou_t} graded]")
 
-    print(f"[accuracy] Graded {graded} picks ({resimmed} re-simulated with current model)")
+    print(f"[accuracy] Graded {graded} picks (skipped {skipped_old_model} old-model, {skipped_no_odds} no-odds/preseason)")
     print_line("ALL PICKS", stats_all)
     print_line("HIGH CONFIDENCE", stats_high)
 

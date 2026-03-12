@@ -307,7 +307,8 @@ def build_expected_values(game):
 
 def make_picks(sim_result, spread_line, total_line, home_name, away_name,
                home_abbr, away_abbr, fav_team=None, dog_team=None,
-               fav_abbr=None, dog_abbr=None, sport=""):
+               fav_abbr=None, dog_abbr=None, sport="",
+               has_vegas_spread=False, has_vegas_total=False):
     """
     Generate explicit SU, ATS, O/U picks from simulation results.
 
@@ -360,8 +361,10 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         picks["su_confidence"] = round((1 - home_win_pct) * 100, 1)
 
     # --- ATS PICK: who covers the spread ---
+    # Only make ATS picks when a real Vegas spread exists
     cover_pct = sim_result.get("home_cover_pct")
-    if cover_pct is not None:
+
+    if cover_pct is not None and has_vegas_spread:
         if fav_is_home:
             raw_fav_cover = cover_pct
         else:
@@ -370,7 +373,6 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         # REGRESSION: blend simulation result toward historical base rate
         # This prevents overconfident favorite picks.
         # Vegas spreads are ~50/50 by design; our edge is small.
-        # Use 60% simulation / 40% historical base rate blend.
         base_rate = FAV_COVER_BASE.get(sport_lower, 0.49)
         fav_cover_pct = raw_fav_cover * 0.50 + base_rate * 0.50
 
@@ -378,7 +380,6 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         # than the simulation suggests. Apply extra dog lean for spreads > 7.
         abs_spread = abs(spread_line) if spread_line else 0
         if abs_spread > 7:
-            # Each point beyond 7 adds 0.5% to underdog cover probability
             big_spread_adj = (abs_spread - 7) * 0.005
             fav_cover_pct -= big_spread_adj
 
@@ -399,15 +400,16 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         ats_conf = picks["ats_confidence"] / 100.0
         picks["ats_high_conf"] = ats_conf >= ATS_HIGH_CONF
     else:
-        picks["ats_pick"] = picks["su_pick"]
-        picks["ats_pick_abbr"] = picks["su_pick_abbr"]
-        picks["ats_spread"] = 0
-        picks["ats_confidence"] = picks["su_confidence"]
+        # No real spread — skip ATS entirely (no fake picks)
+        picks["ats_pick"] = None
+        picks["ats_pick_abbr"] = None
+        picks["ats_spread"] = None
+        picks["ats_confidence"] = None
         picks["ats_high_conf"] = False
 
     # --- O/U PICK ---
     over_pct = sim_result.get("over_pct")
-    if over_pct is not None:
+    if over_pct is not None and has_vegas_total:
         if over_pct >= 0.5:
             picks["ou_pick"] = "Over"
             picks["ou_line"] = total_line
@@ -421,9 +423,10 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         ou_conf = picks["ou_confidence"] / 100.0
         picks["ou_high_conf"] = ou_conf >= OU_HIGH_CONF
     else:
-        picks["ou_pick"] = "Over"
+        # No real total line — skip O/U entirely
+        picks["ou_pick"] = None
         picks["ou_line"] = total_line
-        picks["ou_confidence"] = 50.0
+        picks["ou_confidence"] = None
         picks["ou_high_conf"] = False
 
     return picks
@@ -513,6 +516,8 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         fav_abbr=game.get("fav_abbr"),
         dog_abbr=game.get("dog_abbr"),
         sport=sport,
+        has_vegas_spread=spread_line is not None,
+        has_vegas_total=total_line is not None,
     )
 
     picks["has_vegas_spread"] = spread_line is not None

@@ -324,8 +324,27 @@ def format_local_time(dt_utc_str):
         return dt_utc_str
 
 
+def get_season_type(ev):
+    """Extract season type number from event without extra API call.
+    Returns 1=preseason, 2=regular, 3=postseason, or None."""
+    st = ev.get("seasonType") or {}
+    if isinstance(st, dict):
+        ref = st.get("$ref", "")
+        if "/types/" in ref:
+            try:
+                return int(ref.split("/types/")[-1].split("?")[0])
+            except (ValueError, IndexError):
+                pass
+    return None
+
+
 def build_game_record(sport_key, ev):
     """Build a single game record for team sports."""
+    # Skip preseason / exhibition games
+    season_type = get_season_type(ev)
+    if season_type == 1:
+        return None
+
     comp = extract_competition(ev)
     if not comp:
         return None
