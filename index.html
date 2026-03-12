@@ -1043,7 +1043,7 @@
       const refData = trends[crewChief] || trends[crewChief?.toLowerCase()?.trim()] || null;
 
       if (!refData) {
-        return { name: crewChief, html: crewChief };
+        return { name: crewChief, html: `<div class="ref-detail"><div class="ref-crew-name">${crewChief}</div></div>` };
       }
 
       // Get sport-specific data if available
@@ -1563,7 +1563,9 @@
             // Enriched ref display with trends
             const refDiv = document.createElement("div");
             refDiv.innerHTML = g.refsInfo.html;
-            card.appendChild(refDiv.firstElementChild);
+            const refEl = refDiv.firstElementChild;
+            if (refEl) card.appendChild(refEl);
+            else card.appendChild(refDiv);
           } else {
             // Fallback: simple pill display
             const refPill = document.createElement("div");
