@@ -260,22 +260,6 @@ def main():
             "matchup": pred.get("matchup") or pred.get("shortName") or "",
         }
 
-        # --- SU ---
-        su_abbr = picks.get("su_pick_abbr")
-        if su_abbr:
-            home_abbr = pred.get("home") or ""
-            if isinstance(pred.get("home_team"), dict):
-                home_abbr = pred["home_team"].get("abbr", home_abbr)
-
-            if home_score != away_score:
-                winner_abbr = home_abbr if home_score > away_score else (
-                    pred.get("away") or (pred.get("away_team", {}).get("abbr", "") if isinstance(pred.get("away_team"), dict) else "")
-                )
-                su_result = "W" if su_abbr == winner_abbr else "L"
-                update_stats(stats_all, sport, "SU", su_result)
-                update_stats(stats_high, sport, "SU", su_result)
-                result_entry["su"] = su_result
-
         # --- ATS ---
         ats_result = grade_ats(picks, pred, odds, home_score, away_score)
         ats_is_high = picks.get("ats_high_conf", False)
@@ -297,6 +281,24 @@ def main():
                 update_stats(stats_high, sport, "OU", ou_result)
             result_entry["ou"] = ou_result
             result_entry["ou_high_conf"] = ou_is_high
+
+        # --- SU ---
+        su_abbr = picks.get("su_pick_abbr")
+        if su_abbr:
+            home_abbr = pred.get("home") or ""
+            if isinstance(pred.get("home_team"), dict):
+                home_abbr = pred["home_team"].get("abbr", home_abbr)
+
+            if home_score != away_score:
+                winner_abbr = home_abbr if home_score > away_score else (
+                    pred.get("away") or (pred.get("away_team", {}).get("abbr", "") if isinstance(pred.get("away_team"), dict) else "")
+                )
+                su_result = "W" if su_abbr == winner_abbr else "L"
+                update_stats(stats_all, sport, "SU", su_result)
+                # Only track SU in high-conf when ATS or O/U is high-conf
+                if ats_is_high or ou_is_high:
+                    update_stats(stats_high, sport, "SU", su_result)
+                result_entry["su"] = su_result
 
         results_detail.append(result_entry)
 
