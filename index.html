@@ -785,7 +785,7 @@
     const MAX_CONF_SU = 95;
     const MAX_CONF_ATS = 90;
     const MAX_CONF_TOTAL = 90;
-    const TRACKING_START = "2025-11-28";
+    const TRACKING_START = "2026-03-13";
 
     const state = {
       allGames: [],
@@ -1472,7 +1472,8 @@
       }
 
       const sinceLine = document.getElementById("acc-since-line");
-      sinceLine.textContent = `Tracking from ${TRACKING_START} onward`;
+      const sinceDate = state.accuracy.since || TRACKING_START;
+      sinceLine.textContent = `Current model tracking since ${sinceDate}`;
     }
 
     function renderGames() {
@@ -1503,7 +1504,7 @@
         if (g.highConfidence) {
           const chip = document.createElement("div");
           chip.className = "chip-high";
-          chip.textContent = "HIGH CONFIDENCE";
+          chip.textContent = "BEST BET";
           card.appendChild(chip);
         }
 
@@ -1815,7 +1816,7 @@
           };
         }
         state.accuracy.bySport = bySport;
-        state.accuracy.since = json.timestamp ? json.timestamp.slice(0, 10) : null;
+        state.accuracy.since = json.model_start || (json.timestamp ? json.timestamp.slice(0, 10) : null);
       } catch (e) {
         console.warn("Could not load accuracy.json:", e);
       }

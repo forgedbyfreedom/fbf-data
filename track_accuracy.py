@@ -1,39 +1,45 @@
 #!/usr/bin/env python3
 """
 track_accuracy.py
-Tracks prediction accuracy from LOCKED picks vs final scores.
-Uses predictions_locked.json (picks frozen at game time).
-Matches against completed games in combined.json.
+Tracks prediction accuracy for the CURRENT model only.
 
-For old picks without high_conf flags, re-simulates with current model
-to get what the current model WOULD have picked.
+Only grades picks made on or after MODEL_START_DATE with real Vegas odds.
+Skips preseason, no-odds games, and any picks from older model versions.
 
 Outputs: accuracy.json with per-sport and overall SU/ATS/O/U records,
-         tracking both ALL picks and HIGH-CONFIDENCE picks separately.
+         tracking both ALL picks and BEST BET (high-confidence) picks.
 """
 
 import json, os
-from datetime import datetime, timezone, timedelta
-from monte_carlo import safe_float
+from datetime import datetime, timezone
+
+# ── CONFIG ──────────────────────────────────────────────────────────
+# Current model start date — only grade picks locked on or after this.
+# Update this whenever the model is significantly changed.
+MODEL_START_DATE = "2026-03-13"
 
 OUTPUT = "accuracy.json"
-COMBINED_FILE = "combined.json"
 SCORES_FILE = "completed_scores.json"
+COMBINED_FILE = "combined.json"
 LOCKED_FILE = "predictions_locked.json"
 ARCHIVE_FILE = "predictions_archive.json"
 
+# Minimum realistic final-game totals (reject partial scores)
+MIN_TOTAL = {
+    "NBA": 160, "NCAAB": 100, "NCAAW": 90,
+    "NFL": 6, "NCAAF": 10, "NHL": 1, "MLB": 1,
+}
 
-def parse_date(s):
-    if not s:
-        return None
+SPORTS = ["ALL", "NFL", "NCAAF", "NBA", "NCAAB", "NCAAW", "NHL", "MLB"]
+
+
+def safe_float(x, default=None):
+    if x is None:
+        return default
     try:
-        return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(timezone.utc)
-    except Exception:
-        pass
-    try:
-        return datetime.strptime(s[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
-    except Exception:
-        return None
+        return float(x)
+    except (ValueError, TypeError):
+        return default
 
 
 def load_json(path, default=None):
@@ -46,7 +52,7 @@ def load_json(path, default=None):
         return default
 
 
-def make_stats_bucket():
+def make_bucket():
     return {
         "SU": {"wins": 0, "losses": 0},
         "ATS": {"wins": 0, "losses": 0, "pushes": 0},
@@ -54,74 +60,64 @@ def make_stats_bucket():
     }
 
 
+def update(stats, sport, cat, result):
+    if result == "W":
+        stats["ALL"][cat]["wins"] += 1
+        stats[sport][cat]["wins"] += 1
+    elif result == "L":
+        stats["ALL"][cat]["losses"] += 1
+        stats[sport][cat]["losses"] += 1
+    elif result == "P":
+        if "pushes" in stats["ALL"][cat]:
+            stats["ALL"][cat]["pushes"] += 1
+            stats[sport][cat]["pushes"] += 1
+
+
 def grade_ats(picks, pred, odds, home_score, away_score):
-    """Grade an ATS pick. Returns 'W', 'L', 'P', or None."""
     ats_pick = picks.get("ats_pick")
-    spread_line = safe_float(odds.get("spread"))
-    if not ats_pick or spread_line is None:
+    spread = safe_float(odds.get("spread"))
+    if not ats_pick or spread is None:
         return None
 
-    actual_margin = home_score - away_score
+    margin = home_score - away_score
     home_team = pred.get("home_team") or {}
     home_name = home_team.get("name", "") if isinstance(home_team, dict) else str(home_team)
     pick_is_home = (ats_pick == home_name) or (picks.get("ats_pick_abbr") == pred.get("home"))
 
-    home_covered = actual_margin + spread_line > 0
-    push = abs(actual_margin + spread_line) < 0.01
-
-    if push:
+    val = margin + spread
+    if abs(val) < 0.01:
         return "P"
+    home_covered = val > 0
     if pick_is_home:
         return "W" if home_covered else "L"
-    else:
-        return "W" if (not home_covered) else "L"
+    return "W" if not home_covered else "L"
 
 
 def grade_ou(picks, odds, home_score, away_score, sport=""):
-    """Grade an O/U pick. Returns 'W', 'L', 'P', or None."""
     ou_pick = picks.get("ou_pick")
     total_line = safe_float(odds.get("total"))
     if not ou_pick or total_line is None or total_line < 0.5:
-        return None  # Skip if no line or line is 0
+        return None
 
-    actual_total = home_score + away_score
+    actual = home_score + away_score
+    if actual < MIN_TOTAL.get(sport.upper(), 0):
+        return None
 
-    # Sanity check: reject scores that look like partials
-    min_totals = {"NBA": 160, "NCAAB": 100, "NCAAW": 90, "NFL": 6, "NCAAF": 10}
-    min_t = min_totals.get(sport.upper(), 0)
-    if actual_total < min_t:
-        return None  # Bad score data
-
-    push = abs(actual_total - total_line) < 0.01
-
-    if push:
+    if abs(actual - total_line) < 0.01:
         return "P"
-    if (ou_pick == "Over" and actual_total > total_line) or \
-       (ou_pick == "Under" and actual_total < total_line):
+    if (ou_pick == "Over" and actual > total_line) or \
+       (ou_pick == "Under" and actual < total_line):
         return "W"
     return "L"
 
 
-def update_stats(stats_dict, sport, category, result):
-    """Update stats for both ALL and sport-specific buckets."""
-    if result == "W":
-        stats_dict["ALL"][category]["wins"] += 1
-        stats_dict[sport][category]["wins"] += 1
-    elif result == "L":
-        stats_dict["ALL"][category]["losses"] += 1
-        stats_dict[sport][category]["losses"] += 1
-    elif result == "P":
-        stats_dict["ALL"][category]["pushes"] += 1
-        stats_dict[sport][category]["pushes"] += 1
-
-
-
 def main():
-    # Load completed game scores from persistent file (primary source)
-    scores_data = load_json(SCORES_FILE, {})
+    start_cutoff = datetime.fromisoformat(MODEL_START_DATE + "T00:00:00+00:00")
+
+    # ── Load completed scores ───────────────────────────────────────
     completed = {}
 
-    for gid, score in scores_data.get("scores", {}).items():
+    for gid, score in load_json(SCORES_FILE, {}).get("scores", {}).items():
         completed[str(gid)] = {
             "home_score": score["home_score"],
             "away_score": score["away_score"],
@@ -130,72 +126,84 @@ def main():
             "odds": score.get("odds") or {},
         }
 
-    # Also check combined.json for newly completed games
-    combined = load_json(COMBINED_FILE, {})
-    games = combined.get("data", [])
-
-    for g in games:
+    for g in load_json(COMBINED_FILE, {}).get("data", []):
         gid = str(g.get("id") or g.get("event_id") or "")
         if not gid or gid in completed:
             continue
-        home_score = safe_float(g.get("home_score"))
-        away_score = safe_float(g.get("away_score"))
-        if home_score is None or away_score is None:
+        hs = safe_float(g.get("home_score"))
+        aws = safe_float(g.get("away_score"))
+        if hs is None or aws is None:
             continue
         completed[gid] = {
-            "home_score": home_score,
-            "away_score": away_score,
+            "home_score": hs, "away_score": aws,
             "sport": (g.get("sport") or "").upper(),
             "date_utc": g.get("date_utc"),
             "odds": g.get("odds") or {},
         }
 
-    print(f"[accuracy] Found {len(completed)} completed games with scores")
+    print(f"[accuracy] {len(completed)} completed games with scores")
 
-    # Load locked picks (primary) + archive (fallback)
+    # ── Load locked predictions ─────────────────────────────────────
     all_preds = []
-    for filepath in [LOCKED_FILE, ARCHIVE_FILE]:
-        if not os.path.exists(filepath):
+    for fp in [LOCKED_FILE, ARCHIVE_FILE]:
+        if not os.path.exists(fp):
             continue
         try:
-            with open(filepath) as f:
-                data = json.load(f)
+            data = load_json(fp, {})
             preds = data.get("locked", data.get("predictions", []))
             all_preds.extend(preds)
-            print(f"[accuracy] Loaded {len(preds)} predictions from {filepath}")
+            print(f"[accuracy] {len(preds)} predictions from {fp}")
         except Exception as e:
-            print(f"[accuracy] Error loading {filepath}: {e}")
+            print(f"[accuracy] Error loading {fp}: {e}")
 
     if not all_preds:
-        print("[accuracy] No locked picks found")
+        print("[accuracy] No predictions found")
         with open(OUTPUT, "w") as f:
-            json.dump({"timestamp": datetime.now(timezone.utc).isoformat(), "sports": {}, "predictions_graded": 0}, f, indent=2)
+            json.dump({
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "model_start": MODEL_START_DATE,
+                "predictions_graded": 0, "sports": {}, "high_confidence": {},
+            }, f, indent=2)
         return
 
-    # Deduplicate by ID
-    seen_ids = set()
-    unique_preds = []
+    # Deduplicate
+    seen = set()
+    unique = []
     for p in all_preds:
         pid = str(p.get("id") or "")
-        if pid and pid not in seen_ids:
-            seen_ids.add(pid)
-            unique_preds.append(p)
+        if pid and pid not in seen:
+            seen.add(pid)
+            unique.append(p)
 
-    # All sports we track
-    sports = ["ALL", "NFL", "NCAAF", "NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"]
-
-    # Two stat trackers: all picks and high-confidence only
-    stats_all = {s: make_stats_bucket() for s in sports}
-    stats_high = {s: make_stats_bucket() for s in sports}
+    # ── Grade picks ─────────────────────────────────────────────────
+    stats_all = {s: make_bucket() for s in SPORTS}
+    stats_best = {s: make_bucket() for s in SPORTS}
 
     graded = 0
-    skipped_no_odds = 0
-    skipped_old_model = 0
-    results_detail = []
+    skipped = {"old_model": 0, "no_odds": 0, "before_start": 0, "bad_score": 0}
+    results = []
 
-    for pred in unique_preds:
+    for pred in unique:
         pid = str(pred.get("id") or "")
         if pid not in completed:
+            continue
+
+        picks = pred.get("picks") or {}
+
+        # Skip old model picks (no high_conf flags)
+        if picks.get("ats_high_conf") is None:
+            skipped["old_model"] += 1
+            continue
+
+        # Skip picks locked before current model start date
+        locked_at = pred.get("locked_at") or pred.get("date_utc") or ""
+        try:
+            lock_dt = datetime.fromisoformat(locked_at.replace("Z", "+00:00"))
+            if lock_dt < start_cutoff:
+                skipped["before_start"] += 1
+                continue
+        except Exception:
+            skipped["before_start"] += 1
             continue
 
         final = completed[pid]
@@ -203,130 +211,113 @@ def main():
         if sport not in stats_all:
             continue
 
-        home_score = final["home_score"]
-        away_score = final["away_score"]
-
-        # Skip games with obviously bad/partial scores
-        total = home_score + away_score
-        min_totals = {"NBA": 160, "NCAAB": 100, "NCAAW": 90, "NFL": 6, "NCAAF": 10}
-        if total < min_totals.get(sport, 0):
-            continue
-
-        # Skip if score < 50% of total line (likely partial/in-progress score)
-        game_odds = final.get("odds") or pred.get("odds") or {}
-        total_line_check = safe_float(game_odds.get("total"))
-        if total_line_check and total_line_check > 0 and total < total_line_check * 0.5:
-            continue
-
-        picks = pred.get("picks") or {}
         odds = final.get("odds") or pred.get("odds") or {}
 
-        # Only grade picks from the current model (has high_conf flags).
-        # Old picks without high_conf were made by a different model and
-        # re-simulating them retroactively inflates accuracy numbers.
-        is_new_model = picks.get("ats_high_conf") is not None
-        if not is_new_model:
-            skipped_old_model += 1
+        # Skip no-odds / preseason
+        if odds.get("spread") is None and odds.get("total") is None:
+            skipped["no_odds"] += 1
             continue
 
-        # Skip preseason / no-odds games (e.g. MLB spring training)
-        has_spread = odds.get("spread") is not None
-        has_total = odds.get("total") is not None
-        if not has_spread and not has_total:
-            skipped_no_odds += 1
+        hs = final["home_score"]
+        aws = final["away_score"]
+        total = hs + aws
+
+        # Skip partial / bad scores
+        if total < MIN_TOTAL.get(sport, 0):
+            skipped["bad_score"] += 1
+            continue
+        tl_check = safe_float(odds.get("total"))
+        if tl_check and tl_check > 0 and total < tl_check * 0.5:
+            skipped["bad_score"] += 1
             continue
 
         graded += 1
-
         game_date = final.get("date_utc") or pred.get("date_utc")
-        result_entry = {
-            "id": pid,
-            "sport": sport,
-            "date": game_date,
+        entry = {
+            "id": pid, "sport": sport, "date": game_date,
             "matchup": pred.get("matchup") or pred.get("shortName") or "",
         }
 
-        # --- ATS ---
-        ats_result = grade_ats(picks, pred, odds, home_score, away_score)
-        ats_is_high = picks.get("ats_high_conf", False)
-
+        # ── ATS ──
+        ats_result = grade_ats(picks, pred, odds, hs, aws)
+        ats_high = picks.get("ats_high_conf", False)
         if ats_result:
-            update_stats(stats_all, sport, "ATS", ats_result)
-            if ats_is_high:
-                update_stats(stats_high, sport, "ATS", ats_result)
-            result_entry["ats"] = ats_result
-            result_entry["ats_high_conf"] = ats_is_high
+            update(stats_all, sport, "ATS", ats_result)
+            if ats_high:
+                update(stats_best, sport, "ATS", ats_result)
+            entry["ats"] = ats_result
+            entry["ats_best_bet"] = ats_high
 
-        # --- O/U ---
-        ou_result = grade_ou(picks, odds, home_score, away_score, sport)
-        ou_is_high = picks.get("ou_high_conf", False)
-
+        # ── O/U ──
+        ou_result = grade_ou(picks, odds, hs, aws, sport)
+        ou_high = picks.get("ou_high_conf", False)
         if ou_result:
-            update_stats(stats_all, sport, "OU", ou_result)
-            if ou_is_high:
-                update_stats(stats_high, sport, "OU", ou_result)
-            result_entry["ou"] = ou_result
-            result_entry["ou_high_conf"] = ou_is_high
+            update(stats_all, sport, "OU", ou_result)
+            if ou_high:
+                update(stats_best, sport, "OU", ou_result)
+            entry["ou"] = ou_result
+            entry["ou_best_bet"] = ou_high
 
-        # --- SU ---
+        # ── SU ──
         su_abbr = picks.get("su_pick_abbr")
         if su_abbr:
             home_abbr = pred.get("home") or ""
             if isinstance(pred.get("home_team"), dict):
                 home_abbr = pred["home_team"].get("abbr", home_abbr)
+            if hs != aws:
+                away_abbr = pred.get("away") or ""
+                if isinstance(pred.get("away_team"), dict):
+                    away_abbr = pred["away_team"].get("abbr", "")
+                winner = home_abbr if hs > aws else away_abbr
+                su_result = "W" if su_abbr == winner else "L"
+                update(stats_all, sport, "SU", su_result)
+                if ats_high or ou_high:
+                    update(stats_best, sport, "SU", su_result)
+                entry["su"] = su_result
 
-            if home_score != away_score:
-                winner_abbr = home_abbr if home_score > away_score else (
-                    pred.get("away") or (pred.get("away_team", {}).get("abbr", "") if isinstance(pred.get("away_team"), dict) else "")
-                )
-                su_result = "W" if su_abbr == winner_abbr else "L"
-                update_stats(stats_all, sport, "SU", su_result)
-                # Only track SU in high-conf when ATS or O/U is high-conf
-                if ats_is_high or ou_is_high:
-                    update_stats(stats_high, sport, "SU", su_result)
-                result_entry["su"] = su_result
+        results.append(entry)
 
-        results_detail.append(result_entry)
-
-    # Build output with both all and high-conf stats
-    def build_sport_stats(st):
+    # ── Build output ────────────────────────────────────────────────
+    def build_stats(st):
         out = {}
-        for s in sports:
+        for s in SPORTS:
             su = st[s]["SU"]
             ats = st[s]["ATS"]
             ou = st[s]["OU"]
-            su_total = su["wins"] + su["losses"]
-            ats_total = ats["wins"] + ats["losses"]
-            ou_total = ou["wins"] + ou["losses"]
+            su_t = su["wins"] + su["losses"]
+            ats_t = ats["wins"] + ats["losses"]
+            ou_t = ou["wins"] + ou["losses"]
             out[s] = {
-                "SU_pct": round(su["wins"] / su_total * 100, 1) if su_total else 0,
+                "SU_pct": round(su["wins"] / su_t * 100, 1) if su_t else 0,
                 "SU_record": f"{su['wins']}-{su['losses']}",
-                "SU_wins": su["wins"],
-                "SU_total": su_total,
-                "ATS_pct": round(ats["wins"] / ats_total * 100, 1) if ats_total else 0,
+                "SU_total": su_t,
+                "ATS_pct": round(ats["wins"] / ats_t * 100, 1) if ats_t else 0,
                 "ATS_record": f"{ats['wins']}-{ats['losses']}-{ats['pushes']}",
-                "ATS_wins": ats["wins"],
-                "ATS_total": ats_total,
-                "OU_pct": round(ou["wins"] / ou_total * 100, 1) if ou_total else 0,
+                "ATS_total": ats_t,
+                "OU_pct": round(ou["wins"] / ou_t * 100, 1) if ou_t else 0,
                 "OU_record": f"{ou['wins']}-{ou['losses']}-{ou['pushes']}",
-                "OU_wins": ou["wins"],
-                "OU_total": ou_total,
+                "OU_total": ou_t,
             }
         return out
 
-    out = {
+    output = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "model_start": MODEL_START_DATE,
         "predictions_graded": graded,
-        "sports": build_sport_stats(stats_all),
-        "high_confidence": build_sport_stats(stats_high),
-        "results": results_detail[-200:],
+        "sports": build_stats(stats_all),
+        "high_confidence": build_stats(stats_best),
+        "results": results[-200:],
     }
 
     with open(OUTPUT, "w") as f:
-        json.dump(out, f, indent=2)
+        json.dump(output, f, indent=2)
 
-    # Print summary
-    def print_line(label, st):
+    # ── Print summary ───────────────────────────────────────────────
+    skip_summary = ", ".join(f"{v} {k}" for k, v in skipped.items() if v)
+    print(f"[accuracy] Graded {graded} picks (skipped: {skip_summary})")
+    print(f"[accuracy] Model tracking since {MODEL_START_DATE}")
+
+    for label, st in [("ALL PICKS", stats_all), ("BEST BETS", stats_best)]:
         su = st["ALL"]["SU"]
         ats = st["ALL"]["ATS"]
         ou = st["ALL"]["OU"]
@@ -337,10 +328,6 @@ def main():
         print(f"    SU:  {su['wins']}-{su['losses']} ({round(su['wins']/su_t*100,1) if su_t else 0}%)")
         print(f"    ATS: {ats['wins']}-{ats['losses']}-{ats['pushes']} ({round(ats['wins']/ats_t*100,1) if ats_t else 0}%) [{ats_t} graded]")
         print(f"    O/U: {ou['wins']}-{ou['losses']}-{ou['pushes']} ({round(ou['wins']/ou_t*100,1) if ou_t else 0}%) [{ou_t} graded]")
-
-    print(f"[accuracy] Graded {graded} picks (skipped {skipped_old_model} old-model, {skipped_no_odds} no-odds/preseason)")
-    print_line("ALL PICKS", stats_all)
-    print_line("HIGH CONFIDENCE", stats_high)
 
 
 if __name__ == "__main__":
