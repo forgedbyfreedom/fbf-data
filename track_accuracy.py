@@ -18,6 +18,12 @@ from datetime import datetime, timezone
 # Update this whenever the model is significantly changed.
 MODEL_START_DATE = "2026-03-10"
 
+# Per-sport override: some sports were recalibrated after the general start.
+# NHL weights were fixed on 2026-03-13 — exclude earlier NHL picks.
+SPORT_START_OVERRIDE = {
+    "NHL": "2026-03-13",
+}
+
 OUTPUT = "accuracy.json"
 SCORES_FILE = "completed_scores.json"
 COMBINED_FILE = "combined.json"
@@ -208,6 +214,14 @@ def main():
 
         final = completed[pid]
         sport = final["sport"]
+
+        # Per-sport start override (e.g. NHL recalibrated later)
+        sport_override = SPORT_START_OVERRIDE.get(sport)
+        if sport_override:
+            sport_cutoff = datetime.fromisoformat(sport_override + "T00:00:00+00:00")
+            if lock_dt < sport_cutoff:
+                skipped["before_start"] += 1
+                continue
         if sport not in stats_all:
             continue
 
