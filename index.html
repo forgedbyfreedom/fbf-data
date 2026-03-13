@@ -146,86 +146,6 @@
       margin-right: 6px;
     }
 
-    /* MODEL PERFORMANCE COMPARISON */
-    .model-perf-wrap {
-      text-align: center;
-      margin: 0 auto 22px;
-      max-width: 720px;
-      padding: 0 12px;
-    }
-    .model-perf-toggle {
-      cursor: pointer;
-      user-select: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .model-perf-toggle .arrow {
-      font-size: 0.6rem;
-      transition: transform 0.2s;
-    }
-    .model-perf-toggle.open .arrow {
-      transform: rotate(90deg);
-    }
-    .model-perf-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: #fed7aa;
-      margin-bottom: 2px;
-    }
-    .model-perf-subtitle {
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-bottom: 10px;
-    }
-    .model-perf-body {
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-    .model-perf-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.75rem;
-      margin-top: 6px;
-    }
-    .model-perf-table th {
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.62rem;
-      color: #6b7280;
-      font-weight: 500;
-      padding: 4px 6px;
-      text-align: center;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .model-perf-table th:first-child {
-      text-align: left;
-    }
-    .model-perf-table td {
-      padding: 5px 6px;
-      text-align: center;
-      color: #e5e7eb;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-    .model-perf-table td:first-child {
-      text-align: left;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-    .model-perf-table .pct-up { color: #22c55e; font-weight: 600; }
-    .model-perf-table .pct-down { color: #ef4444; }
-    .model-perf-table .pct-neutral { color: #fbbf24; }
-    .model-perf-table .pct-muted { color: #6b7280; }
-    .model-perf-table .rec { font-size: 0.62rem; color: #6b7280; }
-    .model-perf-table .best-label {
-      font-size: 0.55rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #f97316;
-      font-weight: 600;
-    }
-
     /* STATS BAR */
     .stats-row {
       display: grid;
@@ -683,12 +603,6 @@
       .picks-strip {
         grid-template-columns: 1fr;
       }
-      .model-perf-grid {
-        grid-template-columns: 1fr;
-      }
-      .model-perf-sport-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
   </style>
 </head>
@@ -726,18 +640,6 @@
         <span class="metric">O/U: <span class="value" id="acc-sport-ou">--%</span> <span class="record" id="acc-sport-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-since-line" style="font-size:0.76rem;"></div>
-    </section>
-
-    <!-- MODEL PERFORMANCE COMPARISON -->
-    <section class="model-perf-wrap" id="model-perf-section" style="display:none;">
-      <div class="model-perf-toggle" id="model-perf-toggle" onclick="toggleModelPerf()">
-        <span class="arrow">&#9654;</span>
-        <span class="model-perf-title">Model Performance</span>
-      </div>
-      <div class="model-perf-subtitle" id="model-perf-subtitle"></div>
-      <div class="model-perf-body" id="model-perf-body" style="max-height:0;">
-        <div id="model-perf-content"></div>
-      </div>
     </section>
 
     <!-- STATS -->
@@ -1755,13 +1657,6 @@
       }
     }
 
-    function toggleModelPerf() {
-      const toggle = document.getElementById("model-perf-toggle");
-      const body = document.getElementById("model-perf-body");
-      const isOpen = toggle.classList.toggle("open");
-      body.style.maxHeight = isOpen ? body.scrollHeight + "px" : "0";
-    }
-
     function setActiveFilter(sport) {
       state.activeSport = sport;
       document.querySelectorAll(".filter-pill").forEach(btn => {
@@ -1822,82 +1717,6 @@
       }
     }
 
-    async function loadBacktestData() {
-      try {
-        const res = await fetch("backtest_live_results.json?v=" + Date.now(), { cache: "no-store" });
-        if (!res.ok) return;
-        const json = await res.json();
-        const section = document.getElementById("model-perf-section");
-        const subtitle = document.getElementById("model-perf-subtitle");
-        const content = document.getElementById("model-perf-content");
-
-        if (!json.graded) return;
-
-        function p(w, l) { const t = w + l; return t ? ((w / t) * 100).toFixed(1) : "—"; }
-        function r(w, l) { return `${w}-${l}`; }
-        function cls(v) {
-          const n = parseFloat(v);
-          if (isNaN(n)) return "pct-muted";
-          return n >= 52.4 ? "pct-up" : n >= 48 ? "pct-neutral" : "pct-down";
-        }
-
-        section.style.display = "block";
-        subtitle.textContent = `Model performance across ${json.graded} completed games (click to expand)`;
-
-        // Build one clean table with all data
-        const sportOrder = ["ALL", "NBA", "NCAAB", "NCAAW", "NHL", "MLB", "UFC"];
-        let rows = "";
-
-        for (const s of sportOrder) {
-          const o = json.old_model?.[s] || {};
-          const n = json.new_model?.[s] || {};
-          const h = json.new_model_high_conf?.[s] || {};
-
-          const oSUtot = (o.su_w || 0) + (o.su_l || 0);
-          const nSUtot = (n.su_w || 0) + (n.su_l || 0);
-          if (oSUtot === 0 && nSUtot === 0) continue;
-
-          const oSU = p(o.su_w || 0, o.su_l || 0);
-          const nSU = p(n.su_w || 0, n.su_l || 0);
-          const oATS = p(o.ats_w || 0, o.ats_l || 0);
-          const nATStot = (n.ats_w || 0) + (n.ats_l || 0);
-          const nATS = nATStot > 0 ? p(n.ats_w || 0, n.ats_l || 0) : "—";
-          const hATStot = (h.ats_w || 0) + (h.ats_l || 0);
-          const hATS = hATStot > 0 ? p(h.ats_w || 0, h.ats_l || 0) : "—";
-
-          const label = s === "ALL" ? "Overall" : s;
-          const bold = s === "ALL" ? ' style="font-size:0.82rem;"' : "";
-
-          rows += `<tr${bold}>
-            <td>${label}</td>
-            <td class="pct-muted">${oSU}%</td>
-            <td class="${cls(nSU)}">${nSU}%</td>
-            <td class="pct-muted">${oATS}%</td>
-            <td class="${cls(nATS)}">${nATS === "—" ? "—" : nATS + "%"}<br><span class="rec">${nATStot > 0 ? r(n.ats_w || 0, n.ats_l || 0) : ""}</span></td>
-            <td class="${cls(hATS)}">${hATS === "—" ? "—" : hATS + "%"}<br><span class="rec">${hATStot > 0 ? r(h.ats_w || 0, h.ats_l || 0) + " (" + hATStot + "g)" : ""}</span></td>
-          </tr>`;
-        }
-
-        content.innerHTML = `
-          <table class="model-perf-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>SU Old</th>
-                <th>SU New</th>
-                <th>ATS Old</th>
-                <th>ATS New</th>
-                <th><span class="best-label">Best Bets</span></th>
-              </tr>
-            </thead>
-            <tbody>${rows}</tbody>
-          </table>
-        `;
-      } catch (e) {
-        console.warn("Could not load backtest data:", e);
-      }
-    }
-
     async function loadData() {
       try {
         const [combinedRes, predsRes, refTrendsRes] = await Promise.all([
@@ -1954,7 +1773,6 @@
 
         state.allGames = views;
         await loadAccuracyData();
-        await loadBacktestData();
         renderStats();
         renderAccuracy();
         renderGames();
