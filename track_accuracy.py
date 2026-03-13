@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 # ── CONFIG ──────────────────────────────────────────────────────────
 # Current model start date — only grade picks locked on or after this.
 # Update this whenever the model is significantly changed.
-MODEL_START_DATE = "2026-03-13"
+MODEL_START_DATE = "2026-03-10"
 
 OUTPUT = "accuracy.json"
 SCORES_FILE = "completed_scores.json"
