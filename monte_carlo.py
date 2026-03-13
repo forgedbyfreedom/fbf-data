@@ -173,25 +173,29 @@ def build_expected_values(game):
     # ── SPORT-SPECIFIC COEFFICIENT SCALING ────────────────────────────
     # NHL is a low-scoring, tight-margin sport (stdev 2.2). Coefficients
     # tuned for basketball/football produce absurd margins in hockey.
-    # Scale all adjustments down for NHL so the model respects the puck line.
+    # NBA spreads are the most efficiently priced market in sports —
+    # Vegas already prices in Elo, injuries, rest, etc. Our adjustments
+    # double-count these factors, pushing us toward favorites (who cover ~49%).
+    # Scale adjustments down so the model doesn't override Vegas.
     is_nhl = (sport == "nhl")
+    is_nba = (sport == "nba")
 
     # ── CORE MARGIN ADJUSTMENTS ──────────────────────────────────────
 
     # Injuries
     injury_home = safe_float(game.get("injury_count_home"), 0)
     injury_away = safe_float(game.get("injury_count_away"), 0)
-    inj_w = 0.1 if is_nhl else 0.3  # NHL: injuries less impactful (deep rosters)
+    inj_w = 0.1 if is_nhl else (0.12 if is_nba else 0.3)  # NHL/NBA: Vegas already prices injuries
     injury_shift = (injury_away - injury_home) * inj_w
 
     # Rest days
     rest_diff = safe_float(game.get("rest_diff_days"), 0)
-    rest_w = 0.15 if is_nhl else 0.4  # NHL: B2B matters but not 0.4 goals
+    rest_w = 0.15 if is_nhl else (0.2 if is_nba else 0.4)  # NHL/NBA: rest impact overstated
     rest_shift = rest_diff * rest_w
 
     # Elo — the biggest offender for NHL
     elo_diff = safe_float(game.get("elo_diff"), 0)
-    elo_w = 0.005 if is_nhl else 0.03  # NHL: 300 Elo gap → 1.5 goals, not 9
+    elo_w = 0.005 if is_nhl else (0.008 if is_nba else 0.03)  # NHL/NBA: 400 Elo gap → 3.2 pts, not 12
     elo_shift = elo_diff * elo_w
 
     # H2H
@@ -203,18 +207,18 @@ def build_expected_values(game):
 
     # Travel fatigue
     travel_km = safe_float(game.get("travel_km"), 0)
-    travel_w = 0.0002 if is_nhl else 0.0005  # NHL: less travel impact
+    travel_w = 0.0002 if is_nhl else (0.0002 if is_nba else 0.0005)  # NHL/NBA: travel barely moves the needle
     travel_shift = travel_km * travel_w
 
     # ── ADVANCED MARGIN ADJUSTMENTS ──────────────────────────────────
 
     # Power ratings
     power_diff = safe_float(game.get("power_diff"), 0)
-    power_w = 0.02 if is_nhl else 0.06  # NHL: tighter power gaps
+    power_w = 0.02 if is_nhl else (0.02 if is_nba else 0.06)  # NHL/NBA: power gaps priced in
     power_shift = power_diff * power_w
 
     off_def_mismatch = safe_float(game.get("off_def_mismatch"), 0)
-    mismatch_w = 0.01 if is_nhl else 0.03
+    mismatch_w = 0.01 if is_nhl else (0.01 if is_nba else 0.03)
     mismatch_shift = off_def_mismatch * mismatch_w
 
     # Home/away splits
@@ -223,19 +227,19 @@ def build_expected_values(game):
 
     # Momentum (recent form)
     momentum_diff = safe_float(game.get("momentum_diff"), 0)
-    momentum_w = 0.01 if is_nhl else 0.03
+    momentum_w = 0.01 if is_nhl else (0.01 if is_nba else 0.03)
     momentum_shift = momentum_diff * momentum_w
 
     # Situational spots (B2B, revenge, divisional, timezone — pre-calibrated in pts)
     spot_score = safe_float(game.get("spot_score"), 0)
-    spot_w = 0.2 if is_nhl else 0.5
+    spot_w = 0.2 if is_nhl else (0.25 if is_nba else 0.5)
     spot_shift = spot_score * spot_w
 
     # Public betting fade — contrarian signal
     fade_signal = safe_float(game.get("fade_signal"), 0)
     public_home_pct = safe_float(game.get("public_home_pct"), 50)
     public_shift = 0.0
-    fade_size = 0.4 if is_nhl else 0.8
+    fade_size = 0.4 if is_nhl else (0.5 if is_nba else 0.8)
     if fade_signal >= 2:  # 70%+ public on one side
         if public_home_pct > 65:
             public_shift = -fade_size
@@ -244,7 +248,7 @@ def build_expected_values(game):
 
     # Line movement (sharp money)
     spread_delta = safe_float(game.get("spread_delta"), 0)
-    line_w = 0.15 if is_nhl else 0.3  # NHL: 0.5 puck line move is rare
+    line_w = 0.15 if is_nhl else (0.15 if is_nba else 0.3)  # NHL/NBA: line moves mostly noise
     line_shift = spread_delta * line_w
 
     # Starting pitcher / goalie quality
@@ -391,10 +395,13 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         # Vegas spreads are ~50/50 by design; our edge is small.
         base_rate = FAV_COVER_BASE.get(sport_lower, 0.49)
 
-        # NHL puck line is the most efficient market — heavier regression
+        # NHL puck line and NBA spread are the most efficient markets — heavier regression
         if sport_lower == "nhl":
             # 30% sim / 70% base rate — underdogs cover ~55%
             fav_cover_pct = raw_fav_cover * 0.30 + base_rate * 0.70
+        elif sport_lower == "nba":
+            # 35% sim / 65% base rate — NBA spreads are extremely efficient
+            fav_cover_pct = raw_fav_cover * 0.35 + base_rate * 0.65
         else:
             fav_cover_pct = raw_fav_cover * 0.50 + base_rate * 0.50
 
@@ -407,9 +414,11 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
 
         fav_cover_pct = max(0.01, min(0.99, fav_cover_pct))
 
-        # NHL ATS confidence cap — puck line is near coin-flip
+        # NHL/NBA ATS confidence cap — these markets are near coin-flip
         if sport_lower == "nhl":
             fav_cover_pct = max(0.40, min(0.60, fav_cover_pct))
+        elif sport_lower == "nba":
+            fav_cover_pct = max(0.42, min(0.58, fav_cover_pct))
 
         if fav_cover_pct >= 0.5:
             picks["ats_pick"] = fav_name
