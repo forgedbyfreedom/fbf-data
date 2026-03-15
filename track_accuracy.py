@@ -21,8 +21,8 @@ MODEL_START_DATE = "2026-03-10"
 # Per-sport override: some sports were recalibrated after the general start.
 # NHL weights were fixed on 2026-03-13, NBA weights fixed same day.
 SPORT_START_OVERRIDE = {
-    "NHL": "2026-03-13",
-    "NBA": "2026-03-13",
+    "NHL": "2026-03-14",
+    "NBA": "2026-03-14",
 }
 
 OUTPUT = "accuracy.json"
