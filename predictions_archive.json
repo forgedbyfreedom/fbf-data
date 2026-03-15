@@ -45082,6 +45082,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401810833",
+      "sport": "nba",
+      "matchup": "Detroit Pistons at Toronto Raptors",
+      "shortName": "DET @ TOR",
+      "date_utc": "2026-03-15T19:30Z",
+      "date_local": "2026-03-15 03:30 PM ET",
+      "home": "TOR",
+      "away": "DET",
+      "home_team": {
+        "id": "28",
+        "name": "Toronto Raptors",
+        "abbr": "TOR",
+        "slug": "toronto-raptors",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png"
+      },
+      "away_team": {
+        "id": "8",
+        "name": "Detroit Pistons",
+        "abbr": "DET",
+        "slug": "detroit-pistons",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png"
+      },
+      "odds": {
+        "details": "DET -3.5",
+        "spread": 3.5,
+        "total": 224.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Scotiabank Arena",
+        "city": "Toronto",
+        "state": "ON",
+        "indoor": true,
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Detroit Pistons",
+      "dog_team": "Toronto Raptors",
+      "fav_abbr": "DET",
+      "dog_abbr": "TOR",
+      "fav_spread": -3.5,
+      "dog_spread": 3.5,
+      "injury_count_home": 2,
+      "injury_count_away": 1,
+      "prediction": {
+        "projected_home_score": 109.5,
+        "projected_away_score": 115.6,
+        "projected_total": 225.1,
+        "projected_spread": -6.1,
+        "win_probability_home": 0.267,
+        "confidence": 76
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4533,
+        "away_win_pct": 0.5467,
+        "home_cover_pct": 0.5657,
+        "over_pct": 0.6008,
+        "avg_simulated_margin": -1.28,
+        "avg_simulated_total": 226.46
+      },
+      "picks": {
+        "su_pick": "Detroit Pistons",
+        "su_pick_abbr": "DET",
+        "su_confidence": 54.7,
+        "ats_pick": "Toronto Raptors",
+        "ats_pick_abbr": "TOR",
+        "ats_spread": 3.5,
+        "ats_confidence": 52.9,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 224.5,
+        "ou_confidence": 60.1,
+        "ou_high_conf": true,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
     }
   ]
 }
