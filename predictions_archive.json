@@ -46675,6 +46675,89 @@
         "has_vegas_total": true
       },
       "highlight": true
+    },
+    {
+      "id": "401803416",
+      "sport": "nhl",
+      "matchup": "Los Angeles Kings at New York Rangers",
+      "shortName": "LA @ NYR",
+      "date_utc": "2026-03-16T23:00Z",
+      "date_local": "2026-03-16 07:00 PM ET",
+      "home": "NYR",
+      "away": "LA",
+      "home_team": {
+        "id": "13",
+        "name": "New York Rangers",
+        "abbr": "NYR",
+        "slug": "new-york-rangers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png"
+      },
+      "away_team": {
+        "id": "8",
+        "name": "Los Angeles Kings",
+        "abbr": "LA",
+        "slug": "los-angeles-kings",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/la.png"
+      },
+      "odds": {
+        "details": "LA -110",
+        "spread": 1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Madison Square Garden",
+        "city": "New York",
+        "state": "NY",
+        "indoor": true,
+        "grass": false,
+        "lat": 40.7127281,
+        "lon": -74.0060152
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Los Angeles Kings",
+      "dog_team": "New York Rangers",
+      "fav_abbr": "LA",
+      "dog_abbr": "NYR",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 4,
+      "prediction": {
+        "projected_home_score": 6.5,
+        "projected_away_score": 8.0,
+        "projected_total": 14.5,
+        "projected_spread": -1.5,
+        "win_probability_home": 0.437,
+        "confidence": 63
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3924,
+        "away_win_pct": 0.6076,
+        "home_cover_pct": 0.6248,
+        "over_pct": 0.981,
+        "avg_simulated_margin": -0.69,
+        "avg_simulated_total": 8.39
+      },
+      "picks": {
+        "su_pick": "Los Angeles Kings",
+        "su_pick_abbr": "LA",
+        "su_confidence": 60.8,
+        "ats_pick": "New York Rangers",
+        "ats_pick_abbr": "NYR",
+        "ats_spread": 1.5,
+        "ats_confidence": 57.2,
+        "ats_high_conf": true,
+        "ou_pick": "Over",
+        "ou_line": 5.5,
+        "ou_confidence": 98.1,
+        "ou_high_conf": true,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
