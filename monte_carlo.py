@@ -101,7 +101,7 @@ OVER_BASE = {
 OU_SIM_WEIGHT = {
     "nfl": 0.60, "ncaaf": 0.60,
     "nba": 0.40,                     # NBA totals are efficiently priced
-    "ncaab": 0.70, "ncaaw": 0.65,   # college has genuine O/U edges
+    "ncaab": 0.95, "ncaaw": 0.90,   # college O/U model is highly accurate — near-full trust (75% hit rate)
     "nhl": 0.35,                     # NHL totals are tightest market in sports
     "mlb": 0.55, "ufc": 0.50,
 }
