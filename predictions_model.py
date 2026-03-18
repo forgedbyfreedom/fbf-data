@@ -97,14 +97,16 @@ def predict(game):
     risk = X["risk"]
 
     # WEATHER ADJUSTMENT
-    weather_penalty = (
-        (X["wind"] * 0.25) +
-        (X["rain"] * 0.15) +
-        (risk * 2.5)
-    )
-
-    if X["indoor"] == 1:
-        weather_penalty = 0
+    # NBA, NHL, NCAAB, NCAAW are always played indoors — never apply weather
+    INDOOR_SPORTS = {"nba", "nhl", "ncaab", "ncaaw"}
+    sport = (game.get("sport") or "").lower()
+    weather_penalty = 0.0
+    if sport not in INDOOR_SPORTS and X["indoor"] != 1:
+        weather_penalty = (
+            (X["wind"] * 0.25) +
+            (X["rain"] * 0.15) +
+            (risk * 2.5)
+        )
 
     adjusted_total = max(20.0, total - weather_penalty)
 

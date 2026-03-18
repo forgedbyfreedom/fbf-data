@@ -34,16 +34,16 @@ SPORT_STDEV = {
 }
 
 # Standard deviation of actual total around expected total
-# Slightly reduced from pure historical stdev to allow our adjustments
-# to produce meaningful over/under edges in the simulation
+# Values calibrated to real-world variance per sport.
+# Too-tight stdev creates false confidence; too-loose kills all signal.
 TOTAL_STDEV = {
     "nfl": 6.5,
     "ncaaf": 7.5,
-    "nba": 6.5,
+    "nba": 10.0,    # was 6.5 — real NBA total stdev ~11-12; 10 lets genuine edges survive
     "ncaab": 7.0,
-    "ncaaw": 7.0,
-    "nhl": 1.2,
-    "mlb": 2.0,
+    "ncaaw": 7.5,
+    "nhl": 1.8,     # was 1.2 — real NHL total stdev ~1.8-2.0; old value created 80%+ phantom confidence
+    "mlb": 2.5,     # was 2.0 — real MLB total stdev ~2.5-3.0
     "ufc": 0.3,
 }
 
@@ -60,10 +60,51 @@ FAV_COVER_BASE = {
     "ufc": 0.50,
 }
 
-# High-confidence threshold — picks above this are tracked as "best bets"
-# All games still get a pick, but only high-conf picks are highlighted
+# High-confidence thresholds — picks above this are tracked as "best bets"
+# All games still get a pick, but only high-conf picks are highlighted.
+# Sport-specific thresholds in _HIGH_CONF dicts; scalar is the default.
 ATS_HIGH_CONF = 0.55
 OU_HIGH_CONF = 0.53
+
+# Sport-specific high-confidence thresholds
+# Efficient markets (NBA, NHL) need higher bars to flag best bets
+ATS_HIGH_CONF_BY_SPORT = {
+    "nfl": 0.55, "ncaaf": 0.55,
+    "nba": 0.58, "nhl": 0.58,       # raise bar — these markets are near coin-flip
+    "ncaab": 0.54, "ncaaw": 0.54,   # college is less efficient, keep lower
+    "mlb": 0.55, "ufc": 0.55,
+}
+OU_HIGH_CONF_BY_SPORT = {
+    "nfl": 0.53, "ncaaf": 0.53,
+    "nba": 0.57, "nhl": 0.57,       # raise bar — was producing false best bets
+    "ncaab": 0.53, "ncaaw": 0.53,   # keep — NCAAB O/U is working at 75%
+    "mlb": 0.55, "ufc": 0.55,
+}
+
+# Historical over rate by sport — used to regress O/U simulation output
+# toward the true base rate, just like FAV_COVER_BASE does for ATS.
+# Overs hit ~49-51% historically across most sports.
+OVER_BASE = {
+    "nfl": 0.49,
+    "ncaaf": 0.50,
+    "nba": 0.50,
+    "ncaab": 0.50,
+    "ncaaw": 0.50,
+    "nhl": 0.50,
+    "mlb": 0.50,
+    "ufc": 0.50,
+}
+
+# O/U regression blend: how much to trust sim vs historical base rate
+# 1.0 = pure simulation, 0.0 = always pick 50/50
+# Efficient markets get heavier regression (less sim trust)
+OU_SIM_WEIGHT = {
+    "nfl": 0.60, "ncaaf": 0.60,
+    "nba": 0.40,                     # NBA totals are efficiently priced
+    "ncaab": 0.70, "ncaaw": 0.65,   # college has genuine O/U edges
+    "nhl": 0.35,                     # NHL totals are tightest market in sports
+    "mlb": 0.55, "ufc": 0.50,
+}
 
 
 def safe_float(x, default=0.0):
@@ -263,30 +304,37 @@ def build_expected_values(game):
     # ── TOTAL ADJUSTMENTS ────────────────────────────────────────────
 
     # Weather (outdoor sports only) — strong O/U signal
+    # NBA, NHL, NCAAB, NCAAW are always played indoors — never apply weather
+    INDOOR_SPORTS = {"nba", "nhl", "ncaab", "ncaaw"}
     venue = game.get("venue") or {}
     weather = game.get("weather") or {}
     risk = game.get("weatherRisk") or {}
     weather_penalty = 0.0
-    if not venue.get("indoor"):
+    if sport not in INDOOR_SPORTS and not venue.get("indoor"):
         wind = safe_float(weather.get("windSpeedMph"), 0)
         rain = safe_float(weather.get("rainChancePct"), 0)
         risk_score = safe_float(risk.get("risk"), 0)
         weather_penalty = wind * 0.35 + rain * 0.15 + risk_score * 3.0
 
-    # Referee over/under bias — amplified
-    ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * 2.5
+    # Referee over/under bias — sport-specific amplification
+    # NHL/NBA: refs barely move totals in efficient markets; college has more signal
+    ref_over_multiplier = {"nhl": 0.8, "nba": 1.0, "ncaab": 2.5, "ncaaw": 2.5,
+                           "nfl": 2.5, "ncaaf": 2.5, "mlb": 1.5}
+    ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * ref_over_multiplier.get(sport, 2.0)
 
-    # Pace — THE primary O/U signal
+    # Pace — O/U signal from historical team scoring averages
     # pace_avg = avg combined points of both teams historically
     # When pace_avg diverges from total_line, that's our edge
+    # BUT: Vegas already prices pace into efficient markets (NBA, NHL).
+    # Reduce weight for those sports to avoid double-counting.
     pace_avg = safe_float(game.get("pace_avg"), 0)
     pace_shift = 0.0
     if pace_avg > 0 and total_line is not None and total_line > 0:
         pace_gap = pace_avg - total_line
-        # Scale pace weight by sport (larger impact in lower-scoring sports)
-        pace_weights = {"nhl": 0.60, "mlb": 0.50, "nfl": 0.45, "ncaaf": 0.45,
-                        "nba": 0.35, "ncaab": 0.35, "ncaaw": 0.35}
-        pace_w = pace_weights.get(sport, 0.40)
+        pace_weights = {"nhl": 0.20, "nba": 0.15,       # was 0.60/0.35 — Vegas prices pace
+                        "mlb": 0.40, "nfl": 0.45, "ncaaf": 0.45,
+                        "ncaab": 0.35, "ncaaw": 0.35}   # college: keep — less efficient
+        pace_w = pace_weights.get(sport, 0.35)
         pace_shift = pace_gap * pace_w
 
     # Total line movement (sharp money on totals)
@@ -431,9 +479,10 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             picks["ats_spread"] = dog_spread
             picks["ats_confidence"] = round((1 - fav_cover_pct) * 100, 1)
 
-        # High confidence flag
+        # High confidence flag — sport-specific thresholds
         ats_conf = picks["ats_confidence"] / 100.0
-        picks["ats_high_conf"] = ats_conf >= ATS_HIGH_CONF
+        ats_threshold = ATS_HIGH_CONF_BY_SPORT.get(sport_lower, ATS_HIGH_CONF)
+        picks["ats_high_conf"] = ats_conf >= ats_threshold
     else:
         # No real spread — skip ATS entirely (no fake picks)
         picks["ats_pick"] = None
@@ -443,20 +492,34 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         picks["ats_high_conf"] = False
 
     # --- O/U PICK ---
+    # Mirrors ATS regression logic: blend simulation output toward historical
+    # base rate to prevent overconfident picks in efficient markets.
     over_pct = sim_result.get("over_pct")
     if over_pct is not None and has_vegas_total:
-        if over_pct >= 0.5:
+        # REGRESSION: blend simulation toward historical over base rate
+        base_over = OVER_BASE.get(sport_lower, 0.50)
+        sim_weight = OU_SIM_WEIGHT.get(sport_lower, 0.55)
+        regressed_over = over_pct * sim_weight + base_over * (1.0 - sim_weight)
+
+        # NHL/NBA O/U confidence cap — these markets are near coin-flip
+        if sport_lower == "nhl":
+            regressed_over = max(0.42, min(0.58, regressed_over))
+        elif sport_lower == "nba":
+            regressed_over = max(0.43, min(0.57, regressed_over))
+
+        if regressed_over >= 0.5:
             picks["ou_pick"] = "Over"
             picks["ou_line"] = total_line
-            picks["ou_confidence"] = round(over_pct * 100, 1)
+            picks["ou_confidence"] = round(regressed_over * 100, 1)
         else:
             picks["ou_pick"] = "Under"
             picks["ou_line"] = total_line
-            picks["ou_confidence"] = round((1 - over_pct) * 100, 1)
+            picks["ou_confidence"] = round((1 - regressed_over) * 100, 1)
 
-        # High confidence flag
+        # High confidence flag — sport-specific thresholds
         ou_conf = picks["ou_confidence"] / 100.0
-        picks["ou_high_conf"] = ou_conf >= OU_HIGH_CONF
+        ou_threshold = OU_HIGH_CONF_BY_SPORT.get(sport_lower, OU_HIGH_CONF)
+        picks["ou_high_conf"] = ou_conf >= ou_threshold
     else:
         # No real total line — skip O/U entirely
         picks["ou_pick"] = None

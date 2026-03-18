@@ -16,14 +16,13 @@ from datetime import datetime, timezone
 # ── CONFIG ──────────────────────────────────────────────────────────
 # Current model start date — only grade picks locked on or after this.
 # Update this whenever the model is significantly changed.
-MODEL_START_DATE = "2026-03-10"
+MODEL_START_DATE = "2026-03-19"
 
 # Per-sport override: some sports were recalibrated after the general start.
-# NHL weights were fixed on 2026-03-13, NBA weights fixed same day.
-SPORT_START_OVERRIDE = {
-    "NHL": "2026-03-14",
-    "NBA": "2026-03-14",
-}
+# v3 (2026-03-19): Full sport-specific modeling — TOTAL_STDEV recalibrated,
+# O/U regression added, pace/ref weights dampened for NBA/NHL, indoor sports
+# hardcoded to skip weather. Previous overrides no longer needed.
+SPORT_START_OVERRIDE = {}
 
 OUTPUT = "accuracy.json"
 SCORES_FILE = "completed_scores.json"
