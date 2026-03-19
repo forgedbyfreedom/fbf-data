@@ -40,84 +40,88 @@
     .page-shell {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 32px 24px 48px;
     }
 
-    /* HERO HEADER (unchanged) */
+    /* ── HERO ── */
     .hero {
       text-align: center;
-      margin-bottom: 16px;
+      padding: 40px 0 32px;
+      margin-bottom: 0;
     }
 
     .hero-kicker {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .hero-provided {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
     .hero-title {
-      font-size: 1.9rem;
+      font-size: 2.4rem;
       line-height: 1.1;
-      margin: 0;
+      margin: 0 0 12px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: #ffedd5;
+      font-weight: 900;
       text-shadow:
         0 0 16px rgba(249, 115, 22, 0.75),
         0 0 40px rgba(249, 115, 22, 0.95);
     }
 
     .hero-tagline {
-      margin-top: 8px;
-      margin-bottom: 12px;
-      font-size: 0.95rem;
+      margin: 0 0 20px;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.35em;
       color: #fed7aa;
+      font-weight: 600;
       text-shadow:
         0 0 12px rgba(249, 115, 22, 0.7),
         0 0 26px rgba(249, 115, 22, 0.8);
     }
 
     .hero-sub {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
-      margin: 2px 0;
+      margin: 0 0 6px;
+      line-height: 1.6;
     }
 
     .hero-disclaimer {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 6px;
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 10px;
+      font-style: italic;
     }
 
-    /* ACCURACY TRACKER HEADER */
+    /* ── ACCURACY TRACKER ── */
     .accuracy-wrap {
       text-align: center;
-      margin: 10px auto 22px;
+      margin: 0 auto 32px;
       max-width: 680px;
+      padding: 20px 24px;
+      background: rgba(15, 23, 42, 0.4);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.12);
     }
 
     .accuracy-title {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.22em;
       color: #fed7aa;
-      margin-bottom: 4px;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .accuracy-line {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      margin: 2px 0;
+      margin: 4px 0;
+      line-height: 1.6;
     }
 
     .accuracy-line span.label {
@@ -151,49 +155,53 @@
       margin-right: 6px;
     }
 
-    /* STATS BAR */
+    /* ── STATS BAR ── */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 16px;
+      margin-bottom: 28px;
     }
 
     .stat-card {
       background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.09), rgba(15, 23, 42, 0.98));
       border-radius: 14px;
-      padding: 10px 14px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 16px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
 
     .stat-label {
       font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       color: var(--text-muted);
+      font-weight: 600;
     }
 
     .stat-value {
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-size: 1.4rem;
+      font-weight: 800;
       color: #fef3c7;
     }
 
     .stat-sub {
       font-size: 0.7rem;
       color: var(--text-muted);
+      line-height: 1.4;
     }
 
-    /* FILTERS */
+    /* ── FILTERS ── */
     .filters-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
     }
 
     .filters-label {
@@ -235,22 +243,22 @@
       color: var(--text-muted);
     }
 
-    /* GRID + CARDS */
+    /* ── GRID + CARDS ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
     }
 
     .game-card {
       background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #020617);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
-      padding: 14px 14px 12px;
+      padding: 18px 18px 14px;
       box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       position: relative;
       overflow: hidden;
     }
@@ -607,41 +615,41 @@
       background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(15,23,42,0.95));
       border: 1px solid rgba(249,115,22,0.2);
       border-radius: 16px;
-      padding: 24px 28px;
-      margin-bottom: 20px;
+      padding: 32px 36px;
+      margin-bottom: 32px;
       text-align: center;
     }
     .intro-card h2 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #FF6A00;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin: 0 0 8px;
+      letter-spacing: 0.12em;
+      margin: 0 0 16px;
     }
     .intro-card p {
       font-size: 0.85rem;
       color: #d1d5db;
-      line-height: 1.7;
+      line-height: 1.8;
       margin: 0 auto;
-      max-width: 700px;
+      max-width: 720px;
     }
-    .intro-card p + p { margin-top: 10px; }
+    .intro-card p + p { margin-top: 14px; }
     .intro-card .highlight { color: #FF6A00; font-weight: 700; }
 
     .protocol-pills {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
-      margin-top: 14px;
+      gap: 10px;
+      margin-top: 20px;
     }
     .protocol-pill {
-      font-size: 0.7rem;
-      padding: 4px 12px;
+      font-size: 0.68rem;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(249,115,22,0.12);
-      border: 1px solid rgba(249,115,22,0.3);
+      background: rgba(249,115,22,0.10);
+      border: 1px solid rgba(249,115,22,0.25);
       color: #fed7aa;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -650,21 +658,24 @@
 
     .disclaimer-bar {
       text-align: center;
-      padding: 14px 16px;
+      padding: 24px 20px;
       font-size: 0.72rem;
       color: #6b7280;
-      line-height: 1.6;
+      line-height: 1.7;
       border-top: 1px solid rgba(148,163,184,0.1);
-      margin-top: 32px;
+      margin-top: 40px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .disclaimer-bar strong { color: #9ca3af; }
     .disclaimer-bar a { color: #FF6A00; }
 
     .footer-brand {
       text-align: center;
-      padding: 24px 16px 40px;
+      padding: 36px 16px 48px;
       border-top: 1px solid rgba(249,115,22,0.15);
-      margin-top: 12px;
+      margin-top: 20px;
     }
     .footer-logo {
       display: inline-block;
@@ -726,21 +737,47 @@
 
     @media (max-width: 768px) {
       .page-shell {
-        padding: 18px 12px 32px;
+        padding: 20px 14px 36px;
+      }
+      .hero {
+        padding: 28px 0 24px;
       }
       .hero-title {
-        font-size: 1.5rem;
-        letter-spacing: 0.14em;
+        font-size: 1.6rem;
+        letter-spacing: 0.12em;
       }
       .hero-tagline {
-        font-size: 0.85rem;
-        letter-spacing: 0.22em;
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+      }
+      .intro-card {
+        padding: 24px 18px;
+        margin-bottom: 24px;
+      }
+      .intro-card p {
+        font-size: 0.82rem;
+      }
+      .protocol-pills {
+        gap: 6px;
+      }
+      .accuracy-wrap {
+        padding: 16px 14px;
+        margin-bottom: 24px;
       }
       .stats-row {
         grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
       .picks-strip {
         grid-template-columns: 1fr;
+      }
+      .footer-brand {
+        padding: 28px 14px 36px;
       }
     }
   </style>
