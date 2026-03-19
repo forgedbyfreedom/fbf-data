@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <title>Forged By Freedom • Live Odds & Picks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free sports picks powered by 10,000 Monte Carlo simulations per game. Updated every 30 minutes. For entertainment purposes only." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-main: #020617;
@@ -26,11 +29,13 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
       color: var(--text-main);
       min-height: 100vh;
     }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .page-shell {
       max-width: 1200px;
@@ -585,6 +590,140 @@
       text-align: center;
     }
 
+    /* ── BRANDING SECTIONS ── */
+    .brand-banner {
+      text-align: center;
+      padding: 10px 16px;
+      background: linear-gradient(90deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05), rgba(249,115,22,0.15));
+      border-bottom: 1px solid rgba(249,115,22,0.2);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fed7aa;
+    }
+    .brand-banner a { color: #FF6A00; font-weight: 700; }
+
+    .intro-card {
+      background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(15,23,42,0.95));
+      border: 1px solid rgba(249,115,22,0.2);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .intro-card h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #FF6A00;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 0 0 8px;
+    }
+    .intro-card p {
+      font-size: 0.85rem;
+      color: #d1d5db;
+      line-height: 1.7;
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    .intro-card p + p { margin-top: 10px; }
+    .intro-card .highlight { color: #FF6A00; font-weight: 700; }
+
+    .protocol-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .protocol-pill {
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(249,115,22,0.12);
+      border: 1px solid rgba(249,115,22,0.3);
+      color: #fed7aa;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .disclaimer-bar {
+      text-align: center;
+      padding: 14px 16px;
+      font-size: 0.72rem;
+      color: #6b7280;
+      line-height: 1.6;
+      border-top: 1px solid rgba(148,163,184,0.1);
+      margin-top: 32px;
+    }
+    .disclaimer-bar strong { color: #9ca3af; }
+    .disclaimer-bar a { color: #FF6A00; }
+
+    .footer-brand {
+      text-align: center;
+      padding: 24px 16px 40px;
+      border-top: 1px solid rgba(249,115,22,0.15);
+      margin-top: 12px;
+    }
+    .footer-logo {
+      display: inline-block;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #FF6A00, #ff8c33);
+      color: #0a0a0a;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 48px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .footer-brand h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #fff;
+      margin: 0 0 4px;
+    }
+    .footer-brand .footer-tag {
+      font-size: 0.75rem;
+      color: #FF6A00;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 8px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 14px;
+      font-size: 0.78rem;
+    }
+    .footer-links a {
+      color: #FF6A00;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .footer-legal {
+      margin-top: 18px;
+      font-size: 0.68rem;
+      color: #4b5563;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     @media (max-width: 768px) {
       .page-shell {
         padding: 18px 12px 32px;
@@ -607,36 +746,66 @@
   </style>
 </head>
 <body>
+  <!-- TOP BANNER -->
+  <div class="brand-banner">
+    For Entertainment Purposes Only &bull; Powered by the <a href="https://forgedbyfreedom.org">FBF Protocol</a> &bull; Updated Every 30 Minutes
+  </div>
+
   <div class="page-shell">
-    <!-- HERO (unchanged) -->
+    <!-- HERO -->
     <section class="hero">
-      <p class="hero-kicker">LIVE ODDS + PICKS UPDATED EVERY 30 MINUTES • FOR ENTERTAINMENT ONLY</p>
-      <p class="hero-provided">Provided to you by ForgedByFreedom.org</p>
-      <h1 class="hero-title">FORGED BY FREEDOM STRENGTH &amp; NUTRITION</h1>
-      <p class="hero-tagline">STRENGTH • DISCIPLINE • FREEDOM</p>
-      <p class="hero-sub">Visit us for all your fitness, nutrition and supplement program needs.</p>
-      <p class="hero-disclaimer">No gambling advice. This dashboard is for informational and entertainment use only.</p>
+      <p class="hero-kicker">March Madness 2026 &bull; Live Picks &bull; For Entertainment Only</p>
+      <h1 class="hero-title">FORGED BY FREEDOM</h1>
+      <p class="hero-tagline">STRENGTH &bull; DISCIPLINE &bull; FREEDOM</p>
+      <p class="hero-sub">Custom coaching &bull; Nutrition protocols &bull; Supplement programs &bull; <a href="https://forgedbyfreedom.org">forgedbyfreedom.org</a></p>
+      <p class="hero-disclaimer">This dashboard is for informational and entertainment purposes only. Not gambling advice.</p>
     </section>
 
-    <!-- ACCURACY TRACKER HEADER -->
+    <!-- MARCH MADNESS INTRO -->
+    <section class="intro-card">
+      <h2>The FBF Sports Picking Agent</h2>
+      <p>
+        With March Madness tipping off, we wanted to share something we've been building behind the scenes.
+        Our prediction engine analyzes <span class="highlight">30+ data features</span> per game — Elo ratings, pace of play,
+        referee tendencies, injury reports, sharp money signals, head-to-head history, momentum, and more —
+        then runs <span class="highlight">10,000 Monte Carlo simulations</span> per matchup to generate picks across
+        Straight Up, Against the Spread, and Over/Under.
+      </p>
+      <p>
+        Every adjustment is calibrated per sport. The same discipline we bring to the
+        <span class="highlight">FBF Protocol</span> — data-driven, no guesswork, no shortcuts — we bring here.
+        Even the pros at Forged by Freedom know when it's time to step away and take a break.
+        Enjoy the games. Stay disciplined. And remember: this is entertainment, not financial advice.
+      </p>
+      <div class="protocol-pills">
+        <span class="protocol-pill">10K Sims / Game</span>
+        <span class="protocol-pill">30+ Features</span>
+        <span class="protocol-pill">300+ Refs Profiled</span>
+        <span class="protocol-pill">8 Sports</span>
+        <span class="protocol-pill">Sport-Specific Modeling</span>
+        <span class="protocol-pill">Updated Every 30 Min</span>
+      </div>
+    </section>
+
+    <!-- ACCURACY TRACKER -->
     <section class="accuracy-wrap">
       <div class="accuracy-title">Accuracy Tracker</div>
       <div class="accuracy-line" id="acc-overall-line">
         <span class="label">All Picks</span>
-        <span class="metric">SU: <span class="value" id="acc-overall-su">--%</span> <span class="record" id="acc-overall-su-rec"></span></span> •
-        <span class="metric">ATS: <span class="value" id="acc-overall-ats">--%</span> <span class="record" id="acc-overall-ats-rec"></span></span> •
+        <span class="metric">SU: <span class="value" id="acc-overall-su">--%</span> <span class="record" id="acc-overall-su-rec"></span></span> &bull;
+        <span class="metric">ATS: <span class="value" id="acc-overall-ats">--%</span> <span class="record" id="acc-overall-ats-rec"></span></span> &bull;
         <span class="metric">O/U: <span class="value" id="acc-overall-ou">--%</span> <span class="record" id="acc-overall-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-high-line">
         <span class="label" style="color:#FF6A00;">Best Bets</span>
-        <span class="metric">ATS: <span class="value" id="acc-high-ats">--%</span> <span class="record" id="acc-high-ats-rec"></span></span> •
+        <span class="metric">ATS: <span class="value" id="acc-high-ats">--%</span> <span class="record" id="acc-high-ats-rec"></span></span> &bull;
         <span class="metric">O/U: <span class="value" id="acc-high-ou">--%</span> <span class="record" id="acc-high-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-graded-line" style="font-size:0.76rem;"></div>
       <div class="accuracy-line" id="acc-sport-line" style="display:none;">
         <span class="sport-name" id="acc-sport-name"></span>
-        <span class="metric">SU: <span class="value" id="acc-sport-su">--%</span> <span class="record" id="acc-sport-su-rec"></span></span> •
-        <span class="metric">ATS: <span class="value" id="acc-sport-ats">--%</span> <span class="record" id="acc-sport-ats-rec"></span></span> •
+        <span class="metric">SU: <span class="value" id="acc-sport-su">--%</span> <span class="record" id="acc-sport-su-rec"></span></span> &bull;
+        <span class="metric">ATS: <span class="value" id="acc-sport-ats">--%</span> <span class="record" id="acc-sport-ats-rec"></span></span> &bull;
         <span class="metric">O/U: <span class="value" id="acc-sport-ou">--%</span> <span class="record" id="acc-sport-ou-rec"></span></span>
       </div>
       <div class="accuracy-line" id="acc-since-line" style="font-size:0.76rem;"></div>
@@ -647,17 +816,17 @@
       <div class="stat-card">
         <div class="stat-label">Total Games</div>
         <div class="stat-value" id="stat-total-games">0</div>
-        <div class="stat-sub">Across NFL, NCAAF, NBA, NCAAB, NCAAW, NHL, MLB, UFC</div>
+        <div class="stat-sub">NFL &bull; NCAAF &bull; NBA &bull; NCAAB &bull; NCAAW &bull; NHL &bull; MLB &bull; UFC</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">High-Confidence Picks</div>
+        <div class="stat-label">Best Bets</div>
         <div class="stat-value" id="stat-high-confidence">0</div>
-        <div class="stat-sub">Cards with ≥ 80% confidence in any pick</div>
+        <div class="stat-sub">Games where the FBF Protocol sees genuine edge</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Games With Picks</div>
         <div class="stat-value" id="stat-with-picks">0</div>
-        <div class="stat-sub">Straight Up, ATS, or Totals picks</div>
+        <div class="stat-sub">Straight Up, Against the Spread, or Over/Under</div>
       </div>
     </section>
 
@@ -676,11 +845,43 @@
       <div class="filters-meta" id="last-updated"></div>
     </section>
 
-    <!-- GRID -->
+    <!-- GAME CARDS GRID -->
     <section id="games-grid" class="grid"></section>
     <div id="no-games" class="no-games" style="display:none;">
       No games available for this filter. Check back after the next 30-minute update.
     </div>
+
+    <!-- BOTTOM DISCLAIMER -->
+    <div class="disclaimer-bar">
+      <strong>For Entertainment Purposes Only.</strong> All picks and predictions on this page are generated by an automated model
+      for informational and entertainment use. Nothing here constitutes gambling advice or a recommendation to wager.
+      Past performance does not guarantee future results. If you or someone you know has a gambling problem,
+      call <strong>1-800-522-4700</strong>.
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-brand">
+      <div class="footer-logo">FBF</div>
+      <h3>Forged by Freedom</h3>
+      <div class="footer-tag">Strength &bull; Discipline &bull; Freedom</div>
+      <p>
+        The same data-driven discipline behind the FBF Protocol powers these picks.
+        No guesswork. No shortcuts. Just the math.
+      </p>
+      <p>
+        Ready to transform your body? Custom coaching programs, nutrition protocols,
+        meal plans, and supplement stacks — built for you.
+      </p>
+      <div class="footer-links">
+        <a href="https://forgedbyfreedom.org">forgedbyfreedom.org</a>
+        <a href="https://data.forgedbyfreedom.org">Live Picks</a>
+      </div>
+      <div class="footer-legal">
+        &copy; 2026 Forged by Freedom. All rights reserved.
+        This dashboard is provided for entertainment purposes only. No gambling advice is offered or implied.
+        Sports outcomes are inherently unpredictable. Bet responsibly.
+      </div>
+    </footer>
   </div>
 
   <script>
