@@ -1171,11 +1171,10 @@
       }
 
       const hasPrediction = !!pred;
-      const highConfidence =
-        !!pred?.highlight ||
-        (suConf !== null && suConf >= 80) ||
-        (atsConf !== null && atsConf >= 80) ||
-        (totalConf !== null && totalConf >= 80);
+      // BEST BET card highlight comes ONLY from the backend's highlight flag.
+      // The backend applies strict thresholds (SU >= 90% + high-conf ATS/O/U).
+      // Do NOT re-derive it from confidence numbers here — that inflates best bets.
+      const highConfidence = !!pred?.highlight;
 
       const injuries = extractInjurySummary(game, pred);
       const refsInfo = extractRefInfo(game, pred);
