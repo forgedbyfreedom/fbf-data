@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-03-19T01:55:51.566094+00:00",
+  "timestamp": "2026-03-19T03:18:56.226053+00:00",
   "model_start": "2026-03-19",
-  "predictions_graded": 1,
+  "predictions_graded": 7,
   "sports": {
     "ALL": {
-      "SU_pct": 100.0,
-      "SU_record": "1-0",
-      "SU_total": 1,
-      "ATS_pct": 100.0,
-      "ATS_record": "1-0-0",
-      "ATS_total": 1,
-      "OU_pct": 100.0,
-      "OU_record": "1-0-0",
-      "OU_total": 1
+      "SU_pct": 57.1,
+      "SU_record": "4-3",
+      "SU_total": 7,
+      "ATS_pct": 57.1,
+      "ATS_record": "4-3-0",
+      "ATS_total": 7,
+      "OU_pct": 57.1,
+      "OU_record": "4-3-0",
+      "OU_total": 7
     },
     "NFL": {
       "SU_pct": 0,
@@ -37,8 +37,19 @@
       "OU_total": 0
     },
     "NBA": {
-      "SU_pct": 100.0,
-      "SU_record": "1-0",
+      "SU_pct": 60.0,
+      "SU_record": "3-2",
+      "SU_total": 5,
+      "ATS_pct": 60.0,
+      "ATS_record": "3-2-0",
+      "ATS_total": 5,
+      "OU_pct": 40.0,
+      "OU_record": "2-3-0",
+      "OU_total": 5
+    },
+    "NCAAB": {
+      "SU_pct": 0.0,
+      "SU_record": "0-1",
       "SU_total": 1,
       "ATS_pct": 100.0,
       "ATS_record": "1-0-0",
@@ -47,27 +58,16 @@
       "OU_record": "1-0-0",
       "OU_total": 1
     },
-    "NCAAB": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
-      "ATS_pct": 0,
-      "ATS_record": "0-0-0",
-      "ATS_total": 0,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
-    },
     "NCAAW": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
-      "ATS_pct": 0,
-      "ATS_record": "0-0-0",
-      "ATS_total": 0,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "SU_pct": 100.0,
+      "SU_record": "1-0",
+      "SU_total": 1,
+      "ATS_pct": 0.0,
+      "ATS_record": "0-1-0",
+      "ATS_total": 1,
+      "OU_pct": 100.0,
+      "OU_record": "1-0-0",
+      "OU_total": 1
     },
     "NHL": {
       "SU_pct": 0,
@@ -94,15 +94,15 @@
   },
   "high_confidence": {
     "ALL": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
-      "ATS_pct": 0,
-      "ATS_record": "0-0-0",
-      "ATS_total": 0,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "SU_pct": 50.0,
+      "SU_record": "1-1",
+      "SU_total": 2,
+      "ATS_pct": 100.0,
+      "ATS_record": "1-0-0",
+      "ATS_total": 1,
+      "OU_pct": 100.0,
+      "OU_record": "2-0-0",
+      "OU_total": 2
     },
     "NFL": {
       "SU_pct": 0,
@@ -138,26 +138,26 @@
       "OU_total": 0
     },
     "NCAAB": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
-      "ATS_pct": 0,
-      "ATS_record": "0-0-0",
-      "ATS_total": 0,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "SU_pct": 0.0,
+      "SU_record": "0-1",
+      "SU_total": 1,
+      "ATS_pct": 100.0,
+      "ATS_record": "1-0-0",
+      "ATS_total": 1,
+      "OU_pct": 100.0,
+      "OU_record": "1-0-0",
+      "OU_total": 1
     },
     "NCAAW": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
+      "SU_pct": 100.0,
+      "SU_record": "1-0",
+      "SU_total": 1,
       "ATS_pct": 0,
       "ATS_record": "0-0-0",
       "ATS_total": 0,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "OU_pct": 100.0,
+      "OU_record": "1-0-0",
+      "OU_total": 1
     },
     "NHL": {
       "SU_pct": 0,
@@ -184,6 +184,17 @@
   },
   "results": [
     {
+      "id": "401810857",
+      "sport": "NBA",
+      "date": "2026-03-19T00:00Z",
+      "matchup": "Toronto Raptors at Chicago Bulls",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
       "id": "401810859",
       "sport": "NBA",
       "date": "2026-03-19T00:00Z",
@@ -193,6 +204,61 @@
       "ou": "W",
       "ou_best_bet": false,
       "su": "W"
+    },
+    {
+      "id": "401810860",
+      "sport": "NBA",
+      "date": "2026-03-19T00:00Z",
+      "matchup": "LA Clippers at New Orleans Pelicans",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401810861",
+      "sport": "NBA",
+      "date": "2026-03-19T00:30Z",
+      "matchup": "Atlanta Hawks at Dallas Mavericks",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858693",
+      "sport": "NBA",
+      "date": "2026-03-19T00:30Z",
+      "matchup": "Denver Nuggets at Memphis Grizzlies",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401859470",
+      "sport": "NCAAW",
+      "date": "2026-03-19T01:00Z",
+      "matchup": "Stephen F. Austin Ladyjacks at Missouri State Lady Bears",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": true,
+      "su": "W"
+    },
+    {
+      "id": "401856436",
+      "sport": "NCAAB",
+      "date": "2026-03-19T01:15Z",
+      "matchup": "Miami (OH) RedHawks at SMU Mustangs",
+      "ats": "W",
+      "ats_best_bet": true,
+      "ou": "W",
+      "ou_best_bet": true,
+      "su": "L"
     }
   ]
 }
