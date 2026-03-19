@@ -262,7 +262,7 @@ def main():
         has_ats_best = picks_data.get("ats_high_conf", False)
         has_ou_best = picks_data.get("ou_high_conf", False)
         su_conf = picks_data.get("su_confidence") or 0
-        if su_conf >= 90 and (has_ats_best or has_ou_best):
+        if su_conf >= 75 and (has_ats_best or has_ou_best):
             result["highlight"] = True
 
         output["predictions"].append(result)

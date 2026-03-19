@@ -922,9 +922,12 @@
   </div>
 
   <script>
-    const MAX_CONF_SU = 95;
-    const MAX_CONF_ATS = 90;
-    const MAX_CONF_TOTAL = 90;
+    // Display caps — confidence shown on cards should feel rare and earned.
+    // 80%+ should be uncommon, 75%+ should stand out.
+    // Display caps — confidence should feel earned, not inflated.
+    const MAX_CONF_SU = 78;
+    const MAX_CONF_ATS = 68;
+    const MAX_CONF_TOTAL = 65;
     const TRACKING_START = "2026-03-10";
 
     const state = {

@@ -63,23 +63,25 @@ FAV_COVER_BASE = {
 # High-confidence thresholds — picks above this get "BEST BET" badge.
 # These should be RARE: 1-3 per day across all sports. Every game still
 # gets a pick with confidence %, but the badge means we see genuine edge.
-ATS_HIGH_CONF = 0.65
-OU_HIGH_CONF = 0.62
+# NOTE: Confidence values are now compressed (SU 0.56x, ATS 0.36x, O/U 0.30x).
+# Thresholds must account for compression. A "58% ATS" post-compression means
+# the raw simulation had ~72% confidence — that IS a strong signal.
+ATS_HIGH_CONF = 0.59
+OU_HIGH_CONF = 0.57
 
-# Sport-specific high-confidence thresholds
-# Best Bets should be RARE: 1-3 per day across all sports combined.
-# March Madness has tons of lopsided matchups — raise bars to keep it selective.
+# Sport-specific thresholds (post-compression values)
+# With ATS compressed to 50-68% range, 59% = top ~5% of picks
 ATS_HIGH_CONF_BY_SPORT = {
-    "nfl": 0.65, "ncaaf": 0.65,
-    "nba": 0.70, "nhl": 0.70,       # pro markets: best bet is near-impossible
-    "ncaab": 0.85, "ncaaw": 0.85,   # college: March Madness floods mismatches, be very selective
-    "mlb": 0.65, "ufc": 0.70,
+    "nfl": 0.59, "ncaaf": 0.59,
+    "nba": 0.60, "nhl": 0.60,
+    "ncaab": 0.595, "ncaaw": 0.595,
+    "mlb": 0.59, "ufc": 0.59,
 }
 OU_HIGH_CONF_BY_SPORT = {
-    "nfl": 0.62, "ncaaf": 0.62,
-    "nba": 0.65, "nhl": 0.65,       # pro markets: near-impossible to flag
-    "ncaab": 0.70, "ncaaw": 0.70,   # college O/U: only flag genuine outliers
-    "mlb": 0.62, "ufc": 0.65,
+    "nfl": 0.57, "ncaaf": 0.57,
+    "nba": 0.58, "nhl": 0.58,
+    "ncaab": 0.57, "ncaaw": 0.57,
+    "mlb": 0.57, "ufc": 0.57,
 }
 
 # Historical over rate by sport — used to regress O/U simulation output
@@ -419,15 +421,24 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         fav_is_home = True
 
     # --- SU PICK: who wins straight up ---
+    # Compress SU confidence into a tighter, more realistic range.
+    # Raw sim: 50-100% → Display: 50-78%. This preserves relative ordering
+    # (better teams still show higher confidence) without inflating numbers.
+    # Formula: display = 50 + (raw - 50) * 0.56  →  90% raw = 72.4%, 80% raw = 66.8%
+    SU_COMPRESS = 0.56
+    SU_FLOOR = 50.0
     home_win_pct = sim_result["home_win_pct"]
+    raw_conf = max(home_win_pct, 1 - home_win_pct) * 100
+    display_conf = round(SU_FLOOR + (raw_conf - SU_FLOOR) * SU_COMPRESS, 1)
+
     if home_win_pct >= 0.5:
         picks["su_pick"] = home_name
         picks["su_pick_abbr"] = home_abbr
-        picks["su_confidence"] = round(home_win_pct * 100, 1)
+        picks["su_confidence"] = display_conf
     else:
         picks["su_pick"] = away_name
         picks["su_pick_abbr"] = away_abbr
-        picks["su_confidence"] = round((1 - home_win_pct) * 100, 1)
+        picks["su_confidence"] = display_conf
 
     # --- ATS PICK: who covers the spread ---
     # Only make ATS picks when a real Vegas spread exists
@@ -461,12 +472,17 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             big_spread_adj = (abs_spread - 7) * 0.005
             fav_cover_pct -= big_spread_adj
 
-        # Big spread dampener for college: 20+ point spreads are coin-flips ATS.
-        # March Madness 1-vs-16 games are wildly unpredictable against the spread.
-        # Pull confidence toward 50% as spread grows beyond 15.
-        if sport_lower in ("ncaab", "ncaaw", "ncaaf") and abs_spread > 15:
-            dampen = min(0.4, (abs_spread - 15) * 0.03)  # up to 40% pull toward 0.5
-            fav_cover_pct = fav_cover_pct * (1 - dampen) + 0.5 * dampen
+        # Big spread dampener: large spreads are unpredictable ATS regardless
+        # of what the simulation thinks. A 30-point spread doesn't mean 90% cover.
+        # Pull aggressively toward 50% as spread grows.
+        if abs_spread > 10:
+            if sport_lower in ("ncaab", "ncaaw", "ncaaf"):
+                # College: huge tournament mismatches are near coin-flips ATS
+                dampen = min(0.75, (abs_spread - 10) * 0.025)
+            else:
+                # Pro: large spreads still unpredictable
+                dampen = min(0.50, (abs_spread - 10) * 0.02)
+            fav_cover_pct = fav_cover_pct * (1 - dampen) + 0.50 * dampen
 
         fav_cover_pct = max(0.01, min(0.99, fav_cover_pct))
 
@@ -476,16 +492,22 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         elif sport_lower == "nba":
             fav_cover_pct = max(0.42, min(0.58, fav_cover_pct))
 
+        # Compress ATS confidence: spreads are near coin-flips by design.
+        # Raw 50-100% → Display 50-68%. Preserves ordering, kills inflation.
+        ATS_COMPRESS = 0.36
+        raw_ats = max(fav_cover_pct, 1 - fav_cover_pct) * 100
+        display_ats = round(50.0 + (raw_ats - 50.0) * ATS_COMPRESS, 1)
+
         if fav_cover_pct >= 0.5:
             picks["ats_pick"] = fav_name
             picks["ats_pick_abbr"] = f_abbr
             picks["ats_spread"] = fav_spread
-            picks["ats_confidence"] = round(fav_cover_pct * 100, 1)
+            picks["ats_confidence"] = display_ats
         else:
             picks["ats_pick"] = dog_name
             picks["ats_pick_abbr"] = d_abbr
             picks["ats_spread"] = dog_spread
-            picks["ats_confidence"] = round((1 - fav_cover_pct) * 100, 1)
+            picks["ats_confidence"] = display_ats
 
         # High confidence flag — sport-specific thresholds
         ats_conf = picks["ats_confidence"] / 100.0
@@ -515,14 +537,20 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         elif sport_lower == "nba":
             regressed_over = max(0.43, min(0.57, regressed_over))
 
+        # Compress O/U confidence: totals are efficiently priced.
+        # Raw 50-100% → Display 50-65%. Very tight range — totals are hard.
+        OU_COMPRESS = 0.30
+        raw_ou = max(regressed_over, 1 - regressed_over) * 100
+        display_ou = round(50.0 + (raw_ou - 50.0) * OU_COMPRESS, 1)
+
         if regressed_over >= 0.5:
             picks["ou_pick"] = "Over"
             picks["ou_line"] = total_line
-            picks["ou_confidence"] = round(regressed_over * 100, 1)
+            picks["ou_confidence"] = display_ou
         else:
             picks["ou_pick"] = "Under"
             picks["ou_line"] = total_line
-            picks["ou_confidence"] = round((1 - regressed_over) * 100, 1)
+            picks["ou_confidence"] = display_ou
 
         # High confidence flag — sport-specific thresholds
         ou_conf = picks["ou_confidence"] / 100.0
