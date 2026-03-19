@@ -60,25 +60,26 @@ FAV_COVER_BASE = {
     "ufc": 0.50,
 }
 
-# High-confidence thresholds — picks above this are tracked as "best bets"
-# All games still get a pick, but only high-conf picks are highlighted.
-# Sport-specific thresholds in _HIGH_CONF dicts; scalar is the default.
-ATS_HIGH_CONF = 0.55
-OU_HIGH_CONF = 0.53
+# High-confidence thresholds — picks above this get "BEST BET" badge.
+# These should be RARE: 1-3 per day across all sports. Every game still
+# gets a pick with confidence %, but the badge means we see genuine edge.
+ATS_HIGH_CONF = 0.65
+OU_HIGH_CONF = 0.62
 
 # Sport-specific high-confidence thresholds
-# Efficient markets (NBA, NHL) need higher bars to flag best bets
+# Best Bets should be RARE: 1-3 per day across all sports combined.
+# March Madness has tons of lopsided matchups — raise bars to keep it selective.
 ATS_HIGH_CONF_BY_SPORT = {
-    "nfl": 0.55, "ncaaf": 0.55,
-    "nba": 0.58, "nhl": 0.58,       # raise bar — these markets are near coin-flip
-    "ncaab": 0.54, "ncaaw": 0.54,   # college is less efficient, keep lower
-    "mlb": 0.55, "ufc": 0.55,
+    "nfl": 0.65, "ncaaf": 0.65,
+    "nba": 0.70, "nhl": 0.70,       # pro markets: best bet is near-impossible
+    "ncaab": 0.85, "ncaaw": 0.85,   # college: March Madness floods mismatches, be very selective
+    "mlb": 0.65, "ufc": 0.70,
 }
 OU_HIGH_CONF_BY_SPORT = {
-    "nfl": 0.53, "ncaaf": 0.53,
-    "nba": 0.57, "nhl": 0.57,       # raise bar — was producing false best bets
-    "ncaab": 0.53, "ncaaw": 0.53,   # keep — NCAAB O/U is working at 75%
-    "mlb": 0.55, "ufc": 0.55,
+    "nfl": 0.62, "ncaaf": 0.62,
+    "nba": 0.65, "nhl": 0.65,       # pro markets: near-impossible to flag
+    "ncaab": 0.70, "ncaaw": 0.70,   # college O/U: only flag genuine outliers
+    "mlb": 0.62, "ufc": 0.65,
 }
 
 # Historical over rate by sport — used to regress O/U simulation output
@@ -459,6 +460,13 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         if abs_spread > 7:
             big_spread_adj = (abs_spread - 7) * 0.005
             fav_cover_pct -= big_spread_adj
+
+        # Big spread dampener for college: 20+ point spreads are coin-flips ATS.
+        # March Madness 1-vs-16 games are wildly unpredictable against the spread.
+        # Pull confidence toward 50% as spread grows beyond 15.
+        if sport_lower in ("ncaab", "ncaaw", "ncaaf") and abs_spread > 15:
+            dampen = min(0.4, (abs_spread - 15) * 0.03)  # up to 40% pull toward 0.5
+            fav_cover_pct = fav_cover_pct * (1 - dampen) + 0.5 * dampen
 
         fav_cover_pct = max(0.01, min(0.99, fav_cover_pct))
 

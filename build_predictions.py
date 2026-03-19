@@ -255,9 +255,14 @@ def main():
             "picks": mc.get("picks", {}),
         }
 
-        # High confidence flag
-        su_conf = (mc.get("picks") or {}).get("su_confidence") or 0
-        if su_conf >= 65 or p.get("confidence", 0) >= 70:
+        # High confidence flag — BEST BET card highlight
+        # Should be rare: 1-3 per day max across ALL sports.
+        # Requires a dominant SU lean AND at least one high-conf ATS or O/U pick.
+        picks_data = mc.get("picks") or {}
+        has_ats_best = picks_data.get("ats_high_conf", False)
+        has_ou_best = picks_data.get("ou_high_conf", False)
+        su_conf = picks_data.get("su_confidence") or 0
+        if su_conf >= 90 and (has_ats_best or has_ou_best):
             result["highlight"] = True
 
         output["predictions"].append(result)
