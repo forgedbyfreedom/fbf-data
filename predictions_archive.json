@@ -54264,6 +54264,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856522",
+      "sport": "ncaab",
+      "matchup": "Iowa Hawkeyes at Clemson Tigers",
+      "shortName": "IOWA VS CLEM",
+      "date_utc": "2026-03-20T22:50Z",
+      "date_local": "2026-03-20 06:50 PM ET",
+      "home": "CLEM",
+      "away": "IOWA",
+      "home_team": {
+        "id": "228",
+        "name": "Clemson Tigers",
+        "abbr": "CLEM",
+        "slug": "clemson-tigers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png"
+      },
+      "away_team": {
+        "id": "2294",
+        "name": "Iowa Hawkeyes",
+        "abbr": "IOWA",
+        "slug": "iowa-hawkeyes",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png"
+      },
+      "odds": {
+        "details": "IOWA -1.5",
+        "spread": 1.5,
+        "total": 131.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Benchmark International Arena",
+        "city": "Tampa",
+        "state": "FL",
+        "indoor": true,
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Iowa Hawkeyes",
+      "dog_team": "Clemson Tigers",
+      "fav_abbr": "IOWA",
+      "dog_abbr": "CLEM",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 63.7,
+        "projected_away_score": 65.5,
+        "projected_total": 129.2,
+        "projected_spread": -1.7,
+        "win_probability_home": 0.428,
+        "confidence": 90
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4506,
+        "away_win_pct": 0.5494,
+        "home_cover_pct": 0.4983,
+        "over_pct": 0.7888,
+        "avg_simulated_margin": -1.48,
+        "avg_simulated_total": 137.94
+      },
+      "picks": {
+        "su_pick": "Iowa Hawkeyes",
+        "su_pick_abbr": "IOWA",
+        "su_confidence": 52.8,
+        "ats_pick": "Clemson Tigers",
+        "ats_pick_abbr": "CLEM",
+        "ats_spread": 1.5,
+        "ats_confidence": 50.3,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 131.5,
+        "ou_confidence": 58.2,
+        "ou_high_conf": true,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
