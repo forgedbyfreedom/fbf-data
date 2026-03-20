@@ -51690,6 +51690,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803438",
+      "sport": "nhl",
+      "matchup": "Seattle Kraken at Nashville Predators",
+      "shortName": "SEA @ NSH",
+      "date_utc": "2026-03-20T00:00Z",
+      "date_local": "2026-03-19 08:00 PM ET",
+      "home": "NSH",
+      "away": "SEA",
+      "home_team": {
+        "id": "27",
+        "name": "Nashville Predators",
+        "abbr": "NSH",
+        "slug": "nashville-predators",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/nsh.png"
+      },
+      "away_team": {
+        "id": "124292",
+        "name": "Seattle Kraken",
+        "abbr": "SEA",
+        "slug": "seattle-kraken",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/sea.png"
+      },
+      "odds": {
+        "details": "NSH -120",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Bridgestone Arena",
+        "city": "Nashville",
+        "state": "TN",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Nashville Predators",
+      "dog_team": "Seattle Kraken",
+      "fav_abbr": "NSH",
+      "dog_abbr": "SEA",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 7.6,
+        "projected_away_score": 7.1,
+        "projected_total": 14.7,
+        "projected_spread": 0.5,
+        "win_probability_home": 0.519,
+        "confidence": 50
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8618,
+        "away_win_pct": 0.1382,
+        "home_cover_pct": 0.6862,
+        "over_pct": 0.6382,
+        "avg_simulated_margin": 2.76,
+        "avg_simulated_total": 7.21
+      },
+      "picks": {
+        "su_pick": "Nashville Predators",
+        "su_pick_abbr": "NSH",
+        "su_confidence": 70.3,
+        "ats_pick": "Nashville Predators",
+        "ats_pick_abbr": "NSH",
+        "ats_spread": -1.5,
+        "ats_confidence": 50.8,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 6.5,
+        "ou_confidence": 51.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
