@@ -54181,6 +54181,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856474",
+      "sport": "ncaaw",
+      "matchup": "Jacksonville Dolphins at LSU Tigers",
+      "shortName": "JAX @ LSU",
+      "date_utc": "2026-03-20T22:07Z",
+      "date_local": "2026-03-20 06:07 PM ET",
+      "home": "LSU",
+      "away": "JAX",
+      "home_team": {
+        "id": "99",
+        "name": "LSU Tigers",
+        "abbr": "LSU",
+        "slug": "lsu-tigers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png"
+      },
+      "away_team": {
+        "id": "294",
+        "name": "Jacksonville Dolphins",
+        "abbr": "JAX",
+        "slug": "jacksonville-dolphins",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/294.png"
+      },
+      "odds": {
+        "details": "LSU -51.5",
+        "spread": -51.5,
+        "total": 162.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Pete Maravich Assembly Center",
+        "city": "Baton Rouge",
+        "state": "LA",
+        "indoor": true,
+        "grass": false,
+        "lat": 30.4494155,
+        "lon": -91.1869659
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "LSU Tigers",
+      "dog_team": "Jacksonville Dolphins",
+      "fav_abbr": "LSU",
+      "dog_abbr": "JAX",
+      "fav_spread": -51.5,
+      "dog_spread": 51.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 45.3,
+        "projected_away_score": 124.5,
+        "projected_total": 169.7,
+        "projected_spread": -79.2,
+        "win_probability_home": 0.0,
+        "confidence": 95
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.0,
+        "away_win_pct": 1.0,
+        "home_cover_pct": 0.0,
+        "over_pct": 0.2596,
+        "avg_simulated_margin": -125.07,
+        "avg_simulated_total": 156.96
+      },
+      "picks": {
+        "su_pick": "Jacksonville Dolphins",
+        "su_pick_abbr": "JAX",
+        "su_confidence": 78.0,
+        "ats_pick": "Jacksonville Dolphins",
+        "ats_pick_abbr": "JAX",
+        "ats_spread": 51.5,
+        "ats_confidence": 54.3,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 162.5,
+        "ou_confidence": 56.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
