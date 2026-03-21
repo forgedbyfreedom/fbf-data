@@ -56174,6 +56174,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856538",
+      "sport": "ncaaw",
+      "matchup": "Howard Bison at Ohio State Buckeyes",
+      "shortName": "HOW @ OSU",
+      "date_utc": "2026-03-21T15:30Z",
+      "date_local": "2026-03-21 11:30 AM ET",
+      "home": "OSU",
+      "away": "HOW",
+      "home_team": {
+        "id": "194",
+        "name": "Ohio State Buckeyes",
+        "abbr": "OSU",
+        "slug": "ohio-state-buckeyes",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png"
+      },
+      "away_team": {
+        "id": "47",
+        "name": "Howard Bison",
+        "abbr": "HOW",
+        "slug": "howard-bison",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/47.png"
+      },
+      "odds": {
+        "details": "OSU -39.5",
+        "spread": -39.5,
+        "total": 142.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Value City Arena",
+        "city": "Columbus",
+        "state": "OH",
+        "indoor": true,
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Ohio State Buckeyes",
+      "dog_team": "Howard Bison",
+      "fav_abbr": "OSU",
+      "dog_abbr": "HOW",
+      "fav_spread": -39.5,
+      "dog_spread": 39.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 88.5,
+        "projected_away_score": 62.7,
+        "projected_total": 151.2,
+        "projected_spread": 25.7,
+        "win_probability_home": 0.986,
+        "confidence": 90
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8659,
+        "away_win_pct": 0.1341,
+        "home_cover_pct": 0.0247,
+        "over_pct": 0.3388,
+        "avg_simulated_margin": 14.26,
+        "avg_simulated_total": 138.9
+      },
+      "picks": {
+        "su_pick": "Ohio State Buckeyes",
+        "su_pick_abbr": "OSU",
+        "su_confidence": 70.5,
+        "ats_pick": "Howard Bison",
+        "ats_pick_abbr": "HOW",
+        "ats_spread": 39.5,
+        "ats_confidence": 53.8,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 142.5,
+        "ou_confidence": 54.4,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
