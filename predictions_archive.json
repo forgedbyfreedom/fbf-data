@@ -59143,6 +59143,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856505",
+      "sport": "ncaaw",
+      "matchup": "High Point Panthers at Vanderbilt Commodores",
+      "shortName": "HPU @ VAN",
+      "date_utc": "2026-03-21T23:00Z",
+      "date_local": "2026-03-21 07:00 PM ET",
+      "home": "VAN",
+      "away": "HPU",
+      "home_team": {
+        "id": "238",
+        "name": "Vanderbilt Commodores",
+        "abbr": "VAN",
+        "slug": "vanderbilt-commodores",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/238.png"
+      },
+      "away_team": {
+        "id": "2272",
+        "name": "High Point Panthers",
+        "abbr": "HPU",
+        "slug": "high-point-panthers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2272.png"
+      },
+      "odds": {
+        "details": "VAN -36.5",
+        "spread": -36.5,
+        "total": 148.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Memorial Gymnasium (TN)",
+        "city": "Nashville",
+        "state": "TN",
+        "indoor": true,
+        "grass": false,
+        "lat": 36.1622767,
+        "lon": -86.7742984
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Vanderbilt Commodores",
+      "dog_team": "High Point Panthers",
+      "fav_abbr": "VAN",
+      "dog_abbr": "HPU",
+      "fav_spread": -36.5,
+      "dog_spread": 36.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 98.7,
+        "projected_away_score": 52.3,
+        "projected_total": 151.1,
+        "projected_spread": 46.4,
+        "win_probability_home": 1.0,
+        "confidence": 95
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 1.0,
+        "away_win_pct": 0.0,
+        "home_cover_pct": 0.8087,
+        "over_pct": 0.2656,
+        "avg_simulated_margin": 47.79,
+        "avg_simulated_total": 143.18
+      },
+      "picks": {
+        "su_pick": "Vanderbilt Commodores",
+        "su_pick_abbr": "VAN",
+        "su_confidence": 78.0,
+        "ats_pick": "High Point Panthers",
+        "ats_pick_abbr": "HPU",
+        "ats_spread": 36.5,
+        "ats_confidence": 52.2,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 148.5,
+        "ou_confidence": 54.9,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
