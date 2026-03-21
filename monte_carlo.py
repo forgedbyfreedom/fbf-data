@@ -104,7 +104,7 @@ OVER_BASE = {
 OU_SIM_WEIGHT = {
     "nfl": 0.60, "ncaaf": 0.60,
     "nba": 0.40,                     # NBA totals are efficiently priced
-    "ncaab": 0.95, "ncaaw": 0.90,   # college O/U model is highly accurate — near-full trust (75% hit rate)
+    "ncaab": 0.70, "ncaaw": 0.70,   # UPDATED 03/21: was 0.95 — backtest showed 45.8% (27-32), no edge. Regress harder.
     "nhl": 0.35,                     # NHL totals are tightest market in sports
     "mlb": 0.55, "ufc": 0.50,
 }
@@ -392,7 +392,11 @@ def build_expected_values(game):
 
     # Referee over/under bias — sport-specific amplification
     # NHL/NBA: refs barely move totals in efficient markets; college has more signal
-    ref_over_multiplier = {"nhl": 0.8, "nba": 1.0, "ncaab": 2.5, "ncaaw": 2.5,
+    # UPDATED 03/21: Reduced NCAAB ref multiplier from 2.5 to 1.5.
+    # Tournament refs call fewer fouls than regular season — less whistle-happy
+    # crews selected for March. The 2.5 multiplier amplified a signal that
+    # doesn't exist in tournament context.
+    ref_over_multiplier = {"nhl": 0.8, "nba": 1.0, "ncaab": 1.5, "ncaaw": 1.5,
                            "nfl": 2.5, "ncaaf": 2.5, "mlb": 1.5}
     ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * ref_over_multiplier.get(sport, 2.0)
 
@@ -405,10 +409,17 @@ def build_expected_values(game):
     pace_shift = 0.0
     if pace_avg > 0 and total_line is not None and total_line > 0:
         pace_gap = pace_avg - total_line
-        pace_weights = {"nhl": 0.20, "nba": 0.15,       # was 0.60/0.35 — Vegas prices pace
+        pace_weights = {"nhl": 0.20, "nba": 0.15,
                         "mlb": 0.40, "nfl": 0.45, "ncaaf": 0.45,
-                        "ncaab": 0.35, "ncaaw": 0.35}   # college: keep — less efficient
+                        "ncaab": 0.25, "ncaaw": 0.25}   # UPDATED 03/21: reduced from 0.35 — reg season pace doesn't translate to tournament
         pace_w = pace_weights.get(sport, 0.35)
+
+        # Tournament discount: teams play significantly slower in elimination games
+        # Fewer possessions, more deliberate offense, better defensive preparation
+        is_tournament = game.get("tournament", False) or is_neutral
+        if is_tournament and sport in ("ncaab", "ncaaw", "ncaaf"):
+            pace_w *= 0.40  # Tournament pace much lower than regular season
+
         pace_shift = pace_gap * pace_w
 
     # Total line movement (sharp money on totals)
@@ -423,12 +434,14 @@ def build_expected_values(game):
     total_mismatch_shift = abs(off_def_mismatch) * 0.02 if off_def_mismatch != 0 else 0.0
 
     # Big spread games tend to go Under (garbage time, running clock)
+    # UPDATED 03/21: Increased for tournament — blowouts go Under harder
+    # in elimination games (teams stop trying, clock management)
     spread_total_adj = 0.0
     if spread_line is not None and total_line is not None:
         abs_spread = abs(spread_line)
-        if abs_spread > 10:
-            # Scale: every point of spread beyond 10 nudges 0.15 toward Under
-            spread_total_adj = -(abs_spread - 10) * 0.15
+        if abs_spread > 8:  # Start at 8 (was 10)
+            under_push = 0.20 if sport in ("ncaab", "ncaaw") else 0.15  # College: stronger Under push
+            spread_total_adj = -(abs_spread - 8) * under_push
 
     # ── COMBINE ──────────────────────────────────────────────────────
 
