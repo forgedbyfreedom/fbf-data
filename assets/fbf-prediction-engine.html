@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FBF Prediction Engine — How Our Picks Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page { margin: 0; size: letter; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #e5e7eb;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 816px; height: 1056px;
+    padding: 40px 48px 36px;
+    page-break-after: always;
+    page-break-inside: avoid;
+    position: relative; overflow: hidden;
+    background: #0a0a0a;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,106,0,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── COVER ── */
+  .cover { display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background: radial-gradient(ellipse at center, #141414 0%, #0a0a0a 60%, #000 100%); }
+  .cover-logo { width:100px; height:100px; border-radius:22px; background:linear-gradient(135deg,#FF6A00,#ff8c33); display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:900; color:#0a0a0a; margin-bottom:24px; box-shadow:0 0 50px rgba(255,106,0,0.3); }
+  .cover h1 { font-size:40px; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; color:#fff; margin-bottom:6px; text-shadow:0 0 30px rgba(255,106,0,0.3); }
+  .cover .tagline { font-size:12px; letter-spacing:0.35em; text-transform:uppercase; color:#FF6A00; margin-bottom:32px; font-weight:600; }
+  .cover h2 { font-size:21px; font-weight:300; color:#d1d5db; margin-bottom:8px; }
+  .cover .subtitle { font-size:12px; color:#9ca3af; max-width:440px; line-height:1.7; margin-bottom:32px; }
+  .cover-stats { display:flex; gap:28px; margin-bottom:28px; }
+  .cover-stat .num { font-size:34px; font-weight:800; color:#FF6A00; line-height:1; }
+  .cover-stat .label { font-size:9px; text-transform:uppercase; letter-spacing:0.18em; color:#9ca3af; margin-top:2px; }
+  .cover-sport-row { display:flex; gap:7px; margin-bottom:28px; }
+  .cover-sport { font-size:9px; padding:3px 12px; border-radius:999px; background:linear-gradient(135deg,#FF6A00,#ff8c33); color:#0a0a0a; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
+  .cover-url { font-size:11px; color:#6b7280; }
+  .cover-url span { color:#FF6A00; font-weight:600; }
+  .cover-ent { margin-top:20px; font-size:9px; color:#4b5563; text-transform:uppercase; letter-spacing:0.15em; }
+
+  /* ── TYPOGRAPHY ── */
+  .sn { font-size:9px; text-transform:uppercase; letter-spacing:0.25em; color:#FF6A00; font-weight:700; margin-bottom:3px; }
+  h2.st { font-size:20px; font-weight:800; color:#fff; margin-bottom:3px; }
+  .ss { font-size:11px; color:#9ca3af; margin-bottom:14px; line-height:1.5; }
+
+  /* ── DATA CARDS ── */
+  .cg { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+  .cc { background:#141414; border:1px solid #2a2a2a; border-radius:10px; padding:12px 14px; }
+  .cc h3 { font-size:10.5px; font-weight:700; color:#FF6A00; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; }
+  .cc ul { list-style:none; }
+  .cc li { font-size:10.5px; color:#d1d5db; padding:1.5px 0 1.5px 11px; position:relative; line-height:1.4; }
+  .cc li::before { content:''; position:absolute; left:0; top:7px; width:4px; height:4px; border-radius:50%; background:#FF6A00; opacity:0.5; }
+
+  /* ── FORMULA ── */
+  .fb { background:linear-gradient(135deg,#141414,#1a1a1a); border:1px solid #FF6A00; border-radius:12px; padding:16px 20px; margin:10px 0; box-shadow:0 0 16px rgba(255,106,0,0.05); }
+  .fb h3 { font-size:10px; text-transform:uppercase; letter-spacing:0.15em; color:#FF6A00; margin-bottom:8px; font-weight:700; }
+  .fl { font-size:10.5px; color:#e5e7eb; line-height:1.8; font-weight:500; }
+  .fl .op { color:#FF6A00; font-weight:700; }
+  .fl .dm { color:#6b7280; }
+
+  /* ── CALLOUT ── */
+  .co { background:linear-gradient(135deg,rgba(255,106,0,0.07),rgba(255,106,0,0.02)); border-left:3px solid #FF6A00; border-radius:0 10px 10px 0; padding:12px 16px; margin:10px 0; font-size:11px; color:#d1d5db; line-height:1.65; }
+  .co strong { color:#FF6A00; }
+
+  /* ── SIM ── */
+  .sim { text-align:center; padding:16px 0 10px; }
+  .sim .big { font-size:56px; font-weight:900; color:#FF6A00; line-height:1; text-shadow:0 0 30px rgba(255,106,0,0.25); }
+  .sim .lab { font-size:11px; text-transform:uppercase; letter-spacing:0.22em; color:#9ca3af; margin-top:3px; font-weight:600; }
+  .sim .desc { font-size:11px; color:#6b7280; max-width:400px; margin:8px auto 0; line-height:1.6; }
+
+  /* ── FEATURES ── */
+  .fr { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin:12px 0; }
+  .fi { display:flex; align-items:flex-start; gap:7px; font-size:10.5px; color:#d1d5db; line-height:1.45; }
+  .fd { width:6px; height:6px; min-width:6px; border-radius:50%; background:#FF6A00; margin-top:4px; }
+
+  /* ── OUTPUT ── */
+  .og { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:10px 0; }
+  .oc { background:#141414; border:1px solid #2a2a2a; border-radius:10px; padding:14px 12px; text-align:center; }
+  .oc.gl { border-color:#FF6A00; box-shadow:0 0 12px rgba(255,106,0,0.1); }
+  .oc h4 { font-size:9px; text-transform:uppercase; letter-spacing:0.16em; color:#9ca3af; margin-bottom:4px; }
+  .oc .v { font-size:14px; font-weight:800; color:#fff; margin-bottom:2px; }
+  .oc .d { font-size:9px; color:#6b7280; line-height:1.4; }
+
+  /* ── DISCLAIMER ── */
+  .db { background:#111; border:1px solid #2a2a2a; border-radius:10px; padding:16px 18px; }
+  .db h3 { font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:#FF6A00; margin-bottom:6px; font-weight:700; }
+  .db p { font-size:10px; color:#9ca3af; line-height:1.65; margin-bottom:5px; }
+  .db p:last-child { margin-bottom:0; }
+
+  /* ── FOOTER ── */
+  .pf { position:absolute; bottom:20px; left:48px; right:48px; display:flex; justify-content:space-between; align-items:center; font-size:8px; color:#4b5563; letter-spacing:0.06em; border-top:1px solid #1a1a1a; padding-top:8px; }
+  .pf .a { color:#FF6A00; }
+
+  .tb { font-size:11px; color:#d1d5db; line-height:1.7; margin-bottom:10px; }
+  .tb strong { color:#fff; font-weight:600; }
+  .dv { height:1px; background:linear-gradient(90deg,transparent,#2a2a2a,transparent); margin:14px 0; }
+  .hl { color:#FF6A00; font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 1: COVER ═══ -->
+<div class="page cover">
+  <div class="cover-logo">FBF</div>
+  <h1>Forged by Freedom</h1>
+  <div class="tagline">Strength &bull; Discipline &bull; Freedom</div>
+  <h2>The Prediction Engine</h2>
+  <p class="subtitle">How we analyze every game across 8 sports using 30+ data features, sport-specific modeling, and 10,000 Monte Carlo simulations — updated every 30 minutes.</p>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="num">30+</div><div class="label">Data Features</div></div>
+    <div class="cover-stat"><div class="num">10K</div><div class="label">Sims / Game</div></div>
+    <div class="cover-stat"><div class="num">8</div><div class="label">Sports</div></div>
+    <div class="cover-stat"><div class="num">300+</div><div class="label">Refs Profiled</div></div>
+  </div>
+  <div class="cover-sport-row">
+    <span class="cover-sport">NFL</span><span class="cover-sport">NCAAF</span><span class="cover-sport">NBA</span><span class="cover-sport">NCAAB</span><span class="cover-sport">NCAAW</span><span class="cover-sport">NHL</span><span class="cover-sport">MLB</span><span class="cover-sport">UFC</span>
+  </div>
+  <div class="cover-url"><span>data.forgedbyfreedom.org</span> — Free picks, no account required</div>
+  <div class="cover-ent">For Entertainment Purposes Only</div>
+</div>
+
+<!-- ═══ PAGE 2: ALL DATA WE TRACK ═══ -->
+<div class="page">
+  <div class="sn">Section 01</div>
+  <h2 class="st">Everything We Track</h2>
+  <p class="ss">Before a single simulation runs, we build a complete profile for every matchup across all 8 sports.</p>
+
+  <div class="cg">
+    <div class="cc">
+      <h3>Team Strength &amp; Quality</h3>
+      <ul>
+        <li>Custom Elo ratings updated game-by-game</li>
+        <li>Offensive &amp; defensive power ratings adjusted for opponent strength</li>
+        <li>Net rating differential between both teams</li>
+        <li>Home/away performance splits</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Pace &amp; Style of Play</h3>
+      <ul>
+        <li>Average combined points in each team's games this season</li>
+        <li>Pace divergence from the Vegas total line</li>
+        <li>Offensive/defensive mismatch scoring</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Momentum &amp; Streaks</h3>
+      <ul>
+        <li>Last 10 game scoring averages and margin trends</li>
+        <li>Momentum differential — last 5 vs prior 5 games</li>
+        <li>Extended win/loss streaks</li>
+        <li>Recent against-the-spread performance</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Head-to-Head History</h3>
+      <ul>
+        <li>Last 5 matchup margins between these exact teams</li>
+        <li>Historical H2H average margin feeds into projections</li>
+        <li>Matchup-specific tendencies beyond the spread</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Situational Factors</h3>
+      <ul>
+        <li>Rest days differential and back-to-back detection</li>
+        <li>Revenge game flags from prior meeting results</li>
+        <li>Divisional rivalry adjustments — tighter games</li>
+        <li>Travel distance and timezone fatigue</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Injury Intelligence</h3>
+      <ul>
+        <li>Per-team injury counts from ESPN + secondary sources</li>
+        <li>Key player identification — star vs bench impact</li>
+        <li>Home vs away injury breakdown</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Referee Tendencies</h3>
+      <ul>
+        <li>300+ referees and umpires profiled with career stats</li>
+        <li>Over/under tendency &bull; Favorite cover rate &bull; Home bias</li>
+        <li>Recent trend tracking with directional arrows</li>
+        <li>NFL penalty breakdowns (DPI, holding, RTP per crew)</li>
+        <li>MLB umpire run tendencies &bull; Consistency scoring</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <h3>Sharp Money, Weather &amp; Personnel</h3>
+      <ul>
+        <li>Public betting consensus &bull; Contrarian fade signals</li>
+        <li>Line movement: opening vs current spread and total</li>
+        <li>Weather for outdoor games (NOAA) — indoor sports skip</li>
+        <li>MLB starting pitcher ERA/WHIP &bull; NHL goalie save %</li>
+        <li>Backup vs starter differential quantified</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="co">
+    <strong>Why does this matter?</strong> Vegas lines are the most efficient estimates in the world — but they're set to balance action, not predict outcomes. Our model finds the gap between where the money is and where the math says the game lands.
+  </div>
+
+  <div class="pf">
+    <span>Forged by Freedom — The Prediction Engine</span>
+    <span>FOR ENTERTAINMENT PURPOSES ONLY</span>
+    <span class="a">data.forgedbyfreedom.org</span>
+  </div>
+</div>
+
+<!-- ═══ PAGE 3: FORMULA + SIMULATIONS + FINE TUNING ═══ -->
+<div class="page">
+  <div class="sn">Section 02</div>
+  <h2 class="st">The Formula</h2>
+  <p class="ss">Vegas line as baseline. Sport-specific adjustments layered on top.</p>
+
+  <div class="fb">
+    <h3>Expected Margin</h3>
+    <div class="fl">Vegas Implied Margin <span class="op">+</span> Injury Residual <span class="dm">(beyond Vegas pricing)</span> <span class="op">+</span> Rest Advantage <span class="op">+</span> Composite Team Quality <span class="dm">(Elo 50% + Power 25% + Momentum 15% + H2H 10%)</span> <span class="op">+</span> Referee Home Bias <span class="dm">(zeroed on neutral sites)</span> <span class="op">+</span> Travel Fatigue <span class="op">+</span> Off/Def Mismatch <span class="op">+</span> Situational Spot Score <span class="op">+</span> Public Betting Fade <span class="op">+</span> Sharp Money Signal <span class="op">+</span> Starting Pitcher/Goalie Quality</div>
+  </div>
+  <div class="fb">
+    <h3>Expected Total</h3>
+    <div class="fl">Vegas Total Line <span class="op">−</span> Weather Penalty <span class="dm">(outdoor only — retractable roof venues classified)</span> <span class="op">+</span> Referee Over/Under Tendency <span class="dm">(reduced for tournament crews)</span> <span class="op">+</span> Pace Divergence <span class="dm">(discounted 60% for tournament games)</span> <span class="op">+</span> Total Line Movement <span class="op">+</span> Big Spread Under Push <span class="dm">(blowouts suppress totals — stronger in college)</span></div>
+  </div>
+
+  <div class="co">
+    <strong>What changed:</strong> We replaced four separate correlated metrics (Elo, Power, Momentum, H2H) with one composite team quality score — eliminating double-counting. All adjustments are now weighted for <em>residual edge beyond what Vegas already priced</em>. Neutral site detection zeroes out home-court factors for tournament games. Eight sport-specific calibrations, continuously recalibrated.
+  </div>
+
+  <div class="dv"></div>
+
+  <div class="sim">
+    <div class="big">10,000</div>
+    <div class="lab">Monte Carlo Simulations Per Game</div>
+    <p class="desc">Every game is simulated ten thousand times with randomized outcomes centered on our expected values, using sport-specific variance calibrated to real-world results.</p>
+  </div>
+
+  <div class="dv"></div>
+
+  <div class="sn">Section 03</div>
+  <h2 class="st">Fine Tuning &amp; Confidence</h2>
+  <p class="ss">Raw simulation output gets a final layer: sport-specific regression and confidence calibration.</p>
+
+  <div class="fr">
+    <div class="fi"><div class="fd"></div><div>Efficient markets (NBA, NHL) trust simulation less — heavy regression toward base rates</div></div>
+    <div class="fi"><div class="fd"></div><div>College O/U: 70% sim trust + 30% base rate — tournament games get additional pace discount</div></div>
+    <div class="fi"><div class="fd"></div><div>ATS minimum threshold: 52% — coin-flip picks below this are not published</div></div>
+    <div class="fi"><div class="fd"></div><div>Large spread dampener: 7+ point spreads pull toward 50% — dogs lean at 15+</div></div>
+    <div class="fi"><div class="fd"></div><div>Neutral site detection: zeroes home bias, travel, splits for tournament games</div></div>
+    <div class="fi"><div class="fd"></div><div>Retractable roof venue classification: 15+ stadiums profiled for weather application</div></div>
+    <div class="fi"><div class="fd"></div><div>Best Bet ATS: 72.3% (47-18) &bull; Best Bet O/U: 100% (3-0) — 397 games tracked</div></div>
+  </div>
+
+  <div class="pf">
+    <span>Forged by Freedom — The Prediction Engine</span>
+    <span>FOR ENTERTAINMENT PURPOSES ONLY</span>
+    <span class="a">data.forgedbyfreedom.org</span>
+  </div>
+</div>
+
+<!-- ═══ PAGE 4: OUTPUT + CTA + DISCLAIMER ═══ -->
+<div class="page">
+  <div>
+    <div class="sn">Section 04</div>
+    <h2 class="st">What You See — Every 30 Minutes</h2>
+    <p class="ss">Every game gets a complete analysis, transparent and updated in real time.</p>
+
+    <div class="og">
+      <div class="oc gl"><h4>Straight Up</h4><div class="v">Winner Pick</div><div class="d">Who wins outright + confidence %</div></div>
+      <div class="oc gl"><h4>Against the Spread</h4><div class="v">ATS Pick</div><div class="d">Who covers + line + confidence</div></div>
+      <div class="oc gl"><h4>Over / Under</h4><div class="v">Total Pick</div><div class="d">Over or under + number + confidence</div></div>
+    </div>
+    <div class="og">
+      <div class="oc"><h4>Edge Signals</h4><div class="v" style="font-size:12px;">Power &bull; Fade &bull; Sharp</div><div class="d">Badges for strongest factors driving each pick</div></div>
+      <div class="oc"><h4>Referee Profile</h4><div class="v" style="font-size:12px;">O/U &bull; ATS &bull; Home</div><div class="d">Career tendencies for assigned crew</div></div>
+      <div class="oc"><h4>Injury Report</h4><div class="v" style="font-size:12px;">Home &bull; Away &bull; Key</div><div class="d">Per-team counts + key player status</div></div>
+    </div>
+
+    <div class="dv"></div>
+
+    <div class="sn">Section 05</div>
+    <h2 class="st">No Black Boxes. Just Math.</h2>
+    <p class="tb" style="font-size:12px; max-width:520px;">
+      <strong>397 games graded.</strong> SU: 57.9% (191-139). ATS: 65.2% (167-89). O/U: 57.4% (143-106).<br>
+      Best Bets ATS: 72.3% (47-18). Best Bets O/U: 100% (3-0).<br><br>
+      <strong>30+ features.</strong> Composite team quality scoring. Neutral site detection. Tournament pace calibration. 300+ referees profiled. 10,000 simulations per game. Updated every 30 minutes.
+    </p>
+
+    <div style="text-align:center; margin:20px 0;">
+      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.25em; color:#9ca3af; margin-bottom:8px; font-weight:600;">Live Picks Available Now</div>
+      <div style="font-size:28px; font-weight:800; color:#FF6A00; letter-spacing:0.04em;">data.forgedbyfreedom.org</div>
+      <div style="font-size:11px; color:#6b7280; margin-top:4px;">Free. Updated every 30 minutes. No account required.</div>
+    </div>
+
+    <div class="dv"></div>
+
+    <div style="text-align:center; margin:12px 0;">
+      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.25em; color:#9ca3af; margin-bottom:4px; font-weight:600;">Fitness &bull; Nutrition &bull; Supplements</div>
+      <div style="font-size:17px; font-weight:700; color:#fff;">forgedbyfreedom.org</div>
+      <div style="font-size:10px; color:#6b7280; margin-top:3px;">Custom coaching programs, meal plans, and supplement protocols</div>
+    </div>
+
+    <div style="height:20px;"></div>
+
+    <div class="db">
+      <h3>Disclaimer — For Entertainment Purposes Only</h3>
+      <p>All picks, predictions, simulations, and analyses presented on data.forgedbyfreedom.org and in this document are provided strictly <strong style="color:#e5e7eb;">for entertainment and informational purposes only</strong>. Nothing contained herein constitutes gambling advice, an inducement to gamble, or a recommendation to place any wager.</p>
+      <p>Forged by Freedom makes no guarantees regarding the accuracy, completeness, or reliability of any prediction. Past performance is not indicative of future results. Sports outcomes are inherently unpredictable.</p>
+      <p>If you choose to wager, do so responsibly and only with funds you can afford to lose. If you or someone you know has a gambling problem, call <strong style="color:#e5e7eb;">1-800-522-4700</strong>.</p>
+      <p>&copy; 2026 Forged by Freedom. All rights reserved.</p>
+    </div>
+
+    <div class="pf">
+      <span>Forged by Freedom — The Prediction Engine</span>
+      <span>FOR ENTERTAINMENT PURPOSES ONLY</span>
+      <span class="a">data.forgedbyfreedom.org</span>
+    </div>
+</div>
+
+</body>
+</html>
