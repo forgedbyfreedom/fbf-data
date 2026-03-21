@@ -224,60 +224,97 @@ def build_expected_values(game):
     is_nhl = (sport == "nhl")
     is_nba = (sport == "nba")
 
+    # ── NEUTRAL SITE DETECTION ─────────────────────────────────────
+    # ADDED 03/21/2026: March Madness and bowl games are neutral site.
+    # Home/away adjustments are invalid when there's no home team.
+    # Zero out: ref home bias, travel, home/away splits, spot_score home component.
+    is_neutral = game.get("neutral_site", False)
+    # Auto-detect tournament neutral sites for college sports
+    if not is_neutral and sport in ("ncaab", "ncaaw"):
+        # NCAA tournament games after conference tournaments are neutral site
+        venue = game.get("venue") or {}
+        venue_name = (venue.get("name") or "").lower()
+        # Common tournament venue indicators
+        if any(kw in venue_name for kw in ["arena", "center", "dome", "coliseum", "fieldhouse"]):
+            # If venue city doesn't match either team's home city, likely neutral
+            pass  # Can't reliably detect without team city data — use explicit flag
+    if not is_neutral and sport == "ncaaf":
+        # Bowl games are neutral site
+        game_name = (game.get("name") or game.get("title") or "").lower()
+        if "bowl" in game_name or "championship" in game_name or "playoff" in game_name:
+            is_neutral = True
+
     # ── CORE MARGIN ADJUSTMENTS ──────────────────────────────────────
 
-    # Injuries
+    # Injuries — only count residual beyond what Vegas priced
+    # Vegas already adjusts for known injuries. Our edge is LATE injuries
+    # (after line was set) or injury severity mispricing.
     injury_home = safe_float(game.get("injury_count_home"), 0)
     injury_away = safe_float(game.get("injury_count_away"), 0)
-    inj_w = 0.1 if is_nhl else (0.12 if is_nba else 0.3)  # NHL/NBA: Vegas already prices injuries
+    inj_w = 0.1 if is_nhl else (0.12 if is_nba else 0.2)  # Reduced from 0.3 — Vegas prices most injuries
     injury_shift = (injury_away - injury_home) * inj_w
 
-    # Rest days
+    # Rest days — reduced weight, Vegas prices this too
     rest_diff = safe_float(game.get("rest_diff_days"), 0)
-    rest_w = 0.15 if is_nhl else (0.2 if is_nba else 0.4)  # NHL/NBA: rest impact overstated
+    rest_w = 0.1 if is_nhl else (0.15 if is_nba else 0.25)  # Reduced from 0.4 — double-counting Vegas
     rest_shift = rest_diff * rest_w
 
-    # Elo — the biggest offender for NHL
+    # ── COMPOSITE TEAM QUALITY (replaces separate Elo + power + momentum) ──
+    # UPDATED 03/21/2026: Elo, power ratings, and momentum are correlated
+    # measures of team quality. Adding them separately quadruple-counts
+    # the same signal. Combine into one composite, weighted by reliability.
+    # Then apply ONE coefficient — the residual beyond Vegas pricing.
     elo_diff = safe_float(game.get("elo_diff"), 0)
-    elo_w = 0.005 if is_nhl else (0.008 if is_nba else 0.03)  # NHL/NBA: 400 Elo gap → 3.2 pts, not 12
-    elo_shift = elo_diff * elo_w
-
-    # H2H
+    power_diff = safe_float(game.get("power_diff"), 0)
+    momentum_diff = safe_float(game.get("momentum_diff"), 0)
     h2h_margin = safe_float(game.get("h2h_margin_avg"), 0)
-    h2h_shift = h2h_margin * 0.1
 
-    # Referee home bias
+    # Normalize each to comparable scales, then blend
+    # Elo: 100 pts diff ~ 3 pts spread equivalent → /33 to get ~pts
+    # Power: already in point-like units → small weight
+    # Momentum: recent form, small signal → low weight
+    # H2H: historical margin avg → small weight (sample size issues)
+    composite_quality = (
+        (elo_diff / 33.0) * 0.50 +     # Elo is most reliable signal
+        power_diff * 0.01 * 0.25 +      # Power ratings
+        momentum_diff * 0.01 * 0.15 +   # Momentum (noisy)
+        h2h_margin * 0.05 * 0.10        # H2H (small samples)
+    )
+
+    # Scale by sport — how much residual edge exists beyond Vegas
+    quality_w = 0.3 if is_nhl else (0.4 if is_nba else 0.8)  # NHL/NBA: Vegas already priced this
+    quality_shift = composite_quality * quality_w
+
+    # Referee home bias — zeroed on neutral sites
     ref_home_bias = safe_float(game.get("ref_home_bias"), 0)
+    if is_neutral:
+        ref_home_bias = 0.0  # No home court = no home ref bias
 
-    # Travel fatigue
+    # Travel fatigue — zeroed on neutral sites (both teams travel)
     travel_km = safe_float(game.get("travel_km"), 0)
-    travel_w = 0.0002 if is_nhl else (0.0002 if is_nba else 0.0005)  # NHL/NBA: travel barely moves the needle
+    travel_w = 0.0002 if is_nhl else (0.0002 if is_nba else 0.0003)  # Reduced — Vegas prices travel
     travel_shift = travel_km * travel_w
+    if is_neutral:
+        travel_shift = 0.0  # Both teams traveling to neutral site
 
     # ── ADVANCED MARGIN ADJUSTMENTS ──────────────────────────────────
 
-    # Power ratings
-    power_diff = safe_float(game.get("power_diff"), 0)
-    power_w = 0.02 if is_nhl else (0.02 if is_nba else 0.06)  # NHL/NBA: power gaps priced in
-    power_shift = power_diff * power_w
-
     off_def_mismatch = safe_float(game.get("off_def_mismatch"), 0)
-    mismatch_w = 0.01 if is_nhl else (0.01 if is_nba else 0.03)
+    mismatch_w = 0.01 if is_nhl else (0.01 if is_nba else 0.02)  # Reduced — correlated with quality
     mismatch_shift = off_def_mismatch * mismatch_w
 
-    # Home/away splits
+    # Home/away splits — zeroed on neutral sites
     home_split_edge = safe_float(game.get("home_split_edge"), 0)
-    split_shift = home_split_edge * 0.02
-
-    # Momentum (recent form)
-    momentum_diff = safe_float(game.get("momentum_diff"), 0)
-    momentum_w = 0.01 if is_nhl else (0.01 if is_nba else 0.03)
-    momentum_shift = momentum_diff * momentum_w
+    split_shift = home_split_edge * 0.015  # Reduced from 0.02 — correlated with quality
+    if is_neutral:
+        split_shift = 0.0  # No home/away when neutral
 
     # Situational spots (B2B, revenge, divisional, timezone — pre-calibrated in pts)
     spot_score = safe_float(game.get("spot_score"), 0)
-    spot_w = 0.2 if is_nhl else (0.25 if is_nba else 0.5)
+    spot_w = 0.2 if is_nhl else (0.25 if is_nba else 0.4)  # Reduced from 0.5
     spot_shift = spot_score * spot_w
+    if is_neutral:
+        spot_shift *= 0.5  # Halve spot value on neutral sites — home-related spots don't apply
 
     # Public betting fade — contrarian signal
     fade_signal = safe_float(game.get("fade_signal"), 0)
@@ -307,13 +344,47 @@ def build_expected_values(game):
     # ── TOTAL ADJUSTMENTS ────────────────────────────────────────────
 
     # Weather (outdoor sports only) — strong O/U signal
-    # NBA, NHL, NCAAB, NCAAW are always played indoors — never apply weather
+    # UPDATED 03/21/2026: Added retractable roof venue classification.
+    # Three venue types: indoor (always), outdoor (always), retractable (conditional).
     INDOOR_SPORTS = {"nba", "nhl", "ncaab", "ncaaw"}
+
+    # Retractable roof venues — roof typically closed
+    RETRACTABLE_CLOSED = {
+        "allegiant stadium", "lucas oil stadium", "state farm stadium",
+        "sofi stadium", "caesars superdome", "ford field", "mercedes-benz stadium",
+        "nrg stadium",  # Houston — retractable, usually closed
+        "loandeport park", "tropicana field",
+        "rogers centre",  # Toronto — closed in cold months
+        "chase field",  # Arizona — closed when hot
+        "minute maid park",  # Houston — retractable
+    }
+    # Retractable roof venues — roof typically open (weather applies)
+    RETRACTABLE_OPEN = {
+        "t-mobile park",  # Seattle — often open
+        "american family field",  # Milwaukee — often open in summer
+        "globe life field",  # Texas — varies
+    }
+
     venue = game.get("venue") or {}
     weather = game.get("weather") or {}
     risk = game.get("weatherRisk") or {}
+    venue_name = (venue.get("name") or "").lower()
+    venue_indoor = venue.get("indoor", False)
+
+    # Determine if weather applies
+    apply_weather = False
+    if sport not in INDOOR_SPORTS:
+        if venue_indoor:
+            apply_weather = False  # Explicit indoor flag
+        elif any(v in venue_name for v in RETRACTABLE_CLOSED):
+            apply_weather = False  # Retractable, typically closed
+        elif any(v in venue_name for v in RETRACTABLE_OPEN):
+            apply_weather = True   # Retractable, typically open
+        else:
+            apply_weather = True   # Default: outdoor, weather applies
+
     weather_penalty = 0.0
-    if sport not in INDOOR_SPORTS and not venue.get("indoor"):
+    if apply_weather:
         wind = safe_float(weather.get("windSpeedMph"), 0)
         rain = safe_float(weather.get("rainChancePct"), 0)
         risk_score = safe_float(risk.get("risk"), 0)
@@ -361,10 +432,15 @@ def build_expected_values(game):
 
     # ── COMBINE ──────────────────────────────────────────────────────
 
-    expected_margin = (base_margin + injury_shift + rest_shift + elo_shift
-                       + h2h_shift + ref_home_bias + travel_shift
-                       + power_shift + mismatch_shift + split_shift
-                       + momentum_shift + spot_shift + public_shift
+    # ── COMBINE MARGIN ──────────────────────────────────────────────
+    # UPDATED 03/21/2026: Uses composite team quality instead of
+    # separate Elo + power + momentum + H2H (fixes multicollinearity).
+    # Neutral site adjustments zero out home-dependent factors.
+    expected_margin = (base_margin + injury_shift + rest_shift
+                       + quality_shift                    # composite replaces elo/power/momentum/h2h
+                       + ref_home_bias + travel_shift     # zeroed on neutral sites
+                       + mismatch_shift + split_shift     # split zeroed on neutral sites
+                       + spot_shift + public_shift
                        + line_shift + starter_shift)
 
     expected_total = max(0, base_total - weather_penalty + ref_over_bias
@@ -455,13 +531,19 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         # Vegas spreads are ~50/50 by design; our edge is small.
         base_rate = FAV_COVER_BASE.get(sport_lower, 0.49)
 
-        # NHL puck line and NBA spread are the most efficient markets — heavier regression
+        # Regression by sport — blend sim toward historical base rate
+        # More efficient markets get heavier regression (less sim trust)
         if sport_lower == "nhl":
             # 30% sim / 70% base rate — underdogs cover ~55%
             fav_cover_pct = raw_fav_cover * 0.30 + base_rate * 0.70
         elif sport_lower == "nba":
             # 35% sim / 65% base rate — NBA spreads are extremely efficient
             fav_cover_pct = raw_fav_cover * 0.35 + base_rate * 0.65
+        elif sport_lower in ("ncaab", "ncaaw"):
+            # UPDATED 03/20/2026: College ATS was 33% (5-10).
+            # Tournament spreads are less predictable than regular season.
+            # Regression: 45% sim / 55% base rate (was 50/50)
+            fav_cover_pct = raw_fav_cover * 0.45 + base_rate * 0.55
         else:
             fav_cover_pct = raw_fav_cover * 0.50 + base_rate * 0.50
 
@@ -475,14 +557,23 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         # Big spread dampener: large spreads are unpredictable ATS regardless
         # of what the simulation thinks. A 30-point spread doesn't mean 90% cover.
         # Pull aggressively toward 50% as spread grows.
-        if abs_spread > 10:
+        # UPDATED 03/20/2026: Increased college dampening — tournament mismatches
+        # were generating 51-55% picks on 15-30pt spreads that went 5-10 ATS.
+        if abs_spread > 7:
             if sport_lower in ("ncaab", "ncaaw", "ncaaf"):
-                # College: huge tournament mismatches are near coin-flips ATS
-                dampen = min(0.75, (abs_spread - 10) * 0.025)
+                # College: tournament mismatches are near coin-flips ATS
+                # Starts dampening at 7 (not 10), heavier pull toward 50%
+                dampen = min(0.85, (abs_spread - 7) * 0.035)
             else:
                 # Pro: large spreads still unpredictable
-                dampen = min(0.50, (abs_spread - 10) * 0.02)
+                dampen = min(0.60, (abs_spread - 7) * 0.025)
             fav_cover_pct = fav_cover_pct * (1 - dampen) + 0.50 * dampen
+
+        # LEAN DOG on very large spreads (15+): underdogs historically cover
+        # large tournament spreads ~55-58% of the time. Nudge toward dog.
+        if abs_spread >= 15 and sport_lower in ("ncaab", "ncaaw", "ncaaf"):
+            dog_lean = min(0.06, (abs_spread - 15) * 0.004)
+            fav_cover_pct -= dog_lean
 
         fav_cover_pct = max(0.01, min(0.99, fav_cover_pct))
 
@@ -498,16 +589,30 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         raw_ats = max(fav_cover_pct, 1 - fav_cover_pct) * 100
         display_ats = round(50.0 + (raw_ats - 50.0) * ATS_COMPRESS, 1)
 
-        if fav_cover_pct >= 0.5:
-            picks["ats_pick"] = fav_name
-            picks["ats_pick_abbr"] = f_abbr
-            picks["ats_spread"] = fav_spread
-            picks["ats_confidence"] = display_ats
+        # MINIMUM ATS CONFIDENCE THRESHOLD
+        # Don't publish ATS picks below 52% — these are coin flips that
+        # drag the overall ATS record. Better to show no pick than a bad one.
+        # UPDATED 03/20/2026: Was publishing 51% picks that went 5-10 ATS.
+        ATS_MIN_DISPLAY = 52.0
+
+        if display_ats >= ATS_MIN_DISPLAY:
+            if fav_cover_pct >= 0.5:
+                picks["ats_pick"] = fav_name
+                picks["ats_pick_abbr"] = f_abbr
+                picks["ats_spread"] = fav_spread
+                picks["ats_confidence"] = display_ats
+            else:
+                picks["ats_pick"] = dog_name
+                picks["ats_pick_abbr"] = d_abbr
+                picks["ats_spread"] = dog_spread
+                picks["ats_confidence"] = display_ats
         else:
-            picks["ats_pick"] = dog_name
-            picks["ats_pick_abbr"] = d_abbr
-            picks["ats_spread"] = dog_spread
-            picks["ats_confidence"] = display_ats
+            # Below threshold — no ATS pick (protects record)
+            picks["ats_pick"] = None
+            picks["ats_pick_abbr"] = None
+            picks["ats_spread"] = fav_spread
+            picks["ats_confidence"] = display_ats  # still show confidence, just no pick
+            picks["ats_below_threshold"] = True
 
         # High confidence flag — sport-specific thresholds
         ats_conf = picks["ats_confidence"] / 100.0
