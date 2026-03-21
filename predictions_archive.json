@@ -56257,6 +56257,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856514",
+      "sport": "ncaaw",
+      "matchup": "Vermont Catamounts at Louisville Cardinals",
+      "shortName": "UVM @ LOU",
+      "date_utc": "2026-03-21T16:00Z",
+      "date_local": "2026-03-21 12:00 PM ET",
+      "home": "LOU",
+      "away": "UVM",
+      "home_team": {
+        "id": "97",
+        "name": "Louisville Cardinals",
+        "abbr": "LOU",
+        "slug": "louisville-cardinals",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png"
+      },
+      "away_team": {
+        "id": "261",
+        "name": "Vermont Catamounts",
+        "abbr": "UVM",
+        "slug": "vermont-catamounts",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/261.png"
+      },
+      "odds": {
+        "details": "LOU -26.5",
+        "spread": -26.5,
+        "total": 121.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "KFC Yum! Center",
+        "city": "Louisville",
+        "state": "KY",
+        "indoor": true,
+        "grass": false,
+        "lat": 38.2542376,
+        "lon": -85.759407
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Louisville Cardinals",
+      "dog_team": "Vermont Catamounts",
+      "fav_abbr": "LOU",
+      "dog_abbr": "UVM",
+      "fav_spread": -26.5,
+      "dog_spread": 26.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 35.8,
+        "projected_away_score": 120.0,
+        "projected_total": 155.8,
+        "projected_spread": -84.2,
+        "win_probability_home": 0.0,
+        "confidence": 95
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.0,
+        "away_win_pct": 1.0,
+        "home_cover_pct": 0.0,
+        "over_pct": 0.4183,
+        "avg_simulated_margin": -155.8,
+        "avg_simulated_total": 119.74
+      },
+      "picks": {
+        "su_pick": "Vermont Catamounts",
+        "su_pick_abbr": "UVM",
+        "su_confidence": 78.0,
+        "ats_pick": "Vermont Catamounts",
+        "ats_pick_abbr": "UVM",
+        "ats_spread": 26.5,
+        "ats_confidence": 57.5,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 121.5,
+        "ou_confidence": 52.2,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
