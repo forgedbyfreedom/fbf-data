@@ -546,17 +546,22 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
 
         # Regression by sport — blend sim toward historical base rate
         # More efficient markets get heavier regression (less sim trust)
+        # UPDATED 03/22/2026: Previous weights were filtering out 100% of
+        # NBA/NFL/NHL ATS picks. The regression was so heavy that no pick
+        # could ever reach the confidence threshold. Increased sim trust
+        # for pro sports so genuine edge can surface.
         if sport_lower == "nhl":
-            # 30% sim / 70% base rate — underdogs cover ~55%
-            fav_cover_pct = raw_fav_cover * 0.30 + base_rate * 0.70
+            # 40% sim / 60% base — was 30/70, blocked every pick
+            fav_cover_pct = raw_fav_cover * 0.40 + base_rate * 0.60
         elif sport_lower == "nba":
-            # 35% sim / 65% base rate — NBA spreads are extremely efficient
-            fav_cover_pct = raw_fav_cover * 0.35 + base_rate * 0.65
-        elif sport_lower in ("ncaab", "ncaaw"):
-            # UPDATED 03/20/2026: College ATS was 33% (5-10).
-            # Tournament spreads are less predictable than regular season.
-            # Regression: 45% sim / 55% base rate (was 50/50)
+            # 45% sim / 55% base — was 35/65, blocked every pick
             fav_cover_pct = raw_fav_cover * 0.45 + base_rate * 0.55
+        elif sport_lower in ("ncaab", "ncaaw"):
+            # 45% sim / 55% base — college tournament spreads less predictable
+            fav_cover_pct = raw_fav_cover * 0.45 + base_rate * 0.55
+        elif sport_lower in ("nfl", "ncaaf"):
+            # 55% sim / 45% base — NFL has more variance than NBA/NHL
+            fav_cover_pct = raw_fav_cover * 0.55 + base_rate * 0.45
         else:
             fav_cover_pct = raw_fav_cover * 0.50 + base_rate * 0.50
 
@@ -597,16 +602,38 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
             fav_cover_pct = max(0.42, min(0.58, fav_cover_pct))
 
         # Compress ATS confidence: spreads are near coin-flips by design.
-        # Raw 50-100% → Display 50-68%. Preserves ordering, kills inflation.
-        ATS_COMPRESS = 0.36
+        # UPDATED 03/22/2026: Sport-specific compression. Pro sports were being
+        # compressed so hard that no pick could ever surface. Allow more signal
+        # for pro sports while keeping college tight.
+        ATS_COMPRESS_BY_SPORT = {
+            "nhl": 0.50,    # was 0.36 — let puck line picks breathe
+            "nba": 0.50,    # was 0.36 — let NBA spread picks breathe
+            "nfl": 0.50,    # was 0.36 — let NFL spread picks breathe
+            "mlb": 0.45,    # run line
+            "ncaab": 0.36,  # keep tight — college is noisy
+            "ncaaw": 0.36,
+            "ncaaf": 0.42,  # moderate
+            "ufc": 0.40,
+        }
+        ATS_COMPRESS = ATS_COMPRESS_BY_SPORT.get(sport_lower, 0.40)
         raw_ats = max(fav_cover_pct, 1 - fav_cover_pct) * 100
         display_ats = round(50.0 + (raw_ats - 50.0) * ATS_COMPRESS, 1)
 
-        # MINIMUM ATS CONFIDENCE THRESHOLD
-        # Don't publish ATS picks below 52% — these are coin flips that
-        # drag the overall ATS record. Better to show no pick than a bad one.
-        # UPDATED 03/20/2026: Was publishing 51% picks that went 5-10 ATS.
-        ATS_MIN_DISPLAY = 52.0
+        # MINIMUM ATS CONFIDENCE THRESHOLD — sport-specific
+        # UPDATED 03/22/2026: Global 52% was filtering out 100% of NHL/NBA/NFL picks.
+        # These markets are efficiently priced — 51% IS a real pick there.
+        # College spreads are noisier — keep higher threshold.
+        ATS_MIN_BY_SPORT = {
+            "nhl": 50.5,    # Puck line is near coin-flip — any lean is signal
+            "nba": 50.5,    # NBA spreads efficient — small edge is real
+            "nfl": 50.5,    # NFL spreads efficient — small edge is real
+            "mlb": 50.5,    # Run line
+            "ncaab": 52.0,  # College — keep higher bar, noisier market
+            "ncaaw": 52.0,
+            "ncaaf": 51.0,  # College football — moderate
+            "ufc": 50.5,
+        }
+        ATS_MIN_DISPLAY = ATS_MIN_BY_SPORT.get(sport_lower, 51.0)
 
         if display_ats >= ATS_MIN_DISPLAY:
             if fav_cover_pct >= 0.5:
