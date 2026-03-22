@@ -61073,6 +61073,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856543",
+      "sport": "ncaaw",
+      "matchup": "Maryland Terrapins at North Carolina Tar Heels",
+      "shortName": "MD @ UNC",
+      "date_utc": "2026-03-22T16:00Z",
+      "date_local": "2026-03-22 12:00 PM ET",
+      "home": "UNC",
+      "away": "MD",
+      "home_team": {
+        "id": "153",
+        "name": "North Carolina Tar Heels",
+        "abbr": "UNC",
+        "slug": "north-carolina-tar-heels",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/153.png"
+      },
+      "away_team": {
+        "id": "120",
+        "name": "Maryland Terrapins",
+        "abbr": "MD",
+        "slug": "maryland-terrapins",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/120.png"
+      },
+      "odds": {
+        "details": "UNC -2.5",
+        "spread": -2.5,
+        "total": 138.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Carmichael Arena",
+        "city": "Chapel Hill",
+        "state": "NC",
+        "indoor": true,
+        "grass": false,
+        "lat": 35.9131542,
+        "lon": -79.05578
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "North Carolina Tar Heels",
+      "dog_team": "Maryland Terrapins",
+      "fav_abbr": "UNC",
+      "dog_abbr": "MD",
+      "fav_spread": -2.5,
+      "dog_spread": 2.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 72.9,
+        "projected_away_score": 72.4,
+        "projected_total": 145.3,
+        "projected_spread": 0.6,
+        "win_probability_home": 0.523,
+        "confidence": 62
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5772,
+        "away_win_pct": 0.4228,
+        "home_cover_pct": 0.5,
+        "over_pct": 0.5745,
+        "avg_simulated_margin": 2.58,
+        "avg_simulated_total": 140.21
+      },
+      "picks": {
+        "su_pick": "North Carolina Tar Heels",
+        "su_pick_abbr": "UNC",
+        "su_confidence": 54.3,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -2.5,
+        "ats_confidence": 50.2,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 138.5,
+        "ou_confidence": 51.6,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
