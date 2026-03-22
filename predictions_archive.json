@@ -61658,6 +61658,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856545",
+      "sport": "ncaaw",
+      "matchup": "Texas Tech Lady Raiders at LSU Tigers",
+      "shortName": "TTU @ LSU",
+      "date_utc": "2026-03-22T19:00Z",
+      "date_local": "2026-03-22 03:00 PM ET",
+      "home": "LSU",
+      "away": "TTU",
+      "home_team": {
+        "id": "99",
+        "name": "LSU Tigers",
+        "abbr": "LSU",
+        "slug": "lsu-tigers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png"
+      },
+      "away_team": {
+        "id": "2641",
+        "name": "Texas Tech Lady Raiders",
+        "abbr": "TTU",
+        "slug": "texas-tech-lady-raiders",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png"
+      },
+      "odds": {
+        "details": "LSU -25.5",
+        "spread": -25.5,
+        "total": 143.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Pete Maravich Assembly Center",
+        "city": "Baton Rouge",
+        "state": "LA",
+        "indoor": true,
+        "grass": false,
+        "lat": 30.4494155,
+        "lon": -91.1869659
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "LSU Tigers",
+      "dog_team": "Texas Tech Lady Raiders",
+      "fav_abbr": "LSU",
+      "dog_abbr": "TTU",
+      "fav_spread": -25.5,
+      "dog_spread": 25.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 93.3,
+        "projected_away_score": 53.2,
+        "projected_total": 146.5,
+        "projected_spread": 40.1,
+        "win_probability_home": 0.999,
+        "confidence": 95
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.9984,
+        "away_win_pct": 0.0016,
+        "home_cover_pct": 0.8511,
+        "over_pct": 0.3166,
+        "avg_simulated_margin": 38.82,
+        "avg_simulated_total": 139.31
+      },
+      "picks": {
+        "su_pick": "LSU Tigers",
+        "su_pick_abbr": "LSU",
+        "su_confidence": 77.9,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -25.5,
+        "ats_confidence": 50.8,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 143.5,
+        "ou_confidence": 53.9,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
