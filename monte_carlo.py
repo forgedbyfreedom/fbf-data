@@ -93,7 +93,7 @@ OVER_BASE = {
     "nba": 0.50,
     "ncaab": 0.50,
     "ncaaw": 0.50,
-    "nhl": 0.50,
+    "nhl": 0.46,   # UPDATED 03/22: NHL Unders hitting ~60%+ — lower base rate reflects reality
     "mlb": 0.50,
     "ufc": 0.50,
 }
@@ -105,7 +105,7 @@ OU_SIM_WEIGHT = {
     "nfl": 0.60, "ncaaf": 0.60,
     "nba": 0.40,                     # NBA totals are efficiently priced
     "ncaab": 0.70, "ncaaw": 0.70,   # UPDATED 03/21: was 0.95 — backtest showed 45.8% (27-32), no edge. Regress harder.
-    "nhl": 0.35,                     # NHL totals are tightest market in sports
+    "nhl": 0.25,                     # UPDATED 03/22: was 0.35 — NHL O/U going 4-34 Over, 26-2 Under. Less sim trust.
     "mlb": 0.55, "ufc": 0.50,
 }
 
@@ -650,8 +650,11 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         regressed_over = over_pct * sim_weight + base_over * (1.0 - sim_weight)
 
         # NHL/NBA O/U confidence cap — these markets are near coin-flip
+        # UPDATED 03/22/2026: NHL games going Under at massive rate (26-2 Under vs 4-34 Over
+        # in backtest). Apply structural Under lean — NHL totals are consistently set too high.
         if sport_lower == "nhl":
-            regressed_over = max(0.42, min(0.58, regressed_over))
+            regressed_over -= 0.04  # Structural Under lean — games consistently go Under
+            regressed_over = max(0.38, min(0.58, regressed_over))
         elif sport_lower == "nba":
             regressed_over = max(0.43, min(0.57, regressed_over))
 
