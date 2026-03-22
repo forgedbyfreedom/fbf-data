@@ -61574,6 +61574,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856561",
+      "sport": "ncaab",
+      "matchup": "Kentucky Wildcats at Iowa State Cyclones",
+      "shortName": "UK VS ISU",
+      "date_utc": "2026-03-22T18:45Z",
+      "date_local": "2026-03-22 02:45 PM ET",
+      "home": "ISU",
+      "away": "UK",
+      "home_team": {
+        "id": "66",
+        "name": "Iowa State Cyclones",
+        "abbr": "ISU",
+        "slug": "iowa-state-cyclones",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
+      },
+      "away_team": {
+        "id": "96",
+        "name": "Kentucky Wildcats",
+        "abbr": "UK",
+        "slug": "kentucky-wildcats",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png"
+      },
+      "odds": {
+        "details": "ISU -4.5",
+        "spread": -4.5,
+        "total": 146.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Enterprise Center",
+        "city": "St. Louis",
+        "state": "MO",
+        "indoor": true,
+        "grass": false,
+        "lat": 38.6254063,
+        "lon": -90.190009
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Iowa State Cyclones",
+      "dog_team": "Kentucky Wildcats",
+      "fav_abbr": "ISU",
+      "dog_abbr": "UK",
+      "fav_spread": -4.5,
+      "dog_spread": 4.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 77.1,
+        "projected_away_score": 72.9,
+        "projected_total": 150.1,
+        "projected_spread": 4.2,
+        "win_probability_home": 0.669,
+        "confidence": 83
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.7365,
+        "away_win_pct": 0.2635,
+        "home_cover_pct": 0.6293,
+        "over_pct": 0.5235,
+        "avg_simulated_margin": 9.54,
+        "avg_simulated_total": 147.05
+      },
+      "picks": {
+        "su_pick": "Iowa State Cyclones",
+        "su_pick_abbr": "ISU",
+        "su_confidence": 63.2,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -4.5,
+        "ats_confidence": 51.7,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 146.5,
+        "ou_confidence": 50.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
