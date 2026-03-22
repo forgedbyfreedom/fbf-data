@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 # ── CONFIG ──────────────────────────────────────────────────────────
 # Current model start date — only grade picks locked on or after this.
 # Update this whenever the model is significantly changed.
-MODEL_START_DATE = "2026-03-19"
+MODEL_START_DATE = "2026-02-19"
 
 # Per-sport override: some sports were recalibrated after the general start.
 # v3 (2026-03-19): Full sport-specific modeling — TOTAL_STDEV recalibrated,
