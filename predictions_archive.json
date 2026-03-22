@@ -60153,6 +60153,174 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803457",
+      "sport": "nhl",
+      "matchup": "Toronto Maple Leafs at Ottawa Senators",
+      "shortName": "TOR @ OTT",
+      "date_utc": "2026-03-21T23:00Z",
+      "date_local": "2026-03-21 07:00 PM ET",
+      "home": "OTT",
+      "away": "TOR",
+      "home_team": {
+        "id": "14",
+        "name": "Ottawa Senators",
+        "abbr": "OTT",
+        "slug": "ottawa-senators",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ott.png"
+      },
+      "away_team": {
+        "id": "21",
+        "name": "Toronto Maple Leafs",
+        "abbr": "TOR",
+        "slug": "toronto-maple-leafs",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tor.png"
+      },
+      "odds": {
+        "details": "OTT -325",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Canadian Tire Centre",
+        "city": "Ottawa",
+        "state": "ON",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Ottawa Senators",
+      "dog_team": "Toronto Maple Leafs",
+      "fav_abbr": "OTT",
+      "dog_abbr": "TOR",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 2,
+      "injury_count_away": 4,
+      "prediction": {
+        "projected_home_score": 8.1,
+        "projected_away_score": 6.5,
+        "projected_total": 14.7,
+        "projected_spread": 1.6,
+        "win_probability_home": 0.566,
+        "confidence": 62
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8791,
+        "away_win_pct": 0.1209,
+        "home_cover_pct": 0.7039,
+        "over_pct": 0.5378,
+        "avg_simulated_margin": 2.85,
+        "avg_simulated_total": 6.69
+      },
+      "picks": {
+        "su_pick": "Ottawa Senators",
+        "su_pick_abbr": "OTT",
+        "su_confidence": 71.2,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -1.5,
+        "ats_confidence": 50.9,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 6.5,
+        "ou_confidence": 50.4,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
+    },
+    {
+      "id": "401810884",
+      "sport": "nba",
+      "matchup": "LA Clippers at Dallas Mavericks",
+      "shortName": "LAC @ DAL",
+      "date_utc": "2026-03-22T00:30Z",
+      "date_local": "2026-03-21 08:30 PM ET",
+      "home": "DAL",
+      "away": "LAC",
+      "home_team": {
+        "id": "6",
+        "name": "Dallas Mavericks",
+        "abbr": "DAL",
+        "slug": "dallas-mavericks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/dal.png"
+      },
+      "away_team": {
+        "id": "12",
+        "name": "LA Clippers",
+        "abbr": "LAC",
+        "slug": "la-clippers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/lac.png"
+      },
+      "odds": {
+        "details": "LAC -7.5",
+        "spread": 7.5,
+        "total": 233.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "American Airlines Center",
+        "city": "Dallas",
+        "state": "TX",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "LA Clippers",
+      "dog_team": "Dallas Mavericks",
+      "fav_abbr": "LAC",
+      "dog_abbr": "DAL",
+      "fav_spread": -7.5,
+      "dog_spread": 7.5,
+      "injury_count_home": 4,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 112.6,
+        "projected_away_score": 121.3,
+        "projected_total": 233.9,
+        "projected_spread": -8.7,
+        "win_probability_home": 0.189,
+        "confidence": 93
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.2649,
+        "away_win_pct": 0.7351,
+        "home_cover_pct": 0.4961,
+        "over_pct": 0.4716,
+        "avg_simulated_margin": -7.45,
+        "avg_simulated_total": 232.68
+      },
+      "picks": {
+        "su_pick": "LA Clippers",
+        "su_pick_abbr": "LAC",
+        "su_confidence": 63.2,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -7.5,
+        "ats_confidence": 50.3,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 233.5,
+        "ou_confidence": 50.3,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
