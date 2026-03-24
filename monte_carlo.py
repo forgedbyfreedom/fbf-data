@@ -66,22 +66,25 @@ FAV_COVER_BASE = {
 # NOTE: Confidence values are now compressed (SU 0.56x, ATS 0.36x, O/U 0.30x).
 # Thresholds must account for compression. A "58% ATS" post-compression means
 # the raw simulation had ~72% confidence — that IS a strong signal.
-ATS_HIGH_CONF = 0.59
-OU_HIGH_CONF = 0.57
+# UPDATED 03/24/2026: Best bet thresholds recalibrated for new compression ratios.
+# ATS max confidence is ~53% with current compression. Old 59% threshold = 0 best bets.
+# Target: ~3-5 best bets per day across all sports.
+# Best bet thresholds — ATS only (O/U best bets disabled — model not reliable enough)
+# Target: ~1-3 best bets per day across all sports
+ATS_HIGH_CONF = 0.525
+OU_HIGH_CONF = 0.99   # Effectively disabled — O/U model doesn't produce reliable high-conf picks
 
-# Sport-specific thresholds (post-compression values)
-# With ATS compressed to 50-68% range, 59% = top ~5% of picks
 ATS_HIGH_CONF_BY_SPORT = {
-    "nfl": 0.59, "ncaaf": 0.59,
-    "nba": 0.60, "nhl": 0.60,
-    "ncaab": 0.595, "ncaaw": 0.595,
-    "mlb": 0.59, "ufc": 0.59,
+    "nfl": 0.515, "ncaaf": 0.525,
+    "nba": 0.515, "nhl": 0.515,
+    "ncaab": 0.525, "ncaaw": 0.525,
+    "mlb": 0.515, "ufc": 0.515,
 }
 OU_HIGH_CONF_BY_SPORT = {
-    "nfl": 0.57, "ncaaf": 0.57,
-    "nba": 0.58, "nhl": 0.58,
-    "ncaab": 0.57, "ncaaw": 0.57,
-    "mlb": 0.57, "ufc": 0.57,
+    "nfl": 0.99, "ncaaf": 0.99,
+    "nba": 0.99, "nhl": 0.99,
+    "ncaab": 0.99, "ncaaw": 0.99,
+    "mlb": 0.99, "ufc": 0.99,
 }
 
 # Historical over rate by sport — used to regress O/U simulation output
