@@ -18,10 +18,14 @@ from datetime import datetime, timezone
 # Update this whenever the model is significantly changed.
 MODEL_START_DATE = "2025-12-22"
 
+# BACKTEST LOCK: When True, the tracker will NOT overwrite accuracy.json.
+# The backtested numbers cover 90 days of historical data that completed_scores
+# doesn't have (it only goes back ~23 days). Setting this to True preserves
+# the backtested numbers until we have enough live data to replace them.
+# Set to False once completed_scores covers the full 90-day window.
+BACKTEST_LOCKED = True
+
 # Per-sport override: some sports were recalibrated after the general start.
-# v3 (2026-03-19): Full sport-specific modeling — TOTAL_STDEV recalibrated,
-# O/U regression added, pace/ref weights dampened for NBA/NHL, indoor sports
-# hardcoded to skip weather. Previous overrides no longer needed.
 SPORT_START_OVERRIDE = {}
 
 OUTPUT = "accuracy.json"
@@ -164,6 +168,9 @@ def main():
 
     if not all_preds:
         print("[accuracy] No predictions found")
+        if BACKTEST_LOCKED:
+            print("[accuracy] BACKTEST_LOCKED — preserving existing accuracy.json")
+            return
         with open(OUTPUT, "w") as f:
             json.dump({
                 "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -323,8 +330,11 @@ def main():
         "results": results[-200:],
     }
 
-    with open(OUTPUT, "w") as f:
-        json.dump(output, f, indent=2)
+    if BACKTEST_LOCKED:
+        print(f"[accuracy] BACKTEST_LOCKED — preserving backtested numbers. Live: {graded} games graded but NOT overwriting.")
+    else:
+        with open(OUTPUT, "w") as f:
+            json.dump(output, f, indent=2)
 
     # ── Print summary ───────────────────────────────────────────────
     skip_summary = ", ".join(f"{v} {k}" for k, v in skipped.items() if v)
