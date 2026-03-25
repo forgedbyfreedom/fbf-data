@@ -28,7 +28,11 @@ BACKTEST_FILE = "backtest_baseline.json"  # Pre-computed historical results
 # Per-sport override: some sports were recalibrated after the general start.
 SPORT_START_OVERRIDE = {}
 
-OUTPUT = "accuracy.json"
+# IMPORTANT: Writing to accuracy_live.json NOT accuracy.json
+# accuracy.json contains our backtested 90-day numbers and must not be overwritten.
+# Live tracking writes to a separate file. When we're ready to switch to pure
+# live tracking, change this back to "accuracy.json".
+OUTPUT = "accuracy_live.json"
 SCORES_FILE = "completed_scores.json"
 COMBINED_FILE = "combined.json"
 LOCKED_FILE = "predictions_locked.json"
