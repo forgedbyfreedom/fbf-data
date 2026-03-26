@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260326_2153",
+  "timestamp": "20260326_2210",
   "count": 324,
   "data": [
     {
@@ -770,8 +770,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": null,
       "venue": {
         "name": "Great American Ball Park",
@@ -1132,9 +1132,9 @@
         "slug": "detroit-tigers",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/det.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": 8.0,
-      "total_points": 8.0,
+      "total_points": 9.0,
       "odds": null,
       "venue": {
         "name": "Petco Park",
@@ -1292,11 +1292,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -0.53,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -7.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -1536,8 +1536,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tb.png"
       },
       "home_score": 1.0,
-      "away_score": 1.0,
-      "total_points": 2.0,
+      "away_score": 7.0,
+      "total_points": 8.0,
       "odds": null,
       "venue": {
         "name": "Busch Stadium",
@@ -1660,11 +1660,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -0.839,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -6.0,
       "rest_diff_days": 0,
-      "elo_diff": 0.0,
-      "home_elo": 1500.0,
-      "away_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -1752,22 +1752,17 @@
       "spread": -2.5,
       "favorite": "CHA -2.5",
       "underdog": "NY +2.5",
-      "tagged_at": "2026-03-26T21:53:24.952193+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493346+00:00",
       "home_injuries": [
         {
           "player": "Liam McNeeley",
-          "status": "Mar 26",
+          "status": "Mar 28",
           "position": "G"
         },
         {
           "player": "Tidjane Salaun",
           "status": "Mar 28",
           "position": "F"
-        },
-        {
-          "player": "Pat Connaughton",
-          "status": "Mar 26",
-          "position": "G"
         }
       ],
       "away_injuries": [
@@ -1787,7 +1782,7 @@
           "position": "G"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 2,
       "injury_count_away": 3,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -1849,8 +1844,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DET -4.5",
-        "spread": -4.5,
+        "details": "DET -3.5",
+        "spread": -3.5,
         "total": 226.5,
         "provider": "Draft Kings"
       },
@@ -1863,47 +1858,35 @@
         "lat": 42.3315509,
         "lon": -83.0466403
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Tyler Ford",
+          "role": "referee"
+        },
+        {
+          "name": "Ashley Moyer-Gleich",
+          "role": "referee"
+        },
+        {
+          "name": "Matt Kallio",
+          "role": "referee"
+        }
+      ],
       "fav_team": "Detroit Pistons",
       "dog_team": "New Orleans Pelicans",
       "fav_abbr": "DET",
       "dog_abbr": "NO",
-      "fav_spread": -4.5,
-      "dog_spread": 4.5,
-      "spread": -4.5,
-      "favorite": "DET -4.5",
-      "underdog": "NO +4.5",
-      "tagged_at": "2026-03-26T21:53:24.952208+00:00",
+      "fav_spread": -3.5,
+      "dog_spread": 3.5,
+      "spread": -3.5,
+      "favorite": "DET -3.5",
+      "underdog": "NO +3.5",
+      "tagged_at": "2026-03-26T22:10:54.493361+00:00",
       "home_injuries": [
-        {
-          "player": "Javonte Green",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Marcus Sasser",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Tobias Harris",
-          "status": "Mar 26",
-          "position": "F"
-        },
         {
           "player": "Duncan Robinson",
           "status": "Mar 26",
           "position": "F"
-        },
-        {
-          "player": "Jalen Duren",
-          "status": "Mar 26",
-          "position": "C"
-        },
-        {
-          "player": "Ausar Thompson",
-          "status": "Mar 26",
-          "position": "G"
         },
         {
           "player": "Caris LeVert",
@@ -1923,21 +1906,21 @@
       ],
       "away_injuries": [
         {
+          "player": "Trey Murphy III",
+          "status": "Mar 27",
+          "position": "F"
+        },
+        {
           "player": "Bryce McGowens",
           "status": "Mar 27",
           "position": "G"
-        },
-        {
-          "player": "Trey Murphy III",
-          "status": "Mar 26",
-          "position": "F"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 4,
       "injury_count_away": 2,
-      "ref_home_bias": 0.5,
-      "ref_over_bias": 0.4,
-      "ref_consistency": 9.0,
+      "ref_home_bias": 1.092,
+      "ref_over_bias": 0.015,
+      "ref_consistency": 19.0,
       "h2h_margin_avg": -7.5,
       "rest_diff_days": -1,
       "elo_diff": 212.3,
@@ -1964,11 +1947,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": 1.0,
+      "spread_delta": 2.0,
       "total_delta": 1.0,
       "spread_direction": "toward_underdog",
       "total_direction": "up",
-      "spread_moves": 8
+      "spread_moves": 9
     },
     {
       "sport": "nba",
@@ -2009,7 +1992,32 @@
         "lat": 28.5421218,
         "lon": -81.379045
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "James Capers",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Dedric Taylor",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Michael Smith",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ],
       "fav_team": "Orlando Magic",
       "dog_team": "Sacramento Kings",
       "fav_abbr": "ORL",
@@ -2019,7 +2027,7 @@
       "spread": -15.5,
       "favorite": "ORL -15.5",
       "underdog": "SAC +15.5",
-      "tagged_at": "2026-03-26T21:53:24.952214+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493367+00:00",
       "home_injuries": [
         {
           "player": "Anthony Black",
@@ -2081,9 +2089,9 @@
       ],
       "injury_count_home": 3,
       "injury_count_away": 8,
-      "ref_home_bias": 0.5,
-      "ref_over_bias": 0.4,
-      "ref_consistency": 9.0,
+      "ref_home_bias": 1.48,
+      "ref_over_bias": 0.238,
+      "ref_consistency": 20.2,
       "h2h_margin_avg": -3.0,
       "rest_diff_days": 0,
       "elo_diff": 148.3,
@@ -2198,7 +2206,7 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "CBJ +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952219+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493371+00:00",
       "home_injuries": [
         {
           "player": "Kirby Dach",
@@ -2342,7 +2350,7 @@
       "spread": -1.5,
       "favorite": "OTT -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952223+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493375+00:00",
       "home_injuries": [
         {
           "player": "Dennis Gilbert",
@@ -2511,7 +2519,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "SEA +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952226+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493380+00:00",
       "home_injuries": [
         {
           "player": "Victor Hedman",
@@ -2686,7 +2694,7 @@
       "spread": -1.5,
       "favorite": "MIN -1.5",
       "underdog": "FLA +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952230+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493384+00:00",
       "home_injuries": [
         {
           "player": "Mackie Samoskevich",
@@ -2865,7 +2873,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "NYI +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952234+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493388+00:00",
       "home_injuries": [
         {
           "player": "Tony DeAngelo",
@@ -3050,7 +3058,7 @@
       "spread": -1.5,
       "favorite": "PHI -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952238+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493392+00:00",
       "home_injuries": [
         {
           "player": "Nikita Grebenkin",
@@ -3182,7 +3190,20 @@
         "lat": 37.3361663,
         "lon": -121.890591
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Jeb Hartness",
+          "role": "referee"
+        },
+        {
+          "name": "Bert Smith",
+          "role": "referee"
+        },
+        {
+          "name": "Randy Richardson",
+          "role": "referee"
+        }
+      ],
       "fav_team": "Purdue Boilermakers",
       "dog_team": "Texas Longhorns",
       "fav_abbr": "PUR",
@@ -3192,14 +3213,14 @@
       "spread": -8.5,
       "favorite": "PUR -8.5",
       "underdog": "TEX +8.5",
-      "tagged_at": "2026-03-26T21:53:24.952248+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493401+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.4,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 10.0,
+      "ref_home_bias": 2.759,
+      "ref_over_bias": 0.484,
+      "ref_consistency": 20.7,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": -8,
       "elo_diff": 150.4,
@@ -3281,7 +3302,7 @@
       "spread": -1.5,
       "favorite": "NEB -1.5",
       "underdog": "IOWA +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952251+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493405+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3357,8 +3378,8 @@
         "state": "MO",
         "indoor": true,
         "grass": false,
-        "lat": 38.6254063,
-        "lon": -90.190009
+        "lat": null,
+        "lon": null
       },
       "officials": [
         {
@@ -3403,7 +3424,7 @@
       "spread": -1.5,
       "favorite": "STL -1.5",
       "underdog": "SJ +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952255+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493408+00:00",
       "home_injuries": [
         {
           "player": "Robert Thomas",
@@ -3568,7 +3589,7 @@
       "spread": -1.5,
       "favorite": "NSH -1.5",
       "underdog": "NJ +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952258+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493412+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -3706,7 +3727,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "WPG +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952262+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493417+00:00",
       "home_injuries": [
         {
           "player": "Colin Miller",
@@ -3810,8 +3831,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [
         {
@@ -3977,10 +3998,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 67,
       "public_side": "LAD",
       "fade_signal": 1,
-      "public_home_pct": 68,
+      "public_home_pct": 67,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4064,7 +4085,7 @@
       "spread": -1.5,
       "favorite": "UTA -1.5",
       "underdog": "WSH +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952268+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493421+00:00",
       "home_injuries": [
         {
           "player": "Barrett Hayton",
@@ -4203,7 +4224,7 @@
       "spread": -1.5,
       "favorite": "ANA -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952273+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493427+00:00",
       "home_injuries": [
         {
           "player": "Connor Zary",
@@ -4352,7 +4373,7 @@
       "spread": -1.5,
       "favorite": "VGK -1.5",
       "underdog": "EDM +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952277+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493430+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -4478,7 +4499,7 @@
       "spread": -7.5,
       "favorite": "ARIZ -7.5",
       "underdog": "ARK +7.5",
-      "tagged_at": "2026-03-26T21:53:24.952281+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493434+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -4584,7 +4605,7 @@
       "spread": -1.5,
       "favorite": "LA -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952284+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493437+00:00",
       "home_injuries": [
         {
           "player": "Thatcher Demko",
@@ -4716,7 +4737,7 @@
       "spread": -2.5,
       "favorite": "HOU -2.5",
       "underdog": "ILL +2.5",
-      "tagged_at": "2026-03-26T21:53:24.952287+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493440+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -4787,8 +4808,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [
         {
@@ -4889,10 +4910,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
+      "public_pct": 52,
       "public_side": "SEA",
-      "fade_signal": 1,
-      "public_home_pct": 69,
+      "fade_signal": 0,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4959,7 +4980,7 @@
       "spread": -5.5,
       "favorite": "VAN -5.5",
       "underdog": "ND +5.5",
-      "tagged_at": "2026-03-26T21:53:24.952293+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493445+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -5190,7 +5211,7 @@
       "spread": -27.5,
       "favorite": "CONN -27.5",
       "underdog": "UNC +27.5",
-      "tagged_at": "2026-03-26T21:53:24.952296+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493449+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -5395,7 +5416,7 @@
       "spread": -1.5,
       "favorite": "BUF -1.5",
       "underdog": "DET +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952300+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493453+00:00",
       "home_injuries": [
         {
           "player": "Noah Ostlund",
@@ -5509,8 +5530,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "New York Rangers",
@@ -5522,7 +5543,7 @@
       "spread": -1.5,
       "favorite": "NYR -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952303+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493456+00:00",
       "home_injuries": [
         {
           "player": "Jonathan Quick",
@@ -5641,8 +5662,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901266
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -5768,8 +5789,8 @@
         "state": "DC",
         "indoor": true,
         "grass": false,
-        "lat": 38.8950368,
-        "lon": -77.0365427
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Duke Blue Devils",
@@ -5781,7 +5802,7 @@
       "spread": -6.5,
       "favorite": "DUKE -6.5",
       "underdog": "SJU +6.5",
-      "tagged_at": "2026-03-26T21:53:24.952307+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493459+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -6024,8 +6045,8 @@
         "state": "Georgia",
         "indoor": false,
         "grass": true,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6189,7 +6210,7 @@
       "spread": -4.5,
       "favorite": "BOS -4.5",
       "underdog": "ATL +4.5",
-      "tagged_at": "2026-03-26T21:53:24.952312+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493464+00:00",
       "home_injuries": [
         {
           "player": "Jaylen Brown",
@@ -6299,7 +6320,7 @@
       "spread": -5.5,
       "favorite": "CLE -5.5",
       "underdog": "MIA +5.5",
-      "tagged_at": "2026-03-26T21:53:24.952315+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493468+00:00",
       "home_injuries": [
         {
           "player": "Dean Wade",
@@ -6324,14 +6345,14 @@
       ],
       "away_injuries": [
         {
+          "player": "Jahmir Young",
+          "status": "Mar 29",
+          "position": "G"
+        },
+        {
           "player": "Jaime Jaquez Jr.",
           "status": "Mar 27",
           "position": "F"
-        },
-        {
-          "player": "Jahmir Young",
-          "status": "Mar 27",
-          "position": "G"
         },
         {
           "player": "Terry Rozier",
@@ -6425,7 +6446,7 @@
       "spread": -18.5,
       "favorite": "UCLA -18.5",
       "underdog": "MINN +18.5",
-      "tagged_at": "2026-03-26T21:53:24.952319+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493471+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -6501,8 +6522,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": 41.8755616,
-        "lon": -87.6244212
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Michigan Wolverines",
@@ -6514,7 +6535,7 @@
       "spread": -8.5,
       "favorite": "MICH -8.5",
       "underdog": "ALA +8.5",
-      "tagged_at": "2026-03-26T21:53:24.952322+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493475+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -6591,19 +6612,19 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Jaylen Wells",
-          "status": "Mar 27",
-          "position": "F"
-        },
-        {
-          "player": "Ty Jerome",
-          "status": "Mar 27",
-          "position": "G"
-        },
-        {
           "player": "Jahmai Mashack",
           "status": "Mar 27",
           "position": "G"
+        },
+        {
+          "player": "Ty Jerome",
+          "status": "Mar 28",
+          "position": "G"
+        },
+        {
+          "player": "Jaylen Wells",
+          "status": "Mar 28",
+          "position": "F"
         },
         {
           "player": "Zach Edey",
@@ -6734,7 +6755,7 @@
       "spread": -19.5,
       "favorite": "OKC -19.5",
       "underdog": "CHI +19.5",
-      "tagged_at": "2026-03-26T21:53:24.952325+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493478+00:00",
       "home_injuries": [
         {
           "player": "Thomas Sorber",
@@ -7042,14 +7063,14 @@
       ],
       "away_injuries": [
         {
+          "player": "Trey Murphy III",
+          "status": "Mar 27",
+          "position": "F"
+        },
+        {
           "player": "Bryce McGowens",
           "status": "Mar 27",
           "position": "G"
-        },
-        {
-          "player": "Trey Murphy III",
-          "status": "Mar 26",
-          "position": "F"
         }
       ],
       "injury_count_home": 2,
@@ -7138,7 +7159,7 @@
       "spread": -18.5,
       "favorite": "DEN -18.5",
       "underdog": "UTAH +18.5",
-      "tagged_at": "2026-03-26T21:53:24.952331+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493483+00:00",
       "home_injuries": [
         {
           "player": "Aaron Gordon",
@@ -7256,8 +7277,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -7341,10 +7362,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
+      "public_pct": 52,
       "public_side": "SEA",
-      "fade_signal": 1,
-      "public_home_pct": 69,
+      "fade_signal": 0,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7516,11 +7537,11 @@
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -7.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -7585,8 +7606,8 @@
         "state": "DC",
         "indoor": true,
         "grass": false,
-        "lat": 38.8950368,
-        "lon": -77.0365427
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "UConn Huskies",
@@ -7598,7 +7619,7 @@
       "spread": -1.5,
       "favorite": "CONN -1.5",
       "underdog": "MSU +1.5",
-      "tagged_at": "2026-03-26T21:53:24.952334+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493487+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -7949,7 +7970,7 @@
       "spread": -8.5,
       "favorite": "LSU -8.5",
       "underdog": "DUKE +8.5",
-      "tagged_at": "2026-03-26T21:53:24.952338+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493490+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -8025,8 +8046,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": 41.8755616,
-        "lon": -87.6244212
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Iowa State Cyclones",
@@ -8038,7 +8059,7 @@
       "spread": -3.5,
       "favorite": "ISU -3.5",
       "underdog": "TENN +3.5",
-      "tagged_at": "2026-03-26T21:53:24.952341+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493494+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -8109,8 +8130,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -8259,10 +8280,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 67,
       "public_side": "LAD",
       "fade_signal": 1,
-      "public_home_pct": 68,
+      "public_home_pct": 67,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -8450,7 +8471,7 @@
       "spread": -4.5,
       "favorite": "MICH -4.5",
       "underdog": "LOU +4.5",
-      "tagged_at": "2026-03-26T21:53:24.952345+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493497+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -8893,11 +8914,11 @@
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -6.0,
       "rest_diff_days": 0,
-      "elo_diff": 0.0,
-      "home_elo": 1500.0,
-      "away_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -9114,8 +9135,8 @@
         "state": "WI",
         "indoor": true,
         "grass": false,
-        "lat": 43.0386475,
-        "lon": -87.9090751
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -9253,7 +9274,7 @@
       "spread": -14.5,
       "favorite": "TEX -14.5",
       "underdog": "UK +14.5",
-      "tagged_at": "2026-03-26T21:53:24.952351+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493502+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -9324,8 +9345,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901266
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -9446,8 +9467,8 @@
         "state": "AB",
         "indoor": true,
         "grass": false,
-        "lat": 36.9800563,
-        "lon": -85.6121906
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -10366,7 +10387,7 @@
       "spread": -17.5,
       "favorite": "SC -17.5",
       "underdog": "OU +17.5",
-      "tagged_at": "2026-03-26T21:53:24.952362+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493508+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -10518,8 +10539,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 40.4406968,
-        "lon": -80.0025666
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -10747,8 +10768,8 @@
         "state": "OH",
         "indoor": true,
         "grass": false,
-        "lat": 39.9622601,
-        "lon": -83.0007065
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11547,34 +11568,9 @@
       ],
       "away_injuries": [
         {
-          "player": "Javonte Green",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Marcus Sasser",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Tobias Harris",
-          "status": "Mar 26",
-          "position": "F"
-        },
-        {
           "player": "Duncan Robinson",
           "status": "Mar 26",
           "position": "F"
-        },
-        {
-          "player": "Jalen Duren",
-          "status": "Mar 26",
-          "position": "C"
-        },
-        {
-          "player": "Ausar Thompson",
-          "status": "Mar 26",
-          "position": "G"
         },
         {
           "player": "Caris LeVert",
@@ -11593,7 +11589,7 @@
         }
       ],
       "injury_count_home": 2,
-      "injury_count_away": 9,
+      "injury_count_away": 4,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -11784,18 +11780,13 @@
       "home_injuries": [
         {
           "player": "Liam McNeeley",
-          "status": "Mar 26",
+          "status": "Mar 28",
           "position": "G"
         },
         {
           "player": "Tidjane Salaun",
           "status": "Mar 28",
           "position": "F"
-        },
-        {
-          "player": "Pat Connaughton",
-          "status": "Mar 26",
-          "position": "G"
         }
       ],
       "away_injuries": [
@@ -11815,7 +11806,7 @@
           "position": "F"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 2,
       "injury_count_away": 3,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -11883,8 +11874,8 @@
         "state": "MO",
         "indoor": true,
         "grass": false,
-        "lat": 38.6254063,
-        "lon": -90.190009
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -12492,8 +12483,8 @@
         "state": "Georgia",
         "indoor": false,
         "grass": true,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -12914,7 +12905,7 @@
       "spread": -9.5,
       "favorite": "TCU -9.5",
       "underdog": "UVA +9.5",
-      "tagged_at": "2026-03-26T21:53:24.952367+00:00",
+      "tagged_at": "2026-03-26T22:10:54.493512+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12991,19 +12982,19 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Jaylen Wells",
-          "status": "Mar 27",
-          "position": "F"
-        },
-        {
-          "player": "Ty Jerome",
-          "status": "Mar 27",
-          "position": "G"
-        },
-        {
           "player": "Jahmai Mashack",
           "status": "Mar 27",
           "position": "G"
+        },
+        {
+          "player": "Ty Jerome",
+          "status": "Mar 28",
+          "position": "G"
+        },
+        {
+          "player": "Jaylen Wells",
+          "status": "Mar 28",
+          "position": "F"
         },
         {
           "player": "Zach Edey",
@@ -13984,11 +13975,11 @@
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -7.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -14140,8 +14131,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -14290,10 +14281,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 67,
       "public_side": "LAD",
       "fade_signal": 1,
-      "public_home_pct": 68,
+      "public_home_pct": 67,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -14332,8 +14323,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -14417,10 +14408,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
+      "public_pct": 52,
       "public_side": "SEA",
-      "fade_signal": 1,
-      "public_home_pct": 69,
+      "fade_signal": 0,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -14803,8 +14794,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -14945,8 +14936,8 @@
         "state": "Georgia",
         "indoor": false,
         "grass": true,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -15406,8 +15397,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901266
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -16426,11 +16417,11 @@
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -6.0,
       "rest_diff_days": 0,
-      "elo_diff": 0.0,
-      "home_elo": 1500.0,
-      "away_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -16647,8 +16638,8 @@
         "state": "WI",
         "indoor": true,
         "grass": false,
-        "lat": 43.0386475,
-        "lon": -87.9090751
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -16801,14 +16792,14 @@
       ],
       "away_injuries": [
         {
+          "player": "Jahmir Young",
+          "status": "Mar 29",
+          "position": "G"
+        },
+        {
           "player": "Jaime Jaquez Jr.",
           "status": "Mar 27",
           "position": "F"
-        },
-        {
-          "player": "Jahmir Young",
-          "status": "Mar 27",
-          "position": "G"
         },
         {
           "player": "Terry Rozier",
@@ -17094,8 +17085,8 @@
         "state": "OH",
         "indoor": true,
         "grass": false,
-        "lat": 39.9622601,
-        "lon": -83.0007065
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -17175,8 +17166,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.6526006,
-        "lon": -73.9497211
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17328,18 +17319,13 @@
       "home_injuries": [
         {
           "player": "Liam McNeeley",
-          "status": "Mar 26",
+          "status": "Mar 28",
           "position": "G"
         },
         {
           "player": "Tidjane Salaun",
           "status": "Mar 28",
           "position": "F"
-        },
-        {
-          "player": "Pat Connaughton",
-          "status": "Mar 26",
-          "position": "G"
         }
       ],
       "away_injuries": [
@@ -17364,7 +17350,7 @@
           "position": "C"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 2,
       "injury_count_away": 4,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -17670,14 +17656,14 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Trey Murphy III",
+          "status": "Mar 27",
+          "position": "F"
+        },
+        {
           "player": "Bryce McGowens",
           "status": "Mar 27",
           "position": "G"
-        },
-        {
-          "player": "Trey Murphy III",
-          "status": "Mar 26",
-          "position": "F"
         }
       ],
       "away_injuries": [
@@ -17994,8 +17980,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -18079,10 +18065,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
+      "public_pct": 52,
       "public_side": "SEA",
-      "fade_signal": 1,
-      "public_home_pct": 69,
+      "fade_signal": 0,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -19079,14 +19065,14 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Jahmir Young",
+          "status": "Mar 29",
+          "position": "G"
+        },
+        {
           "player": "Jaime Jaquez Jr.",
           "status": "Mar 27",
           "position": "F"
-        },
-        {
-          "player": "Jahmir Young",
-          "status": "Mar 27",
-          "position": "G"
         },
         {
           "player": "Terry Rozier",
@@ -19311,8 +19297,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901266
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -19483,8 +19469,8 @@
         "state": "Georgia",
         "indoor": false,
         "grass": true,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -19987,9 +19973,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 0.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -20144,8 +20130,8 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": -10.0,
-      "home_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
       "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
@@ -20212,19 +20198,19 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Jaylen Wells",
-          "status": "Mar 27",
-          "position": "F"
-        },
-        {
-          "player": "Ty Jerome",
-          "status": "Mar 27",
-          "position": "G"
-        },
-        {
           "player": "Jahmai Mashack",
           "status": "Mar 27",
           "position": "G"
+        },
+        {
+          "player": "Ty Jerome",
+          "status": "Mar 28",
+          "position": "G"
+        },
+        {
+          "player": "Jaylen Wells",
+          "status": "Mar 28",
+          "position": "F"
         },
         {
           "player": "Zach Edey",
@@ -21007,34 +20993,9 @@
       ],
       "away_injuries": [
         {
-          "player": "Javonte Green",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Marcus Sasser",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Tobias Harris",
-          "status": "Mar 26",
-          "position": "F"
-        },
-        {
           "player": "Duncan Robinson",
           "status": "Mar 26",
           "position": "F"
-        },
-        {
-          "player": "Jalen Duren",
-          "status": "Mar 26",
-          "position": "C"
-        },
-        {
-          "player": "Ausar Thompson",
-          "status": "Mar 26",
-          "position": "G"
         },
         {
           "player": "Caris LeVert",
@@ -21053,7 +21014,7 @@
         }
       ],
       "injury_count_home": 1,
-      "injury_count_away": 9,
+      "injury_count_away": 4,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -21120,8 +21081,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -21356,7 +21317,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -21882,8 +21843,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -22034,8 +21995,8 @@
         "state": "Arizona",
         "indoor": true,
         "grass": true,
-        "lat": 33.4484367,
-        "lon": -112.074141
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -22178,7 +22139,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -23448,8 +23409,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.7127281,
-        "lon": -74.0060152
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23565,8 +23526,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 40.4406968,
-        "lon": -80.0025666
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23682,8 +23643,8 @@
         "state": "DC",
         "indoor": true,
         "grass": false,
-        "lat": 38.8950368,
-        "lon": -77.0365427
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23789,8 +23750,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901266
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23961,8 +23922,8 @@
         "state": "Georgia",
         "indoor": false,
         "grass": true,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -24098,8 +24059,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 40.6526006,
-        "lon": -73.9497211
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -24137,22 +24098,17 @@
       "away_injuries": [
         {
           "player": "Liam McNeeley",
-          "status": "Mar 26",
+          "status": "Mar 28",
           "position": "G"
         },
         {
           "player": "Tidjane Salaun",
           "status": "Mar 28",
           "position": "F"
-        },
-        {
-          "player": "Pat Connaughton",
-          "status": "Mar 26",
-          "position": "G"
         }
       ],
       "injury_count_home": 6,
-      "injury_count_away": 3,
+      "injury_count_away": 2,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -24219,8 +24175,8 @@
         "state": "OH",
         "indoor": true,
         "grass": false,
-        "lat": 39.9622601,
-        "lon": -83.0007065
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -24577,9 +24533,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 0.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -24734,8 +24690,8 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": -10.0,
-      "home_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
       "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
@@ -24802,34 +24758,9 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Javonte Green",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Marcus Sasser",
-          "status": "Mar 26",
-          "position": "G"
-        },
-        {
-          "player": "Tobias Harris",
-          "status": "Mar 26",
-          "position": "F"
-        },
-        {
           "player": "Duncan Robinson",
           "status": "Mar 26",
           "position": "F"
-        },
-        {
-          "player": "Jalen Duren",
-          "status": "Mar 26",
-          "position": "C"
-        },
-        {
-          "player": "Ausar Thompson",
-          "status": "Mar 26",
-          "position": "G"
         },
         {
           "player": "Caris LeVert",
@@ -24859,7 +24790,7 @@
           "position": "G"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 4,
       "injury_count_away": 2,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -25028,8 +24959,8 @@
         "state": "WI",
         "indoor": true,
         "grass": false,
-        "lat": 43.0386475,
-        "lon": -87.9090751
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25316,8 +25247,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": 41.8755616,
-        "lon": -87.6244212
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25433,8 +25364,8 @@
         "state": "AB",
         "indoor": true,
         "grass": false,
-        "lat": 36.9800563,
-        "lon": -85.6121906
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25555,8 +25486,8 @@
         "state": "Arizona",
         "indoor": true,
         "grass": true,
-        "lat": 33.4484367,
-        "lon": -112.074141
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25699,7 +25630,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -25762,8 +25693,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25998,7 +25929,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -26061,8 +25992,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -26440,8 +26371,8 @@
         "state": "Georgia",
         "indoor": false,
         "grass": true,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -27033,8 +26964,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901266
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -27452,8 +27383,8 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": -10.0,
-      "home_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
       "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
@@ -27634,9 +27565,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 0.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -28010,8 +27941,8 @@
         "state": "Arizona",
         "indoor": true,
         "grass": true,
-        "lat": 33.4484367,
-        "lon": -112.074141
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28154,7 +28085,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -28217,8 +28148,8 @@
         "state": "Washington",
         "indoor": true,
         "grass": true,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28453,7 +28384,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -28516,8 +28447,8 @@
         "state": "DC",
         "indoor": true,
         "grass": false,
-        "lat": 38.8950368,
-        "lon": -77.0365427
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28743,14 +28674,14 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Jahmir Young",
+          "status": "Mar 29",
+          "position": "G"
+        },
+        {
           "player": "Jaime Jaquez Jr.",
           "status": "Mar 27",
           "position": "F"
-        },
-        {
-          "player": "Jahmir Young",
-          "status": "Mar 27",
-          "position": "G"
         },
         {
           "player": "Terry Rozier",
@@ -28986,19 +28917,19 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Jaylen Wells",
-          "status": "Mar 27",
-          "position": "F"
-        },
-        {
-          "player": "Ty Jerome",
-          "status": "Mar 27",
-          "position": "G"
-        },
-        {
           "player": "Jahmai Mashack",
           "status": "Mar 27",
           "position": "G"
+        },
+        {
+          "player": "Ty Jerome",
+          "status": "Mar 28",
+          "position": "G"
+        },
+        {
+          "player": "Jaylen Wells",
+          "status": "Mar 28",
+          "position": "F"
         },
         {
           "player": "Zach Edey",
@@ -29242,8 +29173,8 @@
         "state": "IL",
         "indoor": true,
         "grass": false,
-        "lat": 41.8755616,
-        "lon": -87.6244212
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -29509,8 +29440,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -38469,5 +38400,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-03-26T22:01:59.796713"
+  "weather_merged_at": "2026-03-26T22:20:06.493104"
 }
