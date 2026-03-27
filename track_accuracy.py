@@ -28,11 +28,7 @@ BACKTEST_FILE = "backtest_baseline.json"  # Pre-computed historical results
 # Per-sport override: some sports were recalibrated after the general start.
 SPORT_START_OVERRIDE = {}
 
-# IMPORTANT: Writing to accuracy_live.json NOT accuracy.json
-# accuracy.json contains our backtested 90-day numbers and must not be overwritten.
-# Live tracking writes to a separate file. When we're ready to switch to pure
-# live tracking, change this back to "accuracy.json".
-OUTPUT = "accuracy_live.json"
+OUTPUT = "accuracy.json"
 SCORES_FILE = "completed_scores.json"
 COMBINED_FILE = "combined.json"
 LOCKED_FILE = "predictions_locked.json"
@@ -331,84 +327,72 @@ def main():
         "results": results[-200:],
     }
 
-    # ── MERGE with backtest baseline for rolling window ──────────
-    # The baseline covers the historical period before live tracking started.
-    # As the rolling window moves forward, baseline days naturally drop off
-    # because they'll be older than ROLLING_WINDOW_DAYS.
+    # ── MERGE with backtest baseline ──────────────────────────────
+    # Baseline covers Dec 22 - Feb 27 (before live tracking started).
+    # Live tracker covers Feb 28+. Merge both for combined display.
+    # When baseline ages out of the 90-day window, it drops automatically.
     if os.path.exists(BACKTEST_FILE):
         try:
+            from datetime import timedelta
             with open(BACKTEST_FILE) as bf:
                 baseline = json.load(bf)
-            baseline_end = baseline.get("end_date", "")
-            cutoff_date = (datetime.now(timezone.utc) - __import__('datetime').timedelta(days=ROLLING_WINDOW_DAYS)).strftime("%Y-%m-%d")
-            baseline_start = baseline.get("start_date", "")
 
-            # Only include baseline if it's within our rolling window
-            if baseline_start >= cutoff_date:
-                # Full baseline is within window — add all of it
+            cutoff = (datetime.now(timezone.utc) - timedelta(days=ROLLING_WINDOW_DAYS)).strftime("%Y-%m-%d")
+            b_start = baseline.get("start_date", "2025-12-22")
+
+            if b_start >= cutoff:
+                # Baseline is within window — merge it
                 bs = baseline.get("sports", {})
-                for sport_key in output.get("sports", {}):
-                    if sport_key in bs:
-                        for metric in ["SU_w", "SU_l", "ATS_w", "ATS_l", "OU_w", "OU_l"]:
-                            # Map between formats
-                            clean_key = metric.split("_")
-                            rec_key = f"{clean_key[0]}_{clean_key[1]}"
-                            if rec_key in bs[sport_key]:
-                                # Add baseline counts to live counts
-                                live_stats = output["sports"][sport_key]
-                                base_val = bs[sport_key].get(rec_key, 0)
-                                # Rebuild record strings
-                                pass  # Complex merge — simpler approach below
 
-                # Simpler: just add baseline W/L to the live output stats
-                live_sports = output.get("sports", {})
+                def parse_record(rec_str):
+                    """Parse '110-64-0' or '49-31' into (wins, losses)"""
+                    parts = str(rec_str).split("-")
+                    w = int(parts[0]) if parts[0].isdigit() else 0
+                    l = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 0
+                    return w, l
+
                 for sport_key, base_s in bs.items():
-                    if sport_key not in live_sports:
-                        continue
-                    ls = live_sports[sport_key]
-                    # Parse live records
+                    if sport_key not in output["sports"]:
+                        output["sports"][sport_key] = {}
+                    ls = output["sports"][sport_key]
+
                     for cat in ["SU", "ATS", "OU"]:
+                        # Baseline uses lowercase keys: su_w, su_l
                         bw = base_s.get(f"{cat.lower()}_w", 0)
                         bl = base_s.get(f"{cat.lower()}_l", 0)
-                        # Parse live record "W-L" or "W-L-P"
-                        rec = ls.get(f"{cat}_record", "0-0")
-                        parts = rec.replace("-0", "").split("-") if "-0" in rec else rec.split("-")
-                        lw = int(parts[0]) if parts[0].isdigit() else 0
-                        ll = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 0
+
+                        # Live uses uppercase keys: SU_record
+                        lw, ll = parse_record(ls.get(f"{cat}_record", "0-0"))
+
                         # Combined
-                        tw = lw + bw
-                        tl = ll + bl
+                        tw, tl = lw + bw, ll + bl
                         total = tw + tl
-                        pct = round(tw / total * 100, 1) if total > 0 else 0
-                        ls[f"{cat}_pct"] = pct
+                        ls[f"{cat}_pct"] = round(tw / total * 100, 1) if total > 0 else 0
                         ls[f"{cat}_record"] = f"{tw}-{tl}" if cat == "SU" else f"{tw}-{tl}-0"
                         ls[f"{cat}_total"] = total
 
                 # Merge best bets
                 bh = baseline.get("high_confidence", {}).get("ALL", {})
-                if bh and "ALL" in output.get("high_confidence", {}):
-                    oh = output["high_confidence"]["ALL"]
-                    for cat in ["ATS"]:
-                        bw = bh.get(f"{cat.lower()}_w", 0)
-                        bl = bh.get(f"{cat.lower()}_l", 0)
-                        rec = oh.get(f"{cat}_record", "0-0-0")
-                        parts = rec.split("-")
-                        lw = int(parts[0]) if parts[0].isdigit() else 0
-                        ll = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 0
-                        tw = lw + bw
-                        tl = ll + bl
-                        total = tw + tl
-                        oh[f"{cat}_pct"] = round(tw / total * 100, 1) if total > 0 else 0
-                        oh[f"{cat}_record"] = f"{tw}-{tl}-0"
+                if bh:
+                    oh = output.get("high_confidence", {}).get("ALL", {})
+                    bw_ats = bh.get("ats_w", 0)
+                    bl_ats = bh.get("ats_l", 0)
+                    lw_ats, ll_ats = parse_record(oh.get("ATS_record", "0-0-0"))
+                    tw_ats, tl_ats = lw_ats + bw_ats, ll_ats + bl_ats
+                    tot_ats = tw_ats + tl_ats
+                    oh["ATS_pct"] = round(tw_ats / tot_ats * 100, 1) if tot_ats > 0 else 0
+                    oh["ATS_record"] = f"{tw_ats}-{tl_ats}-0"
 
-                output["predictions_graded"] = sum(
-                    output["sports"].get("ALL", {}).get(f"{c}_total", 0) for c in ["SU"]
-                )
-                print(f"[accuracy] Merged baseline ({baseline_start} to {baseline_end}) with live data")
+                # Update total graded
+                all_s = output["sports"].get("ALL", {})
+                output["predictions_graded"] = all_s.get("SU_total", 0)
+
+                print(f"[accuracy] Merged baseline ({b_start} to {baseline.get('end_date','?')}) + {graded} live games")
             else:
-                print(f"[accuracy] Baseline start {baseline_start} is before cutoff {cutoff_date} — baseline fully aged out")
+                print(f"[accuracy] Baseline aged out (start {b_start} < cutoff {cutoff})")
         except Exception as e:
             print(f"[accuracy] Baseline merge error: {e}")
+            import traceback; traceback.print_exc()
 
     with open(OUTPUT, "w") as f:
         json.dump(output, f, indent=2)
