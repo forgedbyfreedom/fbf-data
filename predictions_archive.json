@@ -64289,6 +64289,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803493",
+      "sport": "nhl",
+      "matchup": "Chicago Blackhawks at Philadelphia Flyers",
+      "shortName": "CHI @ PHI",
+      "date_utc": "2026-03-26T23:00Z",
+      "date_local": "2026-03-26 07:00 PM ET",
+      "home": "PHI",
+      "away": "CHI",
+      "home_team": {
+        "id": "15",
+        "name": "Philadelphia Flyers",
+        "abbr": "PHI",
+        "slug": "philadelphia-flyers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/phi.png"
+      },
+      "away_team": {
+        "id": "4",
+        "name": "Chicago Blackhawks",
+        "abbr": "CHI",
+        "slug": "chicago-blackhawks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/chi.png"
+      },
+      "odds": {
+        "details": "PHI -142",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Xfinity Mobile Arena",
+        "city": "Philadelphia",
+        "state": "PA",
+        "indoor": true,
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Philadelphia Flyers",
+      "dog_team": "Chicago Blackhawks",
+      "fav_abbr": "PHI",
+      "dog_abbr": "CHI",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 3,
+      "injury_count_away": 5,
+      "prediction": {
+        "projected_home_score": 8.9,
+        "projected_away_score": 5.5,
+        "projected_total": 14.4,
+        "projected_spread": 3.4,
+        "win_probability_home": 0.637,
+        "confidence": 77
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.882,
+        "away_win_pct": 0.118,
+        "home_cover_pct": 0.7175,
+        "over_pct": 0.6237,
+        "avg_simulated_margin": 2.89,
+        "avg_simulated_total": 6.17
+      },
+      "picks": {
+        "su_pick": "Philadelphia Flyers",
+        "su_pick_abbr": "PHI",
+        "su_confidence": 71.4,
+        "ats_pick": "Philadelphia Flyers",
+        "ats_pick_abbr": "PHI",
+        "ats_spread": -1.5,
+        "ats_confidence": 52.9,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 5.5,
+        "ou_confidence": 51.2,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
