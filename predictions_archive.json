@@ -65198,6 +65198,168 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803499",
+      "sport": "nhl",
+      "matchup": "Edmonton Oilers at Vegas Golden Knights",
+      "shortName": "EDM @ VGK",
+      "date_utc": "2026-03-27T01:30Z",
+      "date_local": "2026-03-26 09:30 PM ET",
+      "home": "VGK",
+      "away": "EDM",
+      "home_team": {
+        "id": "37",
+        "name": "Vegas Golden Knights",
+        "abbr": "VGK",
+        "slug": "vegas-golden-knights",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png"
+      },
+      "away_team": {
+        "id": "6",
+        "name": "Edmonton Oilers",
+        "abbr": "EDM",
+        "slug": "edmonton-oilers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/edm.png"
+      },
+      "odds": {
+        "details": "VGK -142",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "T-Mobile Arena",
+        "city": "Las Vegas",
+        "state": "NV",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Vegas Golden Knights",
+      "dog_team": "Edmonton Oilers",
+      "fav_abbr": "VGK",
+      "dog_abbr": "EDM",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 0,
+      "injury_count_away": 5,
+      "prediction": {
+        "projected_home_score": 8.2,
+        "projected_away_score": 6.4,
+        "projected_total": 14.7,
+        "projected_spread": 1.8,
+        "win_probability_home": 0.574,
+        "confidence": 63
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.9492,
+        "away_win_pct": 0.0508,
+        "home_cover_pct": 0.8472,
+        "over_pct": 0.6827,
+        "avg_simulated_margin": 4.06,
+        "avg_simulated_total": 7.49
+      },
+      "picks": {
+        "su_pick": "Vegas Golden Knights",
+        "su_pick_abbr": "VGK",
+        "su_confidence": 75.2,
+        "ats_pick": "Vegas Golden Knights",
+        "ats_pick_abbr": "VGK",
+        "ats_spread": -1.5,
+        "ats_confidence": 55.0,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 50.7,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
+    },
+    {
+      "id": "401814700",
+      "sport": "mlb",
+      "matchup": "Cleveland Guardians at Seattle Mariners",
+      "shortName": "CLE @ SEA",
+      "date_utc": "2026-03-27T02:10Z",
+      "date_local": "2026-03-26 10:10 PM ET",
+      "home": "SEA",
+      "away": "CLE",
+      "home_team": {
+        "id": "12",
+        "name": "Seattle Mariners",
+        "abbr": "SEA",
+        "slug": "seattle-mariners",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sea.png"
+      },
+      "away_team": {
+        "id": "5",
+        "name": "Cleveland Guardians",
+        "abbr": "CLE",
+        "slug": "cleveland-guardians",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cle.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "T-Mobile Park",
+        "city": "Seattle",
+        "state": "Washington",
+        "indoor": true,
+        "grass": true,
+        "lat": 47.6038321,
+        "lon": -122.330062
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 5,
+      "injury_count_away": 5,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5044,
+        "away_win_pct": 0.4956,
+        "home_cover_pct": 0.5044,
+        "over_pct": 0.4966,
+        "avg_simulated_margin": 0.04,
+        "avg_simulated_total": 6.67
+      },
+      "picks": {
+        "su_pick": "Seattle Mariners",
+        "su_pick_abbr": "SEA",
+        "su_confidence": 50.2,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 6.7,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
