@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-03-28T00:02:27.678700+00:00",
+  "timestamp": "2026-03-28T00:41:27.670924+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 295,
+  "predictions_graded": 297,
   "sports": {
     "ALL": {
-      "SU_pct": 67.0,
-      "SU_record": "179-88",
-      "SU_total": 267,
+      "SU_pct": 66.9,
+      "SU_record": "180-89",
+      "SU_total": 269,
       "ATS_pct": 48.9,
-      "ATS_record": "128-134-0",
-      "ATS_total": 262,
-      "OU_pct": 50.8,
-      "OU_record": "150-145-0",
-      "OU_total": 295
+      "ATS_record": "129-135-0",
+      "ATS_total": 264,
+      "OU_pct": 51.2,
+      "OU_record": "152-145-0",
+      "OU_total": 297
     },
     "NFL": {
       "SU_pct": 0,
@@ -70,15 +70,15 @@
       "OU_total": 43
     },
     "NHL": {
-      "SU_pct": 57.7,
-      "SU_record": "41-30",
-      "SU_total": 71,
-      "ATS_pct": 47.6,
-      "ATS_record": "40-44-0",
-      "ATS_total": 84,
-      "OU_pct": 39.3,
-      "OU_record": "35-54-0",
-      "OU_total": 89
+      "SU_pct": 57.5,
+      "SU_record": "42-31",
+      "SU_total": 73,
+      "ATS_pct": 47.7,
+      "ATS_record": "41-45-0",
+      "ATS_total": 86,
+      "OU_pct": 40.7,
+      "OU_record": "37-54-0",
+      "OU_total": 91
     },
     "MLB": {
       "SU_pct": 0,
@@ -94,12 +94,12 @@
   },
   "high_confidence": {
     "ALL": {
-      "SU_pct": 60.9,
-      "SU_record": "81-52",
-      "SU_total": 133,
-      "ATS_pct": 45.7,
-      "ATS_record": "37-44-0",
-      "ATS_total": 81,
+      "SU_pct": 60.7,
+      "SU_record": "82-53",
+      "SU_total": 135,
+      "ATS_pct": 45.8,
+      "ATS_record": "38-45-0",
+      "ATS_total": 83,
       "OU_pct": 46.9,
       "OU_record": "60-68-0",
       "OU_total": 128
@@ -160,12 +160,12 @@
       "OU_total": 4
     },
     "NHL": {
-      "SU_pct": 57.4,
-      "SU_record": "27-20",
-      "SU_total": 47,
-      "ATS_pct": 37.8,
-      "ATS_record": "14-23-0",
-      "ATS_total": 37,
+      "SU_pct": 57.1,
+      "SU_record": "28-21",
+      "SU_total": 49,
+      "ATS_pct": 38.5,
+      "ATS_record": "15-24-0",
+      "ATS_total": 39,
       "OU_pct": 30.6,
       "OU_record": "15-34-0",
       "OU_total": 49
@@ -183,28 +183,6 @@
     }
   },
   "results": [
-    {
-      "id": "401803406",
-      "sport": "NHL",
-      "date": "2026-03-15T02:00Z",
-      "matchup": "Seattle Kraken at Vancouver Canucks",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": true,
-      "su": "W"
-    },
-    {
-      "id": "401810831",
-      "sport": "NBA",
-      "date": "2026-03-15T17:00Z",
-      "matchup": "Minnesota Timberwolves at Oklahoma City Thunder",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": true,
-      "su": "W"
-    },
     {
       "id": "401851571",
       "sport": "NCAAB",
@@ -2292,6 +2270,28 @@
       "sport": "NCAAW",
       "date": "2026-03-27T21:15Z",
       "matchup": "North Carolina Tar Heels at UConn Huskies",
+      "ats": "W",
+      "ats_best_bet": true,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401803501",
+      "sport": "NHL",
+      "date": "2026-03-27T23:00Z",
+      "matchup": "Detroit Red Wings at Buffalo Sabres",
+      "ats": "L",
+      "ats_best_bet": true,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401803502",
+      "sport": "NHL",
+      "date": "2026-03-27T23:00Z",
+      "matchup": "Chicago Blackhawks at New York Rangers",
       "ats": "W",
       "ats_best_bet": true,
       "ou": "W",
