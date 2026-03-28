@@ -67419,6 +67419,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856580",
+      "sport": "ncaaw",
+      "matchup": "Louisville Cardinals at Michigan Wolverines",
+      "shortName": "LOU VS MICH",
+      "date_utc": "2026-03-28T16:30Z",
+      "date_local": "2026-03-28 12:30 PM ET",
+      "home": "MICH",
+      "away": "LOU",
+      "home_team": {
+        "id": "130",
+        "name": "Michigan Wolverines",
+        "abbr": "MICH",
+        "slug": "michigan-wolverines",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png"
+      },
+      "away_team": {
+        "id": "97",
+        "name": "Louisville Cardinals",
+        "abbr": "LOU",
+        "slug": "louisville-cardinals",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png"
+      },
+      "odds": {
+        "details": "MICH -4.5",
+        "spread": -4.5,
+        "total": 142.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Dickies Arena",
+        "city": "Fort Worth",
+        "state": "TX",
+        "indoor": true,
+        "grass": false,
+        "lat": 32.753177,
+        "lon": -97.3327459
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Michigan Wolverines",
+      "dog_team": "Louisville Cardinals",
+      "fav_abbr": "MICH",
+      "dog_abbr": "LOU",
+      "fav_spread": -4.5,
+      "dog_spread": 4.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 76.2,
+        "projected_away_score": 73.9,
+        "projected_total": 150.1,
+        "projected_spread": 2.2,
+        "win_probability_home": 0.592,
+        "confidence": 73
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.6319,
+        "away_win_pct": 0.3681,
+        "home_cover_pct": 0.4999,
+        "over_pct": 0.5138,
+        "avg_simulated_margin": 4.4,
+        "avg_simulated_total": 142.74
+      },
+      "picks": {
+        "su_pick": "Michigan Wolverines",
+        "su_pick_abbr": "MICH",
+        "su_confidence": 57.4,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -4.5,
+        "ats_confidence": 50.2,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 142.5,
+        "ou_confidence": 50.3,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
