@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-03-29T00:02:15.856610+00:00",
-  "count": 938,
+  "timestamp": "2026-03-29T00:52:28.570774+00:00",
+  "count": 939,
   "locked": [
     {
       "id": "401820771",
@@ -76536,6 +76536,85 @@
         "has_vegas_total": true
       },
       "locked_at": "2026-03-29T00:02:15.856266+00:00"
+    },
+    {
+      "id": "401814720",
+      "sport": "mlb",
+      "matchup": "Detroit Tigers at San Diego Padres",
+      "shortName": "DET @ SD",
+      "date_utc": "2026-03-29T00:40Z",
+      "date_local": "2026-03-28 08:40 PM ET",
+      "home": "SD",
+      "away": "DET",
+      "home_team": {
+        "id": "25",
+        "name": "San Diego Padres",
+        "abbr": "SD",
+        "slug": "san-diego-padres",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sd.png"
+      },
+      "away_team": {
+        "id": "6",
+        "name": "Detroit Tigers",
+        "abbr": "DET",
+        "slug": "detroit-tigers",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/det.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Petco Park",
+        "city": "San Diego",
+        "state": "California",
+        "indoor": false,
+        "grass": true,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 11,
+      "injury_count_away": 13,
+      "prediction": {
+        "projected_home_score": 17.6,
+        "projected_away_score": 12.5,
+        "projected_total": 30.1,
+        "projected_spread": 5.1,
+        "win_probability_home": 0.702,
+        "confidence": 33
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5503,
+        "away_win_pct": 0.4497,
+        "home_cover_pct": 0.5503,
+        "over_pct": 0.502,
+        "avg_simulated_margin": 0.43,
+        "avg_simulated_total": 7.7
+      },
+      "picks": {
+        "su_pick": "San Diego Padres",
+        "su_pick_abbr": "SD",
+        "su_confidence": 52.8,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 7.7,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "locked_at": "2026-03-29T00:52:28.570333+00:00"
     }
   ]
 }
