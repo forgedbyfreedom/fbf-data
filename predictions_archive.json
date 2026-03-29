@@ -73028,6 +73028,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856577",
+      "sport": "ncaab",
+      "matchup": "UConn Huskies at Duke Blue Devils",
+      "shortName": "CONN VS DUKE",
+      "date_utc": "2026-03-29T21:05Z",
+      "date_local": "2026-03-29 05:05 PM ET",
+      "home": "DUKE",
+      "away": "CONN",
+      "home_team": {
+        "id": "150",
+        "name": "Duke Blue Devils",
+        "abbr": "DUKE",
+        "slug": "duke-blue-devils",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png"
+      },
+      "away_team": {
+        "id": "41",
+        "name": "UConn Huskies",
+        "abbr": "CONN",
+        "slug": "uconn-huskies",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/41.png"
+      },
+      "odds": {
+        "details": "DUKE -4.5",
+        "spread": -4.5,
+        "total": 135.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Capital One Arena",
+        "city": "Washington",
+        "state": "DC",
+        "indoor": true,
+        "grass": false,
+        "lat": 38.8950368,
+        "lon": -77.0365427
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Duke Blue Devils",
+      "dog_team": "UConn Huskies",
+      "fav_abbr": "DUKE",
+      "dog_abbr": "CONN",
+      "fav_spread": -4.5,
+      "dog_spread": 4.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 70.6,
+        "projected_away_score": 63.0,
+        "projected_total": 133.5,
+        "projected_spread": 7.6,
+        "win_probability_home": 0.781,
+        "confidence": 89
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.7024,
+        "away_win_pct": 0.2976,
+        "home_cover_pct": 0.5884,
+        "over_pct": 0.5771,
+        "avg_simulated_margin": 7.54,
+        "avg_simulated_total": 137.11
+      },
+      "picks": {
+        "su_pick": "Duke Blue Devils",
+        "su_pick_abbr": "DUKE",
+        "su_confidence": 61.3,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -4.5,
+        "ats_confidence": 51.0,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 135.5,
+        "ou_confidence": 51.6,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
