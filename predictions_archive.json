@@ -73695,6 +73695,173 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803521",
+      "sport": "nhl",
+      "matchup": "Boston Bruins at Columbus Blue Jackets",
+      "shortName": "BOS @ CBJ",
+      "date_utc": "2026-03-29T21:00Z",
+      "date_local": "2026-03-29 05:00 PM ET",
+      "home": "CBJ",
+      "away": "BOS",
+      "home_team": {
+        "id": "29",
+        "name": "Columbus Blue Jackets",
+        "abbr": "CBJ",
+        "slug": "columbus-blue-jackets",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/cbj.png"
+      },
+      "away_team": {
+        "id": "1",
+        "name": "Boston Bruins",
+        "abbr": "BOS",
+        "slug": "boston-bruins",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/bos.png"
+      },
+      "odds": {
+        "details": "CBJ -162",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Nationwide Arena",
+        "city": "Columbus",
+        "state": "OH",
+        "indoor": true,
+        "grass": false,
+        "lat": 39.9622601,
+        "lon": -83.0007065
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Columbus Blue Jackets",
+      "dog_team": "Boston Bruins",
+      "fav_abbr": "CBJ",
+      "dog_abbr": "BOS",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 2,
+      "prediction": {
+        "projected_home_score": 8.8,
+        "projected_away_score": 5.8,
+        "projected_total": 14.7,
+        "projected_spread": 3.0,
+        "win_probability_home": 0.622,
+        "confidence": 74
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8563,
+        "away_win_pct": 0.1437,
+        "home_cover_pct": 0.6738,
+        "over_pct": 0.4618,
+        "avg_simulated_margin": 2.61,
+        "avg_simulated_total": 6.31
+      },
+      "picks": {
+        "su_pick": "Columbus Blue Jackets",
+        "su_pick_abbr": "CBJ",
+        "su_confidence": 70.0,
+        "ats_pick": "Columbus Blue Jackets",
+        "ats_pick_abbr": "CBJ",
+        "ats_spread": -1.5,
+        "ats_confidence": 52.0,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 52.4,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
+    },
+    {
+      "id": "401810943",
+      "sport": "nba",
+      "matchup": "Houston Rockets at New Orleans Pelicans",
+      "shortName": "HOU @ NO",
+      "date_utc": "2026-03-29T23:00Z",
+      "date_local": "2026-03-29 07:00 PM ET",
+      "home": "NO",
+      "away": "HOU",
+      "home_team": {
+        "id": "3",
+        "name": "New Orleans Pelicans",
+        "abbr": "NO",
+        "slug": "new-orleans-pelicans",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/no.png"
+      },
+      "away_team": {
+        "id": "10",
+        "name": "Houston Rockets",
+        "abbr": "HOU",
+        "slug": "houston-rockets",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/hou.png"
+      },
+      "odds": {
+        "details": "HOU -5.5",
+        "spread": 5.5,
+        "total": 225.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Smoothie King Center",
+        "city": "New Orleans",
+        "state": "LA",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Houston Rockets",
+      "dog_team": "New Orleans Pelicans",
+      "fav_abbr": "HOU",
+      "dog_abbr": "NO",
+      "fav_spread": -5.5,
+      "dog_spread": 5.5,
+      "injury_count_home": 4,
+      "injury_count_away": 2,
+      "prediction": {
+        "projected_home_score": 112.7,
+        "projected_away_score": 122.9,
+        "projected_total": 235.6,
+        "projected_spread": -10.2,
+        "win_probability_home": 0.154,
+        "confidence": 95
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3016,
+        "away_win_pct": 0.6984,
+        "home_cover_pct": 0.4774,
+        "over_pct": 0.5418,
+        "avg_simulated_margin": -6.07,
+        "avg_simulated_total": 226.64
+      },
+      "picks": {
+        "su_pick": "Houston Rockets",
+        "su_pick_abbr": "HOU",
+        "su_confidence": 61.1,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -5.5,
+        "ats_confidence": 50.2,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 225.5,
+        "ou_confidence": 50.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
