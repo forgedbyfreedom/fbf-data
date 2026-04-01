@@ -1,6 +1,6 @@
 {
-  "timestamp": "20260401_1653",
-  "count": 313,
+  "timestamp": "20260401_1724",
+  "count": 314,
   "data": [
     {
       "sport": "mlb",
@@ -23,9 +23,9 @@
         "slug": "athletics",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 2.0,
+      "away_score": 1.0,
+      "total_points": 3.0,
       "odds": null,
       "venue": {
         "name": "Truist Park",
@@ -123,11 +123,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -0.39,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -187,9 +187,9 @@
         "slug": "texas-rangers",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tex.png"
       },
-      "home_score": null,
+      "home_score": 2.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 2.0,
       "odds": null,
       "venue": {
         "name": "Oriole Park at Camden Yards",
@@ -545,9 +545,9 @@
         "slug": "washington-nationals",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png"
       },
-      "home_score": null,
+      "home_score": 1.0,
       "away_score": null,
-      "total_points": 0,
+      "total_points": 1.0,
       "odds": null,
       "venue": {
         "name": "Citizens Bank Park",
@@ -697,10 +697,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
-      "public_side": "PHI",
-      "fade_signal": 1,
-      "public_home_pct": 69,
+      "public_pct": 50,
+      "public_side": "WSH",
+      "fade_signal": 0,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -906,10 +906,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 71,
-      "public_side": "TOR",
-      "fade_signal": 2,
-      "public_home_pct": 71,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1279,10 +1279,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 61,
-      "public_side": "NYM",
+      "public_pct": 50,
+      "public_side": "",
       "fade_signal": 0,
-      "public_home_pct": 39,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1558,6 +1558,11 @@
       ],
       "home_injuries": [
         {
+          "player": "Bennett Sousa",
+          "status": "Apr 14",
+          "position": "RP"
+        },
+        {
           "player": "Nate Pearson",
           "status": "May 1",
           "position": "RP"
@@ -1570,11 +1575,6 @@
         {
           "player": "Enyel De Los Santos",
           "status": "Apr 6",
-          "position": "RP"
-        },
-        {
-          "player": "Bennett Sousa",
-          "status": "Apr 14",
           "position": "RP"
         },
         {
@@ -2095,10 +2095,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 74,
+      "public_pct": 75,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 26,
+      "public_home_pct": 25,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2150,7 +2150,24 @@
         "lat": 47.6038321,
         "lon": -122.330062
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Lance Barrett",
+          "role": "home plate"
+        },
+        {
+          "name": "Edwin Jimenez",
+          "role": "first base"
+        },
+        {
+          "name": "Mike Estabrook",
+          "role": "second base"
+        },
+        {
+          "name": "Alfonso M\u00e1rquez",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [
         {
           "player": "J.P. Crawford",
@@ -2217,9 +2234,9 @@
       ],
       "injury_count_home": 6,
       "injury_count_away": 6,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.21,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -2511,7 +2528,7 @@
       "spread": -13.5,
       "favorite": "PHI -13.5",
       "underdog": "WSH +13.5",
-      "tagged_at": "2026-04-01T16:53:04.724433+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950577+00:00",
       "home_injuries": [
         {
           "player": "Tre Johnson",
@@ -2588,10 +2605,10 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": 2,
-      "public_pct": 69,
-      "public_side": "PHI",
-      "fade_signal": 1,
-      "public_home_pct": 31,
+      "public_pct": 50,
+      "public_side": "WSH",
+      "fade_signal": 0,
+      "public_home_pct": 50,
       "spread_delta": 2.0,
       "total_delta": 0,
       "spread_direction": "toward_underdog",
@@ -2647,10 +2664,10 @@
       "spread": -3.5,
       "favorite": "ATL -3.5",
       "underdog": "ORL +3.5",
-      "tagged_at": "2026-04-01T16:53:04.724448+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950593+00:00",
       "home_injuries": [
         {
-          "player": "Franz Wagner",
+          "player": "Jonathan Isaac",
           "status": "Apr 1",
           "position": "F"
         },
@@ -2660,7 +2677,7 @@
           "position": "G"
         },
         {
-          "player": "Jonathan Isaac",
+          "player": "Franz Wagner",
           "status": "Apr 1",
           "position": "F"
         }
@@ -2699,10 +2716,10 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": 1,
-      "public_pct": 56,
+      "public_pct": 55,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 44,
+      "public_home_pct": 45,
       "spread_delta": 1.0,
       "total_delta": 0,
       "spread_direction": "toward_underdog",
@@ -2736,7 +2753,7 @@
       "odds": {
         "details": "BOS -4.5",
         "spread": 4.5,
-        "total": 228.5,
+        "total": 229.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2758,7 +2775,7 @@
       "spread": -4.5,
       "favorite": "BOS -4.5",
       "underdog": "MIA +4.5",
-      "tagged_at": "2026-04-01T16:53:04.724455+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950599+00:00",
       "home_injuries": [
         {
           "player": "Andrew Wiggins",
@@ -2815,15 +2832,15 @@
       "divisional": true,
       "home_streak": 4,
       "away_streak": 1,
-      "public_pct": 61,
+      "public_pct": 62,
       "public_side": "BOS",
       "fade_signal": 0,
-      "public_home_pct": 39,
+      "public_home_pct": 38,
       "spread_delta": 0,
-      "total_delta": 0,
+      "total_delta": 1.0,
       "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 6
+      "total_direction": "up",
+      "spread_moves": 7
     },
     {
       "sport": "mlb",
@@ -3016,7 +3033,7 @@
       "spread": -14.5,
       "favorite": "NY -14.5",
       "underdog": "MEM +14.5",
-      "tagged_at": "2026-04-01T16:53:04.724460+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950605+00:00",
       "home_injuries": [
         {
           "player": "Taylor Hendricks",
@@ -3138,9 +3155,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "TOR -13.5",
-        "spread": -13.5,
-        "total": 226.5,
+        "details": "TOR -11.5",
+        "spread": -11.5,
+        "total": 225.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3157,23 +3174,13 @@
       "dog_team": "Sacramento Kings",
       "fav_abbr": "TOR",
       "dog_abbr": "SAC",
-      "fav_spread": -13.5,
-      "dog_spread": 13.5,
-      "spread": -13.5,
-      "favorite": "TOR -13.5",
-      "underdog": "SAC +13.5",
-      "tagged_at": "2026-04-01T16:53:04.724464+00:00",
+      "fav_spread": -11.5,
+      "dog_spread": 11.5,
+      "spread": -11.5,
+      "favorite": "TOR -11.5",
+      "underdog": "SAC +11.5",
+      "tagged_at": "2026-04-01T17:24:48.950609+00:00",
       "home_injuries": [
-        {
-          "player": "Brandon Ingram",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
-          "player": "Collin Murray-Boyles",
-          "status": "Mar 31",
-          "position": "F"
-        },
         {
           "player": "Jamison Battle",
           "status": "Apr 1",
@@ -3183,6 +3190,16 @@
           "player": "Immanuel Quickley",
           "status": "Apr 1",
           "position": "G"
+        },
+        {
+          "player": "Brandon Ingram",
+          "status": "Mar 31",
+          "position": "F"
+        },
+        {
+          "player": "Collin Murray-Boyles",
+          "status": "Mar 31",
+          "position": "F"
         },
         {
           "player": "Chucky Hepburn",
@@ -3254,15 +3271,15 @@
       "divisional": false,
       "home_streak": -1,
       "away_streak": -2,
-      "public_pct": 62,
+      "public_pct": 61,
       "public_side": "TOR",
       "fade_signal": 0,
-      "public_home_pct": 62,
-      "spread_delta": 0,
-      "total_delta": 1.0,
-      "spread_direction": "stable",
-      "total_direction": "up",
-      "spread_moves": 3
+      "public_home_pct": 61,
+      "spread_delta": 2.0,
+      "total_delta": 0,
+      "spread_direction": "toward_underdog",
+      "total_direction": "stable",
+      "spread_moves": 4
     },
     {
       "sport": "nba",
@@ -3313,7 +3330,7 @@
       "spread": -3.5,
       "favorite": "CHI -3.5",
       "underdog": "IND +3.5",
-      "tagged_at": "2026-04-01T16:53:04.724468+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950613+00:00",
       "home_injuries": [
         {
           "player": "Nick Richards",
@@ -3461,8 +3478,8 @@
         "state": "TX",
         "indoor": true,
         "grass": false,
-        "lat": 29.7589382,
-        "lon": -95.3676974
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Houston Rockets",
@@ -3474,7 +3491,7 @@
       "spread": -17.5,
       "favorite": "HOU -17.5",
       "underdog": "MIL +17.5",
-      "tagged_at": "2026-04-01T16:53:04.724472+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950617+00:00",
       "home_injuries": [
         {
           "player": "Steven Adams",
@@ -3541,10 +3558,10 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": -1,
-      "public_pct": 57,
+      "public_pct": 58,
       "public_side": "MIL",
       "fade_signal": 0,
-      "public_home_pct": 43,
+      "public_home_pct": 42,
       "spread_delta": 0,
       "total_delta": 1.0,
       "spread_direction": "stable",
@@ -3687,10 +3704,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 73,
+      "public_pct": 72,
       "public_side": "LAD",
       "fade_signal": 2,
-      "public_home_pct": 73,
+      "public_home_pct": 72,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -3757,7 +3774,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724475+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950621+00:00",
       "home_injuries": [
         {
           "player": "Cale Makar",
@@ -3819,10 +3836,10 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": 1,
-      "public_pct": 71,
+      "public_pct": 72,
       "public_side": "COL",
       "fade_signal": 2,
-      "public_home_pct": 71,
+      "public_home_pct": 72,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -3867,7 +3884,7 @@
       "odds": {
         "details": "DEN -17.5",
         "spread": 17.5,
-        "total": 248.5,
+        "total": 249.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3889,7 +3906,7 @@
       "spread": -17.5,
       "favorite": "DEN -17.5",
       "underdog": "UTAH +17.5",
-      "tagged_at": "2026-04-01T16:53:04.724479+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950624+00:00",
       "home_injuries": [
         {
           "player": "Elijah Harkless",
@@ -3976,10 +3993,10 @@
       "fade_signal": 0,
       "public_home_pct": 50,
       "spread_delta": 0,
-      "total_delta": 0,
+      "total_delta": 1.0,
       "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 9
+      "total_direction": "up",
+      "spread_moves": 10
     },
     {
       "sport": "nhl",
@@ -4030,7 +4047,7 @@
       "spread": -1.5,
       "favorite": "LA -1.5",
       "underdog": "STL +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724486+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950642+00:00",
       "home_injuries": [
         {
           "player": "Samuel Helenius",
@@ -4152,7 +4169,7 @@
       "spread": -1.5,
       "favorite": "ANA -1.5",
       "underdog": "SJ +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724489+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950645+00:00",
       "home_injuries": [
         {
           "player": "John Klingberg",
@@ -4294,7 +4311,7 @@
       "spread": -14.5,
       "favorite": "SA -14.5",
       "underdog": "GS +14.5",
-      "tagged_at": "2026-04-01T16:53:04.724493+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950649+00:00",
       "home_injuries": [
         {
           "player": "Quinten Post",
@@ -4900,7 +4917,7 @@
       "spread": -1.5,
       "favorite": "OTT -1.5",
       "underdog": "BUF +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724497+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950653+00:00",
       "home_injuries": [
         {
           "player": "Jake Sanderson",
@@ -5027,7 +5044,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724500+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950656+00:00",
       "home_injuries": [
         {
           "player": "Victor Hedman",
@@ -5164,7 +5181,7 @@
       "spread": -1.5,
       "favorite": "BOS -1.5",
       "underdog": "FLA +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724504+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950660+00:00",
       "home_injuries": [
         {
           "player": "Jonah Gadjovich",
@@ -5230,7 +5247,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": -0.5,
-      "rest_diff_days": 1,
+      "rest_diff_days": 0,
       "elo_diff": 40.6,
       "home_elo": 1493.4,
       "away_elo": 1452.8,
@@ -5311,7 +5328,7 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "NYR +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724509+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950665+00:00",
       "home_injuries": [
         {
           "player": "Jonathan Quick",
@@ -5438,7 +5455,7 @@
       "spread": -1.5,
       "favorite": "PHI -1.5",
       "underdog": "DET +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724512+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950668+00:00",
       "home_injuries": [
         {
           "player": "Nikita Grebenkin",
@@ -5540,7 +5557,24 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Furman South",
+          "role": "referee"
+        },
+        {
+          "name": "Corey Syvret",
+          "role": "referee"
+        },
+        {
+          "name": "Jeremy Faucher",
+          "role": "linesman"
+        },
+        {
+          "name": "Kyle Flemington",
+          "role": "linesman"
+        }
+      ],
       "fav_team": "Carolina Hurricanes",
       "dog_team": "Columbus Blue Jackets",
       "fav_abbr": "CAR",
@@ -5550,7 +5584,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "CBJ +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724515+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950671+00:00",
       "home_injuries": [
         {
           "player": "Pyotr Kochetkov",
@@ -5567,9 +5601,9 @@
       ],
       "injury_count_home": 1,
       "injury_count_away": 1,
-      "ref_home_bias": 0.3,
-      "ref_over_bias": 0.2,
-      "ref_consistency": 1.5,
+      "ref_home_bias": 0.934,
+      "ref_over_bias": -0.23,
+      "ref_consistency": 2.2,
       "h2h_margin_avg": 0.67,
       "rest_diff_days": -1,
       "elo_diff": 65.3,
@@ -5652,7 +5686,7 @@
       "spread": -1.5,
       "favorite": "NJ -1.5",
       "underdog": "WSH +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724519+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950675+00:00",
       "home_injuries": [
         {
           "player": "Arseny Gritsyuk",
@@ -5693,7 +5727,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": -0.67,
-      "rest_diff_days": 3,
+      "rest_diff_days": 2,
       "elo_diff": -34.6,
       "home_elo": 1454.1,
       "away_elo": 1488.7,
@@ -5774,7 +5808,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "WPG +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724522+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950678+00:00",
       "home_injuries": [
         {
           "player": "Sam Steel",
@@ -5921,7 +5955,7 @@
       "spread": -1.5,
       "favorite": "MIN -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724528+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950685+00:00",
       "home_injuries": [
         {
           "player": "Charlie Stramel",
@@ -6038,7 +6072,7 @@
       "spread": -1.5,
       "favorite": "EDM -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724531+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950688+00:00",
       "home_injuries": [
         {
           "player": "Trent Frederic",
@@ -6397,7 +6431,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -6882,7 +6916,7 @@
       "spread": -1.5,
       "favorite": "VGK -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724536+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950692+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -7003,7 +7037,7 @@
       "spread": -1.5,
       "favorite": "SJ -1.5",
       "underdog": "TOR +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724540+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950695+00:00",
       "home_injuries": [
         {
           "player": "John Klingberg",
@@ -7120,7 +7154,7 @@
       "spread": -1.5,
       "favorite": "UTA -1.5",
       "underdog": "SEA +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724543+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950698+00:00",
       "home_injuries": [
         {
           "player": "Jaden Schwartz",
@@ -7309,7 +7343,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "LA -135",
+        "details": "LA -125",
         "spread": -1.5,
         "total": 5.5,
         "provider": "Draft Kings"
@@ -7333,7 +7367,7 @@
       "spread": -1.5,
       "favorite": "LA -1.5",
       "underdog": "NSH +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724548+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950703+00:00",
       "home_injuries": [
         {
           "player": "Samuel Helenius",
@@ -8017,6 +8051,168 @@
       ],
       "injury_count_home": 8,
       "injury_count_away": 11,
+      "ref_home_bias": 0.2,
+      "ref_over_bias": 0.3,
+      "ref_consistency": 2.5,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 0,
+      "home_elo": 1500,
+      "away_elo": 1500,
+      "travel_km": 0,
+      "power_diff": 0,
+      "off_def_mismatch": 0,
+      "pace_avg": 0,
+      "home_split_edge": 0,
+      "momentum_diff": 0,
+      "recent_ats_diff": 0,
+      "home_margin_stdev": 0,
+      "away_margin_stdev": 0,
+      "spot_score": 0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": 0,
+      "away_streak": 0,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0,
+      "starter_era_diff": 0
+    },
+    {
+      "sport": "mlb",
+      "id": "401867263",
+      "name": "Toronto Blue Jays at Chicago White Sox",
+      "shortName": "TOR @ CHW",
+      "date_utc": "2026-04-03T18:10Z",
+      "date_local": "2026-04-03 02:10 PM ET",
+      "home_team": {
+        "id": "4",
+        "name": "Chicago White Sox",
+        "abbr": "CHW",
+        "slug": "chicago-white-sox",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chw.png"
+      },
+      "away_team": {
+        "id": "14",
+        "name": "Toronto Blue Jays",
+        "abbr": "TOR",
+        "slug": "toronto-blue-jays",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tor.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Rate Field",
+        "city": "Chicago",
+        "state": "Illinois",
+        "indoor": false,
+        "grass": true,
+        "lat": null,
+        "lon": null
+      },
+      "officials": [],
+      "home_injuries": [
+        {
+          "player": "Ky Bush",
+          "status": "Jun 1",
+          "position": "SP"
+        },
+        {
+          "player": "Prelander Berroa",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
+          "player": "Kyle Teel",
+          "status": "Apr 14",
+          "position": "C"
+        },
+        {
+          "player": "Brooks Baldwin",
+          "status": "May 1",
+          "position": "LF"
+        },
+        {
+          "player": "Mike Vasil",
+          "status": "Jul 1",
+          "position": "RP"
+        },
+        {
+          "player": "Drew Thorpe",
+          "status": "Jun 1",
+          "position": "SP"
+        },
+        {
+          "player": "Tim Elko",
+          "status": "Jul 1",
+          "position": "1B"
+        },
+        {
+          "player": "Mason Adams",
+          "status": "Jul 1",
+          "position": "RP"
+        }
+      ],
+      "away_injuries": [
+        {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
+          "player": "Cody Ponce",
+          "status": "Aug 1",
+          "position": "SP"
+        },
+        {
+          "player": "Shane Bieber",
+          "status": "May 1",
+          "position": "SP"
+        },
+        {
+          "player": "Trey Yesavage",
+          "status": "Apr 14",
+          "position": "SP"
+        },
+        {
+          "player": "Yimi Garcia",
+          "status": "Apr 15",
+          "position": "RP"
+        },
+        {
+          "player": "Anthony Santander",
+          "status": "Aug 1",
+          "position": "RF"
+        },
+        {
+          "player": "Chay Yeager",
+          "status": "Apr 1",
+          "position": "RP"
+        },
+        {
+          "player": "Bowden Francis",
+          "status": "Apr 1",
+          "position": "SP"
+        }
+      ],
+      "injury_count_home": 8,
+      "injury_count_away": 9,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
@@ -9098,7 +9294,7 @@
       "spread": -6.5,
       "favorite": "CONN -6.5",
       "underdog": "SC +6.5",
-      "tagged_at": "2026-04-01T16:53:04.724552+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950707+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -9107,7 +9303,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 10.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -38,
+      "rest_diff_days": -37,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -9660,8 +9856,8 @@
         "state": "TX",
         "indoor": true,
         "grass": false,
-        "lat": 29.7589382,
-        "lon": -95.3676974
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -9839,16 +10035,6 @@
       ],
       "away_injuries": [
         {
-          "player": "Brandon Ingram",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
-          "player": "Collin Murray-Boyles",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
           "player": "Jamison Battle",
           "status": "Apr 1",
           "position": "F"
@@ -9857,6 +10043,16 @@
           "player": "Immanuel Quickley",
           "status": "Apr 1",
           "position": "G"
+        },
+        {
+          "player": "Brandon Ingram",
+          "status": "Mar 31",
+          "position": "F"
+        },
+        {
+          "player": "Collin Murray-Boyles",
+          "status": "Mar 31",
+          "position": "F"
         },
         {
           "player": "Chucky Hepburn",
@@ -10086,7 +10282,7 @@
       ],
       "away_injuries": [
         {
-          "player": "Franz Wagner",
+          "player": "Jonathan Isaac",
           "status": "Apr 1",
           "position": "F"
         },
@@ -10096,7 +10292,7 @@
           "position": "G"
         },
         {
-          "player": "Jonathan Isaac",
+          "player": "Franz Wagner",
           "status": "Apr 1",
           "position": "F"
         }
@@ -10187,7 +10383,7 @@
       "spread": -1.5,
       "favorite": "TEX -1.5",
       "underdog": "UCLA +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724556+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950711+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -10534,7 +10730,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -10615,6 +10811,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Bennett Sousa",
+          "status": "Apr 14",
+          "position": "RP"
+        },
+        {
           "player": "Nate Pearson",
           "status": "May 1",
           "position": "RP"
@@ -10627,11 +10828,6 @@
         {
           "player": "Enyel De Los Santos",
           "status": "Apr 6",
-          "position": "RP"
-        },
-        {
-          "player": "Bennett Sousa",
-          "status": "Apr 14",
           "position": "RP"
         },
         {
@@ -10666,7 +10862,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -12363,6 +12559,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Bennett Sousa",
+          "status": "Apr 14",
+          "position": "RP"
+        },
+        {
           "player": "Nate Pearson",
           "status": "May 1",
           "position": "RP"
@@ -12375,11 +12576,6 @@
         {
           "player": "Enyel De Los Santos",
           "status": "Apr 6",
-          "position": "RP"
-        },
-        {
-          "player": "Bennett Sousa",
-          "status": "Apr 14",
           "position": "RP"
         },
         {
@@ -12414,7 +12610,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -12850,7 +13046,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": 0.8,
-      "rest_diff_days": 2,
+      "rest_diff_days": 1,
       "elo_diff": 107.5,
       "home_elo": 1560.3,
       "away_elo": 1452.8,
@@ -13761,7 +13957,7 @@
       "spread": -1.5,
       "favorite": "ILL -1.5",
       "underdog": "CONN +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724562+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950716+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13770,7 +13966,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 10.0,
       "h2h_margin_avg": 13.0,
-      "rest_diff_days": -31,
+      "rest_diff_days": -30,
       "elo_diff": 44.8,
       "home_elo": 1741.2,
       "away_elo": 1696.4,
@@ -14079,7 +14275,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": -2.2,
-      "rest_diff_days": -2,
+      "rest_diff_days": -1,
       "elo_diff": -83.7,
       "home_elo": 1488.7,
       "away_elo": 1572.4,
@@ -15272,7 +15468,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -16111,7 +16307,7 @@
       "spread": -1.5,
       "favorite": "MICH -1.5",
       "underdog": "ARIZ +1.5",
-      "tagged_at": "2026-04-01T16:53:04.724566+00:00",
+      "tagged_at": "2026-04-01T17:24:48.950721+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -18779,16 +18975,6 @@
       ],
       "away_injuries": [
         {
-          "player": "Brandon Ingram",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
-          "player": "Collin Murray-Boyles",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
           "player": "Jamison Battle",
           "status": "Apr 1",
           "position": "F"
@@ -18797,6 +18983,16 @@
           "player": "Immanuel Quickley",
           "status": "Apr 1",
           "position": "G"
+        },
+        {
+          "player": "Brandon Ingram",
+          "status": "Mar 31",
+          "position": "F"
+        },
+        {
+          "player": "Collin Murray-Boyles",
+          "status": "Mar 31",
+          "position": "F"
         },
         {
           "player": "Chucky Hepburn",
@@ -19319,7 +19515,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": -0.6,
-      "rest_diff_days": 2,
+      "rest_diff_days": 1,
       "elo_diff": -48.7,
       "home_elo": 1404.1,
       "away_elo": 1452.8,
@@ -19400,6 +19596,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Bennett Sousa",
+          "status": "Apr 14",
+          "position": "RP"
+        },
+        {
           "player": "Nate Pearson",
           "status": "May 1",
           "position": "RP"
@@ -19412,11 +19613,6 @@
         {
           "player": "Enyel De Los Santos",
           "status": "Apr 6",
-          "position": "RP"
-        },
-        {
-          "player": "Bennett Sousa",
-          "status": "Apr 14",
           "position": "RP"
         },
         {
@@ -19451,7 +19647,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -19957,7 +20153,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -20371,7 +20567,7 @@
       ],
       "away_injuries": [
         {
-          "player": "Franz Wagner",
+          "player": "Jonathan Isaac",
           "status": "Apr 1",
           "position": "F"
         },
@@ -20381,7 +20577,7 @@
           "position": "G"
         },
         {
-          "player": "Jonathan Isaac",
+          "player": "Franz Wagner",
           "status": "Apr 1",
           "position": "F"
         }
@@ -20736,7 +20932,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": 0.25,
-      "rest_diff_days": 2,
+      "rest_diff_days": 1,
       "elo_diff": 5.3,
       "home_elo": 1494.0,
       "away_elo": 1488.7,
@@ -22440,7 +22636,7 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Franz Wagner",
+          "player": "Jonathan Isaac",
           "status": "Apr 1",
           "position": "F"
         },
@@ -22450,7 +22646,7 @@
           "position": "G"
         },
         {
-          "player": "Jonathan Isaac",
+          "player": "Franz Wagner",
           "status": "Apr 1",
           "position": "F"
         }
@@ -23722,6 +23918,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Bennett Sousa",
+          "status": "Apr 14",
+          "position": "RP"
+        },
+        {
           "player": "Nate Pearson",
           "status": "May 1",
           "position": "RP"
@@ -23734,11 +23935,6 @@
         {
           "player": "Enyel De Los Santos",
           "status": "Apr 6",
-          "position": "RP"
-        },
-        {
-          "player": "Bennett Sousa",
-          "status": "Apr 14",
           "position": "RP"
         },
         {
@@ -24046,7 +24242,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -26170,7 +26366,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 1.5,
       "h2h_margin_avg": -0.8,
-      "rest_diff_days": 1,
+      "rest_diff_days": 0,
       "elo_diff": 138.1,
       "home_elo": 1590.9,
       "away_elo": 1452.8,
@@ -26287,7 +26483,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -26851,16 +27047,6 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Brandon Ingram",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
-          "player": "Collin Murray-Boyles",
-          "status": "Mar 31",
-          "position": "F"
-        },
-        {
           "player": "Jamison Battle",
           "status": "Apr 1",
           "position": "F"
@@ -26869,6 +27055,16 @@
           "player": "Immanuel Quickley",
           "status": "Apr 1",
           "position": "G"
+        },
+        {
+          "player": "Brandon Ingram",
+          "status": "Mar 31",
+          "position": "F"
+        },
+        {
+          "player": "Collin Murray-Boyles",
+          "status": "Mar 31",
+          "position": "F"
         },
         {
           "player": "Chucky Hepburn",
@@ -28072,6 +28268,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Bennett Sousa",
+          "status": "Apr 14",
+          "position": "RP"
+        },
+        {
           "player": "Nate Pearson",
           "status": "May 1",
           "position": "RP"
@@ -28084,11 +28285,6 @@
         {
           "player": "Enyel De Los Santos",
           "status": "Apr 6",
-          "position": "RP"
-        },
-        {
-          "player": "Bennett Sousa",
-          "status": "Apr 14",
           "position": "RP"
         },
         {
@@ -28387,7 +28583,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -28761,7 +28957,24 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Francois St. Laurent",
+          "role": "referee"
+        },
+        {
+          "name": "Alex Lepkowski",
+          "role": "referee"
+        },
+        {
+          "name": "Kilian McNamara",
+          "role": "linesman"
+        },
+        {
+          "name": "Caleb Apperson",
+          "role": "linesman"
+        }
+      ],
       "home_injuries": [
         {
           "player": "Thatcher Demko",
@@ -28787,9 +29000,9 @@
       "away_injuries": [],
       "injury_count_home": 4,
       "injury_count_away": 0,
-      "ref_home_bias": 0.3,
-      "ref_over_bias": 0.2,
-      "ref_consistency": 1.5,
+      "ref_home_bias": 2.425,
+      "ref_over_bias": -0.037,
+      "ref_consistency": 2.2,
       "h2h_margin_avg": -1.4,
       "rest_diff_days": 0,
       "elo_diff": -78.8,
@@ -37181,5 +37394,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-04-01T17:01:52.250098"
+  "weather_merged_at": "2026-04-01T17:33:12.829691"
 }
