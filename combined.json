@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260401_1629",
+  "timestamp": "20260401_1653",
   "count": 313,
   "data": [
     {
@@ -387,8 +387,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/pit.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 3.0,
+      "total_points": 3.0,
       "odds": null,
       "venue": {
         "name": "Great American Ball Park",
@@ -503,10 +503,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 65,
-      "public_side": "PIT",
-      "fade_signal": 1,
-      "public_home_pct": 35,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -772,6 +772,16 @@
       ],
       "home_injuries": [
         {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
           "player": "Cody Ponce",
           "status": "Aug 1",
           "position": "SP"
@@ -790,16 +800,6 @@
           "player": "Yimi Garcia",
           "status": "Apr 15",
           "position": "RP"
-        },
-        {
-          "player": "Mason Fluharty",
-          "status": "Mar 31",
-          "position": "RP"
-        },
-        {
-          "player": "Jose Berrios",
-          "status": "Apr 24",
-          "position": "SP"
         },
         {
           "player": "Anthony Santander",
@@ -1558,6 +1558,11 @@
       ],
       "home_injuries": [
         {
+          "player": "Nate Pearson",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
           "player": "Hayden Wesneski",
           "status": "Aug 1",
           "position": "SP"
@@ -1575,11 +1580,6 @@
         {
           "player": "Josh Hader",
           "status": "Apr 24",
-          "position": "RP"
-        },
-        {
-          "player": "Nate Pearson",
-          "status": "May 1",
           "position": "RP"
         },
         {
@@ -1605,6 +1605,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Triston Casas",
+          "status": "May 1",
+          "position": "1B"
+        },
+        {
           "player": "Patrick Sandoval",
           "status": "Apr 20",
           "position": "SP"
@@ -1628,11 +1633,6 @@
           "player": "Kutter Crawford",
           "status": "Apr 20",
           "position": "SP"
-        },
-        {
-          "player": "Triston Casas",
-          "status": "May 1",
-          "position": "1B"
         },
         {
           "player": "Romy Gonzalez",
@@ -1856,10 +1856,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 60,
+      "public_pct": 61,
       "public_side": "CHC",
       "fade_signal": 0,
-      "public_home_pct": 60,
+      "public_home_pct": 61,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2095,10 +2095,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 75,
+      "public_pct": 74,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 25,
+      "public_home_pct": 26,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2489,7 +2489,7 @@
       "odds": {
         "details": "PHI -13.5",
         "spread": 13.5,
-        "total": 238.5,
+        "total": 237.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2511,8 +2511,23 @@
       "spread": -13.5,
       "favorite": "PHI -13.5",
       "underdog": "WSH +13.5",
-      "tagged_at": "2026-04-01T16:29:06.015248+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724433+00:00",
       "home_injuries": [
+        {
+          "player": "Tre Johnson",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Bilal Coulibaly",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Alex Sarr",
+          "status": "Apr 1",
+          "position": "C"
+        },
         {
           "player": "Anthony Davis",
           "status": "Apr 9",
@@ -2526,21 +2541,6 @@
         {
           "player": "Trae Young",
           "status": "Apr 4",
-          "position": "G"
-        },
-        {
-          "player": "Tre Johnson",
-          "status": "Apr 1",
-          "position": "G"
-        },
-        {
-          "player": "Alex Sarr",
-          "status": "Apr 1",
-          "position": "C"
-        },
-        {
-          "player": "Bilal Coulibaly",
-          "status": "Apr 1",
           "position": "G"
         },
         {
@@ -2593,10 +2593,10 @@
       "fade_signal": 1,
       "public_home_pct": 31,
       "spread_delta": 2.0,
-      "total_delta": 1.0,
+      "total_delta": 0,
       "spread_direction": "toward_underdog",
-      "total_direction": "up",
-      "spread_moves": 10
+      "total_direction": "stable",
+      "spread_moves": 11
     },
     {
       "sport": "nba",
@@ -2625,7 +2625,7 @@
       "odds": {
         "details": "ATL -3.5",
         "spread": 3.5,
-        "total": 232.5,
+        "total": 233.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2647,7 +2647,7 @@
       "spread": -3.5,
       "favorite": "ATL -3.5",
       "underdog": "ORL +3.5",
-      "tagged_at": "2026-04-01T16:29:06.015265+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724448+00:00",
       "home_injuries": [
         {
           "player": "Franz Wagner",
@@ -2699,15 +2699,15 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": 1,
-      "public_pct": 55,
+      "public_pct": 56,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 45,
+      "public_home_pct": 44,
       "spread_delta": 1.0,
-      "total_delta": -1.0,
+      "total_delta": 0,
       "spread_direction": "toward_underdog",
-      "total_direction": "down",
-      "spread_moves": 4
+      "total_direction": "stable",
+      "spread_moves": 5
     },
     {
       "sport": "nba",
@@ -2736,7 +2736,7 @@
       "odds": {
         "details": "BOS -4.5",
         "spread": 4.5,
-        "total": 229.5,
+        "total": 228.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -2758,7 +2758,7 @@
       "spread": -4.5,
       "favorite": "BOS -4.5",
       "underdog": "MIA +4.5",
-      "tagged_at": "2026-04-01T16:29:06.015274+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724455+00:00",
       "home_injuries": [
         {
           "player": "Andrew Wiggins",
@@ -2820,10 +2820,10 @@
       "fade_signal": 0,
       "public_home_pct": 39,
       "spread_delta": 0,
-      "total_delta": 1.0,
+      "total_delta": 0,
       "spread_direction": "stable",
-      "total_direction": "up",
-      "spread_moves": 5
+      "total_direction": "stable",
+      "spread_moves": 6
     },
     {
       "sport": "mlb",
@@ -3016,7 +3016,7 @@
       "spread": -14.5,
       "favorite": "NY -14.5",
       "underdog": "MEM +14.5",
-      "tagged_at": "2026-04-01T16:29:06.015279+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724460+00:00",
       "home_injuries": [
         {
           "player": "Taylor Hendricks",
@@ -3162,7 +3162,7 @@
       "spread": -13.5,
       "favorite": "TOR -13.5",
       "underdog": "SAC +13.5",
-      "tagged_at": "2026-04-01T16:29:06.015283+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724464+00:00",
       "home_injuries": [
         {
           "player": "Brandon Ingram",
@@ -3313,7 +3313,7 @@
       "spread": -3.5,
       "favorite": "CHI -3.5",
       "underdog": "IND +3.5",
-      "tagged_at": "2026-04-01T16:29:06.015287+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724468+00:00",
       "home_injuries": [
         {
           "player": "Nick Richards",
@@ -3415,10 +3415,10 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": -10,
-      "public_pct": 54,
+      "public_pct": 55,
       "public_side": "CHI",
       "fade_signal": 0,
-      "public_home_pct": 54,
+      "public_home_pct": 55,
       "spread_delta": 1.0,
       "total_delta": 4.0,
       "spread_direction": "toward_underdog",
@@ -3461,8 +3461,8 @@
         "state": "TX",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": [],
       "fav_team": "Houston Rockets",
@@ -3474,7 +3474,7 @@
       "spread": -17.5,
       "favorite": "HOU -17.5",
       "underdog": "MIL +17.5",
-      "tagged_at": "2026-04-01T16:29:06.015291+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724472+00:00",
       "home_injuries": [
         {
           "player": "Steven Adams",
@@ -3541,10 +3541,10 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": -1,
-      "public_pct": 58,
+      "public_pct": 57,
       "public_side": "MIL",
       "fade_signal": 0,
-      "public_home_pct": 42,
+      "public_home_pct": 43,
       "spread_delta": 0,
       "total_delta": 1.0,
       "spread_direction": "stable",
@@ -3757,7 +3757,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015295+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724475+00:00",
       "home_injuries": [
         {
           "player": "Cale Makar",
@@ -3865,9 +3865,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "DEN -16.5",
-        "spread": 16.5,
-        "total": 249.5,
+        "details": "DEN -17.5",
+        "spread": 17.5,
+        "total": 248.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3884,12 +3884,12 @@
       "dog_team": "Utah Jazz",
       "fav_abbr": "DEN",
       "dog_abbr": "UTAH",
-      "fav_spread": -16.5,
-      "dog_spread": 16.5,
-      "spread": -16.5,
-      "favorite": "DEN -16.5",
-      "underdog": "UTAH +16.5",
-      "tagged_at": "2026-04-01T16:29:06.015299+00:00",
+      "fav_spread": -17.5,
+      "dog_spread": 17.5,
+      "spread": -17.5,
+      "favorite": "DEN -17.5",
+      "underdog": "UTAH +17.5",
+      "tagged_at": "2026-04-01T16:53:04.724479+00:00",
       "home_injuries": [
         {
           "player": "Elijah Harkless",
@@ -3975,11 +3975,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": 1.0,
-      "total_delta": 1.0,
-      "spread_direction": "toward_underdog",
-      "total_direction": "up",
-      "spread_moves": 8
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 9
     },
     {
       "sport": "nhl",
@@ -4017,8 +4017,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Los Angeles Kings",
@@ -4030,7 +4030,7 @@
       "spread": -1.5,
       "favorite": "LA -1.5",
       "underdog": "STL +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015304+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724486+00:00",
       "home_injuries": [
         {
           "player": "Samuel Helenius",
@@ -4082,10 +4082,10 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": 3,
-      "public_pct": 55,
+      "public_pct": 56,
       "public_side": "LA",
       "fade_signal": 0,
-      "public_home_pct": 55,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4139,8 +4139,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.3361663,
-        "lon": -121.890591
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Anaheim Ducks",
@@ -4152,7 +4152,7 @@
       "spread": -1.5,
       "favorite": "ANA -1.5",
       "underdog": "SJ +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015308+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724489+00:00",
       "home_injuries": [
         {
           "player": "John Klingberg",
@@ -4270,8 +4270,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "SA -13.5",
-        "spread": 13.5,
+        "details": "SA -14.5",
+        "spread": 14.5,
         "total": 226.5,
         "provider": "Draft Kings"
       },
@@ -4281,20 +4281,20 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "San Antonio Spurs",
       "dog_team": "Golden State Warriors",
       "fav_abbr": "SA",
       "dog_abbr": "GS",
-      "fav_spread": -13.5,
-      "dog_spread": 13.5,
-      "spread": -13.5,
-      "favorite": "SA -13.5",
-      "underdog": "GS +13.5",
-      "tagged_at": "2026-04-01T16:29:06.015311+00:00",
+      "fav_spread": -14.5,
+      "dog_spread": 14.5,
+      "spread": -14.5,
+      "favorite": "SA -14.5",
+      "underdog": "GS +14.5",
+      "tagged_at": "2026-04-01T16:53:04.724493+00:00",
       "home_injuries": [
         {
           "player": "Quinten Post",
@@ -4365,11 +4365,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": -2.0,
+      "spread_delta": -3.0,
       "total_delta": -1.0,
       "spread_direction": "toward_favorite",
       "total_direction": "down",
-      "spread_moves": 5
+      "spread_moves": 6
     },
     {
       "sport": "mlb",
@@ -4582,6 +4582,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
           "player": "Cody Ponce",
           "status": "Aug 1",
           "position": "SP"
@@ -4600,16 +4610,6 @@
           "player": "Yimi Garcia",
           "status": "Apr 15",
           "position": "RP"
-        },
-        {
-          "player": "Mason Fluharty",
-          "status": "Mar 31",
-          "position": "RP"
-        },
-        {
-          "player": "Jose Berrios",
-          "status": "Apr 24",
-          "position": "SP"
         },
         {
           "player": "Anthony Santander",
@@ -4900,7 +4900,7 @@
       "spread": -1.5,
       "favorite": "OTT -1.5",
       "underdog": "BUF +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015315+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724497+00:00",
       "home_injuries": [
         {
           "player": "Jake Sanderson",
@@ -5027,7 +5027,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015319+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724500+00:00",
       "home_injuries": [
         {
           "player": "Victor Hedman",
@@ -5164,7 +5164,7 @@
       "spread": -1.5,
       "favorite": "BOS -1.5",
       "underdog": "FLA +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015322+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724504+00:00",
       "home_injuries": [
         {
           "player": "Jonah Gadjovich",
@@ -5311,7 +5311,7 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "NYR +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015327+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724509+00:00",
       "home_injuries": [
         {
           "player": "Jonathan Quick",
@@ -5438,7 +5438,7 @@
       "spread": -1.5,
       "favorite": "PHI -1.5",
       "underdog": "DET +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015331+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724512+00:00",
       "home_injuries": [
         {
           "player": "Nikita Grebenkin",
@@ -5540,24 +5540,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Furman South",
-          "role": "referee"
-        },
-        {
-          "name": "Corey Syvret",
-          "role": "referee"
-        },
-        {
-          "name": "Jeremy Faucher",
-          "role": "linesman"
-        },
-        {
-          "name": "Kyle Flemington",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Carolina Hurricanes",
       "dog_team": "Columbus Blue Jackets",
       "fav_abbr": "CAR",
@@ -5567,7 +5550,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "CBJ +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015334+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724515+00:00",
       "home_injuries": [
         {
           "player": "Pyotr Kochetkov",
@@ -5584,9 +5567,9 @@
       ],
       "injury_count_home": 1,
       "injury_count_away": 1,
-      "ref_home_bias": 0.934,
-      "ref_over_bias": -0.23,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 0.67,
       "rest_diff_days": -1,
       "elo_diff": 65.3,
@@ -5669,7 +5652,7 @@
       "spread": -1.5,
       "favorite": "NJ -1.5",
       "underdog": "WSH +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015338+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724519+00:00",
       "home_injuries": [
         {
           "player": "Arseny Gritsyuk",
@@ -5791,7 +5774,7 @@
       "spread": -1.5,
       "favorite": "DAL -1.5",
       "underdog": "WPG +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015341+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724522+00:00",
       "home_injuries": [
         {
           "player": "Sam Steel",
@@ -5925,8 +5908,8 @@
         "state": "MN",
         "indoor": true,
         "grass": false,
-        "lat": 44.9497487,
-        "lon": -93.0931028
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Minnesota Wild",
@@ -5938,7 +5921,7 @@
       "spread": -1.5,
       "favorite": "MIN -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015346+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724528+00:00",
       "home_injuries": [
         {
           "player": "Charlie Stramel",
@@ -6042,8 +6025,8 @@
         "state": "AB",
         "indoor": true,
         "grass": false,
-        "lat": 36.9800563,
-        "lon": -85.6121906
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Edmonton Oilers",
@@ -6055,7 +6038,7 @@
       "spread": -1.5,
       "favorite": "EDM -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015349+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724531+00:00",
       "home_injuries": [
         {
           "player": "Trent Frederic",
@@ -6179,8 +6162,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": 35.4729886,
-        "lon": -97.5170536
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6477,8 +6460,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6644,8 +6627,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6765,8 +6748,8 @@
         "state": "OR",
         "indoor": true,
         "grass": false,
-        "lat": 45.5202471,
-        "lon": -122.674194
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -6875,9 +6858,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "VGK -245",
+        "details": "VGK -250",
         "spread": -1.5,
-        "total": 5.5,
+        "total": 6.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -6886,8 +6869,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Vegas Golden Knights",
@@ -6899,7 +6882,7 @@
       "spread": -1.5,
       "favorite": "VGK -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015353+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724536+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -6965,10 +6948,10 @@
       "fade_signal": 0,
       "public_home_pct": 50,
       "spread_delta": 0,
-      "total_delta": 0,
+      "total_delta": 1.0,
       "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0,
+      "total_direction": "up",
+      "spread_moves": 1,
       "goalie_sv_diff": 0
     },
     {
@@ -7007,8 +6990,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.3361663,
-        "lon": -121.890591
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "San Jose Sharks",
@@ -7020,7 +7003,7 @@
       "spread": -1.5,
       "favorite": "SJ -1.5",
       "underdog": "TOR +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015357+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724540+00:00",
       "home_injuries": [
         {
           "player": "John Klingberg",
@@ -7113,7 +7096,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "UTAH -135",
+        "details": "UTAH -130",
         "spread": 1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -7124,8 +7107,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Utah Mammoth",
@@ -7137,7 +7120,7 @@
       "spread": -1.5,
       "favorite": "UTA -1.5",
       "underdog": "SEA +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015360+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724543+00:00",
       "home_injuries": [
         {
           "player": "Jaden Schwartz",
@@ -7236,8 +7219,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 33.9562003,
-        "lon": -118.353132
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -7337,8 +7320,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Los Angeles Kings",
@@ -7350,7 +7333,7 @@
       "spread": -1.5,
       "favorite": "LA -1.5",
       "underdog": "NSH +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015367+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724548+00:00",
       "home_injuries": [
         {
           "player": "Samuel Helenius",
@@ -7438,8 +7421,8 @@
         "state": "District of Columbia",
         "indoor": false,
         "grass": true,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -7605,8 +7588,8 @@
         "state": "Michigan",
         "indoor": false,
         "grass": true,
-        "lat": 42.3315509,
-        "lon": -83.0466403
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -7782,8 +7765,8 @@
         "state": "New York",
         "indoor": false,
         "grass": true,
-        "lat": 40.8466508,
-        "lon": -73.8785937
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -7929,11 +7912,16 @@
         "state": "Massachusetts",
         "indoor": false,
         "grass": true,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "Triston Casas",
+          "status": "May 1",
+          "position": "1B"
+        },
         {
           "player": "Patrick Sandoval",
           "status": "Apr 20",
@@ -7958,11 +7946,6 @@
           "player": "Kutter Crawford",
           "status": "Apr 20",
           "position": "SP"
-        },
-        {
-          "player": "Triston Casas",
-          "status": "May 1",
-          "position": "1B"
         },
         {
           "player": "Romy Gonzalez",
@@ -8101,8 +8084,8 @@
         "state": "Texas",
         "indoor": true,
         "grass": false,
-        "lat": 32.7355816,
-        "lon": -97.1071186
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -8243,8 +8226,8 @@
         "state": "Ohio",
         "indoor": false,
         "grass": true,
-        "lat": 41.4996574,
-        "lon": -81.6936772
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -8385,8 +8368,8 @@
         "state": "Minnesota",
         "indoor": false,
         "grass": true,
-        "lat": 44.9772995,
-        "lon": -93.2654692
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -8537,8 +8520,8 @@
         "state": "Colorado",
         "indoor": false,
         "grass": true,
-        "lat": 39.7392364,
-        "lon": -104.984862
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -9115,7 +9098,7 @@
       "spread": -6.5,
       "favorite": "CONN -6.5",
       "underdog": "SC +6.5",
-      "tagged_at": "2026-04-01T16:29:06.015371+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724552+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -9677,8 +9660,8 @@
         "state": "TX",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": [],
       "home_injuries": [
@@ -10204,7 +10187,7 @@
       "spread": -1.5,
       "favorite": "TEX -1.5",
       "underdog": "UCLA +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015375+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724556+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -10632,6 +10615,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Nate Pearson",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
           "player": "Hayden Wesneski",
           "status": "Aug 1",
           "position": "SP"
@@ -10649,11 +10637,6 @@
         {
           "player": "Josh Hader",
           "status": "Apr 24",
-          "position": "RP"
-        },
-        {
-          "player": "Nate Pearson",
-          "status": "May 1",
           "position": "RP"
         },
         {
@@ -10979,8 +10962,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -11345,8 +11328,8 @@
         "state": "Michigan",
         "indoor": false,
         "grass": true,
-        "lat": 42.3315509,
-        "lon": -83.0466403
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -11570,6 +11553,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
           "player": "Cody Ponce",
           "status": "Aug 1",
           "position": "SP"
@@ -11588,16 +11581,6 @@
           "player": "Yimi Garcia",
           "status": "Apr 15",
           "position": "RP"
-        },
-        {
-          "player": "Mason Fluharty",
-          "status": "Mar 31",
-          "position": "RP"
-        },
-        {
-          "player": "Jose Berrios",
-          "status": "Apr 24",
-          "position": "SP"
         },
         {
           "player": "Anthony Santander",
@@ -11707,6 +11690,21 @@
       ],
       "away_injuries": [
         {
+          "player": "Tre Johnson",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Bilal Coulibaly",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Alex Sarr",
+          "status": "Apr 1",
+          "position": "C"
+        },
+        {
           "player": "Anthony Davis",
           "status": "Apr 9",
           "position": "F"
@@ -11719,21 +11717,6 @@
         {
           "player": "Trae Young",
           "status": "Apr 4",
-          "position": "G"
-        },
-        {
-          "player": "Tre Johnson",
-          "status": "Apr 1",
-          "position": "G"
-        },
-        {
-          "player": "Alex Sarr",
-          "status": "Apr 1",
-          "position": "C"
-        },
-        {
-          "player": "Bilal Coulibaly",
-          "status": "Apr 1",
           "position": "G"
         },
         {
@@ -12195,8 +12178,8 @@
         "state": "District of Columbia",
         "indoor": false,
         "grass": true,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -12380,6 +12363,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Nate Pearson",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
           "player": "Hayden Wesneski",
           "status": "Aug 1",
           "position": "SP"
@@ -12397,11 +12385,6 @@
         {
           "player": "Josh Hader",
           "status": "Apr 24",
-          "position": "RP"
-        },
-        {
-          "player": "Nate Pearson",
-          "status": "May 1",
           "position": "RP"
         },
         {
@@ -12494,11 +12477,16 @@
         "state": "Massachusetts",
         "indoor": false,
         "grass": true,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "Triston Casas",
+          "status": "May 1",
+          "position": "1B"
+        },
         {
           "player": "Patrick Sandoval",
           "status": "Apr 20",
@@ -12523,11 +12511,6 @@
           "player": "Kutter Crawford",
           "status": "Apr 20",
           "position": "SP"
-        },
-        {
-          "player": "Triston Casas",
-          "status": "May 1",
-          "position": "1B"
         },
         {
           "player": "Romy Gonzalez",
@@ -13272,8 +13255,8 @@
       "total_points": 0,
       "odds": {
         "provider": "BestFightOdds (consensus)",
-        "home_ml": 458,
-        "away_ml": -660,
+        "home_ml": 469,
+        "away_ml": -672,
         "spread": 3.3,
         "total": 2.5,
         "over_2_5": 128,
@@ -13291,8 +13274,8 @@
         "lon": null
       },
       "officials": [],
-      "home_ml": 458,
-      "away_ml": -660,
+      "home_ml": 469,
+      "away_ml": -672,
       "spread": 3.3,
       "total": 2.5,
       "total_over_ml": 128,
@@ -13778,7 +13761,7 @@
       "spread": -1.5,
       "favorite": "ILL -1.5",
       "underdog": "CONN +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015380+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724562+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14475,8 +14458,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -14572,8 +14555,8 @@
         "state": "New York",
         "indoor": false,
         "grass": true,
-        "lat": 40.8466508,
-        "lon": -73.8785937
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -14719,8 +14702,8 @@
         "state": "Texas",
         "indoor": true,
         "grass": false,
-        "lat": 32.7355816,
-        "lon": -97.1071186
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -14861,8 +14844,8 @@
         "state": "Minnesota",
         "indoor": false,
         "grass": true,
-        "lat": 44.9772995,
-        "lon": -93.2654692
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -15013,8 +14996,8 @@
         "state": "Ohio",
         "indoor": false,
         "grass": true,
-        "lat": 41.4996574,
-        "lon": -81.6936772
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -15923,8 +15906,8 @@
         "state": "Colorado",
         "indoor": false,
         "grass": true,
-        "lat": 39.7392364,
-        "lon": -104.984862
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -16128,7 +16111,7 @@
       "spread": -1.5,
       "favorite": "MICH -1.5",
       "underdog": "ARIZ +1.5",
-      "tagged_at": "2026-04-01T16:29:06.015385+00:00",
+      "tagged_at": "2026-04-01T16:53:04.724566+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -16199,8 +16182,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -16508,8 +16491,8 @@
         "state": "AB",
         "indoor": true,
         "grass": false,
-        "lat": 36.9800563,
-        "lon": -85.6121906
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -16731,8 +16714,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.3361663,
-        "lon": -121.890591
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -16827,8 +16810,8 @@
         "state": "WA",
         "indoor": true,
         "grass": false,
-        "lat": 47.6038321,
-        "lon": -122.330062
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17203,8 +17186,8 @@
         "state": "District of Columbia",
         "indoor": false,
         "grass": true,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17370,8 +17353,8 @@
         "state": "New York",
         "indoor": false,
         "grass": true,
-        "lat": 40.8466508,
-        "lon": -73.8785937
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17517,11 +17500,16 @@
         "state": "Massachusetts",
         "indoor": false,
         "grass": true,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "Triston Casas",
+          "status": "May 1",
+          "position": "1B"
+        },
         {
           "player": "Patrick Sandoval",
           "status": "Apr 20",
@@ -17546,11 +17534,6 @@
           "player": "Kutter Crawford",
           "status": "Apr 20",
           "position": "SP"
-        },
-        {
-          "player": "Triston Casas",
-          "status": "May 1",
-          "position": "1B"
         },
         {
           "player": "Romy Gonzalez",
@@ -17689,8 +17672,8 @@
         "state": "Ohio",
         "indoor": false,
         "grass": true,
-        "lat": 41.4996574,
-        "lon": -81.6936772
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -17988,8 +17971,8 @@
         "state": "Minnesota",
         "indoor": false,
         "grass": true,
-        "lat": 44.9772995,
-        "lon": -93.2654692
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -18188,6 +18171,16 @@
       ],
       "away_injuries": [
         {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
           "player": "Cody Ponce",
           "status": "Aug 1",
           "position": "SP"
@@ -18206,16 +18199,6 @@
           "player": "Yimi Garcia",
           "status": "Apr 15",
           "position": "RP"
-        },
-        {
-          "player": "Mason Fluharty",
-          "status": "Mar 31",
-          "position": "RP"
-        },
-        {
-          "player": "Jose Berrios",
-          "status": "Apr 24",
-          "position": "SP"
         },
         {
           "player": "Anthony Santander",
@@ -18302,8 +18285,8 @@
         "state": "Texas",
         "indoor": true,
         "grass": false,
-        "lat": 32.7355816,
-        "lon": -97.1071186
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -18591,8 +18574,8 @@
         "state": "Colorado",
         "indoor": false,
         "grass": true,
-        "lat": 39.7392364,
-        "lon": -104.984862
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -18922,6 +18905,21 @@
       ],
       "away_injuries": [
         {
+          "player": "Tre Johnson",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Bilal Coulibaly",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Alex Sarr",
+          "status": "Apr 1",
+          "position": "C"
+        },
+        {
           "player": "Anthony Davis",
           "status": "Apr 9",
           "position": "F"
@@ -18934,21 +18932,6 @@
         {
           "player": "Trae Young",
           "status": "Apr 4",
-          "position": "G"
-        },
-        {
-          "player": "Tre Johnson",
-          "status": "Apr 1",
-          "position": "G"
-        },
-        {
-          "player": "Alex Sarr",
-          "status": "Apr 1",
-          "position": "C"
-        },
-        {
-          "player": "Bilal Coulibaly",
-          "status": "Apr 1",
           "position": "G"
         },
         {
@@ -19417,6 +19400,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Nate Pearson",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
           "player": "Hayden Wesneski",
           "status": "Aug 1",
           "position": "SP"
@@ -19434,11 +19422,6 @@
         {
           "player": "Josh Hader",
           "status": "Apr 24",
-          "position": "RP"
-        },
-        {
-          "player": "Nate Pearson",
-          "status": "May 1",
           "position": "RP"
         },
         {
@@ -19531,8 +19514,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -20471,8 +20454,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": 35.4729886,
-        "lon": -97.5170536
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -20816,8 +20799,8 @@
         "state": "Michigan",
         "indoor": false,
         "grass": true,
-        "lat": 42.3315509,
-        "lon": -83.0466403
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -21332,8 +21315,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -21615,8 +21598,8 @@
         "state": "Ohio",
         "indoor": false,
         "grass": true,
-        "lat": 41.4996574,
-        "lon": -81.6936772
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -22041,11 +22024,16 @@
         "state": "Massachusetts",
         "indoor": false,
         "grass": true,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "Triston Casas",
+          "status": "May 1",
+          "position": "1B"
+        },
         {
           "player": "Patrick Sandoval",
           "status": "Apr 20",
@@ -22070,11 +22058,6 @@
           "player": "Kutter Crawford",
           "status": "Apr 20",
           "position": "SP"
-        },
-        {
-          "player": "Triston Casas",
-          "status": "May 1",
-          "position": "1B"
         },
         {
           "player": "Romy Gonzalez",
@@ -22213,8 +22196,8 @@
         "state": "District of Columbia",
         "indoor": false,
         "grass": true,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -22670,6 +22653,16 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
           "player": "Cody Ponce",
           "status": "Aug 1",
           "position": "SP"
@@ -22688,16 +22681,6 @@
           "player": "Yimi Garcia",
           "status": "Apr 15",
           "position": "RP"
-        },
-        {
-          "player": "Mason Fluharty",
-          "status": "Mar 31",
-          "position": "RP"
-        },
-        {
-          "player": "Jose Berrios",
-          "status": "Apr 24",
-          "position": "SP"
         },
         {
           "player": "Anthony Santander",
@@ -23135,8 +23118,8 @@
         "state": "Minnesota",
         "indoor": false,
         "grass": true,
-        "lat": 44.9772995,
-        "lon": -93.2654692
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23534,8 +23517,8 @@
         "state": "Texas",
         "indoor": true,
         "grass": false,
-        "lat": 32.7355816,
-        "lon": -97.1071186
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23671,8 +23654,8 @@
         "state": "Colorado",
         "indoor": false,
         "grass": true,
-        "lat": 39.7392364,
-        "lon": -104.984862
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -23739,6 +23722,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Nate Pearson",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
           "player": "Hayden Wesneski",
           "status": "Aug 1",
           "position": "SP"
@@ -23756,11 +23744,6 @@
         {
           "player": "Josh Hader",
           "status": "Apr 24",
-          "position": "RP"
-        },
-        {
-          "player": "Nate Pearson",
-          "status": "May 1",
           "position": "RP"
         },
         {
@@ -24126,8 +24109,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -24293,8 +24276,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.3361663,
-        "lon": -121.890591
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -24420,8 +24403,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -24511,8 +24494,8 @@
         "state": "Ohio",
         "indoor": false,
         "grass": true,
-        "lat": 41.4996574,
-        "lon": -81.6936772
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25104,11 +25087,16 @@
         "state": "Massachusetts",
         "indoor": false,
         "grass": true,
-        "lat": 42.3588336,
-        "lon": -71.0578303
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
+        {
+          "player": "Triston Casas",
+          "status": "May 1",
+          "position": "1B"
+        },
         {
           "player": "Patrick Sandoval",
           "status": "Apr 20",
@@ -25133,11 +25121,6 @@
           "player": "Kutter Crawford",
           "status": "Apr 20",
           "position": "SP"
-        },
-        {
-          "player": "Triston Casas",
-          "status": "May 1",
-          "position": "1B"
         },
         {
           "player": "Romy Gonzalez",
@@ -25276,8 +25259,8 @@
         "state": "District of Columbia",
         "indoor": false,
         "grass": true,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -25434,6 +25417,21 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Tre Johnson",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Bilal Coulibaly",
+          "status": "Apr 1",
+          "position": "G"
+        },
+        {
+          "player": "Alex Sarr",
+          "status": "Apr 1",
+          "position": "C"
+        },
+        {
           "player": "Anthony Davis",
           "status": "Apr 9",
           "position": "F"
@@ -25446,21 +25444,6 @@
         {
           "player": "Trae Young",
           "status": "Apr 4",
-          "position": "G"
-        },
-        {
-          "player": "Tre Johnson",
-          "status": "Apr 1",
-          "position": "G"
-        },
-        {
-          "player": "Alex Sarr",
-          "status": "Apr 1",
-          "position": "C"
-        },
-        {
-          "player": "Bilal Coulibaly",
-          "status": "Apr 1",
           "position": "G"
         },
         {
@@ -26250,8 +26233,8 @@
         "state": "New York",
         "indoor": false,
         "grass": true,
-        "lat": 40.8466508,
-        "lon": -73.8785937
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -26373,6 +26356,16 @@
       "officials": [],
       "home_injuries": [
         {
+          "player": "Jose Berrios",
+          "status": "Apr 24",
+          "position": "SP"
+        },
+        {
+          "player": "Mason Fluharty",
+          "status": "Mar 31",
+          "position": "RP"
+        },
+        {
           "player": "Cody Ponce",
           "status": "Aug 1",
           "position": "SP"
@@ -26391,16 +26384,6 @@
           "player": "Yimi Garcia",
           "status": "Apr 15",
           "position": "RP"
-        },
-        {
-          "player": "Mason Fluharty",
-          "status": "Mar 31",
-          "position": "RP"
-        },
-        {
-          "player": "Jose Berrios",
-          "status": "Apr 24",
-          "position": "SP"
         },
         {
           "player": "Anthony Santander",
@@ -27160,8 +27143,8 @@
         "state": "Minnesota",
         "indoor": false,
         "grass": true,
-        "lat": 44.9772995,
-        "lon": -93.2654692
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -27782,8 +27765,8 @@
         "state": "MN",
         "indoor": true,
         "grass": false,
-        "lat": 44.9497487,
-        "lon": -93.0931028
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -27884,8 +27867,8 @@
         "state": "Texas",
         "indoor": true,
         "grass": false,
-        "lat": 32.7355816,
-        "lon": -97.1071186
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28021,8 +28004,8 @@
         "state": "Colorado",
         "indoor": false,
         "grass": true,
-        "lat": 39.7392364,
-        "lon": -104.984862
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28089,6 +28072,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Nate Pearson",
+          "status": "May 1",
+          "position": "RP"
+        },
+        {
           "player": "Hayden Wesneski",
           "status": "Aug 1",
           "position": "SP"
@@ -28106,11 +28094,6 @@
         {
           "player": "Josh Hader",
           "status": "Apr 24",
-          "position": "RP"
-        },
-        {
-          "player": "Nate Pearson",
-          "status": "May 1",
           "position": "RP"
         },
         {
@@ -28467,8 +28450,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28634,8 +28617,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -28778,24 +28761,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Francois St. Laurent",
-          "role": "referee"
-        },
-        {
-          "name": "Alex Lepkowski",
-          "role": "referee"
-        },
-        {
-          "name": "Kilian McNamara",
-          "role": "linesman"
-        },
-        {
-          "name": "Caleb Apperson",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "home_injuries": [
         {
           "player": "Thatcher Demko",
@@ -28821,9 +28787,9 @@
       "away_injuries": [],
       "injury_count_home": 4,
       "injury_count_away": 0,
-      "ref_home_bias": 2.425,
-      "ref_over_bias": -0.037,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -1.4,
       "rest_diff_days": 0,
       "elo_diff": -78.8,
@@ -28984,8 +28950,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -29085,8 +29051,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 33.9562003,
-        "lon": -118.353132
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [
@@ -33663,7 +33629,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 5.25,
-      "rest_diff_days": -46,
+      "rest_diff_days": -45,
       "elo_diff": 17.6,
       "home_elo": 1526.6,
       "away_elo": 1509.0,
@@ -34413,7 +34379,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -69,
+      "rest_diff_days": -68,
       "elo_diff": 98.3,
       "home_elo": 1502.7,
       "away_elo": 1404.4,
@@ -35359,7 +35325,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -189,
+      "rest_diff_days": -188,
       "elo_diff": -8.6,
       "home_elo": 1473.7,
       "away_elo": 1482.3,
@@ -35901,7 +35867,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -105,
+      "rest_diff_days": -104,
       "elo_diff": -32.6,
       "home_elo": 1491.1,
       "away_elo": 1523.7,
@@ -35975,7 +35941,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -189,
+      "rest_diff_days": -188,
       "elo_diff": 127.8,
       "home_elo": 1599.1,
       "away_elo": 1471.3,
@@ -36641,7 +36607,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": -14.0,
-      "rest_diff_days": 142,
+      "rest_diff_days": 141,
       "elo_diff": -10.8,
       "home_elo": 1460.4,
       "away_elo": 1471.2,
@@ -36937,7 +36903,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
+      "rest_diff_days": 4,
       "elo_diff": 72.0,
       "home_elo": 1544.4,
       "away_elo": 1472.4,
@@ -37011,7 +36977,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 3.0,
-      "rest_diff_days": -147,
+      "rest_diff_days": -146,
       "elo_diff": 39.1,
       "home_elo": 1526.6,
       "away_elo": 1487.5,
@@ -37215,5 +37181,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-04-01T16:37:44.494073"
+  "weather_merged_at": "2026-04-01T17:01:52.250098"
 }
