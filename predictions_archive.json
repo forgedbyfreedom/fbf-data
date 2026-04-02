@@ -79615,6 +79615,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803539",
+      "sport": "nhl",
+      "matchup": "Vancouver Canucks at Colorado Avalanche",
+      "shortName": "VAN @ COL",
+      "date_utc": "2026-04-02T00:30Z",
+      "date_local": "2026-04-01 08:30 PM ET",
+      "home": "COL",
+      "away": "VAN",
+      "home_team": {
+        "id": "17",
+        "name": "Colorado Avalanche",
+        "abbr": "COL",
+        "slug": "colorado-avalanche",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/col.png"
+      },
+      "away_team": {
+        "id": "22",
+        "name": "Vancouver Canucks",
+        "abbr": "VAN",
+        "slug": "vancouver-canucks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/van.png"
+      },
+      "odds": {
+        "details": "COL -500",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Ball Arena",
+        "city": "Denver",
+        "state": "CO",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Colorado Avalanche",
+      "dog_team": "Vancouver Canucks",
+      "fav_abbr": "COL",
+      "dog_abbr": "VAN",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 2,
+      "injury_count_away": 4,
+      "prediction": {
+        "projected_home_score": 9.7,
+        "projected_away_score": 5.0,
+        "projected_total": 14.7,
+        "projected_spread": 4.7,
+        "win_probability_home": 0.685,
+        "confidence": 85
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.9857,
+        "away_win_pct": 0.0143,
+        "home_cover_pct": 0.9421,
+        "over_pct": 0.5775,
+        "avg_simulated_margin": 5.29,
+        "avg_simulated_total": 6.89
+      },
+      "picks": {
+        "su_pick": "Colorado Avalanche",
+        "su_pick_abbr": "COL",
+        "su_confidence": 77.2,
+        "ats_pick": "Colorado Avalanche",
+        "ats_pick_abbr": "COL",
+        "ats_spread": -1.5,
+        "ats_confidence": 55.0,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 51.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "highlight": true
     }
   ]
 }
