@@ -80846,6 +80846,89 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401803550",
+      "sport": "nhl",
+      "matchup": "Vancouver Canucks at Minnesota Wild",
+      "shortName": "VAN @ MIN",
+      "date_utc": "2026-04-03T00:00Z",
+      "date_local": "2026-04-02 08:00 PM ET",
+      "home": "MIN",
+      "away": "VAN",
+      "home_team": {
+        "id": "30",
+        "name": "Minnesota Wild",
+        "abbr": "MIN",
+        "slug": "minnesota-wild",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/min.png"
+      },
+      "away_team": {
+        "id": "22",
+        "name": "Vancouver Canucks",
+        "abbr": "VAN",
+        "slug": "vancouver-canucks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/van.png"
+      },
+      "odds": {
+        "details": "MIN -425",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Grand Casino Arena",
+        "city": "Saint Paul",
+        "state": "MN",
+        "indoor": true,
+        "grass": false,
+        "lat": 44.9497487,
+        "lon": -93.0931028
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Minnesota Wild",
+      "dog_team": "Vancouver Canucks",
+      "fav_abbr": "MIN",
+      "dog_abbr": "VAN",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 5,
+      "prediction": {
+        "projected_home_score": 9.4,
+        "projected_away_score": 5.3,
+        "projected_total": 14.7,
+        "projected_spread": 4.1,
+        "win_probability_home": 0.663,
+        "confidence": 82
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.882,
+        "away_win_pct": 0.118,
+        "home_cover_pct": 0.7174,
+        "over_pct": 0.5222,
+        "avg_simulated_margin": 2.85,
+        "avg_simulated_total": 6.61
+      },
+      "picks": {
+        "su_pick": "Minnesota Wild",
+        "su_pick_abbr": "MIN",
+        "su_confidence": 71.4,
+        "ats_pick": "Minnesota Wild",
+        "ats_pick_abbr": "MIN",
+        "ats_spread": -1.5,
+        "ats_confidence": 52.8,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 51.9,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
