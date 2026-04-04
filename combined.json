@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260404_1447",
+  "timestamp": "20260404_1518",
   "count": 347,
   "data": [
     {
@@ -84,7 +84,7 @@
       "spread": -1.5,
       "favorite": "DET -1.5",
       "underdog": "NYR +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061206+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018529+00:00",
       "home_injuries": [
         {
           "player": "Urho Vaakanainen",
@@ -136,15 +136,25 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": -2,
-      "public_pct": 54,
+      "public_pct": 55,
       "public_side": "DET",
       "fade_signal": 0,
-      "public_home_pct": 46,
+      "public_home_pct": 45,
       "spread_delta": 0,
       "total_delta": 1.0,
       "spread_direction": "stable",
       "total_direction": "up",
       "spread_moves": 1,
+      "home_goalie": {
+        "name": "Jonathan Quick",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "John Gibson",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -229,7 +239,7 @@
       "spread": -1.5,
       "favorite": "OTT -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061224+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018546+00:00",
       "home_injuries": [
         {
           "player": "Jake Sanderson",
@@ -296,15 +306,25 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": 2,
-      "public_pct": 58,
+      "public_pct": 57,
       "public_side": "OTT",
       "fade_signal": 0,
-      "public_home_pct": 58,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 2,
+      "home_goalie": {
+        "name": "Linus Ullmark",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Filip Gustavsson",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -490,16 +510,26 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 75,
+      "public_pct": 74,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 75,
+      "public_home_pct": 74,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Jack Flaherty",
+        "era": 4.15,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Dustin May",
+        "era": 13.5,
+        "whip": null
+      },
+      "starter_era_diff": 9.35
     },
     {
       "sport": "mlb",
@@ -535,7 +565,24 @@
         "lat": 39.100105,
         "lon": -94.5781416
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Ryan Wills",
+          "role": "home plate"
+        },
+        {
+          "name": "Jen Pawol",
+          "role": "first base"
+        },
+        {
+          "name": "Will Little",
+          "role": "second base"
+        },
+        {
+          "name": "Ryan Additon",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [
         {
           "player": "Bailey Falter",
@@ -627,9 +674,9 @@
       ],
       "injury_count_home": 7,
       "injury_count_away": 10,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.274,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -652,15 +699,25 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 60,
+      "public_pct": 59,
       "public_side": "MIL",
       "fade_signal": 0,
-      "public_home_pct": 40,
+      "public_home_pct": 41,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Luinder Avila",
+        "era": null,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Chad Patrick",
+        "era": 2.08,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -764,14 +821,14 @@
       ],
       "away_injuries": [
         {
-          "player": "Alejandro Kirk",
-          "status": "Apr 4",
-          "position": "C"
-        },
-        {
           "player": "Trey Yesavage",
           "status": "Apr 24",
           "position": "SP"
+        },
+        {
+          "player": "Alejandro Kirk",
+          "status": "Apr 14",
+          "position": "C"
         },
         {
           "player": "Jose Berrios",
@@ -845,7 +902,17 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Grant Taylor",
+        "era": 3.0,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Mason Fluharty",
+        "era": 10.8,
+        "whip": null
+      },
+      "starter_era_diff": 7.8
     },
     {
       "sport": "nba",
@@ -896,7 +963,7 @@
       "spread": -17.5,
       "favorite": "MIA -17.5",
       "underdog": "WSH +17.5",
-      "tagged_at": "2026-04-04T14:47:35.061231+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018553+00:00",
       "home_injuries": [
         {
           "player": "Tyler Herro",
@@ -993,10 +1060,10 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": 1,
-      "public_pct": 52,
-      "public_side": "WSH",
+      "public_pct": 50,
+      "public_side": "MIA",
       "fade_signal": 0,
-      "public_home_pct": 48,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": -2.0,
       "spread_direction": "stable",
@@ -1052,7 +1119,7 @@
       "spread": -1.5,
       "favorite": "SA -1.5",
       "underdog": "DEN +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061239+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018558+00:00",
       "home_injuries": [
         {
           "player": "Zeke Nnaji",
@@ -1163,24 +1230,7 @@
         "lat": 32.7762719,
         "lon": -96.7968559
       },
-      "officials": [
-        {
-          "name": "Wes McCauley",
-          "role": "referee"
-        },
-        {
-          "name": "Gord Dwyer",
-          "role": "referee"
-        },
-        {
-          "name": "Travis Gawryletz",
-          "role": "linesman"
-        },
-        {
-          "name": "Brandon Gawryletz",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Colorado Avalanche",
       "dog_team": "Dallas Stars",
       "fav_abbr": "COL",
@@ -1190,7 +1240,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "DAL +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061244+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018562+00:00",
       "home_injuries": [
         {
           "player": "Tyler Myers",
@@ -1242,9 +1292,9 @@
       ],
       "injury_count_home": 7,
       "injury_count_away": 2,
-      "ref_home_bias": 0.928,
-      "ref_over_bias": 0.388,
-      "ref_consistency": 2.3,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 0.2,
       "rest_diff_days": 0,
       "elo_diff": 0.7,
@@ -1276,6 +1326,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 2,
+      "home_goalie": {
+        "name": "Jake Oettinger",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Mackenzie Blackwood",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -1434,16 +1494,26 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 53,
+      "public_pct": 55,
       "public_side": "PIT",
       "fade_signal": 0,
-      "public_home_pct": 53,
+      "public_home_pct": 55,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Carmen Mlodzinski",
+        "era": 4.15,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Shane Baz",
+        "era": 6.75,
+        "whip": null
+      },
+      "starter_era_diff": 2.6
     },
     {
       "sport": "mlb",
@@ -1601,16 +1671,26 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 67,
       "public_side": "LAD",
       "fade_signal": 1,
-      "public_home_pct": 32,
+      "public_home_pct": 33,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Jake Irvin",
+        "era": 3.6,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Tyler Glasnow",
+        "era": 3.0,
+        "whip": null
+      },
+      "starter_era_diff": -0.6
     },
     {
       "sport": "mlb",
@@ -1742,7 +1822,17 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Luis Morales",
+        "era": 10.38,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Tatsuya Imai",
+        "era": 13.5,
+        "whip": null
+      },
+      "starter_era_diff": 3.12
     },
     {
       "sport": "mlb",
@@ -1778,7 +1868,24 @@
         "lat": 42.3588336,
         "lon": -71.0578303
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Erich Bacchus",
+          "role": "home plate"
+        },
+        {
+          "name": "Laz Diaz",
+          "role": "first base"
+        },
+        {
+          "name": "Brian O'Nora",
+          "role": "second base"
+        },
+        {
+          "name": "Chris Segal",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [
         {
           "player": "Johan Oviedo",
@@ -1890,9 +1997,9 @@
       ],
       "injury_count_home": 10,
       "injury_count_away": 11,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.304,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -1915,15 +2022,25 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 57,
+      "public_pct": 58,
       "public_side": "BOS",
       "fade_signal": 0,
-      "public_home_pct": 57,
+      "public_home_pct": 58,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Connelly Early",
+        "era": 1.69,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Randy Vasquez",
+        "era": 0.0,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -1965,24 +2082,7 @@
         "lat": 27.9449854,
         "lon": -82.4583107
       },
-      "officials": [
-        {
-          "name": "Francois St. Laurent",
-          "role": "referee"
-        },
-        {
-          "name": "TJ Luxmore",
-          "role": "referee"
-        },
-        {
-          "name": "Tommy Hughes",
-          "role": "linesman"
-        },
-        {
-          "name": "Jonathan Deschamps",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Tampa Bay Lightning",
       "dog_team": "Boston Bruins",
       "fav_abbr": "TB",
@@ -1992,7 +2092,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "BOS +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061248+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018566+00:00",
       "home_injuries": [
         {
           "player": "Scott Sabourin",
@@ -2039,9 +2139,9 @@
       ],
       "injury_count_home": 6,
       "injury_count_away": 2,
-      "ref_home_bias": 1.147,
-      "ref_over_bias": -0.215,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 0.8,
       "rest_diff_days": 2,
       "elo_diff": 107.5,
@@ -2073,6 +2173,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Andrei Vasilevskiy",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Jeremy Swayman",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -2114,24 +2224,7 @@
         "lat": 40.4406968,
         "lon": -80.0025666
       },
-      "officials": [
-        {
-          "name": "Jake Brenk",
-          "role": "referee"
-        },
-        {
-          "name": "Mitch Dunning",
-          "role": "referee"
-        },
-        {
-          "name": "Mark Shewchyk",
-          "role": "linesman"
-        },
-        {
-          "name": "Dylan Blujus",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Pittsburgh Penguins",
       "dog_team": "Florida Panthers",
       "fav_abbr": "PIT",
@@ -2141,7 +2234,7 @@
       "spread": -1.5,
       "favorite": "PIT -1.5",
       "underdog": "FLA +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061251+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018570+00:00",
       "home_injuries": [
         {
           "player": "Caleb Jones",
@@ -2223,9 +2316,9 @@
       ],
       "injury_count_home": 4,
       "injury_count_away": 11,
-      "ref_home_bias": 0.534,
-      "ref_over_bias": 0.747,
-      "ref_consistency": 2.4,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -2.33,
       "rest_diff_days": 1,
       "elo_diff": -4.5,
@@ -2248,15 +2341,25 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": 1,
-      "public_pct": 58,
+      "public_pct": 59,
       "public_side": "PIT",
       "fade_signal": 0,
-      "public_home_pct": 58,
+      "public_home_pct": 59,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Arturs Silovs",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Daniil Tarasov",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -2875,7 +2978,7 @@
       "spread": -1.5,
       "favorite": "ILL -1.5",
       "underdog": "CONN +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061256+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018574+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2905,10 +3008,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": 12,
-      "public_pct": 58,
+      "public_pct": 57,
       "public_side": "CONN",
       "fade_signal": 0,
-      "public_home_pct": 58,
+      "public_home_pct": 57,
       "spread_delta": 1.0,
       "total_delta": -1.0,
       "spread_direction": "toward_underdog",
@@ -2964,7 +3067,7 @@
       "spread": -3.5,
       "favorite": "DET -3.5",
       "underdog": "PHI +3.5",
-      "tagged_at": "2026-04-04T14:47:35.061259+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018578+00:00",
       "home_injuries": [
         {
           "player": "Paul George",
@@ -3031,10 +3134,10 @@
       "divisional": true,
       "home_streak": 2,
       "away_streak": -1,
-      "public_pct": 62,
+      "public_pct": 60,
       "public_side": "DET",
       "fade_signal": 0,
-      "public_home_pct": 38,
+      "public_home_pct": 40,
       "spread_delta": -2.0,
       "total_delta": -1.0,
       "spread_direction": "toward_favorite",
@@ -3066,7 +3169,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MTL -125",
+        "details": "MTL -130",
         "spread": 1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -3080,24 +3183,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Chris Rooney",
-          "role": "referee"
-        },
-        {
-          "name": "Stephen Hiff",
-          "role": "referee"
-        },
-        {
-          "name": "James Tobias",
-          "role": "linesman"
-        },
-        {
-          "name": "Ryan Gibbons",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Montreal Canadiens",
       "dog_team": "New Jersey Devils",
       "fav_abbr": "MTL",
@@ -3107,7 +3193,7 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "NJ +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061265+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018585+00:00",
       "home_injuries": [
         {
           "player": "Arseny Gritsyuk",
@@ -3154,9 +3240,9 @@
       ],
       "injury_count_home": 4,
       "injury_count_away": 4,
-      "ref_home_bias": -0.409,
-      "ref_over_bias": 0.651,
-      "ref_consistency": 2.1,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 1.0,
       "rest_diff_days": 2,
       "elo_diff": -21.1,
@@ -3188,6 +3274,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Jake Allen",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Jakub Dobes",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -3229,24 +3325,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Brian Pochmara",
-          "role": "referee"
-        },
-        {
-          "name": "Cody Beach",
-          "role": "referee"
-        },
-        {
-          "name": "Libor Suchanek",
-          "role": "linesman"
-        },
-        {
-          "name": "Devin Berg",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Buffalo Sabres",
       "dog_team": "Washington Capitals",
       "fav_abbr": "BUF",
@@ -3256,7 +3335,7 @@
       "spread": -1.5,
       "favorite": "BUF -1.5",
       "underdog": "WSH +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061268+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018589+00:00",
       "home_injuries": [
         {
           "player": "Aliaksei Protas",
@@ -3293,9 +3372,9 @@
       ],
       "injury_count_home": 2,
       "injury_count_away": 4,
-      "ref_home_bias": 0.551,
-      "ref_over_bias": 0.666,
-      "ref_consistency": 2.4,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -2.2,
       "rest_diff_days": -2,
       "elo_diff": -83.7,
@@ -3318,15 +3397,25 @@
       "divisional": false,
       "home_streak": -3,
       "away_streak": 5,
-      "public_pct": 60,
+      "public_pct": 59,
       "public_side": "BUF",
       "fade_signal": 0,
-      "public_home_pct": 40,
+      "public_home_pct": 41,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Logan Thompson",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Ukko-Pekka Luukkonen",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -3354,7 +3443,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "CAR -245",
+        "details": "CAR -258",
         "spread": -1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -3368,24 +3457,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Brandon Blandina",
-          "role": "referee"
-        },
-        {
-          "name": "Francis Charron",
-          "role": "referee"
-        },
-        {
-          "name": "Matt MacPherson",
-          "role": "linesman"
-        },
-        {
-          "name": "Jonny Murray",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Carolina Hurricanes",
       "dog_team": "New York Islanders",
       "fav_abbr": "CAR",
@@ -3395,7 +3467,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "NYI +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061272+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018592+00:00",
       "home_injuries": [
         {
           "player": "Pyotr Kochetkov",
@@ -3432,9 +3504,9 @@
       ],
       "injury_count_home": 1,
       "injury_count_away": 5,
-      "ref_home_bias": 0.031,
-      "ref_over_bias": 0.775,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 2.0,
       "rest_diff_days": -1,
       "elo_diff": 90.1,
@@ -3457,15 +3529,25 @@
       "divisional": false,
       "home_streak": 2,
       "away_streak": -2,
-      "public_pct": 65,
+      "public_pct": 66,
       "public_side": "CAR",
       "fade_signal": 1,
-      "public_home_pct": 65,
+      "public_home_pct": 66,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Brandon Bussi",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "David Rittich",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -3507,24 +3589,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Kelly Sutherland",
-          "role": "referee"
-        },
-        {
-          "name": "Carter Sandlak",
-          "role": "referee"
-        },
-        {
-          "name": "Kilian McNamara",
-          "role": "linesman"
-        },
-        {
-          "name": "Kyle Flemington",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Columbus Blue Jackets",
       "dog_team": "Winnipeg Jets",
       "fav_abbr": "CBJ",
@@ -3534,7 +3599,7 @@
       "spread": -1.5,
       "favorite": "CBJ -1.5",
       "underdog": "WPG +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061275+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018596+00:00",
       "home_injuries": [
         {
           "player": "Mason Marchment",
@@ -3566,9 +3631,9 @@
       ],
       "injury_count_home": 1,
       "injury_count_away": 4,
-      "ref_home_bias": 0.66,
-      "ref_over_bias": 0.344,
-      "ref_consistency": 2.3,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -1.5,
       "rest_diff_days": 0,
       "elo_diff": -45.1,
@@ -3600,6 +3665,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 2,
+      "home_goalie": {
+        "name": "Jet Greaves",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Connor Hellebuyck",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -3641,24 +3716,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Michael Markovic",
-          "role": "referee"
-        },
-        {
-          "name": "Garrett Rank",
-          "role": "referee"
-        },
-        {
-          "name": "Travis Toomey",
-          "role": "linesman"
-        },
-        {
-          "name": "Shawn Oliver",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Utah Mammoth",
       "dog_team": "Vancouver Canucks",
       "fav_abbr": "UTA",
@@ -3668,7 +3726,7 @@
       "spread": -1.5,
       "favorite": "UTA -1.5",
       "underdog": "VAN +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061279+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018599+00:00",
       "home_injuries": [
         {
           "player": "Evander Kane",
@@ -3710,9 +3768,9 @@
       ],
       "injury_count_home": 5,
       "injury_count_away": 2,
-      "ref_home_bias": 0.87,
-      "ref_over_bias": -0.033,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -4.0,
       "rest_diff_days": -1,
       "elo_diff": -75.5,
@@ -3744,6 +3802,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Kevin Lankinen",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Karel Vejmelka",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -3771,9 +3839,9 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "LA -185",
+        "details": "LA -198",
         "spread": -1.5,
-        "total": 5.5,
+        "total": 6.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3785,24 +3853,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Kyle Rehman",
-          "role": "referee"
-        },
-        {
-          "name": "Jordan Samuels-Thomas",
-          "role": "referee"
-        },
-        {
-          "name": "Brandon Grillo",
-          "role": "linesman"
-        },
-        {
-          "name": "Tyson Baker",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Los Angeles Kings",
       "dog_team": "Toronto Maple Leafs",
       "fav_abbr": "LA",
@@ -3812,7 +3863,7 @@
       "spread": -1.5,
       "favorite": "LA -1.5",
       "underdog": "TOR +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061282+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018602+00:00",
       "home_injuries": [
         {
           "player": "Andrei Kuzmenko",
@@ -3839,9 +3890,9 @@
       ],
       "injury_count_home": 2,
       "injury_count_away": 2,
-      "ref_home_bias": 0.377,
-      "ref_over_bias": 0.232,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -2.0,
       "rest_diff_days": 0,
       "elo_diff": 30.7,
@@ -3864,15 +3915,25 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": -6,
-      "public_pct": 60,
+      "public_pct": 61,
       "public_side": "LA",
       "fade_signal": 0,
-      "public_home_pct": 60,
+      "public_home_pct": 61,
       "spread_delta": 0,
-      "total_delta": 0,
+      "total_delta": 1.0,
       "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0,
+      "total_direction": "up",
+      "spread_moves": 1,
+      "home_goalie": {
+        "name": "Darcy Kuemper",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Joseph Woll",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -4011,16 +4072,26 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
+      "public_pct": 67,
       "public_side": "NYY",
       "fade_signal": 1,
-      "public_home_pct": 69,
+      "public_home_pct": 67,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Ryan Weathers",
+        "era": 2.08,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Max Meyer",
+        "era": 5.4,
+        "whip": null
+      },
+      "starter_era_diff": 3.32
     },
     {
       "sport": "mlb",
@@ -4162,6 +4233,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Kumar Rocker",
+        "era": null,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Rhett Lowder",
+        "era": 3.6,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -4334,7 +4415,17 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Mick Abel",
+        "era": 13.5,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Steven Matz",
+        "era": 7.2,
+        "whip": null
+      },
+      "starter_era_diff": -6.3
     },
     {
       "sport": "mlb",
@@ -4487,15 +4578,25 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 60,
+      "public_pct": 59,
       "public_side": "MIL",
       "fade_signal": 0,
-      "public_home_pct": 40,
+      "public_home_pct": 41,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Seth Lugo",
+        "era": 0.0,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Brandon Sproat",
+        "era": 21.0,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -4643,7 +4744,17 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
-      "starter_era_diff": 0
+      "home_starter": {
+        "name": "Slade Cecconi",
+        "era": 12.46,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Shota Imanaga",
+        "era": 7.2,
+        "whip": null
+      },
+      "starter_era_diff": -5.26
     },
     {
       "sport": "mlb",
@@ -4836,15 +4947,25 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 54,
+      "public_pct": 52,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 46,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Michael Soroka",
+        "era": 0.0,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Bryce Elder",
+        "era": 0.0,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -5504,15 +5625,21 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 66,
       "public_side": "PHI",
       "fade_signal": 1,
-      "public_home_pct": 32,
+      "public_home_pct": 34,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": null,
+      "away_starter": {
+        "name": "Jesus Luzardo",
+        "era": 9.0,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -5564,7 +5691,7 @@
       "spread": -1.5,
       "favorite": "MICH -1.5",
       "underdog": "ARIZ +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061288+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018609+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -5780,15 +5907,25 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 52,
+      "public_pct": 53,
       "public_side": "NYM",
       "fade_signal": 0,
-      "public_home_pct": 48,
+      "public_home_pct": 47,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Landen Roupp",
+        "era": 0.0,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Clay Holmes",
+        "era": 3.18,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -5931,6 +6068,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_starter": {
+        "name": "Jack Kochanowicz",
+        "era": 11.25,
+        "whip": null
+      },
+      "away_starter": {
+        "name": "Emerson Hancock",
+        "era": 0.0,
+        "whip": null
+      },
       "starter_era_diff": 0
     },
     {
@@ -5972,24 +6119,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Kendrick Nicholson",
-          "role": "referee"
-        },
-        {
-          "name": "Jon Mclsaac",
-          "role": "referee"
-        },
-        {
-          "name": "Caleb Apperson",
-          "role": "linesman"
-        },
-        {
-          "name": "David Brisebois",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Edmonton Oilers",
       "dog_team": "Vegas Golden Knights",
       "fav_abbr": "EDM",
@@ -5999,7 +6129,7 @@
       "spread": -1.5,
       "favorite": "EDM -1.5",
       "underdog": "VGK +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061293+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018614+00:00",
       "home_injuries": [
         {
           "player": "Leon Draisaitl",
@@ -6020,9 +6150,9 @@
       "away_injuries": [],
       "injury_count_home": 3,
       "injury_count_away": 0,
-      "ref_home_bias": 2.435,
-      "ref_over_bias": -0.143,
-      "ref_consistency": 2.3,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 1.75,
       "rest_diff_days": 0,
       "elo_diff": -1.6,
@@ -6054,6 +6184,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Connor Ingram",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Adin Hill",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -6095,24 +6235,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Morgan MacPhee",
-          "role": "referee"
-        },
-        {
-          "name": "Peter MacDougall",
-          "role": "referee"
-        },
-        {
-          "name": "Julien Fournier",
-          "role": "linesman"
-        },
-        {
-          "name": "Ryan Daisy",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Anaheim Ducks",
       "dog_team": "Calgary Flames",
       "fav_abbr": "ANA",
@@ -6122,17 +6245,17 @@
       "spread": -1.5,
       "favorite": "ANA -1.5",
       "underdog": "CGY +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061297+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018617+00:00",
       "home_injuries": [
-        {
-          "player": "Radko Gudas",
-          "status": "Apr 4",
-          "position": "D"
-        },
         {
           "player": "Cutter Gauthier",
           "status": "Apr 7",
           "position": "LW"
+        },
+        {
+          "player": "Radko Gudas",
+          "status": "Apr 4",
+          "position": "D"
         },
         {
           "player": "Pavel Mintyukov",
@@ -6184,9 +6307,9 @@
       ],
       "injury_count_home": 6,
       "injury_count_away": 5,
-      "ref_home_bias": 0.783,
-      "ref_over_bias": -0.258,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 0.4,
       "rest_diff_days": -1,
       "elo_diff": 30.2,
@@ -6218,6 +6341,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Ville Husso",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Devin Cooley",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -6259,24 +6392,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Pierre Lambert",
-          "role": "referee"
-        },
-        {
-          "name": "Graham Skilliter",
-          "role": "referee"
-        },
-        {
-          "name": "CJ Murray",
-          "role": "linesman"
-        },
-        {
-          "name": "Joe Mahon",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "San Jose Sharks",
       "dog_team": "Nashville Predators",
       "fav_abbr": "SJ",
@@ -6286,7 +6402,7 @@
       "spread": -1.5,
       "favorite": "SJ -1.5",
       "underdog": "NSH +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061300+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018621+00:00",
       "home_injuries": [
         {
           "player": "Ryan Reaves",
@@ -6302,9 +6418,9 @@
       "away_injuries": [],
       "injury_count_home": 2,
       "injury_count_away": 0,
-      "ref_home_bias": 0.433,
-      "ref_over_bias": 0.255,
-      "ref_consistency": 2.4,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -3.25,
       "rest_diff_days": -1,
       "elo_diff": -148.5,
@@ -6336,6 +6452,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Yaroslav Askarov",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Juuse Saros",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -6377,24 +6503,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Tom Chmielewski",
-          "role": "referee"
-        },
-        {
-          "name": "Brandon Schrader",
-          "role": "referee"
-        },
-        {
-          "name": "Bevan Mills",
-          "role": "linesman"
-        },
-        {
-          "name": "Kiel Murchison",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "fav_team": "Seattle Kraken",
       "dog_team": "Chicago Blackhawks",
       "fav_abbr": "SEA",
@@ -6404,7 +6513,7 @@
       "spread": -1.5,
       "favorite": "SEA -1.5",
       "underdog": "CHI +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061303+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018626+00:00",
       "home_injuries": [
         {
           "player": "Ryan Winterton",
@@ -6461,9 +6570,9 @@
       ],
       "injury_count_home": 3,
       "injury_count_away": 7,
-      "ref_home_bias": 0.392,
-      "ref_over_bias": -0.298,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": 4.0,
       "rest_diff_days": 2,
       "elo_diff": 168.3,
@@ -6495,6 +6604,16 @@
       "spread_direction": "stable",
       "total_direction": "stable",
       "spread_moves": 0,
+      "home_goalie": {
+        "name": "Philipp Grubauer",
+        "save_pct": null,
+        "gaa": null
+      },
+      "away_goalie": {
+        "name": "Spencer Knight",
+        "save_pct": null,
+        "gaa": null
+      },
       "goalie_sv_diff": 0
     },
     {
@@ -6521,7 +6640,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "MIN -120",
+        "spread": 1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Little Caesars Arena",
         "city": "Detroit",
@@ -6532,6 +6656,16 @@
         "lon": null
       },
       "officials": [],
+      "fav_team": "Minnesota Wild",
+      "dog_team": "Detroit Red Wings",
+      "fav_abbr": "MIN",
+      "dog_abbr": "DET",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "MIN -1.5",
+      "underdog": "DET +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018631+00:00",
       "home_injuries": [
         {
           "player": "Justin Faulk",
@@ -6745,10 +6879,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 53,
+      "public_pct": 55,
       "public_side": "PIT",
       "fade_signal": 0,
-      "public_home_pct": 53,
+      "public_home_pct": 55,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -6912,10 +7046,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 67,
       "public_side": "LAD",
       "fade_signal": 1,
-      "public_home_pct": 32,
+      "public_home_pct": 33,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7059,10 +7193,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 69,
+      "public_pct": 67,
       "public_side": "NYY",
       "fade_signal": 1,
-      "public_home_pct": 69,
+      "public_home_pct": 67,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7241,10 +7375,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 57,
+      "public_pct": 58,
       "public_side": "BOS",
       "fade_signal": 0,
-      "public_home_pct": 57,
+      "public_home_pct": 58,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7550,10 +7684,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 60,
+      "public_pct": 59,
       "public_side": "MIL",
       "fade_signal": 0,
-      "public_home_pct": 40,
+      "public_home_pct": 41,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7817,14 +7951,14 @@
       ],
       "away_injuries": [
         {
-          "player": "Alejandro Kirk",
-          "status": "Apr 4",
-          "position": "C"
-        },
-        {
           "player": "Trey Yesavage",
           "status": "Apr 24",
           "position": "SP"
+        },
+        {
+          "player": "Alejandro Kirk",
+          "status": "Apr 14",
+          "position": "C"
         },
         {
           "player": "Jose Berrios",
@@ -8066,7 +8200,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "PIT -218",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "PPG Paints Arena",
         "city": "Pittsburgh",
@@ -8077,6 +8216,16 @@
         "lon": -80.0025666
       },
       "officials": [],
+      "fav_team": "Pittsburgh Penguins",
+      "dog_team": "Florida Panthers",
+      "fav_abbr": "PIT",
+      "dog_abbr": "FLA",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "PIT -1.5",
+      "underdog": "FLA +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018635+00:00",
       "home_injuries": [
         {
           "player": "Caleb Jones",
@@ -8183,10 +8332,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": 1,
-      "public_pct": 58,
+      "public_pct": 59,
       "public_side": "PIT",
       "fade_signal": 0,
-      "public_home_pct": 58,
+      "public_home_pct": 59,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -8365,10 +8514,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 68,
+      "public_pct": 66,
       "public_side": "PHI",
       "fade_signal": 1,
-      "public_home_pct": 32,
+      "public_home_pct": 34,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -8425,7 +8574,7 @@
       "spread": -9.5,
       "favorite": "BOS -9.5",
       "underdog": "TOR +9.5",
-      "tagged_at": "2026-04-04T14:47:35.061309+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018638+00:00",
       "home_injuries": [
         {
           "player": "Nikola Vucevic",
@@ -8677,7 +8826,7 @@
       "spread": -10.5,
       "favorite": "PHX -10.5",
       "underdog": "CHI +10.5",
-      "tagged_at": "2026-04-04T14:47:35.061313+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018642+00:00",
       "home_injuries": [
         {
           "player": "Nick Richards",
@@ -8974,7 +9123,7 @@
       "spread": -3.5,
       "favorite": "SC -3.5",
       "underdog": "UCLA +3.5",
-      "tagged_at": "2026-04-04T14:47:35.061317+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018645+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -9038,7 +9187,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "PHI -148",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Xfinity Mobile Arena",
         "city": "Philadelphia",
@@ -9049,6 +9203,16 @@
         "lon": null
       },
       "officials": [],
+      "fav_team": "Philadelphia Flyers",
+      "dog_team": "Boston Bruins",
+      "fav_abbr": "PHI",
+      "dog_abbr": "BOS",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "PHI -1.5",
+      "underdog": "BOS +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018650+00:00",
       "home_injuries": [
         {
           "player": "Nikita Grebenkin",
@@ -9424,10 +9588,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 52,
+      "public_pct": 53,
       "public_side": "NYM",
       "fade_signal": 0,
-      "public_home_pct": 48,
+      "public_home_pct": 47,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -9768,10 +9932,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 54,
+      "public_pct": 52,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 46,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -9803,7 +9967,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "CAR -125",
+        "spread": 1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Canadian Tire Centre",
         "city": "Ottawa",
@@ -9814,6 +9983,16 @@
         "lon": -86.1655501
       },
       "officials": [],
+      "fav_team": "Carolina Hurricanes",
+      "dog_team": "Ottawa Senators",
+      "fav_abbr": "CAR",
+      "dog_abbr": "OTT",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "CAR -1.5",
+      "underdog": "OTT +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018654+00:00",
       "home_injuries": [
         {
           "player": "Jake Sanderson",
@@ -10066,7 +10245,7 @@
       "spread": -1.5,
       "favorite": "MIN -1.5",
       "underdog": "CHA +1.5",
-      "tagged_at": "2026-04-04T14:47:35.061321+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018658+00:00",
       "home_injuries": [
         {
           "player": "Jaden McDaniels",
@@ -10118,10 +10297,10 @@
       "divisional": false,
       "home_streak": -1,
       "away_streak": -2,
-      "public_pct": 57,
+      "public_pct": 56,
       "public_side": "MIN",
       "fade_signal": 0,
-      "public_home_pct": 57,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": -1.0,
       "spread_direction": "stable",
@@ -10177,7 +10356,7 @@
       "spread": -3.5,
       "favorite": "ORL -3.5",
       "underdog": "NO +3.5",
-      "tagged_at": "2026-04-04T14:47:35.061324+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018661+00:00",
       "home_injuries": [
         {
           "player": "Dejounte Murray",
@@ -10293,7 +10472,7 @@
       "spread": -21.5,
       "favorite": "OKC -21.5",
       "underdog": "UTAH +21.5",
-      "tagged_at": "2026-04-04T14:47:35.061330+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018665+00:00",
       "home_injuries": [
         {
           "player": "Alex Caruso",
@@ -10409,7 +10588,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "MTL -155",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Bell Centre",
         "city": "Montreal",
@@ -10420,6 +10604,16 @@
         "lon": null
       },
       "officials": [],
+      "fav_team": "Montreal Canadiens",
+      "dog_team": "New Jersey Devils",
+      "fav_abbr": "MTL",
+      "dog_abbr": "NJ",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "MTL -1.5",
+      "underdog": "NJ +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018670+00:00",
       "home_injuries": [
         {
           "player": "Alexandre Texier",
@@ -10526,7 +10720,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "NYR -115",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Madison Square Garden",
         "city": "New York",
@@ -10537,6 +10736,16 @@
         "lon": -74.0060152
       },
       "officials": [],
+      "fav_team": "New York Rangers",
+      "dog_team": "Washington Capitals",
+      "fav_abbr": "NYR",
+      "dog_abbr": "WSH",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "NYR -1.5",
+      "underdog": "WSH +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018673+00:00",
       "home_injuries": [
         {
           "player": "Urho Vaakanainen",
@@ -10765,10 +10974,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 75,
+      "public_pct": 74,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 75,
+      "public_home_pct": 74,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10825,7 +11034,7 @@
       "spread": -6.5,
       "favorite": "LAL -6.5",
       "underdog": "DAL +6.5",
-      "tagged_at": "2026-04-04T14:47:35.061335+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018677+00:00",
       "home_injuries": [
         {
           "player": "Marvin Bagley III",
@@ -10892,10 +11101,10 @@
       "divisional": false,
       "home_streak": -4,
       "away_streak": -1,
-      "public_pct": 59,
+      "public_pct": 57,
       "public_side": "DAL",
       "fade_signal": 0,
-      "public_home_pct": 59,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10951,7 +11160,7 @@
       "spread": -11.5,
       "favorite": "LAC -11.5",
       "underdog": "SAC +11.5",
-      "tagged_at": "2026-04-04T14:47:35.061339+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018680+00:00",
       "home_injuries": [
         {
           "player": "Malik Monk",
@@ -11038,10 +11247,10 @@
       "divisional": true,
       "home_streak": -2,
       "away_streak": 5,
-      "public_pct": 62,
+      "public_pct": 59,
       "public_side": "SAC",
       "fade_signal": 0,
-      "public_home_pct": 62,
+      "public_home_pct": 59,
       "spread_delta": 0,
       "total_delta": -1.0,
       "spread_direction": "stable",
@@ -11072,7 +11281,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "COL -218",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Ball Arena",
         "city": "Denver",
@@ -11083,6 +11297,16 @@
         "lon": -104.984862
       },
       "officials": [],
+      "fav_team": "Colorado Avalanche",
+      "dog_team": "St. Louis Blues",
+      "fav_abbr": "COL",
+      "dog_abbr": "STL",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "COL -1.5",
+      "underdog": "STL +1.5",
+      "tagged_at": "2026-04-04T15:18:19.018683+00:00",
       "home_injuries": [
         {
           "player": "Cale Makar",
@@ -11189,7 +11413,7 @@
       "spread": -3.5,
       "favorite": "HOU -3.5",
       "underdog": "GS +3.5",
-      "tagged_at": "2026-04-04T14:47:35.061343+00:00",
+      "tagged_at": "2026-04-04T15:18:19.018687+00:00",
       "home_injuries": [
         {
           "player": "Stephen Curry",
@@ -12579,14 +12803,14 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Alejandro Kirk",
-          "status": "Apr 4",
-          "position": "C"
-        },
-        {
           "player": "Trey Yesavage",
           "status": "Apr 24",
           "position": "SP"
+        },
+        {
+          "player": "Alejandro Kirk",
+          "status": "Apr 14",
+          "position": "C"
         },
         {
           "player": "Jose Berrios",
@@ -14387,24 +14611,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Kyle Rehman",
-          "role": "referee"
-        },
-        {
-          "name": "Brandon Schrader",
-          "role": "referee"
-        },
-        {
-          "name": "CJ Murray",
-          "role": "linesman"
-        },
-        {
-          "name": "Ryan Daisy",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "home_injuries": [
         {
           "player": "Andrei Kuzmenko",
@@ -14420,9 +14627,9 @@
       "away_injuries": [],
       "injury_count_home": 2,
       "injury_count_away": 0,
-      "ref_home_bias": 0.596,
-      "ref_over_bias": 0.239,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -1.0,
       "rest_diff_days": 0,
       "elo_diff": 111.5,
@@ -16409,14 +16616,14 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Alejandro Kirk",
-          "status": "Apr 4",
-          "position": "C"
-        },
-        {
           "player": "Trey Yesavage",
           "status": "Apr 24",
           "position": "SP"
+        },
+        {
+          "player": "Alejandro Kirk",
+          "status": "Apr 14",
+          "position": "C"
         },
         {
           "player": "Jose Berrios",
@@ -18944,14 +19151,14 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Radko Gudas",
-          "status": "Apr 4",
-          "position": "D"
-        },
-        {
           "player": "Cutter Gauthier",
           "status": "Apr 7",
           "position": "LW"
+        },
+        {
+          "player": "Radko Gudas",
+          "status": "Apr 4",
+          "position": "D"
         },
         {
           "player": "Pavel Mintyukov",
@@ -20163,14 +20370,14 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Alejandro Kirk",
-          "status": "Apr 4",
-          "position": "C"
-        },
-        {
           "player": "Trey Yesavage",
           "status": "Apr 24",
           "position": "SP"
+        },
+        {
+          "player": "Alejandro Kirk",
+          "status": "Apr 14",
+          "position": "C"
         },
         {
           "player": "Jose Berrios",
@@ -24144,24 +24351,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [
-        {
-          "name": "Cody Beach",
-          "role": "referee"
-        },
-        {
-          "name": "Trevor Hanson",
-          "role": "referee"
-        },
-        {
-          "name": "James Tobias",
-          "role": "linesman"
-        },
-        {
-          "name": "Andrew Smith",
-          "role": "linesman"
-        }
-      ],
+      "officials": [],
       "home_injuries": [
         {
           "player": "Justin Faulk",
@@ -24193,9 +24383,9 @@
       ],
       "injury_count_home": 2,
       "injury_count_away": 3,
-      "ref_home_bias": 0.218,
-      "ref_over_bias": -0.478,
-      "ref_consistency": 2.3,
+      "ref_home_bias": 0.3,
+      "ref_over_bias": 0.2,
+      "ref_consistency": 1.5,
       "h2h_margin_avg": -2.5,
       "rest_diff_days": -1,
       "elo_diff": 64.2,
@@ -24218,10 +24408,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": -1,
-      "public_pct": 62,
+      "public_pct": 60,
       "public_side": "DET",
       "fade_signal": 0,
-      "public_home_pct": 62,
+      "public_home_pct": 60,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -25912,14 +26102,14 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Radko Gudas",
-          "status": "Apr 4",
-          "position": "D"
-        },
-        {
           "player": "Cutter Gauthier",
           "status": "Apr 7",
           "position": "LW"
+        },
+        {
+          "player": "Radko Gudas",
+          "status": "Apr 4",
+          "position": "D"
         },
         {
           "player": "Pavel Mintyukov",
@@ -27105,10 +27295,10 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": 4,
-      "public_pct": 52,
-      "public_side": "WSH",
+      "public_pct": 50,
+      "public_side": "MIA",
       "fade_signal": 0,
-      "public_home_pct": 52,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -27440,14 +27630,14 @@
       "officials": [],
       "home_injuries": [
         {
-          "player": "Alejandro Kirk",
-          "status": "Apr 4",
-          "position": "C"
-        },
-        {
           "player": "Trey Yesavage",
           "status": "Apr 24",
           "position": "SP"
+        },
+        {
+          "player": "Alejandro Kirk",
+          "status": "Apr 14",
+          "position": "C"
         },
         {
           "player": "Jose Berrios",
@@ -40753,5 +40943,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-04-04T14:57:22.196150"
+  "weather_merged_at": "2026-04-04T15:28:00.112648"
 }
