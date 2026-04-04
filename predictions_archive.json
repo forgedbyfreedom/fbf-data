@@ -83450,6 +83450,250 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401814794",
+      "sport": "mlb",
+      "matchup": "Houston Astros at Athletics Athletics",
+      "shortName": "HOU @ ATH",
+      "date_utc": "2026-04-04T01:40Z",
+      "date_local": "2026-04-03 09:40 PM ET",
+      "home": "ATH",
+      "away": "HOU",
+      "home_team": {
+        "id": "11",
+        "name": "Athletics",
+        "abbr": "ATH",
+        "slug": "athletics",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png"
+      },
+      "away_team": {
+        "id": "18",
+        "name": "Houston Astros",
+        "abbr": "HOU",
+        "slug": "houston-astros",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/hou.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Sutter Health Park",
+        "city": "Sacramento",
+        "state": "California",
+        "indoor": false,
+        "grass": true,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 1,
+      "injury_count_away": 10,
+      "prediction": {
+        "projected_home_score": 18.3,
+        "projected_away_score": 11.9,
+        "projected_total": 30.1,
+        "projected_spread": 6.4,
+        "win_probability_home": 0.744,
+        "confidence": 46
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.924,
+        "away_win_pct": 0.076,
+        "home_cover_pct": 0.924,
+        "over_pct": 0.5014,
+        "avg_simulated_margin": 5.08,
+        "avg_simulated_total": 6.61
+      },
+      "picks": {
+        "su_pick": "Athletics",
+        "su_pick_abbr": "ATH",
+        "su_confidence": 73.7,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 6.6,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
+    },
+    {
+      "id": "401810983",
+      "sport": "nba",
+      "matchup": "New Orleans Pelicans at Sacramento Kings",
+      "shortName": "NO @ SAC",
+      "date_utc": "2026-04-04T02:00Z",
+      "date_local": "2026-04-03 10:00 PM ET",
+      "home": "SAC",
+      "away": "NO",
+      "home_team": {
+        "id": "23",
+        "name": "Sacramento Kings",
+        "abbr": "SAC",
+        "slug": "sacramento-kings",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/sac.png"
+      },
+      "away_team": {
+        "id": "3",
+        "name": "New Orleans Pelicans",
+        "abbr": "NO",
+        "slug": "new-orleans-pelicans",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/no.png"
+      },
+      "odds": {
+        "details": "NO -6.5",
+        "spread": 6.5,
+        "total": 232.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Golden 1 Center",
+        "city": "Sacramento",
+        "state": "CA",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "New Orleans Pelicans",
+      "dog_team": "Sacramento Kings",
+      "fav_abbr": "NO",
+      "dog_abbr": "SAC",
+      "fav_spread": -6.5,
+      "dog_spread": 6.5,
+      "injury_count_home": 8,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 111.4,
+        "projected_away_score": 119.1,
+        "projected_total": 230.5,
+        "projected_spread": -7.7,
+        "win_probability_home": 0.217,
+        "confidence": 88
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3334,
+        "away_win_pct": 0.6666,
+        "home_cover_pct": 0.5204,
+        "over_pct": 0.4441,
+        "avg_simulated_margin": -5.85,
+        "avg_simulated_total": 230.8
+      },
+      "picks": {
+        "su_pick": "New Orleans Pelicans",
+        "su_pick_abbr": "NO",
+        "su_confidence": 59.3,
+        "ats_pick": "Sacramento Kings",
+        "ats_pick_abbr": "SAC",
+        "ats_spread": 6.5,
+        "ats_confidence": 50.7,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 232.5,
+        "ou_confidence": 50.7,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
+    },
+    {
+      "id": "401803557",
+      "sport": "nhl",
+      "matchup": "St. Louis Blues at Anaheim Ducks",
+      "shortName": "STL @ ANA",
+      "date_utc": "2026-04-04T02:00Z",
+      "date_local": "2026-04-03 10:00 PM ET",
+      "home": "ANA",
+      "away": "STL",
+      "home_team": {
+        "id": "25",
+        "name": "Anaheim Ducks",
+        "abbr": "ANA",
+        "slug": "anaheim-ducks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ana.png"
+      },
+      "away_team": {
+        "id": "19",
+        "name": "St. Louis Blues",
+        "abbr": "STL",
+        "slug": "st-louis-blues",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/stl.png"
+      },
+      "odds": {
+        "details": "ANA -142",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Honda Center",
+        "city": "Anaheim",
+        "state": "CA",
+        "indoor": true,
+        "grass": false,
+        "lat": null,
+        "lon": null
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Anaheim Ducks",
+      "dog_team": "St. Louis Blues",
+      "fav_abbr": "ANA",
+      "dog_abbr": "STL",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 6,
+      "injury_count_away": 1,
+      "prediction": {
+        "projected_home_score": 6.8,
+        "projected_away_score": 7.8,
+        "projected_total": 14.7,
+        "projected_spread": -1.0,
+        "win_probability_home": 0.459,
+        "confidence": 64
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.6806,
+        "away_win_pct": 0.3194,
+        "home_cover_pct": 0.4508,
+        "over_pct": 0.5625,
+        "avg_simulated_margin": 1.17,
+        "avg_simulated_total": 6.82
+      },
+      "picks": {
+        "su_pick": "Anaheim Ducks",
+        "su_pick_abbr": "ANA",
+        "su_confidence": 60.1,
+        "ats_pick": "St. Louis Blues",
+        "ats_pick_abbr": "STL",
+        "ats_spread": 1.5,
+        "ats_confidence": 52.5,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 51.6,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
