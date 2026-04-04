@@ -83366,6 +83366,90 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401856589",
+      "sport": "ncaaw",
+      "matchup": "Texas Longhorns at UCLA Bruins",
+      "shortName": "TEX VS UCLA",
+      "date_utc": "2026-04-04T01:30Z",
+      "date_local": "2026-04-03 09:30 PM ET",
+      "home": "UCLA",
+      "away": "TEX",
+      "home_team": {
+        "id": "26",
+        "name": "UCLA Bruins",
+        "abbr": "UCLA",
+        "slug": "ucla-bruins",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/26.png"
+      },
+      "away_team": {
+        "id": "251",
+        "name": "Texas Longhorns",
+        "abbr": "TEX",
+        "slug": "texas-longhorns",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png"
+      },
+      "odds": {
+        "details": "TEX -2.5",
+        "spread": 2.5,
+        "total": 133.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Mortgage Matchup Center",
+        "city": "Phoenix",
+        "state": "AZ",
+        "indoor": true,
+        "grass": false,
+        "lat": 33.4484367,
+        "lon": -112.074141
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Texas Longhorns",
+      "dog_team": "UCLA Bruins",
+      "fav_abbr": "TEX",
+      "dog_abbr": "UCLA",
+      "fav_spread": -2.5,
+      "dog_spread": 2.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 71.9,
+        "projected_away_score": 70.0,
+        "projected_total": 141.9,
+        "projected_spread": 2.0,
+        "win_probability_home": 0.582,
+        "confidence": 56
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4498,
+        "away_win_pct": 0.5502,
+        "home_cover_pct": 0.53,
+        "over_pct": 0.496,
+        "avg_simulated_margin": -1.62,
+        "avg_simulated_total": 133.53
+      },
+      "picks": {
+        "su_pick": "Texas Longhorns",
+        "su_pick_abbr": "TEX",
+        "su_confidence": 52.8,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -2.5,
+        "ats_confidence": 50.7,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 133.5,
+        "ou_confidence": 50.1,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
