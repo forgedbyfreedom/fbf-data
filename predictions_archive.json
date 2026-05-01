@@ -88334,6 +88334,167 @@
         "has_vegas_spread": true,
         "has_vegas_total": true
       }
+    },
+    {
+      "id": "401815157",
+      "sport": "mlb",
+      "matchup": "Baltimore Orioles at New York Yankees",
+      "shortName": "BAL @ NYY",
+      "date_utc": "2026-05-01T23:05Z",
+      "date_local": "2026-05-01 07:05 PM ET",
+      "home": "NYY",
+      "away": "BAL",
+      "home_team": {
+        "id": "10",
+        "name": "New York Yankees",
+        "abbr": "NYY",
+        "slug": "new-york-yankees",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png"
+      },
+      "away_team": {
+        "id": "1",
+        "name": "Baltimore Orioles",
+        "abbr": "BAL",
+        "slug": "baltimore-orioles",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bal.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Yankee Stadium",
+        "city": "Bronx",
+        "state": "New York",
+        "indoor": false,
+        "grass": true,
+        "lat": 40.8466508,
+        "lon": -73.8785937
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4784,
+        "away_win_pct": 0.5216,
+        "home_cover_pct": 0.4784,
+        "over_pct": 0.4929,
+        "avg_simulated_margin": -0.2,
+        "avg_simulated_total": 7.76
+      },
+      "picks": {
+        "su_pick": "Baltimore Orioles",
+        "su_pick_abbr": "BAL",
+        "su_confidence": 51.2,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 7.8,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
+    },
+    {
+      "id": "401869381",
+      "sport": "nba",
+      "matchup": "Cleveland Cavaliers at Toronto Raptors",
+      "shortName": "CLE @ TOR",
+      "date_utc": "2026-05-01T23:30Z",
+      "date_local": "2026-05-01 07:30 PM ET",
+      "home": "TOR",
+      "away": "CLE",
+      "home_team": {
+        "id": "28",
+        "name": "Toronto Raptors",
+        "abbr": "TOR",
+        "slug": "toronto-raptors",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png"
+      },
+      "away_team": {
+        "id": "5",
+        "name": "Cleveland Cavaliers",
+        "abbr": "CLE",
+        "slug": "cleveland-cavaliers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/cle.png"
+      },
+      "odds": {
+        "details": "CLE -4.5",
+        "spread": 4.5,
+        "total": 218.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Scotiabank Arena",
+        "city": "Toronto",
+        "state": "ON",
+        "indoor": true,
+        "grass": false,
+        "lat": 39.7594645,
+        "lon": -87.5011149
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Cleveland Cavaliers",
+      "dog_team": "Toronto Raptors",
+      "fav_abbr": "CLE",
+      "dog_abbr": "TOR",
+      "fav_spread": -4.5,
+      "dog_spread": 4.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 106.7,
+        "projected_away_score": 112.9,
+        "projected_total": 219.6,
+        "projected_spread": -6.2,
+        "win_probability_home": 0.261,
+        "confidence": 88
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3577,
+        "away_win_pct": 0.6423,
+        "home_cover_pct": 0.51,
+        "over_pct": 0.5455,
+        "avg_simulated_margin": -4.33,
+        "avg_simulated_total": 219.87
+      },
+      "picks": {
+        "su_pick": "Cleveland Cavaliers",
+        "su_pick_abbr": "CLE",
+        "su_confidence": 58.0,
+        "ats_pick": "Toronto Raptors",
+        "ats_pick_abbr": "TOR",
+        "ats_spread": 4.5,
+        "ats_confidence": 50.5,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 218.5,
+        "ou_confidence": 50.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
