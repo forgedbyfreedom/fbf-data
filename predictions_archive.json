@@ -88251,6 +88251,89 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401869417",
+      "sport": "nba",
+      "matchup": "Detroit Pistons at Orlando Magic",
+      "shortName": "DET @ ORL",
+      "date_utc": "2026-05-01T23:00Z",
+      "date_local": "2026-05-01 07:00 PM ET",
+      "home": "ORL",
+      "away": "DET",
+      "home_team": {
+        "id": "19",
+        "name": "Orlando Magic",
+        "abbr": "ORL",
+        "slug": "orlando-magic",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/orl.png"
+      },
+      "away_team": {
+        "id": "8",
+        "name": "Detroit Pistons",
+        "abbr": "DET",
+        "slug": "detroit-pistons",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png"
+      },
+      "odds": {
+        "details": "DET -3.5",
+        "spread": 3.5,
+        "total": 211.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Kia Center",
+        "city": "Orlando",
+        "state": "FL",
+        "indoor": true,
+        "grass": false,
+        "lat": 28.5421218,
+        "lon": -81.379045
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Detroit Pistons",
+      "dog_team": "Orlando Magic",
+      "fav_abbr": "DET",
+      "dog_abbr": "ORL",
+      "fav_spread": -3.5,
+      "dog_spread": 3.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 102.8,
+        "projected_away_score": 105.7,
+        "projected_total": 208.5,
+        "projected_spread": -2.9,
+        "win_probability_home": 0.381,
+        "confidence": 62
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4445,
+        "away_win_pct": 0.5555,
+        "home_cover_pct": 0.564,
+        "over_pct": 0.6175,
+        "avg_simulated_margin": -1.57,
+        "avg_simulated_total": 214.93
+      },
+      "picks": {
+        "su_pick": "Detroit Pistons",
+        "su_pick_abbr": "DET",
+        "su_confidence": 53.1,
+        "ats_pick": "Orlando Magic",
+        "ats_pick_abbr": "ORL",
+        "ats_spread": 3.5,
+        "ats_confidence": 51.7,
+        "ats_high_conf": true,
+        "ou_pick": "Over",
+        "ou_line": 211.5,
+        "ou_confidence": 51.4,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
