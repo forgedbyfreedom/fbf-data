@@ -1,6 +1,6 @@
 {
-  "timestamp": "20260502_0138",
-  "count": 7,
+  "timestamp": "20260502_0310",
+  "count": 6,
   "data": [
     {
       "sport": "nhl",
@@ -24,8 +24,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tb.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
         "details": "TB -120",
         "spread": 1.5,
@@ -112,8 +112,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/buf.png"
       },
       "home_score": 1.0,
-      "away_score": 2.0,
-      "total_points": 3.0,
+      "away_score": 4.0,
+      "total_points": 5.0,
       "odds": {
         "details": "BUF -130",
         "spread": 1.5,
@@ -183,8 +183,8 @@
       "id": "401869763",
       "name": "Vegas Golden Knights at Utah Mammoth",
       "shortName": "VGK @ UTA",
-      "date_utc": "2026-05-02T02:00Z",
-      "date_local": "2026-05-01 10:00 PM ET",
+      "date_utc": "2026-05-02T02:20Z",
+      "date_local": "2026-05-01 10:20 PM ET",
       "home_team": {
         "id": "129764",
         "name": "Utah Mammoth",
@@ -200,10 +200,10 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 1.0,
+      "total_points": 1.0,
       "odds": {
-        "details": "VGK -110",
+        "details": "VGK -120",
         "spread": 1.5,
         "total": 6.5,
         "provider": "Draft Kings"
@@ -307,40 +307,6 @@
     },
     {
       "sport": "nhl",
-      "id": "401869766",
-      "name": "Boston Bruins at Buffalo Sabres",
-      "shortName": "BOS @ BUF",
-      "date_utc": "2026-05-03T04:00Z",
-      "date_local": "2026-05-03 12:00 AM ET",
-      "home_team": {
-        "id": "2",
-        "name": "Buffalo Sabres",
-        "abbr": "BUF",
-        "slug": "buffalo-sabres",
-        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/buf.png"
-      },
-      "away_team": {
-        "id": "1",
-        "name": "Boston Bruins",
-        "abbr": "BOS",
-        "slug": "boston-bruins",
-        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/bos.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "KeyBank Center",
-        "city": "Buffalo",
-        "state": "NY",
-        "indoor": true,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "nhl",
       "id": "401869767",
       "name": "Utah Mammoth at Vegas Golden Knights",
       "shortName": "UTA @ VGK",
@@ -397,7 +363,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "TB -166",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "Draft Kings"
+      },
       "venue": {
         "name": "Benchmark International Arena",
         "city": "Tampa",
