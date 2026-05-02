@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260502_1333",
+  "timestamp": "20260502_1423",
   "count": 237,
   "data": [
     {
@@ -1002,8 +1002,8 @@
         "slug": "jack-della-maddalena",
         "logo": "https://a.espncdn.com/i/headshots/mma/players/full/4828707.png"
       },
-      "home_score": null,
-      "away_score": null,
+      "home_score": 1,
+      "away_score": 0,
       "total_points": 0,
       "odds": null,
       "venue": {
@@ -1023,11 +1023,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -1239,14 +1239,31 @@
         "lat": 41.8755616,
         "lon": -87.6244212
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Gabe Morales",
+          "role": "home plate"
+        },
+        {
+          "name": "Doug Eddings",
+          "role": "first base"
+        },
+        {
+          "name": "Lance Barksdale",
+          "role": "second base"
+        },
+        {
+          "name": "Mike Muchlinski",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.538,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -1611,8 +1628,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -1686,8 +1703,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 27.7712264,
-        "lon": -82.6340259
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -1908,7 +1925,7 @@
         "details": "BOS -7.5",
         "spread": -7.5,
         "total": 205.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "TD Garden",
@@ -1929,7 +1946,7 @@
       "spread": -7.5,
       "favorite": "BOS -7.5",
       "underdog": "PHI +7.5",
-      "tagged_at": "2026-05-02T13:33:29.918051+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307770+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1959,10 +1976,10 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": 2,
-      "public_pct": 56,
+      "public_pct": 57,
       "public_side": "PHI",
       "fade_signal": 0,
-      "public_home_pct": 44,
+      "public_home_pct": 43,
       "spread_delta": 1.0,
       "total_delta": -1.0,
       "spread_direction": "toward_underdog",
@@ -1997,7 +2014,7 @@
         "details": "CAR -230",
         "spread": -1.5,
         "total": 5.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lenovo Center",
@@ -2035,7 +2052,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-05-02T13:33:29.918071+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307787+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2065,10 +2082,10 @@
       "divisional": false,
       "home_streak": 2,
       "away_streak": -1,
-      "public_pct": 68,
+      "public_pct": 69,
       "public_side": "CAR",
       "fade_signal": 1,
-      "public_home_pct": 68,
+      "public_home_pct": 69,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2782,8 +2799,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -2857,8 +2874,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 27.7712264,
-        "lon": -82.6340259
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -3154,7 +3171,7 @@
         "details": "DET -8.5",
         "spread": -8.5,
         "total": 203.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Little Caesars Arena",
@@ -3175,7 +3192,7 @@
       "spread": -8.5,
       "favorite": "DET -8.5",
       "underdog": "ORL +8.5",
-      "tagged_at": "2026-05-02T13:33:29.918078+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307793+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3543,7 +3560,7 @@
         "details": "TB -166",
         "spread": -1.5,
         "total": 5.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Benchmark International Arena",
@@ -3581,7 +3598,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "MTL +1.5",
-      "tagged_at": "2026-05-02T13:33:29.918083+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307797+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3725,7 +3742,7 @@
         "details": "CLE -7.5",
         "spread": -7.5,
         "total": 210.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Rocket Arena",
@@ -3746,7 +3763,7 @@
       "spread": -7.5,
       "favorite": "CLE -7.5",
       "underdog": "TOR +7.5",
-      "tagged_at": "2026-05-02T13:33:29.918088+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307800+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3814,7 +3831,7 @@
         "details": "COL -185",
         "spread": -1.5,
         "total": 5.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Ball Arena",
@@ -3835,7 +3852,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-05-02T13:33:29.918092+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307803+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -3904,7 +3921,7 @@
         "details": "SA -13.5",
         "spread": -13.5,
         "total": 217.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Frost Bank Center",
@@ -3925,7 +3942,7 @@
       "spread": -13.5,
       "favorite": "SA -13.5",
       "underdog": "MIN +13.5",
-      "tagged_at": "2026-05-02T13:33:29.918095+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307806+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -4137,8 +4154,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -4212,8 +4229,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 27.7712264,
-        "lon": -82.6340259
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -4956,10 +4973,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "OKC -14.5",
-        "spread": -14.5,
+        "details": "OKC -15.5",
+        "spread": -15.5,
         "total": 213.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Paycom Center",
@@ -4975,12 +4992,12 @@
       "dog_team": "Los Angeles Lakers",
       "fav_abbr": "OKC",
       "dog_abbr": "LAL",
-      "fav_spread": -14.5,
-      "dog_spread": 14.5,
-      "spread": -14.5,
-      "favorite": "OKC -14.5",
-      "underdog": "LAL +14.5",
-      "tagged_at": "2026-05-02T13:33:29.918100+00:00",
+      "fav_spread": -15.5,
+      "dog_spread": 15.5,
+      "spread": -15.5,
+      "favorite": "OKC -15.5",
+      "underdog": "LAL +15.5",
+      "tagged_at": "2026-05-02T14:23:41.307810+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -5014,11 +5031,11 @@
       "public_side": "",
       "fade_signal": 0,
       "public_home_pct": 50,
-      "spread_delta": 1.0,
+      "spread_delta": 0,
       "total_delta": -1.0,
-      "spread_direction": "toward_underdog",
+      "spread_direction": "stable",
       "total_direction": "down",
-      "spread_moves": 1
+      "spread_moves": 2
     },
     {
       "sport": "nba",
@@ -5192,8 +5209,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -5342,8 +5359,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 27.7712264,
-        "lon": -82.6340259
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -6382,8 +6399,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 27.7712264,
-        "lon": -82.6340259
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -6982,8 +6999,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8097,8 +8114,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8912,8 +8929,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -14687,7 +14704,7 @@
         "details": "TCU -6.5",
         "spread": -6.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Aviva Stadium",
@@ -14708,7 +14725,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-05-02T13:33:29.918109+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307817+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14862,7 +14879,7 @@
         "details": "UVA -3",
         "spread": -3.0,
         "total": 53.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Nilton Santos Stadium",
@@ -14883,7 +14900,7 @@
       "spread": -3.0,
       "favorite": "UVA -3.0",
       "underdog": "NCSU +3.0",
-      "tagged_at": "2026-05-02T13:33:29.918113+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307820+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -16541,7 +16558,7 @@
         "details": "AUB -6.5",
         "spread": -6.5,
         "total": 59.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Mercedes-Benz Stadium",
@@ -16562,7 +16579,7 @@
       "spread": -6.5,
       "favorite": "AUB -6.5",
       "underdog": "BAY +6.5",
-      "tagged_at": "2026-05-02T13:33:29.918120+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307825+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -16852,7 +16869,7 @@
         "details": "LSU -10.5",
         "spread": -10.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Tiger Stadium (LA)",
@@ -16873,7 +16890,7 @@
       "spread": -10.5,
       "favorite": "LSU -10.5",
       "underdog": "CLEM +10.5",
-      "tagged_at": "2026-05-02T13:33:29.918124+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307829+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -18453,7 +18470,7 @@
         "details": "ND -20.5",
         "spread": 20.5,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lambeau Field",
@@ -18474,7 +18491,7 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-05-02T13:33:29.918130+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307833+00:00",
       "weather": {
         "summary": "Chance Rain Showers",
         "description": "",
@@ -18554,7 +18571,7 @@
         "details": "MISS -7",
         "spread": -7.0,
         "total": 53.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Nissan Stadium",
@@ -18575,7 +18592,7 @@
       "spread": -7.0,
       "favorite": "MISS -7.0",
       "underdog": "LOU +7.0",
-      "tagged_at": "2026-05-02T13:33:29.918136+00:00",
+      "tagged_at": "2026-05-02T14:23:41.307838+00:00",
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
@@ -18628,5 +18645,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-05-02T13:40:05.371411"
+  "weather_merged_at": "2026-05-02T14:29:57.851572"
 }
