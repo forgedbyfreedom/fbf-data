@@ -92573,6 +92573,172 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401869779",
+      "sport": "nhl",
+      "matchup": "Montreal Canadiens at Tampa Bay Lightning",
+      "shortName": "MTL @ TB",
+      "date_utc": "2026-05-03T22:00Z",
+      "date_local": "2026-05-03 06:00 PM ET",
+      "home": "TB",
+      "away": "MTL",
+      "home_team": {
+        "id": "20",
+        "name": "Tampa Bay Lightning",
+        "abbr": "TB",
+        "slug": "tampa-bay-lightning",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/tb.png"
+      },
+      "away_team": {
+        "id": "10",
+        "name": "Montreal Canadiens",
+        "abbr": "MTL",
+        "slug": "montreal-canadiens",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png"
+      },
+      "odds": {
+        "details": "TB -162",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Benchmark International Arena",
+        "city": "Tampa",
+        "state": "FL",
+        "indoor": true,
+        "grass": false,
+        "lat": 27.9449854,
+        "lon": -82.4583107
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Tampa Bay Lightning",
+      "dog_team": "Montreal Canadiens",
+      "fav_abbr": "TB",
+      "dog_abbr": "MTL",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 1,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 8.7,
+        "projected_away_score": 5.7,
+        "projected_total": 14.4,
+        "projected_spread": 3.1,
+        "win_probability_home": 0.625,
+        "confidence": 75
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8312,
+        "away_win_pct": 0.1688,
+        "home_cover_pct": 0.6464,
+        "over_pct": 0.6074,
+        "avg_simulated_margin": 2.45,
+        "avg_simulated_total": 6.08
+      },
+      "picks": {
+        "su_pick": "Tampa Bay Lightning",
+        "su_pick_abbr": "TB",
+        "su_confidence": 68.5,
+        "ats_pick": "Tampa Bay Lightning",
+        "ats_pick_abbr": "TB",
+        "ats_spread": -1.5,
+        "ats_confidence": 51.4,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 5.5,
+        "ou_confidence": 51.3,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
+    },
+    {
+      "id": "401869384",
+      "sport": "nba",
+      "matchup": "Toronto Raptors at Cleveland Cavaliers",
+      "shortName": "TOR @ CLE",
+      "date_utc": "2026-05-03T23:30Z",
+      "date_local": "2026-05-03 07:30 PM ET",
+      "home": "CLE",
+      "away": "TOR",
+      "home_team": {
+        "id": "5",
+        "name": "Cleveland Cavaliers",
+        "abbr": "CLE",
+        "slug": "cleveland-cavaliers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/cle.png"
+      },
+      "away_team": {
+        "id": "28",
+        "name": "Toronto Raptors",
+        "abbr": "TOR",
+        "slug": "toronto-raptors",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png"
+      },
+      "odds": {
+        "details": "CLE -8.5",
+        "spread": -8.5,
+        "total": 209.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Rocket Arena",
+        "city": "Cleveland",
+        "state": "OH",
+        "indoor": true,
+        "grass": false,
+        "lat": 41.4996574,
+        "lon": -81.6936772
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Cleveland Cavaliers",
+      "dog_team": "Toronto Raptors",
+      "fav_abbr": "CLE",
+      "dog_abbr": "TOR",
+      "fav_spread": -8.5,
+      "dog_spread": 8.5,
+      "injury_count_home": 0,
+      "injury_count_away": 1,
+      "prediction": {
+        "projected_home_score": 110.6,
+        "projected_away_score": 96.3,
+        "projected_total": 206.9,
+        "projected_spread": 14.3,
+        "win_probability_home": 0.915,
+        "confidence": 95
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.8261,
+        "away_win_pct": 0.1739,
+        "home_cover_pct": 0.5806,
+        "over_pct": 0.5391,
+        "avg_simulated_margin": 10.99,
+        "avg_simulated_total": 210.71
+      },
+      "picks": {
+        "su_pick": "Cleveland Cavaliers",
+        "su_pick_abbr": "CLE",
+        "su_confidence": 68.3,
+        "ats_pick": "Cleveland Cavaliers",
+        "ats_pick_abbr": "CLE",
+        "ats_spread": -8.5,
+        "ats_confidence": 51.1,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 209.5,
+        "ou_confidence": 50.5,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
