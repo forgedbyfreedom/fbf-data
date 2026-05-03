@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260503_2217",
+  "timestamp": "20260503_2247",
   "count": 14,
   "data": [
     {
@@ -30,7 +30,7 @@
         "details": "DET -8.5",
         "spread": -8.5,
         "total": 200.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Little Caesars Arena",
@@ -49,7 +49,7 @@
           }
         },
         {
-          "name": "Tony Brothers",
+          "name": "Josh Tiven",
           "role": {
             "name": "Referee",
             "displayName": "Referee",
@@ -57,7 +57,7 @@
           }
         },
         {
-          "name": "Josh Tiven",
+          "name": "Tony Brothers",
           "role": {
             "name": "Referee",
             "displayName": "Referee",
@@ -102,7 +102,7 @@
         "details": "CLE -8.5",
         "spread": -8.5,
         "total": 209.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Rocket Arena",
@@ -111,7 +111,40 @@
         "indoor": true,
         "grass": false
       },
-      "officials": []
+      "officials": [
+        {
+          "name": "Karl Lane",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Zach Zarba",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Curtis Blair",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        },
+        {
+          "name": "Nick Buchert",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "40"
+          }
+        }
+      ]
     },
     {
       "sport": "nba",
@@ -141,7 +174,7 @@
         "details": "NY -7.5",
         "spread": -7.5,
         "total": 212.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Madison Square Garden",
@@ -179,8 +212,8 @@
       "odds": {
         "details": "SA -13.5",
         "spread": -13.5,
-        "total": 216.5,
-        "provider": "Draft Kings"
+        "total": 217.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Frost Bank Center",
@@ -194,16 +227,16 @@
     {
       "sport": "nba",
       "id": "401871333",
-      "name": "TBD at TBD",
-      "shortName": "TBD @ TBD",
+      "name": "TBD at Detroit Pistons",
+      "shortName": "TBD @ DET",
       "date_utc": "2026-05-05T23:00Z",
       "date_local": "2026-05-05 07:00 PM ET",
       "home_team": {
-        "id": "-1",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
+        "id": "8",
+        "name": "Detroit Pistons",
+        "abbr": "DET",
+        "slug": "detroit-pistons",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png"
       },
       "away_team": {
         "id": "-2",
@@ -216,7 +249,13 @@
       "away_score": null,
       "total_points": 0,
       "odds": null,
-      "venue": null,
+      "venue": {
+        "name": "Little Caesars Arena",
+        "city": "Detroit",
+        "state": "MI",
+        "indoor": true,
+        "grass": false
+      },
       "officials": []
     },
     {
@@ -247,7 +286,7 @@
         "details": "OKC -15.5",
         "spread": -15.5,
         "total": 213.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Paycom Center",
@@ -329,16 +368,16 @@
     {
       "sport": "nba",
       "id": "401871334",
-      "name": "TBD at TBD",
-      "shortName": "TBD @ TBD",
+      "name": "TBD at Detroit Pistons",
+      "shortName": "TBD @ DET",
       "date_utc": "2026-05-07T23:00Z",
       "date_local": "2026-05-07 07:00 PM ET",
       "home_team": {
-        "id": "-1",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
+        "id": "8",
+        "name": "Detroit Pistons",
+        "abbr": "DET",
+        "slug": "detroit-pistons",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png"
       },
       "away_team": {
         "id": "-2",
@@ -351,7 +390,13 @@
       "away_score": null,
       "total_points": 0,
       "odds": null,
-      "venue": null,
+      "venue": {
+        "name": "Little Caesars Arena",
+        "city": "Detroit",
+        "state": "MI",
+        "indoor": true,
+        "grass": false
+      },
       "officials": []
     },
     {
@@ -459,8 +504,8 @@
     {
       "sport": "nba",
       "id": "401871335",
-      "name": "TBD at TBD",
-      "shortName": "TBD @ TBD",
+      "name": "Detroit Pistons at TBD",
+      "shortName": "DET @ TBD",
       "date_utc": "2026-05-09T19:00Z",
       "date_local": "2026-05-09 03:00 PM ET",
       "home_team": {
@@ -471,11 +516,11 @@
         "logo": null
       },
       "away_team": {
-        "id": "-2",
-        "name": "TBD",
-        "abbr": "TBD",
-        "slug": "tbd",
-        "logo": null
+        "id": "8",
+        "name": "Detroit Pistons",
+        "abbr": "DET",
+        "slug": "detroit-pistons",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png"
       },
       "home_score": null,
       "away_score": null,
