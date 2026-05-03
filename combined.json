@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260503_2248",
+  "timestamp": "20260503_2320",
   "count": 236,
   "data": [
     {
@@ -305,11 +305,6 @@
           "position": "1B"
         },
         {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
-        },
-        {
           "player": "Carlos Rodon",
           "status": "May 10",
           "position": "SP"
@@ -427,7 +422,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 17,
       "ref_home_bias": 0.0,
       "ref_over_bias": -0.478,
@@ -454,10 +449,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 81,
+      "public_pct": 77,
       "public_side": "NYY",
-      "fade_signal": 3,
-      "public_home_pct": 81,
+      "fade_signal": 2,
+      "public_home_pct": 77,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1260,10 +1255,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
-      "public_side": "PHI",
+      "public_pct": 51,
+      "public_side": "MIA",
       "fade_signal": 0,
-      "public_home_pct": 41,
+      "public_home_pct": 51,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2054,6 +2049,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Raisel Iglesias",
+          "status": "May 5",
+          "position": "RP"
+        },
+        {
           "player": "Dylan Dodd",
           "status": "May 8",
           "position": "RP"
@@ -2067,11 +2067,6 @@
           "player": "Sean Murphy",
           "status": "May 4",
           "position": "C"
-        },
-        {
-          "player": "Raisel Iglesias",
-          "status": "May 5",
-          "position": "RP"
         },
         {
           "player": "Spencer Schwellenbach",
@@ -2244,7 +2239,7 @@
       "spread": -8.5,
       "favorite": "DET -8.5",
       "underdog": "ORL +8.5",
-      "tagged_at": "2026-05-03T22:48:52.740303+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691788+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2667,10 +2662,10 @@
       },
       "away_starter": {
         "name": "Clay Holmes",
-        "era": 1.75,
+        "era": 1.69,
         "whip": null
       },
-      "starter_era_diff": -1.3
+      "starter_era_diff": -1.36
     },
     {
       "sport": "mlb",
@@ -3065,7 +3060,7 @@
       "spread_moves": 0,
       "home_starter": {
         "name": "Luis Castillo",
-        "era": 6.35,
+        "era": 6.29,
         "whip": null
       },
       "away_starter": {
@@ -3073,7 +3068,7 @@
         "era": 3.32,
         "whip": null
       },
-      "starter_era_diff": -3.03
+      "starter_era_diff": -2.97
     },
     {
       "sport": "nhl",
@@ -3173,7 +3168,7 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "MTL +1.5",
-      "tagged_at": "2026-05-03T22:48:52.740321+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691806+00:00",
       "home_injuries": [
         {
           "player": "Victor Hedman",
@@ -3181,15 +3176,9 @@
           "position": "D"
         }
       ],
-      "away_injuries": [
-        {
-          "player": "Noah Dobson",
-          "status": "May 3",
-          "position": "D"
-        }
-      ],
+      "away_injuries": [],
       "injury_count_home": 1,
-      "injury_count_away": 1,
+      "injury_count_away": 0,
       "ref_home_bias": 0.124,
       "ref_over_bias": 0.467,
       "ref_consistency": 2.3,
@@ -3444,10 +3433,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 62,
-      "public_side": "DET",
+      "public_pct": 50,
+      "public_side": "",
       "fade_signal": 0,
-      "public_home_pct": 62,
+      "public_home_pct": 50,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -3547,7 +3536,7 @@
       "spread": -8.5,
       "favorite": "CLE -8.5",
       "underdog": "TOR +8.5",
-      "tagged_at": "2026-05-03T22:48:52.740327+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691812+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -3583,10 +3572,10 @@
       "divisional": true,
       "home_streak": 2,
       "away_streak": -1,
-      "public_pct": 67,
+      "public_pct": 68,
       "public_side": "TOR",
       "fade_signal": 1,
-      "public_home_pct": 33,
+      "public_home_pct": 32,
       "spread_delta": -1.0,
       "total_delta": -2.0,
       "spread_direction": "toward_favorite",
@@ -3634,20 +3623,44 @@
       },
       "officials": [
         {
-          "name": "Garrett Rank",
-          "role": "referee"
+          "name": "Ryan Gibbons",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
         },
         {
           "name": "Kyle Rehman",
-          "role": "referee"
-        },
-        {
-          "name": "Ryan Gibbons",
-          "role": "linesman"
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
         },
         {
           "name": "Trent Knorr",
-          "role": "linesman"
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Garrett Rank",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
+        },
+        {
+          "name": "Corey Syvret",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
         }
       ],
       "fav_team": "Colorado Avalanche",
@@ -3659,13 +3672,13 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-05-03T22:48:52.740335+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691823+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.472,
-      "ref_over_bias": 0.402,
+      "ref_home_bias": 0.746,
+      "ref_over_bias": 0.392,
       "ref_consistency": 2.2,
       "h2h_margin_avg": 0.6,
       "rest_diff_days": 0,
@@ -3911,10 +3924,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 73,
+      "public_pct": 77,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 73,
+      "public_home_pct": 77,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4068,10 +4081,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
-      "public_side": "PHI",
+      "public_pct": 51,
+      "public_side": "MIA",
       "fade_signal": 0,
-      "public_home_pct": 41,
+      "public_home_pct": 51,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4392,7 +4405,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-05-03T22:48:52.740339+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691828+00:00",
       "home_injuries": [
         {
           "player": "Alexander Nikishin",
@@ -4495,11 +4508,6 @@
           "player": "Ben Rice",
           "status": "May 4",
           "position": "1B"
-        },
-        {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
         },
         {
           "player": "Carlos Rodon",
@@ -4619,7 +4627,7 @@
           "position": "RP"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 17,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
@@ -4646,10 +4654,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 81,
+      "public_pct": 77,
       "public_side": "NYY",
-      "fade_signal": 3,
-      "public_home_pct": 81,
+      "fade_signal": 2,
+      "public_home_pct": 77,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4828,10 +4836,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 50,
-      "public_side": "",
+      "public_pct": 57,
+      "public_side": "CHC",
       "fade_signal": 0,
-      "public_home_pct": 50,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4975,10 +4983,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 56,
+      "public_pct": 52,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 44,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -5152,10 +5160,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 55,
+      "public_pct": 56,
       "public_side": "STL",
       "fade_signal": 0,
-      "public_home_pct": 55,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -5212,10 +5220,16 @@
       "spread": -7.5,
       "favorite": "NY -7.5",
       "underdog": "PHI +7.5",
-      "tagged_at": "2026-05-03T22:48:52.740344+00:00",
-      "home_injuries": [],
+      "tagged_at": "2026-05-03T23:20:00.691832+00:00",
+      "home_injuries": [
+        {
+          "player": "Jeremy Sochan",
+          "status": "May 4",
+          "position": "F"
+        }
+      ],
       "away_injuries": [],
-      "injury_count_home": 0,
+      "injury_count_home": 1,
       "injury_count_away": 0,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -5720,22 +5734,23 @@
       "spread": -13.5,
       "favorite": "SA -13.5",
       "underdog": "MIN +13.5",
-      "tagged_at": "2026-05-03T22:48:52.740348+00:00",
-      "home_injuries": [],
+      "tagged_at": "2026-05-03T23:20:00.691837+00:00",
+      "home_injuries": [
+        {
+          "player": "Carter Bryant",
+          "status": "May 4",
+          "position": "F"
+        }
+      ],
       "away_injuries": [
         {
           "player": "Ayo Dosunmu",
           "status": "May 4",
           "position": "G"
-        },
-        {
-          "player": "Kyle Anderson",
-          "status": "May 4",
-          "position": "F"
         }
       ],
-      "injury_count_home": 0,
-      "injury_count_away": 2,
+      "injury_count_home": 1,
+      "injury_count_away": 1,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -5820,7 +5835,7 @@
       "spread": -1.5,
       "favorite": "VGK -1.5",
       "underdog": "ANA +1.5",
-      "tagged_at": "2026-05-03T22:48:52.740351+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691842+00:00",
       "home_injuries": [],
       "away_injuries": [
         {
@@ -6148,6 +6163,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Raisel Iglesias",
+          "status": "May 5",
+          "position": "RP"
+        },
+        {
           "player": "Dylan Dodd",
           "status": "May 8",
           "position": "RP"
@@ -6161,11 +6181,6 @@
           "player": "Sean Murphy",
           "status": "May 4",
           "position": "C"
-        },
-        {
-          "player": "Raisel Iglesias",
-          "status": "May 5",
-          "position": "RP"
         },
         {
           "player": "Spencer Schwellenbach",
@@ -6235,10 +6250,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 41,
+      "public_home_pct": 42,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -6958,10 +6973,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 73,
+      "public_pct": 77,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 73,
+      "public_home_pct": 77,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7514,11 +7529,6 @@
           "position": "1B"
         },
         {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
-        },
-        {
           "player": "Carlos Rodon",
           "status": "May 10",
           "position": "SP"
@@ -7596,7 +7606,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 9,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
@@ -7805,10 +7815,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 50,
-      "public_side": "",
+      "public_pct": 57,
+      "public_side": "CHC",
       "fade_signal": 0,
-      "public_home_pct": 50,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -7952,10 +7962,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 56,
+      "public_pct": 52,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 44,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -8129,10 +8139,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 55,
+      "public_pct": 56,
       "public_side": "STL",
       "fade_signal": 0,
-      "public_home_pct": 55,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -8174,14 +8184,31 @@
         "lat": 39.7392364,
         "lon": -104.984862
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Garrett Rank",
+          "role": "referee"
+        },
+        {
+          "name": "Kyle Rehman",
+          "role": "referee"
+        },
+        {
+          "name": "Ryan Gibbons",
+          "role": "linesman"
+        },
+        {
+          "name": "Trent Knorr",
+          "role": "linesman"
+        }
+      ],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.3,
-      "ref_over_bias": 0.2,
-      "ref_consistency": 1.5,
+      "ref_home_bias": 0.472,
+      "ref_over_bias": 0.402,
+      "ref_consistency": 2.2,
       "h2h_margin_avg": 0.6,
       "rest_diff_days": 0,
       "elo_diff": 61.9,
@@ -8476,7 +8503,7 @@
       "spread": -15.5,
       "favorite": "OKC -15.5",
       "underdog": "LAL +15.5",
-      "tagged_at": "2026-05-03T22:48:52.740356+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691847+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -8999,6 +9026,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Raisel Iglesias",
+          "status": "May 5",
+          "position": "RP"
+        },
+        {
           "player": "Dylan Dodd",
           "status": "May 8",
           "position": "RP"
@@ -9012,11 +9044,6 @@
           "player": "Sean Murphy",
           "status": "May 4",
           "position": "C"
-        },
-        {
-          "player": "Raisel Iglesias",
-          "status": "May 5",
-          "position": "RP"
         },
         {
           "player": "Spencer Schwellenbach",
@@ -9086,10 +9113,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 41,
+      "public_home_pct": 42,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -9844,10 +9871,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 55,
+      "public_pct": 56,
       "public_side": "STL",
       "fade_signal": 0,
-      "public_home_pct": 55,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10722,6 +10749,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Raisel Iglesias",
+          "status": "May 5",
+          "position": "RP"
+        },
+        {
           "player": "Dylan Dodd",
           "status": "May 8",
           "position": "RP"
@@ -10735,11 +10767,6 @@
           "player": "Sean Murphy",
           "status": "May 4",
           "position": "C"
-        },
-        {
-          "player": "Raisel Iglesias",
-          "status": "May 5",
-          "position": "RP"
         },
         {
           "player": "Spencer Schwellenbach",
@@ -10809,10 +10836,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 41,
+      "public_home_pct": 42,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -11360,10 +11387,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 73,
+      "public_pct": 77,
       "public_side": "DET",
       "fade_signal": 2,
-      "public_home_pct": 73,
+      "public_home_pct": 77,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -11583,9 +11610,15 @@
         "lon": null
       },
       "officials": [],
-      "home_injuries": [],
+      "home_injuries": [
+        {
+          "player": "Jeremy Sochan",
+          "status": "May 4",
+          "position": "F"
+        }
+      ],
       "away_injuries": [],
-      "injury_count_home": 0,
+      "injury_count_home": 1,
       "injury_count_away": 0,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
@@ -11744,11 +11777,6 @@
           "position": "1B"
         },
         {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
-        },
-        {
           "player": "Carlos Rodon",
           "status": "May 10",
           "position": "SP"
@@ -11826,7 +11854,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 9,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
@@ -12035,10 +12063,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 50,
-      "public_side": "",
+      "public_pct": 57,
+      "public_side": "CHC",
       "fade_signal": 0,
-      "public_home_pct": 50,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -12182,10 +12210,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 56,
+      "public_pct": 52,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 44,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -12228,21 +12256,22 @@
         "lon": null
       },
       "officials": [],
-      "home_injuries": [],
+      "home_injuries": [
+        {
+          "player": "Carter Bryant",
+          "status": "May 4",
+          "position": "F"
+        }
+      ],
       "away_injuries": [
         {
           "player": "Ayo Dosunmu",
           "status": "May 4",
           "position": "G"
-        },
-        {
-          "player": "Kyle Anderson",
-          "status": "May 4",
-          "position": "F"
         }
       ],
-      "injury_count_home": 0,
-      "injury_count_away": 2,
+      "injury_count_home": 1,
+      "injury_count_away": 1,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -12573,11 +12602,6 @@
           "position": "1B"
         },
         {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
-        },
-        {
           "player": "Carlos Rodon",
           "status": "May 10",
           "position": "SP"
@@ -12655,7 +12679,7 @@
           "position": "SP"
         }
       ],
-      "injury_count_home": 9,
+      "injury_count_home": 8,
       "injury_count_away": 9,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
@@ -13006,10 +13030,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 56,
+      "public_pct": 52,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 44,
+      "public_home_pct": 48,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -13188,10 +13212,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 50,
-      "public_side": "",
+      "public_pct": 57,
+      "public_side": "CHC",
       "fade_signal": 0,
-      "public_home_pct": 50,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -14709,9 +14733,15 @@
       },
       "officials": [],
       "home_injuries": [],
-      "away_injuries": [],
+      "away_injuries": [
+        {
+          "player": "Jeremy Sochan",
+          "status": "May 4",
+          "position": "F"
+        }
+      ],
       "injury_count_home": 0,
-      "injury_count_away": 0,
+      "injury_count_away": 1,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -16053,11 +16083,6 @@
           "position": "1B"
         },
         {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
-        },
-        {
           "player": "Carlos Rodon",
           "status": "May 10",
           "position": "SP"
@@ -16089,7 +16114,7 @@
         }
       ],
       "injury_count_home": 13,
-      "injury_count_away": 9,
+      "injury_count_away": 8,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
@@ -16540,16 +16565,17 @@
           "player": "Ayo Dosunmu",
           "status": "May 4",
           "position": "G"
-        },
+        }
+      ],
+      "away_injuries": [
         {
-          "player": "Kyle Anderson",
+          "player": "Carter Bryant",
           "status": "May 4",
           "position": "F"
         }
       ],
-      "away_injuries": [],
-      "injury_count_home": 2,
-      "injury_count_away": 0,
+      "injury_count_home": 1,
+      "injury_count_away": 1,
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
@@ -17144,6 +17170,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Raisel Iglesias",
+          "status": "May 5",
+          "position": "RP"
+        },
+        {
           "player": "Dylan Dodd",
           "status": "May 8",
           "position": "RP"
@@ -17157,11 +17188,6 @@
           "player": "Sean Murphy",
           "status": "May 4",
           "position": "C"
-        },
-        {
-          "player": "Raisel Iglesias",
-          "status": "May 5",
-          "position": "RP"
         },
         {
           "player": "Spencer Schwellenbach",
@@ -19992,11 +20018,6 @@
           "position": "1B"
         },
         {
-          "player": "Anthony Volpe",
-          "status": "May 4",
-          "position": "SS"
-        },
-        {
           "player": "Carlos Rodon",
           "status": "May 10",
           "position": "SP"
@@ -20028,7 +20049,7 @@
         }
       ],
       "injury_count_home": 13,
-      "injury_count_away": 9,
+      "injury_count_away": 8,
       "ref_home_bias": 0.2,
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
@@ -21441,6 +21462,11 @@
       ],
       "away_injuries": [
         {
+          "player": "Raisel Iglesias",
+          "status": "May 5",
+          "position": "RP"
+        },
+        {
           "player": "Dylan Dodd",
           "status": "May 8",
           "position": "RP"
@@ -21454,11 +21480,6 @@
           "player": "Sean Murphy",
           "status": "May 4",
           "position": "C"
-        },
-        {
-          "player": "Raisel Iglesias",
-          "status": "May 5",
-          "position": "RP"
         },
         {
           "player": "Spencer Schwellenbach",
@@ -25800,7 +25821,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-05-03T22:48:52.740365+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691857+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -25975,7 +25996,7 @@
       "spread": -3.0,
       "favorite": "UVA -3.0",
       "underdog": "NCSU +3.0",
-      "tagged_at": "2026-05-03T22:48:52.740371+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691863+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -26132,7 +26153,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 28.0,
-      "rest_diff_days": -65,
+      "rest_diff_days": -64,
       "elo_diff": 115.9,
       "home_elo": 1576.7,
       "away_elo": 1460.8,
@@ -26206,7 +26227,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -80,
+      "rest_diff_days": -81,
       "elo_diff": 25.7,
       "home_elo": 1505.8,
       "away_elo": 1480.1,
@@ -26280,7 +26301,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 5,
+      "rest_diff_days": 4,
       "elo_diff": 73.1,
       "home_elo": 1602.7,
       "away_elo": 1529.6,
@@ -27570,7 +27591,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -34,
+      "rest_diff_days": -35,
       "elo_diff": 16.0,
       "home_elo": 1470.7,
       "away_elo": 1454.7,
@@ -27742,7 +27763,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -188,
+      "rest_diff_days": -189,
       "elo_diff": -8.6,
       "home_elo": 1473.7,
       "away_elo": 1482.3,
@@ -27822,7 +27843,7 @@
       "spread": -6.5,
       "favorite": "AUB -6.5",
       "underdog": "BAY +6.5",
-      "tagged_at": "2026-05-03T22:48:52.740378+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691868+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -28145,7 +28166,7 @@
       "spread": -10.5,
       "favorite": "LSU -10.5",
       "underdog": "CLEM +10.5",
-      "tagged_at": "2026-05-03T22:48:52.740382+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691872+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -28228,7 +28249,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -104,
+      "rest_diff_days": -105,
       "elo_diff": -32.6,
       "home_elo": 1491.1,
       "away_elo": 1523.7,
@@ -28302,7 +28323,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -104,
+      "rest_diff_days": -105,
       "elo_diff": 176.5,
       "home_elo": 1595.3,
       "away_elo": 1418.8,
@@ -28450,7 +28471,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -430,
+      "rest_diff_days": -431,
       "elo_diff": 106.7,
       "home_elo": 1597.8,
       "away_elo": 1491.1,
@@ -28672,7 +28693,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -148,
+      "rest_diff_days": -147,
       "elo_diff": 60.7,
       "home_elo": 1545.0,
       "away_elo": 1484.3,
@@ -29412,7 +29433,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -104,
+      "rest_diff_days": -105,
       "elo_diff": -12.9,
       "home_elo": 1503.2,
       "away_elo": 1516.1,
@@ -29566,7 +29587,7 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-05-03T22:48:52.740388+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691877+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -29655,7 +29676,7 @@
       "spread": -7.0,
       "favorite": "MISS -7.0",
       "underdog": "LOU +7.0",
-      "tagged_at": "2026-05-03T22:48:52.740392+00:00",
+      "tagged_at": "2026-05-03T23:20:00.691880+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -29696,5 +29717,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-05-03T22:55:16.686442"
+  "weather_merged_at": "2026-05-03T23:26:32.235410"
 }
