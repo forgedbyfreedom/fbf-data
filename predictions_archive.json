@@ -97179,6 +97179,168 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401871161",
+      "sport": "nba",
+      "matchup": "New York Knicks at Philadelphia 76ers",
+      "shortName": "NY @ PHI",
+      "date_utc": "2026-05-08T23:00Z",
+      "date_local": "2026-05-08 07:00 PM ET",
+      "home": "PHI",
+      "away": "NY",
+      "home_team": {
+        "id": "20",
+        "name": "Philadelphia 76ers",
+        "abbr": "PHI",
+        "slug": "philadelphia-76ers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/phi.png"
+      },
+      "away_team": {
+        "id": "18",
+        "name": "New York Knicks",
+        "abbr": "NY",
+        "slug": "new-york-knicks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ny.png"
+      },
+      "odds": {
+        "details": "PHI -3.5",
+        "spread": -3.5,
+        "total": 214.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Xfinity Mobile Arena",
+        "city": "Philadelphia",
+        "state": "PA",
+        "indoor": true,
+        "grass": false,
+        "lat": 39.9527237,
+        "lon": -75.1635262
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Philadelphia 76ers",
+      "dog_team": "New York Knicks",
+      "fav_abbr": "PHI",
+      "dog_abbr": "NY",
+      "fav_spread": -3.5,
+      "dog_spread": 3.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 111.5,
+        "projected_away_score": 110.0,
+        "projected_total": 221.5,
+        "projected_spread": 1.5,
+        "win_probability_home": 0.563,
+        "confidence": 50
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.6049,
+        "away_win_pct": 0.3951,
+        "home_cover_pct": 0.497,
+        "over_pct": 0.6094,
+        "avg_simulated_margin": 3.48,
+        "avg_simulated_total": 217.54
+      },
+      "picks": {
+        "su_pick": "Philadelphia 76ers",
+        "su_pick_abbr": "PHI",
+        "su_confidence": 55.9,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": -3.5,
+        "ats_confidence": 50.3,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Over",
+        "ou_line": 214.5,
+        "ou_confidence": 51.3,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
+    },
+    {
+      "id": "401815259",
+      "sport": "mlb",
+      "matchup": "Washington Nationals at Miami Marlins",
+      "shortName": "WSH @ MIA",
+      "date_utc": "2026-05-08T23:10Z",
+      "date_local": "2026-05-08 07:10 PM ET",
+      "home": "MIA",
+      "away": "WSH",
+      "home_team": {
+        "id": "28",
+        "name": "Miami Marlins",
+        "abbr": "MIA",
+        "slug": "miami-marlins",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/mia.png"
+      },
+      "away_team": {
+        "id": "20",
+        "name": "Washington Nationals",
+        "abbr": "WSH",
+        "slug": "washington-nationals",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "loanDepot park",
+        "city": "Miami",
+        "state": "Florida",
+        "indoor": true,
+        "grass": false,
+        "lat": 25.7741566,
+        "lon": -80.1935973
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5077,
+        "away_win_pct": 0.4923,
+        "home_cover_pct": 0.5077,
+        "over_pct": 0.5031,
+        "avg_simulated_margin": 0.07,
+        "avg_simulated_total": 7.79
+      },
+      "picks": {
+        "su_pick": "Miami Marlins",
+        "su_pick_abbr": "MIA",
+        "su_confidence": 50.4,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 7.8,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
