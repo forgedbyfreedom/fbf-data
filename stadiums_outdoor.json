@@ -1,24 +1,4 @@
 {
-  "great american ball park": {
-    "name": "Great American Ball Park",
-    "norm": "great american ball park",
-    "city": "Cincinnati",
-    "state": "Ohio",
-    "indoor": false,
-    "grass": true,
-    "lat": 39.1014537,
-    "lon": -84.5124602
-  },
-  "citizens bank park": {
-    "name": "Citizens Bank Park",
-    "norm": "citizens bank park",
-    "city": "Philadelphia",
-    "state": "Pennsylvania",
-    "indoor": false,
-    "grass": true,
-    "lat": 39.9527237,
-    "lon": -75.1635262
-  },
   "oriole park at camden yards": {
     "name": "Oriole Park at Camden Yards",
     "norm": "oriole park at camden yards",
@@ -29,6 +9,16 @@
     "lat": 39.2908816,
     "lon": -76.610759
   },
+  "great american ball park": {
+    "name": "Great American Ball Park",
+    "norm": "great american ball park",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.1014537,
+    "lon": -84.5124602
+  },
   "fenway park": {
     "name": "Fenway Park",
     "norm": "fenway park",
@@ -38,6 +28,16 @@
     "grass": true,
     "lat": 42.3588336,
     "lon": -71.0578303
+  },
+  "citizens bank park": {
+    "name": "Citizens Bank Park",
+    "norm": "citizens bank park",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.9527237,
+    "lon": -75.1635262
   },
   "progressive field": {
     "name": "Progressive Field",
@@ -76,8 +76,18 @@
     "state": "California",
     "indoor": false,
     "grass": true,
-    "lat": 32.7174202,
-    "lon": -117.162772
+    "lat": null,
+    "lon": null
+  },
+  "oracle park": {
+    "name": "Oracle Park",
+    "norm": "oracle park",
+    "city": "San Francisco",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
   },
   "dodger stadium": {
     "name": "Dodger Stadium",
@@ -89,16 +99,6 @@
     "lat": 34.0536909,
     "lon": -118.242766
   },
-  "oracle park": {
-    "name": "Oracle Park",
-    "norm": "oracle park",
-    "city": "San Francisco",
-    "state": "California",
-    "indoor": false,
-    "grass": true,
-    "lat": 37.7879363,
-    "lon": -122.4075201
-  },
   "pnc park": {
     "name": "PNC Park",
     "norm": "pnc park",
@@ -106,8 +106,8 @@
     "state": "Pennsylvania",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 40.4406968,
+    "lon": -80.0025666
   },
   "citi field": {
     "name": "Citi Field",
@@ -116,8 +116,8 @@
     "state": "New York",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 40.7135078,
+    "lon": -73.8283132
   },
   "truist park": {
     "name": "Truist Park",
@@ -126,8 +126,8 @@
     "state": "Georgia",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 33.7544657,
+    "lon": -84.3898151
   },
   "target field": {
     "name": "Target Field",
@@ -136,13 +136,63 @@
     "state": "Minnesota",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 44.9772995,
+    "lon": -93.2654692
   },
   "sutter health park": {
     "name": "Sutter Health Park",
     "norm": "sutter health park",
     "city": "Sacramento",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "comerica park": {
+    "name": "Comerica Park",
+    "norm": "comerica park",
+    "city": "Detroit",
+    "state": "Michigan",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "nationals park": {
+    "name": "Nationals Park",
+    "norm": "nationals park",
+    "city": "Washington",
+    "state": "District of Columbia",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "busch stadium": {
+    "name": "Busch Stadium",
+    "norm": "busch stadium",
+    "city": "St. Louis",
+    "state": "Missouri",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "coors field": {
+    "name": "Coors Field",
+    "norm": "coors field",
+    "city": "Denver",
+    "state": "Colorado",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "angel stadium": {
+    "name": "Angel Stadium",
+    "norm": "angel stadium",
+    "city": "Anaheim",
     "state": "California",
     "indoor": false,
     "grass": true,
@@ -156,8 +206,8 @@
     "state": "DC",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 38.8950982,
+    "lon": -77.0363849
   },
   "aviva stadium": {
     "name": "Aviva Stadium",
@@ -176,8 +226,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 37.4265407,
+    "lon": -122.1703055
   },
   "nilton santos stadium": {
     "name": "Nilton Santos Stadium",
@@ -196,8 +246,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 34.0536909,
+    "lon": -118.242766
   },
   "doak campbell stadium": {
     "name": "Doak Campbell Stadium",
@@ -206,8 +256,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 30.4380832,
+    "lon": -84.2809332
   },
   "rynearson stadium": {
     "name": "Rynearson Stadium",
@@ -216,8 +266,8 @@
     "state": "MI",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 42.241051,
+    "lon": -83.6117646
   },
   "memorial stadium": {
     "name": "Memorial Stadium",
@@ -226,8 +276,8 @@
     "state": "MO",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 38.951883,
+    "lon": -92.3337366
   },
   "acrisure bounce house": {
     "name": "Acrisure Bounce House",
@@ -236,8 +286,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 28.5421218,
+    "lon": -81.379045
   },
   "riceeccles stadium": {
     "name": "Rice-Eccles Stadium",
