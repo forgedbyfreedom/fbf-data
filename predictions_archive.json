@@ -101043,6 +101043,84 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401815295",
+      "sport": "mlb",
+      "matchup": "New York Mets at Arizona Diamondbacks",
+      "shortName": "NYM @ ARI",
+      "date_utc": "2026-05-10T20:10Z",
+      "date_local": "2026-05-10 04:10 PM ET",
+      "home": "ARI",
+      "away": "NYM",
+      "home_team": {
+        "id": "29",
+        "name": "Arizona Diamondbacks",
+        "abbr": "ARI",
+        "slug": "arizona-diamondbacks",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ari.png"
+      },
+      "away_team": {
+        "id": "21",
+        "name": "New York Mets",
+        "abbr": "NYM",
+        "slug": "new-york-mets",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nym.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Chase Field",
+        "city": "Phoenix",
+        "state": "Arizona",
+        "indoor": true,
+        "grass": true,
+        "lat": 33.4484367,
+        "lon": -112.074141
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4555,
+        "away_win_pct": 0.5445,
+        "home_cover_pct": 0.4555,
+        "over_pct": 0.5056,
+        "avg_simulated_margin": -0.39,
+        "avg_simulated_total": 6.66
+      },
+      "picks": {
+        "su_pick": "New York Mets",
+        "su_pick_abbr": "NYM",
+        "su_confidence": 52.5,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 6.6,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
