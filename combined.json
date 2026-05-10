@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260510_2047",
+  "timestamp": "20260510_2121",
   "count": 221,
   "data": [
     {
@@ -737,9 +737,9 @@
         "slug": "new-york-yankees",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png"
       },
-      "home_score": 3.0,
+      "home_score": 4.0,
       "away_score": 3.0,
-      "total_points": 6.0,
+      "total_points": 7.0,
       "odds": null,
       "venue": {
         "name": "American Family Field",
@@ -775,11 +775,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -1.61,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0.0,
-      "home_elo": 1500.0,
-      "away_elo": 1500.0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -808,15 +808,15 @@
       "spread_moves": 0,
       "home_starter": {
         "name": "Logan Henderson",
-        "era": 4.5,
+        "era": 4.15,
         "whip": null
       },
       "away_starter": {
         "name": "Carlos Rodon",
-        "era": null,
+        "era": 6.23,
         "whip": null
       },
-      "starter_era_diff": 0
+      "starter_era_diff": 2.08
     },
     {
       "sport": "mlb",
@@ -910,7 +910,7 @@
       "spread_moves": 0,
       "home_starter": {
         "name": "Davis Martin",
-        "era": 1.64,
+        "era": 1.62,
         "whip": null
       },
       "away_starter": {
@@ -918,7 +918,7 @@
         "era": 3.78,
         "whip": null
       },
-      "starter_era_diff": 2.14
+      "starter_era_diff": 2.16
     },
     {
       "sport": "mlb",
@@ -1012,15 +1012,15 @@
       "spread_moves": 0,
       "home_starter": {
         "name": "Jacob deGrom",
-        "era": 3.11,
+        "era": 2.62,
         "whip": null
       },
       "away_starter": {
         "name": "Jameson Taillon",
-        "era": 4.24,
+        "era": 3.94,
         "whip": null
       },
-      "starter_era_diff": 1.13
+      "starter_era_diff": 1.32
     },
     {
       "sport": "nba",
@@ -1043,9 +1043,9 @@
         "slug": "new-york-knicks",
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/ny.png"
       },
-      "home_score": 57.0,
-      "away_score": 81.0,
-      "total_points": 138.0,
+      "home_score": 75.0,
+      "away_score": 105.0,
+      "total_points": 180.0,
       "odds": {
         "details": "NY -1.5",
         "spread": 1.5,
@@ -1104,7 +1104,7 @@
       "spread": -1.5,
       "favorite": "NY -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-05-10T20:47:52.624571+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475866+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1112,7 +1112,7 @@
       "ref_home_bias": 0.675,
       "ref_over_bias": 0.718,
       "ref_consistency": 19.7,
-      "h2h_margin_avg": -4.4,
+      "h2h_margin_avg": -5.6,
       "rest_diff_days": 0,
       "elo_diff": -119.8,
       "home_elo": 1522.8,
@@ -1165,9 +1165,9 @@
         "slug": "pittsburgh-pirates",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/pit.png"
       },
-      "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "home_score": 2.0,
+      "away_score": 3.0,
+      "total_points": 5.0,
       "odds": null,
       "venue": {
         "name": "Oracle Park",
@@ -1203,11 +1203,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -1.683,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": -1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -1472,8 +1472,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/stl.png"
       },
       "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "away_score": 2.0,
+      "total_points": 2.0,
       "odds": null,
       "venue": {
         "name": "Petco Park",
@@ -1577,7 +1577,7 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MTL -122",
+        "details": "MTL -130",
         "spread": -1.5,
         "total": 5.5,
         "provider": "DraftKings"
@@ -1593,20 +1593,44 @@
       },
       "officials": [
         {
-          "name": "Jean Hebert",
-          "role": "referee"
+          "name": "Kyle Rehman",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
         },
         {
-          "name": "Trevor Hanson",
-          "role": "referee"
+          "name": "Garrett Rank",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
         },
         {
-          "name": "Shandor Alphonso",
-          "role": "linesman"
+          "name": "Devin Berg",
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
         },
         {
           "name": "Ryan Daisy",
-          "role": "linesman"
+          "role": {
+            "name": "Linesman",
+            "displayName": "Linesman",
+            "id": "25"
+          }
+        },
+        {
+          "name": "Pierre Lambert",
+          "role": {
+            "name": "Referee",
+            "displayName": "Referee",
+            "id": "24"
+          }
         }
       ],
       "fav_team": "Montreal Canadiens",
@@ -1618,14 +1642,14 @@
       "spread": -1.5,
       "favorite": "MTL -1.5",
       "underdog": "BUF +1.5",
-      "tagged_at": "2026-05-10T20:47:52.624586+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475884+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.833,
-      "ref_over_bias": -0.157,
-      "ref_consistency": 2.2,
+      "ref_home_bias": 1.248,
+      "ref_over_bias": 0.674,
+      "ref_consistency": 2.3,
       "h2h_margin_avg": 1.0,
       "rest_diff_days": -1,
       "elo_diff": -97.2,
@@ -1750,10 +1774,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 54,
+      "public_pct": 55,
       "public_side": "KC",
       "fade_signal": 0,
-      "public_home_pct": 54,
+      "public_home_pct": 55,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1820,7 +1844,7 @@
       "spread": -5.5,
       "favorite": "SA -5.5",
       "underdog": "MIN +5.5",
-      "tagged_at": "2026-05-10T20:47:52.624593+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475891+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1926,7 +1950,7 @@
       "spread": -1.5,
       "favorite": "ANA -1.5",
       "underdog": "VGK +1.5",
-      "tagged_at": "2026-05-10T20:47:52.624598+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475896+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2096,9 +2120,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 20.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -2251,7 +2275,7 @@
       "spread": -3.5,
       "favorite": "CLE -3.5",
       "underdog": "DET +3.5",
-      "tagged_at": "2026-05-10T20:47:52.624602+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475900+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2357,7 +2381,7 @@
       "spread": -1.5,
       "favorite": "COL -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-05-10T20:47:52.624606+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475904+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2591,7 +2615,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -2672,7 +2696,7 @@
       "spread": -10.5,
       "favorite": "OKC -10.5",
       "underdog": "LAL +10.5",
-      "tagged_at": "2026-05-10T20:47:52.624611+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475909+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -2828,7 +2852,7 @@
       "ref_home_bias": 0.5,
       "ref_over_bias": 0.4,
       "ref_consistency": 9.0,
-      "h2h_margin_avg": 4.4,
+      "h2h_margin_avg": 5.6,
       "rest_diff_days": 0,
       "elo_diff": 119.8,
       "home_elo": 1642.6,
@@ -2979,9 +3003,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 20.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -3053,7 +3077,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -3269,14 +3293,31 @@
         "lat": 45.5046474,
         "lon": -73.5658213
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Jean Hebert",
+          "role": "referee"
+        },
+        {
+          "name": "Trevor Hanson",
+          "role": "referee"
+        },
+        {
+          "name": "Shandor Alphonso",
+          "role": "linesman"
+        },
+        {
+          "name": "Ryan Daisy",
+          "role": "linesman"
+        }
+      ],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.3,
-      "ref_over_bias": 0.2,
-      "ref_consistency": 1.5,
+      "ref_home_bias": 0.833,
+      "ref_over_bias": -0.157,
+      "ref_consistency": 2.2,
       "h2h_margin_avg": 1.0,
       "rest_diff_days": -1,
       "elo_diff": -97.2,
@@ -3941,8 +3982,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -4103,7 +4144,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -4402,9 +4443,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 20.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -4476,7 +4517,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -5451,7 +5492,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -5542,7 +5583,7 @@
       "ref_home_bias": 0.675,
       "ref_over_bias": 0.718,
       "ref_consistency": 19.7,
-      "h2h_margin_avg": -4.4,
+      "h2h_margin_avg": -5.6,
       "rest_diff_days": 0,
       "elo_diff": -119.8,
       "home_elo": 1522.8,
@@ -5767,7 +5808,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -6517,7 +6558,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -6740,7 +6781,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -7416,9 +7457,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 0.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -7865,10 +7906,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -8077,8 +8118,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8464,7 +8505,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": -3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -8609,8 +8650,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8690,8 +8731,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8771,8 +8812,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8852,8 +8893,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8933,8 +8974,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9014,8 +9055,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9095,8 +9136,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9176,8 +9217,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9413,9 +9454,9 @@
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
-      "elo_diff": 10.0,
+      "elo_diff": 0.0,
       "home_elo": 1510.0,
-      "away_elo": 1500.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -9782,8 +9823,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9863,8 +9904,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9944,8 +9985,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10025,8 +10066,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10106,8 +10147,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10267,10 +10308,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -11390,8 +11431,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11471,8 +11512,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11552,8 +11593,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11633,8 +11674,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11714,8 +11755,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11795,8 +11836,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11876,8 +11917,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11957,8 +11998,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12038,8 +12079,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12119,8 +12160,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12200,8 +12241,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12281,8 +12322,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12362,8 +12403,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12443,8 +12484,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12524,8 +12565,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12605,8 +12646,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12686,8 +12727,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12767,8 +12808,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12848,8 +12889,8 @@
         "state": "DC",
         "indoor": false,
         "grass": false,
-        "lat": 38.8950982,
-        "lon": -77.0363849
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -12929,8 +12970,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13010,8 +13051,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13091,8 +13132,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13172,8 +13213,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13253,8 +13294,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13334,8 +13375,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13658,8 +13699,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13739,8 +13780,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13820,8 +13861,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13912,7 +13953,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-05-10T20:47:52.624624+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475923+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13983,8 +14024,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": 37.4265407,
-        "lon": -122.1703055
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14087,7 +14128,7 @@
       "spread": -3.0,
       "favorite": "UVA -3.0",
       "underdog": "NCSU +3.0",
-      "tagged_at": "2026-05-10T20:47:52.624628+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475927+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14688,7 +14729,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -126,
+      "rest_diff_days": -127,
       "elo_diff": 89.0,
       "home_elo": 1581.0,
       "away_elo": 1492.0,
@@ -15342,8 +15383,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": 37.4265407,
-        "lon": -122.1703055
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -15742,7 +15783,7 @@
       "spread": -6.5,
       "favorite": "AUB -6.5",
       "underdog": "BAY +6.5",
-      "tagged_at": "2026-05-10T20:47:52.624633+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475932+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15751,7 +15792,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 4.0,
-      "rest_diff_days": -4,
+      "rest_diff_days": -3,
       "elo_diff": -9.0,
       "home_elo": 1488.5,
       "away_elo": 1497.5,
@@ -16053,7 +16094,7 @@
       "spread": -10.5,
       "favorite": "LSU -10.5",
       "underdog": "CLEM +10.5",
-      "tagged_at": "2026-05-10T20:47:52.624637+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475936+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -16876,7 +16917,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 27.33,
-      "rest_diff_days": -88,
+      "rest_diff_days": -87,
       "elo_diff": 58.9,
       "home_elo": 1533.3,
       "away_elo": 1474.4,
@@ -17474,7 +17515,7 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-05-10T20:47:52.624643+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475943+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -17563,7 +17604,7 @@
       "spread": -7.0,
       "favorite": "MISS -7.0",
       "underdog": "LOU +7.0",
-      "tagged_at": "2026-05-10T20:47:52.624647+00:00",
+      "tagged_at": "2026-05-10T21:21:00.475947+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -17604,5 +17645,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-05-10T20:53:13.706675"
+  "weather_merged_at": "2026-05-10T21:26:58.946042"
 }
