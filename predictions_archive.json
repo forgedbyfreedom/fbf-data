@@ -101521,6 +101521,89 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401871426",
+      "sport": "nhl",
+      "matchup": "Vegas Golden Knights at Anaheim Ducks",
+      "shortName": "VGK @ ANA",
+      "date_utc": "2026-05-11T01:30Z",
+      "date_local": "2026-05-10 09:30 PM ET",
+      "home": "ANA",
+      "away": "VGK",
+      "home_team": {
+        "id": "25",
+        "name": "Anaheim Ducks",
+        "abbr": "ANA",
+        "slug": "anaheim-ducks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/ana.png"
+      },
+      "away_team": {
+        "id": "37",
+        "name": "Vegas Golden Knights",
+        "abbr": "VGK",
+        "slug": "vegas-golden-knights",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png"
+      },
+      "odds": {
+        "details": "ANA -125",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Honda Center",
+        "city": "Anaheim",
+        "state": "CA",
+        "indoor": true,
+        "grass": false,
+        "lat": 33.8347516,
+        "lon": -117.911732
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Anaheim Ducks",
+      "dog_team": "Vegas Golden Knights",
+      "fav_abbr": "ANA",
+      "dog_abbr": "VGK",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 7.7,
+        "projected_away_score": 6.9,
+        "projected_total": 14.7,
+        "projected_spread": 0.8,
+        "win_probability_home": 0.534,
+        "confidence": 54
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.7705,
+        "away_win_pct": 0.2295,
+        "home_cover_pct": 0.5505,
+        "over_pct": 0.3908,
+        "avg_simulated_margin": 1.82,
+        "avg_simulated_total": 5.92
+      },
+      "picks": {
+        "su_pick": "Anaheim Ducks",
+        "su_pick_abbr": "ANA",
+        "su_confidence": 65.1,
+        "ats_pick": "Vegas Golden Knights",
+        "ats_pick_abbr": "VGK",
+        "ats_spread": 1.5,
+        "ats_confidence": 50.5,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 52.9,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      }
     }
   ]
 }
