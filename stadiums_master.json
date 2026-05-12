@@ -186,8 +186,8 @@
     "state": "MI",
     "indoor": true,
     "grass": false,
-    "lat": 42.3315509,
-    "lon": -83.0466403
+    "lat": null,
+    "lon": null
   },
   "ball arena": {
     "name": "Ball Arena",
@@ -196,8 +196,8 @@
     "state": "CO",
     "indoor": true,
     "grass": false,
-    "lat": 39.7392364,
-    "lon": -104.984862
+    "lat": null,
+    "lon": null
   },
   "keybank center": {
     "name": "KeyBank Center",
@@ -206,8 +206,8 @@
     "state": "NY",
     "indoor": true,
     "grass": false,
-    "lat": 42.8864163,
-    "lon": -78.8781493
+    "lat": null,
+    "lon": null
   },
   "honda center": {
     "name": "Honda Center",
@@ -246,8 +246,8 @@
     "state": "Michigan",
     "indoor": false,
     "grass": true,
-    "lat": 42.3315509,
-    "lon": -83.0466403
+    "lat": null,
+    "lon": null
   },
   "nationals park": {
     "name": "Nationals Park",
@@ -256,8 +256,8 @@
     "state": "District of Columbia",
     "indoor": false,
     "grass": true,
-    "lat": 38.8950982,
-    "lon": -77.0363849
+    "lat": null,
+    "lon": null
   },
   "tropicana field": {
     "name": "Tropicana Field",
@@ -266,8 +266,8 @@
     "state": "Florida",
     "indoor": true,
     "grass": false,
-    "lat": 27.7712264,
-    "lon": -82.6340259
+    "lat": null,
+    "lon": null
   },
   "grand casino arena": {
     "name": "Grand Casino Arena",
@@ -286,8 +286,8 @@
     "state": "Missouri",
     "indoor": false,
     "grass": true,
-    "lat": 38.6254063,
-    "lon": -90.190009
+    "lat": null,
+    "lon": null
   },
   "coors field": {
     "name": "Coors Field",
@@ -296,8 +296,8 @@
     "state": "Colorado",
     "indoor": false,
     "grass": true,
-    "lat": 39.7392364,
-    "lon": -104.984862
+    "lat": null,
+    "lon": null
   },
   "angel stadium": {
     "name": "Angel Stadium",
@@ -306,8 +306,8 @@
     "state": "California",
     "indoor": false,
     "grass": true,
-    "lat": 33.8347516,
-    "lon": -117.911732
+    "lat": null,
+    "lon": null
   },
   "tmobile park": {
     "name": "T-Mobile Park",
@@ -316,8 +316,8 @@
     "state": "Washington",
     "indoor": true,
     "grass": true,
-    "lat": 47.6038321,
-    "lon": -122.330062
+    "lat": null,
+    "lon": null
   },
   "meta apex": {
     "name": "Meta APEX",
@@ -336,8 +336,8 @@
     "state": "Florida",
     "indoor": true,
     "grass": false,
-    "lat": 25.7741566,
-    "lon": -80.1935973
+    "lat": null,
+    "lon": null
   },
   "citizens bank park": {
     "name": "Citizens Bank Park",
@@ -429,31 +429,11 @@
     "lat": null,
     "lon": null
   },
-  "aviva stadium": {
-    "name": "Aviva Stadium",
-    "norm": "aviva stadium",
-    "city": "Dublin",
-    "state": null,
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
   "stanford stadium": {
     "name": "Stanford Stadium",
     "norm": "stanford stadium",
     "city": "Stanford",
     "state": "CA",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "nilton santos stadium": {
-    "name": "Nilton Santos Stadium",
-    "norm": "nilton santos stadium",
-    "city": "Rio De Janeiro",
-    "state": null,
     "indoor": false,
     "grass": true,
     "lat": null,
@@ -509,6 +489,26 @@
     "lat": null,
     "lon": null
   },
+  "aviva stadium": {
+    "name": "Aviva Stadium",
+    "norm": "aviva stadium",
+    "city": "Dublin",
+    "state": null,
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "nilton santos stadium": {
+    "name": "Nilton Santos Stadium",
+    "norm": "nilton santos stadium",
+    "city": "Rio De Janeiro",
+    "state": null,
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
   "memorial stadium": {
     "name": "Memorial Stadium",
     "norm": "memorial stadium",
@@ -534,16 +534,6 @@
     "norm": "riceeccles stadium",
     "city": "Salt Lake City",
     "state": "UT",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "bobby dodd stadium": {
-    "name": "Bobby Dodd Stadium",
-    "norm": "bobby dodd stadium",
-    "city": "Atlanta",
-    "state": "GA",
     "indoor": false,
     "grass": false,
     "lat": null,
@@ -609,6 +599,16 @@
     "lat": null,
     "lon": null
   },
+  "bobby dodd stadium": {
+    "name": "Bobby Dodd Stadium",
+    "norm": "bobby dodd stadium",
+    "city": "Atlanta",
+    "state": "GA",
+    "indoor": false,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
   "david booth kansas memorial stadium": {
     "name": "David Booth Kansas Memorial Stadium",
     "norm": "david booth kansas memorial stadium",
@@ -629,32 +629,12 @@
     "lat": null,
     "lon": null
   },
-  "bryantdenny stadium": {
-    "name": "Bryant-Denny Stadium",
-    "norm": "bryantdenny stadium",
-    "city": "Tuscaloosa",
-    "state": "AL",
-    "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
   "razorback stadium": {
     "name": "Razorback Stadium",
     "norm": "razorback stadium",
     "city": "Fayetteville",
     "state": "AR",
     "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "mercedesbenz stadium": {
-    "name": "Mercedes-Benz Stadium",
-    "norm": "mercedesbenz stadium",
-    "city": "Atlanta",
-    "state": "GA",
-    "indoor": true,
     "grass": false,
     "lat": null,
     "lon": null
@@ -686,16 +666,6 @@
     "state": "KY",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "tiger stadium la": {
-    "name": "Tiger Stadium (LA)",
-    "norm": "tiger stadium la",
-    "city": "Baton Rouge",
-    "state": "LA",
-    "indoor": false,
-    "grass": true,
     "lat": null,
     "lon": null
   },
@@ -876,6 +846,36 @@
     "state": "PA",
     "indoor": false,
     "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "jma wireless dome": {
+    "name": "JMA Wireless Dome",
+    "norm": "jma wireless dome",
+    "city": "Syracuse",
+    "state": "NY",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "wallace wade stadium": {
+    "name": "Wallace Wade Stadium",
+    "norm": "wallace wade stadium",
+    "city": "Durham",
+    "state": "NC",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "california memorial stadium": {
+    "name": "California Memorial Stadium",
+    "norm": "california memorial stadium",
+    "city": "Berkeley",
+    "state": "CA",
+    "indoor": false,
+    "grass": false,
     "lat": null,
     "lon": null
   },
