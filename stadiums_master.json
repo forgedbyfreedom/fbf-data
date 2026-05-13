@@ -1,14 +1,4 @@
 {
-  "progressive field": {
-    "name": "Progressive Field",
-    "norm": "progressive field",
-    "city": "Cleveland",
-    "state": "Ohio",
-    "indoor": false,
-    "grass": true,
-    "lat": 41.4996574,
-    "lon": -81.6936772
-  },
   "oriole park at camden yards": {
     "name": "Oriole Park at Camden Yards",
     "norm": "oriole park at camden yards",
@@ -18,6 +8,16 @@
     "grass": true,
     "lat": 39.2908816,
     "lon": -76.610759
+  },
+  "progressive field": {
+    "name": "Progressive Field",
+    "norm": "progressive field",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.4996574,
+    "lon": -81.6936772
   },
   "pnc park": {
     "name": "PNC Park",
@@ -48,16 +48,6 @@
     "grass": true,
     "lat": 42.3588336,
     "lon": -71.0578303
-  },
-  "bell centre": {
-    "name": "Bell Centre",
-    "norm": "bell centre",
-    "city": "Montreal",
-    "state": "QC",
-    "indoor": true,
-    "grass": false,
-    "lat": 45.5046474,
-    "lon": -73.5658213
   },
   "rogers centre": {
     "name": "Rogers Centre",
@@ -119,15 +109,25 @@
     "lat": 43.0386475,
     "lon": -87.9090751
   },
-  "frost bank center": {
-    "name": "Frost Bank Center",
-    "norm": "frost bank center",
-    "city": "San Antonio",
-    "state": "TX",
+  "little caesars arena": {
+    "name": "Little Caesars Arena",
+    "norm": "little caesars arena",
+    "city": "Detroit",
+    "state": "MI",
     "indoor": true,
     "grass": false,
-    "lat": 29.4246002,
-    "lon": -98.4951405
+    "lat": 42.3315509,
+    "lon": -83.0466403
+  },
+  "ball arena": {
+    "name": "Ball Arena",
+    "norm": "ball arena",
+    "city": "Denver",
+    "state": "CO",
+    "indoor": true,
+    "grass": false,
+    "lat": 39.7392364,
+    "lon": -104.984862
   },
   "globe life field": {
     "name": "Globe Life Field",
@@ -159,16 +159,6 @@
     "lat": 38.5810606,
     "lon": -121.493895
   },
-  "tmobile arena": {
-    "name": "T-Mobile Arena",
-    "norm": "tmobile arena",
-    "city": "Las Vegas",
-    "state": "NV",
-    "indoor": true,
-    "grass": false,
-    "lat": 36.1674263,
-    "lon": -115.1484131
-  },
   "dodger stadium": {
     "name": "Dodger Stadium",
     "norm": "dodger stadium",
@@ -178,26 +168,6 @@
     "grass": true,
     "lat": 34.0536909,
     "lon": -118.242766
-  },
-  "little caesars arena": {
-    "name": "Little Caesars Arena",
-    "norm": "little caesars arena",
-    "city": "Detroit",
-    "state": "MI",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "ball arena": {
-    "name": "Ball Arena",
-    "norm": "ball arena",
-    "city": "Denver",
-    "state": "CO",
-    "indoor": true,
-    "grass": false,
-    "lat": null,
-    "lon": null
   },
   "keybank center": {
     "name": "KeyBank Center",
@@ -319,11 +289,41 @@
     "lat": null,
     "lon": null
   },
+  "tmobile arena": {
+    "name": "T-Mobile Arena",
+    "norm": "tmobile arena",
+    "city": "Las Vegas",
+    "state": "NV",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
   "meta apex": {
     "name": "Meta APEX",
     "norm": "meta apex",
     "city": "Las Vegas",
     "state": "NV",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "bell centre": {
+    "name": "Bell Centre",
+    "norm": "bell centre",
+    "city": "Montreal",
+    "state": "QC",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "frost bank center": {
+    "name": "Frost Bank Center",
+    "norm": "frost bank center",
+    "city": "San Antonio",
+    "state": "TX",
     "indoor": true,
     "grass": false,
     "lat": null,
