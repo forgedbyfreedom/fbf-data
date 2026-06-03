@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260603_0203",
+  "timestamp": "20260603_0348",
   "count": 227,
   "data": [
     {
@@ -311,9 +311,9 @@
         "slug": "san-francisco-giants",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sf.png"
       },
-      "home_score": 4.0,
-      "away_score": 1.0,
-      "total_points": 5.0,
+      "home_score": 8.0,
+      "away_score": 3.0,
+      "total_points": 11.0,
       "odds": null,
       "venue": {
         "name": "American Family Field",
@@ -348,8 +348,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tex.png"
       },
       "home_score": 4.0,
-      "away_score": 4.0,
-      "total_points": 8.0,
+      "away_score": 7.0,
+      "total_points": 11.0,
       "odds": null,
       "venue": {
         "name": "Busch Stadium",
@@ -383,9 +383,9 @@
         "slug": "vegas-golden-knights",
         "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png"
       },
-      "home_score": 3.0,
-      "away_score": 3.0,
-      "total_points": 6.0,
+      "home_score": 4.0,
+      "away_score": 5.0,
+      "total_points": 9.0,
       "odds": {
         "details": "CAR -162",
         "spread": -1.5,
@@ -460,7 +460,7 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "VGK +1.5",
-      "tagged_at": "2026-06-03T02:03:51.651480+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281850+00:00"
     },
     {
       "sport": "mlb",
@@ -519,9 +519,9 @@
         "slug": "pittsburgh-pirates",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/pit.png"
       },
-      "home_score": 4.0,
-      "away_score": 6.0,
-      "total_points": 10.0,
+      "home_score": 6.0,
+      "away_score": 10.0,
+      "total_points": 16.0,
       "odds": null,
       "venue": {
         "name": "Daikin Park",
@@ -555,9 +555,9 @@
         "slug": "colorado-rockies",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/col.png"
       },
-      "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "home_score": 2.0,
+      "away_score": 8.0,
+      "total_points": 10.0,
       "odds": null,
       "venue": {
         "name": "Angel Stadium",
@@ -591,9 +591,9 @@
         "slug": "los-angeles-dodgers",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/lad.png"
       },
-      "home_score": null,
-      "away_score": 2.0,
-      "total_points": 2.0,
+      "home_score": 2.0,
+      "away_score": 6.0,
+      "total_points": 8.0,
       "odds": null,
       "venue": {
         "name": "Chase Field",
@@ -627,9 +627,9 @@
         "slug": "new-york-mets",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nym.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 8.0,
+      "away_score": 3.0,
+      "total_points": 11.0,
       "odds": null,
       "venue": {
         "name": "T-Mobile Park",
@@ -1159,7 +1159,7 @@
       "spread": -4.5,
       "favorite": "SA -4.5",
       "underdog": "NY +4.5",
-      "tagged_at": "2026-06-03T02:03:51.651499+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281866+00:00"
     },
     {
       "sport": "mlb",
@@ -1473,7 +1473,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "CAR -162",
+        "spread": -1.5,
+        "total": 5.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Lenovo Center",
         "city": "Raleigh",
@@ -1483,7 +1488,17 @@
         "lat": 35.7803977,
         "lon": -78.6390989
       },
-      "officials": []
+      "officials": [],
+      "fav_team": "Carolina Hurricanes",
+      "dog_team": "Vegas Golden Knights",
+      "fav_abbr": "CAR",
+      "dog_abbr": "VGK",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "spread": -1.5,
+      "favorite": "CAR -1.5",
+      "underdog": "VGK +1.5",
+      "tagged_at": "2026-06-03T03:48:23.281872+00:00"
     },
     {
       "sport": "mlb",
@@ -1696,8 +1711,8 @@
         "state": "Michigan",
         "indoor": false,
         "grass": true,
-        "lat": 42.3315509,
-        "lon": -83.0466403
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -1768,8 +1783,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901265
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -1804,8 +1819,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2092,8 +2107,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 32.7174202,
-        "lon": -117.162772
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2164,8 +2179,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2200,8 +2215,8 @@
         "state": "Michigan",
         "indoor": false,
         "grass": true,
-        "lat": 42.3315509,
-        "lon": -83.0466403
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2344,8 +2359,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901265
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2452,8 +2467,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2567,8 +2582,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2610,8 +2625,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2653,8 +2668,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2696,8 +2711,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2739,8 +2754,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2782,8 +2797,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2825,8 +2840,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -2933,8 +2948,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -2976,8 +2991,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3019,8 +3034,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3062,8 +3077,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3105,8 +3120,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3148,8 +3163,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3220,8 +3235,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3256,8 +3271,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 32.7174202,
-        "lon": -117.162772
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3400,8 +3415,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901265
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3436,8 +3451,8 @@
         "state": "Michigan",
         "indoor": false,
         "grass": true,
-        "lat": 42.3315509,
-        "lon": -83.0466403
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3472,8 +3487,8 @@
         "state": "Florida",
         "indoor": true,
         "grass": false,
-        "lat": 25.7741566,
-        "lon": -80.1935973
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3724,8 +3739,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3760,8 +3775,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 32.7174202,
-        "lon": -117.162772
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -3940,8 +3955,8 @@
         "state": "Ontario",
         "indoor": true,
         "grass": false,
-        "lat": 34.0021024,
-        "lon": -117.5901265
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4048,8 +4063,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 32.7174202,
-        "lon": -117.162772
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4156,8 +4171,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -4300,8 +4315,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -4752,8 +4767,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4795,8 +4810,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4838,8 +4853,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4881,8 +4896,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4924,8 +4939,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -4967,8 +4982,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -5010,8 +5025,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -5053,8 +5068,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -5096,8 +5111,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -5139,8 +5154,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": []
     },
@@ -5698,8 +5713,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5741,8 +5756,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5784,8 +5799,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5827,8 +5842,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5870,8 +5885,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5913,8 +5928,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5956,8 +5971,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -5999,8 +6014,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -6042,8 +6057,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -6085,8 +6100,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -6128,8 +6143,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -6171,8 +6186,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": []
     },
@@ -6214,8 +6229,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": []
     },
@@ -6257,8 +6272,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": []
     },
@@ -6300,8 +6315,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": []
     },
@@ -6343,8 +6358,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": []
     },
@@ -6386,8 +6401,8 @@
         "state": "OK",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 35.4729886,
+        "lon": -97.5170536
       },
       "officials": []
     },
@@ -6827,7 +6842,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-06-03T02:03:51.651512+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281882+00:00"
     },
     {
       "sport": "ncaaf",
@@ -6865,8 +6880,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": [],
       "fav_team": "USC Trojans",
@@ -6878,14 +6893,14 @@
       "spread": -35.5,
       "favorite": "USC -35.5",
       "underdog": "SJSU +35.5",
-      "tagged_at": "2026-06-03T02:03:51.651518+00:00",
+      "tagged_at": "2026-06-03T03:48:23.281887+00:00",
       "weather": {
-        "summary": "Patchy Fog",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 58,
-        "temp": 58,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -6941,7 +6956,7 @@
       "spread": -3.0,
       "favorite": "UVA -3.0",
       "underdog": "NCSU +3.0",
-      "tagged_at": "2026-06-03T02:03:51.651523+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281891+00:00"
     },
     {
       "sport": "ncaaf",
@@ -6979,8 +6994,8 @@
         "state": "ND",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 46.877229,
+        "lon": -96.789821
       },
       "officials": [],
       "fav_team": "North Dakota State Bison",
@@ -6992,7 +7007,7 @@
       "spread": -10.0,
       "favorite": "NDSU -10.0",
       "underdog": "JVST +10.0",
-      "tagged_at": "2026-06-03T02:03:51.651527+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281894+00:00"
     },
     {
       "sport": "ncaaf",
@@ -7030,8 +7045,8 @@
         "state": "MI",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 42.241051,
+        "lon": -83.6117646
       },
       "officials": [],
       "fav_team": "Eastern Michigan Eagles",
@@ -7043,7 +7058,19 @@
       "spread": -8.5,
       "favorite": "EMU -8.5",
       "underdog": "SAC +8.5",
-      "tagged_at": "2026-06-03T02:03:51.651531+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281898+00:00",
+      "weather": {
+        "summary": "Clear",
+        "description": "",
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -7081,8 +7108,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 37.4265407,
+        "lon": -122.1703055
       },
       "officials": [],
       "fav_team": "Stanford Cardinal",
@@ -7094,15 +7121,15 @@
       "spread": -3.0,
       "favorite": "STAN -3.0",
       "underdog": "HAW +3.0",
-      "tagged_at": "2026-06-03T02:03:51.651534+00:00",
+      "tagged_at": "2026-06-03T03:48:23.281902+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 57,
-        "temp": 57,
-        "windSpeedMph": 1.0,
-        "wind": 1.0,
-        "rainChancePct": 1
+        "temperatureF": 65,
+        "temp": 65,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
         "risk": 0
@@ -7144,8 +7171,8 @@
         "state": "FL",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 30.4380832,
+        "lon": -84.2809332
       },
       "officials": [],
       "fav_team": "Florida State Seminoles",
@@ -7157,7 +7184,19 @@
       "spread": -29.5,
       "favorite": "FSU -29.5",
       "underdog": "NMSU +29.5",
-      "tagged_at": "2026-06-03T02:03:51.651538+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281905+00:00",
+      "weather": {
+        "summary": "Slight Chance Rain Showers",
+        "description": "",
+        "temperatureF": 76,
+        "temp": 76,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 24
+      },
+      "weatherRisk": {
+        "risk": 1
+      }
     },
     {
       "sport": "ncaaf",
@@ -7195,8 +7234,8 @@
         "state": "NV",
         "indoor": true,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 36.1674263,
+        "lon": -115.1484131
       },
       "officials": [],
       "fav_team": "UNLV Rebels",
@@ -7208,7 +7247,7 @@
       "spread": -3.0,
       "favorite": "UNLV -3.0",
       "underdog": "MEM +3.0",
-      "tagged_at": "2026-06-03T02:03:51.651541+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281908+00:00"
     },
     {
       "sport": "ncaaf",
@@ -7246,8 +7285,8 @@
         "state": "NJ",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 40.5464326,
+        "lon": -74.4660542
       },
       "officials": [],
       "fav_team": "Rutgers Scarlet Knights",
@@ -7259,7 +7298,19 @@
       "spread": -30.5,
       "favorite": "RUTG -30.5",
       "underdog": "MASS +30.5",
-      "tagged_at": "2026-06-03T02:03:51.651545+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281912+00:00",
+      "weather": {
+        "summary": "Partly Cloudy",
+        "description": "",
+        "temperatureF": 65,
+        "temp": 65,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
+        "rainChancePct": 1
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -7292,10 +7343,22 @@
         "state": "FL",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 28.5421218,
+        "lon": -81.379045
       },
-      "officials": []
+      "officials": [],
+      "weather": {
+        "summary": "Chance Showers And Thunderstorms",
+        "description": "",
+        "temperatureF": 76,
+        "temp": 76,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 51
+      },
+      "weatherRisk": {
+        "risk": 1
+      }
     },
     {
       "sport": "ncaaf",
@@ -7333,8 +7396,8 @@
         "state": "NC",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 36.0998131,
+        "lon": -80.2440518
       },
       "officials": [],
       "fav_team": "Wake Forest Demon Deacons",
@@ -7346,7 +7409,19 @@
       "spread": -22.5,
       "favorite": "WAKE -22.5",
       "underdog": "AKR +22.5",
-      "tagged_at": "2026-06-03T02:03:51.651549+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281916+00:00",
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -7541,7 +7616,7 @@
       "spread": -7.0,
       "favorite": "GT -7.0",
       "underdog": "COLO +7.0",
-      "tagged_at": "2026-06-03T02:03:51.651553+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281922+00:00"
     },
     {
       "sport": "ncaaf",
@@ -7664,7 +7739,7 @@
       "spread": -27.5,
       "favorite": "ILL -27.5",
       "underdog": "UAB +27.5",
-      "tagged_at": "2026-06-03T02:03:51.651560+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281926+00:00"
     },
     {
       "sport": "ncaaf",
@@ -7702,8 +7777,8 @@
         "state": "MI",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 42.241051,
+        "lon": -83.6117646
       },
       "officials": [],
       "fav_team": "Eastern Michigan Eagles",
@@ -7715,7 +7790,19 @@
       "spread": -3.5,
       "favorite": "EMU -3.5",
       "underdog": "SJSU +3.5",
-      "tagged_at": "2026-06-03T02:03:51.651563+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281930+00:00",
+      "weather": {
+        "summary": "Clear",
+        "description": "",
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      }
     },
     {
       "sport": "ncaaf",
@@ -7751,19 +7838,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 9.0,
-        "wind": 9.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -7799,19 +7874,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 4
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -7847,19 +7910,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 76,
-        "temp": 76,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 1
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -7910,19 +7961,7 @@
       "spread": -10.5,
       "favorite": "MSU -10.5",
       "underdog": "TOL +10.5",
-      "tagged_at": "2026-06-03T02:03:51.651567+00:00",
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "tagged_at": "2026-06-03T03:48:23.281933+00:00"
     },
     {
       "sport": "ncaaf",
@@ -7960,8 +7999,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 37.4265407,
+        "lon": -122.1703055
       },
       "officials": [],
       "fav_team": "Miami Hurricanes",
@@ -7973,15 +8012,15 @@
       "spread": -21.5,
       "favorite": "MIA -21.5",
       "underdog": "STAN +21.5",
-      "tagged_at": "2026-06-03T02:03:51.651571+00:00",
+      "tagged_at": "2026-06-03T03:48:23.281939+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 57,
-        "temp": 57,
-        "windSpeedMph": 1.0,
-        "wind": 1.0,
-        "rainChancePct": 1
+        "temperatureF": 65,
+        "temp": 65,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
         "risk": 0
@@ -8023,8 +8062,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": [],
       "fav_team": "USC Trojans",
@@ -8036,14 +8075,14 @@
       "spread": -23.5,
       "favorite": "USC -23.5",
       "underdog": "FRES +23.5",
-      "tagged_at": "2026-06-03T02:03:51.651574+00:00",
+      "tagged_at": "2026-06-03T03:48:23.281943+00:00",
       "weather": {
-        "summary": "Patchy Fog",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 58,
-        "temp": 58,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -8099,19 +8138,7 @@
       "spread": -40.5,
       "favorite": "OU -40.5",
       "underdog": "UTEP +40.5",
-      "tagged_at": "2026-06-03T02:03:51.651580+00:00",
-      "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
-        "description": "",
-        "temperatureF": 80,
-        "temp": 80,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
-        "rainChancePct": 23
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "tagged_at": "2026-06-03T03:48:23.281948+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8147,19 +8174,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8210,19 +8225,7 @@
       "spread": -26.5,
       "favorite": "ALA -26.5",
       "underdog": "ECU +26.5",
-      "tagged_at": "2026-06-03T02:03:51.651585+00:00",
-      "weather": {
-        "summary": "Chance Rain Showers",
-        "description": "",
-        "temperatureF": 78,
-        "temp": 78,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 36
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "tagged_at": "2026-06-03T03:48:23.281951+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8273,19 +8276,7 @@
       "spread": -18.5,
       "favorite": "HOU -18.5",
       "underdog": "ORST +18.5",
-      "tagged_at": "2026-06-03T02:03:51.651589+00:00",
-      "weather": {
-        "summary": "Chance Showers And Thunderstorms",
-        "description": "",
-        "temperatureF": 82,
-        "temp": 82,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 26
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "tagged_at": "2026-06-03T03:48:23.281955+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8336,19 +8327,7 @@
       "spread": -17.5,
       "favorite": "WVU -17.5",
       "underdog": "CCU +17.5",
-      "tagged_at": "2026-06-03T02:03:51.651592+00:00",
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 68,
-        "temp": 68,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 4
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "tagged_at": "2026-06-03T03:48:23.281958+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8399,19 +8378,7 @@
       "spread": -16.5,
       "favorite": "PITT -16.5",
       "underdog": "M-OH +16.5",
-      "tagged_at": "2026-06-03T02:03:51.651596+00:00",
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 65,
-        "temp": 65,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "tagged_at": "2026-06-03T03:48:23.281962+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8498,19 +8465,7 @@
       "spread": -40.5,
       "favorite": "IU -40.5",
       "underdog": "UNT +40.5",
-      "tagged_at": "2026-06-03T02:03:51.651600+00:00",
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "tagged_at": "2026-06-03T03:48:23.281967+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8561,19 +8516,7 @@
       "spread": -23.5,
       "favorite": "NEB -23.5",
       "underdog": "OHIO +23.5",
-      "tagged_at": "2026-06-03T02:03:51.651605+00:00",
-      "weather": {
-        "summary": "Chance Rain Showers",
-        "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 9.0,
-        "wind": 9.0,
-        "rainChancePct": 25
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "tagged_at": "2026-06-03T03:48:23.281970+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8609,19 +8552,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 67,
-        "temp": 67,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8657,19 +8588,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Mostly Cloudy",
-        "description": "",
-        "temperatureF": 58,
-        "temp": 58,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
-        "rainChancePct": 5
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8705,19 +8624,7 @@
         "lat": null,
         "lon": null
       },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 68,
-        "temp": 68,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 1
-      }
+      "officials": []
     },
     {
       "sport": "ncaaf",
@@ -8768,19 +8675,7 @@
       "spread": -6.0,
       "favorite": "JMU -6.0",
       "underdog": "LIB +6.0",
-      "tagged_at": "2026-06-03T02:03:51.651609+00:00",
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
-        "rainChancePct": 9
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "tagged_at": "2026-06-03T03:48:23.281974+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8831,19 +8726,7 @@
       "spread": -50.5,
       "favorite": "OSU -50.5",
       "underdog": "BALL +50.5",
-      "tagged_at": "2026-06-03T02:03:51.651613+00:00",
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      }
+      "tagged_at": "2026-06-03T03:48:23.281977+00:00"
     },
     {
       "sport": "ncaaf",
@@ -8894,7 +8777,7 @@
       "spread": -34.5,
       "favorite": "SC -34.5",
       "underdog": "KENT +34.5",
-      "tagged_at": "2026-06-03T02:03:51.651617+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281981+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9089,7 +8972,7 @@
       "spread": -6.5,
       "favorite": "AUB -6.5",
       "underdog": "BAY +6.5",
-      "tagged_at": "2026-06-03T02:03:51.651621+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281986+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9176,7 +9059,7 @@
       "spread": -30.5,
       "favorite": "TEX -30.5",
       "underdog": "TXST +30.5",
-      "tagged_at": "2026-06-03T02:03:51.651627+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281990+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9227,7 +9110,7 @@
       "spread": -9.5,
       "favorite": "CIN -9.5",
       "underdog": "BC +9.5",
-      "tagged_at": "2026-06-03T02:03:51.651631+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281993+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9278,7 +9161,7 @@
       "spread": -8.5,
       "favorite": "DUKE -8.5",
       "underdog": "TULN +8.5",
-      "tagged_at": "2026-06-03T02:03:51.651634+00:00"
+      "tagged_at": "2026-06-03T03:48:23.281997+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9329,7 +9212,7 @@
       "spread": -24.5,
       "favorite": "ORE -24.5",
       "underdog": "BOIS +24.5",
-      "tagged_at": "2026-06-03T02:03:51.651637+00:00"
+      "tagged_at": "2026-06-03T03:48:23.282000+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9380,7 +9263,7 @@
       "spread": -21.5,
       "favorite": "WASH -21.5",
       "underdog": "WSU +21.5",
-      "tagged_at": "2026-06-03T02:03:51.651641+00:00"
+      "tagged_at": "2026-06-03T03:48:23.282005+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9431,7 +9314,7 @@
       "spread": -6.5,
       "favorite": "MISS -6.5",
       "underdog": "LOU +6.5",
-      "tagged_at": "2026-06-03T02:03:51.651646+00:00"
+      "tagged_at": "2026-06-03T03:48:23.282008+00:00"
     },
     {
       "sport": "ncaaf",
@@ -9482,8 +9365,8 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-06-03T02:03:51.651650+00:00"
+      "tagged_at": "2026-06-03T03:48:23.282011+00:00"
     }
   ],
-  "weather_merged_at": "2026-06-03T02:09:55.285779"
+  "weather_merged_at": "2026-06-03T03:54:07.759406"
 }
