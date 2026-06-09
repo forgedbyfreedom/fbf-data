@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-09T01:49:25.966358+00:00",
-  "count": 1565,
+  "timestamp": "2026-06-09T03:21:56.909816+00:00",
+  "count": 1566,
   "locked": [
     {
       "id": "401820771",
@@ -126997,6 +126997,85 @@
         "has_vegas_total": false
       },
       "locked_at": "2026-06-09T01:49:25.965870+00:00"
+    },
+    {
+      "id": "401815679",
+      "sport": "mlb",
+      "matchup": "Milwaukee Brewers at Athletics Athletics",
+      "shortName": "MIL @ ATH",
+      "date_utc": "2026-06-09T02:05Z",
+      "date_local": "2026-06-08 10:05 PM ET",
+      "home": "ATH",
+      "away": "MIL",
+      "home_team": {
+        "id": "11",
+        "name": "Athletics",
+        "abbr": "ATH",
+        "slug": "athletics",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png"
+      },
+      "away_team": {
+        "id": "8",
+        "name": "Milwaukee Brewers",
+        "abbr": "MIL",
+        "slug": "milwaukee-brewers",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/mil.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Las Vegas Ballpark",
+        "city": "Las Vegas",
+        "state": "Nevada",
+        "indoor": false,
+        "grass": true,
+        "lat": 36.1674263,
+        "lon": -115.1484131
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.8,
+        "projected_away_score": 12.3,
+        "projected_total": 30.1,
+        "projected_spread": 5.5,
+        "win_probability_home": 0.714,
+        "confidence": 37
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3166,
+        "away_win_pct": 0.6834,
+        "home_cover_pct": 0.3166,
+        "over_pct": 0.5062,
+        "avg_simulated_margin": -1.71,
+        "avg_simulated_total": 7.01
+      },
+      "picks": {
+        "su_pick": "Milwaukee Brewers",
+        "su_pick_abbr": "MIL",
+        "su_confidence": 60.3,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 7.0,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "locked_at": "2026-06-09T03:21:56.909383+00:00"
     }
   ]
 }
