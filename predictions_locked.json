@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-11T23:13:33.279995+00:00",
-  "count": 1605,
+  "timestamp": "2026-06-12T00:09:45.987978+00:00",
+  "count": 1607,
   "locked": [
     {
       "id": "401820771",
@@ -130168,6 +130168,169 @@
         "has_vegas_total": false
       },
       "locked_at": "2026-06-11T23:13:33.279568+00:00"
+    },
+    {
+      "id": "401815716",
+      "sport": "mlb",
+      "matchup": "Atlanta Braves at Chicago White Sox",
+      "shortName": "ATL @ CHW",
+      "date_utc": "2026-06-11T23:40Z",
+      "date_local": "2026-06-11 07:40 PM ET",
+      "home": "CHW",
+      "away": "ATL",
+      "home_team": {
+        "id": "4",
+        "name": "Chicago White Sox",
+        "abbr": "CHW",
+        "slug": "chicago-white-sox",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chw.png"
+      },
+      "away_team": {
+        "id": "15",
+        "name": "Atlanta Braves",
+        "abbr": "ATL",
+        "slug": "atlanta-braves",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/atl.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Rate Field",
+        "city": "Chicago",
+        "state": "Illinois",
+        "indoor": false,
+        "grass": true,
+        "lat": 41.8755616,
+        "lon": -87.6244212
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4443,
+        "away_win_pct": 0.5557,
+        "home_cover_pct": 0.4443,
+        "over_pct": 0.4961,
+        "avg_simulated_margin": -0.51,
+        "avg_simulated_total": 5.54
+      },
+      "picks": {
+        "su_pick": "Atlanta Braves",
+        "su_pick_abbr": "ATL",
+        "su_confidence": 53.1,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 5.5,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      },
+      "locked_at": "2026-06-12T00:09:45.987548+00:00"
+    },
+    {
+      "id": "401874175",
+      "sport": "nhl",
+      "matchup": "Vegas Golden Knights at Carolina Hurricanes",
+      "shortName": "VGK @ CAR",
+      "date_utc": "2026-06-12T00:00Z",
+      "date_local": "2026-06-11 08:00 PM ET",
+      "home": "CAR",
+      "away": "VGK",
+      "home_team": {
+        "id": "7",
+        "name": "Carolina Hurricanes",
+        "abbr": "CAR",
+        "slug": "carolina-hurricanes",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/car.png"
+      },
+      "away_team": {
+        "id": "37",
+        "name": "Vegas Golden Knights",
+        "abbr": "VGK",
+        "slug": "vegas-golden-knights",
+        "logo": "https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png"
+      },
+      "odds": {
+        "details": "CAR -155",
+        "spread": -1.5,
+        "total": 6.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Lenovo Center",
+        "city": "Raleigh",
+        "state": "NC",
+        "indoor": true,
+        "grass": false,
+        "lat": 35.7803977,
+        "lon": -78.6390989
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": "Carolina Hurricanes",
+      "dog_team": "Vegas Golden Knights",
+      "fav_abbr": "CAR",
+      "dog_abbr": "VGK",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 8.6,
+        "projected_away_score": 6.0,
+        "projected_total": 14.7,
+        "projected_spread": 2.6,
+        "win_probability_home": 0.605,
+        "confidence": 71
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.863,
+        "away_win_pct": 0.137,
+        "home_cover_pct": 0.6799,
+        "over_pct": 0.6937,
+        "avg_simulated_margin": 2.67,
+        "avg_simulated_total": 7.55
+      },
+      "picks": {
+        "su_pick": "Carolina Hurricanes",
+        "su_pick_abbr": "CAR",
+        "su_confidence": 70.3,
+        "ats_pick": "Carolina Hurricanes",
+        "ats_pick_abbr": "CAR",
+        "ats_spread": -1.5,
+        "ats_confidence": 52.1,
+        "ats_high_conf": true,
+        "ou_pick": "Under",
+        "ou_line": 6.5,
+        "ou_confidence": 50.6,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true
+      },
+      "locked_at": "2026-06-12T00:09:45.987548+00:00"
     }
   ]
 }
