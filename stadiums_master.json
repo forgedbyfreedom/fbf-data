@@ -19,6 +19,26 @@
     "lat": 38.8950982,
     "lon": -77.0363849
   },
+  "fenway park": {
+    "name": "Fenway Park",
+    "norm": "fenway park",
+    "city": "Boston",
+    "state": "Massachusetts",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.3588336,
+    "lon": -71.0578303
+  },
+  "yankee stadium": {
+    "name": "Yankee Stadium",
+    "norm": "yankee stadium",
+    "city": "Bronx",
+    "state": "New York",
+    "indoor": false,
+    "grass": true,
+    "lat": 40.8466508,
+    "lon": -73.8785937
+  },
   "great american ball park": {
     "name": "Great American Ball Park",
     "norm": "great american ball park",
@@ -28,6 +48,26 @@
     "grass": true,
     "lat": 39.1012809,
     "lon": -84.5127405
+  },
+  "truist park": {
+    "name": "Truist Park",
+    "norm": "truist park",
+    "city": "Atlanta",
+    "state": "Georgia",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.7544657,
+    "lon": -84.3898151
+  },
+  "american family field": {
+    "name": "American Family Field",
+    "norm": "american family field",
+    "city": "Milwaukee",
+    "state": "Wisconsin",
+    "indoor": true,
+    "grass": true,
+    "lat": 43.0386475,
+    "lon": -87.9090751
   },
   "busch stadium": {
     "name": "Busch Stadium",
@@ -79,6 +119,16 @@
     "lat": 33.4484367,
     "lon": -112.074141
   },
+  "tmobile park": {
+    "name": "T-Mobile Park",
+    "norm": "tmobile park",
+    "city": "Seattle",
+    "state": "Washington",
+    "indoor": true,
+    "grass": true,
+    "lat": 47.6038321,
+    "lon": -122.330062
+  },
   "sutter health park": {
     "name": "Sutter Health Park",
     "norm": "sutter health park",
@@ -98,56 +148,6 @@
     "grass": true,
     "lat": 34.0536909,
     "lon": -118.242766
-  },
-  "fenway park": {
-    "name": "Fenway Park",
-    "norm": "fenway park",
-    "city": "Boston",
-    "state": "Massachusetts",
-    "indoor": false,
-    "grass": true,
-    "lat": 42.3588336,
-    "lon": -71.0578303
-  },
-  "yankee stadium": {
-    "name": "Yankee Stadium",
-    "norm": "yankee stadium",
-    "city": "Bronx",
-    "state": "New York",
-    "indoor": false,
-    "grass": true,
-    "lat": 40.8466508,
-    "lon": -73.8785937
-  },
-  "truist park": {
-    "name": "Truist Park",
-    "norm": "truist park",
-    "city": "Atlanta",
-    "state": "Georgia",
-    "indoor": false,
-    "grass": true,
-    "lat": 33.7544657,
-    "lon": -84.3898151
-  },
-  "american family field": {
-    "name": "American Family Field",
-    "norm": "american family field",
-    "city": "Milwaukee",
-    "state": "Wisconsin",
-    "indoor": true,
-    "grass": true,
-    "lat": 43.0386475,
-    "lon": -87.9090751
-  },
-  "tmobile park": {
-    "name": "T-Mobile Park",
-    "norm": "tmobile park",
-    "city": "Seattle",
-    "state": "Washington",
-    "indoor": true,
-    "grass": true,
-    "lat": 47.6038321,
-    "lon": -122.330062
   },
   "kauffman stadium": {
     "name": "Kauffman Stadium",
@@ -209,6 +209,66 @@
     "lat": null,
     "lon": null
   },
+  "rogers centre": {
+    "name": "Rogers Centre",
+    "norm": "rogers centre",
+    "city": "Toronto",
+    "state": "Ontario",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "citi field": {
+    "name": "Citi Field",
+    "norm": "citi field",
+    "city": "Queens",
+    "state": "New York",
+    "indoor": false,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "rate field": {
+    "name": "Rate Field",
+    "norm": "rate field",
+    "city": "Chicago",
+    "state": "Illinois",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "target field": {
+    "name": "Target Field",
+    "norm": "target field",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "angel stadium": {
+    "name": "Angel Stadium",
+    "norm": "angel stadium",
+    "city": "Anaheim",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "petco park": {
+    "name": "Petco Park",
+    "norm": "petco park",
+    "city": "San Diego",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
   "national gymnastics arena": {
     "name": "National Gymnastics Arena",
     "norm": "national gymnastics arena",
@@ -226,8 +286,8 @@
     "state": "NV",
     "indoor": true,
     "grass": false,
-    "lat": 36.1674263,
-    "lon": -115.1484131
+    "lat": null,
+    "lon": null
   },
   "paycom center": {
     "name": "Paycom Center",
@@ -266,8 +326,8 @@
     "state": "PA",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 39.9527237,
+    "lon": -75.1635262
   },
   "aviva stadium": {
     "name": "Aviva Stadium",
@@ -286,8 +346,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 34.0536909,
+    "lon": -118.242766
   },
   "scott stadium": {
     "name": "Scott Stadium",
@@ -296,8 +356,8 @@
     "state": "VA",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 38.029306,
+    "lon": -78.4766781
   },
   "fargodome": {
     "name": "Fargodome",
@@ -306,8 +366,8 @@
     "state": "ND",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 46.877229,
+    "lon": -96.789821
   },
   "rynearson stadium": {
     "name": "Rynearson Stadium",
@@ -316,8 +376,8 @@
     "state": "MI",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 42.241051,
+    "lon": -83.6117646
   },
   "stanford stadium": {
     "name": "Stanford Stadium",
@@ -326,8 +386,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 37.4265407,
+    "lon": -122.1703055
   },
   "doak campbell stadium": {
     "name": "Doak Campbell Stadium",
@@ -336,8 +396,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 30.4380832,
+    "lon": -84.2809332
   },
   "allegiant stadium": {
     "name": "Allegiant Stadium",
@@ -346,8 +406,8 @@
     "state": "NV",
     "indoor": true,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 36.1674263,
+    "lon": -115.1484131
   },
   "shi stadium": {
     "name": "SHI Stadium",
@@ -356,8 +416,8 @@
     "state": "NJ",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 40.5464326,
+    "lon": -74.4660542
   },
   "acrisure bounce house": {
     "name": "Acrisure Bounce House",
@@ -366,8 +426,8 @@
     "state": "FL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 28.5421218,
+    "lon": -81.379045
   },
   "allegacy federal credit union stadium": {
     "name": "Allegacy Federal Credit Union Stadium",
@@ -376,8 +436,8 @@
     "state": "NC",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.0998131,
+    "lon": -80.2440518
   },
   "delaware stadium": {
     "name": "Delaware Stadium",
@@ -386,8 +446,8 @@
     "state": "DE",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 39.6828358,
+    "lon": -75.7515682
   },
   "fifth third stadium": {
     "name": "Fifth Third Stadium",
@@ -396,8 +456,8 @@
     "state": "GA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 34.0234337,
+    "lon": -84.6154897
   },
   "broadview stadium": {
     "name": "Broadview Stadium",
@@ -406,8 +466,8 @@
     "state": "NY",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 42.8864163,
+    "lon": -78.8781493
   },
   "memorial stadium": {
     "name": "Memorial Stadium",
