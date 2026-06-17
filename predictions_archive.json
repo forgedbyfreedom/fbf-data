@@ -121744,6 +121744,84 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401815792",
+      "sport": "mlb",
+      "matchup": "New York Mets at Cincinnati Reds",
+      "shortName": "NYM @ CIN",
+      "date_utc": "2026-06-17T16:40Z",
+      "date_local": "2026-06-17 12:40 PM ET",
+      "home": "CIN",
+      "away": "NYM",
+      "home_team": {
+        "id": "17",
+        "name": "Cincinnati Reds",
+        "abbr": "CIN",
+        "slug": "cincinnati-reds",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cin.png"
+      },
+      "away_team": {
+        "id": "21",
+        "name": "New York Mets",
+        "abbr": "NYM",
+        "slug": "new-york-mets",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nym.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Great American Ball Park",
+        "city": "Cincinnati",
+        "state": "Ohio",
+        "indoor": false,
+        "grass": true,
+        "lat": 39.1012809,
+        "lon": -84.5127405
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.456,
+        "away_win_pct": 0.544,
+        "home_cover_pct": 0.456,
+        "over_pct": 0.495,
+        "avg_simulated_margin": -0.36,
+        "avg_simulated_total": 8.92
+      },
+      "picks": {
+        "su_pick": "New York Mets",
+        "su_pick_abbr": "NYM",
+        "su_confidence": 52.5,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 8.9,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
