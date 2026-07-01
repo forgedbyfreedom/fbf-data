@@ -127516,6 +127516,84 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401815977",
+      "sport": "mlb",
+      "matchup": "Los Angeles Dodgers at Athletics Athletics",
+      "shortName": "LAD @ ATH",
+      "date_utc": "2026-07-01T01:40Z",
+      "date_local": "2026-06-30 09:40 PM ET",
+      "home": "ATH",
+      "away": "LAD",
+      "home_team": {
+        "id": "11",
+        "name": "Athletics",
+        "abbr": "ATH",
+        "slug": "athletics",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png"
+      },
+      "away_team": {
+        "id": "19",
+        "name": "Los Angeles Dodgers",
+        "abbr": "LAD",
+        "slug": "los-angeles-dodgers",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/lad.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Sutter Health Park",
+        "city": "Sacramento",
+        "state": "California",
+        "indoor": false,
+        "grass": true,
+        "lat": 38.5810606,
+        "lon": -121.493895
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3787,
+        "away_win_pct": 0.6213,
+        "home_cover_pct": 0.3787,
+        "over_pct": 0.5078,
+        "avg_simulated_margin": -1.1,
+        "avg_simulated_total": 5.14
+      },
+      "picks": {
+        "su_pick": "Los Angeles Dodgers",
+        "su_pick_abbr": "LAD",
+        "su_confidence": 56.8,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 5.1,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
