@@ -129856,6 +129856,84 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401816019",
+      "sport": "mlb",
+      "matchup": "Pittsburgh Pirates at Washington Nationals",
+      "shortName": "PIT @ WSH",
+      "date_utc": "2026-07-04T15:05Z",
+      "date_local": "2026-07-04 11:05 AM ET",
+      "home": "WSH",
+      "away": "PIT",
+      "home_team": {
+        "id": "20",
+        "name": "Washington Nationals",
+        "abbr": "WSH",
+        "slug": "washington-nationals",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png"
+      },
+      "away_team": {
+        "id": "23",
+        "name": "Pittsburgh Pirates",
+        "abbr": "PIT",
+        "slug": "pittsburgh-pirates",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/pit.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Nationals Park",
+        "city": "Washington",
+        "state": "District of Columbia",
+        "indoor": false,
+        "grass": true,
+        "lat": 38.8950982,
+        "lon": -77.0363849
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5559,
+        "away_win_pct": 0.4441,
+        "home_cover_pct": 0.5559,
+        "over_pct": 0.5005,
+        "avg_simulated_margin": 0.52,
+        "avg_simulated_total": 8.17
+      },
+      "picks": {
+        "su_pick": "Washington Nationals",
+        "su_pick_abbr": "WSH",
+        "su_confidence": 53.1,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 8.2,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
