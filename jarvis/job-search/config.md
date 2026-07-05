@@ -37,6 +37,26 @@ Local (search location "Columbia, SC"):
 - "emergency management"
 - "operations director"
 
+## Résumé source
+
+`base-resume.md` is the master, built from Bryan's real résumés (civilian,
+corporate, emergency-director, and USAJOBS federal versions, uploaded
+2026-07-05). It is sanitized — no street address or phone — because this
+repo's main branch is publicly served at data.forgedbyfreedom.org. The daily
+job gets contact details from its own prompt; never commit them here.
+
+Angle guide when tailoring:
+- Leadership development / OD roles → lead with leadership programs
+  ("Back to the Basics" agency-wide program, facility-tailored programs at
+  SCDC), coaching, published author.
+- Emergency management roles → lead with Chief of Emergency Preparedness,
+  ICS/NIMS/FEMA, Hurricane Michael incident command, D.C. deployment.
+- Corporate fitness / wellness roles → lead with powerlifting national
+  records, BJJ black belt, wellness coaching + the leadership/ops record as
+  differentiator.
+- Operations/security executive roles → lead with SES rank, 24 institutions,
+  $980M budget, turnaround results ($5.1M overtime cut).
+
 ## Candidate strengths to emphasize when tailoring
 
 - Executive leadership: Assistant Deputy Director of Prisons (SC DOC), former
