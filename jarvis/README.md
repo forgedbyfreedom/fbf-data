@@ -12,6 +12,19 @@ loud, and it talks back — and it can actually **do** things for you:
 It has two ways to chat: **voice mode** (microphone + spoken replies) and
 **text mode** (type in a window, no microphone needed).
 
+## On your iPhone (easiest)
+
+There's a phone version that needs no install at all — it runs in Safari and
+uses your phone's mic and speaker:
+
+1. Open **https://data.forgedbyfreedom.org/jarvis/** on your iPhone.
+2. Paste in your API key once (get it at https://console.anthropic.com → Settings → API keys).
+3. Tap the mic and talk. Allow microphone access when Safari asks.
+
+Tip: tap the Share button → **Add to Home Screen** to get a Jarvis app icon.
+The phone version can chat, search the web, and remember things; running
+commands and opening files needs the computer version below.
+
 Powered by Claude (Anthropic). Safety built in: Jarvis shows you every
 computer command it wants to run and waits for your OK before running it.
 
