@@ -11,3 +11,4 @@ Statuses: PREPARED (résumé tailored, awaiting Bryan's submit) / APPLIED /
 INTERVIEW / REJECTED / OFFER.
 
 <!-- entries below, newest last -->
+- (2026-07-05) Director of Business Development — Vant4ge — $125–150K — https://to.indeed.com/aamsd77zhwkq — PREPARED
