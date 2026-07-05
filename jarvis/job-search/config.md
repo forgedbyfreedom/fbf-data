@@ -3,6 +3,18 @@
 Owner: Forgedbyfreedom@gmail.com
 Set up: 2026-07-05
 
+## Hard rules
+
+- **NEVER apply to, recommend applying to, or prepare materials for any job
+  with the State of South Carolina** (SCDC or any SC state agency) without
+  Bryan's direct, explicit permission. He currently works for SCDC. If a
+  state-of-SC job looks like a great fit, list it in a clearly separated
+  "needs your permission" section of the digest — do not include a tailored
+  résumé for it.
+- **Use all, assume nothing:** tailor résumés strictly from the documented
+  facts in base-resume.md. Reorder, reword, and select — never invent
+  titles, dates, metrics, employers, or credentials.
+
 ## Criteria
 
 - **Minimum salary:** $125,000/year (flag roles slightly below only if exceptional fit)
@@ -51,9 +63,11 @@ Angle guide when tailoring:
   SCDC), coaching, published author.
 - Emergency management roles → lead with Chief of Emergency Preparedness,
   ICS/NIMS/FEMA, Hurricane Michael incident command, D.C. deployment.
-- Corporate fitness / wellness roles → lead with powerlifting national
-  records, BJJ black belt, wellness coaching + the leadership/ops record as
-  differentiator.
+- Corporate fitness / wellness roles → lead with NASM CPT, nutrition/meal
+  prep/physique & bodybuilding coaching, powerlifting national records, BJJ
+  black belt + the leadership/ops record as differentiator.
+- Innovation/AI-adjacent leadership roles → note SCDC AI Committee
+  Chairperson.
 - Operations/security executive roles → lead with SES rank, 24 institutions,
   $980M budget, turnaround results ($5.1M overtime cut).
 

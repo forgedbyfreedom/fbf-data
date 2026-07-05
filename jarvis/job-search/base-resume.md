@@ -26,6 +26,8 @@ Corrections, Columbia, SC | Mar 2023 – Present
 - Lead statewide emergency preparedness operations in collaboration with
   FEMA and the National Guard; advise executive staff on crisis readiness.
 - Manage veteran recruitment strategy and build leadership pipelines.
+- Serve as SCDC AI Committee Chairperson, leading the agency's adoption of
+  artificial intelligence.
 - Ensure compliance with state and federal regulations while managing a
   comprehensive budget.
 
@@ -83,6 +85,7 @@ Officer, Lieutenant, Special Investigative Agent, Captain, Associate Warden.
 ## Education, certifications, affiliations
 
 - Regents Diploma — Nanuet Senior High School, Nanuet, NY (1991)
+- NASM Certified Personal Trainer
 - Certified: Incident Command System (ICS) & NIMS; Threat & Vulnerability
   Risk Assessment (TVRA); Active Shooter & Crisis Management
 - Secret Clearance
@@ -92,6 +95,9 @@ Officer, Lieutenant, Special Investigative Agent, Captain, Associate Warden.
 
 ## Fitness & wellness credentials (lead with these for wellness roles)
 
+- NASM Certified Personal Trainer
+- Nutrition coach; meal prep coach
+- Physique and bodybuilding coach
 - Competitive powerlifter — national records in bench press and deadlift
 - Gracie Brazilian Jiu-Jitsu black belt, competitive athlete
 - Wellness coaching, motivational interviewing, exercise planning,
