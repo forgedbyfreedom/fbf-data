@@ -14,6 +14,13 @@ Set up: 2026-07-05
 - **Use all, assume nothing:** tailor résumés strictly from the documented
   facts in base-resume.md. Reorder, reword, and select — never invent
   titles, dates, metrics, employers, or credentials.
+- **No college degree — never state or imply one.** Bryan has zero college
+  (high school Regents Diploma only). When a posting hard-requires a degree
+  with no equivalency language, still include the job if it's a strong fit
+  but flag it: "requires bachelor's — experience may substitute, your call."
+  Prefer postings that say "or equivalent experience." When tailoring,
+  counter with 31 years of experience, SES rank (federal executive
+  certification), published books, and specialized certifications.
 
 ## Criteria
 
