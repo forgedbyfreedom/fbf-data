@@ -103,7 +103,10 @@ Angle guide when tailoring:
 5. Create a Gmail **draft** digest to the owner: each job with company,
    salary, location, the APPLY LINK, and the tailored résumé text ready to
    paste in.
-6. Append reported jobs to `seen-jobs.md`, commit, push.
+6. Append reported jobs to `seen-jobs.md`, and add every job that got a
+   tailored résumé to `applications.md` with status PREPARED. Include the
+   day's new applications AND the current full tracker list at the bottom
+   of the digest email. Commit, push.
 
 Note: applications cannot be auto-submitted (Indeed tools provide apply
 links only) — the owner clicks the apply link and pastes the tailored résumé.
