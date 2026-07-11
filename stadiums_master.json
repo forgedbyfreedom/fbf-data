@@ -9,15 +9,25 @@
     "lat": 40.4406968,
     "lon": -80.0025666
   },
-  "comerica park": {
-    "name": "Comerica Park",
-    "norm": "comerica park",
-    "city": "Detroit",
-    "state": "Michigan",
+  "target field": {
+    "name": "Target Field",
+    "norm": "target field",
+    "city": "Minneapolis",
+    "state": "Minnesota",
     "indoor": false,
     "grass": true,
-    "lat": 42.3315509,
-    "lon": -83.0466403
+    "lat": 44.9772995,
+    "lon": -93.2654692
+  },
+  "rate field": {
+    "name": "Rate Field",
+    "norm": "rate field",
+    "city": "Chicago",
+    "state": "Illinois",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.8755616,
+    "lon": -87.6244212
   },
   "nationals park": {
     "name": "Nationals Park",
@@ -29,25 +39,25 @@
     "lat": 38.8950982,
     "lon": -77.0363849
   },
-  "oriole park at camden yards": {
-    "name": "Oriole Park at Camden Yards",
-    "norm": "oriole park at camden yards",
-    "city": "Baltimore",
-    "state": "Maryland",
+  "oracle park": {
+    "name": "Oracle Park",
+    "norm": "oracle park",
+    "city": "San Francisco",
+    "state": "California",
     "indoor": false,
     "grass": true,
-    "lat": 39.2908816,
-    "lon": -76.610759
+    "lat": 37.7879363,
+    "lon": -122.4075201
   },
-  "great american ball park": {
-    "name": "Great American Ball Park",
-    "norm": "great american ball park",
-    "city": "Cincinnati",
-    "state": "Ohio",
+  "citi field": {
+    "name": "Citi Field",
+    "norm": "citi field",
+    "city": "Queens",
+    "state": "New York",
     "indoor": false,
-    "grass": true,
-    "lat": 39.1012809,
-    "lon": -84.5127405
+    "grass": false,
+    "lat": 40.7135078,
+    "lon": -73.8283132
   },
   "loandepot park": {
     "name": "loanDepot park",
@@ -69,86 +79,6 @@
     "lat": 27.7712264,
     "lon": -82.6340259
   },
-  "rate field": {
-    "name": "Rate Field",
-    "norm": "rate field",
-    "city": "Chicago",
-    "state": "Illinois",
-    "indoor": false,
-    "grass": true,
-    "lat": 41.8755616,
-    "lon": -87.6244212
-  },
-  "citi field": {
-    "name": "Citi Field",
-    "norm": "citi field",
-    "city": "Queens",
-    "state": "New York",
-    "indoor": false,
-    "grass": false,
-    "lat": 40.7135078,
-    "lon": -73.8283132
-  },
-  "globe life field": {
-    "name": "Globe Life Field",
-    "norm": "globe life field",
-    "city": "Arlington",
-    "state": "Texas",
-    "indoor": true,
-    "grass": false,
-    "lat": 32.7355816,
-    "lon": -97.1071186
-  },
-  "target field": {
-    "name": "Target Field",
-    "norm": "target field",
-    "city": "Minneapolis",
-    "state": "Minnesota",
-    "indoor": false,
-    "grass": true,
-    "lat": 44.9772995,
-    "lon": -93.2654692
-  },
-  "busch stadium": {
-    "name": "Busch Stadium",
-    "norm": "busch stadium",
-    "city": "St. Louis",
-    "state": "Missouri",
-    "indoor": false,
-    "grass": true,
-    "lat": 38.6254063,
-    "lon": -90.190009
-  },
-  "petco park": {
-    "name": "Petco Park",
-    "norm": "petco park",
-    "city": "San Diego",
-    "state": "California",
-    "indoor": false,
-    "grass": true,
-    "lat": 32.7174202,
-    "lon": -117.162772
-  },
-  "dodger stadium": {
-    "name": "Dodger Stadium",
-    "norm": "dodger stadium",
-    "city": "Los Angeles",
-    "state": "California",
-    "indoor": false,
-    "grass": true,
-    "lat": 34.0536909,
-    "lon": -118.242766
-  },
-  "oracle park": {
-    "name": "Oracle Park",
-    "norm": "oracle park",
-    "city": "San Francisco",
-    "state": "California",
-    "indoor": false,
-    "grass": true,
-    "lat": 37.7879363,
-    "lon": -122.4075201
-  },
   "tmobile arena": {
     "name": "T-Mobile Arena",
     "norm": "tmobile arena",
@@ -158,6 +88,76 @@
     "grass": false,
     "lat": 36.1674263,
     "lon": -115.1484131
+  },
+  "comerica park": {
+    "name": "Comerica Park",
+    "norm": "comerica park",
+    "city": "Detroit",
+    "state": "Michigan",
+    "indoor": false,
+    "grass": true,
+    "lat": 42.3315509,
+    "lon": -83.0466403
+  },
+  "oriole park at camden yards": {
+    "name": "Oriole Park at Camden Yards",
+    "norm": "oriole park at camden yards",
+    "city": "Baltimore",
+    "state": "Maryland",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.2908816,
+    "lon": -76.610759
+  },
+  "globe life field": {
+    "name": "Globe Life Field",
+    "norm": "globe life field",
+    "city": "Arlington",
+    "state": "Texas",
+    "indoor": true,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "great american ball park": {
+    "name": "Great American Ball Park",
+    "norm": "great american ball park",
+    "city": "Cincinnati",
+    "state": "Ohio",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "busch stadium": {
+    "name": "Busch Stadium",
+    "norm": "busch stadium",
+    "city": "St. Louis",
+    "state": "Missouri",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "petco park": {
+    "name": "Petco Park",
+    "norm": "petco park",
+    "city": "San Diego",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "dodger stadium": {
+    "name": "Dodger Stadium",
+    "norm": "dodger stadium",
+    "city": "Los Angeles",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
   },
   "citizens bank park": {
     "name": "Citizens Bank Park",
