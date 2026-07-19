@@ -1,34 +1,4 @@
 {
-  "progressive field": {
-    "name": "Progressive Field",
-    "norm": "progressive field",
-    "city": "Cleveland",
-    "state": "Ohio",
-    "indoor": false,
-    "grass": true,
-    "lat": 41.4996574,
-    "lon": -81.6936772
-  },
-  "wrigley field": {
-    "name": "Wrigley Field",
-    "norm": "wrigley field",
-    "city": "Chicago",
-    "state": "Illinois",
-    "indoor": false,
-    "grass": true,
-    "lat": 41.8755616,
-    "lon": -87.6244212
-  },
-  "citizens bank park": {
-    "name": "Citizens Bank Park",
-    "norm": "citizens bank park",
-    "city": "Philadelphia",
-    "state": "Pennsylvania",
-    "indoor": false,
-    "grass": true,
-    "lat": 39.9527237,
-    "lon": -75.1635262
-  },
   "rogers centre": {
     "name": "Rogers Centre",
     "norm": "rogers centre",
@@ -39,15 +9,25 @@
     "lat": 34.0021024,
     "lon": -117.5901265
   },
-  "coors field": {
-    "name": "Coors Field",
-    "norm": "coors field",
-    "city": "Denver",
-    "state": "Colorado",
+  "yankee stadium": {
+    "name": "Yankee Stadium",
+    "norm": "yankee stadium",
+    "city": "Bronx",
+    "state": "New York",
     "indoor": false,
     "grass": true,
-    "lat": 39.7392364,
-    "lon": -104.984862
+    "lat": 40.8466508,
+    "lon": -73.8785937
+  },
+  "citizens bank park": {
+    "name": "Citizens Bank Park",
+    "norm": "citizens bank park",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.9527237,
+    "lon": -75.1635262
   },
   "fenway park": {
     "name": "Fenway Park",
@@ -68,6 +48,16 @@
     "grass": true,
     "lat": 33.7544657,
     "lon": -84.3898151
+  },
+  "progressive field": {
+    "name": "Progressive Field",
+    "norm": "progressive field",
+    "city": "Cleveland",
+    "state": "Ohio",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.4996574,
+    "lon": -81.6936772
   },
   "daikin park": {
     "name": "Daikin Park",
@@ -99,35 +89,45 @@
     "lat": 39.100105,
     "lon": -94.5781416
   },
-  "chase field nh": {
-    "name": "Chase Field (NH)",
-    "norm": "chase field nh",
-    "city": "Hanover",
-    "state": "New Hampshire",
-    "indoor": false,
-    "grass": false,
-    "lat": 43.7023545,
-    "lon": -72.2892164
-  },
-  "paycom center": {
-    "name": "Paycom Center",
-    "norm": "paycom center",
-    "city": "Oklahoma City",
-    "state": "OK",
-    "indoor": true,
-    "grass": false,
-    "lat": 35.4729886,
-    "lon": -97.5170536
-  },
-  "yankee stadium": {
-    "name": "Yankee Stadium",
-    "norm": "yankee stadium",
-    "city": "Bronx",
-    "state": "New York",
+  "wrigley field": {
+    "name": "Wrigley Field",
+    "norm": "wrigley field",
+    "city": "Chicago",
+    "state": "Illinois",
     "indoor": false,
     "grass": true,
-    "lat": 40.8466508,
-    "lon": -73.8785937
+    "lat": 41.8755616,
+    "lon": -87.6244212
+  },
+  "coors field": {
+    "name": "Coors Field",
+    "norm": "coors field",
+    "city": "Denver",
+    "state": "Colorado",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.7392364,
+    "lon": -104.984862
+  },
+  "sutter health park": {
+    "name": "Sutter Health Park",
+    "norm": "sutter health park",
+    "city": "Sacramento",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": 38.5810606,
+    "lon": -121.493895
+  },
+  "angel stadium": {
+    "name": "Angel Stadium",
+    "norm": "angel stadium",
+    "city": "Anaheim",
+    "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": 33.8347516,
+    "lon": -117.911732
   },
   "tmobile park": {
     "name": "T-Mobile Park",
@@ -139,25 +139,15 @@
     "lat": 47.6038321,
     "lon": -122.330062
   },
-  "sutter health park": {
-    "name": "Sutter Health Park",
-    "norm": "sutter health park",
-    "city": "Sacramento",
-    "state": "California",
+  "chase field nh": {
+    "name": "Chase Field (NH)",
+    "norm": "chase field nh",
+    "city": "Hanover",
+    "state": "New Hampshire",
     "indoor": false,
-    "grass": true,
-    "lat": null,
-    "lon": null
-  },
-  "angel stadium": {
-    "name": "Angel Stadium",
-    "norm": "angel stadium",
-    "city": "Anaheim",
-    "state": "California",
-    "indoor": false,
-    "grass": true,
-    "lat": 33.8347516,
-    "lon": -117.911732
+    "grass": false,
+    "lat": 43.7023545,
+    "lon": -72.2892164
   },
   "globe life field": {
     "name": "Globe Life Field",
@@ -176,8 +166,8 @@
     "state": "Arizona",
     "indoor": true,
     "grass": true,
-    "lat": 33.4484367,
-    "lon": -112.074141
+    "lat": null,
+    "lon": null
   },
   "busch stadium": {
     "name": "Busch Stadium",
@@ -316,8 +306,8 @@
     "state": "NV",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.1674263,
+    "lon": -115.1484131
   },
   "xfinity mobile arena": {
     "name": "Xfinity Mobile Arena",
@@ -326,8 +316,18 @@
     "state": "PA",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 39.9527237,
+    "lon": -75.1635262
+  },
+  "golden 1 center": {
+    "name": "Golden 1 Center",
+    "norm": "golden 1 center",
+    "city": "Sacramento",
+    "state": "CA",
+    "indoor": true,
+    "grass": false,
+    "lat": 38.5810606,
+    "lon": -121.493895
   },
   "aviva stadium": {
     "name": "Aviva Stadium",
@@ -346,8 +346,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 34.0536909,
+    "lon": -118.242766
   },
   "scott stadium": {
     "name": "Scott Stadium",
