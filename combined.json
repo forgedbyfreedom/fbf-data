@@ -1,6 +1,6 @@
 {
-  "timestamp": "20260721_2131",
-  "count": 199,
+  "timestamp": "20260721_2155",
+  "count": 200,
   "data": [
     {
       "sport": "mlb",
@@ -430,19 +430,19 @@
       "officials": [
         {
           "name": "Jordan Baker",
-          "role": "home plate"
+          "role": "home plate umpire"
         },
         {
-          "name": "Felix Neon",
-          "role": "first base"
+          "name": "Felix  Neon",
+          "role": "first base umpire"
         },
         {
           "name": "Rob Drake",
-          "role": "second base"
+          "role": "second base umpire"
         },
         {
           "name": "Stu Scheurwater",
-          "role": "third base"
+          "role": "third base umpire"
         }
       ],
       "home_injuries": [],
@@ -576,10 +576,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 71,
+      "public_pct": 72,
       "public_side": "ATL",
       "fade_signal": 2,
-      "public_home_pct": 71,
+      "public_home_pct": 72,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -735,20 +735,20 @@
       },
       "officials": [
         {
-          "name": "Mike Estabrook",
-          "role": "third base"
-        },
-        {
           "name": "Lance Barrett",
           "role": "home plate"
+        },
+        {
+          "name": "Malachi Moore",
+          "role": "first base"
         },
         {
           "name": "Alfonso M\u00e1rquez",
           "role": "second base"
         },
         {
-          "name": "Malachi Moore",
-          "role": "first base"
+          "name": "Mike Estabrook",
+          "role": "third base"
         }
       ],
       "home_injuries": [],
@@ -780,10 +780,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 52,
+      "public_pct": 53,
       "public_side": "KC",
       "fade_signal": 0,
-      "public_home_pct": 52,
+      "public_home_pct": 53,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1086,10 +1086,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 53,
+      "public_pct": 52,
       "public_side": "HOU",
       "fade_signal": 0,
-      "public_home_pct": 53,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1290,10 +1290,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 58,
+      "public_pct": 57,
       "public_side": "STL",
       "fade_signal": 0,
-      "public_home_pct": 42,
+      "public_home_pct": 43,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1345,14 +1345,31 @@
         "lat": 33.4484367,
         "lon": -112.074141
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Hunter Wendelstedt",
+          "role": "home plate"
+        },
+        {
+          "name": "Vic Carapazza",
+          "role": "first base"
+        },
+        {
+          "name": "Steven Jaschinski",
+          "role": "second base"
+        },
+        {
+          "name": "Nic Lentz",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.572,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -1575,6 +1592,81 @@
     },
     {
       "sport": "mlb",
+      "id": "401898715",
+      "name": "Baltimore Orioles at Boston Red Sox",
+      "shortName": "BAL @ BOS",
+      "date_utc": "2026-07-22T17:35Z",
+      "date_local": "2026-07-22 01:35 PM ET",
+      "home_team": {
+        "id": "2",
+        "name": "Boston Red Sox",
+        "abbr": "BOS",
+        "slug": "boston-red-sox",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png"
+      },
+      "away_team": {
+        "id": "1",
+        "name": "Baltimore Orioles",
+        "abbr": "BAL",
+        "slug": "baltimore-orioles",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bal.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Fenway Park",
+        "city": "Boston",
+        "state": "Massachusetts",
+        "indoor": false,
+        "grass": true,
+        "lat": 42.3588336,
+        "lon": -71.0578303
+      },
+      "officials": [],
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "ref_home_bias": 0.2,
+      "ref_over_bias": 0.3,
+      "ref_consistency": 2.5,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 0,
+      "home_elo": 1500,
+      "away_elo": 1500,
+      "travel_km": 0,
+      "power_diff": 0,
+      "off_def_mismatch": 0,
+      "pace_avg": 0,
+      "home_split_edge": 0,
+      "momentum_diff": 0,
+      "recent_ats_diff": 0,
+      "home_margin_stdev": 0,
+      "away_margin_stdev": 0,
+      "spot_score": 0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": 0,
+      "away_streak": 0,
+      "public_pct": 68,
+      "public_side": "BOS",
+      "fade_signal": 1,
+      "public_home_pct": 68,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0,
+      "starter_era_diff": 0
+    },
+    {
+      "sport": "mlb",
       "id": "401816225",
       "name": "New York Mets at Milwaukee Brewers",
       "shortName": "NYM @ MIL",
@@ -1712,10 +1804,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 52,
+      "public_pct": 53,
       "public_side": "KC",
       "fade_signal": 0,
-      "public_home_pct": 52,
+      "public_home_pct": 53,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2012,10 +2104,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 58,
+      "public_pct": 57,
       "public_side": "STL",
       "fade_signal": 0,
-      "public_home_pct": 42,
+      "public_home_pct": 43,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2462,10 +2554,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 71,
+      "public_pct": 72,
       "public_side": "ATL",
       "fade_signal": 2,
-      "public_home_pct": 71,
+      "public_home_pct": 72,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2687,10 +2779,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 53,
+      "public_pct": 52,
       "public_side": "HOU",
       "fade_signal": 0,
-      "public_home_pct": 53,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2762,10 +2854,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 71,
+      "public_pct": 72,
       "public_side": "ATL",
       "fade_signal": 2,
-      "public_home_pct": 71,
+      "public_home_pct": 72,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -4154,8 +4246,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -5432,8 +5524,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -7382,8 +7474,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8357,8 +8449,8 @@
         "state": "California",
         "indoor": false,
         "grass": true,
-        "lat": 37.7879363,
-        "lon": -122.4075201
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -11507,7 +11599,7 @@
         "details": "TCU -6.5",
         "spread": -6.5,
         "total": 49.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Aviva Stadium",
@@ -11528,7 +11620,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-07-21T21:31:12.207782+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581376+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11596,7 +11688,7 @@
         "details": "USC -35.5",
         "spread": -35.5,
         "total": 58.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Los Angeles Memorial Coliseum",
@@ -11617,7 +11709,7 @@
       "spread": -35.5,
       "favorite": "USC -35.5",
       "underdog": "SJSU +35.5",
-      "tagged_at": "2026-07-21T21:31:12.207801+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581392+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11685,7 +11777,7 @@
         "details": "UVA -5.5",
         "spread": -5.5,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Scott Stadium",
@@ -11706,7 +11798,7 @@
       "spread": -5.5,
       "favorite": "UVA -5.5",
       "underdog": "NCSU +5.5",
-      "tagged_at": "2026-07-21T21:31:12.207807+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581396+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11774,7 +11866,7 @@
         "details": "NDSU -7.5",
         "spread": -7.5,
         "total": 48.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Fargodome",
@@ -11795,7 +11887,7 @@
       "spread": -7.5,
       "favorite": "NDSU -7.5",
       "underdog": "JVST +7.5",
-      "tagged_at": "2026-07-21T21:31:12.207812+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581399+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11863,7 +11955,7 @@
         "details": "EMU -7.5",
         "spread": -7.5,
         "total": 52.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Rynearson Stadium",
@@ -11884,7 +11976,7 @@
       "spread": -7.5,
       "favorite": "EMU -7.5",
       "underdog": "SAC +7.5",
-      "tagged_at": "2026-07-21T21:31:12.207816+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581402+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11952,7 +12044,7 @@
         "details": "STAN -3.5",
         "spread": -3.5,
         "total": 50.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Stanford Stadium",
@@ -11973,7 +12065,7 @@
       "spread": -3.5,
       "favorite": "STAN -3.5",
       "underdog": "HAW +3.5",
-      "tagged_at": "2026-07-21T21:31:12.207819+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581404+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12041,7 +12133,7 @@
         "details": "FSU -30.5",
         "spread": -30.5,
         "total": 53.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Doak Campbell Stadium",
@@ -12062,7 +12154,7 @@
       "spread": -30.5,
       "favorite": "FSU -30.5",
       "underdog": "NMSU +30.5",
-      "tagged_at": "2026-07-21T21:31:12.207823+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581406+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12130,7 +12222,7 @@
         "details": "UNLV -4.5",
         "spread": -4.5,
         "total": 59.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Allegiant Stadium",
@@ -12151,7 +12243,7 @@
       "spread": -4.5,
       "favorite": "UNLV -4.5",
       "underdog": "MEM +4.5",
-      "tagged_at": "2026-07-21T21:31:12.207826+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581409+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12219,7 +12311,7 @@
         "details": "RUTG -30.5",
         "spread": -30.5,
         "total": 55.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "SHI Stadium",
@@ -12240,7 +12332,7 @@
       "spread": -30.5,
       "favorite": "RUTG -30.5",
       "underdog": "MASS +30.5",
-      "tagged_at": "2026-07-21T21:31:12.207830+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581411+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12382,7 +12474,7 @@
         "details": "WAKE -22.5",
         "spread": -22.5,
         "total": 49.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Allegacy Federal Credit Union Stadium",
@@ -12403,7 +12495,7 @@
       "spread": -22.5,
       "favorite": "WAKE -22.5",
       "underdog": "AKR +22.5",
-      "tagged_at": "2026-07-21T21:31:12.207833+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581414+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12634,7 +12726,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -157,
+      "rest_diff_days": -158,
       "elo_diff": 31.9,
       "home_elo": 1494.9,
       "away_elo": 1463.0,
@@ -12767,7 +12859,7 @@
         "details": "GT -7.5",
         "spread": -7.5,
         "total": 51.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Bobby Dodd Stadium",
@@ -12788,7 +12880,7 @@
       "spread": -7.5,
       "favorite": "GT -7.5",
       "underdog": "COLO +7.5",
-      "tagged_at": "2026-07-21T21:31:12.207837+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581417+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13004,7 +13096,7 @@
         "details": "ILL -27.5",
         "spread": -27.5,
         "total": 56.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Gies Memorial Stadium",
@@ -13025,7 +13117,7 @@
       "spread": -27.5,
       "favorite": "ILL -27.5",
       "underdog": "UAB +27.5",
-      "tagged_at": "2026-07-21T21:31:12.207840+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581419+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13034,7 +13126,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -116,
+      "rest_diff_days": -117,
       "elo_diff": 120.6,
       "home_elo": 1558.5,
       "away_elo": 1437.9,
@@ -13093,7 +13185,7 @@
         "details": "EMU -4",
         "spread": -4.0,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Rynearson Stadium",
@@ -13114,7 +13206,7 @@
       "spread": -4.0,
       "favorite": "EMU -4.0",
       "underdog": "SJSU +4.0",
-      "tagged_at": "2026-07-21T21:31:12.207843+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581421+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13330,7 +13422,7 @@
         "details": "OU -40.5",
         "spread": -40.5,
         "total": 49.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Memorial Stadium (Norman, OK)",
@@ -13351,7 +13443,7 @@
       "spread": -40.5,
       "favorite": "OU -40.5",
       "underdog": "UTEP +40.5",
-      "tagged_at": "2026-07-21T21:31:12.207847+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581424+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13493,7 +13585,7 @@
         "details": "MSU -10.5",
         "spread": -10.5,
         "total": 49.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Spartan Stadium",
@@ -13514,7 +13606,7 @@
       "spread": -10.5,
       "favorite": "MSU -10.5",
       "underdog": "TOL +10.5",
-      "tagged_at": "2026-07-21T21:31:12.207851+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581426+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13582,7 +13674,7 @@
         "details": "MIA -23.5",
         "spread": 23.5,
         "total": 49.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Stanford Stadium",
@@ -13603,7 +13695,7 @@
       "spread": -23.5,
       "favorite": "MIA -23.5",
       "underdog": "STAN +23.5",
-      "tagged_at": "2026-07-21T21:31:12.207854+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581429+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13671,7 +13763,7 @@
         "details": "USC -23.5",
         "spread": -23.5,
         "total": 51.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Los Angeles Memorial Coliseum",
@@ -13692,7 +13784,7 @@
       "spread": -23.5,
       "favorite": "USC -23.5",
       "underdog": "FRES +23.5",
-      "tagged_at": "2026-07-21T21:31:12.207858+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581431+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13760,7 +13852,7 @@
         "details": "ALA -26.5",
         "spread": -26.5,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Bryant-Denny Stadium",
@@ -13781,7 +13873,7 @@
       "spread": -26.5,
       "favorite": "ALA -26.5",
       "underdog": "ECU +26.5",
-      "tagged_at": "2026-07-21T21:31:12.207862+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581433+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13849,7 +13941,7 @@
         "details": "HOU -18.5",
         "spread": -18.5,
         "total": 50.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "TDECU Stadium",
@@ -13870,7 +13962,7 @@
       "spread": -18.5,
       "favorite": "HOU -18.5",
       "underdog": "ORST +18.5",
-      "tagged_at": "2026-07-21T21:31:12.207866+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581435+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13938,7 +14030,7 @@
         "details": "WVU -20.5",
         "spread": -20.5,
         "total": 57.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Milan Puskar Stadium",
@@ -13959,7 +14051,7 @@
       "spread": -20.5,
       "favorite": "WVU -20.5",
       "underdog": "CCU +20.5",
-      "tagged_at": "2026-07-21T21:31:12.207869+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581437+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14101,7 +14193,7 @@
         "details": "IU -40.5",
         "spread": -40.5,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Memorial Stadium (Bloomington, IN)",
@@ -14122,7 +14214,7 @@
       "spread": -40.5,
       "favorite": "IU -40.5",
       "underdog": "UNT +40.5",
-      "tagged_at": "2026-07-21T21:31:12.207872+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581440+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14190,7 +14282,7 @@
         "details": "NEB -23.5",
         "spread": -23.5,
         "total": 47.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Memorial Stadium (Lincoln, NE)",
@@ -14211,7 +14303,7 @@
       "spread": -23.5,
       "favorite": "NEB -23.5",
       "underdog": "OHIO +23.5",
-      "tagged_at": "2026-07-21T21:31:12.207875+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581442+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14294,7 +14386,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -190,
+      "rest_diff_days": -191,
       "elo_diff": 41.9,
       "home_elo": 1511.6,
       "away_elo": 1469.7,
@@ -14442,7 +14534,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -42,
+      "rest_diff_days": -43,
       "elo_diff": -6.1,
       "home_elo": 1484.8,
       "away_elo": 1490.9,
@@ -14501,7 +14593,7 @@
         "details": "JMU -6.5",
         "spread": -6.5,
         "total": 52.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Bridgeforth Stadium",
@@ -14522,7 +14614,7 @@
       "spread": -6.5,
       "favorite": "JMU -6.5",
       "underdog": "LIB +6.5",
-      "tagged_at": "2026-07-21T21:31:12.207879+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581444+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14590,7 +14682,7 @@
         "details": "PITT -16.5",
         "spread": -16.5,
         "total": 50.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Acrisure Stadium",
@@ -14611,7 +14703,7 @@
       "spread": -16.5,
       "favorite": "PITT -16.5",
       "underdog": "M-OH +16.5",
-      "tagged_at": "2026-07-21T21:31:12.207883+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581447+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14679,7 +14771,7 @@
         "details": "OSU -50.5",
         "spread": -50.5,
         "total": 56.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Ohio Stadium",
@@ -14700,7 +14792,7 @@
       "spread": -50.5,
       "favorite": "OSU -50.5",
       "underdog": "BALL +50.5",
-      "tagged_at": "2026-07-21T21:31:12.207886+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581448+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14768,7 +14860,7 @@
         "details": "SC -34.5",
         "spread": -34.5,
         "total": 51.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Williams-Brice Stadium",
@@ -14789,7 +14881,7 @@
       "spread": -34.5,
       "favorite": "SC -34.5",
       "underdog": "KENT +34.5",
-      "tagged_at": "2026-07-21T21:31:12.207889+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581450+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15227,7 +15319,7 @@
         "details": "AUB -7",
         "spread": -7.0,
         "total": 59.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Mercedes-Benz Stadium",
@@ -15248,7 +15340,7 @@
       "spread": -7.0,
       "favorite": "AUB -7.0",
       "underdog": "BAY +7.0",
-      "tagged_at": "2026-07-21T21:31:12.207892+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581453+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15402,7 +15494,7 @@
         "details": "TEX -30.5",
         "spread": -30.5,
         "total": 59.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "DKR-Texas Memorial Stadium",
@@ -15423,7 +15515,7 @@
       "spread": -30.5,
       "favorite": "TEX -30.5",
       "underdog": "TXST +30.5",
-      "tagged_at": "2026-07-21T21:31:12.207895+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581455+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -15503,7 +15595,7 @@
         "details": "CIN -8.5",
         "spread": -8.5,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Nippert Stadium",
@@ -15524,7 +15616,7 @@
       "spread": -8.5,
       "favorite": "CIN -8.5",
       "underdog": "BC +8.5",
-      "tagged_at": "2026-07-21T21:31:12.207899+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581458+00:00",
       "weather": {
         "summary": "Showers And Thunderstorms",
         "description": "",
@@ -15604,7 +15696,7 @@
         "details": "DUKE -10",
         "spread": -10.0,
         "total": 52.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Wallace Wade Stadium",
@@ -15625,7 +15717,7 @@
       "spread": -10.0,
       "favorite": "DUKE -10.0",
       "underdog": "TULN +10.0",
-      "tagged_at": "2026-07-21T21:31:12.207902+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581460+00:00",
       "weather": {
         "summary": "Partly Sunny",
         "description": "",
@@ -15705,7 +15797,7 @@
         "details": "ORE -24.5",
         "spread": -24.5,
         "total": 52.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Autzen Stadium",
@@ -15726,7 +15818,7 @@
       "spread": -24.5,
       "favorite": "ORE -24.5",
       "underdog": "BOIS +24.5",
-      "tagged_at": "2026-07-21T21:31:12.207905+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581462+00:00",
       "weather": {
         "summary": "Patchy Smoke",
         "description": "",
@@ -15806,7 +15898,7 @@
         "details": "PSU -23.5",
         "spread": -23.5,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Beaver Stadium",
@@ -15827,7 +15919,7 @@
       "spread": -23.5,
       "favorite": "PSU -23.5",
       "underdog": "MRSH +23.5",
-      "tagged_at": "2026-07-21T21:31:12.207908+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581464+00:00",
       "weather": {
         "summary": "Showers And Thunderstorms Likely",
         "description": "",
@@ -15907,7 +15999,7 @@
         "details": "WASH -21.5",
         "spread": -21.5,
         "total": 50.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Husky Stadium",
@@ -15928,7 +16020,7 @@
       "spread": -21.5,
       "favorite": "WASH -21.5",
       "underdog": "WSU +21.5",
-      "tagged_at": "2026-07-21T21:31:12.207911+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581468+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -16008,7 +16100,7 @@
         "details": "MISS -6.5",
         "spread": -6.5,
         "total": 55.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Nissan Stadium",
@@ -16029,7 +16121,7 @@
       "spread": -6.5,
       "favorite": "MISS -6.5",
       "underdog": "LOU +6.5",
-      "tagged_at": "2026-07-21T21:31:12.207914+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581470+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
@@ -16109,7 +16201,7 @@
         "details": "ND -20.5",
         "spread": -20.5,
         "total": 47.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Lambeau Field",
@@ -16130,7 +16222,7 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-07-21T21:31:12.207918+00:00",
+      "tagged_at": "2026-07-21T21:55:01.581473+00:00",
       "weather": {
         "summary": "Scattered Rain Showers",
         "description": "",
@@ -16183,5 +16275,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-07-21T21:35:52.075328"
+  "weather_merged_at": "2026-07-21T21:59:57.504210"
 }
