@@ -148966,6 +148966,84 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401816271",
+      "sport": "mlb",
+      "matchup": "New York Yankees at Philadelphia Phillies",
+      "shortName": "NYY @ PHI",
+      "date_utc": "2026-07-26T23:20Z",
+      "date_local": "2026-07-26 07:20 PM ET",
+      "home": "PHI",
+      "away": "NYY",
+      "home_team": {
+        "id": "22",
+        "name": "Philadelphia Phillies",
+        "abbr": "PHI",
+        "slug": "philadelphia-phillies",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/phi.png"
+      },
+      "away_team": {
+        "id": "10",
+        "name": "New York Yankees",
+        "abbr": "NYY",
+        "slug": "new-york-yankees",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Citizens Bank Park",
+        "city": "Philadelphia",
+        "state": "Pennsylvania",
+        "indoor": false,
+        "grass": true,
+        "lat": 39.9527237,
+        "lon": -75.1635262
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.8,
+        "win_probability_home": 0.689,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5682,
+        "away_win_pct": 0.4318,
+        "home_cover_pct": 0.5682,
+        "over_pct": 0.5019,
+        "avg_simulated_margin": 0.6,
+        "avg_simulated_total": 5.53
+      },
+      "picks": {
+        "su_pick": "Philadelphia Phillies",
+        "su_pick_abbr": "PHI",
+        "su_confidence": 53.8,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 5.5,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
