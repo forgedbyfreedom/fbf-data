@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260730_2054",
+  "timestamp": "20260730_2129",
   "count": 192,
   "data": [
     {
@@ -227,9 +227,9 @@
         "slug": "new-york-yankees",
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png"
       },
-      "home_score": null,
+      "home_score": 2.0,
       "away_score": 1.0,
-      "total_points": 1.0,
+      "total_points": 3.0,
       "odds": null,
       "venue": {
         "name": "Rate Field",
@@ -265,11 +265,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -1.604,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -298,7 +298,7 @@
       "spread_moves": 0,
       "home_starter": {
         "name": "Sean Burke",
-        "era": 3.19,
+        "era": 3.04,
         "whip": null
       },
       "away_starter": {
@@ -306,7 +306,7 @@
         "era": 4.25,
         "whip": null
       },
-      "starter_era_diff": 1.06
+      "starter_era_diff": 1.21
     },
     {
       "sport": "mlb",
@@ -330,8 +330,8 @@
         "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chc.png"
       },
       "home_score": 2.0,
-      "away_score": 2.0,
-      "total_points": 4.0,
+      "away_score": 4.0,
+      "total_points": 6.0,
       "odds": null,
       "venue": {
         "name": "Busch Stadium",
@@ -367,11 +367,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": -1.005,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": -0.0,
+      "h2h_margin_avg": -2.0,
       "rest_diff_days": 0,
-      "elo_diff": 0.0,
-      "home_elo": 1500.0,
-      "away_elo": 1500.0,
+      "elo_diff": -20.0,
+      "home_elo": 1490.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -400,15 +400,15 @@
       "spread_moves": 0,
       "home_starter": {
         "name": "Andre Pallante",
-        "era": 3.77,
+        "era": 3.72,
         "whip": null
       },
       "away_starter": {
         "name": "Javier Assad",
-        "era": 3.86,
+        "era": 3.75,
         "whip": null
       },
-      "starter_era_diff": 0.09
+      "starter_era_diff": 0.03
     },
     {
       "sport": "mlb",
@@ -835,14 +835,31 @@
         "lat": 32.7174202,
         "lon": -117.162772
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Willie Traynor",
+          "role": "home plate"
+        },
+        {
+          "name": "Chris Guccione",
+          "role": "first base"
+        },
+        {
+          "name": "Nestor Ceja",
+          "role": "second base"
+        },
+        {
+          "name": "Jacob Metz",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -0.714,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -1014,10 +1031,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -1389,10 +1406,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1510.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -3348,10 +3365,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1510.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -3948,10 +3965,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -4698,10 +4715,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1510.0,
+      "away_elo": 1510.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -4998,10 +5015,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -5511,8 +5528,8 @@
         "state": "Pennsylvania",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": [],
       "home_injuries": [],
@@ -5598,10 +5615,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -6336,8 +6353,8 @@
         "state": "Pennsylvania",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": [],
       "home_injuries": [],
@@ -6423,10 +6440,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -6498,7 +6515,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -7761,8 +7778,8 @@
         "state": "Pennsylvania",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 39.9527237,
+        "lon": -75.1635262
       },
       "officials": [],
       "home_injuries": [],
@@ -7848,10 +7865,10 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 3,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "rest_diff_days": 0,
+      "elo_diff": 0.0,
+      "home_elo": 1490.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -7923,7 +7940,7 @@
       "ref_over_bias": 0.3,
       "ref_consistency": 2.5,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
+      "rest_diff_days": 3,
       "elo_diff": 0,
       "home_elo": 1500,
       "away_elo": 1500,
@@ -8368,8 +8385,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8449,8 +8466,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8530,8 +8547,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8611,8 +8628,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8692,8 +8709,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8773,8 +8790,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8854,8 +8871,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8935,8 +8952,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9016,8 +9033,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9097,8 +9114,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9178,8 +9195,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9259,8 +9276,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9340,8 +9357,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9421,8 +9438,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9502,8 +9519,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9583,8 +9600,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9664,8 +9681,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9745,8 +9762,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9826,8 +9843,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9907,8 +9924,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9988,8 +10005,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10069,8 +10086,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10150,8 +10167,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10231,8 +10248,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10312,8 +10329,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10393,8 +10410,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10474,8 +10491,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10555,8 +10572,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10636,8 +10653,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10717,8 +10734,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10809,7 +10826,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-07-30T20:54:26.091945+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734257+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -10885,8 +10902,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "USC Trojans",
@@ -10898,7 +10915,7 @@
       "spread": -35.5,
       "favorite": "USC -35.5",
       "underdog": "SJSU +35.5",
-      "tagged_at": "2026-07-30T20:54:26.091965+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734275+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -10986,8 +11003,8 @@
         "state": "VA",
         "indoor": false,
         "grass": false,
-        "lat": 38.029306,
-        "lon": -78.4766781
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Virginia Cavaliers",
@@ -10999,7 +11016,7 @@
       "spread": -5.5,
       "favorite": "UVA -5.5",
       "underdog": "NCSU +5.5",
-      "tagged_at": "2026-07-30T20:54:26.091971+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734281+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -11087,8 +11104,8 @@
         "state": "ND",
         "indoor": true,
         "grass": false,
-        "lat": 46.877229,
-        "lon": -96.789821
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "North Dakota State Bison",
@@ -11100,7 +11117,7 @@
       "spread": -7.5,
       "favorite": "NDSU -7.5",
       "underdog": "JVST +7.5",
-      "tagged_at": "2026-07-30T20:54:26.091979+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734285+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11189,7 +11206,7 @@
       "spread": -8.5,
       "favorite": "EMU -8.5",
       "underdog": "SAC +8.5",
-      "tagged_at": "2026-07-30T20:54:26.091984+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734289+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
@@ -11277,8 +11294,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": 37.4265407,
-        "lon": -122.1703055
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Stanford Cardinal",
@@ -11290,7 +11307,7 @@
       "spread": -4.0,
       "favorite": "STAN -4.0",
       "underdog": "HAW +4.0",
-      "tagged_at": "2026-07-30T20:54:26.091988+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734292+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -11391,7 +11408,7 @@
       "spread": -30.5,
       "favorite": "FSU -30.5",
       "underdog": "NMSU +30.5",
-      "tagged_at": "2026-07-30T20:54:26.091992+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734296+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11467,8 +11484,8 @@
         "state": "NV",
         "indoor": true,
         "grass": true,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "UNLV Rebels",
@@ -11480,7 +11497,7 @@
       "spread": -5.5,
       "favorite": "UNLV -5.5",
       "underdog": "MEM +5.5",
-      "tagged_at": "2026-07-30T20:54:26.091996+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734299+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11556,8 +11573,8 @@
         "state": "NJ",
         "indoor": false,
         "grass": false,
-        "lat": 40.5464326,
-        "lon": -74.4660542
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Rutgers Scarlet Knights",
@@ -11569,7 +11586,7 @@
       "spread": -30.5,
       "favorite": "RUTG -30.5",
       "underdog": "MASS +30.5",
-      "tagged_at": "2026-07-30T20:54:26.092000+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734302+00:00",
       "weather": {
         "summary": "Scattered Rain Showers",
         "description": "",
@@ -11744,7 +11761,7 @@
       "spread": -22.5,
       "favorite": "WAKE -22.5",
       "underdog": "AKR +22.5",
-      "tagged_at": "2026-07-30T20:54:26.092007+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734307+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11901,8 +11918,8 @@
         "state": "GA",
         "indoor": false,
         "grass": true,
-        "lat": 34.0234337,
-        "lon": -84.6154897
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -11987,8 +12004,8 @@
         "state": "NY",
         "indoor": false,
         "grass": false,
-        "lat": 42.8864163,
-        "lon": -78.8781493
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -12073,8 +12090,8 @@
         "state": "MO",
         "indoor": false,
         "grass": false,
-        "lat": 38.951883,
-        "lon": -92.3337366
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -12177,7 +12194,7 @@
       "spread": -7.0,
       "favorite": "GT -7.0",
       "underdog": "COLO +7.0",
-      "tagged_at": "2026-07-30T20:54:26.092011+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734311+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12248,8 +12265,8 @@
         "state": "MN",
         "indoor": false,
         "grass": false,
-        "lat": 44.9772995,
-        "lon": -93.2654692
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -12334,8 +12351,8 @@
         "state": "UT",
         "indoor": false,
         "grass": false,
-        "lat": 40.7596198,
-        "lon": -111.886797
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -12358,7 +12375,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -126,
+      "rest_diff_days": -127,
       "elo_diff": 89.0,
       "home_elo": 1581.0,
       "away_elo": 1492.0,
@@ -12438,7 +12455,7 @@
       "spread": -27.5,
       "favorite": "ILL -27.5",
       "underdog": "UAB +27.5",
-      "tagged_at": "2026-07-30T20:54:26.092017+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734315+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12527,7 +12544,7 @@
       "spread": -4.0,
       "favorite": "EMU -4.0",
       "underdog": "SJSU +4.0",
-      "tagged_at": "2026-07-30T20:54:26.092022+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734319+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
@@ -12684,8 +12701,8 @@
         "state": "GA",
         "indoor": false,
         "grass": false,
-        "lat": 33.7544657,
-        "lon": -84.3898151
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -12775,8 +12792,8 @@
         "state": "OK",
         "indoor": false,
         "grass": true,
-        "lat": 35.2225717,
-        "lon": -97.4394816
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Oklahoma Sooners",
@@ -12788,7 +12805,7 @@
       "spread": -40.5,
       "favorite": "OU -40.5",
       "underdog": "UTEP +40.5",
-      "tagged_at": "2026-07-30T20:54:26.092043+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734322+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -12962,8 +12979,8 @@
         "state": "MI",
         "indoor": false,
         "grass": true,
-        "lat": 42.7320307,
-        "lon": -84.4721678
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Michigan State Spartans",
@@ -12975,7 +12992,7 @@
       "spread": -11.5,
       "favorite": "MSU -11.5",
       "underdog": "TOL +11.5",
-      "tagged_at": "2026-07-30T20:54:26.092047+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734326+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
@@ -13063,8 +13080,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": 37.4265407,
-        "lon": -122.1703055
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Miami Hurricanes",
@@ -13076,7 +13093,7 @@
       "spread": -23.5,
       "favorite": "MIA -23.5",
       "underdog": "STAN +23.5",
-      "tagged_at": "2026-07-30T20:54:26.092052+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734330+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -13164,8 +13181,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": 34.0536909,
-        "lon": -118.242766
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "USC Trojans",
@@ -13177,7 +13194,7 @@
       "spread": -23.5,
       "favorite": "USC -23.5",
       "underdog": "FRES +23.5",
-      "tagged_at": "2026-07-30T20:54:26.092058+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734334+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -13198,7 +13215,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -42,
+      "rest_diff_days": -43,
       "elo_diff": 11.1,
       "home_elo": 1576.7,
       "away_elo": 1565.6,
@@ -13265,8 +13282,8 @@
         "state": "AL",
         "indoor": false,
         "grass": true,
-        "lat": 33.2095614,
-        "lon": -87.5675258
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Alabama Crimson Tide",
@@ -13278,7 +13295,7 @@
       "spread": -27.5,
       "favorite": "ALA -27.5",
       "underdog": "ECU +27.5",
-      "tagged_at": "2026-07-30T20:54:26.092062+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734337+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -13366,8 +13383,8 @@
         "state": "TX",
         "indoor": false,
         "grass": false,
-        "lat": 29.7589382,
-        "lon": -95.3676974
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Houston Cougars",
@@ -13379,7 +13396,7 @@
       "spread": -19.5,
       "favorite": "HOU -19.5",
       "underdog": "ORST +19.5",
-      "tagged_at": "2026-07-30T20:54:26.092066+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734340+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -13467,8 +13484,8 @@
         "state": "WV",
         "indoor": false,
         "grass": false,
-        "lat": 39.6296809,
-        "lon": -79.9559437
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "West Virginia Mountaineers",
@@ -13480,7 +13497,7 @@
       "spread": -20.5,
       "favorite": "WVU -20.5",
       "underdog": "CCU +20.5",
-      "tagged_at": "2026-07-30T20:54:26.092070+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734344+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
@@ -13563,8 +13580,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": 43.0481221,
-        "lon": -76.1474244
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -13642,8 +13659,8 @@
         "state": "IN",
         "indoor": false,
         "grass": false,
-        "lat": 39.1670396,
-        "lon": -86.5342881
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Indiana Hoosiers",
@@ -13655,7 +13672,7 @@
       "spread": -40.5,
       "favorite": "IU -40.5",
       "underdog": "UNT +40.5",
-      "tagged_at": "2026-07-30T20:54:26.092073+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734347+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -13743,8 +13760,8 @@
         "state": "NE",
         "indoor": false,
         "grass": false,
-        "lat": 40.8088861,
-        "lon": -96.7077751
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Nebraska Cornhuskers",
@@ -13756,7 +13773,7 @@
       "spread": -24.5,
       "favorite": "NEB -24.5",
       "underdog": "OHIO +24.5",
-      "tagged_at": "2026-07-30T20:54:26.092079+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734351+00:00",
       "weather": {
         "summary": "Chance Showers And Thunderstorms",
         "description": "",
@@ -13777,7 +13794,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": -79,
+      "rest_diff_days": -78,
       "elo_diff": 16.9,
       "home_elo": 1560.5,
       "away_elo": 1543.6,
@@ -13839,8 +13856,8 @@
         "state": "CT",
         "indoor": false,
         "grass": true,
-        "lat": 41.767914,
-        "lon": -72.644512
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -13925,8 +13942,8 @@
         "state": "NY",
         "indoor": false,
         "grass": false,
-        "lat": 41.3912693,
-        "lon": -73.9658803
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14011,8 +14028,8 @@
         "state": "OH",
         "indoor": false,
         "grass": false,
-        "lat": 41.3747744,
-        "lon": -83.6513229
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14102,8 +14119,8 @@
         "state": "VA",
         "indoor": false,
         "grass": false,
-        "lat": 38.4493315,
-        "lon": -78.8688833
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "James Madison Dukes",
@@ -14115,7 +14132,7 @@
       "spread": -6.5,
       "favorite": "JMU -6.5",
       "underdog": "LIB +6.5",
-      "tagged_at": "2026-07-30T20:54:26.092083+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734356+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -14203,8 +14220,8 @@
         "state": "PA",
         "indoor": false,
         "grass": true,
-        "lat": 40.4406968,
-        "lon": -80.0025666
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Pittsburgh Panthers",
@@ -14216,7 +14233,7 @@
       "spread": -16.5,
       "favorite": "PITT -16.5",
       "underdog": "M-OH +16.5",
-      "tagged_at": "2026-07-30T20:54:26.092088+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734359+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -14304,8 +14321,8 @@
         "state": "OH",
         "indoor": false,
         "grass": false,
-        "lat": 39.9622601,
-        "lon": -83.0007065
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Ohio State Buckeyes",
@@ -14317,7 +14334,7 @@
       "spread": -50.5,
       "favorite": "OSU -50.5",
       "underdog": "BALL +50.5",
-      "tagged_at": "2026-07-30T20:54:26.092094+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734362+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
@@ -14405,8 +14422,8 @@
         "state": "SC",
         "indoor": false,
         "grass": true,
-        "lat": 34.000754,
-        "lon": -81.0352313
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "South Carolina Gamecocks",
@@ -14418,7 +14435,7 @@
       "spread": -34.5,
       "favorite": "SC -34.5",
       "underdog": "KENT +34.5",
-      "tagged_at": "2026-07-30T20:54:26.092098+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734366+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -14501,8 +14518,8 @@
         "state": "KY",
         "indoor": false,
         "grass": false,
-        "lat": 38.0464066,
-        "lon": -84.4970393
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14587,8 +14604,8 @@
         "state": "IA",
         "indoor": false,
         "grass": true,
-        "lat": 42.0267567,
-        "lon": -93.6170448
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14673,8 +14690,8 @@
         "state": "CO",
         "indoor": false,
         "grass": false,
-        "lat": 38.978759,
-        "lon": -104.8643892
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14759,8 +14776,8 @@
         "state": "PA",
         "indoor": false,
         "grass": true,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -14937,7 +14954,7 @@
       "spread": -7.0,
       "favorite": "AUB -7.0",
       "underdog": "BAY +7.0",
-      "tagged_at": "2026-07-30T20:54:26.092103+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734369+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14946,7 +14963,7 @@
       "ref_over_bias": 0.2,
       "ref_consistency": 11.0,
       "h2h_margin_avg": 4.0,
-      "rest_diff_days": -4,
+      "rest_diff_days": -3,
       "elo_diff": -9.0,
       "home_elo": 1488.5,
       "away_elo": 1497.5,
@@ -15008,8 +15025,8 @@
         "state": "TN",
         "indoor": false,
         "grass": true,
-        "lat": 35.9603948,
-        "lon": -83.9210261
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "weather": {
@@ -15099,8 +15116,8 @@
         "state": "TX",
         "indoor": false,
         "grass": false,
-        "lat": 30.2711286,
-        "lon": -97.7436995
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Texas Longhorns",
@@ -15112,7 +15129,7 @@
       "spread": -30.5,
       "favorite": "TEX -30.5",
       "underdog": "TXST +30.5",
-      "tagged_at": "2026-07-30T20:54:26.092109+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734374+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -15213,7 +15230,7 @@
       "spread": -7.5,
       "favorite": "CIN -7.5",
       "underdog": "BC +7.5",
-      "tagged_at": "2026-07-30T20:54:26.092113+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734377+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15302,7 +15319,7 @@
       "spread": -10.0,
       "favorite": "DUKE -10.0",
       "underdog": "TULN +10.0",
-      "tagged_at": "2026-07-30T20:54:26.092118+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734380+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15391,7 +15408,7 @@
       "spread": -24.5,
       "favorite": "ORE -24.5",
       "underdog": "BOIS +24.5",
-      "tagged_at": "2026-07-30T20:54:26.092122+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734383+00:00",
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
@@ -15492,7 +15509,7 @@
       "spread": -24.5,
       "favorite": "PSU -24.5",
       "underdog": "MRSH +24.5",
-      "tagged_at": "2026-07-30T20:54:26.092126+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734387+00:00",
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
@@ -15593,7 +15610,7 @@
       "spread": -21.5,
       "favorite": "WASH -21.5",
       "underdog": "WSU +21.5",
-      "tagged_at": "2026-07-30T20:54:26.092132+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734391+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15669,8 +15686,8 @@
         "state": "TN",
         "indoor": false,
         "grass": false,
-        "lat": 36.1622767,
-        "lon": -86.7742984
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Ole Miss Rebels",
@@ -15682,7 +15699,7 @@
       "spread": -6.5,
       "favorite": "MISS -6.5",
       "underdog": "LOU +6.5",
-      "tagged_at": "2026-07-30T20:54:26.092137+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734394+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
@@ -15770,8 +15787,8 @@
         "state": "WI",
         "indoor": false,
         "grass": true,
-        "lat": 44.5126379,
-        "lon": -88.0125794
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "fav_team": "Notre Dame Fighting Irish",
@@ -15783,7 +15800,7 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-07-30T20:54:26.092141+00:00",
+      "tagged_at": "2026-07-30T21:29:36.734398+00:00",
       "weather": {
         "summary": "Slight Chance Rain Showers",
         "description": "",
@@ -15836,5 +15853,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-07-30T20:57:21.949960"
+  "weather_merged_at": "2026-07-30T21:34:31.138429"
 }
