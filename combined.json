@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260801_1527",
+  "timestamp": "20260801_1551",
   "count": 193,
   "data": [
     {
@@ -354,8 +354,8 @@
         "slug": "bogdan-grad",
         "logo": "https://a.espncdn.com/i/headshots/mma/players/full/5144006.png"
       },
-      "home_score": null,
-      "away_score": null,
+      "home_score": 1,
+      "away_score": 0,
       "total_points": 0,
       "odds": null,
       "venue": {
@@ -375,11 +375,11 @@
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 0.0,
-      "h2h_margin_avg": 0.0,
+      "h2h_margin_avg": 1.0,
       "rest_diff_days": 0,
-      "elo_diff": 0,
-      "home_elo": 1500,
-      "away_elo": 1500,
+      "elo_diff": 20.0,
+      "home_elo": 1510.0,
+      "away_elo": 1490.0,
       "travel_km": 0,
       "power_diff": 0,
       "off_def_mismatch": 0,
@@ -1170,14 +1170,31 @@
         "lat": 34.0021024,
         "lon": -117.5901265
       },
-      "officials": [],
+      "officials": [
+        {
+          "name": "Rob Drake",
+          "role": "home plate"
+        },
+        {
+          "name": "Jordan Baker",
+          "role": "first base"
+        },
+        {
+          "name": "Stu Scheurwater",
+          "role": "second base"
+        },
+        {
+          "name": "Junior Valentine",
+          "role": "third base"
+        }
+      ],
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
       "injury_count_away": 0,
-      "ref_home_bias": 0.2,
-      "ref_over_bias": 0.3,
-      "ref_consistency": 2.5,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": -1.794,
+      "ref_consistency": 0.0,
       "h2h_margin_avg": 0.0,
       "rest_diff_days": 0,
       "elo_diff": 0,
@@ -1370,10 +1387,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 67,
+      "public_pct": 66,
       "public_side": "NYM",
       "fade_signal": 1,
-      "public_home_pct": 67,
+      "public_home_pct": 66,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1455,10 +1472,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 57,
+      "public_pct": 56,
       "public_side": "SEA",
       "fade_signal": 0,
-      "public_home_pct": 57,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1625,10 +1642,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 70,
+      "public_pct": 68,
       "public_side": "PHI",
-      "fade_signal": 2,
-      "public_home_pct": 30,
+      "fade_signal": 1,
+      "public_home_pct": 32,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1795,10 +1812,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 59,
+      "public_home_pct": 58,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1880,10 +1897,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 56,
+      "public_pct": 55,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 56,
+      "public_home_pct": 55,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2135,10 +2152,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 63,
+      "public_pct": 62,
       "public_side": "SD",
       "fade_signal": 0,
-      "public_home_pct": 63,
+      "public_home_pct": 62,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2390,10 +2407,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 62,
+      "public_pct": 61,
       "public_side": "DET",
       "fade_signal": 0,
-      "public_home_pct": 38,
+      "public_home_pct": 39,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2475,10 +2492,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 70,
+      "public_pct": 68,
       "public_side": "PHI",
-      "fade_signal": 2,
-      "public_home_pct": 30,
+      "fade_signal": 1,
+      "public_home_pct": 32,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2550,10 +2567,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 56,
+      "public_pct": 55,
       "public_side": "ATL",
       "fade_signal": 0,
-      "public_home_pct": 56,
+      "public_home_pct": 55,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2700,10 +2717,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 59,
+      "public_pct": 58,
       "public_side": "CLE",
       "fade_signal": 0,
-      "public_home_pct": 59,
+      "public_home_pct": 58,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -2850,10 +2867,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 67,
+      "public_pct": 66,
       "public_side": "NYM",
       "fade_signal": 1,
-      "public_home_pct": 67,
+      "public_home_pct": 66,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -3300,10 +3317,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 62,
+      "public_pct": 61,
       "public_side": "DET",
       "fade_signal": 0,
-      "public_home_pct": 38,
+      "public_home_pct": 39,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -3375,10 +3392,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 57,
+      "public_pct": 56,
       "public_side": "SEA",
       "fade_signal": 0,
-      "public_home_pct": 57,
+      "public_home_pct": 56,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -3450,10 +3467,10 @@
       "divisional": false,
       "home_streak": 0,
       "away_streak": 0,
-      "public_pct": 63,
+      "public_pct": 62,
       "public_side": "SD",
       "fade_signal": 0,
-      "public_home_pct": 63,
+      "public_home_pct": 62,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -8374,8 +8391,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8455,8 +8472,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8536,8 +8553,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8617,8 +8634,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8698,8 +8715,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8779,8 +8796,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8860,8 +8877,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -8941,8 +8958,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9022,8 +9039,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9103,8 +9120,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9184,8 +9201,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9265,8 +9282,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9346,8 +9363,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9427,8 +9444,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9508,8 +9525,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9589,8 +9606,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9670,8 +9687,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9751,8 +9768,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9832,8 +9849,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9913,8 +9930,8 @@
         "state": "PA",
         "indoor": true,
         "grass": false,
-        "lat": 39.9527237,
-        "lon": -75.1635262
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -9994,8 +10011,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10075,8 +10092,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10156,8 +10173,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10237,8 +10254,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10318,8 +10335,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10399,8 +10416,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10480,8 +10497,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10561,8 +10578,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10642,8 +10659,8 @@
         "state": "CA",
         "indoor": true,
         "grass": false,
-        "lat": 38.5810606,
-        "lon": -121.493895
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10723,8 +10740,8 @@
         "state": "NV",
         "indoor": true,
         "grass": false,
-        "lat": 36.1674263,
-        "lon": -115.1484131
+        "lat": null,
+        "lon": null
       },
       "officials": [],
       "home_injuries": [],
@@ -10794,7 +10811,7 @@
         "details": "TCU -6.5",
         "spread": -6.5,
         "total": 48.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Aviva Stadium",
@@ -10815,7 +10832,7 @@
       "spread": -6.5,
       "favorite": "TCU -6.5",
       "underdog": "UNC +6.5",
-      "tagged_at": "2026-08-01T15:27:12.441872+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529938+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -10883,7 +10900,7 @@
         "details": "USC -38.5",
         "spread": -38.5,
         "total": 59.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Los Angeles Memorial Coliseum",
@@ -10891,8 +10908,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": [],
       "fav_team": "USC Trojans",
@@ -10904,12 +10921,12 @@
       "spread": -38.5,
       "favorite": "USC -38.5",
       "underdog": "SJSU +38.5",
-      "tagged_at": "2026-08-01T15:27:12.441889+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529954+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 0
@@ -10984,7 +11001,7 @@
         "details": "UVA -5.5",
         "spread": -5.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Scott Stadium",
@@ -11005,7 +11022,7 @@
       "spread": -5.5,
       "favorite": "UVA -5.5",
       "underdog": "NCSU +5.5",
-      "tagged_at": "2026-08-01T15:27:12.441894+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529960+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11073,7 +11090,7 @@
         "details": "NDSU -7.5",
         "spread": -7.5,
         "total": 48.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Fargodome",
@@ -11094,7 +11111,7 @@
       "spread": -7.5,
       "favorite": "NDSU -7.5",
       "underdog": "JVST +7.5",
-      "tagged_at": "2026-08-01T15:27:12.441898+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529965+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11162,7 +11179,7 @@
         "details": "EMU -8.5",
         "spread": -8.5,
         "total": 53.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Rynearson Stadium",
@@ -11170,8 +11187,8 @@
         "state": "MI",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 42.241051,
+        "lon": -83.6117646
       },
       "officials": [],
       "fav_team": "Eastern Michigan Eagles",
@@ -11183,15 +11200,15 @@
       "spread": -8.5,
       "favorite": "EMU -8.5",
       "underdog": "SAC +8.5",
-      "tagged_at": "2026-08-01T15:27:12.441901+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529969+00:00",
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
-        "rainChancePct": 7
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 8.0,
+        "wind": 8.0,
+        "rainChancePct": 6
       },
       "weatherRisk": {
         "risk": 0
@@ -11263,7 +11280,7 @@
         "details": "STAN -4",
         "spread": -4.0,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Stanford Stadium",
@@ -11271,8 +11288,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 37.4265407,
+        "lon": -122.1703055
       },
       "officials": [],
       "fav_team": "Stanford Cardinal",
@@ -11284,7 +11301,19 @@
       "spread": -4.0,
       "favorite": "STAN -4.0",
       "underdog": "HAW +4.0",
-      "tagged_at": "2026-08-01T15:27:12.441904+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529973+00:00",
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11352,7 +11381,7 @@
         "details": "FSU -30.5",
         "spread": -30.5,
         "total": 53.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Doak Campbell Stadium",
@@ -11373,7 +11402,7 @@
       "spread": -30.5,
       "favorite": "FSU -30.5",
       "underdog": "NMSU +30.5",
-      "tagged_at": "2026-08-01T15:27:12.441906+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529977+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11441,7 +11470,7 @@
         "details": "UNLV -5.5",
         "spread": -5.5,
         "total": 59.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Allegiant Stadium",
@@ -11462,7 +11491,7 @@
       "spread": -5.5,
       "favorite": "UNLV -5.5",
       "underdog": "MEM +5.5",
-      "tagged_at": "2026-08-01T15:27:12.441909+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529980+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11530,7 +11559,7 @@
         "details": "RUTG -30.5",
         "spread": -30.5,
         "total": 55.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "SHI Stadium",
@@ -11551,7 +11580,7 @@
       "spread": -30.5,
       "favorite": "RUTG -30.5",
       "underdog": "MASS +30.5",
-      "tagged_at": "2026-08-01T15:27:12.441911+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529984+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -11693,7 +11722,7 @@
         "details": "WAKE -22.5",
         "spread": -22.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Allegacy Federal Credit Union Stadium",
@@ -11714,7 +11743,7 @@
       "spread": -22.5,
       "favorite": "WAKE -22.5",
       "underdog": "AKR +22.5",
-      "tagged_at": "2026-08-01T15:27:12.441914+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529988+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12007,10 +12036,22 @@
         "state": "MO",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 38.951883,
+        "lon": -92.3337366
       },
       "officials": [],
+      "weather": {
+        "summary": "Chance Drizzle",
+        "description": "",
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 15.0,
+        "wind": 15.0,
+        "rainChancePct": 29
+      },
+      "weatherRisk": {
+        "risk": 1
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12078,7 +12119,7 @@
         "details": "GT -7",
         "spread": -7.0,
         "total": 51.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Bobby Dodd Stadium",
@@ -12086,8 +12127,8 @@
         "state": "GA",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": [],
       "fav_team": "Georgia Tech Yellow Jackets",
@@ -12099,7 +12140,19 @@
       "spread": -7.0,
       "favorite": "GT -7.0",
       "underdog": "COLO +7.0",
-      "tagged_at": "2026-08-01T15:27:12.441917+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529992+00:00",
+      "weather": {
+        "summary": "Showers And Thunderstorms Likely",
+        "description": "",
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 73
+      },
+      "weatherRisk": {
+        "risk": 1
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12170,10 +12223,22 @@
         "state": "MN",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 44.9772995,
+        "lon": -93.2654692
       },
       "officials": [],
+      "weather": {
+        "summary": "Sunny",
+        "description": "",
+        "temperatureF": 71,
+        "temp": 71,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12244,10 +12309,22 @@
         "state": "UT",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 40.7596198,
+        "lon": -111.886797
       },
       "officials": [],
+      "weather": {
+        "summary": "Sunny",
+        "description": "",
+        "temperatureF": 83,
+        "temp": 83,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12315,7 +12392,7 @@
         "details": "ILL -27.5",
         "spread": -27.5,
         "total": 56.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Gies Memorial Stadium",
@@ -12323,8 +12400,8 @@
         "state": "IL",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 40.1164841,
+        "lon": -88.2430932
       },
       "officials": [],
       "fav_team": "Illinois Fighting Illini",
@@ -12336,7 +12413,19 @@
       "spread": -27.5,
       "favorite": "ILL -27.5",
       "underdog": "UAB +27.5",
-      "tagged_at": "2026-08-01T15:27:12.441921+00:00",
+      "tagged_at": "2026-08-01T15:51:05.529998+00:00",
+      "weather": {
+        "summary": "Chance Showers And Thunderstorms",
+        "description": "",
+        "temperatureF": 69,
+        "temp": 69,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 49
+      },
+      "weatherRisk": {
+        "risk": 1
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -12404,7 +12493,7 @@
         "details": "EMU -4",
         "spread": -4.0,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Rynearson Stadium",
@@ -12412,8 +12501,8 @@
         "state": "MI",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 42.241051,
+        "lon": -83.6117646
       },
       "officials": [],
       "fav_team": "Eastern Michigan Eagles",
@@ -12425,15 +12514,15 @@
       "spread": -4.0,
       "favorite": "EMU -4.0",
       "underdog": "SJSU +4.0",
-      "tagged_at": "2026-08-01T15:27:12.441923+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530002+00:00",
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
-        "rainChancePct": 7
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 8.0,
+        "wind": 8.0,
+        "rainChancePct": 6
       },
       "weatherRisk": {
         "risk": 0
@@ -12508,18 +12597,18 @@
         "state": "IN",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 40.4258686,
+        "lon": -86.9080655
       },
       "officials": [],
       "weather": {
-        "summary": "Scattered Showers And Thunderstorms",
+        "summary": "Slight Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 69,
-        "temp": 69,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 26
+        "rainChancePct": 20
       },
       "weatherRisk": {
         "risk": 1
@@ -12594,18 +12683,18 @@
         "state": "GA",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 33.7544657,
+        "lon": -84.3898151
       },
       "officials": [],
       "weather": {
-        "summary": "Chance Showers And Thunderstorms",
+        "summary": "Showers And Thunderstorms Likely",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
+        "temperatureF": 78,
+        "temp": 78,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 35
+        "rainChancePct": 73
       },
       "weatherRisk": {
         "risk": 1
@@ -12677,7 +12766,7 @@
         "details": "OU -40.5",
         "spread": -40.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Memorial Stadium (Norman, OK)",
@@ -12685,8 +12774,8 @@
         "state": "OK",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 35.2225717,
+        "lon": -97.4394816
       },
       "officials": [],
       "fav_team": "Oklahoma Sooners",
@@ -12698,14 +12787,14 @@
       "spread": -40.5,
       "favorite": "OU -40.5",
       "underdog": "UTEP +40.5",
-      "tagged_at": "2026-08-01T15:27:12.441928+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530010+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
+        "temperatureF": 80,
+        "temp": 80,
+        "windSpeedMph": 14.0,
+        "wind": 14.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -12781,15 +12870,15 @@
         "state": "KS",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 38.9719137,
+        "lon": -95.2359403
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 73,
+        "temp": 73,
         "windSpeedMph": 15.0,
         "wind": 15.0,
         "rainChancePct": 0
@@ -12864,7 +12953,7 @@
         "details": "MSU -11.5",
         "spread": -11.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Spartan Stadium",
@@ -12872,8 +12961,8 @@
         "state": "MI",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 42.7320307,
+        "lon": -84.4721678
       },
       "officials": [],
       "fav_team": "Michigan State Spartans",
@@ -12885,18 +12974,18 @@
       "spread": -11.5,
       "favorite": "MSU -11.5",
       "underdog": "TOL +11.5",
-      "tagged_at": "2026-08-01T15:27:12.441930+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530013+00:00",
       "weather": {
-        "summary": "Patchy Fog",
+        "summary": "Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
+        "temperatureF": 74,
+        "temp": 74,
         "windSpeedMph": 8.0,
         "wind": 8.0,
-        "rainChancePct": 19
+        "rainChancePct": 38
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -12965,7 +13054,7 @@
         "details": "MIA -23.5",
         "spread": 23.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Stanford Stadium",
@@ -12973,8 +13062,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 37.4265407,
+        "lon": -122.1703055
       },
       "officials": [],
       "fav_team": "Miami Hurricanes",
@@ -12986,7 +13075,19 @@
       "spread": -23.5,
       "favorite": "MIA -23.5",
       "underdog": "STAN +23.5",
-      "tagged_at": "2026-08-01T15:27:12.441934+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530017+00:00",
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13054,7 +13155,7 @@
         "details": "USC -23.5",
         "spread": -23.5,
         "total": 51.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Los Angeles Memorial Coliseum",
@@ -13062,8 +13163,8 @@
         "state": "CA",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 34.0536909,
+        "lon": -118.242766
       },
       "officials": [],
       "fav_team": "USC Trojans",
@@ -13075,12 +13176,12 @@
       "spread": -23.5,
       "favorite": "USC -23.5",
       "underdog": "FRES +23.5",
-      "tagged_at": "2026-08-01T15:27:12.441937+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530023+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Sunny",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 0
@@ -13155,7 +13256,7 @@
         "details": "ALA -27.5",
         "spread": -27.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Bryant-Denny Stadium",
@@ -13163,8 +13264,8 @@
         "state": "AL",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 33.2095614,
+        "lon": -87.5675258
       },
       "officials": [],
       "fav_team": "Alabama Crimson Tide",
@@ -13176,15 +13277,15 @@
       "spread": -27.5,
       "favorite": "ALA -27.5",
       "underdog": "ECU +27.5",
-      "tagged_at": "2026-08-01T15:27:12.441940+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530026+00:00",
       "weather": {
         "summary": "Slight Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 77,
-        "temp": 77,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 16
+        "temperatureF": 83,
+        "temp": 83,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 23
       },
       "weatherRisk": {
         "risk": 1
@@ -13256,7 +13357,7 @@
         "details": "HOU -19.5",
         "spread": -19.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "TDECU Stadium",
@@ -13264,8 +13365,8 @@
         "state": "TX",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 29.7589382,
+        "lon": -95.3676974
       },
       "officials": [],
       "fav_team": "Houston Cougars",
@@ -13277,15 +13378,15 @@
       "spread": -19.5,
       "favorite": "HOU -19.5",
       "underdog": "ORST +19.5",
-      "tagged_at": "2026-08-01T15:27:12.441942+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530030+00:00",
       "weather": {
         "summary": "Sunny",
         "description": "",
-        "temperatureF": 83,
-        "temp": 83,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 0
+        "temperatureF": 87,
+        "temp": 87,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 1
       },
       "weatherRisk": {
         "risk": 0
@@ -13357,7 +13458,7 @@
         "details": "WVU -20.5",
         "spread": -20.5,
         "total": 57.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Milan Puskar Stadium",
@@ -13365,8 +13466,8 @@
         "state": "WV",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 39.6296809,
+        "lon": -79.9559437
       },
       "officials": [],
       "fav_team": "West Virginia Mountaineers",
@@ -13378,14 +13479,14 @@
       "spread": -20.5,
       "favorite": "WVU -20.5",
       "underdog": "CCU +20.5",
-      "tagged_at": "2026-08-01T15:27:12.441945+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530033+00:00",
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -13461,8 +13562,8 @@
         "state": "NY",
         "indoor": true,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 43.0481221,
+        "lon": -76.1474244
       },
       "officials": [],
       "home_injuries": [],
@@ -13532,7 +13633,7 @@
         "details": "IU -40.5",
         "spread": -40.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Memorial Stadium (Bloomington, IN)",
@@ -13540,8 +13641,8 @@
         "state": "IN",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 39.1670396,
+        "lon": -86.5342881
       },
       "officials": [],
       "fav_team": "Indiana Hoosiers",
@@ -13553,15 +13654,15 @@
       "spread": -40.5,
       "favorite": "IU -40.5",
       "underdog": "UNT +40.5",
-      "tagged_at": "2026-08-01T15:27:12.441947+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530037+00:00",
       "weather": {
-        "summary": "Isolated Showers And Thunderstorms",
+        "summary": "Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 8.0,
         "wind": 8.0,
-        "rainChancePct": 23
+        "rainChancePct": 26
       },
       "weatherRisk": {
         "risk": 1
@@ -13633,7 +13734,7 @@
         "details": "NEB -24.5",
         "spread": -24.5,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Memorial Stadium (Lincoln, NE)",
@@ -13641,8 +13742,8 @@
         "state": "NE",
         "indoor": false,
         "grass": false,
-        "lat": null,
-        "lon": null
+        "lat": 40.8088861,
+        "lon": -96.7077751
       },
       "officials": [],
       "fav_team": "Nebraska Cornhuskers",
@@ -13654,12 +13755,12 @@
       "spread": -24.5,
       "favorite": "NEB -24.5",
       "underdog": "OHIO +24.5",
-      "tagged_at": "2026-08-01T15:27:12.441951+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530042+00:00",
       "weather": {
         "summary": "Mostly Sunny",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 13.0,
         "wind": 13.0,
         "rainChancePct": 0
@@ -13737,15 +13838,15 @@
         "state": "CT",
         "indoor": false,
         "grass": true,
-        "lat": null,
-        "lon": null
+        "lat": 41.767914,
+        "lon": -72.644512
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
+        "temperatureF": 81,
+        "temp": 81,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 1
@@ -13827,18 +13928,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13913,18 +14002,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Mostly Cloudy",
-        "description": "",
-        "temperatureF": 73,
-        "temp": 73,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
-        "rainChancePct": 5
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -13992,7 +14069,7 @@
         "details": "JMU -6.5",
         "spread": -6.5,
         "total": 52.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Bridgeforth Stadium",
@@ -14013,19 +14090,7 @@
       "spread": -6.5,
       "favorite": "JMU -6.5",
       "underdog": "LIB +6.5",
-      "tagged_at": "2026-08-01T15:27:12.441953+00:00",
-      "weather": {
-        "summary": "Mostly Cloudy",
-        "description": "",
-        "temperatureF": 68,
-        "temp": 68,
-        "windSpeedMph": 1.0,
-        "wind": 1.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
+      "tagged_at": "2026-08-01T15:51:05.530046+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14093,7 +14158,7 @@
         "details": "PITT -16.5",
         "spread": -16.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Acrisure Stadium",
@@ -14114,19 +14179,7 @@
       "spread": -16.5,
       "favorite": "PITT -16.5",
       "underdog": "M-OH +16.5",
-      "tagged_at": "2026-08-01T15:27:12.441956+00:00",
-      "weather": {
-        "summary": "Mostly Cloudy",
-        "description": "",
-        "temperatureF": 68,
-        "temp": 68,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
-        "rainChancePct": 1
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
+      "tagged_at": "2026-08-01T15:51:05.530050+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14194,7 +14247,7 @@
         "details": "OSU -50.5",
         "spread": -50.5,
         "total": 56.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Ohio Stadium",
@@ -14215,19 +14268,7 @@
       "spread": -50.5,
       "favorite": "OSU -50.5",
       "underdog": "BALL +50.5",
-      "tagged_at": "2026-08-01T15:27:12.441958+00:00",
-      "weather": {
-        "summary": "Mostly Cloudy",
-        "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
-        "rainChancePct": 4
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
+      "tagged_at": "2026-08-01T15:51:05.530053+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14295,7 +14336,7 @@
         "details": "SC -34.5",
         "spread": -34.5,
         "total": 52.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Williams-Brice Stadium",
@@ -14316,19 +14357,7 @@
       "spread": -34.5,
       "favorite": "SC -34.5",
       "underdog": "KENT +34.5",
-      "tagged_at": "2026-08-01T15:27:12.441961+00:00",
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 79,
-        "temp": 79,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 7
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
+      "tagged_at": "2026-08-01T15:51:05.530056+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14403,18 +14432,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Showers And Thunderstorms",
-        "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 83
-      },
-      "weatherRisk": {
-        "risk": 1
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14489,18 +14506,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Mostly Sunny",
-        "description": "",
-        "temperatureF": 65,
-        "temp": 65,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 1
-      },
-      "weatherRisk": {
-        "risk": 1
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14575,18 +14580,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14661,18 +14654,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 76,
-        "temp": 76,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14747,18 +14728,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
-        "rainChancePct": 9
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14826,7 +14795,7 @@
         "details": "AUB -7",
         "spread": -7.0,
         "total": 59.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Mercedes-Benz Stadium",
@@ -14847,7 +14816,7 @@
       "spread": -7.0,
       "favorite": "AUB -7.0",
       "underdog": "BAY +7.0",
-      "tagged_at": "2026-08-01T15:27:12.441964+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530060+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -14922,18 +14891,6 @@
         "lon": null
       },
       "officials": [],
-      "weather": {
-        "summary": "Chance Showers And Thunderstorms",
-        "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
-        "rainChancePct": 36
-      },
-      "weatherRisk": {
-        "risk": 1
-      },
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15001,7 +14958,7 @@
         "details": "TEX -30.5",
         "spread": -30.5,
         "total": 59.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "DKR-Texas Memorial Stadium",
@@ -15022,7 +14979,7 @@
       "spread": -30.5,
       "favorite": "TEX -30.5",
       "underdog": "TXST +30.5",
-      "tagged_at": "2026-08-01T15:27:12.441967+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530066+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15090,7 +15047,7 @@
         "details": "CIN -7.5",
         "spread": -7.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Nippert Stadium",
@@ -15111,7 +15068,7 @@
       "spread": -7.5,
       "favorite": "CIN -7.5",
       "underdog": "BC +7.5",
-      "tagged_at": "2026-08-01T15:27:12.441970+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530069+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15179,7 +15136,7 @@
         "details": "DUKE -10",
         "spread": -10.0,
         "total": 52.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Wallace Wade Stadium",
@@ -15200,7 +15157,7 @@
       "spread": -10.0,
       "favorite": "DUKE -10.0",
       "underdog": "TULN +10.0",
-      "tagged_at": "2026-08-01T15:27:12.441972+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530073+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15268,7 +15225,7 @@
         "details": "ORE -24.5",
         "spread": -24.5,
         "total": 52.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Autzen Stadium",
@@ -15289,7 +15246,7 @@
       "spread": -24.5,
       "favorite": "ORE -24.5",
       "underdog": "BOIS +24.5",
-      "tagged_at": "2026-08-01T15:27:12.441975+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530076+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15357,7 +15314,7 @@
         "details": "PSU -24.5",
         "spread": -24.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Beaver Stadium",
@@ -15378,7 +15335,7 @@
       "spread": -24.5,
       "favorite": "PSU -24.5",
       "underdog": "MRSH +24.5",
-      "tagged_at": "2026-08-01T15:27:12.441977+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530080+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15446,7 +15403,7 @@
         "details": "WASH -21.5",
         "spread": -21.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Husky Stadium",
@@ -15467,7 +15424,7 @@
       "spread": -21.5,
       "favorite": "WASH -21.5",
       "underdog": "WSU +21.5",
-      "tagged_at": "2026-08-01T15:27:12.441981+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530085+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15535,7 +15492,7 @@
         "details": "MISS -6.5",
         "spread": -6.5,
         "total": 56.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Nissan Stadium",
@@ -15556,7 +15513,7 @@
       "spread": -6.5,
       "favorite": "MISS -6.5",
       "underdog": "LOU +6.5",
-      "tagged_at": "2026-08-01T15:27:12.441983+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530088+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15624,7 +15581,7 @@
         "details": "ND -20.5",
         "spread": -20.5,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lambeau Field",
@@ -15645,7 +15602,7 @@
       "spread": -20.5,
       "favorite": "ND -20.5",
       "underdog": "WIS +20.5",
-      "tagged_at": "2026-08-01T15:27:12.441985+00:00",
+      "tagged_at": "2026-08-01T15:51:05.530092+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -15686,5 +15643,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-08-01T15:32:11.002979"
+  "weather_merged_at": "2026-08-01T15:56:01.626436"
 }
