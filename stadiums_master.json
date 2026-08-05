@@ -1,4 +1,44 @@
 {
+  "daikin park": {
+    "name": "Daikin Park",
+    "norm": "daikin park",
+    "city": "Houston",
+    "state": "Texas",
+    "indoor": true,
+    "grass": true,
+    "lat": 29.7589382,
+    "lon": -95.3676974
+  },
+  "wrigley field": {
+    "name": "Wrigley Field",
+    "norm": "wrigley field",
+    "city": "Chicago",
+    "state": "Illinois",
+    "indoor": false,
+    "grass": true,
+    "lat": 41.8755616,
+    "lon": -87.6244212
+  },
+  "globe life field": {
+    "name": "Globe Life Field",
+    "norm": "globe life field",
+    "city": "Arlington",
+    "state": "Texas",
+    "indoor": true,
+    "grass": false,
+    "lat": 32.7355816,
+    "lon": -97.1071186
+  },
+  "coors field": {
+    "name": "Coors Field",
+    "norm": "coors field",
+    "city": "Denver",
+    "state": "Colorado",
+    "indoor": false,
+    "grass": true,
+    "lat": 39.7392364,
+    "lon": -104.984862
+  },
   "oriole park at camden yards": {
     "name": "Oriole Park at Camden Yards",
     "norm": "oriole park at camden yards",
@@ -69,16 +109,6 @@
     "lat": 33.7544657,
     "lon": -84.3898151
   },
-  "kauffman stadium": {
-    "name": "Kauffman Stadium",
-    "norm": "kauffman stadium",
-    "city": "Kansas City",
-    "state": "Missouri",
-    "indoor": false,
-    "grass": true,
-    "lat": 39.100105,
-    "lon": -94.5781416
-  },
   "american family field": {
     "name": "American Family Field",
     "norm": "american family field",
@@ -89,45 +119,15 @@
     "lat": 43.0386475,
     "lon": -87.9090751
   },
-  "wrigley field": {
-    "name": "Wrigley Field",
-    "norm": "wrigley field",
-    "city": "Chicago",
-    "state": "Illinois",
+  "kauffman stadium": {
+    "name": "Kauffman Stadium",
+    "norm": "kauffman stadium",
+    "city": "Kansas City",
+    "state": "Missouri",
     "indoor": false,
     "grass": true,
-    "lat": 41.8755616,
-    "lon": -87.6244212
-  },
-  "globe life field": {
-    "name": "Globe Life Field",
-    "norm": "globe life field",
-    "city": "Arlington",
-    "state": "Texas",
-    "indoor": true,
-    "grass": false,
-    "lat": 32.7355816,
-    "lon": -97.1071186
-  },
-  "daikin park": {
-    "name": "Daikin Park",
-    "norm": "daikin park",
-    "city": "Houston",
-    "state": "Texas",
-    "indoor": true,
-    "grass": true,
-    "lat": 29.7589382,
-    "lon": -95.3676974
-  },
-  "coors field": {
-    "name": "Coors Field",
-    "norm": "coors field",
-    "city": "Denver",
-    "state": "Colorado",
-    "indoor": false,
-    "grass": true,
-    "lat": 39.7392364,
-    "lon": -104.984862
+    "lat": 39.100105,
+    "lon": -94.5781416
   },
   "tmobile park": {
     "name": "T-Mobile Park",
@@ -274,6 +274,16 @@
     "norm": "dodger stadium",
     "city": "Los Angeles",
     "state": "California",
+    "indoor": false,
+    "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "comerica park": {
+    "name": "Comerica Park",
+    "norm": "comerica park",
+    "city": "Detroit",
+    "state": "Michigan",
     "indoor": false,
     "grass": true,
     "lat": null,
