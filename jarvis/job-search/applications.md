@@ -11,3 +11,5 @@ Statuses: PREPARED (résumé tailored, awaiting Bryan's submit) / APPLIED /
 INTERVIEW / REJECTED / OFFER.
 
 <!-- entries below, newest last -->
+- (2026-08-15) Executive Director, Leadership Development Center — U.S. Customs and Border Protection — $151,661–$228,000 — https://to.indeed.com/aayjymrxqqm6 — PREPARED
+- (2026-08-15) Director of Talent Development & Culture (Remote) — Wealth Enhancement Group — $155,000–$213,900 — https://to.indeed.com/aaqh9rsmr77z — PREPARED
