@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-08-29T15:18:53.095875+00:00",
+  "timestamp": "2026-08-29T21:19:20.199040+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 10,
+  "predictions_graded": 12,
   "sports": {
     "ALL": {
-      "SU_pct": 57.1,
-      "SU_record": "4-3",
-      "SU_total": 7,
-      "ATS_pct": 33.3,
-      "ATS_record": "2-4-0",
-      "ATS_total": 6,
-      "OU_pct": 30.0,
-      "OU_record": "3-7-0",
-      "OU_total": 10
+      "SU_pct": 55.6,
+      "SU_record": "5-4",
+      "SU_total": 9,
+      "ATS_pct": 42.9,
+      "ATS_record": "3-4-0",
+      "ATS_total": 7,
+      "OU_pct": 33.3,
+      "OU_record": "4-8-0",
+      "OU_total": 12
     },
     "NFL": {
       "SU_pct": 0,
@@ -26,15 +26,15 @@
       "OU_total": 0
     },
     "NCAAF": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
-      "ATS_pct": 0,
-      "ATS_record": "0-0-0",
-      "ATS_total": 0,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "SU_pct": 50.0,
+      "SU_record": "1-1",
+      "SU_total": 2,
+      "ATS_pct": 100.0,
+      "ATS_record": "1-0-0",
+      "ATS_total": 1,
+      "OU_pct": 50.0,
+      "OU_record": "1-1-0",
+      "OU_total": 2
     },
     "NBA": {
       "SU_pct": 25.0,
@@ -95,11 +95,11 @@
   "high_confidence": {
     "ALL": {
       "SU_pct": 100.0,
-      "SU_record": "3-0",
-      "SU_total": 3,
-      "ATS_pct": 50.0,
-      "ATS_record": "2-2-0",
-      "ATS_total": 4,
+      "SU_record": "4-0",
+      "SU_total": 4,
+      "ATS_pct": 60.0,
+      "ATS_record": "3-2-0",
+      "ATS_total": 5,
       "OU_pct": 0,
       "OU_record": "0-0-0",
       "OU_total": 0
@@ -116,12 +116,12 @@
       "OU_total": 0
     },
     "NCAAF": {
-      "SU_pct": 0,
-      "SU_record": "0-0",
-      "SU_total": 0,
-      "ATS_pct": 0,
-      "ATS_record": "0-0-0",
-      "ATS_total": 0,
+      "SU_pct": 100.0,
+      "SU_record": "1-0",
+      "SU_total": 1,
+      "ATS_pct": 100.0,
+      "ATS_record": "1-0-0",
+      "ATS_total": 1,
       "OU_pct": 0,
       "OU_record": "0-0-0",
       "OU_total": 0
@@ -281,6 +281,26 @@
       "ou": "L",
       "ou_best_bet": false,
       "su": "L"
+    },
+    {
+      "id": "401856766",
+      "sport": "NCAAF",
+      "date": "2026-08-29T16:00Z",
+      "matchup": "North Carolina Tar Heels at TCU Horned Frogs",
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401864494",
+      "sport": "NCAAF",
+      "date": "2026-08-29T19:00Z",
+      "matchup": "San Jos\u00e9 State Spartans at USC Trojans",
+      "ats": "W",
+      "ats_best_bet": true,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
     }
   ]
 }
