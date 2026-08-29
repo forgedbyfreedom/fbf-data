@@ -2,12 +2,17 @@ name: Auto Fetch & Publish ESPN Odds
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "0 3,9,15,21 * * *"   # every 6 hours (11pm / 5am / 11am / 5pm ET)
   workflow_dispatch:
+
+concurrency:
+  group: fetch-espn-publish
+  cancel-in-progress: false
 
 jobs:
   fetch-and-publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       #####################################################################
