@@ -36,6 +36,28 @@ def normalize(name):
     return re.sub(r"[^a-z0-9]+", "", s)
 
 
+def fighter_name_from_row(name_row, fallback_text):
+    """Pull the fighter name out of a BFO name row.
+
+    BFO prefixes the first fighter of each bout with a matchup-admin link whose
+    text is a numeric matchup id (e.g. <a href="/cnadm/matchups/44570">44570</a>).
+    Taking the first <a> therefore yields an id, not a name, and downstream name
+    matching in merge_ufc_odds.py silently fails. Prefer the /fighters/ link.
+    """
+    anchors = name_row.find_all('a')
+    for a in anchors:
+        if '/fighters/' in (a.get('href') or ''):
+            txt = a.get_text(strip=True)
+            if txt:
+                return txt
+    for a in anchors:
+        txt = a.get_text(strip=True)
+        if txt and not txt.isdigit():
+            return txt
+    # last resort: row text with any leading matchup id stripped
+    return re.sub(r'^\d+', '', fallback_text or '').strip()
+
+
 def extract_odds_from_row(odds_row):
     """Extract consensus moneyline from an odds table row."""
     cells = odds_row.find_all("td")
@@ -54,7 +76,7 @@ def extract_odds_from_row(odds_row):
 
 def ml_to_implied_prob(ml):
     """Convert American moneyline to implied probability."""
-    if ml is None:
+    if ml is None or ml == 0:
         return None
     if ml > 0:
         return 100 / (ml + 100)
@@ -64,7 +86,7 @@ def ml_to_implied_prob(ml):
 
 def ml_to_decimal(ml):
     """Convert American moneyline to decimal odds."""
-    if ml is None:
+    if ml is None or ml == 0:
         return None
     if ml > 0:
         return round(ml / 100 + 1, 3)
@@ -158,8 +180,7 @@ def fetch_event_bouts(event_path, event_name):
                 continue
 
             # Fighter row
-            links = name_row.find_all("a")
-            name = links[0].get_text(strip=True) if links else name_text
+            name = fighter_name_from_row(name_row, name_text)
             ml, books = extract_odds_from_row(odds_row)
 
             fighters.append({"name": name, "ml": ml, "books": books})
@@ -176,6 +197,13 @@ def fetch_event_bouts(event_path, event_name):
 
             # Skip bouts with no odds from any book
             if f1["ml"] is None and f2["ml"] is None:
+                continue
+
+            # Guard: a numeric or empty name means the row parse failed; a bout
+            # like that can never match in merge_ufc_odds.py, so flag it loudly
+            # instead of writing silent junk into ufc_odds.json.
+            if not f1["name"] or not f2["name"] or f1["name"].isdigit() or f2["name"].isdigit():
+                print(f"    [warn] unparsable fighter name, skipping bout: {f1['name']!r} vs {f2['name']!r}")
                 continue
 
             bout = {
@@ -201,7 +229,9 @@ def fetch_event_bouts(event_path, event_name):
         return bouts
 
     except Exception as e:
-        print(f"    [error] {e}")
+        import traceback
+        print(f"    [error] {type(e).__name__}: {e}")
+        traceback.print_exc()
         return []
 
 
