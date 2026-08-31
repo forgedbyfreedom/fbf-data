@@ -162546,6 +162546,84 @@
         "has_vegas_spread": false,
         "has_vegas_total": false
       }
+    },
+    {
+      "id": "401816741",
+      "sport": "mlb",
+      "matchup": "Cincinnati Reds at Chicago Cubs",
+      "shortName": "CIN @ CHC",
+      "date_utc": "2026-08-30T23:20Z",
+      "date_local": "2026-08-30 07:20 PM ET",
+      "home": "CHC",
+      "away": "CIN",
+      "home_team": {
+        "id": "16",
+        "name": "Chicago Cubs",
+        "abbr": "CHC",
+        "slug": "chicago-cubs",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chc.png"
+      },
+      "away_team": {
+        "id": "17",
+        "name": "Cincinnati Reds",
+        "abbr": "CIN",
+        "slug": "cincinnati-reds",
+        "logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cin.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Wrigley Field",
+        "city": "Chicago",
+        "state": "Illinois",
+        "indoor": false,
+        "grass": true,
+        "lat": 41.8755616,
+        "lon": -87.6244212
+      },
+      "weather": null,
+      "risk": null,
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 17.4,
+        "projected_away_score": 12.7,
+        "projected_total": 30.1,
+        "projected_spread": 4.6,
+        "win_probability_home": 0.684,
+        "confidence": 30
+      },
+      "model_used": "ensemble",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4987,
+        "away_win_pct": 0.5013,
+        "home_cover_pct": 0.4987,
+        "over_pct": 0.4989,
+        "avg_simulated_margin": 0.01,
+        "avg_simulated_total": 6.66
+      },
+      "picks": {
+        "su_pick": "Cincinnati Reds",
+        "su_pick_abbr": "CIN",
+        "su_confidence": 50.1,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 6.6,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false
+      }
     }
   ]
 }
