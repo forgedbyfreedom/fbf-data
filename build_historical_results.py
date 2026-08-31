@@ -20,23 +20,19 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 
 OUTFILE = "historical_results.json"
-YEARS_BACK = 3  # 3 seasons instead of 5 to reduce runtime
+YEARS_BACK = 5  # football only now, so more history fits in the same runtime
 
+# Football only. types/2 = regular season, types/3 = postseason (bowls,
+# conference championships, playoffs) - the postseason was previously missing,
+# so no postseason pick could ever be graded against history.
 SPORTS = {
     "nfl": {
-        "events_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/{type}/events?limit=500",
+        "types": [2, 3],
     },
     "ncaaf": {
-        "events_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{season}/types/2/events?limit=500",
-    },
-    "nba": {
-        "events_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/seasons/{season}/types/2/events?limit=500",
-    },
-    "ncaab": {
-        "events_url": "https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{season}/types/2/events?limit=500",
-    },
-    "nhl": {
-        "events_url": "https://sports.core.api.espn.com/v2/sports/hockey/leagues/nhl/seasons/{season}/types/2/events?limit=500",
+        "events_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{season}/types/{type}/events?limit=500",
+        "types": [2, 3],
     },
 }
 
@@ -321,32 +317,33 @@ def _fetch_one_event(args):
 
 def fetch_events_for_season(sport_key: str, season_year: int) -> List[Dict[str, Any]]:
     sport = SPORTS[sport_key]
-    url = sport["events_url"].format(season=season_year)
     all_refs = []
-    page_num = 0
 
-    # First collect all event refs
-    while url:
-        page_num += 1
-        page = get_json(url)
-        if not page:
-            print(f"    [warn] Failed to fetch page {page_num} for {sport_key} {season_year}")
-            break
+    # Collect event refs across every season type (regular + postseason)
+    for season_type in sport.get("types", [2]):
+        url = sport["events_url"].format(season=season_year, type=season_type)
+        page_num = 0
+        while url:
+            page_num += 1
+            page = get_json(url)
+            if not page:
+                print(f"    [warn] Failed to fetch page {page_num} for {sport_key} {season_year}")
+                break
 
-        items = page.get("items") or []
-        for it in items:
-            ref = it.get("$ref")
-            if ref:
-                all_refs.append(ref.replace("http://", "https://"))
+            items = page.get("items") or []
+            for it in items:
+                ref = it.get("$ref")
+                if ref:
+                    all_refs.append(ref.replace("http://", "https://"))
 
-        if items:
-            print(f"    page {page_num}: {len(items)} event refs collected ({len(all_refs)} total)")
+            if items:
+                print(f"    page {page_num}: {len(items)} event refs collected ({len(all_refs)} total)")
 
-        nxt = page.get("next", {})
-        url = nxt.get("$ref")
-        if url:
-            url = url.replace("http://", "https://")
-        time.sleep(0.15)
+            nxt = page.get("next", {})
+            url = nxt.get("$ref")
+            if url:
+                url = url.replace("http://", "https://")
+            time.sleep(0.15)
 
     if not all_refs:
         return []

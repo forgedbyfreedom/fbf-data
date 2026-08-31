@@ -2,11 +2,6 @@ const SPORTS = [
   {k:'FB', label:'Football', match:x=>x==='ncaaf'||x==='nfl'},
   {k:'nfl', label:'NFL', match:x=>x==='nfl'},
   {k:'ncaaf', label:'CFB', match:x=>x==='ncaaf'},
-  {k:'mlb', label:'MLB', match:x=>x==='mlb'},
-  {k:'nba', label:'NBA', match:x=>x==='nba'},
-  {k:'nhl', label:'NHL', match:x=>x==='nhl'},
-  {k:'ncaab', label:'CBB', match:x=>x==='ncaab'},
-  {k:'ufc', label:'UFC', match:x=>x==='ufc'},
 ];
 let DATA={predictions:[]}, active='FB';
 function stampFmt(ts){ if(!ts) return ''; const m=String(ts).match(/(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})/); if(!m) return ts; return `updated ${m[2]}/${m[3]} ${m[4]}:${m[5]} · latest run`; }

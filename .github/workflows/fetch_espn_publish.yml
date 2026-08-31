@@ -67,16 +67,6 @@ jobs:
       #####################################################################
       - name: Tag favorites
         run: python3 tag_favorites.py
-
-      #####################################################################
-      # 6b) UFC ODDS (ESPN doesn't carry UFC odds, scrape from BestFightOdds)
-      #####################################################################
-      - name: Scrape UFC odds
-        run: python3 scrape_ufc_odds.py || echo "UFC odds scrape skipped"
-
-      - name: Merge UFC odds
-        run: python3 merge_ufc_odds.py || echo "UFC odds merge skipped"
-
       #####################################################################
       # 7) BUILD STADIUM FILES
       #####################################################################
@@ -135,10 +125,6 @@ jobs:
 
       - name: Build situational spots
         run: python3 build_situational.py || echo "Situational spots skipped"
-
-      - name: Fetch starting pitchers and goalies
-        run: python3 fetch_starters.py || echo "Starters fetch skipped"
-
       - name: Scrape public betting consensus
         run: python3 scrape_public_betting.py || echo "Public betting skipped"
 

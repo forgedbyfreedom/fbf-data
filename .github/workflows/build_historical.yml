@@ -31,10 +31,6 @@ jobs:
 
       - name: Scrape NFL referee penalties
         run: python3 scrape_nfl_penalties.py || echo "NFL penalty scrape skipped"
-
-      - name: Scrape MLB umpire stats
-        run: python3 scrape_mlb_umpires.py || echo "MLB umpire scrape skipped"
-
       - name: Build referee trends from historical data
         run: python3 build_ref_trends.py
 
@@ -53,7 +49,7 @@ jobs:
               refs = json.load(f)
           ref_count = len(refs.get('refs', {}))
           print(f'Referee trends: {ref_count} refs')
-          for f_name in ['nfl_ref_penalties.json', 'mlb_ump_data.json']:
+          for f_name in ['nfl_ref_penalties.json']:
               if os.path.exists(f_name):
                   with open(f_name) as f:
                       d = json.load(f)

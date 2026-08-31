@@ -14,7 +14,7 @@ from datetime import datetime, timezone, timedelta
 
 COMBINED = "combined.json"
 SCORES_FILE = "completed_scores.json"
-MAX_AGE_DAYS = 90  # prune scores older than 90 days
+# (scores are kept indefinitely; see the note in main())
 
 # Minimum realistic final-game totals per sport (used to reject partial scores)
 MIN_TOTAL = {
@@ -118,23 +118,10 @@ def main():
             }
             new_count += 1
 
-    # Prune old scores (older than MAX_AGE_DAYS)
-    cutoff = datetime.now(timezone.utc) - timedelta(days=MAX_AGE_DAYS)
-    pruned = 0
-    to_remove = []
-    for gid, score in existing.items():
-        date_str = score.get("date_utc")
-        if date_str:
-            try:
-                game_date = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
-                if game_date < cutoff:
-                    to_remove.append(gid)
-                    pruned += 1
-            except Exception:
-                pass
-    for gid in to_remove:
-        del existing[gid]
-
+    # Completed scores are never pruned. They are the only record of what
+    # actually happened, and track_accuracy.py can only grade a pick while
+    # its game's score is still here - pruning silently shrank the graded
+    # history instead of growing it.
     # Write back
     scores_data["scores"] = existing
     scores_data["updated_at"] = datetime.now(timezone.utc).isoformat()
@@ -143,7 +130,7 @@ def main():
     with open(SCORES_FILE, "w") as f:
         json.dump(scores_data, f, indent=2)
 
-    print(f"[save_scores] {new_count} new scores saved ({len(existing)} total, {pruned} pruned)")
+    print(f"[save_scores] {new_count} new scores saved ({len(existing)} total, kept indefinitely)")
 
 
 if __name__ == "__main__":

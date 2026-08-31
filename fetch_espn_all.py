@@ -25,12 +25,6 @@ NY_TZ = ZoneInfo("America/New_York")
 LEAGUES = {
     "nfl":   "football/leagues/nfl",
     "ncaaf": "football/leagues/college-football",
-    "nba":   "basketball/leagues/nba",
-    "ncaab": "basketball/leagues/mens-college-basketball",
-    "ncaaw": "basketball/leagues/womens-college-basketball",
-    "mlb":   "baseball/leagues/mlb",
-    "nhl":   "hockey/leagues/nhl",
-    "ufc":   "mma/leagues/ufc",
 }
 
 # Sports where each event has multiple competitions (bouts/fights)

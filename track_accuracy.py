@@ -36,11 +36,10 @@ ARCHIVE_FILE = "predictions_archive.json"
 
 # Minimum realistic final-game totals (reject partial scores)
 MIN_TOTAL = {
-    "NBA": 160, "NCAAB": 100, "NCAAW": 90,
-    "NFL": 6, "NCAAF": 10, "NHL": 1, "MLB": 1,
+    "NFL": 6, "NCAAF": 10,
 }
 
-SPORTS = ["ALL", "NFL", "NCAAF", "NBA", "NCAAB", "NCAAW", "NHL", "MLB"]
+SPORTS = ["ALL", "NFL", "NCAAF"]
 
 
 def safe_float(x, default=None):
