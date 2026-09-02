@@ -8,6 +8,7 @@ COMBINED_FILE = "combined.json"
 OUTFILE = "weather_raw.json"
 
 HEADERS = {"User-Agent": "fbf-weather-fetcher/1.0 (forgedbyfreedom.org)"}
+OPEN_METEO_GEOCODER = "https://geocoding-api.open-meteo.com/v1/search"
 GEOCODER = "https://nominatim.openstreetmap.org/search"
 
 US_STATES = {
@@ -15,6 +16,26 @@ US_STATES = {
     "KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY",
     "NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV",
     "WI","WY"
+}
+
+# Full state names, for matching Open-Meteo's admin1 field. A two character
+# prefix is not enough: "West Point, NY" resolves to West Point, Mississippi
+# that way, because "MI" prefixes "Mississippi".
+STATE_NAMES = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas",
+    "CA": "California", "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware",
+    "FL": "Florida", "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho",
+    "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas",
+    "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+    "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota",
+    "MS": "Mississippi", "MO": "Missouri", "MT": "Montana", "NE": "Nebraska",
+    "NV": "Nevada", "NH": "New Hampshire", "NJ": "New Jersey",
+    "NM": "New Mexico", "NY": "New York", "NC": "North Carolina",
+    "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma", "OR": "Oregon",
+    "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+    "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah",
+    "VT": "Vermont", "VA": "Virginia", "WA": "Washington",
+    "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming",
 }
 
 
@@ -90,6 +111,32 @@ def geocode(city, state):
     if key in _geo_cache:
         return _geo_cache[key]
 
+    # --- primary: Open-Meteo. No key, and unlike Nominatim it does not block
+    # datacenter IPs, which is why the Actions runner geocoded nothing at all.
+    want_state = STATE_NAMES.get(state.strip().upper())
+    try:
+        r = requests.get(OPEN_METEO_GEOCODER,
+                         params={"name": city, "count": 10, "country": "US",
+                                 "language": "en", "format": "json"},
+                         headers=HEADERS, timeout=12)
+        if r.status_code == 200:
+            results = (r.json() or {}).get("results") or []
+            pick = None
+            if want_state:
+                for res in results:
+                    if str(res.get("admin1", "")).strip().lower() == want_state.lower():
+                        pick = res
+                        break
+            elif results:
+                pick = results[0]
+            if pick:
+                lat, lon = float(pick["latitude"]), float(pick["longitude"])
+                _geo_cache[key] = (lat, lon)
+                return lat, lon
+    except Exception:
+        pass
+
+    # --- fallback: Nominatim ---
     try:
         q = f"{city}, {state}, USA"
         params = {"q": q, "format": "json", "limit": 1}
