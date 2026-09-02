@@ -94,6 +94,17 @@ jobs:
         run: python3 merge_weather.py
 
       #####################################################################
+      # 8b) RE-ENRICH VENUE COORDINATES
+      #####################################################################
+      # Runs a second time, deliberately. The first pass happens before the
+      # weather step and therefore reads the PREVIOUS run's geocode cache, so
+      # a newly geocoded venue took a full run to reach combined.json. Weather
+      # has now populated geo_cache.json for this run, so this pass picks those
+      # coordinates up immediately. build_venues_from_combined.py is idempotent.
+      - name: Re-enrich venue coordinates (post-geocode)
+        run: python3 build_venues_from_combined.py || echo "Venue re-enrichment skipped"
+
+      #####################################################################
       # 9) INJURY PIPELINE
       #####################################################################
       - name: Fetch Injuries (non-fatal)
