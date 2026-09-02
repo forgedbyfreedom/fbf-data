@@ -120,6 +120,40 @@ def grade_ou(picks, odds, home_score, away_score, sport=""):
     return "L"
 
 
+def build_calibration(rows):
+    """Does a stated confidence actually mean what it says?
+
+    A model that publishes 55% and hits 55% is worth money even though it is
+    barely above a coin flip. A model that publishes 70% and hits 51% is worth
+    nothing, and worse, it is worth nothing while looking confident. This
+    buckets every graded pick by the confidence it was published with and
+    reports what that bucket actually did, so the two can be compared.
+    """
+    buckets = [(50, 55), (55, 60), (60, 70), (70, 101)]
+    out = {}
+    for market in ("ATS", "OU"):
+        rows_m = [r for r in rows if r[0] == market]
+        bl = []
+        for lo, hi in buckets:
+            sel = [r for r in rows_m if lo <= r[1] < hi]
+            w = sum(1 for r in sel if r[2] == "W")
+            l = sum(1 for r in sel if r[2] == "L")
+            n = w + l
+            mid = (lo + min(hi, 100)) / 2.0
+            bl.append({
+                "bucket": "%d-%d%%" % (lo, min(hi, 100)),
+                "picks": n,
+                "record": "%d-%d" % (w, l),
+                "stated_mid": round(mid, 1),
+                "actual_pct": round(w / n * 100, 1) if n else None,
+                "gap": round(w / n * 100 - mid, 1) if n else None,
+            })
+        out[market] = bl
+    out["note"] = "actual_pct below stated_mid means published confidence is overstated"
+    out["breakeven_pct"] = 52.4
+    return out
+
+
 def main():
     start_cutoff = datetime.fromisoformat(MODEL_START_DATE + "T00:00:00+00:00")
 
@@ -189,6 +223,7 @@ def main():
     stats_best = {s: make_bucket() for s in SPORTS}
 
     graded = 0
+    calib = []   # (market, stated_confidence, W/L) for calibration
     skipped = {"old_model": 0, "no_odds": 0, "before_start": 0, "bad_score": 0}
     results = []
 
@@ -264,6 +299,8 @@ def main():
                 update(stats_best, sport, "ATS", ats_result)
             entry["ats"] = ats_result
             entry["ats_best_bet"] = ats_high
+            if ats_result in ("W", "L") and picks.get("ats_confidence") is not None:
+                calib.append(("ATS", float(picks["ats_confidence"]), ats_result))
 
         # ── O/U ──
         ou_result = grade_ou(picks, odds, hs, aws, sport)
@@ -274,6 +311,8 @@ def main():
                 update(stats_best, sport, "OU", ou_result)
             entry["ou"] = ou_result
             entry["ou_best_bet"] = ou_high
+            if ou_result in ("W", "L") and picks.get("ou_confidence") is not None:
+                calib.append(("OU", float(picks["ou_confidence"]), ou_result))
 
         # ── SU ──
         su_abbr = picks.get("su_pick_abbr")
@@ -323,6 +362,7 @@ def main():
         "predictions_graded": graded,
         "sports": build_stats(stats_all),
         "high_confidence": build_stats(stats_best),
+        "calibration": build_calibration(calib),
         "results": results[-200:],
     }
 

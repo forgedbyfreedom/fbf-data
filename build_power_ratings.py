@@ -197,19 +197,38 @@ def main():
 
         at["recent_games"].append((date, -margin, aws, hs, False, away_ats))
 
+    # Shrinkage prior: a team's own numbers get weight games/(games+PRIOR_GAMES),
+    # the league mean gets the rest. 8 is roughly "trust a team once it has
+    # half a season of evidence".
+    PRIOR_GAMES = 8.0
+
     # Compute ratings
     output = {}
     for sport, sport_teams in teams.items():
         league_avg = LEAGUE_AVG.get(sport, 50)
         sport_output = {}
 
+        _rated = [t for t in sport_teams.values() if t["games"] > 0]
+        league_off_mean = (sum(x["pts_scored"] / x["games"] for x in _rated) / len(_rated)) if _rated else 0.0
+        league_def_mean = (sum(x["pts_allowed"] / x["games"] for x in _rated) / len(_rated)) if _rated else 0.0
+
         for team_key, t in sport_teams.items():
             if t["games"] < 3:
                 continue
 
             g = t["games"]
-            off_rating = round(t["pts_scored"] / g, 1)
-            def_rating = round(t["pts_allowed"] / g, 1)
+
+            # ── SHRINK TOWARD THE LEAGUE MEAN ON THIN SAMPLES ────────
+            # A rating built from four games is noise wearing a number. On
+            # 2026-09-01 Arkansas-Pine Bluff carried a net rating of -55.3 off
+            # 4 games and Tennessee State -38.8 off 5, against 32-37 games for
+            # the FBS sides they were compared with. Those numbers reached the
+            # adjustment layer at full weight and produced projections such as
+            # Furman beating Tennessee by 47. Shrinking pulls a thin sample
+            # toward average instead of letting it shout.
+            w = g / (g + PRIOR_GAMES)
+            off_rating = round(w * (t["pts_scored"] / g) + (1 - w) * league_off_mean, 1)
+            def_rating = round(w * (t["pts_allowed"] / g) + (1 - w) * league_def_mean, 1)
             net_rating = round(off_rating - def_rating, 1)
 
             # Pace: average total points in this team's games
@@ -275,6 +294,7 @@ def main():
                 "off_rating": off_rating,
                 "def_rating": def_rating,
                 "net_rating": net_rating,
+                "rating_weight": round(w, 3),
                 "pace": pace,
                 "home_off": home_off,
                 "home_def": home_def,

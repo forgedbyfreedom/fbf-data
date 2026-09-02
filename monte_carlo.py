@@ -192,6 +192,13 @@ def simulate_game(expected_margin, expected_total, margin_stdev, total_stdev,
     }
 
 
+# Maximum total points the adjustment layer may move the market line, by sport.
+# See the rationale in build_expected_values(). Roughly one score in the NFL,
+# where lines are sharpest, and a bit more in college where they are softer.
+MAX_MARGIN_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
+MAX_TOTAL_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
+
+
 def build_expected_values(game):
     """
     Build expected margin and total from all available features.
@@ -452,16 +459,49 @@ def build_expected_values(game):
     # UPDATED 03/21/2026: Uses composite team quality instead of
     # separate Elo + power + momentum + H2H (fixes multicollinearity).
     # Neutral site adjustments zero out home-dependent factors.
-    expected_margin = (base_margin + injury_shift + rest_shift
-                       + quality_shift                    # composite replaces elo/power/momentum/h2h
-                       + ref_home_bias + travel_shift     # zeroed on neutral sites
-                       + mismatch_shift + split_shift     # split zeroed on neutral sites
-                       + spot_shift + public_shift
-                       + line_shift + starter_shift)
+    raw_adjustment = (injury_shift + rest_shift
+                      + quality_shift                    # composite replaces elo/power/momentum/h2h
+                      + ref_home_bias + travel_shift     # zeroed on neutral sites
+                      + mismatch_shift + split_shift     # split zeroed on neutral sites
+                      + spot_shift + public_shift
+                      + line_shift + starter_shift)
 
-    expected_total = max(0, base_total - weather_penalty + ref_over_bias
-                         + pace_shift + total_line_shift
-                         + total_mismatch_shift + spread_total_adj)
+    # ── CAP THE TOTAL ADJUSTMENT ─────────────────────────────────────
+    # The closing line is the best single predictor available: measured
+    # against 5 seasons of results it carries an MAE of ~9.3 points, and a
+    # walk-forward test of every feature in this pipeline failed to beat it
+    # out of sample (50.9% ATS pooled, under the 52.4% breakeven). So the
+    # adjustments below are a modest opinion layered on a strong prior, not
+    # a replacement for it.
+    #
+    # Uncapped, they were not behaving that way. On 2026-09-01 the mean
+    # adjustment on games with a spread of 14+ was -18.0 points, and Furman
+    # at Tennessee (line +46.5) was adjusted by -103.8 to an expected margin
+    # of -57.3 - i.e. the model projected Furman to win by 57. That single
+    # failure mode made the board take the underdog in 37 of 37 games priced
+    # at 14 or more, which is not an opinion, it is a broken input.
+    #
+    # Capping keeps the opinion and discards the blowups.
+    cap = MAX_MARGIN_ADJ.get(sport, 7.0)
+    game["_margin_adj_raw"] = round(raw_adjustment, 2)
+    game["_margin_adj_clamped"] = abs(raw_adjustment) > cap
+    if raw_adjustment > cap:
+        raw_adjustment = cap
+    elif raw_adjustment < -cap:
+        raw_adjustment = -cap
+
+    expected_margin = base_margin + raw_adjustment
+
+    raw_total_adjustment = (- weather_penalty + ref_over_bias
+                            + pace_shift + total_line_shift
+                            + total_mismatch_shift + spread_total_adj)
+    tcap = MAX_TOTAL_ADJ.get(sport, 7.0)
+    if raw_total_adjustment > tcap:
+        raw_total_adjustment = tcap
+    elif raw_total_adjustment < -tcap:
+        raw_total_adjustment = -tcap
+
+    expected_total = max(0, base_total + raw_total_adjustment)
 
     has_odds = spread_line is not None
 
@@ -807,6 +847,25 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
 
     picks["has_vegas_spread"] = spread_line is not None
     picks["has_vegas_total"] = total_line is not None
+
+    # ── SUPPRESS PICKS THE MODEL IS NOT QUALIFIED TO MAKE ────────────
+    # A clamped adjustment means the feature layer wanted to move the market
+    # by more than one score-and-a-half. In practice that never signals a real
+    # edge; it signals inputs outside the range the ratings can represent -
+    # typically an FBS side facing an opponent with almost no game history, so
+    # the ratings cannot express how large the gap truly is. Emitting a pick
+    # there produced a board that faded the favourite in 37 of 37 games priced
+    # at 14 or more. Saying nothing is more accurate than saying that.
+    if game.get("_margin_adj_clamped"):
+        picks["ats_pick"] = None
+        picks["ats_pick_abbr"] = None
+        picks["ats_spread"] = None
+        picks["ats_confidence"] = None
+        picks["ats_high_conf"] = False
+        picks["ats_suppressed"] = True
+        picks["ats_suppressed_reason"] = "model disagrees with the line by more than it can justify"
+    else:
+        picks["ats_suppressed"] = False
 
     return {
         "simulation": sim,

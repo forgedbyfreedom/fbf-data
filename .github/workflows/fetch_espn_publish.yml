@@ -139,10 +139,6 @@ jobs:
       #####################################################################
       - name: Build historical results (incremental, fallback)
         run: timeout 600 python3 build_historical_results.py || echo "Historical results skipped/timed out (runs nightly via build_historical.yml)"
-
-      - name: Train ML model
-        run: python3 train_model.py || echo "ML training skipped"
-
       #####################################################################
       # 12) PREDICTIONS
       #####################################################################

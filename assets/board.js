@@ -26,7 +26,7 @@ function card(p){
     <div class="line">Model: <b>${h.abbr||'H'} ${num(pr.projected_home_score,0)}</b> – <b>${num(pr.projected_away_score,0)} ${a.abbr||'A'}</b> · proj spread <b>${num(pr.projected_spread)}</b> · win ${num((pr.win_probability_home||0)*100,0)}%${s.simulations?` · ${(s.simulations/1000)}k sims`:''}</div>
     <div class="picks">
       ${pk('STRAIGHT UP', k.su_pick_abbr||k.su_pick, k.su_confidence)}
-      ${pk('SPREAD', k.ats_pick_abbr?`${k.ats_pick_abbr} ${k.ats_spread>0?'+':''}${k.ats_spread??''}`:'—', k.ats_confidence)}
+      ${pk('SPREAD', k.ats_pick_abbr?`${k.ats_pick_abbr} ${k.ats_spread>0?'+':''}${k.ats_spread??''}`:(k.ats_suppressed?'no pick':'—'), k.ats_confidence)}
       ${pk('TOTAL', k.ou_pick?`${k.ou_pick} ${k.ou_line??''}`:'—', k.ou_confidence)}
     </div>
   </div>`;

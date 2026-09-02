@@ -173,6 +173,17 @@ def parse_odds(comp: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def compute_ats(home_score, away_score, spread, favorite_abbr, home_abbr, away_abbr):
+    """Grade the favourite against the spread.
+
+    `spread` is ALWAYS home-relative here: negative means the home side is
+    favoured. The previous version compared the favourite's margin directly
+    against that signed number (`fav_margin > spread`), so a home favourite at
+    -6 that won by 4 evaluated as `4 > -6` -> covered. It had not. That made
+    the stored ats_result agree with the actual outcome only 48.9% of the time
+    and reported the favourite covering 99.7% of all games. build_power_ratings
+    and build_ref_trends both read this field, so the error propagated into
+    team ATS rates and every referee trend.
+    """
     if spread is None or home_score is None or away_score is None or not favorite_abbr:
         return "none"
 
@@ -181,14 +192,15 @@ def compute_ats(home_score, away_score, spread, favorite_abbr, home_abbr, away_a
     if not (fav_is_home or fav_is_away):
         return "none"
 
-    margin = (home_score - away_score)
-    fav_margin = margin if fav_is_home else -margin
+    # Home-relative cover margin: > 0 means the home side beat the number.
+    home_cover_by = (home_score - away_score) + spread
 
-    if fav_margin > spread:
-        return f"{favorite_abbr}_covers"
-    if math.isclose(fav_margin, spread, abs_tol=0.01):
+    if math.isclose(home_cover_by, 0.0, abs_tol=0.01):
         return "push"
-    return f"{favorite_abbr}_fails"
+
+    home_covered = home_cover_by > 0
+    fav_covered = home_covered if fav_is_home else (not home_covered)
+    return f"{favorite_abbr}_covers" if fav_covered else f"{favorite_abbr}_fails"
 
 
 def compute_ou(home_score, away_score, total):
@@ -279,8 +291,11 @@ def fetch_event_detail(event_url: str) -> Optional[Dict[str, Any]]:
     if not odds["favorite"] and odds["spread"] is not None and odds["spread"] != 0:
         # Spread is from home perspective: negative = home favored
         odds["favorite"] = home["abbr"] if odds["spread"] < 0 else away["abbr"]
-        # Store spread as absolute value (standard convention)
-        odds["spread"] = abs(odds["spread"])
+        # NOTE: the spread is deliberately NOT converted to an absolute value.
+        # It used to be, but only on this branch - rows whose favourite came
+        # from the odds details kept a signed home-relative number. That left
+        # two different sign conventions mixed inside the same column, which
+        # silently corrupted anything trained or graded on it.
 
     ats = compute_ats(
         home["score"], away["score"],

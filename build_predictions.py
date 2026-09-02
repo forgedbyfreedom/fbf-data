@@ -4,7 +4,7 @@ build_predictions.py
 Generates predictions.json from combined.json using:
 1. Monte Carlo simulation (10K sims per game)
 2. Rule-based model (predictions_model.py)
-3. Optional ML ensemble (models/spread_model.pkl)
+3. Monte Carlo simulation anchored on the market line
 
 Outputs explicit SU, ATS, O/U picks for every game.
 Locks picks at game time into predictions_locked.json.
@@ -151,11 +151,7 @@ def main():
     if old_preds:
         archive_completed(old_preds, games)
 
-    # Load ML models
-    spread_model, total_model, feature_cols = load_ml_models()
-    has_ml = spread_model is not None
-    if has_ml:
-        print(f"[ML] Loaded spread model with {len(feature_cols)} features")
+    # (no ML model is loaded; see the note in the prediction loop below)
 
     output = {
         "timestamp": combined.get("timestamp"),
@@ -180,30 +176,30 @@ def main():
 
         model_used = "rule_based"
 
-        # 2. ML ensemble
-        if has_ml and not p.get("error"):
-            ml_margin, ml_total = ml_predict(g, spread_model, total_model, feature_cols)
-            if ml_margin is not None:
-                rule_margin = p["projected_spread"]
-                ensemble_margin = 0.6 * rule_margin + 0.4 * ml_margin
-                rule_total = p["projected_total"]
-                ensemble_total = 0.6 * rule_total + 0.4 * ml_total if ml_total else rule_total
-
-                home_score = max(3.0, ensemble_total / 2 + ensemble_margin / 2)
-                away_score = max(3.0, ensemble_total / 2 - ensemble_margin / 2)
-
-                p["projected_home_score"] = round(home_score, 1)
-                p["projected_away_score"] = round(away_score, 1)
-                p["projected_total"] = round(home_score + away_score, 1)
-                p["projected_spread"] = round(home_score - away_score, 1)
-
-                try:
-                    p["win_probability_home"] = round(1 / (1 + math.exp(-(home_score - away_score) / 6)), 3)
-                except OverflowError:
-                    pass
-
-                model_used = "ensemble"
-
+        # 2. ML ensemble - REMOVED 2026-09-02.
+        #
+        # The RandomForest that used to blend in here at 40% weight
+        # (0.6 * rule + 0.4 * ml) was measured against 2,299 held-out games:
+        #
+        #     reading the closing line   MAE 9.25 points
+        #     the RandomForest           MAE 10.46 points
+        #     its ATS hit rate           51.4%  (breakeven 52.4%)
+        #
+        # It was worse than doing nothing, and it was structurally incapable
+        # of being better: ml_predict() fed it only the market spread, the
+        # market total and sport one-hot flags. None of the Elo, power
+        # ratings, injury, weather, referee, rest, head-to-head, line-movement
+        # or public-betting features this pipeline computes ever reached it.
+        # It was a noisy photocopy of the line (correlation 0.867) being
+        # blended into projections at 40% weight.
+        #
+        # A replacement was built and rejected on the evidence: predicting the
+        # residual (margin + spread) from causal walk-forward features, trained
+        # season-by-season and tested forward, returned 50.9% ATS pooled over
+        # 2023-2025 - under breakeven, with the apparent 2023 edge decaying to
+        # below 50% by 2025, the signature of overfitting rather than skill.
+        # See MODEL_NOTES.md. Projections now come from the rule-based model
+        # and the Monte Carlo layer, both of which anchor on the market line.
         # 3. Monte Carlo simulation (the big one)
         try:
             mc = simulate_and_pick(g, n_sims=N_SIMS)
@@ -217,6 +213,30 @@ def main():
                 },
                 "expected_margin": 0, "expected_total": 0, "has_odds": False,
             }
+
+        # ── DISPLAYED PROJECTION = WHAT THE PICK ENGINE ACTUALLY BELIEVES ──
+        # predictions_model.predict() builds a margin from scratch out of the
+        # ratings, and when a side has almost no game history those ratings go
+        # haywire: on 2026-09-02 it projected Furman to beat Tennessee by 111
+        # while the market had Tennessee -46.5. The Monte Carlo layer does not
+        # have that failure mode because it starts from the market line and
+        # applies a capped adjustment, so its expected values are the honest
+        # thing to show. The board and the picks now agree by construction.
+        if mc.get("has_odds") and mc.get("expected_margin") is not None:
+            em = float(mc["expected_margin"])
+            et = float(mc.get("expected_total") or 0.0)
+            if et > 0:
+                hs = max(0.0, et / 2.0 + em / 2.0)
+                as_ = max(0.0, et / 2.0 - em / 2.0)
+                p["projected_home_score"] = round(hs, 1)
+                p["projected_away_score"] = round(as_, 1)
+                p["projected_total"] = round(hs + as_, 1)
+            p["projected_spread"] = round(em, 1)
+            try:
+                p["win_probability_home"] = round(1 / (1 + math.exp(-em / 9.0)), 3)
+            except OverflowError:
+                pass
+            model_used = "market_anchored"
 
         home_team = g.get("home_team") or {}
         away_team = g.get("away_team") or {}
@@ -246,7 +266,7 @@ def main():
             # Injuries
             "injury_count_home": g.get("injury_count_home", 0),
             "injury_count_away": g.get("injury_count_away", 0),
-            # Rule-based + ensemble prediction
+            # Market-anchored projection (see note above)
             "prediction": p,
             "model_used": model_used,
             # Monte Carlo simulation results
@@ -285,14 +305,14 @@ def main():
         json.dump(locked_payload, f, indent=2)
 
     # Summary
-    ensemble_count = sum(1 for r in output["predictions"] if r.get("model_used") == "ensemble")
+    suppressed = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ats_suppressed"))
     picks_with_su = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("su_pick"))
     picks_with_ats = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ats_pick"))
     picks_with_ou = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ou_pick"))
     ats_high = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ats_high_conf"))
     ou_high = sum(1 for r in output["predictions"] if (r.get("picks") or {}).get("ou_high_conf"))
 
-    print(f"[predictions] {output['count']} games | {ensemble_count} ensemble, {output['count'] - ensemble_count} rule-based")
+    print(f"[predictions] {output['count']} games | rule-based + monte carlo | {suppressed} ATS picks suppressed (line disagreement beyond cap)")
     print(f"[picks] SU: {picks_with_su} | ATS: {picks_with_ats} ({ats_high} high-conf) | O/U: {picks_with_ou} ({ou_high} high-conf)")
     print(f"[locked] {len(all_locked)} total locked picks")
 
