@@ -330,6 +330,55 @@ def _fetch_one_event(args):
     return detail
 
 
+def normalize_records(records):
+    """Repair and re-derive the graded fields on every stored record.
+
+    This runs over the WHOLE dataset on every build, not just newly fetched
+    seasons, because the fetch is incremental: records stored before a bug is
+    fixed keep the bad values forever otherwise. After compute_ats() was
+    corrected on 2026-09-02 the rebuilt file still only agreed with the actual
+    outcome 75.5% of the time, because 2,289 legacy rows were never revisited.
+
+    Two repairs, both idempotent:
+
+    1. Spread sign. `spread` is home-relative: negative means the home side is
+       favoured. An older version of fetch_event_detail() stored an absolute
+       value on one code branch, so the column held two conventions at once.
+       `favorite` tells us which it should be, so the sign is restored.
+    2. ats_result / ou_result are recomputed from scores, spread and total.
+    """
+    fixed_sign = 0
+    regraded = 0
+    for g in records:
+        home = g.get("home_team") or {}
+        away = g.get("away_team") or {}
+        hs, aws = home.get("score"), away.get("score")
+        spread = g.get("spread")
+        fav = g.get("favorite")
+
+        # 1. restore the home-relative sign using the recorded favourite
+        if spread is not None and fav and spread != 0:
+            fav_is_home = (fav == home.get("abbr"))
+            fav_is_away = (fav == away.get("abbr"))
+            if fav_is_home and spread > 0:
+                g["spread"] = spread = -spread
+                fixed_sign += 1
+            elif fav_is_away and spread < 0:
+                g["spread"] = spread = -spread
+                fixed_sign += 1
+
+        # 2. re-derive the graded fields
+        if hs is not None and aws is not None:
+            new_ats = compute_ats(hs, aws, spread, fav, home.get("abbr"), away.get("abbr"))
+            new_ou = compute_ou(hs, aws, g.get("total"))
+            if g.get("ats_result") != new_ats or g.get("ou_result") != new_ou:
+                regraded += 1
+            g["ats_result"] = new_ats
+            g["ou_result"] = new_ou
+
+    print(f"[normalize] {fixed_sign} spread signs repaired, {regraded} records re-graded")
+    return records
+
 def fetch_events_for_season(sport_key: str, season_year: int) -> List[Dict[str, Any]]:
     sport = SPORTS[sport_key]
     all_refs = []
@@ -426,6 +475,11 @@ def main():
             new_rows.extend(rows)
 
     all_rows = existing_rows + new_rows
+
+    # Applied to every record, not just the newly fetched ones - the fetch is
+    # incremental, so legacy rows would otherwise keep values derived by older,
+    # buggier code forever.
+    all_rows = normalize_records(all_rows)
 
     payload = {
         "timestamp": now.strftime("%Y%m%d_%H%M"),
