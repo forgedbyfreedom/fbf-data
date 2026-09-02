@@ -27,6 +27,20 @@ def normalize(name):
     return n
 
 
+def team_key(name):
+    """Key format for team_venues.json.
+
+    Must match merge_features.normalize() exactly, which strips spaces as well
+    as punctuation. This module's own normalize() KEEPS spaces (it is used for
+    venue-name matching against stadiums_master), so writing team keys with it
+    produced "alabama crimson tide" while the consumer looked up
+    "alabamacrimsontide" - and travel_km stayed 0 on every game even after 69
+    of 80 teams had coordinates. Same class of bug as the one this file was
+    written to fix.
+    """
+    return re.sub(r"[^a-z0-9]+", "", (name or "").lower())
+
+
 def find_match(venue, master):
     """Match by name normalization."""
     name = venue.get("name")
@@ -54,6 +68,8 @@ def main():
     master = load_json(MASTER, {})
     geo = load_json(str(GEO_CACHE), {}) or {}
     team_venues = load_json(str(TEAM_VENUES), {}) or {}
+    # Re-key anything stored under the old space-separated format.
+    team_venues = {team_key(k): v for k, v in team_venues.items()}
 
     if not combined or "data" not in combined:
         print("❌ combined.json missing or invalid")
@@ -105,7 +121,7 @@ def main():
         name = home.get("name") if isinstance(home, dict) else None
         if not name or not venue.get("name"):
             continue
-        key = normalize(name)
+        key = team_key(name)
         entry = {"venue": venue.get("name"), "city": venue.get("city"),
                  "state": venue.get("state")}
         if venue.get("lat") is not None:
