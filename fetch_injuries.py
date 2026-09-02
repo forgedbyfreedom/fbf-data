@@ -1,296 +1,192 @@
 #!/usr/bin/env python3
 """
 fetch_injuries.py
-Fetches injury data from ESPN public injury pages.
-Fallback: Oddstrader scraper.
-Output: injuries.json in standardized format.
+-----------------
+Pulls injury reports from ESPN's Core API, per team, for the teams actually
+playing in combined.json.
+
+Replaces an HTML scrape of espn.com and oddstrader.com that had gone stale:
+on 2026-09-02 it returned 3 "injuries" whose player names were paragraphs of
+prose lifted off the page ("The actual recovery time for each of these NFL
+injuries depends on the severity..."), and 0 of 81 games carried an injury.
+
+Two things worth knowing about the data:
+
+  * More than half of ESPN's injury entries carry status "Active" - a player
+    with a note, not a player who is unavailable. A raw row count is therefore
+    meaningless. Only genuinely unavailable statuses are written out.
+  * College football has no mandated injury report. A sample of 10 NCAAF teams
+    returned 1 injury between them. Expect this file to be almost entirely NFL,
+    and do not read an empty college injury list as a failure.
+
+Every entry keeps its ESPN `date`, which is what makes the late-injury signal
+possible: an injury reported after the line was set is the case where the
+market may not have caught up.
+
+Output: injuries.json
 """
 
-import json, re, time
+import json, os, sys
 from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
-from bs4 import BeautifulSoup
 
-OUTFILE = "injuries.json"
+COMBINED = "combined.json"
+OUTPUT = "injuries.json"
+TIMEOUT = 12
+WORKERS = 8
+MAX_REPORT_AGE_DAYS = 60   # older entries are stale carry-over, not this week's news
+
+LEAGUE_PATHS = {
+    "nfl": "football/leagues/nfl",
+    "ncaaf": "football/leagues/college-football",
+}
+BASE = "https://sports.core.api.espn.com/v2/sports"
+
+# Statuses that mean the player is actually unavailable or in doubt.
+# "Active" is excluded on purpose - it is a note, not an absence.
+UNAVAILABLE = {"out", "injured reserve", "suspension", "doubtful", "day-to-day"}
+IN_DOUBT = {"questionable"}
+
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                   "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"),
+    "Accept": "application/json",
 }
-
-# ESPN public injury page URLs
-ESPN_SPORT_URLS = {
-    "nfl": "https://www.espn.com/nfl/injuries",
-    "nba": "https://www.espn.com/nba/injuries",
-    "nhl": "https://www.espn.com/nhl/injuries",
-    "mlb": "https://www.espn.com/mlb/injuries",
-    "ncaaf": "https://www.espn.com/college-football/injuries",
-    "ncaab": "https://www.espn.com/mens-college-basketball/injuries",
-    "ncaaw": "https://www.espn.com/womens-college-basketball/injuries",
-}
-
-# Oddstrader fallback URLs (no NCAAW or UFC available)
-ODDSTRADER_SPORT_URLS = {
-    "nfl": "https://www.oddstrader.com/nfl/injuries/",
-    "nba": "https://www.oddstrader.com/nba/injuries/",
-    "ncaaf": "https://www.oddstrader.com/ncaa-college-football/injuries/",
-    "ncaab": "https://www.oddstrader.com/ncaa-college-basketball/injuries/",
-    "nhl": "https://www.oddstrader.com/nhl/injuries/",
-    "mlb": "https://www.oddstrader.com/mlb/injuries/",
-}
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
 
 
-def normalize_team(name):
+def get_json(url):
+    if not url:
+        return None
+    try:
+        r = SESSION.get(url.replace("http://", "https://"), timeout=TIMEOUT)
+        return r.json() if r.status_code == 200 else None
+    except Exception:
+        return None
+
+
+def normalize(name):
+    import re
     return re.sub(r"[^a-z0-9]+", "", (name or "").lower())
 
 
-def fetch_espn_injuries_for_sport(sport, url):
-    """Scrape ESPN public injury page for a sport."""
-    rows = []
+def teams_in_play():
+    """(sport, team_id, team_name, abbr) for every team on the current slate."""
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=15)
-        if resp.status_code != 200:
-            print(f"  [ESPN] {sport}: HTTP {resp.status_code}")
-            return rows
-
-        soup = BeautifulSoup(resp.text, "html.parser")
-
-        # ESPN injury pages use various table structures
-        # Look for team sections and injury tables
-        current_team = None
-
-        # Try finding team headers and injury rows
-        # ESPN uses <div class="Table__Title"> or similar for team names
-        # and <tr> rows for individual injuries
-
-        # Strategy 1: Look for structured table data
-        tables = soup.find_all("table")
-        for table in tables:
-            # Check for team name in preceding elements
-            prev = table.find_previous(["h2", "h3", "div", "span"])
-            if prev:
-                team_text = prev.get_text(strip=True)
-                # Filter out non-team text
-                if team_text and len(team_text) > 2 and len(team_text) < 60:
-                    if not any(skip in team_text.lower() for skip in ["injury", "report", "status", "player", "date"]):
-                        current_team = team_text
-
-            if not current_team:
-                continue
-
-            trs = table.find_all("tr")
-            for tr in trs:
-                tds = tr.find_all("td")
-                if len(tds) < 2:
-                    continue
-
-                # Try to extract player name, position, status, injury
-                texts = [td.get_text(strip=True) for td in tds]
-                if not texts[0] or texts[0].lower() in ("name", "player", ""):
-                    continue
-
-                player = texts[0] if len(texts) > 0 else ""
-                position = ""
-                status = ""
-                injury_desc = ""
-
-                # Different ESPN layouts have different column orders
-                if len(texts) >= 4:
-                    position = texts[1]
-                    status = texts[2] if texts[2] else texts[3]
-                    injury_desc = texts[3] if len(texts) > 3 else ""
-                elif len(texts) >= 3:
-                    status = texts[1]
-                    injury_desc = texts[2]
-                elif len(texts) >= 2:
-                    status = texts[1]
-
-                if player and current_team:
-                    rows.append({
-                        "sport": sport,
-                        "team": current_team,
-                        "team_norm": normalize_team(current_team),
-                        "player": player,
-                        "position": position,
-                        "status": status,
-                        "injury": injury_desc,
-                    })
-
-        # Strategy 2: Look for Responsive Table wrappers (newer ESPN layout)
-        if not rows:
-            wrappers = soup.find_all("div", class_=re.compile(r"ResponsiveTable|injuries"))
-            for wrapper in wrappers:
-                # Team name
-                title = wrapper.find(class_=re.compile(r"Table__Title|TeamHeader"))
-                if title:
-                    current_team = title.get_text(strip=True)
-
-                # Also check for team links with logos
-                team_link = wrapper.find("a", class_=re.compile(r"AnchorLink|TeamLink"))
-                if team_link and not current_team:
-                    current_team = team_link.get_text(strip=True)
-
-                if not current_team:
-                    continue
-
-                trs = wrapper.find_all("tr")
-                for tr in trs:
-                    tds = tr.find_all("td")
-                    if len(tds) < 2:
-                        continue
-                    texts = [td.get_text(strip=True) for td in tds]
-                    if not texts[0] or texts[0].lower() in ("name", "player", ""):
-                        continue
-
-                    rows.append({
-                        "sport": sport,
-                        "team": current_team,
-                        "team_norm": normalize_team(current_team),
-                        "player": texts[0],
-                        "position": texts[1] if len(texts) > 1 else "",
-                        "status": texts[2] if len(texts) > 2 else "",
-                        "injury": texts[3] if len(texts) > 3 else "",
-                    })
-
-        # Strategy 3: JSON-LD or embedded data
-        if not rows:
-            scripts = soup.find_all("script", type="application/json")
-            for script in scripts:
-                try:
-                    data = json.loads(script.string or "")
-                    # Walk through looking for injury-like structures
-                    if isinstance(data, dict):
-                        for key in ("injuries", "injuryData", "page"):
-                            if key in data:
-                                # Found embedded data
-                                pass
-                except Exception:
-                    pass
-
-    except requests.exceptions.RequestException as e:
-        print(f"  [ESPN] {sport}: Request failed: {e}")
+        with open(COMBINED) as f:
+            games = json.load(f).get("data", [])
     except Exception as e:
-        print(f"  [ESPN] {sport}: Parse error: {e}")
+        print(f"[injuries] Could not read {COMBINED}: {e}")
+        return []
+    seen, out = set(), []
+    for g in games:
+        sport = (g.get("sport") or "").lower()
+        if sport not in LEAGUE_PATHS:
+            continue
+        for side in ("home_team", "away_team"):
+            t = g.get(side) or {}
+            tid = t.get("id")
+            if not tid:
+                continue
+            key = (sport, str(tid))
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append((sport, str(tid), t.get("name") or "", t.get("abbr") or ""))
+    return out
 
-    return rows
 
+def fetch_team(sport, team_id, team_name, abbr):
+    path = LEAGUE_PATHS[sport]
+    idx = get_json(f"{BASE}/{path}/teams/{team_id}/injuries")
+    if not idx or not idx.get("items"):
+        return []
 
-def fetch_oddstrader_injuries_for_sport(sport, url):
-    """Fallback: scrape Oddstrader injury pages."""
     rows = []
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=15)
-        if resp.status_code != 200:
-            return rows
+    refs = [it.get("$ref") for it in idx["items"] if it.get("$ref")]
+    for item in (get_json(r) for r in refs):
+        if not item:
+            continue
+        status = (item.get("status") or "").strip()
+        s_low = status.lower()
+        if s_low not in UNAVAILABLE and s_low not in IN_DOUBT:
+            continue  # Active, or something we do not score
 
-        soup = BeautifulSoup(resp.text, "html.parser")
-        current_team = None
-
-        for el in soup.find_all(["a", "h2", "h3", "div", "span"]):
-            text = el.get_text(strip=True)
-            if not text:
-                continue
-
-            # Team headers like "#10 Alabama Crimson Tide"
-            if text.startswith("#") and " " in text and "DATE" not in text:
-                current_team = text.split(" ", 1)[1]
-                continue
-
-            # Also detect plain team names (no ranking)
-            if el.name in ("h2", "h3") and len(text) > 3 and len(text) < 50:
-                if not any(skip in text.lower() for skip in ["injury", "report", "date", "est"]):
-                    current_team = text
+        # ESPN occasionally leaves an old entry on a team, still marked Out.
+        # One such row on 2026-09-02 was reported in November 2022. Rare (1 of
+        # 242), but it inflates a count that is supposed to describe this week.
+        reported = item.get("date")
+        if reported:
+            try:
+                when = datetime.fromisoformat(str(reported).replace("Z", "+00:00"))
+                if (datetime.now(timezone.utc) - when).days > MAX_REPORT_AGE_DAYS:
                     continue
+            except Exception:
+                pass
 
-            # Injury lines: "Player (POS) Status Injury Info"
-            if current_team and "(" in text and ")" in text and any(
-                st in text for st in ["Out", "Questionable", "Probable", "Doubtful", "OFS", "Day-To-Day", "IR"]
-            ):
-                try:
-                    player_part, rest = text.split(")", 1)
-                    player_name = player_part.split("(")[0].strip()
-                    position = player_part.split("(")[1].strip()
-                    parts = rest.split()
-                    status = parts[0] if parts else ""
-                    injury_info = " ".join(parts[1:]) if len(parts) > 1 else ""
-                except Exception:
-                    player_name = text
-                    position = ""
-                    status = ""
-                    injury_info = ""
+        athlete = get_json((item.get("athlete") or {}).get("$ref")) or {}
+        player = athlete.get("displayName") or athlete.get("fullName") or ""
+        position = ((athlete.get("position") or {}).get("abbreviation")
+                    if isinstance(athlete.get("position"), dict) else "") or ""
 
-                rows.append({
-                    "sport": sport,
-                    "team": current_team,
-                    "team_norm": normalize_team(current_team),
-                    "player": player_name,
-                    "position": position,
-                    "status": status,
-                    "injury": injury_info,
-                })
-    except Exception as e:
-        print(f"  [Oddstrader] {sport}: Error: {e}")
-
+        rows.append({
+            "sport": sport,
+            "team": team_name,
+            "team_norm": normalize(team_name),
+            "team_abbr": abbr,
+            "player": player,
+            "position": position,
+            "status": status,
+            "unavailable": s_low in UNAVAILABLE,
+            "reported_at": item.get("date"),
+            "note": item.get("shortComment") or "",
+        })
     return rows
 
 
 def main():
-    all_injuries = []
-    source = "espn_web"
+    teams = teams_in_play()
+    if not teams:
+        print("[injuries] No teams on the slate - nothing to fetch.")
+        return
+    print(f"[injuries] Fetching injuries for {len(teams)} teams...")
 
-    # Try ESPN first
-    print("[injuries] Trying ESPN public injury pages...")
-    for sport, url in ESPN_SPORT_URLS.items():
-        rows = fetch_espn_injuries_for_sport(sport, url)
-        print(f"  [ESPN] {sport}: {len(rows)} injuries")
-        all_injuries.extend(rows)
-        time.sleep(1.0)
-
-    # If ESPN yielded nothing, try Oddstrader
-    if len(all_injuries) == 0:
-        print("[injuries] ESPN returned 0 injuries, trying Oddstrader fallback...")
-        source = "oddstrader"
-        for sport, url in ODDSTRADER_SPORT_URLS.items():
+    all_rows = []
+    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        futures = {ex.submit(fetch_team, *t): t for t in teams}
+        done = 0
+        for fut in as_completed(futures):
+            done += 1
             try:
-                rows = fetch_oddstrader_injuries_for_sport(sport, url)
-                print(f"  [Oddstrader] {sport}: {len(rows)} injuries")
-                all_injuries.extend(rows)
-                time.sleep(1.5)
+                all_rows.extend(fut.result())
             except Exception as e:
-                print(f"  [Oddstrader] {sport}: FAILED: {e}")
+                print(f"    [warn] {futures[fut][2]}: {e}")
+            if done % 20 == 0:
+                print(f"    {done}/{len(teams)} teams, {len(all_rows)} injuries so far")
 
-    # Deduplicate by (sport, team_norm, player)
-    seen = set()
-    deduped = []
-    for row in all_injuries:
-        key = (row.get("sport"), row.get("team_norm"), normalize_team(row.get("player", "")))
-        if key not in seen:
-            seen.add(key)
-            deduped.append(row)
-
-    # Validate: skip entries without team
-    deduped = [r for r in deduped if r.get("team")]
+    by_sport = {}
+    for r in all_rows:
+        by_sport[r["sport"]] = by_sport.get(r["sport"], 0) + 1
 
     payload = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "source": source,
-        "count": len(deduped),
-        "injuries": deduped,
+        "source": "espn-core-api",
+        "count": len(all_rows),
+        "by_sport": by_sport,
+        "injuries": all_rows,
     }
-
-    with open(OUTFILE, "w") as f:
+    with open(OUTPUT, "w") as f:
         json.dump(payload, f, indent=2)
 
-    # Summary by sport
-    sport_counts = {}
-    for r in deduped:
-        s = r.get("sport", "unknown")
-        sport_counts[s] = sport_counts.get(s, 0) + 1
-
-    print(f"[injuries] Wrote {OUTFILE}: {len(deduped)} total injuries from {source}")
-    for s, c in sorted(sport_counts.items()):
-        print(f"  {s}: {c}")
-
-    if len(deduped) == 0:
-        print("[injuries] WARNING: 0 injuries found from all sources")
+    unavailable = sum(1 for r in all_rows if r["unavailable"])
+    print(f"[injuries] Wrote {OUTPUT}: {len(all_rows)} entries "
+          f"({unavailable} unavailable, {len(all_rows) - unavailable} questionable) "
+          f"across {len(teams)} teams | by sport: {by_sport}")
+    if by_sport.get("ncaaf", 0) == 0:
+        print("[injuries] No college injuries found. This is normal - NCAAF has "
+              "no mandated injury report.")
 
 
 if __name__ == "__main__":

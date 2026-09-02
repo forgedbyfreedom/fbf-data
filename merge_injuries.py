@@ -66,6 +66,26 @@ def find_injuries_for_team(inj_index, sport, team_name, team_abbr=None):
     return []
 
 
+def _recent_count(rows, hours=48):
+    """Unavailable players whose injury was reported within `hours`."""
+    from datetime import datetime, timezone, timedelta
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+    n = 0
+    for r in rows:
+        if not r.get("unavailable"):
+            continue
+        ts = r.get("reported_at")
+        if not ts:
+            continue
+        try:
+            when = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+        except Exception:
+            continue
+        if when >= cutoff:
+            n += 1
+    return n
+
+
 def main():
     try:
         with open("combined.json") as f:
@@ -113,15 +133,33 @@ def main():
 
         # Store simplified injury summaries (not full raw data to keep JSON small)
         g["home_injuries"] = [
-            {"player": r.get("player", ""), "status": r.get("status", ""), "position": r.get("position", "")}
+            {"player": r.get("player", ""), "status": r.get("status", ""),
+             "position": r.get("position", ""), "unavailable": r.get("unavailable", False),
+             "reported_at": r.get("reported_at")}
             for r in home_inj
         ]
         g["away_injuries"] = [
-            {"player": r.get("player", ""), "status": r.get("status", ""), "position": r.get("position", "")}
+            {"player": r.get("player", ""), "status": r.get("status", ""),
+             "position": r.get("position", ""), "unavailable": r.get("unavailable", False),
+             "reported_at": r.get("reported_at")}
             for r in away_inj
         ]
-        g["injury_count_home"] = len(home_inj)
-        g["injury_count_away"] = len(away_inj)
+        # injury_count counts players who are actually UNAVAILABLE, not rows on
+        # a page. More than half of ESPN's injury entries carry status "Active"
+        # - a note about a player who is playing - so a raw row count measured
+        # nothing. Questionable is tracked separately rather than folded in.
+        g["injury_count_home"] = sum(1 for r in home_inj if r.get("unavailable"))
+        g["injury_count_away"] = sum(1 for r in away_inj if r.get("unavailable"))
+        g["injury_questionable_home"] = sum(1 for r in home_inj if not r.get("unavailable"))
+        g["injury_questionable_away"] = sum(1 for r in away_inj if not r.get("unavailable"))
+
+        # Late-breaking injuries: reported within 48 hours. This is the case
+        # where the market may genuinely not have caught up, and it is the only
+        # injury signal with a plausible edge - Vegas prices known injuries.
+        # Computed and stored, deliberately NOT wired into the projection: no
+        # forward test has shown it works yet. See MODEL_NOTES.md.
+        g["injury_recent_home"] = _recent_count(home_inj)
+        g["injury_recent_away"] = _recent_count(away_inj)
 
     combined["data"] = games
     with open("combined.json", "w") as f:

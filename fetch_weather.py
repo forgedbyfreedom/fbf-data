@@ -42,7 +42,43 @@ def is_us_outdoor(venue):
     return True
 
 
-_geo_cache = {}
+# Geocode results are cached ON DISK, not just in memory.
+#
+# This used to be a bare in-memory dict, so every run re-geocoded every venue
+# from scratch and threw the answers away. Nominatim asks for a 1 second gap
+# between requests and rate-limits cloud IPs, so in practice most lookups
+# failed and coverage never accumulated: on 2026-09-02 only 20 of 75 stadiums
+# had coordinates and just 53 of 81 games got weather at all. Persisting the
+# cache means coverage only ever grows, and a venue is geocoded once, forever.
+GEO_CACHE_FILE = "geo_cache.json"
+
+
+def _load_geo_cache():
+    try:
+        with open(GEO_CACHE_FILE) as f:
+            raw = json.load(f)
+        out = {}
+        for k, v in raw.items():
+            city, _, state = k.partition("|")
+            if isinstance(v, list) and len(v) == 2:
+                out[(city, state)] = (v[0], v[1])
+        return out
+    except Exception:
+        return {}
+
+
+def _save_geo_cache(cache):
+    try:
+        raw = {f"{c}|{st}": list(v) for (c, st), v in cache.items()
+               if v and v[0] is not None}
+        with open(GEO_CACHE_FILE, "w") as f:
+            json.dump(raw, f, indent=2, sort_keys=True)
+        print(f"[weather] geocode cache: {len(raw)} venues on disk")
+    except Exception as e:
+        print(f"[weather] could not save geocode cache: {e}")
+
+
+_geo_cache = _load_geo_cache()
 
 
 def geocode(city, state):
@@ -70,7 +106,9 @@ def geocode(city, state):
     except Exception:
         pass
 
-    _geo_cache[key] = (None, None)
+    # Deliberately not cached: a miss here is nearly always a rate limit or a
+    # transient failure, not a place that cannot be found. Caching it would
+    # make one bad run permanent.
     return None, None
 
 
@@ -211,4 +249,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        _save_geo_cache(_geo_cache)

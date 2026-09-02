@@ -24,6 +24,7 @@ H2H_DATA = "h2h_data.json"
 REST_DATA = "rest_data.json"
 ELO_DATA = "elo_ratings.json"
 STADIUMS = "stadiums_master.json"
+TEAM_VENUES = "team_venues.json"
 POWER_RATINGS = "power_ratings.json"
 SITUATIONAL = "situational_data.json"
 PUBLIC_BETTING = "public_betting.json"
@@ -46,6 +47,22 @@ def load_json(path, default=None):
 def normalize(name):
     return re.sub(r"[^a-z0-9]+", "", (name or "").lower())
 
+
+def _team_home_coords(team_venues, stadium_coords, team_name):
+    """Coordinates of a team's own home stadium, or None if not learned yet."""
+    rec = team_venues.get(normalize(team_name))
+    if not rec:
+        return None
+    lat, lon = rec.get("lat"), rec.get("lon")
+    if lat is not None and lon is not None:
+        try:
+            return (float(lat), float(lon))
+        except (TypeError, ValueError):
+            pass
+    vn = rec.get("venue")
+    if vn:
+        return stadium_coords.get(normalize(vn))
+    return None
 
 def haversine_km(lat1, lon1, lat2, lon2):
     R = 6371.0
@@ -99,6 +116,8 @@ def main():
 
     stadiums = load_json(STADIUMS, {})
     # Build stadium lookup by normalized name
+    team_venues = load_json(TEAM_VENUES, {}) or {}
+
     stadium_coords = {}
     for key, s in stadiums.items():
         lat = s.get("lat") or s.get("latitude")
@@ -348,9 +367,19 @@ def main():
         # --- TRAVEL DISTANCE ---
         venue = g.get("venue") or {}
         venue_name = venue.get("name", "")
+        # Where each team normally plays. stadium_coords is keyed by STADIUM
+        # name, so looking a TEAM name up in it never matched and travel_km was
+        # 0 on every game the model has ever scored. team_venues.json maps team
+        # -> home venue and is accumulated across runs by
+        # build_venues_from_combined.py.
         venue_coords = stadium_coords.get(normalize(venue_name))
-        home_coords = stadium_coords.get(norm_home)
-        away_coords = stadium_coords.get(norm_away)
+        if venue_coords is None and venue.get("lat") is not None:
+            try:
+                venue_coords = (float(venue["lat"]), float(venue["lon"]))
+            except (TypeError, ValueError, KeyError):
+                venue_coords = None
+        home_coords = _team_home_coords(team_venues, stadium_coords, home_name)
+        away_coords = _team_home_coords(team_venues, stadium_coords, away_name)
         if venue_coords and away_coords:
             away_travel = haversine_km(away_coords[0], away_coords[1], venue_coords[0], venue_coords[1])
             home_travel = 0
