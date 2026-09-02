@@ -108,6 +108,85 @@ compared with. Ratings now shrink toward the league mean with weight
    against what that bucket actually did. A 55% call that hits 55% is the goal;
    a 70% call that hits 51% is worse than useless.
 
+## Which features are actually doing work (measured 2026-09-02)
+
+`build_expected_values()` stashes a per-factor breakdown on each game
+(`_adj_breakdown`, `_total_adj_breakdown`), so this can be re-measured any time
+rather than assumed. On an 81-game slate:
+
+| margin factor | games active | mean pts | max pts |
+| --- | --- | --- | --- |
+| team quality composite (Elo + power + momentum + H2H) | 79/81 | 1.28 | 3.92 |
+| home/away splits | 79/81 | 0.53 | 1.41 |
+| line movement | 30/81 | 0.18 | 1.80 |
+| situational spots | 57/81 | 0.17 | 0.48 |
+| off/def mismatch | 78/81 | 0.07 | 0.26 |
+| public betting fade | 2/81 | 0.02 | 0.80 |
+| rest | 0/81 | 0 | 0 |
+| referee home bias | 0/81 | 0 | 0 |
+| injuries | 0/81 | 0 | 0 |
+| travel | 0/81 | 0 | 0 |
+| starters | 0/81 | 0 | 0 |
+
+Totals side: weather 3.25 mean (53/81), big-spread-under 1.59, pace 1.33,
+referee over bias 0.60, total mismatch 0.07, total line move 0.07.
+
+**Team quality is the model.** Everything else is a rounding error on top of it.
+
+### Rest was measuring the offseason
+
+Before the fix, `rest` was the largest term in the entire layer - mean 10.7
+points, max 107.5. `rest_data.json` stores raw days since a team last played,
+which across an offseason is ~240. Differencing unclamped gave Furman at
+Tennessee a `rest_diff_days` of **-430**, and at 0.25 points a day that is a
+-107 point "rest advantage" for the FCS side.
+
+This, not the ratings, was the main cause of the 37-of-37 underdog board.
+`MAX_USEFUL_REST_DAYS = 14` now clamps each side before differencing. Past a
+bye week, more days off is a schedule gap, not rest.
+
+### Three features are dead, one is a constant in disguise
+
+- **Injuries: 0 of 81 games.** `injuries.json` holds entries for 3 teams.
+  The pipeline advertises injury reports and does not have them.
+- **Travel: 0 of 81.** `travel_km` never populates.
+- **Starters: 0 of 81.** Correct - it only covers MLB pitchers and NHL goalies.
+- **Referees: 0 of 81 games have a crew assigned.** ESPN does not publish them
+  until close to kickoff. The code fell back to a sport constant, so every game
+  carried a `ref_home_bias` of exactly 0.5 or 0.6 - a blanket home-field nudge
+  wearing a referee label, double-counting something the market already prices.
+  Now zero when no crew is known. 562 refs are profiled and none are being used.
+
+### Three stacked dog leans, two of them unsupported
+
+`make_picks()` carried four separate thumbs on the scale toward underdogs:
+
+1. `base_rate` regression toward 0.49 - **kept**, it matches the data.
+2. `(abs_spread - 7) * 0.005` - up to **19.8 points** of cover probability at a
+   46.5 line. **Removed.**
+3. A "big spread dampener" pulling toward 50% - **kept**, it is symmetric and
+   only reduces confidence.
+4. A further college dog lean of up to 6 points on 15+ spreads, justified as
+   "underdogs historically cover ~55-58% of the time". **Removed.**
+
+Against 5 repaired seasons, the favourite covers:
+
+| spread | games | favourite covers | dog lean the code applied |
+| --- | --- | --- | --- |
+| 0-7 | 5,410 | 46.8% | none |
+| 7-14 | 2,042 | 48.5% | 1.8 pts |
+| 14-25 | 1,089 | 49.1% | 6.2 pts |
+| 25+ | 913 | 50.1% | 17.8 pts |
+
+The correction ran backwards - heaviest exactly where favourites do best,
+absent where underdogs actually have an edge. The "55-58%" claim in the comment
+is contradicted by the same repository's own data.
+
+Effect of removing them: ATS picks fell from 62 to 25, high-confidence from 38
+to 9, and games priced at 14 or more now produce **no ATS pick at all** - the
+model correctly reports no opinion on a 46-point spread instead of
+mechanically fading it.
+
 ## Where to look next
 
 The honest answer is that edge, if it exists here, is narrow and specific -

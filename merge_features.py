@@ -14,6 +14,10 @@ Run BEFORE: build_predictions.py
 
 import json, math, re
 
+# Beyond a bye week, extra days are a schedule gap, not rest. Anything larger
+# (an offseason, an FCS team on a different calendar) carries no signal.
+MAX_USEFUL_REST_DAYS = 14
+
 COMBINED = "combined.json"
 REF_TRENDS = "referee_trends.json"
 H2H_DATA = "h2h_data.json"
@@ -199,9 +203,19 @@ def main():
                 "nhl":   {"home_bias": 0.3, "over_bias": 0.2, "consistency": 1.5},
                 "mlb":   {"home_bias": 0.2, "over_bias": 0.3, "consistency": 2.5},
             }
+            # No crew assigned, so there is no referee signal for this game.
+            #
+            # This used to fall back to a sport-level constant (0.5 for NCAAF,
+            # 0.6 for NFL). Since ESPN does not publish crews until close to
+            # kickoff, that constant was applied to 100% of games - every game
+            # on the 2026-09-02 slate carried a ref_home_bias of exactly 0.5 or
+            # 0.6 and nothing else. That is not a referee adjustment, it is a
+            # blanket home-field nudge wearing a referee label, and the market
+            # already prices generic home field. Only ref_consistency is kept,
+            # because it widens the simulation rather than moving the line.
             defaults = sport_ref_defaults.get(sport, {"home_bias": 0.0, "over_bias": 0.0, "consistency": 0.0})
-            g["ref_home_bias"] = defaults["home_bias"]
-            g["ref_over_bias"] = defaults["over_bias"]
+            g["ref_home_bias"] = 0.0
+            g["ref_over_bias"] = 0.0
             g["ref_consistency"] = defaults["consistency"]
 
         # --- REFEREE PENALTY DETAIL (NFL only) ---
@@ -282,16 +296,37 @@ def main():
             g["h2h_margin_avg"] = 0.0
 
         # --- REST DAYS ---
-        home_rest = rest_data.get(home_name) or rest_data.get(normalize(home_name))
-        away_rest = rest_data.get(away_name) or rest_data.get(normalize(away_name))
+        # rest_data holds raw days since a team last played, which across an
+        # offseason is a number like 240. Differencing those unclamped produced
+        # rest_diff_days of -430 for Furman at Tennessee, and at 0.25 points a
+        # day that is a -107 point "rest advantage" for the FCS side. It was
+        # the single largest term in the whole adjustment layer (mean 10.7
+        # points across the slate, against 1.3 for team quality) and it is what
+        # made the board fade every big favourite in week one.
+        #
+        # Past a bye week, more days off is not more rest - it is just a longer
+        # gap. Clamp each side before differencing so the feature measures what
+        # it is supposed to measure.
+        DEFAULT_REST = 7
+
+        def _useful_rest(v):
+            if v is None:
+                return None
+            try:
+                return max(0, min(int(v), MAX_USEFUL_REST_DAYS))
+            except (TypeError, ValueError):
+                return None
+
+        home_rest = _useful_rest(rest_data.get(home_name) or rest_data.get(normalize(home_name)))
+        away_rest = _useful_rest(rest_data.get(away_name) or rest_data.get(normalize(away_name)))
         if home_rest is not None and away_rest is not None:
             g["rest_diff_days"] = home_rest - away_rest
             rest_merged += 1
         elif home_rest is not None:
-            g["rest_diff_days"] = home_rest - 3  # assume avg 3 days if unknown
+            g["rest_diff_days"] = home_rest - DEFAULT_REST
             rest_merged += 1
         elif away_rest is not None:
-            g["rest_diff_days"] = 3 - away_rest
+            g["rest_diff_days"] = DEFAULT_REST - away_rest
             rest_merged += 1
         else:
             g["rest_diff_days"] = 0

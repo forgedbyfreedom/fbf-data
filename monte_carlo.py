@@ -482,6 +482,31 @@ def build_expected_values(game):
     # at 14 or more, which is not an opinion, it is a broken input.
     #
     # Capping keeps the opinion and discards the blowups.
+    # Per-factor breakdown, stashed for diagnostics. Makes it possible to ask
+    # which inputs are actually moving a number and which are dead weight,
+    # rather than assuming a feature is doing work because it is computed.
+    game["_adj_breakdown"] = {
+        "injury": round(injury_shift, 3),
+        "rest": round(rest_shift, 3),
+        "quality": round(quality_shift, 3),
+        "ref_home_bias": round(ref_home_bias, 3),
+        "travel": round(travel_shift, 3),
+        "mismatch": round(mismatch_shift, 3),
+        "home_away_split": round(split_shift, 3),
+        "situational_spot": round(spot_shift, 3),
+        "public_fade": round(public_shift, 3),
+        "line_movement": round(line_shift, 3),
+        "starters": round(starter_shift, 3),
+    }
+    game["_total_adj_breakdown"] = {
+        "weather": round(-weather_penalty, 3),
+        "ref_over_bias": round(ref_over_bias, 3),
+        "pace": round(pace_shift, 3),
+        "total_line_move": round(total_line_shift, 3),
+        "total_mismatch": round(total_mismatch_shift, 3),
+        "big_spread_under": round(spread_total_adj, 3),
+    }
+
     cap = MAX_MARGIN_ADJ.get(sport, 7.0)
     game["_margin_adj_raw"] = round(raw_adjustment, 2)
     game["_margin_adj_clamped"] = abs(raw_adjustment) > cap
@@ -608,12 +633,23 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
         else:
             fav_cover_pct = raw_fav_cover * 0.50 + base_rate * 0.50
 
-        # Large spread penalty: favorites covering big spreads is harder
-        # than the simulation suggests. Apply extra dog lean for spreads > 7.
         abs_spread = abs(spread_line) if spread_line else 0
-        if abs_spread > 7:
-            big_spread_adj = (abs_spread - 7) * 0.005
-            fav_cover_pct -= big_spread_adj
+
+        # REMOVED 2026-09-02: a dog lean of (abs_spread - 7) * 0.005, which
+        # subtracted up to 19.8 points of cover probability at a 46.5 line.
+        # Measured against 5 repaired seasons of NFL and college football, the
+        # favourite covers:
+        #
+        #     0-7    46.8%   (n=5410)      <- penalty applied: none
+        #     7-14   48.5%   (n=2042)      <- penalty applied: 1.8 pts
+        #     14-25  49.1%   (n=1089)      <- penalty applied: 6.2 pts
+        #     25+    50.1%   (n=913)       <- penalty applied: 17.8 pts
+        #
+        # The correction ran backwards: heaviest exactly where favourites do
+        # best, absent where underdogs actually have the edge. Together with the
+        # dog_lean below it guaranteed the underdog on every large spread - the
+        # board went 37 for 37 on games priced at 14 or more. The base_rate
+        # regression above already carries the real, mild historical dog lean.
 
         # Big spread dampener: large spreads are unpredictable ATS regardless
         # of what the simulation thinks. A 30-point spread doesn't mean 90% cover.
@@ -630,11 +666,12 @@ def make_picks(sim_result, spread_line, total_line, home_name, away_name,
                 dampen = min(0.60, (abs_spread - 7) * 0.025)
             fav_cover_pct = fav_cover_pct * (1 - dampen) + 0.50 * dampen
 
-        # LEAN DOG on very large spreads (15+): underdogs historically cover
-        # large tournament spreads ~55-58% of the time. Nudge toward dog.
-        if abs_spread >= 15 and sport_lower in ("ncaab", "ncaaw", "ncaaf"):
-            dog_lean = min(0.06, (abs_spread - 15) * 0.004)
-            fav_cover_pct -= dog_lean
+        # REMOVED 2026-09-02: a further dog lean of up to 6 points on college
+        # spreads of 15+, justified in its comment by underdogs covering
+        # "~55-58% of the time". In the repaired historical data they cover
+        # 50.9% at 14-25 and 49.9% at 25+ - inside the margin of error of a
+        # coin flip, and nowhere near 55-58%. The claim did not survive being
+        # checked, so the adjustment goes with it.
 
         fav_cover_pct = max(0.01, min(0.99, fav_cover_pct))
 
