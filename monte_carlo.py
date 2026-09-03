@@ -22,9 +22,15 @@ import random
 DEFAULT_SIMS = 10000
 
 # Standard deviation of actual margin around expected margin, by sport
+# Margin standard deviation around the closing line, MEASURED on 2,370 games
+# from 2021-2023 and confirmed on the 2024-2025 holdout:
+#     NFL    12.88  (holdout 12.42)
+#     NCAAF  15.10  (holdout 15.12)
+# Football values below are those measurements. The other sports are legacy
+# and unmeasured; this pipeline no longer fetches them.
 SPORT_STDEV = {
-    "nfl": 13.5,
-    "ncaaf": 16.0,
+    "nfl": 12.9,
+    "ncaaf": 15.1,
     "nba": 11.0,
     "ncaab": 11.5,
     "ncaaw": 12.0,
@@ -36,9 +42,14 @@ SPORT_STDEV = {
 # Standard deviation of actual total around expected total
 # Values calibrated to real-world variance per sport.
 # Too-tight stdev creates false confidence; too-loose kills all signal.
+# Total standard deviation, measured the same way:
+#     NFL    13.21  (holdout 12.81)
+#     NCAAF  15.55  (holdout 15.41)
+# The previous 6.5 / 7.5 were roughly half the true dispersion, which made
+# every over/under probability far more confident than the data supports.
 TOTAL_STDEV = {
-    "nfl": 6.5,
-    "ncaaf": 7.5,
+    "nfl": 13.2,
+    "ncaaf": 15.6,
     "nba": 10.0,    # was 6.5 — real NBA total stdev ~11-12; 10 lets genuine edges survive
     "ncaab": 7.0,
     "ncaaw": 7.5,
@@ -198,11 +209,10 @@ def simulate_game(expected_margin, expected_total, margin_stdev, total_stdev,
 MAX_MARGIN_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
 MAX_TOTAL_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
 
-# Publish an ATS pick only when the model disagrees with the line in the
-# UNDERDOG direction by at least this many points. See the note in
-# simulate_and_pick() and MODEL_NOTES.md - the edge is asymmetric and this is
-# the threshold the data supports.
-MIN_DOG_EDGE = 0.5
+# Minimum disagreement with the market before an ATS pick is published.
+# At the measured college margin SD of 15.1 points, 2 points of edge is a 55%
+# cover and 1 point is 52.6%, which is inside the vig. See simulate_and_pick().
+MIN_EDGE_PTS = 2.0
 
 
 def build_expected_values(game):
@@ -272,7 +282,10 @@ def build_expected_values(game):
 
     # Rest days — reduced weight, Vegas prices this too
     rest_diff = safe_float(game.get("rest_diff_days"), 0)
-    rest_w = 0.1 if is_nhl else (0.15 if is_nba else 0.25)  # Reduced from 0.4 — double-counting Vegas
+    # Zeroed on the same evidence: in the fitted model the rest coefficient was
+    # 0.049 points per day and the combination still lost to the line on the
+    # holdout. Rest is priced by the market.
+    rest_w = 0.0
     rest_shift = rest_diff * rest_w
 
     # ── COMPOSITE TEAM QUALITY (replaces separate Elo + power + momentum) ──
@@ -298,7 +311,29 @@ def build_expected_values(game):
     )
 
     # Scale by sport — how much residual edge exists beyond Vegas
-    quality_w = 0.3 if is_nhl else (0.4 if is_nba else 0.8)  # NHL/NBA: Vegas already priced this
+    # ── ZEROED 2026-09-03 ON EVIDENCE ────────────────────────────────
+    # The team quality composite was tested against the closing line on 3,893
+    # football games (2021-2025), deriving on 2021-2023 and evaluating once on
+    # 2024-2025. Projection error, mean absolute:
+    #
+    #     weight 0.0 (line only)   train 11.382   holdout 10.979
+    #     weight 0.4 (production)  train 11.462   holdout 11.061
+    #     weight 0.8               train 11.619   holdout 11.266
+    #
+    # Monotonic: every non-zero weight makes the projection worse, and the
+    # optimum is zero. Swept per subset - NFL, NCAAF, early season, late
+    # season, small spreads, large spreads - every apparent training gain
+    # reversed on the holdout. Fitted optimally by OLS across elo, rest, form
+    # and season stage, it scored R-squared of -0.02 on the holdout: worse than
+    # a horizontal line, and 48.0% ATS.
+    #
+    # This is not surprising. The closing line already prices team quality.
+    # Adding a second, worse estimate of the same thing adds only noise.
+    #
+    # An earlier version of this analysis appeared to find a large edge. That
+    # sample had not been filtered by sport and was mostly basketball and
+    # hockey. On football alone the effect is absent.
+    quality_w = 0.0
     quality_shift = composite_quality * quality_w
 
     # Referee home bias — zeroed on neutral sites
@@ -899,40 +934,33 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     # the ratings cannot express how large the gap truly is. Emitting a pick
     # there produced a board that faded the favourite in 37 of 37 games priced
     # at 14 or more. Saying nothing is more accurate than saying that.
-    # ── THE EDGE IS ASYMMETRIC ───────────────────────────────────────
-    # Measured over 9,121 completed NFL and college games, 2021-2025, using
-    # a walk-forward Elo so nothing leaks:
+    # ── ONLY SPEAK WHEN THE DISAGREEMENT IS MATERIAL ─────────────────
+    # Replaces an asymmetric "publish only on underdog leans" rule shipped
+    # earlier the same day. That rule came from a sample that had not been
+    # filtered by sport - it was mostly basketball and hockey. Re-run on
+    # football alone, with 2021-2023 for derivation and 2024-2025 held out,
+    # the effect disappeared entirely:
     #
-    #   when the model leans UNDERDOG   the dog covers 60.6%  (n=1,243)
-    #   when the model leans FAVOURITE  the fav covers 48.2%  (n=5,967)
-    #   baseline, all games             the fav covers 46.3%
-    #   breakeven                       52.4%
+    #     leans underdog   dog covers 47.9% train / 45.1% holdout
+    #     leans favourite  fav covers 50.1% train / 50.9% holdout
     #
-    # Season by season, the dog-lean rule went 63.7 / 59.1 / 63.4 / 58.2 /
-    # 57.2 percent - above breakeven in all five, with no decay. The
-    # favourite-lean side was below breakeven in all five: 49.2 / 47.3 / 49.3 /
-    # 48.6 / 47.1.
+    # Nothing there. A full scan of candidate splits - spread size, sport,
+    # rest edges, form, season stage, totals - produced no signal whose lower
+    # confidence bound cleared the 52.4% breakeven.
     #
-    # That asymmetry makes sense. When the ratings say the favourite is WORSE
-    # than the market has it, that is real disagreement with the line and it
-    # carries information. When they say the favourite is BETTER, the model is
-    # restating the market's own view with extra noise - the line already
-    # prices team quality. There is nothing there to bet.
+    # So there is no validated ATS edge, and the gate makes no directional
+    # claim. It is a magnitude test: with the measured margin SD of 15.1
+    # points in college football, an edge of 2 points is a 55% cover and an
+    # edge of 1 point is 52.6% - barely breakeven. Below MIN_EDGE_PTS the
+    # model is not saying anything a coin does not.
     #
-    # So the ATS pick is published only on the side where an edge has actually
-    # been demonstrated. On a favourite lean the model says nothing, which is
-    # the honest output for a 48% proposition.
-    # The threshold is applied to the TEAM QUALITY term specifically, because
-    # that is the signal the 9,121-game test measured. The full expected_margin
-    # also carries home/away splits, situational spots and the rest, which on
-    # the 2026-09-03 slate shifted the median edge to +1.68 toward the
-    # favourite - applying the rule to that total would be testing one thing
-    # and shipping another.
-    quality_term = (game.get("_adj_breakdown") or {}).get("quality", 0.0)
+    # The remaining live inputs - injuries, weather, line movement, public
+    # betting - could not be tested here because the historical file carries
+    # no snapshot of them. They are unvalidated, not endorsed.
     if spread_line is not None:
-        # positive => ratings like the FAVOURITE beyond the line
-        fav_edge = quality_term if spread_line < 0 else -quality_term
-        if fav_edge > -MIN_DOG_EDGE:
+        edge_vs_line = expected_margin - (-spread_line)
+        picks["model_edge_pts"] = round(edge_vs_line, 2)
+        if abs(edge_vs_line) < MIN_EDGE_PTS:
             picks["ats_pick"] = None
             picks["ats_pick_abbr"] = None
             picks["ats_spread"] = None
@@ -940,10 +968,8 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
             picks["ats_high_conf"] = False
             picks["ats_suppressed"] = True
             picks["ats_suppressed_reason"] = (
-                "no demonstrated edge: model does not lean underdog by "
-                f"{MIN_DOG_EDGE} pts (fav_edge {fav_edge:+.2f})")
-        picks["model_fav_edge"] = round(fav_edge, 2)
-
+                f"model differs from the line by {abs(edge_vs_line):.1f} pts, "
+                f"under the {MIN_EDGE_PTS} pt bar for a meaningful cover probability")
     if game.get("_margin_adj_clamped"):
         picks["ats_pick"] = None
         picks["ats_pick_abbr"] = None

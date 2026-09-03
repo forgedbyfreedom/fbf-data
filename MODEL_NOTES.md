@@ -187,90 +187,108 @@ to 9, and games priced at 14 or more now produce **no ATS pick at all** - the
 model correctly reports no opinion on a 46-point spread instead of
 mechanically fading it.
 
-## The edge is asymmetric (measured 2026-09-03)
+## RETRACTED: "the edge is asymmetric"
 
-This is the most important measurement in this file. It was prompted by the
-board swinging from all-underdogs to 81% favourites, and it shows that BOTH
-extremes were wrong for the same reason: the direction of the model's
-disagreement with the line was never checked against outcomes.
+An earlier version of this file reported a 60.6% underdog edge from 9,121
+games. **That result was wrong and the rule built on it has been removed.**
 
-Over 9,121 completed NFL and college games, 2021-2025, using a walk-forward
-Elo so nothing leaks:
+The feature builder never filtered by sport. The sample was mostly basketball
+and hockey; football was under half of it. Re-run on football alone, deriving
+on 2021-2023 and holding out 2024-2025:
 
-| the model leans | games | favourite covers |
+| model leans | train (fav covers) | holdout (fav covers) |
 | --- | --- | --- |
-| UNDERDOG | 1,243 | **39.4%**  (so the dog covers 60.6%) |
-| neutral | 1,882 | 45.1% |
-| FAVOURITE | 5,967 | **48.2%** |
-| all games | 9,121 | 46.3% |
+| underdog | 52.1% | 54.9% |
+| neutral | 48.7% | 44.5% |
+| favourite | 50.1% | 50.9% |
 
-Breakeven is 52.4%.
+The effect is absent. Lesson recorded because it nearly shipped: check what is
+actually in the sample before believing the number that comes out of it.
 
-Season by season, betting the dog when the model leans dog:
+## What was tested, and what survived (2026-09-03)
 
-| season | record | hit rate |
+3,893 football games with a closing line, 2021-2025. Derivation on 2021-2023,
+a single evaluation on the 2024-2025 holdout.
+
+### Nothing beats the closing line
+
+Projection error, mean absolute, sweeping the weight on the team quality term:
+
+| quality weight | train MAE | holdout MAE |
 | --- | --- | --- |
-| 2021 | 149-85 | 63.7% |
-| 2022 | 178-123 | 59.1% |
-| 2023 | 192-111 | 63.4% |
-| 2024 | 135-97 | 58.2% |
-| 2025 | 99-74 | 57.2% |
-| **pooled** | **753-490** | **60.6%** (+/- 2.8) |
+| **0.0 (line only)** | **11.382** | **10.979** |
+| 0.4 (was production) | 11.462 | 11.061 |
+| 0.8 | 11.619 | 11.266 |
 
-Above breakeven in all five seasons, with no decay - unlike the residual model
-rejected above, which fell 59.9 -> 54.0 -> 47.3. The favourite-lean side was
-below breakeven in all five: 49.2 / 47.3 / 49.3 / 48.6 / 47.1.
+Monotonic, optimum at zero. Swept per subset - NFL, NCAAF, early season, late
+season, spreads under 7, spreads over 14 - and every apparent training gain
+reversed on the holdout.
 
-It holds across spread sizes, and is NOT a rediscovery of "fade big favourites":
-57.1% on spreads of 0-7 (n=1,017) and 78.0% on 7-14 (n=191), with almost no
-picks at all above 14.
+Fitted optimally by OLS across Elo, rest, form and season stage, predicting the
+residual the line does not explain:
 
-**Why the asymmetry is real rather than a fluke of the sample.** When the
-ratings say the favourite is WORSE than the market has it, that is genuine
-disagreement with the line and carries information. When they say the
-favourite is BETTER, the model is restating the market's own view with extra
-noise - the closing line already prices team quality. There is nothing there
-to bet, and 48.2% over 5,967 games says so.
+- holdout MAE **11.138** against **10.979** for trusting the line
+- holdout **R-squared of -0.02** - worse than a horizontal line
+- holdout ATS **48.0%**
 
-So: an ATS pick is published only when the quality term leans underdog by at
-least MIN_DOG_EDGE (0.5 points). On a favourite lean the model says nothing.
+A full scan of candidate splits (spread size, sport, rest edges, form, season
+stage, totals, high and low totals) produced **no signal whose lower confidence
+bound cleared the 52.4% breakeven.**
 
-Threshold trade-off, pooled:
+**Conclusion: with the data available there is no demonstrated ATS or totals
+edge in football.** The quality composite and rest are now weighted zero. They
+were not merely unhelpful - they were making the projection measurably worse.
 
-| threshold | picks/season | dog covers |
-| --- | --- | --- |
-| < 0.0 | 408 | 59.5% |
-| < -0.5 | 250 | 60.6% |
-| < -1.0 | 129 | 66.9% |
-| < -2.0 | 38 | 76.1% |
+One caveat that matters: ESPN's stored spread is at or near the closing line,
+which is the hardest possible benchmark. The live model runs against an earlier
+line. That cannot be tested with this data, and it is the most plausible place
+for a real edge to exist.
 
--0.5 keeps a usable sample while staying well clear of breakeven. The
-dose-response across thresholds is part of why this looks like signal rather
-than noise.
+### What DID improve: the uncertainty was wrong
 
-### Three caveats, stated plainly
+| | production before | measured (train) | holdout |
+| --- | --- | --- | --- |
+| NFL margin SD | 13.5 | **12.88** | 12.42 |
+| NCAAF margin SD | 16.0 | **15.10** | 15.12 |
+| NFL total SD | 6.5 | **13.21** | 12.81 |
+| NCAAF total SD | 7.5 | **15.55** | 15.41 |
 
-1. **The rule was selected knowing the whole sample.** The per-season
-   consistency is strong evidence, but this is not a true holdout. Expect live
-   results below 60%.
-2. **The test used a walk-forward Elo built in analysis, not the repo's
-   elo_ratings.json.** They are similar but not identical, so live selection
-   will differ from the backtest. On the 2026-09-03 slate the repo's quality
-   term had a median of +1.11 toward the favourite and only 4 of 81 games leaned
-   underdog - far more selective than the 22% the historical Elo produced.
-3. **The threshold is applied to the quality term, not the full
-   expected_margin.** The total edge carries home/away splits, spots and the
-   rest, which shifted the median to +1.68 on that slate. Applying the rule to
-   the total would mean testing one thing and shipping another.
+The totals figures were roughly **half** the true dispersion, which made every
+over/under probability far more confident than the data supports. O/U
+confidence on the current slate now peaks at 54.9% rather than the inflated
+numbers it was printing.
 
-### Known inconsistency
+With the corrected values, win probability calibration on the untouched
+2024-2025 holdout:
 
-The published `ats_confidence` on these picks reads 51-52%, which is below
-breakeven, while the historical rate for the same signal is 60.6%. The
-confidence comes from the Monte Carlo simulation and does not know about the
-asymmetry measurement. Do not paper over this by rewriting the number - let the
-calibration block in accuracy.json settle which one is right once there is a
-real football sample.
+| predicted | games | predicted | actual | gap |
+| --- | --- | --- | --- | --- |
+| 0-35% | 233 | 22.6% | 22.3% | -0.3 |
+| 35-50% | 269 | 41.7% | 39.4% | -2.3 |
+| 50-65% | 302 | 58.7% | 60.3% | +1.5 |
+| 65-80% | 260 | 71.5% | 69.6% | -1.8 |
+| 80-100% | 458 | 93.0% | 96.1% | +3.0 |
+
+**Weighted mean absolute calibration error: 1.99 percentage points**, against
+2.47 for the old standard deviations. Nothing was fitted to the holdout.
+
+### The gate
+
+No directional claim is made, because none is supported. `MIN_EDGE_PTS = 2.0`
+is a magnitude test: at the measured college SD of 15.1, a 2 point disagreement
+with the line is a 55% cover and a 1 point disagreement is 52.6%, inside the
+vig. Below that the model has nothing to say.
+
+The inputs still live - injuries, weather, line movement, public betting -
+could not be tested, because the historical file carries no snapshot of them.
+They are unvalidated, not endorsed. Weather is the one with a physical
+rationale for totals.
+
+### What this engine now claims
+
+It does **not** claim to beat the market. It claims to produce a projection as
+accurate as the closing line, and win probabilities calibrated to within about
+two percentage points. Those are the claims the evidence supports.
 
 ## Where to look next
 
