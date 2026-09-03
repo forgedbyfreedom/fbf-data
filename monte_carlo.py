@@ -198,6 +198,12 @@ def simulate_game(expected_margin, expected_total, margin_stdev, total_stdev,
 MAX_MARGIN_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
 MAX_TOTAL_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
 
+# Publish an ATS pick only when the model disagrees with the line in the
+# UNDERDOG direction by at least this many points. See the note in
+# simulate_and_pick() and MODEL_NOTES.md - the edge is asymmetric and this is
+# the threshold the data supports.
+MIN_DOG_EDGE = 0.5
+
 
 def build_expected_values(game):
     """
@@ -893,6 +899,51 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     # the ratings cannot express how large the gap truly is. Emitting a pick
     # there produced a board that faded the favourite in 37 of 37 games priced
     # at 14 or more. Saying nothing is more accurate than saying that.
+    # ── THE EDGE IS ASYMMETRIC ───────────────────────────────────────
+    # Measured over 9,121 completed NFL and college games, 2021-2025, using
+    # a walk-forward Elo so nothing leaks:
+    #
+    #   when the model leans UNDERDOG   the dog covers 60.6%  (n=1,243)
+    #   when the model leans FAVOURITE  the fav covers 48.2%  (n=5,967)
+    #   baseline, all games             the fav covers 46.3%
+    #   breakeven                       52.4%
+    #
+    # Season by season, the dog-lean rule went 63.7 / 59.1 / 63.4 / 58.2 /
+    # 57.2 percent - above breakeven in all five, with no decay. The
+    # favourite-lean side was below breakeven in all five: 49.2 / 47.3 / 49.3 /
+    # 48.6 / 47.1.
+    #
+    # That asymmetry makes sense. When the ratings say the favourite is WORSE
+    # than the market has it, that is real disagreement with the line and it
+    # carries information. When they say the favourite is BETTER, the model is
+    # restating the market's own view with extra noise - the line already
+    # prices team quality. There is nothing there to bet.
+    #
+    # So the ATS pick is published only on the side where an edge has actually
+    # been demonstrated. On a favourite lean the model says nothing, which is
+    # the honest output for a 48% proposition.
+    # The threshold is applied to the TEAM QUALITY term specifically, because
+    # that is the signal the 9,121-game test measured. The full expected_margin
+    # also carries home/away splits, situational spots and the rest, which on
+    # the 2026-09-03 slate shifted the median edge to +1.68 toward the
+    # favourite - applying the rule to that total would be testing one thing
+    # and shipping another.
+    quality_term = (game.get("_adj_breakdown") or {}).get("quality", 0.0)
+    if spread_line is not None:
+        # positive => ratings like the FAVOURITE beyond the line
+        fav_edge = quality_term if spread_line < 0 else -quality_term
+        if fav_edge > -MIN_DOG_EDGE:
+            picks["ats_pick"] = None
+            picks["ats_pick_abbr"] = None
+            picks["ats_spread"] = None
+            picks["ats_confidence"] = None
+            picks["ats_high_conf"] = False
+            picks["ats_suppressed"] = True
+            picks["ats_suppressed_reason"] = (
+                "no demonstrated edge: model does not lean underdog by "
+                f"{MIN_DOG_EDGE} pts (fav_edge {fav_edge:+.2f})")
+        picks["model_fav_edge"] = round(fav_edge, 2)
+
     if game.get("_margin_adj_clamped"):
         picks["ats_pick"] = None
         picks["ats_pick_abbr"] = None
@@ -901,7 +952,7 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         picks["ats_high_conf"] = False
         picks["ats_suppressed"] = True
         picks["ats_suppressed_reason"] = "model disagrees with the line by more than it can justify"
-    else:
+    elif not picks.get("ats_suppressed"):
         picks["ats_suppressed"] = False
 
     return {

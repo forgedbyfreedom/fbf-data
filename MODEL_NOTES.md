@@ -187,6 +187,91 @@ to 9, and games priced at 14 or more now produce **no ATS pick at all** - the
 model correctly reports no opinion on a 46-point spread instead of
 mechanically fading it.
 
+## The edge is asymmetric (measured 2026-09-03)
+
+This is the most important measurement in this file. It was prompted by the
+board swinging from all-underdogs to 81% favourites, and it shows that BOTH
+extremes were wrong for the same reason: the direction of the model's
+disagreement with the line was never checked against outcomes.
+
+Over 9,121 completed NFL and college games, 2021-2025, using a walk-forward
+Elo so nothing leaks:
+
+| the model leans | games | favourite covers |
+| --- | --- | --- |
+| UNDERDOG | 1,243 | **39.4%**  (so the dog covers 60.6%) |
+| neutral | 1,882 | 45.1% |
+| FAVOURITE | 5,967 | **48.2%** |
+| all games | 9,121 | 46.3% |
+
+Breakeven is 52.4%.
+
+Season by season, betting the dog when the model leans dog:
+
+| season | record | hit rate |
+| --- | --- | --- |
+| 2021 | 149-85 | 63.7% |
+| 2022 | 178-123 | 59.1% |
+| 2023 | 192-111 | 63.4% |
+| 2024 | 135-97 | 58.2% |
+| 2025 | 99-74 | 57.2% |
+| **pooled** | **753-490** | **60.6%** (+/- 2.8) |
+
+Above breakeven in all five seasons, with no decay - unlike the residual model
+rejected above, which fell 59.9 -> 54.0 -> 47.3. The favourite-lean side was
+below breakeven in all five: 49.2 / 47.3 / 49.3 / 48.6 / 47.1.
+
+It holds across spread sizes, and is NOT a rediscovery of "fade big favourites":
+57.1% on spreads of 0-7 (n=1,017) and 78.0% on 7-14 (n=191), with almost no
+picks at all above 14.
+
+**Why the asymmetry is real rather than a fluke of the sample.** When the
+ratings say the favourite is WORSE than the market has it, that is genuine
+disagreement with the line and carries information. When they say the
+favourite is BETTER, the model is restating the market's own view with extra
+noise - the closing line already prices team quality. There is nothing there
+to bet, and 48.2% over 5,967 games says so.
+
+So: an ATS pick is published only when the quality term leans underdog by at
+least MIN_DOG_EDGE (0.5 points). On a favourite lean the model says nothing.
+
+Threshold trade-off, pooled:
+
+| threshold | picks/season | dog covers |
+| --- | --- | --- |
+| < 0.0 | 408 | 59.5% |
+| < -0.5 | 250 | 60.6% |
+| < -1.0 | 129 | 66.9% |
+| < -2.0 | 38 | 76.1% |
+
+-0.5 keeps a usable sample while staying well clear of breakeven. The
+dose-response across thresholds is part of why this looks like signal rather
+than noise.
+
+### Three caveats, stated plainly
+
+1. **The rule was selected knowing the whole sample.** The per-season
+   consistency is strong evidence, but this is not a true holdout. Expect live
+   results below 60%.
+2. **The test used a walk-forward Elo built in analysis, not the repo's
+   elo_ratings.json.** They are similar but not identical, so live selection
+   will differ from the backtest. On the 2026-09-03 slate the repo's quality
+   term had a median of +1.11 toward the favourite and only 4 of 81 games leaned
+   underdog - far more selective than the 22% the historical Elo produced.
+3. **The threshold is applied to the quality term, not the full
+   expected_margin.** The total edge carries home/away splits, spots and the
+   rest, which shifted the median to +1.68 on that slate. Applying the rule to
+   the total would mean testing one thing and shipping another.
+
+### Known inconsistency
+
+The published `ats_confidence` on these picks reads 51-52%, which is below
+breakeven, while the historical rate for the same signal is 60.6%. The
+confidence comes from the Monte Carlo simulation and does not know about the
+asymmetry measurement. Do not paper over this by rewriting the number - let the
+calibration block in accuracy.json settle which one is right once there is a
+real football sample.
+
 ## Where to look next
 
 The honest answer is that edge, if it exists here, is narrow and specific -
