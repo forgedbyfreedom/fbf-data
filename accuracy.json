@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-09-03T21:16:35.713290+00:00",
+  "timestamp": "2026-09-04T03:17:53.491688+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 7,
+  "predictions_graded": 15,
   "sports": {
     "ALL": {
-      "SU_pct": 71.4,
-      "SU_record": "5-2",
-      "SU_total": 7,
+      "SU_pct": 80.0,
+      "SU_record": "12-3",
+      "SU_total": 15,
       "ATS_pct": 75.0,
       "ATS_record": "3-1-0",
       "ATS_total": 4,
-      "OU_pct": 57.1,
-      "OU_record": "4-3-0",
-      "OU_total": 7
+      "OU_pct": 46.7,
+      "OU_record": "7-8-0",
+      "OU_total": 15
     },
     "NFL": {
       "SU_pct": 0,
@@ -26,15 +26,15 @@
       "OU_total": 0
     },
     "NCAAF": {
-      "SU_pct": 71.4,
-      "SU_record": "5-2",
-      "SU_total": 7,
+      "SU_pct": 80.0,
+      "SU_record": "12-3",
+      "SU_total": 15,
       "ATS_pct": 75.0,
       "ATS_record": "3-1-0",
       "ATS_total": 4,
-      "OU_pct": 57.1,
-      "OU_record": "4-3-0",
-      "OU_total": 7
+      "OU_pct": 46.7,
+      "OU_record": "7-8-0",
+      "OU_total": 15
     }
   },
   "high_confidence": {
@@ -110,19 +110,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 4,
-        "record": "1-3",
+        "picks": 10,
+        "record": "4-6",
         "stated_mid": 52.5,
-        "actual_pct": 25.0,
-        "gap": -27.5
+        "actual_pct": 40.0,
+        "gap": -12.5
       },
       {
         "bucket": "55-60%",
-        "picks": 3,
-        "record": "3-0",
+        "picks": 5,
+        "record": "3-2",
         "stated_mid": 57.5,
-        "actual_pct": 100.0,
-        "gap": 42.5
+        "actual_pct": 60.0,
+        "gap": 2.5
       },
       {
         "bucket": "60-70%",
@@ -212,6 +212,78 @@
       "matchup": "New Mexico State Aggies at Florida State Seminoles",
       "ats": "W",
       "ats_best_bet": true,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858423",
+      "sport": "NCAAF",
+      "date": "2026-09-03T22:00Z",
+      "matchup": "Massachusetts Minutemen at Rutgers Scarlet Knights",
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401856767",
+      "sport": "NCAAF",
+      "date": "2026-09-03T23:00Z",
+      "matchup": "Bethune-Cookman Wildcats at UCF Knights",
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858204",
+      "sport": "NCAAF",
+      "date": "2026-09-03T23:00Z",
+      "matchup": "Akron Zips at Wake Forest Demon Deacons",
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401864424",
+      "sport": "NCAAF",
+      "date": "2026-09-03T23:00Z",
+      "matchup": "Merrimack Warriors at Delaware Blue Hens",
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401856663",
+      "sport": "NCAAF",
+      "date": "2026-09-04T00:00Z",
+      "matchup": "Arkansas-Pine Bluff Golden Lions at Missouri Tigers",
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858422",
+      "sport": "NCAAF",
+      "date": "2026-09-04T00:00Z",
+      "matchup": "Eastern Illinois Panthers at Minnesota Golden Gophers",
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401856768",
+      "sport": "NCAAF",
+      "date": "2026-09-04T01:00Z",
+      "matchup": "Idaho Vandals at Utah Utes",
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858424",
+      "sport": "NCAAF",
+      "date": "2026-09-04T01:00Z",
+      "matchup": "UAB Blazers at Illinois Fighting Illini",
       "ou": "W",
       "ou_best_bet": false,
       "su": "W"
