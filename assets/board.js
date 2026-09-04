@@ -58,6 +58,76 @@ function boot(){
   document.getElementById('hiOnly').onchange=render;
   document.getElementById('sort').onchange=render;
 }
+// ── ACCURACY PANEL ────────────────────────────────────────────────
+// Sample size is shown as loudly as the percentage, on purpose. On
+// 2026-09-04 the tracker held a 3-1 ATS record, which renders as 75% and
+// means nothing whatsoever. A hit rate is only readable once there are
+// enough graded picks for the confidence interval to be narrower than the
+// thing being measured, so below MIN_READABLE the number is greyed and
+// labelled rather than presented as a result.
+const MIN_READABLE = 30;      // graded picks before a percentage is trusted
+const BREAKEVEN = 52.4;       // -110 vig
+
+function accCell(label, pct, record, n, isAts){
+  const readable = n >= MIN_READABLE;
+  const val = (pct==null||!n) ? String.fromCharCode(8212) : num(pct,1)+"%";
+  let cls = "acc-val" + (readable ? "" : " thin");
+  if(readable && isAts) cls += pct >= BREAKEVEN ? " acc-good" : " acc-bad";
+  let bar = "";
+  if(isAts && n){
+    const w = Math.max(0, Math.min(100, pct));
+    // Muted while the sample is unreadable: a full orange bar at 75% reads as
+    // a strong result even when the number beside it is deliberately greyed.
+    const fill = readable ? "var(--o)" : "#4a4a4a";
+    bar = `<div class="acc-bar"><i style="width:${w}%;background:${fill}"></i>` +
+          `<u style="left:${BREAKEVEN}%" title="breakeven ${BREAKEVEN}%"></u></div>`;
+  }
+  const flag = readable ? "" : `<div class="acc-flag">${n} of ${MIN_READABLE} graded &middot; not yet readable</div>`;
+  return `<div class="acc-cell">
+    <div class="acc-lb">${label}</div>
+    <div class="${cls}">${val}</div>
+    <div class="acc-rec">${record||"0-0"}</div>
+    <div class="acc-n">from <b>${n}</b> graded pick${n===1?"":"s"}</div>
+    ${bar}${flag}
+  </div>`;
+}
+
+function renderAccuracy(a){
+  const el = document.getElementById("acc");
+  if(!a || !a.sports || !a.sports.ALL){ el.hidden = true; return; }
+  const s = a.sports.ALL;
+  const parse = r => { const p=String(r||"0-0").split("-"); return (parseInt(p[0])||0)+(parseInt(p[1])||0); };
+  const nSU = parse(s.SU_record), nATS = parse(s.ATS_record), nOU = parse(s.OU_record);
+  document.getElementById("accGrid").innerHTML =
+      accCell("Against the spread", s.ATS_pct, s.ATS_record, nATS, true)
+    + accCell("Over / under",       s.OU_pct,  s.OU_record,  nOU,  true)
+    + accCell("Straight up",        s.SU_pct,  s.SU_record,  nSU,  false);
+  document.getElementById("accSince").textContent =
+    a.model_start ? ("tracking since " + a.model_start) : "";
+
+  const worst = Math.min(nATS, nOU);
+  let note = "";
+  if(worst < MIN_READABLE){
+    note = "Breakeven against the spread is <b>52.4%</b> at standard -110 pricing. "
+         + "These records are far too small to read as a result - a 3-1 start is 75% "
+         + "and tells you nothing. The numbers become meaningful somewhere north of "
+         + MIN_READABLE + " graded picks per market.";
+  } else {
+    note = "Breakeven against the spread is <b>52.4%</b> at standard -110 pricing. "
+         + "The marker on each bar sits at breakeven.";
+  }
+  const cal = a.calibration && a.calibration.ATS;
+  if(cal){
+    const used = cal.filter(b => b.picks > 0);
+    if(used.length){
+      note += "<br><br><b>Calibration</b> (does a stated confidence mean what it says): "
+            + used.map(b => `${b.bucket} said &rarr; ${b.actual_pct==null?"&mdash;":num(b.actual_pct,0)+"%"} actual (${b.picks})`).join(" &middot; ");
+    }
+  }
+  document.getElementById("accNote").innerHTML = note;
+  el.hidden = false;
+}
+
 function setMsg(html){ document.getElementById('board').innerHTML = '<div class="empty">'+html+'</div>'; }
 
 // Data is served from the same origin as this page; there is no embedded copy.
@@ -68,6 +138,10 @@ function load(){
     .then(j=>{
       if(!j||!Array.isArray(j.predictions)) throw new Error('predictions.json has no predictions array');
       DATA=j; boot();
+      fetch("accuracy.json?t="+Date.now(),{cache:"no-store"})
+        .then(r=>r.ok?r.json():null)
+        .then(a=>{ try{ renderAccuracy(a); }catch(e){} })
+        .catch(()=>{});
     })
     .catch(e=>{ setMsg('Could not load the latest run.<br><small>'+String(e.message||e)+'</small>'); });
 }

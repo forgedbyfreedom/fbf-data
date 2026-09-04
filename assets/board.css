@@ -37,3 +37,24 @@ header{padding:18px 20px;border-bottom:1px solid var(--line);position:sticky;top
 .disc{color:#6a6a6a;font-size:11px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px;line-height:1.5}
 .stamp{color:var(--mut);font-size:12px}
 select,input{accent-color:var(--o)}
+
+/* ── ACCURACY PANEL ─────────────────────────────────────────────── */
+.acc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:16px 0 4px}
+.acc-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.acc-title{font-weight:900;letter-spacing:1.5px;font-size:13px;text-transform:uppercase;color:var(--o)}
+.acc-since{color:var(--mut);font-size:12px}
+.acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.acc-cell{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.acc-lb{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.acc-val{font-size:26px;font-weight:900;line-height:1.1}
+.acc-val.thin{color:var(--mut);font-weight:700}
+.acc-rec{color:var(--txt);font-size:13px;margin-top:2px}
+.acc-n{color:var(--mut);font-size:12px;margin-top:6px}
+.acc-n b{color:var(--txt)}
+.acc-flag{display:inline-block;margin-top:8px;font-size:11px;padding:3px 8px;border-radius:999px;
+  background:rgba(255,106,0,.12);border:1px solid rgba(255,106,0,.35);color:var(--o);font-weight:700}
+.acc-good{color:var(--grn)}.acc-bad{color:var(--red)}
+.acc-note{color:var(--mut);font-size:12px;margin-top:12px;line-height:1.5}
+.acc-bar{height:4px;background:#2a2a2a;border-radius:3px;margin-top:8px;position:relative;overflow:hidden}
+.acc-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--o);border-radius:3px}
+.acc-bar u{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--mut);text-decoration:none}
