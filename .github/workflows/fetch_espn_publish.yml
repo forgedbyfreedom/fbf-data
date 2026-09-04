@@ -163,6 +163,19 @@ jobs:
         run: python3 track_accuracy.py || echo "Accuracy tracking skipped"
 
       #####################################################################
+      # 13b) CLOSING LINE VALUE STUDY
+      #####################################################################
+      # Records, permanently, the line this run saw against the line the
+      # market closed at, plus what the model thought and what happened.
+      # Every accuracy test so far compared the model to ESPN's stored spread,
+      # which is at or near the CLOSE - the hardest benchmark there is, and one
+      # nobody can actually bet. This measures the model against the number it
+      # genuinely saw on the 6-hour cycle. Must run after build_predictions.py,
+      # which writes predictions_locked.json.
+      - name: Build closing-line-value study
+        run: python3 build_line_study.py || echo "Line study skipped"
+
+      #####################################################################
       # 14) HEALTH CHECK
       #####################################################################
       - name: Validate predictions

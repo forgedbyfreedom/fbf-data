@@ -290,6 +290,56 @@ It does **not** claim to beat the market. It claims to produce a projection as
 accurate as the closing line, and win probabilities calibrated to within about
 two percentage points. Those are the claims the evidence supports.
 
+## The one experiment that can still find an edge
+
+Every accuracy test above compared the model to ESPN's stored spread, which
+sits at or very near the **closing** line. That is the hardest benchmark in
+sports betting - it contains every injury report, weather update and sharp bet
+placed right up to kickoff - and nobody can bet it. The model runs on a 6-hour
+cycle and sees a number hours or days earlier.
+
+Whether it beats *that* number is a different question and it has never been
+tested, because the historical file carries no line-movement snapshots.
+
+`build_line_study.py` now runs on every pull and accumulates `line_study.json`,
+append-only. Per game it records:
+
+- the line at the earliest lock (the number that could actually have been bet)
+- the closing line, from the last snapshot before kickoff
+- how many snapshots were seen
+- the model's projection and which side it leaned
+- the final result, graded against BOTH the locked line and the closing line
+- **`clv_points`** - closing line value
+
+### Why CLV is the metric to watch
+
+If the model likes a team at +7 and the market closes at +5, it captured 2
+points of CLV. Sustained positive CLV is the best available predictor of
+long-run profitability, and it reads far faster than win rate: a few dozen
+games gives a usable signal where ATS results need several hundred.
+
+CLV is computed for every game the model had an opinion on, not only games
+where a pick cleared MIN_EDGE_PTS, so the sample builds at the speed of the
+schedule rather than the speed of the gate.
+
+### How to read it
+
+- **Mean CLV clearly positive over 50+ games** - the model is finding
+  something the market later agrees with. That is the first real evidence of an
+  edge, and it would justify loosening MIN_EDGE_PTS and publishing more picks.
+- **Mean CLV around zero** - the model is neither ahead of nor behind the
+  market. Expect ATS around 50% forever, and treat the board as a projection
+  tool rather than a betting tool.
+- **Mean CLV negative** - the model is systematically on the wrong side of
+  where the market moves. That is worse than no signal and would argue for
+  weighting the remaining live adjustments to zero as well.
+
+First reading, on the 7 games available at build time: mean CLV +0.29 points,
+but the line never moved on 5 of them - the pipeline had only just resumed, so
+most games had a single snapshot. This number means nothing yet. It becomes
+meaningful once games are seen 10-20 times across the week before kickoff,
+which is what the 6-hour cadence produces during a normal season week.
+
 ## Where to look next
 
 The honest answer is that edge, if it exists here, is narrow and specific -
