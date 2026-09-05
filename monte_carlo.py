@@ -101,8 +101,12 @@ OU_HIGH_CONF_BY_SPORT = {
 # Historical over rate by sport — used to regress O/U simulation output
 # toward the true base rate, just like FAV_COVER_BASE does for ATS.
 # Overs hit ~49-51% historically across most sports.
+# Measured 2021-2025 on 3,570 football games with a closing total and a final
+# score: Over 50.0% overall (NFL 50.5% on 1,360, NCAAF 49.7% on 2,210). Both
+# are inside the noise of a coin flip, so both are set to a coin flip. The old
+# NFL value of 0.49 was a small standing Under lean with nothing behind it.
 OVER_BASE = {
-    "nfl": 0.49,
+    "nfl": 0.50,
     "ncaaf": 0.50,
     "nba": 0.50,
     "ncaab": 0.50,
@@ -207,12 +211,24 @@ def simulate_game(expected_margin, expected_total, margin_stdev, total_stdev,
 # See the rationale in build_expected_values(). Roughly one score in the NFL,
 # where lines are sharpest, and a bit more in college where they are softer.
 MAX_MARGIN_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
-MAX_TOTAL_ADJ = {"nfl": 7.0, "ncaaf": 10.0}
+# Tighter than the margin cap. Only two things move a total now - wind and the
+# market revising its own number - and neither is validated in this pipeline,
+# so neither gets to move it far. See build_expected_values().
+MAX_TOTAL_ADJ = {"nfl": 3.5, "ncaaf": 3.5}
 
 # Minimum disagreement with the market before an ATS pick is published.
 # At the measured college margin SD of 15.1 points, 2 points of edge is a 55%
 # cover and 1 point is 52.6%, which is inside the vig. See simulate_and_pick().
 MIN_EDGE_PTS = 2.0
+
+# Same idea for totals, set higher. The totals market measured perfectly
+# efficient over 3,570 football games (50.0% Over), and the only inputs left
+# on that side are unvalidated, so the bar for saying anything at all is
+# higher than on the margin side. At the measured total SD of 15.6 in college
+# football, 3 points of disagreement is a 57.5% chance of landing on the right
+# side of the number; below that the model is not saying anything a coin does
+# not. In practice this means O/U picks are now rare and mostly windy games.
+MIN_TOTAL_EDGE_PTS = 3.0
 
 
 def build_expected_values(game):
@@ -434,65 +450,81 @@ def build_expected_values(game):
         else:
             apply_weather = True   # Default: outdoor, weather applies
 
+    # Weather. The old formula was wind*0.35 + rainChance*0.15 + risk*3.0,
+    # which meant a 59% CHANCE of rain removed 8.9 points from a total before
+    # a drop had fallen. Chance of rain is not rain, and the coefficients were
+    # never measured against anything. On 2026-09-04 that term was a large part
+    # of why the board's projected total sat below the market number on 86% of
+    # games (63 Unders to 10 Overs).
+    #
+    # What survives is wind, and only wind that is actually strong enough to
+    # change how a game is played. Below WIND_FLOOR nothing is subtracted.
+    # This coefficient is NOT measured in this pipeline - the historical file
+    # carries no weather - so it is deliberately small and hard-capped, and
+    # build_line_study.py now records wind at lock time so it becomes testable.
+    WIND_FLOOR = 10.0     # mph below which wind is not a factor
+    WIND_PTS_PER_MPH = 0.20
+    WIND_MAX_PTS = 3.0
+
     weather_penalty = 0.0
     if apply_weather:
         wind = safe_float(weather.get("windSpeedMph"), 0)
-        rain = safe_float(weather.get("rainChancePct"), 0)
-        risk_score = safe_float(risk.get("risk"), 0)
-        weather_penalty = wind * 0.35 + rain * 0.15 + risk_score * 3.0
+        if wind > WIND_FLOOR:
+            weather_penalty = min((wind - WIND_FLOOR) * WIND_PTS_PER_MPH, WIND_MAX_PTS)
 
-    # Referee over/under bias — sport-specific amplification
-    # NHL/NBA: refs barely move totals in efficient markets; college has more signal
-    # UPDATED 03/21: Reduced NCAAB ref multiplier from 2.5 to 1.5.
-    # Tournament refs call fewer fouls than regular season — less whistle-happy
-    # crews selected for March. The 2.5 multiplier amplified a signal that
-    # doesn't exist in tournament context.
-    ref_over_multiplier = {"nhl": 0.8, "nba": 1.0, "ncaab": 1.5, "ncaaw": 1.5,
-                           "nfl": 2.5, "ncaaf": 2.5, "mlb": 1.5}
-    ref_over_bias = safe_float(game.get("ref_over_bias"), 0) * ref_over_multiplier.get(sport, 2.0)
+    # ── TOTALS: WHAT WAS REMOVED, AND WHY ───────────────────────────
+    # Measured on the 3,570 football games in historical_results.json that
+    # carry both a closing total and a final score (2021-2025).
+    #
+    # The market total is the benchmark and it is brutally good: games went
+    # Over 50.0% of the time (1773-1771-26), mean residual +0.71 points,
+    # MAE 11.49. There is no standing bias to exploit.
+    #
+    # Every adjustment this function used to layer on top of it was tested
+    # against that sample and none of them survived:
+    #
+    #   big spread -> Under   -(|spread|-8)*0.15 on every game over 8 points.
+    #                         Replayed: 49.2% (783-809) across 1,592 games, and
+    #                         the correlation between |spread| and the total
+    #                         residual is r=+0.0097 - flat, and POSITIVE, the
+    #                         opposite of the direction the code assumed.
+    #                         It was pushing a mean of -2.07 points on 38 of
+    #                         the 77 priced games on the current board.
+    #
+    #   pace                  pace_gap * 0.45. Rebuilt walk-forward (each team
+    #                         needing 3+ prior games): r=-0.0125 against the
+    #                         residual, direction correct on 51.0% of 1,116
+    #                         games with a 2+ point gap. Every non-zero weight
+    #                         made MAE monotonically WORSE - 11.149 at weight
+    #                         0.00, 11.264 at the 0.45 the code was using.
+    #
+    #   referee over bias     crew tendency * 2.5. Built walk-forward from the
+    #                         officials recorded on each game (each official
+    #                         needing 5+ priors): r=-0.061, direction correct
+    #                         50.4% of 965 games. Nothing.
+    #
+    #   off/def mismatch      abs(off_def_mismatch) * 0.02. An absolute value,
+    #                         so it could only ever push a total UP, never
+    #                         down, on every game with any mismatch at all.
+    #                         That is a structural lean, not an opinion,
+    #                         regardless of what the coefficient is.
+    #
+    # A scan of the alternatives - total level, month, sport, spread bucket -
+    # produced nothing that held. The candidates that cleared 52.4% on one
+    # split flipped sign on the other, and the two best (|spread| 7-14 Over,
+    # |spread| 14-21 Under) are adjacent buckets pointing opposite ways, which
+    # is what noise looks like, not a mechanism.
+    #
+    # So the totals layer no longer has an opinion about scoring. It carries
+    # wind, and it carries the market moving the number itself. That is all
+    # that is left standing.
 
-    # Pace — O/U signal from historical team scoring averages
-    # pace_avg = avg combined points of both teams historically
-    # When pace_avg diverges from total_line, that's our edge
-    # BUT: Vegas already prices pace into efficient markets (NBA, NHL).
-    # Reduce weight for those sports to avoid double-counting.
-    pace_avg = safe_float(game.get("pace_avg"), 0)
-    pace_shift = 0.0
-    if pace_avg > 0 and total_line is not None and total_line > 0:
-        pace_gap = pace_avg - total_line
-        pace_weights = {"nhl": 0.20, "nba": 0.15,
-                        "mlb": 0.40, "nfl": 0.45, "ncaaf": 0.45,
-                        "ncaab": 0.25, "ncaaw": 0.25}   # UPDATED 03/21: reduced from 0.35 — reg season pace doesn't translate to tournament
-        pace_w = pace_weights.get(sport, 0.35)
-
-        # Tournament discount: teams play significantly slower in elimination games
-        # Fewer possessions, more deliberate offense, better defensive preparation
-        is_tournament = game.get("tournament", False) or is_neutral
-        if is_tournament and sport in ("ncaab", "ncaaw", "ncaaf"):
-            pace_w *= 0.40  # Tournament pace much lower than regular season
-
-        pace_shift = pace_gap * pace_w
-
-    # Total line movement (sharp money on totals)
-    # Scale by sport — a 0.5 move in NHL (line ~6) is much more meaningful than in NBA (line ~225)
+    # Total line movement - the market revising its own number. This is
+    # market information rather than a model opinion, which is why it stays.
+    # It is unvalidated: the historical file holds no line-movement snapshot.
     total_delta = safe_float(game.get("total_delta"), 0)
-    total_move_weights = {"nhl": 0.3, "mlb": 0.4, "nfl": 0.5, "ncaaf": 0.5,
-                          "nba": 0.6, "ncaab": 0.6, "ncaaw": 0.6}
+    total_move_weights = {"nfl": 0.5, "ncaaf": 0.5}
     total_line_shift = total_delta * total_move_weights.get(sport, 0.5)
-
-    # Offensive/defensive mismatch affects totals too
-    # High off_def_mismatch means one team's offense >> other's defense → more scoring
-    total_mismatch_shift = abs(off_def_mismatch) * 0.02 if off_def_mismatch != 0 else 0.0
-
-    # Big spread games tend to go Under (garbage time, running clock)
-    # UPDATED 03/21: Increased for tournament — blowouts go Under harder
-    # in elimination games (teams stop trying, clock management)
-    spread_total_adj = 0.0
-    if spread_line is not None and total_line is not None:
-        abs_spread = abs(spread_line)
-        if abs_spread > 8:  # Start at 8 (was 10)
-            under_push = 0.20 if sport in ("ncaab", "ncaaw") else 0.15  # College: stronger Under push
-            spread_total_adj = -(abs_spread - 8) * under_push
 
     # ── COMBINE ──────────────────────────────────────────────────────
 
@@ -540,12 +572,8 @@ def build_expected_values(game):
         "starters": round(starter_shift, 3),
     }
     game["_total_adj_breakdown"] = {
-        "weather": round(-weather_penalty, 3),
-        "ref_over_bias": round(ref_over_bias, 3),
-        "pace": round(pace_shift, 3),
+        "wind": round(-weather_penalty, 3),
         "total_line_move": round(total_line_shift, 3),
-        "total_mismatch": round(total_mismatch_shift, 3),
-        "big_spread_under": round(spread_total_adj, 3),
     }
 
     cap = MAX_MARGIN_ADJ.get(sport, 7.0)
@@ -558,9 +586,7 @@ def build_expected_values(game):
 
     expected_margin = base_margin + raw_adjustment
 
-    raw_total_adjustment = (- weather_penalty + ref_over_bias
-                            + pace_shift + total_line_shift
-                            + total_mismatch_shift + spread_total_adj)
+    raw_total_adjustment = -weather_penalty + total_line_shift
     tcap = MAX_TOTAL_ADJ.get(sport, 7.0)
     if raw_total_adjustment > tcap:
         raw_total_adjustment = tcap
@@ -970,6 +996,30 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
             picks["ats_suppressed_reason"] = (
                 f"model differs from the line by {abs(edge_vs_line):.1f} pts, "
                 f"under the {MIN_EDGE_PTS} pt bar for a meaningful cover probability")
+    # ── O/U MAGNITUDE GATE ───────────────────────────────────────────
+    # The mirror of the ATS gate above, and for a stronger reason: the totals
+    # market measured 50.0% Over on 3,570 football games, and every opinion
+    # this model used to hold about scoring was measured at zero (see
+    # build_expected_values). Publishing an Over/Under on a total the model
+    # agrees with is publishing a coin flip with a percentage printed on it.
+    #
+    # Before this gate the board carried 63 Unders against 10 Overs, with the
+    # projected total sitting below the market number on 86% of games - not an
+    # opinion, a bias. O/U accuracy over the first graded picks was 47.6%.
+    if total_line is not None and picks.get("ou_pick"):
+        total_edge = expected_total - total_line
+        picks["ou_edge_pts"] = round(total_edge, 2)
+        if abs(total_edge) < MIN_TOTAL_EDGE_PTS:
+            picks["ou_pick"] = None
+            picks["ou_confidence"] = None
+            picks["ou_high_conf"] = False
+            picks["ou_suppressed"] = True
+            picks["ou_suppressed_reason"] = (
+                f"model differs from the total by {abs(total_edge):.1f} pts, "
+                f"under the {MIN_TOTAL_EDGE_PTS} pt bar for a meaningful edge")
+    if not picks.get("ou_suppressed"):
+        picks["ou_suppressed"] = False
+
     if game.get("_margin_adj_clamped"):
         picks["ats_pick"] = None
         picks["ats_pick_abbr"] = None

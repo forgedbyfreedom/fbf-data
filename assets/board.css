@@ -58,3 +58,10 @@ select,input{accent-color:var(--o)}
 .acc-bar{height:4px;background:#2a2a2a;border-radius:3px;margin-top:8px;position:relative;overflow:hidden}
 .acc-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--o);border-radius:3px}
 .acc-bar u{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--mut);text-decoration:none}
+
+/* ── COVERAGE LINE ──────────────────────────────────────────────── */
+/* Most cards now read "no pick" in two of three markets. Without this the
+   board looks broken rather than quiet, so it says so out loud. */
+.coverage{color:var(--mut);font-size:12px;line-height:1.6;margin:14px 0 2px;
+  border-left:2px solid var(--line);padding-left:12px}
+.coverage b{color:var(--txt)}

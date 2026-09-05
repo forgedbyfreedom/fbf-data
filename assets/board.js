@@ -14,7 +14,7 @@ function card(p){
   const hi=isHi(p);
   const conf = pr.confidence!=null?pr.confidence:(k.su_confidence||0);
   const line = od.details?`<span class="pill">${od.details}${od.total?` · O/U ${od.total}`:''}</span>`+(od.provider?`<span class="pill">${od.provider}</span>`:''):'<span class="pill">no line yet</span>';
-  const pk=(lb,val,cf)=>`<div class="pk"><div class="lb">${lb}</div><div class="vl">${val||'—'}</div><div class="cf">${cf!=null?num(cf,0)+'%':''}</div><div class="bar"><i style="width:${Math.max(0,Math.min(100,cf||0))}%"></i></div></div>`;
+  const pk=(lb,val,cf,why)=>`<div class="pk"${why?` title="${String(why).replace(/"/g,'&quot;')}"`:''}><div class="lb">${lb}</div><div class="vl">${val||'—'}</div><div class="cf">${cf!=null?num(cf,0)+'%':''}</div><div class="bar"><i style="width:${Math.max(0,Math.min(100,cf||0))}%"></i></div></div>`;
   return `<div class="card ${hi?'hi':''}">
     ${hi?'<div class="hiflag">★ HIGH CONF</div>':''}
     <div class="when">${p.date_local||''}</div>
@@ -26,11 +26,31 @@ function card(p){
     <div class="line">Model: <b>${h.abbr||'H'} ${num(pr.projected_home_score,0)}</b> – <b>${num(pr.projected_away_score,0)} ${a.abbr||'A'}</b> · proj spread <b>${num(pr.projected_spread)}</b> · win ${num((pr.win_probability_home||0)*100,0)}%${s.simulations?` · ${(s.simulations/1000)}k sims`:''}</div>
     <div class="picks">
       ${pk('STRAIGHT UP', k.su_pick_abbr||k.su_pick, k.su_confidence)}
-      ${pk('SPREAD', k.ats_pick_abbr?`${k.ats_pick_abbr} ${k.ats_spread>0?'+':''}${k.ats_spread??''}`:(k.ats_suppressed?'no pick':'—'), k.ats_confidence)}
-      ${pk('TOTAL', k.ou_pick?`${k.ou_pick} ${k.ou_line??''}`:'—', k.ou_confidence)}
+      ${pk('SPREAD', k.ats_pick_abbr?`${k.ats_pick_abbr} ${k.ats_spread>0?'+':''}${k.ats_spread??''}`:(k.ats_suppressed?'no pick':'—'), k.ats_confidence, k.ats_suppressed_reason)}
+      ${pk('TOTAL', k.ou_pick?`${k.ou_pick} ${k.ou_line??''}`:(k.ou_suppressed?'no pick':'—'), k.ou_confidence, k.ou_suppressed_reason)}
     </div>
   </div>`;
 }
+
+// A board where most markets read "no pick" needs to say why, or it reads as
+// broken. Both gates are magnitude tests: the model only speaks when it
+// disagrees with the number by enough for the disagreement to mean something.
+function renderCoverage(rows){
+  const el=document.getElementById('coverage');
+  if(!el) return;
+  if(!rows.length){ el.hidden=true; return; }
+  const ats=rows.filter(p=>(p.picks||{}).ats_pick).length;
+  const ou =rows.filter(p=>(p.picks||{}).ou_pick).length;
+  el.hidden=false;
+  el.innerHTML =
+    `Publishing <b>${ats}</b> spread pick${ats===1?'':'s'} and <b>${ou}</b> total pick${ou===1?'':'s'} `+
+    `across ${rows.length} game${rows.length===1?'':'s'}. Everything else reads "no pick" on purpose — `+
+    `the model has to disagree with the market number by a set margin before it says anything, `+
+    `and against a closing line it usually doesn't. `+
+    `Measured over 3,570 football games (2021&ndash;2025), totals closed at <b>50.0% Over</b> `+
+    `and no factor in this pipeline beat that, so the bar on totals is the higher of the two.`;
+}
+
 function render(){
   const sp=SPORTS.find(s=>s.k===active);
   let rows=(DATA.predictions||[]).filter(p=>sp.match(p.sport));
@@ -38,6 +58,7 @@ function render(){
   const sort=document.getElementById('sort').value;
   rows.sort((a,b)=> sort==='date'?String(a.date_local).localeCompare(String(b.date_local)) : sort==='edge'?edge(b)-edge(a) : ((b.prediction&&b.prediction.confidence||0)-(a.prediction&&a.prediction.confidence||0)));
   document.getElementById('cnt').textContent = rows.length+' game'+(rows.length===1?'':'s');
+  renderCoverage(rows);
   document.getElementById('board').innerHTML = rows.length?rows.map(card).join(''):`<div class="empty">No ${sp.label} games in the latest run.${active==='nfl'?' NFL is between slates right now — check back in-season.':''}</div>`;
 }
 function buildTabs(){

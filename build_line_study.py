@@ -153,6 +153,17 @@ def main():
             "clv_points": clv,
             "ats_pick": picks.get("ats_pick_abbr"),
             "ou_pick": picks.get("ou_pick"),
+            # Wind at lock time. The one input still allowed to move a total is
+            # not validated anywhere in this repo - the historical file carries
+            # no weather - so record it against the result and it becomes
+            # measurable within a season instead of staying an assumption.
+            "wind_mph": (pred.get("weather") or {}).get("windSpeedMph"),
+            "indoor": (pred.get("venue") or {}).get("indoor"),
+            "model_projected_total": (pred.get("prediction") or {}).get("projected_total"),
+            "total_result_vs_lock": (
+                None if lock_odds.get("total") is None else
+                ("over" if float(hs) + float(aws) > float(lock_odds["total"])
+                 else ("under" if float(hs) + float(aws) < float(lock_odds["total"]) else "push"))),
             # graded both ways: against the number we saw, and against the close
             "cover_vs_lock": None if lean is None else (
                 ("home" if margin + float(lock_spread) > 0 else "away")

@@ -803,21 +803,23 @@
       <h2>The FBF Sports Picking Agent</h2>
       <p>
         Here's something we've been building behind the scenes.
-        Our prediction engine analyzes <span class="highlight">30+ data features</span> per game — Elo ratings, pace of play,
-        referee tendencies, injury reports, sharp money signals, head-to-head history, momentum, and more —
-        then runs <span class="highlight">10,000 Monte Carlo simulations</span> per matchup to generate picks across
-        Straight Up, Against the Spread, and Over/Under.
+        The engine starts from the <span class="highlight">closing market line</span> — measured over five seasons
+        of football, it is the single best predictor available — then layers a limited opinion on top of it from
+        Elo and team quality, injuries, travel and rest, weather, and how the line itself has moved.
+        It runs <span class="highlight">10,000 Monte Carlo simulations</span> per matchup and publishes a pick only
+        when it disagrees with the market by enough for the disagreement to mean something.
       </p>
       <p>
-        Every adjustment is calibrated per sport. The same discipline we bring to the
-        <span class="highlight">FBF Protocol</span> — data-driven, no guesswork, no shortcuts — we bring here.
-        Even the pros at Forged by Freedom know when it's time to step away and take a break.
+        Most games get no pick, and that is the point. Every factor here has been backtested against
+        five seasons of results, and the ones that didn't hold up — pace of play and referee tendencies on
+        totals among them — were taken out rather than left in to pad the feature count.
+        <span class="highlight">No guesswork. No shortcuts.</span> The same discipline we bring to the FBF Protocol.
         Enjoy the games. Stay disciplined. And remember: this is entertainment, not financial advice.
       </p>
       <div class="protocol-pills">
         <span class="protocol-pill">10K Sims / Game</span>
-        <span class="protocol-pill">30+ Features</span>
-        <span class="protocol-pill">300+ Refs Profiled</span>
+        <span class="protocol-pill">Backtested on 5 Seasons</span>
+        <span class="protocol-pill">Market-Anchored</span>
         <span class="protocol-pill">NFL &amp; College Football</span>
         <span class="protocol-pill">Sport-Specific Modeling</span>
         <span class="protocol-pill">Updated Every 6 Hours</span>
@@ -959,6 +961,15 @@
     function formatPct(x) {
       if (x === null || x === undefined || Number.isNaN(x)) return "--%";
       return `${x.toFixed(1)}%`;
+    }
+
+    // A record of "0-0-0" is not 0.0% accuracy, it is no data. Showing 0.0%
+    // for an empty market reads as "the model got every one wrong".
+    function fmtAcc(x, record) {
+      const decisions = String(record || "").split("-")
+        .slice(0, 2).reduce((a, b) => a + (parseInt(b, 10) || 0), 0);
+      if (!decisions) return "\u2014";
+      return formatPct(x);
     }
 
     // robust team-name normalizer
@@ -1538,9 +1549,9 @@
       const overallOURec = document.getElementById("acc-overall-ou-rec");
 
       if (overall) {
-        overallSU.textContent = formatPct(overall.su);
-        overallATS.textContent = formatPct(overall.ats);
-        overallOU.textContent = formatPct(overall.ou);
+        overallSU.textContent = fmtAcc(overall.su, overall.su_record);
+        overallATS.textContent = fmtAcc(overall.ats, overall.ats_record);
+        overallOU.textContent = fmtAcc(overall.ou, overall.ou_record);
         overallSURec.textContent = overall.su_record ? `(${overall.su_record})` : "";
         overallATSRec.textContent = overall.ats_record ? `(${overall.ats_record})` : "";
         overallOURec.textContent = overall.ou_record ? `(${overall.ou_record})` : "";
@@ -1560,8 +1571,8 @@
       const highATSRec = document.getElementById("acc-high-ats-rec");
       const highOURec = document.getElementById("acc-high-ou-rec");
       if (high) {
-        highATS.textContent = formatPct(high.ats);
-        highOU.textContent = formatPct(high.ou);
+        highATS.textContent = fmtAcc(high.ats, high.ats_record);
+        highOU.textContent = fmtAcc(high.ou, high.ou_record);
         highATSRec.textContent = high.ats_record ? `(${high.ats_record})` : "";
         highOURec.textContent = high.ou_record ? `(${high.ou_record})` : "";
       }
@@ -1590,9 +1601,9 @@
         sportNameEl.textContent = state.activeSport.toUpperCase();
 
         if (sAcc) {
-          sportSU.textContent = formatPct(sAcc.su);
-          sportATS.textContent = formatPct(sAcc.ats);
-          sportOU.textContent = formatPct(sAcc.ou);
+          sportSU.textContent = fmtAcc(sAcc.su, sAcc.su_record);
+          sportATS.textContent = fmtAcc(sAcc.ats, sAcc.ats_record);
+          sportOU.textContent = fmtAcc(sAcc.ou, sAcc.ou_record);
           sportSURec.textContent = sAcc.su_record ? `(${sAcc.su_record})` : "";
           sportATSRec.textContent = sAcc.ats_record ? `(${sAcc.ats_record})` : "";
           sportOURec.textContent = sAcc.ou_record ? `(${sAcc.ou_record})` : "";

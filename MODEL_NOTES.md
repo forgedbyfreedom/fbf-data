@@ -353,3 +353,138 @@ real football sample, each on a forward test:
 
 Test each one the same way: forward seasons, breakeven at 52.38%, and a
 willingness to conclude that it does not work.
+
+---
+
+## 2026-09-05 — The totals model had no opinion worth publishing
+
+Bryan flagged Over/Under as the one market that looked wrong: 47.6% (10-11)
+while SU sat at 81% and ATS at 75%. Small samples all round, but the O/U
+number was the only one below a coin flip, so it got audited first.
+
+### What was actually wrong
+
+The board carried **63 Unders against 10 Overs**. The projected total sat
+below the market number on **86% of games**, mean −3.49 points. That is not a
+model with an opinion, it is a model with a bias, and it is the same failure
+mode as the 37-of-37 underdog board from 2026-09-01 — one-directional terms
+stacking up on a market number.
+
+Where the −3.49 came from, per game, on the live board:
+
+| term | mean effect | direction it could take |
+|---|---|---|
+| `spread_total_adj` (spread > 8 → Under) | −2.53 on 38 of 77 priced games | Under only |
+| `weather_penalty` | ≈ −1.2 (up to −8.9) | Under only |
+| `pace_shift` | +0.18 | either |
+| `total_mismatch_shift` (`abs(...) * 0.02`) | +0.07 | Over only |
+| `ref_over_bias` | 0.0 (no crews published yet) | either |
+
+Three of the five could only ever push one way. `total_mismatch_shift` took an
+absolute value, so a mismatch in either direction raised the total. The
+weather term was `wind*0.35 + rainChancePct*0.15 + risk*3.0`, which meant a
+**59% chance of rain removed 8.9 points** from a total before a drop had
+fallen — Eastern Michigan's total went from a market 56.5 to a model 46.5 in
+1 mph wind because the forecast said "Areas Of Fog".
+
+### The measurement
+
+3,570 football games from `historical_results.json` (2021–2025) carrying both a
+closing total and a final score.
+
+**The benchmark.** The market total is excellent and there is no standing bias
+in it:
+
+```
+ALL football   n=3570   Over 50.0% (1773-1771-26)   mean resid +0.71   MAE 11.49
+NFL            n=1360   Over 50.5% (680-667-13)     mean resid +1.11   MAE 10.31
+NCAAF          n=2210   Over 49.7% (1093-1104-13)   mean resid +0.47   MAE 12.22
+```
+
+**Every adjustment tested against it, and every one failed.**
+
+*Big spread → Under* — replayed as the code applied it:
+
+```
+|spread|>8 -> UNDER   2021 51.4%  2022 49.8%  2023 45.2%  2024 50.6%  2025 48.4%
+                      ALL 49.2% (783-809) over 1,592 games
+correlation |spread| vs total residual:  r = +0.0097,  OLS slope = +0.0119
+```
+
+Flat, and *positive* — the opposite of the direction the code assumed. It was
+pushing a mean of −2.07 points for nothing.
+
+*Pace* — rebuilt walk-forward, each team needing 3+ prior games in-season:
+
+```
+r = -0.0125 against the residual;  direction correct 51.0% of 1,116 games with a 2+ pt gap
+MAE by pace weight:  0.00 -> 11.149   0.10 -> 11.157   0.20 -> 11.176
+                     0.30 -> 11.206   0.45 -> 11.264  (0.45 was the live value)
+```
+
+Monotonically worse with every point of weight. The optimum is zero.
+
+*Referee over bias* — built walk-forward from the officials recorded on each
+game, each official needing 5+ priors:
+
+```
+r = -0.061;  direction correct 50.4% of 965 games
+```
+
+*Off/def mismatch* — rejected on structure before measurement. `abs()` can
+only add.
+
+**Then the harder question: is there any totals edge at all?** A scan of total
+level, month, sport and spread bucket, split 2021–2023 train / 2024–2025
+holdout, produced nothing that held. The two best candidates were `|spread|
+7-14 → Over` and `|spread| 14-21 → Under` — adjacent buckets pointing opposite
+ways, which is noise, not a mechanism. Per season they read 52.4/46.0/56.2/
+58.9/53.0 and 61.7/40.5/45.2/58.1/61.2.
+
+Finally, a properly shrunk walk-forward score projection (the same
+`off_rating`/`def_rating` construction `build_power_ratings.py` uses, tried at
+four shrinkage settings):
+
+```
+prior=8  min_games=3   n=1877   r=-0.0347   TRAIN 49.4%   HOLDOUT 52.7%
+prior=4  min_games=4   n=1525   r=-0.0261   TRAIN 50.0%   HOLDOUT 52.7%
+prior=12 min_games=3   n=1877   r=-0.0333   TRAIN 49.4%   HOLDOUT 52.7%
+prior=0  min_games=5   n=1185   r=-0.0603   TRAIN 50.0%   HOLDOUT 53.0%
+```
+
+Below breakeven on train, above it on holdout, negative correlation in all
+four. A sign flip across the split is what noise looks like.
+
+### What changed
+
+- `spread_total_adj`, `pace_shift`, `ref_over_bias` and `total_mismatch_shift`
+  deleted from the totals path.
+- `weather_penalty` is now wind only, with a 10 mph floor, 0.20 pts/mph and a
+  hard 3.0 pt ceiling. Rain chance and the generic risk score are gone.
+- `MAX_TOTAL_ADJ` cut from 7.0/10.0 to 3.5/3.5.
+- `OVER_BASE["nfl"]` 0.49 → 0.50. The old value was a small standing Under
+  lean; measured NFL over rate is 50.5% ± 2.7.
+- New `MIN_TOTAL_EDGE_PTS = 3.0` gate, mirroring `MIN_EDGE_PTS` for ATS but
+  set higher, because the totals market measured perfectly efficient and the
+  only inputs left on that side are unvalidated.
+- `build_line_study.py` now records `wind_mph`, `indoor`,
+  `model_projected_total` and `total_result_vs_lock` at lock time, so the one
+  surviving coefficient stops being an assumption within a season.
+
+Result on the live board: mean model−line moved from **−3.49 to −0.04**, games
+below the line from **86% to 11%**, and O/U picks from 63 Under / 10 Over to
+**1 pick out of 100**.
+
+### The honest summary
+
+The totals market is efficient and this pipeline has nothing to say about it.
+The board will publish an Over/Under only when the market moves its own number
+hard or the wind is genuinely strong. That is a worse-looking board and a
+better one — 47.6% on a biased model is a slow loss; no pick is zero.
+
+### Design rule added
+
+**A term that can only move the number one way is a bias, not a feature.**
+`abs()` inside an adjustment, a penalty that is only ever subtracted, a lean
+that only fires for one side — check the sign structure before checking the
+coefficient. Three of the five totals terms failed on structure alone.
