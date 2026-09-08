@@ -1,107 +1,7 @@
 {
-  "timestamp": "20260908_0314",
+  "timestamp": "20260908_0915",
   "count": 93,
   "predictions": [
-    {
-      "id": "401858212",
-      "sport": "ncaaf",
-      "matchup": "SMU Mustangs at Florida State Seminoles",
-      "shortName": "SMU @ FSU",
-      "date_utc": "2026-09-07T23:30Z",
-      "date_local": "2026-09-07 07:30 PM ET",
-      "home": "FSU",
-      "away": "SMU",
-      "home_team": {
-        "id": "52",
-        "name": "Florida State Seminoles",
-        "abbr": "FSU",
-        "slug": "florida-state-seminoles",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png"
-      },
-      "away_team": {
-        "id": "2567",
-        "name": "SMU Mustangs",
-        "abbr": "SMU",
-        "slug": "smu-mustangs",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png"
-      },
-      "odds": {
-        "details": "SMU -3",
-        "spread": 3.0,
-        "total": 52.5,
-        "provider": "DraftKings"
-      },
-      "venue": {
-        "name": "Doak Campbell Stadium",
-        "city": "Tallahassee",
-        "state": "FL",
-        "indoor": false,
-        "grass": true,
-        "lat": 30.4380832,
-        "lon": -84.2809332
-      },
-      "weather": {
-        "summary": "Partly Cloudy",
-        "description": "",
-        "temperatureF": 81,
-        "temp": 81,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 9
-      },
-      "risk": {
-        "risk": 0
-      },
-      "fav_team": "SMU Mustangs",
-      "dog_team": "Florida State Seminoles",
-      "fav_abbr": "SMU",
-      "dog_abbr": "FSU",
-      "fav_spread": -3.0,
-      "dog_spread": 3.0,
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "prediction": {
-        "projected_home_score": 24.8,
-        "projected_away_score": 27.7,
-        "projected_total": 52.5,
-        "projected_spread": -2.9,
-        "win_probability_home": 0.42,
-        "confidence": 89
-      },
-      "model_used": "market_anchored",
-      "simulation": {
-        "simulations": 10000,
-        "home_win_pct": 0.4363,
-        "away_win_pct": 0.5637,
-        "home_cover_pct": 0.5082,
-        "over_pct": 0.5043,
-        "avg_simulated_margin": -2.68,
-        "avg_simulated_total": 52.73
-      },
-      "picks": {
-        "su_pick": "SMU Mustangs",
-        "su_pick_abbr": "SMU",
-        "su_confidence": 53.6,
-        "ats_pick": null,
-        "ats_pick_abbr": null,
-        "ats_spread": null,
-        "ats_confidence": null,
-        "ats_below_threshold": true,
-        "ats_high_conf": false,
-        "ou_pick": null,
-        "ou_line": 52.5,
-        "ou_confidence": null,
-        "ou_high_conf": false,
-        "has_vegas_spread": true,
-        "has_vegas_total": true,
-        "model_edge_pts": 0.11,
-        "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 0.1 pts, under the 2.0 pt bar for a meaningful cover probability",
-        "ou_edge_pts": 0.0,
-        "ou_suppressed": true,
-        "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
-      }
-    },
     {
       "id": "401872656",
       "sport": "nfl",
@@ -126,10 +26,10 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png"
       },
       "odds": {
-        "details": "SEA -3.5",
-        "spread": -3.5,
+        "details": "SEA -3",
+        "spread": -3.0,
         "total": 44.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lumen Field",
@@ -141,13 +41,13 @@
         "lon": -122.330062
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 66,
-        "temp": 66,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
-        "rainChancePct": 2
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
       },
       "risk": {
         "risk": 0
@@ -156,32 +56,32 @@
       "dog_team": "New England Patriots",
       "fav_abbr": "SEA",
       "dog_abbr": "NE",
-      "fav_spread": -3.5,
-      "dog_spread": 3.5,
+      "fav_spread": -3.0,
+      "dog_spread": 3.0,
       "injury_count_home": 5,
       "injury_count_away": 8,
       "prediction": {
-        "projected_home_score": 24.7,
-        "projected_away_score": 19.8,
+        "projected_home_score": 24.5,
+        "projected_away_score": 20.0,
         "projected_total": 44.5,
-        "projected_spread": 4.9,
-        "win_probability_home": 0.634,
-        "confidence": 87
+        "projected_spread": 4.6,
+        "win_probability_home": 0.625,
+        "confidence": 86
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6491,
-        "away_win_pct": 0.3509,
-        "home_cover_pct": 0.5439,
-        "over_pct": 0.5041,
-        "avg_simulated_margin": 5.0,
-        "avg_simulated_total": 44.51
+        "home_win_pct": 0.6316,
+        "away_win_pct": 0.3684,
+        "home_cover_pct": 0.5405,
+        "over_pct": 0.4986,
+        "avg_simulated_margin": 4.41,
+        "avg_simulated_total": 44.54
       },
       "picks": {
         "su_pick": "Seattle Seahawks",
         "su_pick_abbr": "SEA",
-        "su_confidence": 58.3,
+        "su_confidence": 57.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -193,9 +93,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 1.44,
+        "model_edge_pts": 1.59,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 1.4 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 1.6 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
@@ -228,7 +128,7 @@
         "details": "MIA -55.5",
         "spread": -55.5,
         "total": 61.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Hard Rock Stadium",
@@ -240,13 +140,13 @@
         "lon": -80.2456045
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 81,
-        "temp": 81,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 2.0,
         "wind": 2.0,
-        "rainChancePct": 7
+        "rainChancePct": 12
       },
       "risk": {
         "risk": 0
@@ -270,12 +170,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9997,
-        "away_win_pct": 0.0003,
-        "home_cover_pct": 0.5181,
-        "over_pct": 0.5001,
-        "avg_simulated_margin": 56.16,
-        "avg_simulated_total": 61.55
+        "home_win_pct": 0.9998,
+        "away_win_pct": 0.0002,
+        "home_cover_pct": 0.5128,
+        "over_pct": 0.5046,
+        "avg_simulated_margin": 56.05,
+        "avg_simulated_total": 61.64
       },
       "picks": {
         "su_pick": "Miami Hurricanes",
@@ -328,7 +228,7 @@
         "details": "LAR -3.5",
         "spread": -3.5,
         "total": 48.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Melbourne Cricket Ground",
@@ -360,17 +260,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6291,
-        "away_win_pct": 0.3709,
-        "home_cover_pct": 0.5051,
-        "over_pct": 0.502,
-        "avg_simulated_margin": 3.8,
-        "avg_simulated_total": 48.51
+        "home_win_pct": 0.6381,
+        "away_win_pct": 0.3619,
+        "home_cover_pct": 0.522,
+        "over_pct": 0.497,
+        "avg_simulated_margin": 3.96,
+        "avg_simulated_total": 48.42
       },
       "picks": {
         "su_pick": "Los Angeles Rams",
         "su_pick_abbr": "LAR",
-        "su_confidence": 57.2,
+        "su_confidence": 57.7,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -417,8 +317,8 @@
       "odds": {
         "details": "LOU -36.5",
         "spread": -36.5,
-        "total": 55.5,
-        "provider": "DraftKings"
+        "total": 56.5,
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "L&N Federal Credit Union Stadium",
@@ -430,10 +330,10 @@
         "lon": -85.759407
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 78,
-        "temp": 78,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 3.0,
         "wind": 3.0,
         "rainChancePct": 0
@@ -450,9 +350,9 @@
       "injury_count_home": 0,
       "injury_count_away": 0,
       "prediction": {
-        "projected_home_score": 46.3,
-        "projected_away_score": 9.2,
-        "projected_total": 55.5,
+        "projected_home_score": 47.0,
+        "projected_away_score": 10.0,
+        "projected_total": 57.0,
         "projected_spread": 37.1,
         "win_probability_home": 0.984,
         "confidence": 95
@@ -460,17 +360,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9909,
-        "away_win_pct": 0.0091,
-        "home_cover_pct": 0.5205,
-        "over_pct": 0.499,
-        "avg_simulated_margin": 37.38,
-        "avg_simulated_total": 55.41
+        "home_win_pct": 0.9921,
+        "away_win_pct": 0.0079,
+        "home_cover_pct": 0.5169,
+        "over_pct": 0.5064,
+        "avg_simulated_margin": 37.21,
+        "avg_simulated_total": 56.8
       },
       "picks": {
         "su_pick": "Louisville Cardinals",
         "su_pick_abbr": "LOU",
-        "su_confidence": 77.5,
+        "su_confidence": 77.6,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -478,7 +378,7 @@
         "ats_below_threshold": true,
         "ats_high_conf": false,
         "ou_pick": null,
-        "ou_line": 55.5,
+        "ou_line": 56.5,
         "ou_confidence": null,
         "ou_high_conf": false,
         "has_vegas_spread": true,
@@ -486,9 +386,9 @@
         "model_edge_pts": 0.57,
         "ats_suppressed": true,
         "ats_suppressed_reason": "model differs from the line by 0.6 pts, under the 2.0 pt bar for a meaningful cover probability",
-        "ou_edge_pts": 0.0,
+        "ou_edge_pts": 0.5,
         "ou_suppressed": true,
-        "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
+        "ou_suppressed_reason": "model differs from the total by 0.5 pts, under the 3.0 pt bar for a meaningful edge"
       }
     },
     {
@@ -518,7 +418,7 @@
         "details": "UVA -44.5",
         "spread": -44.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Scott Stadium",
@@ -532,10 +432,10 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
+        "temperatureF": 60,
+        "temp": 60,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -560,12 +460,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9983,
-        "away_win_pct": 0.0017,
-        "home_cover_pct": 0.5213,
-        "over_pct": 0.4999,
-        "avg_simulated_margin": 45.23,
-        "avg_simulated_total": 54.36
+        "home_win_pct": 0.9987,
+        "away_win_pct": 0.0013,
+        "home_cover_pct": 0.5306,
+        "over_pct": 0.4984,
+        "avg_simulated_margin": 45.44,
+        "avg_simulated_total": 54.49
       },
       "picks": {
         "su_pick": "Virginia Cavaliers",
@@ -618,7 +518,7 @@
         "details": "NCSU -30.5",
         "spread": -30.5,
         "total": 48.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Carter-Finley Stadium",
@@ -632,10 +532,10 @@
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -660,17 +560,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9844,
-        "away_win_pct": 0.0156,
-        "home_cover_pct": 0.5312,
-        "over_pct": 0.4954,
-        "avg_simulated_margin": 31.62,
-        "avg_simulated_total": 48.38
+        "home_win_pct": 0.9855,
+        "away_win_pct": 0.0145,
+        "home_cover_pct": 0.5321,
+        "over_pct": 0.5007,
+        "avg_simulated_margin": 31.76,
+        "avg_simulated_total": 48.55
       },
       "picks": {
         "su_pick": "NC State Wolfpack",
         "su_pick_abbr": "NCSU",
-        "su_confidence": 77.1,
+        "su_confidence": 77.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -718,7 +618,7 @@
         "details": "BC -3",
         "spread": -3.0,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Alumni Stadium (Chestnut Hill, MA)",
@@ -730,12 +630,12 @@
         "lon": -71.1639439
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -760,12 +660,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5865,
-        "away_win_pct": 0.4135,
-        "home_cover_pct": 0.5245,
-        "over_pct": 0.4869,
-        "avg_simulated_margin": 4.07,
-        "avg_simulated_total": 54.04
+        "home_win_pct": 0.5856,
+        "away_win_pct": 0.4144,
+        "home_cover_pct": 0.5209,
+        "over_pct": 0.4888,
+        "avg_simulated_margin": 3.98,
+        "avg_simulated_total": 54.03
       },
       "picks": {
         "su_pick": "Boston College Eagles",
@@ -818,7 +718,7 @@
         "details": "MIZ -5.5",
         "spread": 5.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "David Booth Kansas Memorial Stadium",
@@ -832,10 +732,10 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 85,
-        "temp": 85,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 1
       },
       "risk": {
@@ -860,22 +760,21 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.3919,
-        "away_win_pct": 0.6081,
-        "home_cover_pct": 0.5151,
-        "over_pct": 0.4529,
-        "avg_simulated_margin": -4.77,
-        "avg_simulated_total": 48.96
+        "home_win_pct": 0.3975,
+        "away_win_pct": 0.6025,
+        "home_cover_pct": 0.5249,
+        "over_pct": 0.4555,
+        "avg_simulated_margin": -4.62,
+        "avg_simulated_total": 49.02
       },
       "picks": {
         "su_pick": "Missouri Tigers",
         "su_pick_abbr": "MIZ",
-        "su_confidence": 56.1,
+        "su_confidence": 55.7,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
         "ats_confidence": null,
-        "ats_below_threshold": true,
         "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 50.5,
@@ -918,7 +817,7 @@
         "details": "ORE -22.5",
         "spread": 22.5,
         "total": 57.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Boone Pickens Stadium",
@@ -932,10 +831,10 @@
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 88,
-        "temp": 88,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 1
       },
       "risk": {
@@ -960,17 +859,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.093,
-        "away_win_pct": 0.907,
-        "home_cover_pct": 0.4823,
-        "over_pct": 0.4567,
-        "avg_simulated_margin": -23.22,
-        "avg_simulated_total": 56.12
+        "home_win_pct": 0.0979,
+        "away_win_pct": 0.9021,
+        "home_cover_pct": 0.4983,
+        "over_pct": 0.4622,
+        "avg_simulated_margin": -22.71,
+        "avg_simulated_total": 55.99
       },
       "picks": {
         "su_pick": "Oregon Ducks",
         "su_pick_abbr": "ORE",
-        "su_confidence": 72.8,
+        "su_confidence": 72.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1025,12 +924,12 @@
         "lon": -86.5342881
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 73,
-        "temp": 73,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 65,
+        "temp": 65,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -1055,17 +954,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5239,
-        "away_win_pct": 0.4761,
-        "home_cover_pct": 0.5239,
-        "over_pct": 0.4964,
-        "avg_simulated_margin": 1.01,
-        "avg_simulated_total": 52.0
+        "home_win_pct": 0.5148,
+        "away_win_pct": 0.4852,
+        "home_cover_pct": 0.5148,
+        "over_pct": 0.5019,
+        "avg_simulated_margin": 0.84,
+        "avg_simulated_total": 52.05
       },
       "picks": {
         "su_pick": "Indiana Hoosiers",
         "su_pick_abbr": "IU",
-        "su_confidence": 51.3,
+        "su_confidence": 50.8,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1108,7 +1007,7 @@
         "details": "TA&M -14.5",
         "spread": -14.5,
         "total": 51.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Kyle Field",
@@ -1122,8 +1021,8 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 86,
-        "temp": 86,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 1
@@ -1150,12 +1049,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.8423,
-        "away_win_pct": 0.1577,
-        "home_cover_pct": 0.5195,
-        "over_pct": 0.5069,
-        "avg_simulated_margin": 15.31,
-        "avg_simulated_total": 51.69
+        "home_win_pct": 0.8434,
+        "away_win_pct": 0.1566,
+        "home_cover_pct": 0.5303,
+        "over_pct": 0.5005,
+        "avg_simulated_margin": 15.44,
+        "avg_simulated_total": 51.48
       },
       "picks": {
         "su_pick": "Texas A&M Aggies",
@@ -1208,7 +1107,7 @@
         "details": "OU -5.5",
         "spread": 5.5,
         "total": 43.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Michigan Stadium",
@@ -1222,8 +1121,8 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
+        "temperatureF": 59,
+        "temp": 59,
         "windSpeedMph": 3.0,
         "wind": 3.0,
         "rainChancePct": 0
@@ -1250,17 +1149,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.3665,
-        "away_win_pct": 0.6335,
-        "home_cover_pct": 0.4808,
-        "over_pct": 0.449,
-        "avg_simulated_margin": -6.18,
-        "avg_simulated_total": 41.88
+        "home_win_pct": 0.361,
+        "away_win_pct": 0.639,
+        "home_cover_pct": 0.4758,
+        "over_pct": 0.45,
+        "avg_simulated_margin": -6.46,
+        "avg_simulated_total": 41.78
       },
       "picks": {
         "su_pick": "Oklahoma Sooners",
         "su_pick_abbr": "OU",
-        "su_confidence": 57.5,
+        "su_confidence": 57.8,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1308,7 +1207,7 @@
         "details": "PSU -23.5",
         "spread": 23.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lincoln Financial Field",
@@ -1322,8 +1221,8 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
+        "temperatureF": 62,
+        "temp": 62,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 0
@@ -1350,17 +1249,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.0909,
-        "away_win_pct": 0.9091,
-        "home_cover_pct": 0.4835,
-        "over_pct": 0.4673,
-        "avg_simulated_margin": -24.15,
-        "avg_simulated_total": 48.43
+        "home_win_pct": 0.0875,
+        "away_win_pct": 0.9125,
+        "home_cover_pct": 0.477,
+        "over_pct": 0.4638,
+        "avg_simulated_margin": -24.58,
+        "avg_simulated_total": 48.29
       },
       "picks": {
         "su_pick": "Penn State Nittany Lions",
         "su_pick_abbr": "PSU",
-        "su_confidence": 72.9,
+        "su_confidence": 73.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1408,7 +1307,7 @@
         "details": "KSU -18.5",
         "spread": -18.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Bill Snyder Family Stadium",
@@ -1420,13 +1319,13 @@
         "lon": -96.5716694
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 86,
-        "temp": 86,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 0
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -1450,17 +1349,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.8782,
-        "away_win_pct": 0.1218,
-        "home_cover_pct": 0.5023,
-        "over_pct": 0.48,
-        "avg_simulated_margin": 18.63,
-        "avg_simulated_total": 48.69
+        "home_win_pct": 0.8751,
+        "away_win_pct": 0.1249,
+        "home_cover_pct": 0.5039,
+        "over_pct": 0.475,
+        "avg_simulated_margin": 18.54,
+        "avg_simulated_total": 48.58
       },
       "picks": {
         "su_pick": "Kansas State Wildcats",
         "su_pick_abbr": "KSU",
-        "su_confidence": 71.2,
+        "su_confidence": 71.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1515,12 +1414,12 @@
         "lon": -79.05578
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -1545,17 +1444,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4988,
-        "away_win_pct": 0.5012,
-        "home_cover_pct": 0.4988,
-        "over_pct": 0.492,
-        "avg_simulated_margin": 0.07,
-        "avg_simulated_total": 51.78
+        "home_win_pct": 0.4932,
+        "away_win_pct": 0.5068,
+        "home_cover_pct": 0.4932,
+        "over_pct": 0.4963,
+        "avg_simulated_margin": 0.13,
+        "avg_simulated_total": 52.0
       },
       "picks": {
         "su_pick": "East Tennessee State Buccaneers",
         "su_pick_abbr": "ETSU",
-        "su_confidence": 50.1,
+        "su_confidence": 50.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1598,7 +1497,7 @@
         "details": "VT -18.5",
         "spread": -18.5,
         "total": 51.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lane Stadium",
@@ -1610,12 +1509,12 @@
         "lon": -80.4136767
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 1.0,
-        "wind": 1.0,
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -1640,17 +1539,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.8824,
-        "away_win_pct": 0.1176,
-        "home_cover_pct": 0.4811,
-        "over_pct": 0.5108,
-        "avg_simulated_margin": 17.56,
-        "avg_simulated_total": 51.64
+        "home_win_pct": 0.8803,
+        "away_win_pct": 0.1197,
+        "home_cover_pct": 0.471,
+        "over_pct": 0.4984,
+        "avg_simulated_margin": 17.59,
+        "avg_simulated_total": 51.5
       },
       "picks": {
         "su_pick": "Virginia Tech Hokies",
         "su_pick_abbr": "VT",
-        "su_confidence": 71.4,
+        "su_confidence": 71.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1698,7 +1597,7 @@
         "details": "WAKE -4",
         "spread": 4.0,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Ross-Ade Stadium",
@@ -1712,10 +1611,10 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -1740,17 +1639,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.3877,
-        "away_win_pct": 0.6123,
-        "home_cover_pct": 0.4814,
-        "over_pct": 0.5067,
-        "avg_simulated_margin": -4.77,
-        "avg_simulated_total": 49.62
+        "home_win_pct": 0.3951,
+        "away_win_pct": 0.6049,
+        "home_cover_pct": 0.4866,
+        "over_pct": 0.4993,
+        "avg_simulated_margin": -4.49,
+        "avg_simulated_total": 49.43
       },
       "picks": {
         "su_pick": "Wake Forest Demon Deacons",
         "su_pick_abbr": "WAKE",
-        "su_confidence": 56.3,
+        "su_confidence": 55.9,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1798,7 +1697,7 @@
         "details": "ARMY -3.5",
         "spread": -3.5,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Michie Stadium",
@@ -1810,12 +1709,12 @@
         "lon": -73.9658803
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
-        "windSpeedMph": 1.0,
-        "wind": 1.0,
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -1840,17 +1739,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5554,
-        "away_win_pct": 0.4446,
-        "home_cover_pct": 0.4789,
-        "over_pct": 0.4279,
-        "avg_simulated_margin": 2.63,
-        "avg_simulated_total": 44.95
+        "home_win_pct": 0.5568,
+        "away_win_pct": 0.4432,
+        "home_cover_pct": 0.4814,
+        "over_pct": 0.4237,
+        "avg_simulated_margin": 2.68,
+        "avg_simulated_total": 45.04
       },
       "picks": {
         "su_pick": "Army Black Knights",
         "su_pick_abbr": "ARMY",
-        "su_confidence": 53.1,
+        "su_confidence": 53.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -1898,7 +1797,7 @@
         "details": "ECU -7.5",
         "spread": -7.5,
         "total": 56.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Dowdy-Ficklen Stadium",
@@ -1910,12 +1809,12 @@
         "lon": -77.3724593
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -1940,17 +1839,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6934,
-        "away_win_pct": 0.3066,
-        "home_cover_pct": 0.5257,
-        "over_pct": 0.5024,
-        "avg_simulated_margin": 8.76,
+        "home_win_pct": 0.6892,
+        "away_win_pct": 0.3108,
+        "home_cover_pct": 0.5298,
+        "over_pct": 0.5038,
+        "avg_simulated_margin": 8.99,
         "avg_simulated_total": 56.53
       },
       "picks": {
         "su_pick": "East Carolina Pirates",
         "su_pick_abbr": "ECU",
-        "su_confidence": 60.8,
+        "su_confidence": 60.6,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2001,16 +1900,16 @@
         "state": "OH",
         "indoor": false,
         "grass": false,
-        "lat": 41.15367,
-        "lon": -81.35789
+        "lat": 41.1513108,
+        "lon": -81.3578047
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 62,
-        "temp": 62,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -2035,17 +1934,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5328,
-        "away_win_pct": 0.4672,
-        "home_cover_pct": 0.5328,
-        "over_pct": 0.5019,
-        "avg_simulated_margin": 1.37,
-        "avg_simulated_total": 52.02
+        "home_win_pct": 0.5243,
+        "away_win_pct": 0.4757,
+        "home_cover_pct": 0.5243,
+        "over_pct": 0.5003,
+        "avg_simulated_margin": 0.76,
+        "avg_simulated_total": 51.97
       },
       "picks": {
         "su_pick": "Kent State Golden Flashes",
         "su_pick_abbr": "KENT",
-        "su_confidence": 51.8,
+        "su_confidence": 51.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2088,7 +1987,7 @@
         "details": "UGA -40.5",
         "spread": -40.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Sanford Stadium",
@@ -2100,10 +1999,10 @@
         "lon": -83.37794
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
+        "temperatureF": 69,
+        "temp": 69,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -2130,12 +2029,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9902,
-        "away_win_pct": 0.0098,
-        "home_cover_pct": 0.4808,
-        "over_pct": 0.536,
-        "avg_simulated_margin": 39.53,
-        "avg_simulated_total": 55.68
+        "home_win_pct": 0.9904,
+        "away_win_pct": 0.0096,
+        "home_cover_pct": 0.4726,
+        "over_pct": 0.5361,
+        "avg_simulated_margin": 39.29,
+        "avg_simulated_total": 55.58
       },
       "picks": {
         "su_pick": "Georgia Bulldogs",
@@ -2195,10 +2094,10 @@
         "lon": -79.9559
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 65,
-        "temp": 65,
+        "temperatureF": 61,
+        "temp": 61,
         "windSpeedMph": 1.0,
         "wind": 1.0,
         "rainChancePct": 0
@@ -2225,17 +2124,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.516,
-        "away_win_pct": 0.484,
-        "home_cover_pct": 0.516,
-        "over_pct": 0.4906,
-        "avg_simulated_margin": 0.79,
-        "avg_simulated_total": 51.83
+        "home_win_pct": 0.5239,
+        "away_win_pct": 0.4761,
+        "home_cover_pct": 0.5239,
+        "over_pct": 0.4994,
+        "avg_simulated_margin": 0.94,
+        "avg_simulated_total": 52.0
       },
       "picks": {
         "su_pick": "West Virginia Mountaineers",
         "su_pick_abbr": "WVU",
-        "su_confidence": 50.9,
+        "su_confidence": 51.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2287,10 +2186,10 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -2315,17 +2214,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5121,
-        "away_win_pct": 0.4879,
-        "home_cover_pct": 0.5121,
-        "over_pct": 0.4961,
+        "home_win_pct": 0.5143,
+        "away_win_pct": 0.4857,
+        "home_cover_pct": 0.5143,
+        "over_pct": 0.5061,
         "avg_simulated_margin": 0.73,
-        "avg_simulated_total": 51.97
+        "avg_simulated_total": 52.09
       },
       "picks": {
         "su_pick": "Central Michigan Chippewas",
         "su_pick_abbr": "CMU",
-        "su_confidence": 50.7,
+        "su_confidence": 50.8,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2377,10 +2276,10 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 65,
+        "temp": 65,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -2405,17 +2304,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5057,
-        "away_win_pct": 0.4943,
-        "home_cover_pct": 0.5057,
-        "over_pct": 0.4899,
-        "avg_simulated_margin": 0.16,
-        "avg_simulated_total": 51.83
+        "home_win_pct": 0.5024,
+        "away_win_pct": 0.4976,
+        "home_cover_pct": 0.5024,
+        "over_pct": 0.4948,
+        "avg_simulated_margin": 0.03,
+        "avg_simulated_total": 51.91
       },
       "picks": {
         "su_pick": "Miami (OH) RedHawks",
         "su_pick_abbr": "M-OH",
-        "su_confidence": 50.3,
+        "su_confidence": 50.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2465,10 +2364,10 @@
         "lon": -85.38636
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
+        "temperatureF": 63,
+        "temp": 63,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -2495,12 +2394,12 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5261,
-        "away_win_pct": 0.4739,
-        "home_cover_pct": 0.5261,
-        "over_pct": 0.4889,
-        "avg_simulated_margin": 0.82,
-        "avg_simulated_total": 51.68
+        "home_win_pct": 0.5263,
+        "away_win_pct": 0.4737,
+        "home_cover_pct": 0.5263,
+        "over_pct": 0.4971,
+        "avg_simulated_margin": 0.96,
+        "avg_simulated_total": 52.03
       },
       "picks": {
         "su_pick": "Ball State Cardinals",
@@ -2548,7 +2447,7 @@
         "details": "ND -44.5",
         "spread": -44.5,
         "total": 54.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Notre Dame Stadium",
@@ -2562,8 +2461,8 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -2590,12 +2489,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9955,
-        "away_win_pct": 0.0045,
-        "home_cover_pct": 0.5218,
-        "over_pct": 0.5315,
-        "avg_simulated_margin": 45.4,
-        "avg_simulated_total": 55.56
+        "home_win_pct": 0.9954,
+        "away_win_pct": 0.0046,
+        "home_cover_pct": 0.5152,
+        "over_pct": 0.5334,
+        "avg_simulated_margin": 45.37,
+        "avg_simulated_total": 55.61
       },
       "picks": {
         "su_pick": "Notre Dame Fighting Irish",
@@ -2648,7 +2547,7 @@
         "details": "ALA -10.5",
         "spread": 10.5,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Kroger Field",
@@ -2660,12 +2559,12 @@
         "lon": -84.47772
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -2690,17 +2589,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.2929,
-        "away_win_pct": 0.7071,
+        "home_win_pct": 0.29,
+        "away_win_pct": 0.71,
         "home_cover_pct": 0.5304,
-        "over_pct": 0.4938,
-        "avg_simulated_margin": -9.18,
-        "avg_simulated_total": 49.33
+        "over_pct": 0.5103,
+        "avg_simulated_margin": -9.34,
+        "avg_simulated_total": 49.69
       },
       "picks": {
         "su_pick": "Alabama Crimson Tide",
         "su_pick_abbr": "ALA",
-        "su_confidence": 61.6,
+        "su_confidence": 61.8,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2748,7 +2647,7 @@
         "details": "BYU -7.5",
         "spread": -7.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "LaVell Edwards Stadium",
@@ -2760,12 +2659,12 @@
         "lon": -111.65853
       },
       "weather": {
-        "summary": "Clear",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -2790,17 +2689,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7173,
-        "away_win_pct": 0.2827,
-        "home_cover_pct": 0.5299,
-        "over_pct": 0.4961,
-        "avg_simulated_margin": 8.81,
-        "avg_simulated_total": 50.39
+        "home_win_pct": 0.7213,
+        "away_win_pct": 0.2787,
+        "home_cover_pct": 0.5321,
+        "over_pct": 0.5007,
+        "avg_simulated_margin": 8.94,
+        "avg_simulated_total": 50.54
       },
       "picks": {
         "su_pick": "BYU Cougars",
         "su_pick_abbr": "BYU",
-        "su_confidence": 62.2,
+        "su_confidence": 62.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -2848,7 +2747,7 @@
         "details": "WASH -26.5",
         "spread": -26.5,
         "total": 55.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Husky Stadium",
@@ -2860,13 +2759,13 @@
         "lon": -122.33207
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 66,
-        "temp": 66,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
-        "rainChancePct": 2
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
       },
       "risk": {
         "risk": 0
@@ -2890,12 +2789,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.9393,
-        "away_win_pct": 0.0607,
-        "home_cover_pct": 0.5023,
-        "over_pct": 0.4793,
-        "avg_simulated_margin": 26.77,
-        "avg_simulated_total": 54.81
+        "home_win_pct": 0.9387,
+        "away_win_pct": 0.0613,
+        "home_cover_pct": 0.5061,
+        "over_pct": 0.4842,
+        "avg_simulated_margin": 26.69,
+        "avg_simulated_total": 54.95
       },
       "picks": {
         "su_pick": "Washington Huskies",
@@ -2948,7 +2847,7 @@
         "details": "MSST -1.5",
         "spread": 1.5,
         "total": 55.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Huntington Bank Stadium",
@@ -2960,16 +2859,16 @@
         "lon": -93.26384
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 76,
-        "temp": 76,
+        "temperatureF": 68,
+        "temp": 68,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 10
+        "rainChancePct": 85
       },
       "risk": {
-        "risk": 0
+        "risk": 1
       },
       "fav_team": "Mississippi State Bulldogs",
       "dog_team": "Minnesota Golden Gophers",
@@ -2985,22 +2884,22 @@
         "projected_total": 55.5,
         "projected_spread": -0.7,
         "win_probability_home": 0.481,
-        "confidence": 64
+        "confidence": 59
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4815,
-        "away_win_pct": 0.5185,
-        "home_cover_pct": 0.516,
-        "over_pct": 0.4924,
-        "avg_simulated_margin": -0.89,
-        "avg_simulated_total": 55.39
+        "home_win_pct": 0.4869,
+        "away_win_pct": 0.5131,
+        "home_cover_pct": 0.5198,
+        "over_pct": 0.4973,
+        "avg_simulated_margin": -0.59,
+        "avg_simulated_total": 55.35
       },
       "picks": {
         "su_pick": "Mississippi State Bulldogs",
         "su_pick_abbr": "MSST",
-        "su_confidence": 51.0,
+        "su_confidence": 50.7,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3055,16 +2954,16 @@
         "lon": -105.27055
       },
       "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 77,
-        "temp": 77,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
-        "rainChancePct": 16
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 1
       },
       "risk": {
-        "risk": 1
+        "risk": 0
       },
       "fav_team": null,
       "dog_team": null,
@@ -3080,22 +2979,22 @@
         "projected_total": 20.0,
         "projected_spread": 1.5,
         "win_probability_home": 0.562,
-        "confidence": 34
+        "confidence": 39
       },
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5065,
-        "away_win_pct": 0.4935,
-        "home_cover_pct": 0.5065,
-        "over_pct": 0.4909,
-        "avg_simulated_margin": 0.39,
-        "avg_simulated_total": 51.75
+        "home_win_pct": 0.5098,
+        "away_win_pct": 0.4902,
+        "home_cover_pct": 0.5098,
+        "over_pct": 0.498,
+        "avg_simulated_margin": 0.35,
+        "avg_simulated_total": 52.05
       },
       "picks": {
         "su_pick": "Colorado Buffaloes",
         "su_pick_abbr": "COLO",
-        "su_confidence": 50.4,
+        "su_confidence": 50.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3138,7 +3037,7 @@
         "details": "PITT -7",
         "spread": -7.0,
         "total": 57.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Acrisure Stadium",
@@ -3150,10 +3049,10 @@
         "lon": -79.99589
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 1.0,
         "wind": 1.0,
         "rainChancePct": 0
@@ -3180,17 +3079,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6747,
-        "away_win_pct": 0.3253,
-        "home_cover_pct": 0.5339,
-        "over_pct": 0.5848,
-        "avg_simulated_margin": 8.37,
-        "avg_simulated_total": 60.46
+        "home_win_pct": 0.6837,
+        "away_win_pct": 0.3163,
+        "home_cover_pct": 0.5374,
+        "over_pct": 0.5935,
+        "avg_simulated_margin": 8.72,
+        "avg_simulated_total": 60.67
       },
       "picks": {
         "su_pick": "Pittsburgh Panthers",
         "su_pick_abbr": "PITT",
-        "su_confidence": 59.8,
+        "su_confidence": 60.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3199,7 +3098,7 @@
         "ats_high_conf": false,
         "ou_pick": "Over",
         "ou_line": 57.5,
-        "ou_confidence": 51.5,
+        "ou_confidence": 51.7,
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
@@ -3237,7 +3136,7 @@
         "details": "SYR -3.5",
         "spread": -3.5,
         "total": 56.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "JMA Wireless Dome",
@@ -3269,17 +3168,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5997,
-        "away_win_pct": 0.4003,
-        "home_cover_pct": 0.5133,
-        "over_pct": 0.558,
-        "avg_simulated_margin": 3.86,
-        "avg_simulated_total": 58.52
+        "home_win_pct": 0.59,
+        "away_win_pct": 0.41,
+        "home_cover_pct": 0.5095,
+        "over_pct": 0.5625,
+        "avg_simulated_margin": 3.59,
+        "avg_simulated_total": 58.69
       },
       "picks": {
         "su_pick": "Syracuse Orange",
         "su_pick_abbr": "SYR",
-        "su_confidence": 55.6,
+        "su_confidence": 55.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3327,7 +3226,7 @@
         "details": "CIN -3.5",
         "spread": -3.5,
         "total": 50.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Paycor Stadium",
@@ -3339,12 +3238,12 @@
         "lon": -84.51439
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 69,
+        "temp": 69,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -3357,29 +3256,29 @@
       "fav_spread": -3.5,
       "dog_spread": 3.5,
       "injury_count_home": 2,
-      "injury_count_away": 5,
+      "injury_count_away": 4,
       "prediction": {
-        "projected_home_score": 27.4,
-        "projected_away_score": 23.1,
+        "projected_home_score": 27.3,
+        "projected_away_score": 23.2,
         "projected_total": 50.5,
-        "projected_spread": 4.4,
-        "win_probability_home": 0.619,
-        "confidence": 82
+        "projected_spread": 4.2,
+        "win_probability_home": 0.614,
+        "confidence": 81
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6421,
-        "away_win_pct": 0.3579,
-        "home_cover_pct": 0.5286,
-        "over_pct": 0.5032,
-        "avg_simulated_margin": 4.49,
-        "avg_simulated_total": 50.45
+        "home_win_pct": 0.6267,
+        "away_win_pct": 0.3733,
+        "home_cover_pct": 0.5209,
+        "over_pct": 0.5082,
+        "avg_simulated_margin": 4.14,
+        "avg_simulated_total": 50.68
       },
       "picks": {
         "su_pick": "Cincinnati Bengals",
         "su_pick_abbr": "CIN",
-        "su_confidence": 58.0,
+        "su_confidence": 57.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3392,9 +3291,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 0.86,
+        "model_edge_pts": 0.66,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 0.9 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 0.7 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
@@ -3427,7 +3326,7 @@
         "details": "DET -7",
         "spread": -7.0,
         "total": 49.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Ford Field",
@@ -3459,12 +3358,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7111,
-        "away_win_pct": 0.2889,
-        "home_cover_pct": 0.5043,
-        "over_pct": 0.5274,
-        "avg_simulated_margin": 7.15,
-        "avg_simulated_total": 50.3
+        "home_win_pct": 0.7113,
+        "away_win_pct": 0.2887,
+        "home_cover_pct": 0.5027,
+        "over_pct": 0.5299,
+        "avg_simulated_margin": 7.2,
+        "avg_simulated_total": 50.2
       },
       "picks": {
         "su_pick": "Detroit Lions",
@@ -3517,7 +3416,7 @@
         "details": "TEN -1.5",
         "spread": -1.5,
         "total": 39.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Nissan Stadium",
@@ -3531,11 +3430,11 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 80,
-        "temp": 80,
+        "temperatureF": 75,
+        "temp": 75,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 2
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -3559,17 +3458,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5674,
-        "away_win_pct": 0.4326,
-        "home_cover_pct": 0.5202,
-        "over_pct": 0.5153,
-        "avg_simulated_margin": 2.0,
-        "avg_simulated_total": 39.87
+        "home_win_pct": 0.5748,
+        "away_win_pct": 0.4252,
+        "home_cover_pct": 0.5257,
+        "over_pct": 0.5234,
+        "avg_simulated_margin": 2.18,
+        "avg_simulated_total": 40.16
       },
       "picks": {
         "su_pick": "Tennessee Titans",
         "su_pick_abbr": "TEN",
-        "su_confidence": 53.8,
+        "su_confidence": 54.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3617,7 +3516,7 @@
         "details": "BAL -3.5",
         "spread": 3.5,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lucas Oil Stadium",
@@ -3636,30 +3535,30 @@
       "dog_abbr": "IND",
       "fav_spread": -3.5,
       "dog_spread": 3.5,
-      "injury_count_home": 6,
+      "injury_count_home": 5,
       "injury_count_away": 5,
       "prediction": {
-        "projected_home_score": 21.6,
-        "projected_away_score": 25.4,
+        "projected_home_score": 21.7,
+        "projected_away_score": 25.3,
         "projected_total": 47.0,
-        "projected_spread": -3.9,
-        "win_probability_home": 0.395,
-        "confidence": 87
+        "projected_spread": -3.6,
+        "win_probability_home": 0.4,
+        "confidence": 86
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.3757,
-        "away_win_pct": 0.6243,
-        "home_cover_pct": 0.4908,
-        "over_pct": 0.4784,
-        "avg_simulated_margin": -3.87,
-        "avg_simulated_total": 46.84
+        "home_win_pct": 0.382,
+        "away_win_pct": 0.618,
+        "home_cover_pct": 0.4962,
+        "over_pct": 0.4807,
+        "avg_simulated_margin": -3.76,
+        "avg_simulated_total": 46.96
       },
       "picks": {
         "su_pick": "Baltimore Ravens",
         "su_pick_abbr": "BAL",
-        "su_confidence": 57.0,
+        "su_confidence": 56.6,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -3672,9 +3571,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": -0.35,
+        "model_edge_pts": -0.15,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 0.3 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 0.1 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": -0.5,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.5 pts, under the 3.0 pt bar for a meaningful edge"
@@ -3707,7 +3606,7 @@
         "details": "PIT -3.5",
         "spread": -3.5,
         "total": 42.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Acrisure Stadium",
@@ -3719,10 +3618,10 @@
         "lon": -79.99589
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 1.0,
         "wind": 1.0,
         "rainChancePct": 0
@@ -3749,12 +3648,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6493,
-        "away_win_pct": 0.3507,
-        "home_cover_pct": 0.53,
-        "over_pct": 0.5223,
-        "avg_simulated_margin": 4.53,
-        "avg_simulated_total": 43.08
+        "home_win_pct": 0.6498,
+        "away_win_pct": 0.3502,
+        "home_cover_pct": 0.5373,
+        "over_pct": 0.5179,
+        "avg_simulated_margin": 4.57,
+        "avg_simulated_total": 43.0
       },
       "picks": {
         "su_pick": "Pittsburgh Steelers",
@@ -3764,7 +3663,6 @@
         "ats_pick_abbr": null,
         "ats_spread": null,
         "ats_confidence": null,
-        "ats_below_threshold": true,
         "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 42.5,
@@ -3807,7 +3705,7 @@
         "details": "CHI -3",
         "spread": 3.0,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Bank of America Stadium",
@@ -3821,10 +3719,10 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 73,
-        "temp": 73,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -3837,45 +3735,46 @@
       "fav_spread": -3.0,
       "dog_spread": 3.0,
       "injury_count_home": 6,
-      "injury_count_away": 10,
+      "injury_count_away": 9,
       "prediction": {
-        "projected_home_score": 23.3,
-        "projected_away_score": 24.2,
+        "projected_home_score": 23.2,
+        "projected_away_score": 24.3,
         "projected_total": 47.5,
-        "projected_spread": -0.9,
-        "win_probability_home": 0.475,
-        "confidence": 83
+        "projected_spread": -1.1,
+        "win_probability_home": 0.469,
+        "confidence": 84
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4653,
-        "away_win_pct": 0.5347,
-        "home_cover_pct": 0.5633,
-        "over_pct": 0.5002,
-        "avg_simulated_margin": -0.99,
-        "avg_simulated_total": 47.63
+        "home_win_pct": 0.466,
+        "away_win_pct": 0.534,
+        "home_cover_pct": 0.5641,
+        "over_pct": 0.5016,
+        "avg_simulated_margin": -0.98,
+        "avg_simulated_total": 47.46
       },
       "picks": {
         "su_pick": "Chicago Bears",
         "su_pick_abbr": "CHI",
         "su_confidence": 51.9,
-        "ats_pick": "Carolina Panthers",
-        "ats_pick_abbr": "CAR",
-        "ats_spread": 3.0,
-        "ats_confidence": 52.2,
-        "ats_high_conf": true,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 47.5,
         "ou_confidence": null,
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 2.09,
+        "model_edge_pts": 1.89,
+        "ats_suppressed": true,
+        "ats_suppressed_reason": "model differs from the line by 1.9 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
-        "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge",
-        "ats_suppressed": false
+        "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
       }
     },
     {
@@ -3905,7 +3804,7 @@
         "details": "JAX -8.5",
         "spread": -8.5,
         "total": 40.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "EverBank Stadium",
@@ -3919,11 +3818,11 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 77,
-        "temp": 77,
+        "temperatureF": 76,
+        "temp": 76,
         "windSpeedMph": 7.0,
         "wind": 7.0,
-        "rainChancePct": 10
+        "rainChancePct": 11
       },
       "risk": {
         "risk": 0
@@ -3947,17 +3846,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7582,
-        "away_win_pct": 0.2418,
-        "home_cover_pct": 0.5164,
-        "over_pct": 0.5022,
-        "avg_simulated_margin": 9.07,
-        "avg_simulated_total": 40.53
+        "home_win_pct": 0.7512,
+        "away_win_pct": 0.2488,
+        "home_cover_pct": 0.5099,
+        "over_pct": 0.4935,
+        "avg_simulated_margin": 8.99,
+        "avg_simulated_total": 40.46
       },
       "picks": {
         "su_pick": "Jacksonville Jaguars",
         "su_pick_abbr": "JAX",
-        "su_confidence": 64.5,
+        "su_confidence": 64.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4005,7 +3904,7 @@
         "details": "BUF -1.5",
         "spread": 1.5,
         "total": 44.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Reliant Stadium",
@@ -4037,17 +3936,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.3987,
-        "away_win_pct": 0.6013,
-        "home_cover_pct": 0.4475,
-        "over_pct": 0.5007,
-        "avg_simulated_margin": -2.97,
-        "avg_simulated_total": 44.53
+        "home_win_pct": 0.3904,
+        "away_win_pct": 0.6096,
+        "home_cover_pct": 0.4412,
+        "over_pct": 0.5039,
+        "avg_simulated_margin": -3.32,
+        "avg_simulated_total": 44.45
       },
       "picks": {
         "su_pick": "Buffalo Bills",
         "su_pick_abbr": "BUF",
-        "su_confidence": 55.7,
+        "su_confidence": 56.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4094,7 +3993,7 @@
         "details": "LV -3.5",
         "spread": -3.5,
         "total": 41.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Allegiant Stadium",
@@ -4126,17 +4025,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.613,
-        "away_win_pct": 0.387,
-        "home_cover_pct": 0.4937,
-        "over_pct": 0.5172,
-        "avg_simulated_margin": 3.45,
-        "avg_simulated_total": 41.97
+        "home_win_pct": 0.6114,
+        "away_win_pct": 0.3886,
+        "home_cover_pct": 0.4994,
+        "over_pct": 0.5213,
+        "avg_simulated_margin": 3.43,
+        "avg_simulated_total": 42.07
       },
       "picks": {
         "su_pick": "Las Vegas Raiders",
         "su_pick_abbr": "LV",
-        "su_confidence": 56.3,
+        "su_confidence": 56.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4183,7 +4082,7 @@
         "details": "MIN -1.5",
         "spread": -1.5,
         "total": 46.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "U.S. Bank Stadium",
@@ -4215,17 +4114,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5678,
-        "away_win_pct": 0.4322,
-        "home_cover_pct": 0.5149,
-        "over_pct": 0.5215,
-        "avg_simulated_margin": 1.94,
-        "avg_simulated_total": 47.1
+        "home_win_pct": 0.5645,
+        "away_win_pct": 0.4355,
+        "home_cover_pct": 0.5141,
+        "over_pct": 0.5214,
+        "avg_simulated_margin": 1.87,
+        "avg_simulated_total": 46.94
       },
       "picks": {
         "su_pick": "Minnesota Vikings",
         "su_pick_abbr": "MIN",
-        "su_confidence": 53.8,
+        "su_confidence": 53.6,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4273,7 +4172,7 @@
         "details": "PHI -5.5",
         "spread": -5.5,
         "total": 44.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Lincoln Financial Field",
@@ -4287,8 +4186,8 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
+        "temperatureF": 62,
+        "temp": 62,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 0
@@ -4315,22 +4214,21 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7078,
-        "away_win_pct": 0.2922,
-        "home_cover_pct": 0.5279,
-        "over_pct": 0.4823,
-        "avg_simulated_margin": 6.43,
-        "avg_simulated_total": 44.07
+        "home_win_pct": 0.7128,
+        "away_win_pct": 0.2872,
+        "home_cover_pct": 0.5364,
+        "over_pct": 0.4815,
+        "avg_simulated_margin": 6.51,
+        "avg_simulated_total": 44.08
       },
       "picks": {
         "su_pick": "Philadelphia Eagles",
         "su_pick_abbr": "PHI",
-        "su_confidence": 61.6,
+        "su_confidence": 61.9,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
         "ats_confidence": null,
-        "ats_below_threshold": true,
         "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 44.5,
@@ -4373,7 +4271,7 @@
         "details": "LAC -10",
         "spread": -10.0,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "SoFi Stadium",
@@ -4385,13 +4283,13 @@
         "lon": -118.35313
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 78,
-        "temp": 78,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 15
+        "temperatureF": 73,
+        "temp": 73,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 4
       },
       "risk": {
         "risk": 0
@@ -4415,17 +4313,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.8018,
-        "away_win_pct": 0.1982,
-        "home_cover_pct": 0.5156,
-        "over_pct": 0.5146,
-        "avg_simulated_margin": 10.5,
-        "avg_simulated_total": 47.82
+        "home_win_pct": 0.7912,
+        "away_win_pct": 0.2088,
+        "home_cover_pct": 0.5114,
+        "over_pct": 0.5135,
+        "avg_simulated_margin": 10.34,
+        "avg_simulated_total": 47.95
       },
       "picks": {
         "su_pick": "Los Angeles Chargers",
         "su_pick_abbr": "LAC",
-        "su_confidence": 66.9,
+        "su_confidence": 66.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4473,7 +4371,7 @@
         "details": "DAL -3",
         "spread": 3.0,
         "total": 48.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "MetLife Stadium",
@@ -4487,8 +4385,8 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 62,
+        "temp": 62,
         "windSpeedMph": 2.0,
         "wind": 2.0,
         "rainChancePct": 0
@@ -4515,17 +4413,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4135,
-        "away_win_pct": 0.5865,
-        "home_cover_pct": 0.5107,
-        "over_pct": 0.5009,
-        "avg_simulated_margin": -2.67,
-        "avg_simulated_total": 48.5
+        "home_win_pct": 0.4211,
+        "away_win_pct": 0.5789,
+        "home_cover_pct": 0.5152,
+        "over_pct": 0.5005,
+        "avg_simulated_margin": -2.6,
+        "avg_simulated_total": 48.44
       },
       "picks": {
         "su_pick": "Dallas Cowboys",
         "su_pick_abbr": "DAL",
-        "su_confidence": 54.8,
+        "su_confidence": 54.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4569,10 +4467,10 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png"
       },
       "odds": {
-        "details": "KC -2.5",
-        "spread": -2.5,
+        "details": "KC -3",
+        "spread": -3.0,
         "total": 43.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Arrowhead Stadium",
@@ -4586,11 +4484,11 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 84,
-        "temp": 84,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
-        "rainChancePct": 1
+        "temperatureF": 80,
+        "temp": 80,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 0
       },
       "risk": {
         "risk": 0
@@ -4599,36 +4497,36 @@
       "dog_team": "Denver Broncos",
       "fav_abbr": "KC",
       "dog_abbr": "DEN",
-      "fav_spread": -2.5,
-      "dog_spread": 2.5,
+      "fav_spread": -3.0,
+      "dog_spread": 3.0,
       "injury_count_home": 4,
       "injury_count_away": 8,
       "prediction": {
-        "projected_home_score": 24.3,
-        "projected_away_score": 19.7,
+        "projected_home_score": 24.5,
+        "projected_away_score": 19.5,
         "projected_total": 44.0,
-        "projected_spread": 4.6,
-        "win_probability_home": 0.626,
-        "confidence": 72
+        "projected_spread": 5.0,
+        "win_probability_home": 0.635,
+        "confidence": 74
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6481,
-        "away_win_pct": 0.3519,
-        "home_cover_pct": 0.5662,
-        "over_pct": 0.5132,
-        "avg_simulated_margin": 4.6,
-        "avg_simulated_total": 43.99
+        "home_win_pct": 0.6622,
+        "away_win_pct": 0.3378,
+        "home_cover_pct": 0.5612,
+        "over_pct": 0.5052,
+        "avg_simulated_margin": 4.81,
+        "avg_simulated_total": 43.78
       },
       "picks": {
         "su_pick": "Kansas City Chiefs",
         "su_pick_abbr": "KC",
-        "su_confidence": 58.3,
-        "ats_pick": "Kansas City Chiefs",
-        "ats_pick_abbr": "KC",
-        "ats_spread": -2.5,
-        "ats_confidence": 51.4,
+        "su_confidence": 59.1,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
         "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 43.5,
@@ -4636,11 +4534,12 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 2.13,
+        "model_edge_pts": 1.98,
+        "ats_suppressed": true,
+        "ats_suppressed_reason": "model differs from the line by 2.0 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.5,
         "ou_suppressed": true,
-        "ou_suppressed_reason": "model differs from the total by 0.5 pts, under the 3.0 pt bar for a meaningful edge",
-        "ats_suppressed": false
+        "ou_suppressed_reason": "model differs from the total by 0.5 pts, under the 3.0 pt bar for a meaningful edge"
       }
     },
     {
@@ -4677,10 +4576,10 @@
         "lon": -79.99589
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 1.0,
         "wind": 1.0,
         "rainChancePct": 0
@@ -4707,17 +4606,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5079,
-        "away_win_pct": 0.4921,
-        "home_cover_pct": 0.5079,
-        "over_pct": 0.5064,
-        "avg_simulated_margin": 0.42,
-        "avg_simulated_total": 52.18
+        "home_win_pct": 0.513,
+        "away_win_pct": 0.487,
+        "home_cover_pct": 0.513,
+        "over_pct": 0.5006,
+        "avg_simulated_margin": 0.5,
+        "avg_simulated_total": 51.88
       },
       "picks": {
         "su_pick": "Pittsburgh Panthers",
         "su_pick_abbr": "PITT",
-        "su_confidence": 50.4,
+        "su_confidence": 50.7,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4760,7 +4659,7 @@
         "details": "BUF -3",
         "spread": -3.0,
         "total": 52.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Highmark Stadium",
@@ -4772,12 +4671,12 @@
         "lon": -78.74392
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 61,
-        "temp": 61,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -4802,17 +4701,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6081,
-        "away_win_pct": 0.3919,
-        "home_cover_pct": 0.5178,
-        "over_pct": 0.5024,
-        "avg_simulated_margin": 3.54,
-        "avg_simulated_total": 52.58
+        "home_win_pct": 0.6076,
+        "away_win_pct": 0.3924,
+        "home_cover_pct": 0.5155,
+        "over_pct": 0.4954,
+        "avg_simulated_margin": 3.55,
+        "avg_simulated_total": 52.27
       },
       "picks": {
         "su_pick": "Buffalo Bills",
         "su_pick_abbr": "BUF",
-        "su_confidence": 56.1,
+        "su_confidence": 56.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4867,12 +4766,12 @@
         "lon": -80.24422
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -4897,17 +4796,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5066,
-        "away_win_pct": 0.4934,
-        "home_cover_pct": 0.5066,
-        "over_pct": 0.4962,
-        "avg_simulated_margin": 0.64,
-        "avg_simulated_total": 51.95
+        "home_win_pct": 0.5168,
+        "away_win_pct": 0.4832,
+        "home_cover_pct": 0.5168,
+        "over_pct": 0.5016,
+        "avg_simulated_margin": 0.63,
+        "avg_simulated_total": 52.07
       },
       "picks": {
         "su_pick": "Wake Forest Demon Deacons",
         "su_pick_abbr": "WAKE",
-        "su_confidence": 50.4,
+        "su_confidence": 50.9,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -4950,7 +4849,7 @@
         "details": "TTU -13.5",
         "spread": -13.5,
         "total": null,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Galaxy Stadium",
@@ -4964,14 +4863,14 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 90,
-        "temp": 90,
+        "temperatureF": 80,
+        "temp": 80,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 1
+        "rainChancePct": 0
       },
       "risk": {
-        "risk": 1
+        "risk": 0
       },
       "fav_team": "Texas Tech Red Raiders",
       "dog_team": "Houston Cougars",
@@ -4987,22 +4886,22 @@
         "projected_total": 52.0,
         "projected_spread": 14.1,
         "win_probability_home": 0.827,
-        "confidence": 92
+        "confidence": 95
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.8163,
-        "away_win_pct": 0.1837,
-        "home_cover_pct": 0.5189,
-        "over_pct": 0.5012,
-        "avg_simulated_margin": 14.07,
-        "avg_simulated_total": 52.12
+        "home_win_pct": 0.8199,
+        "away_win_pct": 0.1801,
+        "home_cover_pct": 0.5139,
+        "over_pct": 0.4985,
+        "avg_simulated_margin": 14.14,
+        "avg_simulated_total": 51.93
       },
       "picks": {
         "su_pick": "Texas Tech Red Raiders",
         "su_pick_abbr": "TTU",
-        "su_confidence": 67.7,
+        "su_confidence": 67.9,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5057,10 +4956,10 @@
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 66,
-        "temp": 66,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 53,
+        "temp": 53,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -5085,17 +4984,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5312,
-        "away_win_pct": 0.4688,
-        "home_cover_pct": 0.5312,
-        "over_pct": 0.5104,
-        "avg_simulated_margin": 1.34,
-        "avg_simulated_total": 52.06
+        "home_win_pct": 0.5251,
+        "away_win_pct": 0.4749,
+        "home_cover_pct": 0.5251,
+        "over_pct": 0.5021,
+        "avg_simulated_margin": 0.94,
+        "avg_simulated_total": 52.03
       },
       "picks": {
         "su_pick": "Oregon Ducks",
         "su_pick_abbr": "ORE",
-        "su_confidence": 51.7,
+        "su_confidence": 51.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5145,10 +5044,10 @@
         "lon": -75.74966
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 65,
-        "temp": 65,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 0
@@ -5175,17 +5074,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5103,
-        "away_win_pct": 0.4897,
-        "home_cover_pct": 0.5103,
-        "over_pct": 0.5021,
-        "avg_simulated_margin": 0.37,
-        "avg_simulated_total": 51.9
+        "home_win_pct": 0.5031,
+        "away_win_pct": 0.4969,
+        "home_cover_pct": 0.5031,
+        "over_pct": 0.4994,
+        "avg_simulated_margin": 0.41,
+        "avg_simulated_total": 51.98
       },
       "picks": {
         "su_pick": "Delaware Blue Hens",
         "su_pick_abbr": "DEL",
-        "su_confidence": 50.6,
+        "su_confidence": 50.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5235,12 +5134,12 @@
         "lon": -82.99879
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -5265,17 +5164,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5384,
-        "away_win_pct": 0.4616,
-        "home_cover_pct": 0.5384,
-        "over_pct": 0.4981,
-        "avg_simulated_margin": 1.69,
-        "avg_simulated_total": 51.97
+        "home_win_pct": 0.5271,
+        "away_win_pct": 0.4729,
+        "home_cover_pct": 0.5271,
+        "over_pct": 0.4985,
+        "avg_simulated_margin": 1.25,
+        "avg_simulated_total": 51.9
       },
       "picks": {
         "su_pick": "Ohio State Buckeyes",
         "su_pick_abbr": "OSU",
-        "su_confidence": 52.2,
+        "su_confidence": 51.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5325,10 +5224,10 @@
         "lon": -94.15743
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 85,
-        "temp": 85,
+        "temperatureF": 76,
+        "temp": 76,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 4
@@ -5355,17 +5254,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5105,
-        "away_win_pct": 0.4895,
-        "home_cover_pct": 0.5105,
-        "over_pct": 0.4997,
-        "avg_simulated_margin": 0.28,
-        "avg_simulated_total": 52.0
+        "home_win_pct": 0.5033,
+        "away_win_pct": 0.4967,
+        "home_cover_pct": 0.5033,
+        "over_pct": 0.5043,
+        "avg_simulated_margin": 0.16,
+        "avg_simulated_total": 51.98
       },
       "picks": {
         "su_pick": "Arkansas Razorbacks",
         "su_pick_abbr": "ARK",
-        "su_confidence": 50.6,
+        "su_confidence": 50.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5415,12 +5314,12 @@
         "lon": -77.85639
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Patchy Fog",
         "description": "",
-        "temperatureF": 59,
-        "temp": 59,
-        "windSpeedMph": 0.0,
-        "wind": 0.0,
+        "temperatureF": 54,
+        "temp": 54,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -5445,17 +5344,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5303,
-        "away_win_pct": 0.4697,
-        "home_cover_pct": 0.5303,
-        "over_pct": 0.4967,
-        "avg_simulated_margin": 1.24,
-        "avg_simulated_total": 51.92
+        "home_win_pct": 0.5184,
+        "away_win_pct": 0.4816,
+        "home_cover_pct": 0.5184,
+        "over_pct": 0.4953,
+        "avg_simulated_margin": 0.79,
+        "avg_simulated_total": 51.94
       },
       "picks": {
         "su_pick": "Penn State Nittany Lions",
         "su_pick_abbr": "PSU",
-        "su_confidence": 51.7,
+        "su_confidence": 51.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5505,13 +5404,13 @@
         "lon": -96.5716694
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 86,
-        "temp": 86,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 0
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -5535,17 +5434,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5077,
-        "away_win_pct": 0.4923,
-        "home_cover_pct": 0.5077,
-        "over_pct": 0.4929,
-        "avg_simulated_margin": 0.23,
-        "avg_simulated_total": 51.83
+        "home_win_pct": 0.5042,
+        "away_win_pct": 0.4958,
+        "home_cover_pct": 0.5042,
+        "over_pct": 0.4958,
+        "avg_simulated_margin": 0.13,
+        "avg_simulated_total": 51.95
       },
       "picks": {
         "su_pick": "Kansas State Wildcats",
         "su_pick_abbr": "KSU",
-        "su_confidence": 50.4,
+        "su_confidence": 50.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5595,13 +5494,13 @@
         "lon": -93.61994
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 0
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 9.0,
+        "wind": 9.0,
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -5625,17 +5524,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4983,
-        "away_win_pct": 0.5017,
-        "home_cover_pct": 0.4983,
-        "over_pct": 0.5015,
-        "avg_simulated_margin": -0.2,
-        "avg_simulated_total": 52.09
+        "home_win_pct": 0.4948,
+        "away_win_pct": 0.5052,
+        "home_cover_pct": 0.4948,
+        "over_pct": 0.5011,
+        "avg_simulated_margin": -0.15,
+        "avg_simulated_total": 52.04
       },
       "picks": {
         "su_pick": "Bowling Green Falcons",
         "su_pick_abbr": "BGSU",
-        "su_confidence": 50.1,
+        "su_confidence": 50.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5705,17 +5604,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5064,
-        "away_win_pct": 0.4936,
-        "home_cover_pct": 0.5064,
-        "over_pct": 0.5021,
-        "avg_simulated_margin": 0.34,
-        "avg_simulated_total": 51.95
+        "home_win_pct": 0.5023,
+        "away_win_pct": 0.4977,
+        "home_cover_pct": 0.5023,
+        "over_pct": 0.4971,
+        "avg_simulated_margin": 0.2,
+        "avg_simulated_total": 51.98
       },
       "picks": {
         "su_pick": "Kansas Jayhawks",
         "su_pick_abbr": "KU",
-        "su_confidence": 50.4,
+        "su_confidence": 50.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5765,13 +5664,13 @@
         "lon": -84.38798
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 0
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -5795,17 +5694,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5223,
-        "away_win_pct": 0.4777,
-        "home_cover_pct": 0.5223,
-        "over_pct": 0.4976,
-        "avg_simulated_margin": 0.96,
-        "avg_simulated_total": 52.08
+        "home_win_pct": 0.5233,
+        "away_win_pct": 0.4767,
+        "home_cover_pct": 0.5233,
+        "over_pct": 0.4932,
+        "avg_simulated_margin": 0.9,
+        "avg_simulated_total": 51.71
       },
       "picks": {
         "su_pick": "Georgia Tech Yellow Jackets",
         "su_pick_abbr": "GT",
-        "su_confidence": 51.2,
+        "su_confidence": 51.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5855,10 +5754,10 @@
         "lon": -82.83737
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
+        "temperatureF": 66,
+        "temp": 66,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -5885,17 +5784,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5001,
-        "away_win_pct": 0.4999,
-        "home_cover_pct": 0.5001,
-        "over_pct": 0.5057,
-        "avg_simulated_margin": 0.2,
+        "home_win_pct": 0.508,
+        "away_win_pct": 0.492,
+        "home_cover_pct": 0.508,
+        "over_pct": 0.5108,
+        "avg_simulated_margin": 0.41,
         "avg_simulated_total": 52.22
       },
       "picks": {
         "su_pick": "Clemson Tigers",
         "su_pick_abbr": "CLEM",
-        "su_confidence": 50.0,
+        "su_confidence": 50.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -5945,16 +5844,16 @@
         "lon": -93.26384
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 76,
-        "temp": 76,
+        "temperatureF": 68,
+        "temp": 68,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 10
+        "rainChancePct": 85
       },
       "risk": {
-        "risk": 0
+        "risk": 1
       },
       "fav_team": null,
       "dog_team": null,
@@ -5970,22 +5869,22 @@
         "projected_total": 20.0,
         "projected_spread": 6.3,
         "win_probability_home": 0.742,
-        "confidence": 63
+        "confidence": 58
       },
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5179,
-        "away_win_pct": 0.4821,
-        "home_cover_pct": 0.5179,
-        "over_pct": 0.4998,
-        "avg_simulated_margin": 0.95,
-        "avg_simulated_total": 52.0
+        "home_win_pct": 0.5231,
+        "away_win_pct": 0.4769,
+        "home_cover_pct": 0.5231,
+        "over_pct": 0.5024,
+        "avg_simulated_margin": 1.27,
+        "avg_simulated_total": 52.02
       },
       "picks": {
         "su_pick": "Minnesota Golden Gophers",
         "su_pick_abbr": "MINN",
-        "su_confidence": 51.0,
+        "su_confidence": 51.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6037,11 +5936,11 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 86,
-        "temp": 86,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 0
+        "rainChancePct": 3
       },
       "risk": {
         "risk": 0
@@ -6065,12 +5964,12 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5024,
-        "away_win_pct": 0.4976,
-        "home_cover_pct": 0.5024,
-        "over_pct": 0.507,
-        "avg_simulated_margin": 0.23,
-        "avg_simulated_total": 52.15
+        "home_win_pct": 0.5012,
+        "away_win_pct": 0.4988,
+        "home_cover_pct": 0.5012,
+        "over_pct": 0.5001,
+        "avg_simulated_margin": 0.26,
+        "avg_simulated_total": 52.11
       },
       "picks": {
         "su_pick": "Texas State Bobcats",
@@ -6127,11 +6026,11 @@
       "weather": {
         "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 64,
+        "temp": 64,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 1
+        "rainChancePct": 0
       },
       "risk": {
         "risk": 0
@@ -6155,17 +6054,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4972,
-        "away_win_pct": 0.5028,
-        "home_cover_pct": 0.4972,
-        "over_pct": 0.5009,
-        "avg_simulated_margin": -0.23,
-        "avg_simulated_total": 52.09
+        "home_win_pct": 0.4942,
+        "away_win_pct": 0.5058,
+        "home_cover_pct": 0.4942,
+        "over_pct": 0.4957,
+        "avg_simulated_margin": -0.19,
+        "avg_simulated_total": 51.94
       },
       "picks": {
         "su_pick": "Eastern Michigan Eagles",
         "su_pick_abbr": "EMU",
-        "su_confidence": 50.2,
+        "su_confidence": 50.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6217,11 +6116,11 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 80,
-        "temp": 80,
+        "temperatureF": 75,
+        "temp": 75,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 2
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -6245,12 +6144,12 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5107,
-        "away_win_pct": 0.4893,
-        "home_cover_pct": 0.5107,
-        "over_pct": 0.5052,
-        "avg_simulated_margin": 0.51,
-        "avg_simulated_total": 52.23
+        "home_win_pct": 0.5116,
+        "away_win_pct": 0.4884,
+        "home_cover_pct": 0.5116,
+        "over_pct": 0.5047,
+        "avg_simulated_margin": 0.39,
+        "avg_simulated_total": 52.17
       },
       "picks": {
         "su_pick": "Vanderbilt Commodores",
@@ -6307,10 +6206,10 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
+        "temperatureF": 57,
+        "temp": 57,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -6335,17 +6234,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5273,
-        "away_win_pct": 0.4727,
-        "home_cover_pct": 0.5273,
-        "over_pct": 0.5022,
-        "avg_simulated_margin": 1.04,
-        "avg_simulated_total": 52.06
+        "home_win_pct": 0.5201,
+        "away_win_pct": 0.4799,
+        "home_cover_pct": 0.5201,
+        "over_pct": 0.4996,
+        "avg_simulated_margin": 0.67,
+        "avg_simulated_total": 51.87
       },
       "picks": {
         "su_pick": "Central Michigan Chippewas",
         "su_pick_abbr": "CMU",
-        "su_confidence": 51.5,
+        "su_confidence": 51.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6395,12 +6294,12 @@
         "lon": -71.1639439
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -6425,17 +6324,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5144,
-        "away_win_pct": 0.4856,
-        "home_cover_pct": 0.5144,
-        "over_pct": 0.4999,
-        "avg_simulated_margin": 0.57,
-        "avg_simulated_total": 51.94
+        "home_win_pct": 0.5232,
+        "away_win_pct": 0.4768,
+        "home_cover_pct": 0.5232,
+        "over_pct": 0.5044,
+        "avg_simulated_margin": 0.77,
+        "avg_simulated_total": 51.96
       },
       "picks": {
         "su_pick": "Boston College Eagles",
         "su_pick_abbr": "BC",
-        "su_confidence": 50.8,
+        "su_confidence": 51.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6487,10 +6386,10 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -6515,17 +6414,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.4982,
-        "away_win_pct": 0.5018,
-        "home_cover_pct": 0.4982,
-        "over_pct": 0.4971,
-        "avg_simulated_margin": -0.06,
-        "avg_simulated_total": 52.03
+        "home_win_pct": 0.5005,
+        "away_win_pct": 0.4995,
+        "home_cover_pct": 0.5005,
+        "over_pct": 0.4922,
+        "avg_simulated_margin": -0.1,
+        "avg_simulated_total": 51.79
       },
       "picks": {
-        "su_pick": "Southern Illinois Salukis",
-        "su_pick_abbr": "SIU",
-        "su_confidence": 50.1,
+        "su_pick": "Illinois Fighting Illini",
+        "su_pick_abbr": "ILL",
+        "su_confidence": 50.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6575,12 +6474,12 @@
         "lon": -83.55521
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 66,
-        "temp": 66,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -6605,17 +6504,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5333,
-        "away_win_pct": 0.4667,
-        "home_cover_pct": 0.5333,
-        "over_pct": 0.5095,
-        "avg_simulated_margin": 1.29,
-        "avg_simulated_total": 52.15
+        "home_win_pct": 0.519,
+        "away_win_pct": 0.481,
+        "home_cover_pct": 0.519,
+        "over_pct": 0.5018,
+        "avg_simulated_margin": 1.12,
+        "avg_simulated_total": 52.07
       },
       "picks": {
         "su_pick": "Toledo Rockets",
         "su_pick_abbr": "TOL",
-        "su_confidence": 51.9,
+        "su_confidence": 51.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6667,8 +6566,8 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 86,
-        "temp": 86,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 1
@@ -6695,12 +6594,12 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5262,
-        "away_win_pct": 0.4738,
-        "home_cover_pct": 0.5262,
-        "over_pct": 0.506,
-        "avg_simulated_margin": 1.12,
-        "avg_simulated_total": 52.08
+        "home_win_pct": 0.5274,
+        "away_win_pct": 0.4726,
+        "home_cover_pct": 0.5274,
+        "over_pct": 0.5042,
+        "avg_simulated_margin": 1.15,
+        "avg_simulated_total": 52.02
       },
       "picks": {
         "su_pick": "Texas A&M Aggies",
@@ -6748,7 +6647,7 @@
         "details": "ALA -15.5",
         "spread": -15.5,
         "total": 52.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Bryant-Denny Stadium",
@@ -6760,16 +6659,16 @@
         "lon": -87.56917
       },
       "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 83,
-        "temp": 83,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 19
+        "temperatureF": 76,
+        "temp": 76,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 5
       },
       "risk": {
-        "risk": 2
+        "risk": 0
       },
       "fav_team": "Alabama Crimson Tide",
       "dog_team": "Florida State Seminoles",
@@ -6780,27 +6679,27 @@
       "injury_count_home": 0,
       "injury_count_away": 0,
       "prediction": {
-        "projected_home_score": 33.9,
-        "projected_away_score": 17.6,
-        "projected_total": 51.5,
+        "projected_home_score": 34.4,
+        "projected_away_score": 18.1,
+        "projected_total": 52.5,
         "projected_spread": 16.3,
         "win_probability_home": 0.86,
-        "confidence": 89
+        "confidence": 95
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.8277,
-        "away_win_pct": 0.1723,
-        "home_cover_pct": 0.5361,
-        "over_pct": 0.4793,
-        "avg_simulated_margin": 16.87,
-        "avg_simulated_total": 51.64
+        "home_win_pct": 0.8254,
+        "away_win_pct": 0.1746,
+        "home_cover_pct": 0.5228,
+        "over_pct": 0.5012,
+        "avg_simulated_margin": 16.39,
+        "avg_simulated_total": 52.6
       },
       "picks": {
         "su_pick": "Alabama Crimson Tide",
         "su_pick_abbr": "ALA",
-        "su_confidence": 68.4,
+        "su_confidence": 68.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6816,9 +6715,9 @@
         "model_edge_pts": 0.83,
         "ats_suppressed": true,
         "ats_suppressed_reason": "model differs from the line by 0.8 pts, under the 2.0 pt bar for a meaningful cover probability",
-        "ou_edge_pts": -1.0,
+        "ou_edge_pts": 0.0,
         "ou_suppressed": true,
-        "ou_suppressed_reason": "model differs from the total by 1.0 pts, under the 3.0 pt bar for a meaningful edge"
+        "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
       }
     },
     {
@@ -6857,8 +6756,8 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 0.0,
         "wind": 0.0,
         "rainChancePct": 0
@@ -6885,17 +6784,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5308,
-        "away_win_pct": 0.4692,
-        "home_cover_pct": 0.5308,
-        "over_pct": 0.4961,
-        "avg_simulated_margin": 1.34,
-        "avg_simulated_total": 51.91
+        "home_win_pct": 0.5269,
+        "away_win_pct": 0.4731,
+        "home_cover_pct": 0.5269,
+        "over_pct": 0.5039,
+        "avg_simulated_margin": 1.26,
+        "avg_simulated_total": 52.2
       },
       "picks": {
         "su_pick": "Rutgers Scarlet Knights",
         "su_pick_abbr": "RUTG",
-        "su_confidence": 51.7,
+        "su_confidence": 51.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -6947,8 +6846,8 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 63,
-        "temp": 63,
+        "temperatureF": 59,
+        "temp": 59,
         "windSpeedMph": 3.0,
         "wind": 3.0,
         "rainChancePct": 0
@@ -6975,17 +6874,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5275,
-        "away_win_pct": 0.4725,
-        "home_cover_pct": 0.5275,
-        "over_pct": 0.5033,
-        "avg_simulated_margin": 1.0,
-        "avg_simulated_total": 52.22
+        "home_win_pct": 0.5258,
+        "away_win_pct": 0.4742,
+        "home_cover_pct": 0.5258,
+        "over_pct": 0.5058,
+        "avg_simulated_margin": 0.94,
+        "avg_simulated_total": 52.07
       },
       "picks": {
         "su_pick": "Michigan Wolverines",
         "su_pick_abbr": "MICH",
-        "su_confidence": 51.5,
+        "su_confidence": 51.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7028,7 +6927,7 @@
         "details": "LOU -1.5",
         "spread": -1.5,
         "total": 56.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "L&N Federal Credit Union Stadium",
@@ -7040,10 +6939,10 @@
         "lon": -85.759407
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 78,
-        "temp": 78,
+        "temperatureF": 72,
+        "temp": 72,
         "windSpeedMph": 3.0,
         "wind": 3.0,
         "rainChancePct": 0
@@ -7065,17 +6964,17 @@
         "projected_total": 56.5,
         "projected_spread": 1.4,
         "win_probability_home": 0.539,
-        "confidence": 92
+        "confidence": 68
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5326,
-        "away_win_pct": 0.4674,
-        "home_cover_pct": 0.4961,
-        "over_pct": 0.5046,
-        "avg_simulated_margin": 1.4,
-        "avg_simulated_total": 56.49
+        "home_win_pct": 0.5324,
+        "away_win_pct": 0.4676,
+        "home_cover_pct": 0.4971,
+        "over_pct": 0.5032,
+        "avg_simulated_margin": 1.36,
+        "avg_simulated_total": 56.48
       },
       "picks": {
         "su_pick": "Louisville Cardinals",
@@ -7137,10 +7036,10 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -7165,17 +7064,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5156,
-        "away_win_pct": 0.4844,
-        "home_cover_pct": 0.5156,
-        "over_pct": 0.4974,
-        "avg_simulated_margin": 0.54,
-        "avg_simulated_total": 51.93
+        "home_win_pct": 0.5092,
+        "away_win_pct": 0.4908,
+        "home_cover_pct": 0.5092,
+        "over_pct": 0.4982,
+        "avg_simulated_margin": 0.44,
+        "avg_simulated_total": 52.02
       },
       "picks": {
         "su_pick": "Utah Utes",
         "su_pick_abbr": "UTAH",
-        "su_confidence": 50.9,
+        "su_confidence": 50.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7225,12 +7124,12 @@
         "lon": -84.51439
       },
       "weather": {
-        "summary": "Mostly Clear",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 69,
+        "temp": 69,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -7255,17 +7154,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5154,
-        "away_win_pct": 0.4846,
-        "home_cover_pct": 0.5154,
-        "over_pct": 0.5064,
-        "avg_simulated_margin": 0.64,
-        "avg_simulated_total": 52.0
+        "home_win_pct": 0.5214,
+        "away_win_pct": 0.4786,
+        "home_cover_pct": 0.5214,
+        "over_pct": 0.4994,
+        "avg_simulated_margin": 0.98,
+        "avg_simulated_total": 52.14
       },
       "picks": {
         "su_pick": "Cincinnati Bearcats",
         "su_pick_abbr": "CIN",
-        "su_confidence": 50.9,
+        "su_confidence": 51.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7317,10 +7216,10 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 1.0,
-        "wind": 1.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -7345,17 +7244,17 @@
       "model_used": "rule_based",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.513,
-        "away_win_pct": 0.487,
-        "home_cover_pct": 0.513,
-        "over_pct": 0.5006,
-        "avg_simulated_margin": 0.56,
-        "avg_simulated_total": 51.96
+        "home_win_pct": 0.5228,
+        "away_win_pct": 0.4772,
+        "home_cover_pct": 0.5228,
+        "over_pct": 0.4985,
+        "avg_simulated_margin": 0.76,
+        "avg_simulated_total": 51.91
       },
       "picks": {
         "su_pick": "California Golden Bears",
         "su_pick_abbr": "CAL",
-        "su_confidence": 50.7,
+        "su_confidence": 51.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7398,7 +7297,7 @@
         "details": "ATL -1.5",
         "spread": -1.5,
         "total": 44.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Mercedes-Benz Stadium",
@@ -7430,17 +7329,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.561,
-        "away_win_pct": 0.439,
-        "home_cover_pct": 0.5111,
-        "over_pct": 0.4988,
-        "avg_simulated_margin": 1.78,
-        "avg_simulated_total": 44.48
+        "home_win_pct": 0.5638,
+        "away_win_pct": 0.4362,
+        "home_cover_pct": 0.5103,
+        "over_pct": 0.4994,
+        "avg_simulated_margin": 1.93,
+        "avg_simulated_total": 44.44
       },
       "picks": {
         "su_pick": "Atlanta Falcons",
         "su_pick_abbr": "ATL",
-        "su_confidence": 53.4,
+        "su_confidence": 53.6,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7488,7 +7387,7 @@
         "details": "CHI -3.5",
         "spread": -3.5,
         "total": 45.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Soldier Field",
@@ -7500,10 +7399,10 @@
         "lon": -87.65005
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
+        "temperatureF": 68,
+        "temp": 68,
         "windSpeedMph": 10.0,
         "wind": 10.0,
         "rainChancePct": 0
@@ -7517,30 +7416,30 @@
       "dog_abbr": "MIN",
       "fav_spread": -3.5,
       "dog_spread": 3.5,
-      "injury_count_home": 10,
+      "injury_count_home": 9,
       "injury_count_away": 6,
       "prediction": {
-        "projected_home_score": 24.1,
-        "projected_away_score": 21.4,
+        "projected_home_score": 24.2,
+        "projected_away_score": 21.3,
         "projected_total": 45.5,
-        "projected_spread": 2.7,
-        "win_probability_home": 0.575,
-        "confidence": 61
+        "projected_spread": 2.9,
+        "win_probability_home": 0.581,
+        "confidence": 60
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5893,
-        "away_win_pct": 0.4107,
-        "home_cover_pct": 0.4708,
-        "over_pct": 0.5046,
-        "avg_simulated_margin": 2.6,
-        "avg_simulated_total": 45.6
+        "home_win_pct": 0.6114,
+        "away_win_pct": 0.3886,
+        "home_cover_pct": 0.4904,
+        "over_pct": 0.4987,
+        "avg_simulated_margin": 3.04,
+        "avg_simulated_total": 45.46
       },
       "picks": {
         "su_pick": "Chicago Bears",
         "su_pick_abbr": "CHI",
-        "su_confidence": 55.0,
+        "su_confidence": 56.2,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7552,9 +7451,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": -0.77,
+        "model_edge_pts": -0.57,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 0.8 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 0.6 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
@@ -7587,7 +7486,7 @@
         "details": "PHI -4.5",
         "spread": 4.5,
         "total": 42.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Nissan Stadium",
@@ -7601,11 +7500,11 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 80,
-        "temp": 80,
+        "temperatureF": 75,
+        "temp": 75,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 2
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -7629,17 +7528,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.346,
-        "away_win_pct": 0.654,
-        "home_cover_pct": 0.4854,
-        "over_pct": 0.5023,
-        "avg_simulated_margin": -4.93,
-        "avg_simulated_total": 42.58
+        "home_win_pct": 0.3304,
+        "away_win_pct": 0.6696,
+        "home_cover_pct": 0.472,
+        "over_pct": 0.5001,
+        "avg_simulated_margin": -5.38,
+        "avg_simulated_total": 42.49
       },
       "picks": {
         "su_pick": "Philadelphia Eagles",
         "su_pick_abbr": "PHI",
-        "su_confidence": 58.6,
+        "su_confidence": 59.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7687,7 +7586,7 @@
         "details": "NE -4.5",
         "spread": -4.5,
         "total": 43.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Gillette Stadium",
@@ -7699,12 +7598,12 @@
         "lon": -71.2478308
       },
       "weather": {
-        "summary": "Clear",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 61,
-        "temp": 61,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
+        "temperatureF": 53,
+        "temp": 53,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -7729,17 +7628,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6344,
-        "away_win_pct": 0.3656,
-        "home_cover_pct": 0.4798,
-        "over_pct": 0.4883,
-        "avg_simulated_margin": 3.87,
-        "avg_simulated_total": 43.35
+        "home_win_pct": 0.631,
+        "away_win_pct": 0.369,
+        "home_cover_pct": 0.4808,
+        "over_pct": 0.4981,
+        "avg_simulated_margin": 3.88,
+        "avg_simulated_total": 43.48
       },
       "picks": {
         "su_pick": "New England Patriots",
         "su_pick_abbr": "NE",
-        "su_confidence": 57.5,
+        "su_confidence": 57.3,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7786,7 +7685,7 @@
         "details": "GB -5.5",
         "spread": 5.5,
         "total": 42.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "MetLife Stadium",
@@ -7800,8 +7699,8 @@
       "weather": {
         "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 68,
-        "temp": 68,
+        "temperatureF": 62,
+        "temp": 62,
         "windSpeedMph": 2.0,
         "wind": 2.0,
         "rainChancePct": 0
@@ -7828,17 +7727,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.3424,
-        "away_win_pct": 0.6576,
-        "home_cover_pct": 0.5126,
-        "over_pct": 0.5024,
-        "avg_simulated_margin": -5.08,
-        "avg_simulated_total": 42.64
+        "home_win_pct": 0.3303,
+        "away_win_pct": 0.6697,
+        "home_cover_pct": 0.5048,
+        "over_pct": 0.4981,
+        "avg_simulated_margin": -5.24,
+        "avg_simulated_total": 42.47
       },
       "picks": {
         "su_pick": "Green Bay Packers",
         "su_pick_abbr": "GB",
-        "su_confidence": 58.8,
+        "su_confidence": 59.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7885,7 +7784,7 @@
         "details": "TB -6.5",
         "spread": -6.5,
         "total": 42.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Raymond James Stadium",
@@ -7897,16 +7796,16 @@
         "lon": -82.4583107
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Isolated Rain Showers",
         "description": "",
-        "temperatureF": 79,
-        "temp": 79,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
-        "rainChancePct": 14
+        "temperatureF": 76,
+        "temp": 76,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 16
       },
       "risk": {
-        "risk": 0
+        "risk": 1
       },
       "fav_team": "Tampa Bay Buccaneers",
       "dog_team": "Cleveland Browns",
@@ -7914,30 +7813,30 @@
       "dog_abbr": "CLE",
       "fav_spread": -6.5,
       "dog_spread": 6.5,
-      "injury_count_home": 5,
+      "injury_count_home": 4,
       "injury_count_away": 8,
       "prediction": {
-        "projected_home_score": 25.0,
-        "projected_away_score": 17.5,
+        "projected_home_score": 25.1,
+        "projected_away_score": 17.4,
         "projected_total": 42.5,
-        "projected_spread": 7.5,
-        "win_probability_home": 0.698,
-        "confidence": 90
+        "projected_spread": 7.7,
+        "win_probability_home": 0.703,
+        "confidence": 86
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7256,
-        "away_win_pct": 0.2744,
-        "home_cover_pct": 0.5374,
-        "over_pct": 0.5062,
-        "avg_simulated_margin": 7.56,
-        "avg_simulated_total": 42.61
+        "home_win_pct": 0.7315,
+        "away_win_pct": 0.2685,
+        "home_cover_pct": 0.5364,
+        "over_pct": 0.4956,
+        "avg_simulated_margin": 7.71,
+        "avg_simulated_total": 42.44
       },
       "picks": {
         "su_pick": "Tampa Bay Buccaneers",
         "su_pick_abbr": "TB",
-        "su_confidence": 62.6,
+        "su_confidence": 63.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -7949,9 +7848,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 1.04,
+        "model_edge_pts": 1.24,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 1.0 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 1.2 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
@@ -7984,7 +7883,7 @@
         "details": "BAL -7.5",
         "spread": -7.5,
         "total": 46.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "M&T Bank Stadium",
@@ -7998,8 +7897,8 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
+        "temperatureF": 65,
+        "temp": 65,
         "windSpeedMph": 2.0,
         "wind": 2.0,
         "rainChancePct": 0
@@ -8026,17 +7925,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7456,
-        "away_win_pct": 0.2544,
-        "home_cover_pct": 0.5276,
-        "over_pct": 0.5062,
-        "avg_simulated_margin": 8.38,
-        "avg_simulated_total": 46.64
+        "home_win_pct": 0.7454,
+        "away_win_pct": 0.2546,
+        "home_cover_pct": 0.524,
+        "over_pct": 0.5092,
+        "avg_simulated_margin": 8.37,
+        "avg_simulated_total": 46.66
       },
       "picks": {
         "su_pick": "Baltimore Ravens",
         "su_pick_abbr": "BAL",
-        "su_confidence": 63.8,
+        "su_confidence": 63.7,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -8084,7 +7983,7 @@
         "details": "HOU -2.5",
         "spread": -2.5,
         "total": 46.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Reliant Stadium",
@@ -8116,12 +8015,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.5129,
-        "away_win_pct": 0.4871,
-        "home_cover_pct": 0.4287,
-        "over_pct": 0.499,
-        "avg_simulated_margin": 0.4,
-        "avg_simulated_total": 46.55
+        "home_win_pct": 0.5128,
+        "away_win_pct": 0.4872,
+        "home_cover_pct": 0.441,
+        "over_pct": 0.4974,
+        "avg_simulated_margin": 0.54,
+        "avg_simulated_total": 46.5
       },
       "picks": {
         "su_pick": "Houston Texans",
@@ -8130,7 +8029,7 @@
         "ats_pick": "Cincinnati Bengals",
         "ats_pick_abbr": "CIN",
         "ats_spread": 2.5,
-        "ats_confidence": 52.4,
+        "ats_confidence": 52.1,
         "ats_high_conf": true,
         "ou_pick": null,
         "ou_line": 46.5,
@@ -8172,7 +8071,7 @@
         "details": "DEN -3",
         "spread": -3.0,
         "total": 43.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Empower Field at Mile High",
@@ -8184,13 +8083,13 @@
         "lon": -104.984862
       },
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 76,
-        "temp": 76,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
-        "rainChancePct": 9
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
+        "rainChancePct": 1
       },
       "risk": {
         "risk": 0
@@ -8214,17 +8113,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6206,
-        "away_win_pct": 0.3794,
-        "home_cover_pct": 0.5278,
-        "over_pct": 0.501,
-        "avg_simulated_margin": 3.79,
-        "avg_simulated_total": 43.55
+        "home_win_pct": 0.6243,
+        "away_win_pct": 0.3757,
+        "home_cover_pct": 0.5326,
+        "over_pct": 0.5061,
+        "avg_simulated_margin": 3.89,
+        "avg_simulated_total": 43.69
       },
       "picks": {
         "su_pick": "Denver Broncos",
         "su_pick_abbr": "DEN",
-        "su_confidence": 56.8,
+        "su_confidence": 57.0,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -8272,7 +8171,7 @@
         "details": "LAC -8.5",
         "spread": -8.5,
         "total": 42.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "SoFi Stadium",
@@ -8284,13 +8183,13 @@
         "lon": -118.35313
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 78,
-        "temp": 78,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 15
+        "temperatureF": 73,
+        "temp": 73,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 4
       },
       "risk": {
         "risk": 0
@@ -8314,17 +8213,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7911,
-        "away_win_pct": 0.2089,
-        "home_cover_pct": 0.5183,
-        "over_pct": 0.5028,
-        "avg_simulated_margin": 9.14,
-        "avg_simulated_total": 42.53
+        "home_win_pct": 0.7871,
+        "away_win_pct": 0.2129,
+        "home_cover_pct": 0.5265,
+        "over_pct": 0.4979,
+        "avg_simulated_margin": 9.2,
+        "avg_simulated_total": 42.41
       },
       "picks": {
         "su_pick": "Los Angeles Chargers",
         "su_pick_abbr": "LAC",
-        "su_confidence": 66.3,
+        "su_confidence": 66.1,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -8372,7 +8271,7 @@
         "details": "DAL -4.5",
         "spread": -4.5,
         "total": 51.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "AT&T Stadium",
@@ -8404,17 +8303,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.6586,
-        "away_win_pct": 0.3414,
-        "home_cover_pct": 0.5149,
-        "over_pct": 0.4998,
-        "avg_simulated_margin": 5.02,
-        "avg_simulated_total": 51.53
+        "home_win_pct": 0.6568,
+        "away_win_pct": 0.3432,
+        "home_cover_pct": 0.5164,
+        "over_pct": 0.4984,
+        "avg_simulated_margin": 5.09,
+        "avg_simulated_total": 51.49
       },
       "picks": {
         "su_pick": "Dallas Cowboys",
         "su_pick_abbr": "DAL",
-        "su_confidence": 58.9,
+        "su_confidence": 58.8,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -8462,7 +8361,7 @@
         "details": "SEA -10",
         "spread": 10.0,
         "total": 44.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "State Farm Stadium",
@@ -8484,31 +8383,32 @@
       "injury_count_home": 5,
       "injury_count_away": 5,
       "prediction": {
-        "projected_home_score": 17.3,
-        "projected_away_score": 27.2,
+        "projected_home_score": 16.9,
+        "projected_away_score": 27.6,
         "projected_total": 44.5,
-        "projected_spread": -9.9,
-        "win_probability_home": 0.249,
+        "projected_spread": -10.8,
+        "win_probability_home": 0.232,
         "confidence": 95
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.19,
-        "away_win_pct": 0.81,
-        "home_cover_pct": 0.505,
-        "over_pct": 0.5111,
-        "avg_simulated_margin": -9.93,
-        "avg_simulated_total": 44.76
+        "home_win_pct": 0.1715,
+        "away_win_pct": 0.8285,
+        "home_cover_pct": 0.4765,
+        "over_pct": 0.4923,
+        "avg_simulated_margin": -10.71,
+        "avg_simulated_total": 44.28
       },
       "picks": {
         "su_pick": "Seattle Seahawks",
         "su_pick_abbr": "SEA",
-        "su_confidence": 67.4,
+        "su_confidence": 68.4,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
         "ats_confidence": null,
+        "ats_below_threshold": true,
         "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 44.5,
@@ -8516,9 +8416,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 0.05,
+        "model_edge_pts": -0.75,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 0.1 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 0.7 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
@@ -8551,7 +8451,7 @@
         "details": "SF -10.5",
         "spread": -10.5,
         "total": 46.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Levi's Stadium",
@@ -8565,10 +8465,10 @@
       "weather": {
         "summary": "Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 64,
+        "temp": 64,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
         "rainChancePct": 0
       },
       "risk": {
@@ -8593,12 +8493,12 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7913,
-        "away_win_pct": 0.2087,
-        "home_cover_pct": 0.5007,
-        "over_pct": 0.5006,
-        "avg_simulated_margin": 10.51,
-        "avg_simulated_total": 46.48
+        "home_win_pct": 0.7906,
+        "away_win_pct": 0.2094,
+        "home_cover_pct": 0.4986,
+        "over_pct": 0.4946,
+        "avg_simulated_margin": 10.48,
+        "avg_simulated_total": 46.31
       },
       "picks": {
         "su_pick": "San Francisco 49ers",
@@ -8651,7 +8551,7 @@
         "details": "KC -6.5",
         "spread": -6.5,
         "total": 47.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "Arrowhead Stadium",
@@ -8665,11 +8565,11 @@
       "weather": {
         "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 84,
-        "temp": 84,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
-        "rainChancePct": 1
+        "temperatureF": 80,
+        "temp": 80,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 0
       },
       "risk": {
         "risk": 0
@@ -8681,33 +8581,34 @@
       "fav_spread": -6.5,
       "dog_spread": 6.5,
       "injury_count_home": 4,
-      "injury_count_away": 6,
+      "injury_count_away": 5,
       "prediction": {
         "projected_home_score": 27.4,
         "projected_away_score": 20.1,
         "projected_total": 47.5,
-        "projected_spread": 7.4,
-        "win_probability_home": 0.695,
+        "projected_spread": 7.2,
+        "win_probability_home": 0.69,
         "confidence": 93
       },
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7329,
-        "away_win_pct": 0.2671,
-        "home_cover_pct": 0.5343,
-        "over_pct": 0.5043,
-        "avg_simulated_margin": 7.55,
-        "avg_simulated_total": 47.47
+        "home_win_pct": 0.723,
+        "away_win_pct": 0.277,
+        "home_cover_pct": 0.5293,
+        "over_pct": 0.498,
+        "avg_simulated_margin": 7.38,
+        "avg_simulated_total": 47.57
       },
       "picks": {
         "su_pick": "Kansas City Chiefs",
         "su_pick_abbr": "KC",
-        "su_confidence": 63.0,
+        "su_confidence": 62.5,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
         "ats_confidence": null,
+        "ats_below_threshold": true,
         "ats_high_conf": false,
         "ou_pick": null,
         "ou_line": 47.5,
@@ -8715,9 +8616,9 @@
         "ou_high_conf": false,
         "has_vegas_spread": true,
         "has_vegas_total": true,
-        "model_edge_pts": 0.9,
+        "model_edge_pts": 0.7,
         "ats_suppressed": true,
-        "ats_suppressed_reason": "model differs from the line by 0.9 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ats_suppressed_reason": "model differs from the line by 0.7 pts, under the 2.0 pt bar for a meaningful cover probability",
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
@@ -8750,7 +8651,7 @@
         "details": "LAR -8.5",
         "spread": -8.5,
         "total": 48.5,
-        "provider": "DraftKings"
+        "provider": "Draft Kings"
       },
       "venue": {
         "name": "SoFi Stadium",
@@ -8762,13 +8663,13 @@
         "lon": -118.35313
       },
       "weather": {
-        "summary": "Partly Cloudy",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 78,
-        "temp": 78,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 15
+        "temperatureF": 73,
+        "temp": 73,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 4
       },
       "risk": {
         "risk": 0
@@ -8792,17 +8693,17 @@
       "model_used": "market_anchored",
       "simulation": {
         "simulations": 10000,
-        "home_win_pct": 0.7814,
-        "away_win_pct": 0.2186,
-        "home_cover_pct": 0.5377,
-        "over_pct": 0.4942,
-        "avg_simulated_margin": 9.66,
-        "avg_simulated_total": 48.45
+        "home_win_pct": 0.7803,
+        "away_win_pct": 0.2197,
+        "home_cover_pct": 0.537,
+        "over_pct": 0.5021,
+        "avg_simulated_margin": 9.71,
+        "avg_simulated_total": 48.44
       },
       "picks": {
         "su_pick": "Los Angeles Rams",
         "su_pick_abbr": "LAR",
-        "su_confidence": 65.8,
+        "su_confidence": 65.7,
         "ats_pick": null,
         "ats_pick_abbr": null,
         "ats_spread": null,
@@ -8820,6 +8721,96 @@
         "ou_edge_pts": 0.0,
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
+      }
+    },
+    {
+      "id": "401869941",
+      "sport": "ncaaf",
+      "matchup": "Liberty Flames at Coastal Carolina Chanticleers",
+      "shortName": "LIB @ CCU",
+      "date_utc": "2026-09-24T23:30Z",
+      "date_local": "2026-09-24 07:30 PM ET",
+      "home": "CCU",
+      "away": "LIB",
+      "home_team": {
+        "id": "324",
+        "name": "Coastal Carolina Chanticleers",
+        "abbr": "CCU",
+        "slug": "coastal-carolina-chanticleers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png"
+      },
+      "away_team": {
+        "id": "2335",
+        "name": "Liberty Flames",
+        "abbr": "LIB",
+        "slug": "liberty-flames",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2335.png"
+      },
+      "odds": null,
+      "venue": {
+        "name": "Brooks Stadium (SC)",
+        "city": "Conway",
+        "state": "SC",
+        "indoor": false,
+        "grass": false,
+        "lat": 33.836,
+        "lon": -79.04781
+      },
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 69,
+        "temp": 69,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 1
+      },
+      "risk": {
+        "risk": 0
+      },
+      "fav_team": null,
+      "dog_team": null,
+      "fav_abbr": null,
+      "dog_abbr": null,
+      "fav_spread": null,
+      "dog_spread": null,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 9.5,
+        "projected_away_score": 10.5,
+        "projected_total": 20.0,
+        "projected_spread": -0.9,
+        "win_probability_home": 0.461,
+        "confidence": 35
+      },
+      "model_used": "rule_based",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.5012,
+        "away_win_pct": 0.4988,
+        "home_cover_pct": 0.5012,
+        "over_pct": 0.4983,
+        "avg_simulated_margin": 0.17,
+        "avg_simulated_total": 51.88
+      },
+      "picks": {
+        "su_pick": "Coastal Carolina Chanticleers",
+        "su_pick_abbr": "CCU",
+        "su_confidence": 50.1,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 52.0,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": false,
+        "has_vegas_total": false,
+        "ou_suppressed": false,
+        "ats_suppressed": false
       }
     }
   ]
