@@ -165755,6 +165755,105 @@
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 1.0 pts, under the 3.0 pt bar for a meaningful edge"
       }
+    },
+    {
+      "id": "401872656",
+      "sport": "nfl",
+      "matchup": "New England Patriots at Seattle Seahawks",
+      "shortName": "NE @ SEA",
+      "date_utc": "2026-09-10T00:20Z",
+      "date_local": "2026-09-09 08:20 PM ET",
+      "home": "SEA",
+      "away": "NE",
+      "home_team": {
+        "id": "26",
+        "name": "Seattle Seahawks",
+        "abbr": "SEA",
+        "slug": "seattle-seahawks",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png"
+      },
+      "away_team": {
+        "id": "17",
+        "name": "New England Patriots",
+        "abbr": "NE",
+        "slug": "new-england-patriots",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png"
+      },
+      "odds": {
+        "details": "SEA -3",
+        "spread": -3.0,
+        "total": 44.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Lumen Field",
+        "city": "Seattle",
+        "state": "WA",
+        "indoor": false,
+        "grass": false,
+        "lat": 47.6038321,
+        "lon": -122.330062
+      },
+      "weather": {
+        "summary": "Mostly Sunny",
+        "description": "",
+        "temperatureF": 70,
+        "temp": 70,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 0
+      },
+      "risk": {
+        "risk": 0
+      },
+      "fav_team": "Seattle Seahawks",
+      "dog_team": "New England Patriots",
+      "fav_abbr": "SEA",
+      "dog_abbr": "NE",
+      "fav_spread": -3.0,
+      "dog_spread": 3.0,
+      "injury_count_home": 6,
+      "injury_count_away": 8,
+      "prediction": {
+        "projected_home_score": 24.3,
+        "projected_away_score": 20.2,
+        "projected_total": 44.5,
+        "projected_spread": 4.2,
+        "win_probability_home": 0.614,
+        "confidence": 85
+      },
+      "model_used": "market_anchored",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.6217,
+        "away_win_pct": 0.3783,
+        "home_cover_pct": 0.5365,
+        "over_pct": 0.5091,
+        "avg_simulated_margin": 4.15,
+        "avg_simulated_total": 44.63
+      },
+      "picks": {
+        "su_pick": "Seattle Seahawks",
+        "su_pick_abbr": "SEA",
+        "su_confidence": 56.8,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 44.5,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true,
+        "model_edge_pts": 1.17,
+        "ats_suppressed": true,
+        "ats_suppressed_reason": "model differs from the line by 1.2 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ou_edge_pts": 0.0,
+        "ou_suppressed": true,
+        "ou_suppressed_reason": "model differs from the total by 0.0 pts, under the 3.0 pt bar for a meaningful edge"
+      }
     }
   ]
 }
