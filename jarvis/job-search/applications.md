@@ -13,3 +13,4 @@ INTERVIEW / REJECTED / OFFER.
 <!-- entries below, newest last -->
 - (2026-08-15) Executive Director, Leadership Development Center — U.S. Customs and Border Protection — $151,661–$228,000 — https://to.indeed.com/aayjymrxqqm6 — PREPARED
 - (2026-08-15) Director of Talent Development & Culture (Remote) — Wealth Enhancement Group — $155,000–$213,900 — https://to.indeed.com/aaqh9rsmr77z — PREPARED
+- (2026-09-12) Director, Change Excellence — RTX — $186,200–$353,800 — https://to.indeed.com/aaxq86st4yjq — PREPARED
