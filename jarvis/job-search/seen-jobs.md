@@ -21,3 +21,7 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-12) Program Manager III (Deputy Director) — State of SC — https://to.indeed.com/aakhlpzd4jgk
 - (2026-09-12) Regional Finance Director / Fiscal Director I — State of SC — https://to.indeed.com/aa74csjzbkyx
 - (2026-09-12) Director of Enterprise AI Development — University of South Carolina — https://to.indeed.com/aaq87j8xflsf
+- (2026-09-13) SVP, Operations — Flourish Health — https://to.indeed.com/aarvpfwr4tjy
+- (2026-09-13) VP, Operations — Flourish Health — https://to.indeed.com/aadjy4tvxlx8
+- (2026-09-13) Business Operations Director — HackerOne — https://to.indeed.com/aajmkttclnvf
+- (2026-09-13) Director, Large Pro Operations — Angi — https://to.indeed.com/aajxlvmng4yw
