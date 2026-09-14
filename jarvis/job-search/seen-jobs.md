@@ -25,3 +25,7 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-13) VP, Operations — Flourish Health — https://to.indeed.com/aadjy4tvxlx8
 - (2026-09-13) Business Operations Director — HackerOne — https://to.indeed.com/aajmkttclnvf
 - (2026-09-13) Director, Large Pro Operations — Angi — https://to.indeed.com/aajxlvmng4yw
+- (2026-09-14) VP, People Operations & Experience — ABC Fitness — https://to.indeed.com/aa4bzw2z6cbc
+- (2026-09-14) Chief of Staff — Flourish Health — https://to.indeed.com/aawpggh8pgq7
+- (2026-09-14) Senior Director, Professional Learning — Edmentum — https://to.indeed.com/aax6nq72smd8
+- (2026-09-14) Executive Director — Main Street Senior Living — https://to.indeed.com/aaj67trkclkf

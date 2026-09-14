@@ -15,3 +15,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-08-15) Director of Talent Development & Culture (Remote) — Wealth Enhancement Group — $155,000–$213,900 — https://to.indeed.com/aaqh9rsmr77z — PREPARED
 - (2026-09-12) Director, Change Excellence — RTX — $186,200–$353,800 — https://to.indeed.com/aaxq86st4yjq — PREPARED
 - (2026-09-13) SVP, Operations — Flourish Health — $220,000–$250,000 — https://to.indeed.com/aarvpfwr4tjy — PREPARED
+- (2026-09-14) VP, People Operations & Experience — ABC Fitness — $185,000–$220,000 — https://to.indeed.com/aa4bzw2z6cbc — PREPARED
