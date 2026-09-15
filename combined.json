@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260914_2111",
+  "timestamp": "20260915_0317",
   "count": 95,
   "data": [
     {
@@ -23,9 +23,9 @@
         "slug": "denver-broncos",
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png"
       },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
+      "home_score": 31.0,
+      "away_score": 10.0,
+      "total_points": 41.0,
       "odds": {
         "details": "KC -2.5",
         "spread": -2.5,
@@ -108,33 +108,82 @@
       "spread": -2.5,
       "favorite": "KC -2.5",
       "underdog": "DEN +2.5",
-      "tagged_at": "2026-09-14T21:11:08.071686+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312790+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 91,
-        "temp": 91,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 0
+        "temperatureF": 83,
+        "temp": 83,
+        "windSpeedMph": 13.0,
+        "wind": 13.0,
+        "rainChancePct": 1
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [
+        {
+          "player": "Cooper McDonald",
+          "status": "Questionable",
+          "position": "LB",
+          "unavailable": false,
+          "reported_at": "2026-09-15T02:07Z"
+        },
+        {
+          "player": "Mansoor Delane",
+          "status": "Out",
+          "position": "CB",
+          "unavailable": true,
+          "reported_at": "2026-09-15T02:03Z"
+        },
+        {
+          "player": "Garrett Nussmeier",
+          "status": "Out",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:05Z"
+        },
         {
           "player": "Josh Simmons",
           "status": "Out",
           "position": "OT",
           "unavailable": true,
-          "reported_at": "2026-09-12T18:14Z"
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Jared Wiley",
+          "status": "Out",
+          "position": "TE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Diego Pounds",
+          "status": "Out",
+          "position": "OT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Jack Pyburn",
+          "status": "Out",
+          "position": "LB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
         },
         {
           "player": "Chamarri Conner",
           "status": "Out",
           "position": "S",
           "unavailable": true,
-          "reported_at": "2026-09-12T18:12Z"
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Bryson Eason",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
         },
         {
           "player": "Omarr Norman-Lott",
@@ -152,6 +201,48 @@
         }
       ],
       "away_injuries": [
+        {
+          "player": "Tyler Badie",
+          "status": "Out",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:57Z"
+        },
+        {
+          "player": "Sam Ehlinger",
+          "status": "Out",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:55Z"
+        },
+        {
+          "player": "Tyler Onyedim",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Jordan Jackson",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Dallen Bentley",
+          "status": "Out",
+          "position": "TE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Kage Casey",
+          "status": "Out",
+          "position": "OT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
         {
           "player": "Jonathon Cooper",
           "status": "Out",
@@ -186,39 +277,25 @@
           "position": "LB",
           "unavailable": true,
           "reported_at": "2026-08-22T00:29Z"
-        },
-        {
-          "player": "Matt Henningsen",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
-        },
-        {
-          "player": "Michael Deiter",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
         }
       ],
-      "injury_count_home": 4,
-      "injury_count_away": 7,
-      "injury_questionable_home": 0,
+      "injury_count_home": 10,
+      "injury_count_away": 11,
+      "injury_questionable_home": 1,
       "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
+      "injury_recent_home": 8,
+      "injury_recent_away": 6,
       "ref_home_bias": 0.88,
       "ref_over_bias": 0.091,
       "ref_consistency": 13.8,
       "ref_penalties_per_game": 0,
       "ref_penalty_detail": {},
       "ref_crew_chief": "Greg Wilson",
-      "h2h_margin_avg": 3.8,
+      "h2h_margin_avg": 9.4,
       "rest_diff_days": 0,
-      "elo_diff": -16.3,
-      "home_elo": 1575.8,
-      "away_elo": 1592.1,
+      "elo_diff": 4.7,
+      "home_elo": 1586.3,
+      "away_elo": 1581.6,
       "travel_km": 896.2,
       "power_diff": 3.6,
       "off_def_mismatch": 3.6,
@@ -236,10 +313,10 @@
       "divisional": true,
       "home_streak": -6,
       "away_streak": 2,
-      "public_pct": 62,
-      "public_side": "DEN",
+      "public_pct": 50,
+      "public_side": "",
       "fade_signal": 0,
-      "public_home_pct": 38,
+      "public_home_pct": 50,
       "spread_delta": 0.5,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -273,7 +350,7 @@
       "odds": {
         "details": "PITT -10.5",
         "spread": -10.5,
-        "total": 51.5,
+        "total": 50.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -295,14 +372,14 @@
       "spread": -10.5,
       "favorite": "PITT -10.5",
       "underdog": "SYR +10.5",
-      "tagged_at": "2026-09-14T21:11:08.071698+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312806+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -341,15 +418,15 @@
       "divisional": false,
       "home_streak": -3,
       "away_streak": -1,
-      "public_pct": 56,
+      "public_pct": 58,
       "public_side": "PITT",
       "fade_signal": 0,
-      "public_home_pct": 56,
+      "public_home_pct": 58,
       "spread_delta": 0,
-      "total_delta": -8.0,
+      "total_delta": -9.0,
       "spread_direction": "stable",
       "total_direction": "down",
-      "spread_moves": 2
+      "spread_moves": 3
     },
     {
       "sport": "nfl",
@@ -400,14 +477,14 @@
       "spread": -4.5,
       "favorite": "BUF -4.5",
       "underdog": "DET +4.5",
-      "tagged_at": "2026-09-14T21:11:08.071702+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312812+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
+        "temperatureF": 54,
+        "temp": 54,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -422,25 +499,11 @@
           "reported_at": "2026-09-14T20:16Z"
         },
         {
-          "player": "Terrel Bernard",
-          "status": "Questionable",
-          "position": "LB",
-          "unavailable": false,
-          "reported_at": "2026-09-14T20:13Z"
-        },
-        {
           "player": "T.J. Sanders",
           "status": "Out",
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-14T19:28Z"
-        },
-        {
-          "player": "Jedrick Wills Jr.",
-          "status": "Questionable",
-          "position": "OT",
-          "unavailable": false,
-          "reported_at": "2026-09-08T20:42Z"
         },
         {
           "player": "Tyrell Shavers",
@@ -455,16 +518,23 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Zane Durant",
-          "status": "Injured Reserve",
-          "position": "DT",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
       "away_injuries": [
+        {
+          "player": "Christian Mahogany",
+          "status": "Questionable",
+          "position": "G",
+          "unavailable": false,
+          "reported_at": "2026-09-14T23:24Z"
+        },
+        {
+          "player": "Isiah Pacheco",
+          "status": "Injured Reserve",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T21:35Z"
+        },
         {
           "player": "Blake Miller",
           "status": "Questionable",
@@ -478,13 +548,6 @@
           "position": "G",
           "unavailable": false,
           "reported_at": "2026-09-14T20:18Z"
-        },
-        {
-          "player": "Christian Mahogany",
-          "status": "Questionable",
-          "position": "G",
-          "unavailable": false,
-          "reported_at": "2026-09-13T18:58Z"
         },
         {
           "player": "Cade Mays",
@@ -501,12 +564,12 @@
           "reported_at": "2026-09-08T20:42Z"
         }
       ],
-      "injury_count_home": 5,
-      "injury_count_away": 2,
-      "injury_questionable_home": 2,
+      "injury_count_home": 4,
+      "injury_count_away": 3,
+      "injury_questionable_home": 0,
       "injury_questionable_away": 3,
       "injury_recent_home": 2,
-      "injury_recent_away": 0,
+      "injury_recent_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
@@ -532,10 +595,10 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": 1,
-      "public_pct": 76,
+      "public_pct": 75,
       "public_side": "BUF",
       "fade_signal": 2,
-      "public_home_pct": 76,
+      "public_home_pct": 75,
       "spread_delta": -1.5,
       "total_delta": 1.0,
       "spread_direction": "toward_favorite",
@@ -567,8 +630,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "MIA -21",
-        "spread": 21.0,
+        "details": "MIA -20.5",
+        "spread": 20.5,
         "total": 55.5,
         "provider": "Draft Kings"
       },
@@ -586,20 +649,20 @@
       "dog_team": "Wake Forest Demon Deacons",
       "fav_abbr": "MIA",
       "dog_abbr": "WAKE",
-      "fav_spread": -21.0,
-      "dog_spread": 21.0,
-      "spread": -21.0,
-      "favorite": "MIA -21.0",
-      "underdog": "WAKE +21.0",
-      "tagged_at": "2026-09-14T21:11:08.071705+00:00",
+      "fav_spread": -20.5,
+      "dog_spread": 20.5,
+      "spread": -20.5,
+      "favorite": "MIA -20.5",
+      "underdog": "WAKE +20.5",
+      "tagged_at": "2026-09-15T03:17:33.312817+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 89,
-        "temp": 89,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
-        "rainChancePct": 0
+        "temperatureF": 75,
+        "temp": 75,
+        "windSpeedMph": 8.0,
+        "wind": 8.0,
+        "rainChancePct": 4
       },
       "weatherRisk": {
         "risk": 0
@@ -641,11 +704,11 @@
       "public_side": "MIA",
       "fade_signal": 2,
       "public_home_pct": 30,
-      "spread_delta": -1.5,
+      "spread_delta": -1.0,
       "total_delta": 5.0,
       "spread_direction": "toward_favorite",
       "total_direction": "up",
-      "spread_moves": 8
+      "spread_moves": 9
     },
     {
       "sport": "ncaaf",
@@ -696,18 +759,18 @@
       "spread": -7.5,
       "favorite": "TTU -7.5",
       "underdog": "HOU +7.5",
-      "tagged_at": "2026-09-14T21:11:08.071707+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312821+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 93,
-        "temp": 93,
+        "temperatureF": 88,
+        "temp": 88,
         "windSpeedMph": 15.0,
         "wind": 15.0,
-        "rainChancePct": 0
+        "rainChancePct": 1
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -788,12 +851,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 66,
-        "temp": 66,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 64,
+        "temp": 64,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -891,14 +954,14 @@
       "spread": -5.5,
       "favorite": "DEL -5.5",
       "underdog": "CCU +5.5",
-      "tagged_at": "2026-09-14T21:11:08.071709+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312826+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -937,10 +1000,10 @@
       "divisional": false,
       "home_streak": -3,
       "away_streak": 1,
-      "public_pct": 66,
+      "public_pct": 67,
       "public_side": "DEL",
       "fade_signal": 1,
-      "public_home_pct": 66,
+      "public_home_pct": 67,
       "spread_delta": -1.0,
       "total_delta": 0,
       "spread_direction": "toward_favorite",
@@ -996,18 +1059,18 @@
       "spread": -25.5,
       "favorite": "UGA -25.5",
       "underdog": "ARK +25.5",
-      "tagged_at": "2026-09-14T21:11:08.071712+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312830+00:00",
       "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 95,
-        "temp": 95,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 17
+        "temperatureF": 84,
+        "temp": 84,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 3
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -1101,14 +1164,14 @@
       "spread": -52.5,
       "favorite": "OSU -52.5",
       "underdog": "KENT +52.5",
-      "tagged_at": "2026-09-14T21:11:08.071715+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312834+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -1147,10 +1210,10 @@
       "divisional": false,
       "home_streak": -4,
       "away_streak": -2,
-      "public_pct": 64,
+      "public_pct": 65,
       "public_side": "OSU",
-      "fade_signal": 0,
-      "public_home_pct": 64,
+      "fade_signal": 1,
+      "public_home_pct": 65,
       "spread_delta": 0,
       "total_delta": 3.0,
       "spread_direction": "stable",
@@ -1206,14 +1269,14 @@
       "spread": -39.5,
       "favorite": "PSU -39.5",
       "underdog": "BUFF +39.5",
-      "tagged_at": "2026-09-14T21:11:08.071717+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312837+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 55,
+        "temp": 55,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -1252,10 +1315,10 @@
       "divisional": false,
       "home_streak": -8,
       "away_streak": -1,
-      "public_pct": 68,
+      "public_pct": 67,
       "public_side": "BUFF",
       "fade_signal": 1,
-      "public_home_pct": 32,
+      "public_home_pct": 33,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -1311,18 +1374,18 @@
       "spread": -20.5,
       "favorite": "KSU -20.5",
       "underdog": "TULN +20.5",
-      "tagged_at": "2026-09-14T21:11:08.071719+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312844+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 96,
-        "temp": 96,
-        "windSpeedMph": 20.0,
-        "wind": 20.0,
-        "rainChancePct": 2
+        "temperatureF": 88,
+        "temp": 88,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 3
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -1357,10 +1420,10 @@
       "divisional": false,
       "home_streak": -5,
       "away_streak": 2,
-      "public_pct": 56,
+      "public_pct": 57,
       "public_side": "KSU",
       "fade_signal": 0,
-      "public_home_pct": 56,
+      "public_home_pct": 57,
       "spread_delta": -1.0,
       "total_delta": 0,
       "spread_direction": "toward_favorite",
@@ -1416,15 +1479,15 @@
       "spread": -23.5,
       "favorite": "ISU -23.5",
       "underdog": "BGSU +23.5",
-      "tagged_at": "2026-09-14T21:11:08.071721+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312847+00:00",
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Showers And Thunderstorms",
         "description": "",
         "temperatureF": 71,
         "temp": 71,
-        "windSpeedMph": 18.0,
-        "wind": 18.0,
-        "rainChancePct": 12
+        "windSpeedMph": 14.0,
+        "wind": 14.0,
+        "rainChancePct": 89
       },
       "weatherRisk": {
         "risk": 1
@@ -1462,10 +1525,10 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": 1,
-      "public_pct": 63,
+      "public_pct": 64,
       "public_side": "ISU",
       "fade_signal": 0,
-      "public_home_pct": 63,
+      "public_home_pct": 64,
       "spread_delta": -1.0,
       "total_delta": -1.0,
       "spread_direction": "toward_favorite",
@@ -1497,8 +1560,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "ASU -5.5",
-        "spread": 5.5,
+        "details": "ASU -6",
+        "spread": 6.0,
         "total": 51.5,
         "provider": "Draft Kings"
       },
@@ -1516,12 +1579,12 @@
       "dog_team": "Kansas Jayhawks",
       "fav_abbr": "ASU",
       "dog_abbr": "KU",
-      "fav_spread": -5.5,
-      "dog_spread": 5.5,
-      "spread": -5.5,
-      "favorite": "ASU -5.5",
-      "underdog": "KU +5.5",
-      "tagged_at": "2026-09-14T21:11:08.071723+00:00",
+      "fav_spread": -6.0,
+      "dog_spread": 6.0,
+      "spread": -6.0,
+      "favorite": "ASU -6.0",
+      "underdog": "KU +6.0",
+      "tagged_at": "2026-09-15T03:17:33.312851+00:00",
       "home_injuries": [],
       "away_injuries": [],
       "injury_count_home": 0,
@@ -1555,15 +1618,15 @@
       "divisional": false,
       "home_streak": 5,
       "away_streak": -5,
-      "public_pct": 58,
+      "public_pct": 61,
       "public_side": "ASU",
       "fade_signal": 0,
-      "public_home_pct": 42,
-      "spread_delta": 0,
+      "public_home_pct": 39,
+      "spread_delta": -0.5,
       "total_delta": -5.0,
       "spread_direction": "stable",
       "total_direction": "down",
-      "spread_moves": 4
+      "spread_moves": 5
     },
     {
       "sport": "ncaaf",
@@ -1601,16 +1664,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 94,
-        "temp": 94,
+        "temperatureF": 82,
+        "temp": 82,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -1704,18 +1767,18 @@
       "spread": -3.5,
       "favorite": "CLEM -3.5",
       "underdog": "UNC +3.5",
-      "tagged_at": "2026-09-14T21:11:08.071725+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312855+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 92,
-        "temp": 92,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
-        "rainChancePct": 1
+        "temperatureF": 77,
+        "temp": 77,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 6
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -1750,10 +1813,10 @@
       "divisional": false,
       "home_streak": 3,
       "away_streak": 5,
-      "public_pct": 74,
+      "public_pct": 73,
       "public_side": "UNC",
       "fade_signal": 2,
-      "public_home_pct": 26,
+      "public_home_pct": 27,
       "spread_delta": 6.0,
       "total_delta": 0,
       "spread_direction": "toward_underdog",
@@ -1809,18 +1872,18 @@
       "spread": -24.5,
       "favorite": "MINN -24.5",
       "underdog": "AKR +24.5",
-      "tagged_at": "2026-09-14T21:11:08.071727+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312858+00:00",
       "weather": {
-        "summary": "Showers And Thunderstorms",
+        "summary": "Chance Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 59,
-        "temp": 59,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 100
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 35
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -1855,10 +1918,10 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": -2,
-      "public_pct": 54,
+      "public_pct": 58,
       "public_side": "MINN",
       "fade_signal": 0,
-      "public_home_pct": 54,
+      "public_home_pct": 58,
       "spread_delta": 2.0,
       "total_delta": 0,
       "spread_direction": "toward_underdog",
@@ -1914,18 +1977,18 @@
       "spread": -3.0,
       "favorite": "TXST -3.0",
       "underdog": "UNT +3.0",
-      "tagged_at": "2026-09-14T21:11:08.071729+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312862+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 97,
-        "temp": 97,
+        "temperatureF": 84,
+        "temp": 84,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 14
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -1960,10 +2023,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": -1,
-      "public_pct": 67,
+      "public_pct": 68,
       "public_side": "UNT",
       "fade_signal": 1,
-      "public_home_pct": 33,
+      "public_home_pct": 32,
       "spread_delta": 0,
       "total_delta": 1.0,
       "spread_direction": "stable",
@@ -2019,18 +2082,18 @@
       "spread": -23.5,
       "favorite": "WIS -23.5",
       "underdog": "EMU +23.5",
-      "tagged_at": "2026-09-14T21:11:08.071731+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312865+00:00",
       "weather": {
-        "summary": "Rain Showers",
+        "summary": "Scattered Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 75
+        "temperatureF": 64,
+        "temp": 64,
+        "windSpeedMph": 25.0,
+        "wind": 25.0,
+        "rainChancePct": 28
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 3
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -2048,7 +2111,7 @@
       "elo_diff": 26.9,
       "home_elo": 1528.2,
       "away_elo": 1501.3,
-      "travel_km": 480.9,
+      "travel_km": 480.8,
       "power_diff": 4.2,
       "off_def_mismatch": -6.8,
       "pace_avg": 49.5,
@@ -2065,10 +2128,10 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": -1,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
+      "public_pct": 67,
+      "public_side": "EMU",
+      "fade_signal": 1,
+      "public_home_pct": 33,
       "spread_delta": 1.0,
       "total_delta": 0,
       "spread_direction": "toward_underdog",
@@ -2124,18 +2187,18 @@
       "spread": -3.5,
       "favorite": "VAN -3.5",
       "underdog": "NCSU +3.5",
-      "tagged_at": "2026-09-14T21:11:08.071732+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312869+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 93,
-        "temp": 93,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -2229,14 +2292,14 @@
       "spread": -1.5,
       "favorite": "CMU -1.5",
       "underdog": "WYO +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071734+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312872+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 55,
+        "temp": 55,
+        "windSpeedMph": 7.0,
+        "wind": 7.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -2275,10 +2338,10 @@
       "divisional": false,
       "home_streak": -1,
       "away_streak": -1,
-      "public_pct": 59,
+      "public_pct": 64,
       "public_side": "CMU",
       "fade_signal": 0,
-      "public_home_pct": 59,
+      "public_home_pct": 64,
       "spread_delta": 1.0,
       "total_delta": 0,
       "spread_direction": "toward_underdog",
@@ -2321,12 +2384,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -2411,12 +2474,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 77,
-        "temp": 77,
-        "windSpeedMph": 9.0,
-        "wind": 9.0,
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -2514,14 +2577,14 @@
       "spread": -5.5,
       "favorite": "TOL -5.5",
       "underdog": "TEM +5.5",
-      "tagged_at": "2026-09-14T21:11:08.071736+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312876+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 7.0,
+        "wind": 7.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -2560,10 +2623,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": -1,
-      "public_pct": 60,
+      "public_pct": 66,
       "public_side": "TOL",
-      "fade_signal": 0,
-      "public_home_pct": 60,
+      "fade_signal": 1,
+      "public_home_pct": 66,
       "spread_delta": -1.0,
       "total_delta": -1.0,
       "spread_direction": "toward_favorite",
@@ -2619,18 +2682,18 @@
       "spread": -16.5,
       "favorite": "TA&M -16.5",
       "underdog": "UK +16.5",
-      "tagged_at": "2026-09-14T21:11:08.071738+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312879+00:00",
       "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 98,
-        "temp": 98,
+        "temperatureF": 85,
+        "temp": 85,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 20
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -2700,8 +2763,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "ALA -20.5",
-        "spread": -20.5,
+        "details": "ALA -19.5",
+        "spread": -19.5,
         "total": 49.5,
         "provider": "Draft Kings"
       },
@@ -2719,23 +2782,23 @@
       "dog_team": "Florida State Seminoles",
       "fav_abbr": "ALA",
       "dog_abbr": "FSU",
-      "fav_spread": -20.5,
-      "dog_spread": 20.5,
-      "spread": -20.5,
-      "favorite": "ALA -20.5",
-      "underdog": "FSU +20.5",
-      "tagged_at": "2026-09-14T21:11:08.071740+00:00",
+      "fav_spread": -19.5,
+      "dog_spread": 19.5,
+      "spread": -19.5,
+      "favorite": "ALA -19.5",
+      "underdog": "FSU +19.5",
+      "tagged_at": "2026-09-15T03:17:33.312889+00:00",
       "weather": {
-        "summary": "Slight Chance Rain Showers",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 97,
-        "temp": 97,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 20
+        "temperatureF": 81,
+        "temp": 81,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -2774,11 +2837,11 @@
       "public_side": "ALA",
       "fade_signal": 0,
       "public_home_pct": 55,
-      "spread_delta": -5.0,
+      "spread_delta": -4.0,
       "total_delta": -3.0,
       "spread_direction": "toward_favorite",
       "total_direction": "down",
-      "spread_moves": 3
+      "spread_moves": 4
     },
     {
       "sport": "ncaaf",
@@ -2829,14 +2892,14 @@
       "spread": -23.5,
       "favorite": "USC -23.5",
       "underdog": "RUTG +23.5",
-      "tagged_at": "2026-09-14T21:11:08.071741+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312897+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -2875,10 +2938,10 @@
       "divisional": false,
       "home_streak": -9,
       "away_streak": -4,
-      "public_pct": 55,
+      "public_pct": 57,
       "public_side": "RUTG",
       "fade_signal": 0,
-      "public_home_pct": 55,
+      "public_home_pct": 57,
       "spread_delta": 1.0,
       "total_delta": 2.0,
       "spread_direction": "toward_underdog",
@@ -2934,14 +2997,14 @@
       "spread": -1.5,
       "favorite": "LOU -1.5",
       "underdog": "SMU +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071743+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312905+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 84,
-        "temp": 84,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 74,
+        "temp": 74,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -2980,10 +3043,10 @@
       "divisional": false,
       "home_streak": 2,
       "away_streak": -4,
-      "public_pct": 53,
+      "public_pct": 54,
       "public_side": "SMU",
       "fade_signal": 0,
-      "public_home_pct": 47,
+      "public_home_pct": 46,
       "spread_delta": 0,
       "total_delta": 3.0,
       "spread_direction": "stable",
@@ -3039,12 +3102,12 @@
       "spread": -28.5,
       "favorite": "UTAH -28.5",
       "underdog": "USU +28.5",
-      "tagged_at": "2026-09-14T21:11:08.071745+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312912+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
+        "temperatureF": 68,
+        "temp": 68,
         "windSpeedMph": 6.0,
         "wind": 6.0,
         "rainChancePct": 0
@@ -3144,14 +3207,14 @@
       "spread": -35.5,
       "favorite": "MICH -35.5",
       "underdog": "UTEP +35.5",
-      "tagged_at": "2026-09-14T21:11:08.071747+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312936+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -3190,10 +3253,10 @@
       "divisional": false,
       "home_streak": 7,
       "away_streak": 1,
-      "public_pct": 55,
+      "public_pct": 56,
       "public_side": "MICH",
       "fade_signal": 0,
-      "public_home_pct": 55,
+      "public_home_pct": 56,
       "spread_delta": 1.0,
       "total_delta": -1.0,
       "spread_direction": "toward_underdog",
@@ -3249,12 +3312,12 @@
       "spread": -14.5,
       "favorite": "CIN -14.5",
       "underdog": "M-OH +14.5",
-      "tagged_at": "2026-09-14T21:11:08.071749+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312942+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 76,
-        "temp": 76,
+        "temperatureF": 63,
+        "temp": 63,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -3295,10 +3358,10 @@
       "divisional": true,
       "home_streak": -2,
       "away_streak": 7,
-      "public_pct": 60,
+      "public_pct": 71,
       "public_side": "CIN",
-      "fade_signal": 0,
-      "public_home_pct": 60,
+      "fade_signal": 2,
+      "public_home_pct": 71,
       "spread_delta": 1.0,
       "total_delta": 1.0,
       "spread_direction": "toward_underdog",
@@ -3341,12 +3404,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 73,
-        "temp": 73,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -3422,7 +3485,7 @@
       "odds": {
         "details": "CAR -1.5",
         "spread": 1.5,
-        "total": 44.5,
+        "total": 43.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3444,8 +3507,15 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "ATL +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071750+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312949+00:00",
       "home_injuries": [
+        {
+          "player": "Da'Shawn Hand",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:17Z"
+        },
         {
           "player": "Tua Tagovailoa",
           "status": "Out",
@@ -3468,13 +3538,6 @@
           "reported_at": "2026-09-14T19:27Z"
         },
         {
-          "player": "Da'Shawn Hand",
-          "status": "Out",
-          "position": "DT",
-          "unavailable": true,
-          "reported_at": "2026-09-14T18:40Z"
-        },
-        {
           "player": "Chris Lindstrom",
           "status": "Questionable",
           "position": "G",
@@ -3494,13 +3557,6 @@
           "position": "RB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Storm Norton",
-          "status": "Out",
-          "position": "OT",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
       "away_injuries": [
@@ -3517,38 +3573,10 @@
           "position": "WR",
           "unavailable": false,
           "reported_at": "2026-09-14T18:33Z"
-        },
-        {
-          "player": "Trevor Etienne",
-          "status": "Injured Reserve",
-          "position": "RB",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Brady Christensen",
-          "status": "Injured Reserve",
-          "position": "G",
-          "unavailable": true,
-          "reported_at": "2026-09-01T23:48Z"
-        },
-        {
-          "player": "Bam Martin-Scott",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:05Z"
-        },
-        {
-          "player": "Taylor Moton",
-          "status": "Out",
-          "position": "OT",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:00Z"
         }
       ],
-      "injury_count_home": 7,
-      "injury_count_away": 5,
+      "injury_count_home": 6,
+      "injury_count_away": 1,
       "injury_questionable_home": 1,
       "injury_questionable_away": 1,
       "injury_recent_home": 4,
@@ -3578,15 +3606,15 @@
       "divisional": true,
       "home_streak": 4,
       "away_streak": -2,
-      "public_pct": 63,
+      "public_pct": 64,
       "public_side": "CAR",
       "fade_signal": 0,
-      "public_home_pct": 37,
+      "public_home_pct": 36,
       "spread_delta": 0,
-      "total_delta": 0,
+      "total_delta": -1.0,
       "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 9
+      "total_direction": "down",
+      "spread_moves": 10
     },
     {
       "sport": "nfl",
@@ -3637,18 +3665,18 @@
       "spread": -5.5,
       "favorite": "CHI -5.5",
       "underdog": "MIN +5.5",
-      "tagged_at": "2026-09-14T21:11:08.071752+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312954+00:00",
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 14
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 15.0,
+        "wind": 15.0,
+        "rainChancePct": 5
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       },
       "home_injuries": [
         {
@@ -3692,13 +3720,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Jonathan Garvin",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
       "away_injuries": [
@@ -3738,7 +3759,7 @@
           "reported_at": "2026-08-30T22:59Z"
         }
       ],
-      "injury_count_home": 7,
+      "injury_count_home": 6,
       "injury_count_away": 3,
       "injury_questionable_home": 0,
       "injury_questionable_away": 2,
@@ -3769,10 +3790,10 @@
       "divisional": true,
       "home_streak": -2,
       "away_streak": 5,
-      "public_pct": 57,
+      "public_pct": 60,
       "public_side": "CHI",
       "fade_signal": 0,
-      "public_home_pct": 57,
+      "public_home_pct": 60,
       "spread_delta": -2.0,
       "total_delta": 4.0,
       "spread_direction": "toward_favorite",
@@ -3806,7 +3827,7 @@
       "odds": {
         "details": "PHI -7",
         "spread": 7.0,
-        "total": 40.5,
+        "total": 39.5,
         "provider": "Draft Kings"
       },
       "venue": {
@@ -3828,18 +3849,18 @@
       "spread": -7.0,
       "favorite": "PHI -7.0",
       "underdog": "TEN +7.0",
-      "tagged_at": "2026-09-14T21:11:08.071754+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312960+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 93,
-        "temp": 93,
+        "temperatureF": 79,
+        "temp": 79,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [
         {
@@ -3847,7 +3868,7 @@
           "status": "Out",
           "position": "LB",
           "unavailable": true,
-          "reported_at": "2026-09-14T19:30Z"
+          "reported_at": "2026-09-14T23:15Z"
         },
         {
           "player": "Milo Eifler",
@@ -3890,23 +3911,16 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-01T00:19Z"
-        },
-        {
-          "player": "Jaylen Harrell",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
-        },
-        {
-          "player": "Jaren Kanak",
-          "status": "Injured Reserve",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
         }
       ],
       "away_injuries": [
+        {
+          "player": "Landon Dickerson",
+          "status": "Out",
+          "position": "G",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:45Z"
+        },
         {
           "player": "Jonathan Greenard",
           "status": "Out",
@@ -3934,28 +3948,14 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-08-31T23:57Z"
-        },
-        {
-          "player": "Grant Calcaterra",
-          "status": "Injured Reserve",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-31T18:50Z"
-        },
-        {
-          "player": "Johnny Wilson",
-          "status": "Injured Reserve",
-          "position": "WR",
-          "unavailable": true,
-          "reported_at": "2026-08-22T21:59Z"
         }
       ],
-      "injury_count_home": 8,
-      "injury_count_away": 6,
+      "injury_count_home": 6,
+      "injury_count_away": 5,
       "injury_questionable_home": 1,
       "injury_questionable_away": 0,
       "injury_recent_home": 1,
-      "injury_recent_away": 1,
+      "injury_recent_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
@@ -3981,15 +3981,15 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": -1,
-      "public_pct": 76,
+      "public_pct": 78,
       "public_side": "PHI",
       "fade_signal": 2,
-      "public_home_pct": 24,
+      "public_home_pct": 22,
       "spread_delta": -2.5,
-      "total_delta": -2.0,
+      "total_delta": -3.0,
       "spread_direction": "toward_favorite",
       "total_direction": "down",
-      "spread_moves": 2
+      "spread_moves": 3
     },
     {
       "sport": "nfl",
@@ -4040,14 +4040,14 @@
       "spread": -5.5,
       "favorite": "NE -5.5",
       "underdog": "PIT +5.5",
-      "tagged_at": "2026-09-14T21:11:08.071757+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312966+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
+        "temperatureF": 54,
+        "temp": 54,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -4123,7 +4123,7 @@
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -0.33,
-      "rest_diff_days": -10,
+      "rest_diff_days": -9,
       "elo_diff": -60.0,
       "home_elo": 1504.1,
       "away_elo": 1564.1,
@@ -4144,10 +4144,10 @@
       "divisional": true,
       "home_streak": -1,
       "away_streak": 1,
-      "public_pct": 58,
+      "public_pct": 57,
       "public_side": "NE",
       "fade_signal": 0,
-      "public_home_pct": 58,
+      "public_home_pct": 57,
       "spread_delta": -1.0,
       "total_delta": -2.0,
       "spread_direction": "toward_favorite",
@@ -4203,14 +4203,14 @@
       "spread": -4.5,
       "favorite": "GB -4.5",
       "underdog": "NYJ +4.5",
-      "tagged_at": "2026-09-14T21:11:08.071759+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312972+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 12.0,
-        "wind": 12.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -4279,13 +4279,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-08-31T23:57Z"
-        },
-        {
-          "player": "Tyler Baron",
-          "status": "Out",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:53Z"
         }
       ],
       "away_injuries": [
@@ -4330,17 +4323,10 @@
           "position": "RB",
           "unavailable": true,
           "reported_at": "2026-09-13T15:09Z"
-        },
-        {
-          "player": "Savion Williams",
-          "status": "Injured Reserve",
-          "position": "WR",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
-      "injury_count_home": 8,
-      "injury_count_away": 5,
+      "injury_count_home": 7,
+      "injury_count_away": 4,
       "injury_questionable_home": 2,
       "injury_questionable_away": 2,
       "injury_recent_home": 3,
@@ -4370,10 +4356,10 @@
       "divisional": false,
       "home_streak": -5,
       "away_streak": -4,
-      "public_pct": 54,
+      "public_pct": 53,
       "public_side": "GB",
       "fade_signal": 0,
-      "public_home_pct": 46,
+      "public_home_pct": 47,
       "spread_delta": 1.0,
       "total_delta": 2.0,
       "spread_direction": "toward_underdog",
@@ -4429,20 +4415,27 @@
       "spread": -8.5,
       "favorite": "TB -8.5",
       "underdog": "CLE +8.5",
-      "tagged_at": "2026-09-14T21:11:08.071761+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312978+00:00",
       "weather": {
-        "summary": "Scattered Showers And Thunderstorms",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 90,
-        "temp": 90,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 40
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
+        "rainChancePct": 9
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [
+        {
+          "player": "Jacob Parrish",
+          "status": "Questionable",
+          "position": "CB",
+          "unavailable": false,
+          "reported_at": "2026-09-14T23:52Z"
+        },
         {
           "player": "Justin Skule",
           "status": "Out",
@@ -4463,13 +4456,6 @@
           "position": "WR",
           "unavailable": true,
           "reported_at": "2026-09-14T19:30Z"
-        },
-        {
-          "player": "Jacob Parrish",
-          "status": "Questionable",
-          "position": "CB",
-          "unavailable": false,
-          "reported_at": "2026-09-13T18:49Z"
         },
         {
           "player": "Josh Hayes",
@@ -4495,6 +4481,13 @@
       ],
       "away_injuries": [
         {
+          "player": "Dylan Sampson",
+          "status": "Out",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-15T02:13Z"
+        },
+        {
           "player": "Teven Jenkins",
           "status": "Out",
           "position": "G",
@@ -4507,13 +4500,6 @@
           "position": "C",
           "unavailable": true,
           "reported_at": "2026-09-14T19:28Z"
-        },
-        {
-          "player": "Dylan Sampson",
-          "status": "Questionable",
-          "position": "RB",
-          "unavailable": false,
-          "reported_at": "2026-09-14T18:19Z"
         },
         {
           "player": "Jeremiah Owusu-Koramoah",
@@ -4556,21 +4542,14 @@
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-01T01:04Z"
-        },
-        {
-          "player": "Joe Royer",
-          "status": "Out",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-30T21:32Z"
         }
       ],
       "injury_count_home": 6,
       "injury_count_away": 9,
       "injury_questionable_home": 1,
-      "injury_questionable_away": 1,
+      "injury_questionable_away": 0,
       "injury_recent_home": 3,
-      "injury_recent_away": 2,
+      "injury_recent_away": 3,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
@@ -4655,14 +4634,14 @@
       "spread": -8.5,
       "favorite": "BAL -8.5",
       "underdog": "NO +8.5",
-      "tagged_at": "2026-09-14T21:11:08.071762+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312987+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 76,
-        "temp": 76,
-        "windSpeedMph": 13.0,
-        "wind": 13.0,
+        "temperatureF": 64,
+        "temp": 64,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -4724,13 +4703,6 @@
           "position": "RB",
           "unavailable": true,
           "reported_at": "2026-08-31T03:52Z"
-        },
-        {
-          "player": "Danny Pinter",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-08-26T23:36Z"
         }
       ],
       "away_injuries": [
@@ -4775,24 +4747,10 @@
           "position": "G",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Jaylan Ford",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:48Z"
-        },
-        {
-          "player": "David Long Jr.",
-          "status": "Injured Reserve",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:41Z"
         }
       ],
-      "injury_count_home": 7,
-      "injury_count_away": 8,
+      "injury_count_home": 6,
+      "injury_count_away": 6,
       "injury_questionable_home": 2,
       "injury_questionable_away": 0,
       "injury_recent_home": 4,
@@ -4881,21 +4839,21 @@
       "spread": -3.0,
       "favorite": "HOU -3.0",
       "underdog": "CIN +3.0",
-      "tagged_at": "2026-09-14T21:11:08.071764+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312993+00:00",
       "home_injuries": [
         {
           "player": "Henry To'oTo'o",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-13T21:21Z"
+          "reported_at": "2026-09-14T23:58Z"
         },
         {
           "player": "Jake Hummel",
           "status": "Doubtful",
           "position": "LB",
           "unavailable": true,
-          "reported_at": "2026-09-13T19:43Z"
+          "reported_at": "2026-09-14T23:57Z"
         },
         {
           "player": "Kayden McDonald",
@@ -4917,13 +4875,6 @@
           "position": "WR",
           "unavailable": true,
           "reported_at": "2026-09-04T15:55Z"
-        },
-        {
-          "player": "Sam Hagen",
-          "status": "Injured Reserve",
-          "position": "G",
-          "unavailable": true,
-          "reported_at": "2026-09-02T00:13Z"
         }
       ],
       "away_injuries": [
@@ -4949,7 +4900,7 @@
           "reported_at": "2026-08-31T22:51Z"
         }
       ],
-      "injury_count_home": 5,
+      "injury_count_home": 4,
       "injury_count_away": 3,
       "injury_questionable_home": 1,
       "injury_questionable_away": 0,
@@ -4980,10 +4931,10 @@
       "divisional": false,
       "home_streak": 9,
       "away_streak": -1,
-      "public_pct": 56,
+      "public_pct": 58,
       "public_side": "HOU",
       "fade_signal": 0,
-      "public_home_pct": 56,
+      "public_home_pct": 58,
       "spread_delta": -0.5,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -5039,20 +4990,62 @@
       "spread": -2.5,
       "favorite": "DEN -2.5",
       "underdog": "JAX +2.5",
-      "tagged_at": "2026-09-14T21:11:08.071766+00:00",
+      "tagged_at": "2026-09-15T03:17:33.312999+00:00",
       "weather": {
-        "summary": "Slight Chance Rain Showers",
+        "summary": "Chance Rain Showers",
         "description": "",
-        "temperatureF": 86,
-        "temp": 86,
-        "windSpeedMph": 9.0,
-        "wind": 9.0,
-        "rainChancePct": 17
+        "temperatureF": 74,
+        "temp": 74,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 25
       },
       "weatherRisk": {
         "risk": 1
       },
       "home_injuries": [
+        {
+          "player": "Tyler Badie",
+          "status": "Out",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:57Z"
+        },
+        {
+          "player": "Sam Ehlinger",
+          "status": "Out",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:55Z"
+        },
+        {
+          "player": "Tyler Onyedim",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Jordan Jackson",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Dallen Bentley",
+          "status": "Out",
+          "position": "TE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Kage Casey",
+          "status": "Out",
+          "position": "OT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
         {
           "player": "Jonathon Cooper",
           "status": "Out",
@@ -5087,20 +5080,6 @@
           "position": "LB",
           "unavailable": true,
           "reported_at": "2026-08-22T00:29Z"
-        },
-        {
-          "player": "Matt Henningsen",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
-        },
-        {
-          "player": "Michael Deiter",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
         }
       ],
       "away_injuries": [
@@ -5131,28 +5110,21 @@
           "position": "G",
           "unavailable": true,
           "reported_at": "2026-08-31T23:21Z"
-        },
-        {
-          "player": "Zach Durfee",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-30T23:11Z"
         }
       ],
-      "injury_count_home": 7,
-      "injury_count_away": 3,
+      "injury_count_home": 11,
+      "injury_count_away": 2,
       "injury_questionable_home": 0,
       "injury_questionable_away": 2,
-      "injury_recent_home": 0,
+      "injury_recent_home": 6,
       "injury_recent_away": 0,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
-      "elo_diff": 81.0,
-      "home_elo": 1592.1,
+      "rest_diff_days": -14,
+      "elo_diff": 70.5,
+      "home_elo": 1581.6,
       "away_elo": 1511.1,
       "travel_km": 2357.9,
       "power_diff": 2.3,
@@ -5230,15 +5202,15 @@
       "spread": -7.0,
       "favorite": "LAC -7.0",
       "underdog": "LV +7.0",
-      "tagged_at": "2026-09-14T21:11:08.071768+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313005+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 81,
-        "temp": 81,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 0
+        "temperatureF": 71,
+        "temp": 71,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 1
       },
       "weatherRisk": {
         "risk": 0
@@ -5249,14 +5221,21 @@
           "status": "Doubtful",
           "position": "WR",
           "unavailable": true,
-          "reported_at": "2026-09-14T20:55Z"
+          "reported_at": "2026-09-15T01:22Z"
+        },
+        {
+          "player": "Elijah Molden",
+          "status": "Questionable",
+          "position": "CB",
+          "unavailable": false,
+          "reported_at": "2026-09-15T01:12Z"
         },
         {
           "player": "Derius Davis",
           "status": "Questionable",
           "position": "WR",
           "unavailable": false,
-          "reported_at": "2026-09-14T20:54Z"
+          "reported_at": "2026-09-15T01:09Z"
         },
         {
           "player": "Ladd McConkey",
@@ -5271,13 +5250,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-14T19:29Z"
-        },
-        {
-          "player": "Elijah Molden",
-          "status": "Questionable",
-          "position": "CB",
-          "unavailable": false,
-          "reported_at": "2026-09-13T22:37Z"
         },
         {
           "player": "Isaiah World",
@@ -5299,13 +5271,6 @@
           "position": "FB",
           "unavailable": true,
           "reported_at": "2026-08-31T17:56Z"
-        },
-        {
-          "player": "Branson Taylor",
-          "status": "Injured Reserve",
-          "position": "G",
-          "unavailable": true,
-          "reported_at": "2026-08-30T22:49Z"
         }
       ],
       "away_injuries": [
@@ -5343,10 +5308,17 @@
           "position": "DE",
           "unavailable": true,
           "reported_at": "2026-08-31T00:50Z"
+        },
+        {
+          "player": "Chigozie Anusiem",
+          "status": "Injured Reserve",
+          "position": "CB",
+          "unavailable": true,
+          "reported_at": "2026-08-22T20:31Z"
         }
       ],
-      "injury_count_home": 6,
-      "injury_count_away": 4,
+      "injury_count_home": 5,
+      "injury_count_away": 5,
       "injury_questionable_home": 3,
       "injury_questionable_away": 1,
       "injury_recent_home": 2,
@@ -5435,21 +5407,21 @@
       "spread": -3.5,
       "favorite": "DAL -3.5",
       "underdog": "WSH +3.5",
-      "tagged_at": "2026-09-14T21:11:08.071769+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313013+00:00",
       "home_injuries": [
-        {
-          "player": "Malik Hooker",
-          "status": "Doubtful",
-          "position": "S",
-          "unavailable": true,
-          "reported_at": "2026-09-14T03:13Z"
-        },
         {
           "player": "DeMarvion Overshown",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-14T03:10Z"
+          "reported_at": "2026-09-15T01:19Z"
+        },
+        {
+          "player": "Malik Hooker",
+          "status": "Doubtful",
+          "position": "S",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:21Z"
         },
         {
           "player": "Malik Davis",
@@ -5471,27 +5443,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Matt Hennessy",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "DJ Rogers",
-          "status": "Injured Reserve",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-31T22:59Z"
-        },
-        {
-          "player": "Marist Liufau",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T16:40Z"
         }
       ],
       "away_injuries": [
@@ -5524,7 +5475,7 @@
           "reported_at": "2026-09-13T22:18Z"
         }
       ],
-      "injury_count_home": 7,
+      "injury_count_home": 4,
       "injury_count_away": 0,
       "injury_questionable_home": 1,
       "injury_questionable_away": 4,
@@ -5555,10 +5506,10 @@
       "divisional": true,
       "home_streak": -1,
       "away_streak": 1,
-      "public_pct": 53,
+      "public_pct": 51,
       "public_side": "WSH",
       "fade_signal": 0,
-      "public_home_pct": 47,
+      "public_home_pct": 49,
       "spread_delta": 1.0,
       "total_delta": -1.0,
       "spread_direction": "toward_underdog",
@@ -5614,7 +5565,7 @@
       "spread": -4.5,
       "favorite": "SEA -4.5",
       "underdog": "ARI +4.5",
-      "tagged_at": "2026-09-14T21:11:08.071771+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313021+00:00",
       "home_injuries": [
         {
           "player": "Isaiah Adams",
@@ -5675,6 +5626,13 @@
       ],
       "away_injuries": [
         {
+          "player": "Sam Darnold",
+          "status": "Doubtful",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:26Z"
+        },
+        {
           "player": "Ty Okada",
           "status": "Out",
           "position": "S",
@@ -5694,13 +5652,6 @@
           "position": "S",
           "unavailable": true,
           "reported_at": "2026-09-14T19:29Z"
-        },
-        {
-          "player": "Sam Darnold",
-          "status": "Doubtful",
-          "position": "QB",
-          "unavailable": true,
-          "reported_at": "2026-09-13T14:08Z"
         }
       ],
       "injury_count_home": 7,
@@ -5713,7 +5664,7 @@
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -8.0,
-      "rest_diff_days": 10,
+      "rest_diff_days": 9,
       "elo_diff": -256.5,
       "home_elo": 1359.6,
       "away_elo": 1616.1,
@@ -5734,10 +5685,10 @@
       "divisional": true,
       "home_streak": -9,
       "away_streak": 8,
-      "public_pct": 63,
+      "public_pct": 62,
       "public_side": "ARI",
       "fade_signal": 0,
-      "public_home_pct": 63,
+      "public_home_pct": 62,
       "spread_delta": 5.5,
       "total_delta": -3.0,
       "spread_direction": "toward_underdog",
@@ -5793,14 +5744,14 @@
       "spread": -13.5,
       "favorite": "SF -13.5",
       "underdog": "MIA +13.5",
-      "tagged_at": "2026-09-14T21:11:08.071773+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313029+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 81,
-        "temp": 81,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 67,
+        "temp": 67,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -5832,10 +5783,10 @@
       "away_injuries": [
         {
           "player": "Kyle Louis",
-          "status": "Questionable",
+          "status": "Out",
           "position": "LB",
-          "unavailable": false,
-          "reported_at": "2026-09-13T23:19Z"
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:51Z"
         },
         {
           "player": "Ronnie Harrison Jr.",
@@ -5857,28 +5808,14 @@
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Storm Duck",
-          "status": "Out",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T18:22Z"
-        },
-        {
-          "player": "Darrell Baker Jr.",
-          "status": "Out",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T18:10Z"
         }
       ],
       "injury_count_home": 2,
-      "injury_count_away": 4,
+      "injury_count_away": 3,
       "injury_questionable_home": 1,
-      "injury_questionable_away": 2,
+      "injury_questionable_away": 1,
       "injury_recent_home": 1,
-      "injury_recent_away": 0,
+      "injury_recent_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
@@ -5963,33 +5900,82 @@
       "spread": -6.5,
       "favorite": "KC -6.5",
       "underdog": "IND +6.5",
-      "tagged_at": "2026-09-14T21:11:08.071775+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313035+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 91,
-        "temp": 91,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 0
+        "temperatureF": 83,
+        "temp": 83,
+        "windSpeedMph": 13.0,
+        "wind": 13.0,
+        "rainChancePct": 1
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [
+        {
+          "player": "Cooper McDonald",
+          "status": "Questionable",
+          "position": "LB",
+          "unavailable": false,
+          "reported_at": "2026-09-15T02:07Z"
+        },
+        {
+          "player": "Mansoor Delane",
+          "status": "Out",
+          "position": "CB",
+          "unavailable": true,
+          "reported_at": "2026-09-15T02:03Z"
+        },
+        {
+          "player": "Garrett Nussmeier",
+          "status": "Out",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:05Z"
+        },
         {
           "player": "Josh Simmons",
           "status": "Out",
           "position": "OT",
           "unavailable": true,
-          "reported_at": "2026-09-12T18:14Z"
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Jared Wiley",
+          "status": "Out",
+          "position": "TE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Diego Pounds",
+          "status": "Out",
+          "position": "OT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Jack Pyburn",
+          "status": "Out",
+          "position": "LB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
         },
         {
           "player": "Chamarri Conner",
           "status": "Out",
           "position": "S",
           "unavailable": true,
-          "reported_at": "2026-09-12T18:12Z"
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Bryson Eason",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
         },
         {
           "player": "Omarr Norman-Lott",
@@ -6050,19 +6036,19 @@
           "reported_at": "2026-08-31T17:12Z"
         }
       ],
-      "injury_count_home": 4,
+      "injury_count_home": 10,
       "injury_count_away": 4,
-      "injury_questionable_home": 0,
+      "injury_questionable_home": 1,
       "injury_questionable_away": 2,
-      "injury_recent_home": 0,
+      "injury_recent_home": 8,
       "injury_recent_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -0.0,
-      "rest_diff_days": 0,
-      "elo_diff": 124.8,
-      "home_elo": 1575.8,
+      "rest_diff_days": -14,
+      "elo_diff": 135.3,
+      "home_elo": 1586.3,
       "away_elo": 1451.0,
       "travel_km": 726.6,
       "power_diff": 5.2,
@@ -6081,10 +6067,10 @@
       "divisional": false,
       "home_streak": -6,
       "away_streak": -7,
-      "public_pct": 64,
+      "public_pct": 62,
       "public_side": "IND",
       "fade_signal": 0,
-      "public_home_pct": 36,
+      "public_home_pct": 38,
       "spread_delta": 0,
       "total_delta": 1.0,
       "spread_direction": "stable",
@@ -6140,40 +6126,47 @@
       "spread": -7.0,
       "favorite": "LAR -7.0",
       "underdog": "NYG +7.0",
-      "tagged_at": "2026-09-14T21:11:08.071777+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313041+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 81,
-        "temp": 81,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 0
+        "temperatureF": 71,
+        "temp": 71,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 1
       },
       "weatherRisk": {
         "risk": 0
       },
       "home_injuries": [
         {
-          "player": "Myles Garrett",
-          "status": "Out",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-09-14T18:16Z"
-        },
-        {
           "player": "Omar Speights",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-14T16:26Z"
+          "reported_at": "2026-09-14T23:50Z"
         },
         {
           "player": "Nate Landman",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-14T16:24Z"
+          "reported_at": "2026-09-14T23:45Z"
+        },
+        {
+          "player": "Kam Curl",
+          "status": "Questionable",
+          "position": "S",
+          "unavailable": false,
+          "reported_at": "2026-09-14T23:35Z"
+        },
+        {
+          "player": "Myles Garrett",
+          "status": "Out",
+          "position": "DE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T18:16Z"
         }
       ],
       "away_injuries": [
@@ -6183,18 +6176,11 @@
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Korie Black",
-          "status": "Injured Reserve",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:50Z"
         }
       ],
       "injury_count_home": 1,
-      "injury_count_away": 2,
-      "injury_questionable_home": 2,
+      "injury_count_away": 1,
+      "injury_questionable_home": 3,
       "injury_questionable_away": 0,
       "injury_recent_home": 1,
       "injury_recent_away": 0,
@@ -6269,16 +6255,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 95,
-        "temp": 95,
+        "temperatureF": 80,
+        "temp": 80,
         "windSpeedMph": 5.0,
         "wind": 5.0,
-        "rainChancePct": 1
+        "rainChancePct": 3
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -6372,18 +6358,18 @@
       "spread": -7.5,
       "favorite": "GB -7.5",
       "underdog": "ATL +7.5",
-      "tagged_at": "2026-09-14T21:11:08.071780+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313046+00:00",
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 13.0,
         "wind": 13.0,
-        "rainChancePct": 12
+        "rainChancePct": 78
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       },
       "home_injuries": [
         {
@@ -6427,16 +6413,16 @@
           "position": "RB",
           "unavailable": true,
           "reported_at": "2026-09-13T15:09Z"
-        },
-        {
-          "player": "Savion Williams",
-          "status": "Injured Reserve",
-          "position": "WR",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
       "away_injuries": [
+        {
+          "player": "Da'Shawn Hand",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:17Z"
+        },
         {
           "player": "Tua Tagovailoa",
           "status": "Out",
@@ -6459,13 +6445,6 @@
           "reported_at": "2026-09-14T19:27Z"
         },
         {
-          "player": "Da'Shawn Hand",
-          "status": "Out",
-          "position": "DT",
-          "unavailable": true,
-          "reported_at": "2026-09-14T18:40Z"
-        },
-        {
           "player": "Chris Lindstrom",
           "status": "Questionable",
           "position": "G",
@@ -6485,17 +6464,10 @@
           "position": "RB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Storm Norton",
-          "status": "Out",
-          "position": "OT",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
-      "injury_count_home": 5,
-      "injury_count_away": 7,
+      "injury_count_home": 4,
+      "injury_count_away": 6,
       "injury_questionable_home": 2,
       "injury_questionable_away": 1,
       "injury_recent_home": 4,
@@ -6525,10 +6497,10 @@
       "divisional": false,
       "home_streak": -4,
       "away_streak": 4,
-      "public_pct": 59,
+      "public_pct": 57,
       "public_side": "GB",
       "fade_signal": 0,
-      "public_home_pct": 59,
+      "public_home_pct": 57,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -6571,12 +6543,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -6661,12 +6633,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -6751,16 +6723,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 97,
-        "temp": 97,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 1
+        "temperatureF": 80,
+        "temp": 80,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -6841,12 +6813,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 79,
-        "temp": 79,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 67,
+        "temp": 67,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -6931,12 +6903,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 73,
-        "temp": 73,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -6987,96 +6959,6 @@
     },
     {
       "sport": "ncaaf",
-      "id": "401858467",
-      "name": "Notre Dame Fighting Irish at Purdue Boilermakers",
-      "shortName": "ND @ PUR",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "2509",
-        "name": "Purdue Boilermakers",
-        "abbr": "PUR",
-        "slug": "purdue-boilermakers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png"
-      },
-      "away_team": {
-        "id": "87",
-        "name": "Notre Dame Fighting Irish",
-        "abbr": "ND",
-        "slug": "notre-dame-fighting-irish",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Ross-Ade Stadium",
-        "city": "West Lafayette",
-        "state": "IN",
-        "indoor": false,
-        "grass": true,
-        "lat": 40.42587,
-        "lon": -86.90807
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Mostly Sunny",
-        "description": "",
-        "temperatureF": 77,
-        "temp": 77,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": -33.0,
-      "rest_diff_days": 0,
-      "elo_diff": -155.0,
-      "home_elo": 1467.8,
-      "away_elo": 1622.8,
-      "travel_km": 152.9,
-      "power_diff": -13.4,
-      "off_def_mismatch": 0.2,
-      "pace_avg": 53.3,
-      "home_split_edge": -31.9,
-      "momentum_diff": -1.6,
-      "recent_ats_diff": -20.0,
-      "home_margin_stdev": 25.6,
-      "away_margin_stdev": 18.6,
-      "spot_score": 0.4,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": true,
-      "revenge_away": false,
-      "divisional": true,
-      "home_streak": 1,
-      "away_streak": -4,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
       "id": "401858465",
       "name": "Illinois Fighting Illini at Ohio State Buckeyes",
       "shortName": "ILL @ OSU",
@@ -7111,12 +6993,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 74,
-        "temp": 74,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 63,
+        "temp": 63,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -7167,381 +7049,6 @@
     },
     {
       "sport": "ncaaf",
-      "id": "401858469",
-      "name": "Oregon Ducks at USC Trojans",
-      "shortName": "ORE @ USC",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "30",
-        "name": "USC Trojans",
-        "abbr": "USC",
-        "slug": "usc-trojans",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png"
-      },
-      "away_team": {
-        "id": "2483",
-        "name": "Oregon Ducks",
-        "abbr": "ORE",
-        "slug": "oregon-ducks",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": {
-        "details": "ORE -5.5",
-        "spread": 5.5,
-        "total": 58.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "Los Angeles Memorial Coliseum",
-        "city": "Los Angeles",
-        "state": "CA",
-        "indoor": false,
-        "grass": true,
-        "lat": 34.05223,
-        "lon": -118.24368
-      },
-      "officials": [],
-      "fav_team": "Oregon Ducks",
-      "dog_team": "USC Trojans",
-      "fav_abbr": "ORE",
-      "dog_abbr": "USC",
-      "fav_spread": -5.5,
-      "dog_spread": 5.5,
-      "spread": -5.5,
-      "favorite": "ORE -5.5",
-      "underdog": "USC +5.5",
-      "tagged_at": "2026-09-14T21:11:08.071782+00:00",
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 83,
-        "temp": 83,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": -1.5,
-      "rest_diff_days": 0,
-      "elo_diff": -63.7,
-      "home_elo": 1611.4,
-      "away_elo": 1675.1,
-      "travel_km": 1187.5,
-      "power_diff": -4.4,
-      "off_def_mismatch": 3.0,
-      "pace_avg": 62.0,
-      "home_split_edge": 5.6,
-      "momentum_diff": 18.8,
-      "recent_ats_diff": -10.0,
-      "home_margin_stdev": 22.0,
-      "away_margin_stdev": 24.7,
-      "spot_score": -1.0,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": -4,
-      "away_streak": -6,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858466",
-      "name": "Wisconsin Badgers at Penn State Nittany Lions",
-      "shortName": "WIS @ PSU",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "213",
-        "name": "Penn State Nittany Lions",
-        "abbr": "PSU",
-        "slug": "penn-state-nittany-lions",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/213.png"
-      },
-      "away_team": {
-        "id": "275",
-        "name": "Wisconsin Badgers",
-        "abbr": "WIS",
-        "slug": "wisconsin-badgers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Beaver Stadium",
-        "city": "University Park",
-        "state": "PA",
-        "indoor": false,
-        "grass": true,
-        "lat": 40.8128971,
-        "lon": -77.8710571
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": 5.0,
-      "rest_diff_days": 0,
-      "elo_diff": 98.4,
-      "home_elo": 1626.6,
-      "away_elo": 1528.2,
-      "travel_km": 984.0,
-      "power_diff": 11.8,
-      "off_def_mismatch": 3.0,
-      "pace_avg": 47.1,
-      "home_split_edge": 40.0,
-      "momentum_diff": 36.6,
-      "recent_ats_diff": -40.0,
-      "home_margin_stdev": 20.6,
-      "away_margin_stdev": 27.1,
-      "spot_score": 0.0,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": -8,
-      "away_streak": 1,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401856816",
-      "name": "Utah Utes at Iowa State Cyclones",
-      "shortName": "UTAH @ ISU",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "66",
-        "name": "Iowa State Cyclones",
-        "abbr": "ISU",
-        "slug": "iowa-state-cyclones",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
-      },
-      "away_team": {
-        "id": "254",
-        "name": "Utah Utes",
-        "abbr": "UTAH",
-        "slug": "utah-utes",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/254.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Jack Trice Stadium",
-        "city": "Ames",
-        "state": "IA",
-        "indoor": false,
-        "grass": true,
-        "lat": 42.0267567,
-        "lon": -93.6170448
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Mostly Cloudy",
-        "description": "",
-        "temperatureF": 71,
-        "temp": 71,
-        "windSpeedMph": 18.0,
-        "wind": 18.0,
-        "rainChancePct": 12
-      },
-      "weatherRisk": {
-        "risk": 1
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": 23.0,
-      "rest_diff_days": 0,
-      "elo_diff": -18.8,
-      "home_elo": 1593.6,
-      "away_elo": 1612.4,
-      "travel_km": 1527.9,
-      "power_diff": -2.8,
-      "off_def_mismatch": -5.8,
-      "pace_avg": 47.9,
-      "home_split_edge": 20.4,
-      "momentum_diff": -31.2,
-      "recent_ats_diff": -10.0,
-      "home_margin_stdev": 19.1,
-      "away_margin_stdev": 20.6,
-      "spot_score": -0.5,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": 4,
-      "away_streak": -4,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858463",
-      "name": "Iowa Hawkeyes at Michigan Wolverines",
-      "shortName": "IOWA @ MICH",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "130",
-        "name": "Michigan Wolverines",
-        "abbr": "MICH",
-        "slug": "michigan-wolverines",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png"
-      },
-      "away_team": {
-        "id": "2294",
-        "name": "Iowa Hawkeyes",
-        "abbr": "IOWA",
-        "slug": "iowa-hawkeyes",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Michigan Stadium",
-        "city": "Ann Arbor",
-        "state": "MI",
-        "indoor": false,
-        "grass": false,
-        "lat": 42.27756,
-        "lon": -83.74088
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 2.0,
-        "wind": 2.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": 13.0,
-      "rest_diff_days": 0,
-      "elo_diff": 62.0,
-      "home_elo": 1656.1,
-      "away_elo": 1594.1,
-      "travel_km": 647.4,
-      "power_diff": 7.2,
-      "off_def_mismatch": 8.4,
-      "pace_avg": 44.5,
-      "home_split_edge": 33.0,
-      "momentum_diff": 0.6,
-      "recent_ats_diff": -40.0,
-      "home_margin_stdev": 22.1,
-      "away_margin_stdev": 18.5,
-      "spot_score": -1.0,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": 7,
-      "away_streak": -3,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
       "id": "401856806",
       "name": "Houston Cougars at Georgia Southern Eagles",
       "shortName": "HOU @ GASO",
@@ -7576,16 +7083,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 94,
-        "temp": 94,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 77,
+        "temp": 77,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -7632,456 +7139,6 @@
     },
     {
       "sport": "ncaaf",
-      "id": "401856815",
-      "name": "TCU Horned Frogs at UCF Knights",
-      "shortName": "TCU @ UCF",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "2116",
-        "name": "UCF Knights",
-        "abbr": "UCF",
-        "slug": "ucf-knights",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2116.png"
-      },
-      "away_team": {
-        "id": "2628",
-        "name": "TCU Horned Frogs",
-        "abbr": "TCU",
-        "slug": "tcu-horned-frogs",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Acrisure Bounce House",
-        "city": "Orlando",
-        "state": "FL",
-        "indoor": false,
-        "grass": true,
-        "lat": 28.53834,
-        "lon": -81.37924
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Chance Showers And Thunderstorms",
-        "description": "",
-        "temperatureF": 91,
-        "temp": 91,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 52
-      },
-      "weatherRisk": {
-        "risk": 2
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": 1.0,
-      "rest_diff_days": 0,
-      "elo_diff": -32.4,
-      "home_elo": 1524.3,
-      "away_elo": 1556.7,
-      "travel_km": 1594.6,
-      "power_diff": 0.2,
-      "off_def_mismatch": -4.4,
-      "pace_avg": 60.0,
-      "home_split_edge": 12.2,
-      "momentum_diff": 24.6,
-      "recent_ats_diff": 0.0,
-      "home_margin_stdev": 26.3,
-      "away_margin_stdev": 19.1,
-      "spot_score": -1.0,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": -1,
-      "away_streak": -5,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401856881",
-      "name": "Oklahoma State Cowboys at West Virginia Mountaineers",
-      "shortName": "OKST @ WVU",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "277",
-        "name": "West Virginia Mountaineers",
-        "abbr": "WVU",
-        "slug": "west-virginia-mountaineers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/277.png"
-      },
-      "away_team": {
-        "id": "197",
-        "name": "Oklahoma State Cowboys",
-        "abbr": "OKST",
-        "slug": "oklahoma-state-cowboys",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/197.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Milan Puskar Stadium",
-        "city": "Morgantown",
-        "state": "WV",
-        "indoor": false,
-        "grass": false,
-        "lat": 39.62953,
-        "lon": -79.9559
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": 24.0,
-      "rest_diff_days": 0,
-      "elo_diff": -33.2,
-      "home_elo": 1501.5,
-      "away_elo": 1534.7,
-      "travel_km": 1548.5,
-      "power_diff": 1.0,
-      "off_def_mismatch": -1.8,
-      "pace_avg": 56.0,
-      "home_split_edge": 18.8,
-      "momentum_diff": -4.8,
-      "recent_ats_diff": 17.8,
-      "home_margin_stdev": 24.7,
-      "away_margin_stdev": 21.7,
-      "spot_score": -0.5,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": -2,
-      "away_streak": -2,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858462",
-      "name": "UCLA Bruins at Maryland Terrapins",
-      "shortName": "UCLA @ MD",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "120",
-        "name": "Maryland Terrapins",
-        "abbr": "MD",
-        "slug": "maryland-terrapins",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/120.png"
-      },
-      "away_team": {
-        "id": "26",
-        "name": "UCLA Bruins",
-        "abbr": "UCLA",
-        "slug": "ucla-bruins",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/26.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "SECU Stadium",
-        "city": "College Park",
-        "state": "MD",
-        "indoor": false,
-        "grass": false,
-        "lat": 38.98067,
-        "lon": -76.93692
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 12.0,
-        "wind": 12.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": -4.5,
-      "rest_diff_days": 0,
-      "elo_diff": 42.0,
-      "home_elo": 1568.0,
-      "away_elo": 1526.0,
-      "travel_km": 0,
-      "power_diff": 5.2,
-      "off_def_mismatch": 1.0,
-      "pace_avg": 53.9,
-      "home_split_edge": 18.2,
-      "momentum_diff": -12.2,
-      "recent_ats_diff": -20.0,
-      "home_margin_stdev": 23.6,
-      "away_margin_stdev": 21.0,
-      "spot_score": 0.0,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": true,
-      "divisional": false,
-      "home_streak": -9,
-      "away_streak": 1,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858464",
-      "name": "Nebraska Cornhuskers at Michigan State Spartans",
-      "shortName": "NEB @ MSU",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "127",
-        "name": "Michigan State Spartans",
-        "abbr": "MSU",
-        "slug": "michigan-state-spartans",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png"
-      },
-      "away_team": {
-        "id": "158",
-        "name": "Nebraska Cornhuskers",
-        "abbr": "NEB",
-        "slug": "nebraska-cornhuskers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/158.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Spartan Stadium",
-        "city": "East Lansing",
-        "state": "MI",
-        "indoor": false,
-        "grass": true,
-        "lat": 42.73698,
-        "lon": -84.48387
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Mostly Sunny",
-        "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 3.0,
-        "wind": 3.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": -3.33,
-      "rest_diff_days": 0,
-      "elo_diff": -46.1,
-      "home_elo": 1514.6,
-      "away_elo": 1560.7,
-      "travel_km": 1035.1,
-      "power_diff": -5.9,
-      "off_def_mismatch": 1.7,
-      "pace_avg": 49.9,
-      "home_split_edge": 29.9,
-      "momentum_diff": 4.6,
-      "recent_ats_diff": 10.0,
-      "home_margin_stdev": 22.2,
-      "away_margin_stdev": 23.7,
-      "spot_score": 0.5,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": true,
-      "revenge_away": false,
-      "divisional": false,
-      "home_streak": -2,
-      "away_streak": -2,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858470",
-      "name": "Minnesota Golden Gophers at Washington Huskies",
-      "shortName": "MINN @ WASH",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "264",
-        "name": "Washington Huskies",
-        "abbr": "WASH",
-        "slug": "washington-huskies",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png"
-      },
-      "away_team": {
-        "id": "135",
-        "name": "Minnesota Golden Gophers",
-        "abbr": "MINN",
-        "slug": "minnesota-golden-gophers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Husky Stadium",
-        "city": "Seattle",
-        "state": "WA",
-        "indoor": false,
-        "grass": false,
-        "lat": 47.60621,
-        "lon": -122.33207
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Partly Sunny",
-        "description": "",
-        "temperatureF": 64,
-        "temp": 64,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 2
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": 0.0,
-      "rest_diff_days": 0,
-      "elo_diff": 30.5,
-      "home_elo": 1607.6,
-      "away_elo": 1577.1,
-      "travel_km": 2239.0,
-      "power_diff": 4.3,
-      "off_def_mismatch": 8.7,
-      "pace_avg": 50.0,
-      "home_split_edge": 45.0,
-      "momentum_diff": 38.4,
-      "recent_ats_diff": -4.4,
-      "home_margin_stdev": 21.3,
-      "away_margin_stdev": 24.1,
-      "spot_score": 0.5,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": false,
-      "revenge_away": false,
-      "divisional": false,
-      "home_streak": -5,
-      "away_streak": 1,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
       "id": "401860897",
       "name": "Boise State Broncos at Western Michigan Broncos",
       "shortName": "BOIS @ WMU",
@@ -8116,12 +7173,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Partly Sunny",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 73,
-        "temp": 73,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 9.0,
+        "wind": 9.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -8160,96 +7217,6 @@
       "divisional": false,
       "home_streak": 4,
       "away_streak": -1,
-      "public_pct": 50,
-      "public_side": "",
-      "fade_signal": 0,
-      "public_home_pct": 50,
-      "spread_delta": 0,
-      "total_delta": 0,
-      "spread_direction": "stable",
-      "total_direction": "stable",
-      "spread_moves": 0
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401864509",
-      "name": "Air Force Falcons at Nevada Wolf Pack",
-      "shortName": "AFA @ NEV",
-      "date_utc": "2026-09-26T04:00Z",
-      "date_local": "2026-09-26 12:00 AM ET",
-      "home_team": {
-        "id": "2440",
-        "name": "Nevada Wolf Pack",
-        "abbr": "NEV",
-        "slug": "nevada-wolf-pack",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2440.png"
-      },
-      "away_team": {
-        "id": "2005",
-        "name": "Air Force Falcons",
-        "abbr": "AFA",
-        "slug": "air-force-falcons",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2005.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Mackay Stadium",
-        "city": "Reno",
-        "state": "NV",
-        "indoor": false,
-        "grass": false,
-        "lat": 39.52963,
-        "lon": -119.8138
-      },
-      "officials": [],
-      "weather": {
-        "summary": "Sunny",
-        "description": "",
-        "temperatureF": 68,
-        "temp": 68,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 0
-      },
-      "weatherRisk": {
-        "risk": 0
-      },
-      "home_injuries": [],
-      "away_injuries": [],
-      "injury_count_home": 0,
-      "injury_count_away": 0,
-      "injury_questionable_home": 0,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
-      "ref_home_bias": 0.0,
-      "ref_over_bias": 0.0,
-      "ref_consistency": 11.0,
-      "h2h_margin_avg": -28.0,
-      "rest_diff_days": 0,
-      "elo_diff": -73.4,
-      "home_elo": 1426.8,
-      "away_elo": 1500.2,
-      "travel_km": 1338.9,
-      "power_diff": -11.2,
-      "off_def_mismatch": -1.0,
-      "pace_avg": 53.8,
-      "home_split_edge": -1.0,
-      "momentum_diff": -9.2,
-      "recent_ats_diff": 16.7,
-      "home_margin_stdev": 20.9,
-      "away_margin_stdev": 19.8,
-      "spot_score": 0.5,
-      "home_b2b": false,
-      "away_b2b": false,
-      "revenge_home": true,
-      "revenge_away": false,
-      "divisional": false,
-      "home_streak": -5,
-      "away_streak": -5,
       "public_pct": 50,
       "public_side": "",
       "fade_signal": 0,
@@ -8309,18 +7276,18 @@
       "spread": -6.5,
       "favorite": "TEX -6.5",
       "underdog": "TENN +6.5",
-      "tagged_at": "2026-09-14T21:11:08.071784+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313053+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 90,
-        "temp": 90,
+        "temperatureF": 75,
+        "temp": 75,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -8401,16 +7368,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 93,
-        "temp": 93,
+        "temperatureF": 88,
+        "temp": 88,
         "windSpeedMph": 15.0,
         "wind": 15.0,
-        "rainChancePct": 0
+        "rainChancePct": 1
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 1
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -8491,12 +7458,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 84,
-        "temp": 84,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 74,
+        "temp": 74,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -8581,16 +7548,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 99,
-        "temp": 99,
+        "temperatureF": 86,
+        "temp": 86,
         "windSpeedMph": 10.0,
         "wind": 10.0,
-        "rainChancePct": 7
+        "rainChancePct": 1
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -8671,12 +7638,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 72,
-        "temp": 72,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -8761,12 +7728,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 69,
-        "temp": 69,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
+        "temperatureF": 58,
+        "temp": 58,
+        "windSpeedMph": 7.0,
+        "wind": 7.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -8929,10 +7896,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
+        "temperatureF": 56,
+        "temp": 56,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -9019,10 +7986,10 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
+        "temperatureF": 55,
+        "temp": 55,
         "windSpeedMph": 5.0,
         "wind": 5.0,
         "rainChancePct": 0
@@ -9109,12 +8076,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -9199,12 +8166,12 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Mostly Clear",
         "description": "",
-        "temperatureF": 82,
-        "temp": 82,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
+        "temperatureF": 67,
+        "temp": 67,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -9243,6 +8210,1011 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": -6,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401866427",
+      "name": "Lindenwood Lions at Eastern Michigan Eagles",
+      "shortName": "LIN @ EMU",
+      "date_utc": "2026-09-26T17:00Z",
+      "date_local": "2026-09-26 01:00 PM ET",
+      "home_team": {
+        "id": "2199",
+        "name": "Eastern Michigan Eagles",
+        "abbr": "EMU",
+        "slug": "eastern-michigan-eagles",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png"
+      },
+      "away_team": {
+        "id": "2815",
+        "name": "Lindenwood Lions",
+        "abbr": "LIN",
+        "slug": "lindenwood-lions",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2815.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Rynearson Stadium",
+        "city": "Ypsilanti",
+        "state": "MI",
+        "indoor": false,
+        "grass": false,
+        "lat": 42.24115,
+        "lon": -83.61299
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Cloudy",
+        "description": "",
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 40.6,
+      "home_elo": 1501.3,
+      "away_elo": 1460.7,
+      "travel_km": 0,
+      "power_diff": 12.6,
+      "off_def_mismatch": 3.8,
+      "pace_avg": 47.4,
+      "home_split_edge": 72.2,
+      "momentum_diff": -5.8,
+      "recent_ats_diff": -19.4,
+      "home_margin_stdev": 19.0,
+      "away_margin_stdev": 18.3,
+      "spot_score": -0.5,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": -1,
+      "away_streak": -8,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858462",
+      "name": "UCLA Bruins at Maryland Terrapins",
+      "shortName": "UCLA @ MD",
+      "date_utc": "2026-09-26T17:30Z",
+      "date_local": "2026-09-26 01:30 PM ET",
+      "home_team": {
+        "id": "120",
+        "name": "Maryland Terrapins",
+        "abbr": "MD",
+        "slug": "maryland-terrapins",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/120.png"
+      },
+      "away_team": {
+        "id": "26",
+        "name": "UCLA Bruins",
+        "abbr": "UCLA",
+        "slug": "ucla-bruins",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/26.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "SECU Stadium",
+        "city": "College Park",
+        "state": "MD",
+        "indoor": false,
+        "grass": false,
+        "lat": 38.98067,
+        "lon": -76.93692
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": -4.5,
+      "rest_diff_days": 0,
+      "elo_diff": 42.0,
+      "home_elo": 1568.0,
+      "away_elo": 1526.0,
+      "travel_km": 0,
+      "power_diff": 5.2,
+      "off_def_mismatch": 1.0,
+      "pace_avg": 53.9,
+      "home_split_edge": 18.2,
+      "momentum_diff": -12.2,
+      "recent_ats_diff": -20.0,
+      "home_margin_stdev": 23.6,
+      "away_margin_stdev": 21.0,
+      "spot_score": 0.0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": true,
+      "divisional": false,
+      "home_streak": -9,
+      "away_streak": 1,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858467",
+      "name": "Notre Dame Fighting Irish at Purdue Boilermakers",
+      "shortName": "ND @ PUR",
+      "date_utc": "2026-09-26T18:00Z",
+      "date_local": "2026-09-26 02:00 PM ET",
+      "home_team": {
+        "id": "2509",
+        "name": "Purdue Boilermakers",
+        "abbr": "PUR",
+        "slug": "purdue-boilermakers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png"
+      },
+      "away_team": {
+        "id": "87",
+        "name": "Notre Dame Fighting Irish",
+        "abbr": "ND",
+        "slug": "notre-dame-fighting-irish",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Ross-Ade Stadium",
+        "city": "West Lafayette",
+        "state": "IN",
+        "indoor": false,
+        "grass": true,
+        "lat": 40.42587,
+        "lon": -86.90807
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 66,
+        "temp": 66,
+        "windSpeedMph": 8.0,
+        "wind": 8.0,
+        "rainChancePct": 1
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": -33.0,
+      "rest_diff_days": 0,
+      "elo_diff": -155.0,
+      "home_elo": 1467.8,
+      "away_elo": 1622.8,
+      "travel_km": 152.9,
+      "power_diff": -13.4,
+      "off_def_mismatch": 0.2,
+      "pace_avg": 53.3,
+      "home_split_edge": -31.9,
+      "momentum_diff": -1.6,
+      "recent_ats_diff": -20.0,
+      "home_margin_stdev": 25.6,
+      "away_margin_stdev": 18.6,
+      "spot_score": 0.4,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": true,
+      "revenge_away": false,
+      "divisional": true,
+      "home_streak": 1,
+      "away_streak": -4,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401864511",
+      "name": "Northern Illinois Huskies at Georgia State Panthers",
+      "shortName": "NIU @ GAST",
+      "date_utc": "2026-09-26T18:00Z",
+      "date_local": "2026-09-26 02:00 PM ET",
+      "home_team": {
+        "id": "2247",
+        "name": "Georgia State Panthers",
+        "abbr": "GAST",
+        "slug": "georgia-state-panthers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2247.png"
+      },
+      "away_team": {
+        "id": "2459",
+        "name": "Northern Illinois Huskies",
+        "abbr": "NIU",
+        "slug": "northern-illinois-huskies",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2459.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Center Parc Stadium",
+        "city": "Atlanta",
+        "state": "GA",
+        "indoor": false,
+        "grass": false,
+        "lat": 33.749,
+        "lon": -84.38798
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 80,
+        "temp": 80,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 3.4,
+      "home_elo": 1460.9,
+      "away_elo": 1457.5,
+      "travel_km": 0,
+      "power_diff": -5.3,
+      "off_def_mismatch": 4.9,
+      "pace_avg": 55.0,
+      "home_split_edge": 0.0,
+      "momentum_diff": 16.6,
+      "recent_ats_diff": -20.0,
+      "home_margin_stdev": 22.6,
+      "away_margin_stdev": 18.1,
+      "spot_score": -0.5,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": -3,
+      "away_streak": -7,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858237",
+      "name": "Central Arkansas Bears at Florida State Seminoles",
+      "shortName": "CARK @ FSU",
+      "date_utc": "2026-09-26T19:00Z",
+      "date_local": "2026-09-26 03:00 PM ET",
+      "home_team": {
+        "id": "52",
+        "name": "Florida State Seminoles",
+        "abbr": "FSU",
+        "slug": "florida-state-seminoles",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png"
+      },
+      "away_team": {
+        "id": "2110",
+        "name": "Central Arkansas Bears",
+        "abbr": "CARK",
+        "slug": "central-arkansas-bears",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2110.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Doak Campbell Stadium",
+        "city": "Tallahassee",
+        "state": "FL",
+        "indoor": false,
+        "grass": true,
+        "lat": 30.43826,
+        "lon": -84.28073
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 82,
+        "temp": 82,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 82.1,
+      "home_elo": 1511.8,
+      "away_elo": 1429.7,
+      "travel_km": 0,
+      "power_diff": 18.8,
+      "off_def_mismatch": -5.4,
+      "pace_avg": 59.8,
+      "home_split_edge": 41.3,
+      "momentum_diff": 40.2,
+      "recent_ats_diff": 0.0,
+      "home_margin_stdev": 23.4,
+      "away_margin_stdev": 23.2,
+      "spot_score": 0.0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": -7,
+      "away_streak": -11,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401864510",
+      "name": "Hawai'i Rainbow Warriors at Wyoming Cowboys",
+      "shortName": "HAW @ WYO",
+      "date_utc": "2026-09-26T19:00Z",
+      "date_local": "2026-09-26 03:00 PM ET",
+      "home_team": {
+        "id": "2751",
+        "name": "Wyoming Cowboys",
+        "abbr": "WYO",
+        "slug": "wyoming-cowboys",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png"
+      },
+      "away_team": {
+        "id": "62",
+        "name": "Hawai'i Rainbow Warriors",
+        "abbr": "HAW",
+        "slug": "hawaii-rainbow-warriors",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "War Memorial Stadium",
+        "city": "Laramie",
+        "state": "WY",
+        "indoor": false,
+        "grass": false,
+        "lat": 41.31137,
+        "lon": -105.5911
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Clear",
+        "description": "",
+        "temperatureF": 59,
+        "temp": 59,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 5
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": 38.8,
+      "home_elo": 1516.9,
+      "away_elo": 1478.1,
+      "travel_km": 5345.9,
+      "power_diff": 3.3,
+      "off_def_mismatch": -3.5,
+      "pace_avg": 51.3,
+      "home_split_edge": 51.3,
+      "momentum_diff": -17.0,
+      "recent_ats_diff": -11.2,
+      "home_margin_stdev": 17.4,
+      "away_margin_stdev": 22.0,
+      "spot_score": 0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": -1,
+      "away_streak": 2,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401856700",
+      "name": "Oklahoma Sooners at Georgia Bulldogs",
+      "shortName": "OU @ UGA",
+      "date_utc": "2026-09-26T19:30Z",
+      "date_local": "2026-09-26 03:30 PM ET",
+      "home_team": {
+        "id": "61",
+        "name": "Georgia Bulldogs",
+        "abbr": "UGA",
+        "slug": "georgia-bulldogs",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png"
+      },
+      "away_team": {
+        "id": "201",
+        "name": "Oklahoma Sooners",
+        "abbr": "OU",
+        "slug": "oklahoma-sooners",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "UGA -10",
+        "spread": -10.0,
+        "total": 52.5,
+        "provider": "Draft Kings"
+      },
+      "venue": {
+        "name": "Sanford Stadium",
+        "city": "Athens",
+        "state": "GA",
+        "indoor": false,
+        "grass": true,
+        "lat": 33.96095,
+        "lon": -83.37794
+      },
+      "officials": [],
+      "fav_team": "Georgia Bulldogs",
+      "dog_team": "Oklahoma Sooners",
+      "fav_abbr": "UGA",
+      "dog_abbr": "OU",
+      "fav_spread": -10.0,
+      "dog_spread": 10.0,
+      "spread": -10.0,
+      "favorite": "UGA -10.0",
+      "underdog": "OU +10.0",
+      "tagged_at": "2026-09-15T03:17:33.313060+00:00",
+      "weather": {
+        "summary": "Partly Cloudy",
+        "description": "",
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 10.0,
+      "rest_diff_days": 0,
+      "elo_diff": 86.4,
+      "home_elo": 1731.4,
+      "away_elo": 1645.0,
+      "travel_km": 1293.7,
+      "power_diff": 7.7,
+      "off_def_mismatch": -4.7,
+      "pace_avg": 53.4,
+      "home_split_edge": 15.7,
+      "momentum_diff": -27.2,
+      "recent_ats_diff": -10.0,
+      "home_margin_stdev": 17.1,
+      "away_margin_stdev": 27.1,
+      "spot_score": -1.0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": true,
+      "divisional": false,
+      "home_streak": -1,
+      "away_streak": -5,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401856699",
+      "name": "Ole Miss Rebels at Florida Gators",
+      "shortName": "MISS @ FLA",
+      "date_utc": "2026-09-26T19:30Z",
+      "date_local": "2026-09-26 03:30 PM ET",
+      "home_team": {
+        "id": "57",
+        "name": "Florida Gators",
+        "abbr": "FLA",
+        "slug": "florida-gators",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png"
+      },
+      "away_team": {
+        "id": "145",
+        "name": "Ole Miss Rebels",
+        "abbr": "MISS",
+        "slug": "ole-miss-rebels",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Ben Hill Griffin Stadium",
+        "city": "Gainesville",
+        "state": "FL",
+        "indoor": false,
+        "grass": true,
+        "lat": 29.65163,
+        "lon": -82.32483
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Cloudy",
+        "description": "",
+        "temperatureF": 78,
+        "temp": 78,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 0.0,
+      "rest_diff_days": 0,
+      "elo_diff": -142.6,
+      "home_elo": 1523.8,
+      "away_elo": 1666.4,
+      "travel_km": 856.9,
+      "power_diff": -11.1,
+      "off_def_mismatch": -8.1,
+      "pace_avg": 55.4,
+      "home_split_edge": 7.8,
+      "momentum_diff": -12.8,
+      "recent_ats_diff": 0.0,
+      "home_margin_stdev": 20.9,
+      "away_margin_stdev": 23.9,
+      "spot_score": 0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": false,
+      "divisional": false,
+      "home_streak": 2,
+      "away_streak": -2,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401856816",
+      "name": "Utah Utes at Iowa State Cyclones",
+      "shortName": "UTAH @ ISU",
+      "date_utc": "2026-09-26T19:30Z",
+      "date_local": "2026-09-26 03:30 PM ET",
+      "home_team": {
+        "id": "66",
+        "name": "Iowa State Cyclones",
+        "abbr": "ISU",
+        "slug": "iowa-state-cyclones",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/66.png"
+      },
+      "away_team": {
+        "id": "254",
+        "name": "Utah Utes",
+        "abbr": "UTAH",
+        "slug": "utah-utes",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/254.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Jack Trice Stadium",
+        "city": "Ames",
+        "state": "IA",
+        "indoor": false,
+        "grass": true,
+        "lat": 42.0267567,
+        "lon": -93.6170448
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Showers And Thunderstorms",
+        "description": "",
+        "temperatureF": 71,
+        "temp": 71,
+        "windSpeedMph": 14.0,
+        "wind": 14.0,
+        "rainChancePct": 89
+      },
+      "weatherRisk": {
+        "risk": 1
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 23.0,
+      "rest_diff_days": 0,
+      "elo_diff": -18.8,
+      "home_elo": 1593.6,
+      "away_elo": 1612.4,
+      "travel_km": 1527.9,
+      "power_diff": -2.8,
+      "off_def_mismatch": -5.8,
+      "pace_avg": 47.9,
+      "home_split_edge": 20.4,
+      "momentum_diff": -31.2,
+      "recent_ats_diff": -10.0,
+      "home_margin_stdev": 19.1,
+      "away_margin_stdev": 20.6,
+      "spot_score": -0.5,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": true,
+      "divisional": false,
+      "home_streak": 4,
+      "away_streak": -4,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858463",
+      "name": "Iowa Hawkeyes at Michigan Wolverines",
+      "shortName": "IOWA @ MICH",
+      "date_utc": "2026-09-26T19:30Z",
+      "date_local": "2026-09-26 03:30 PM ET",
+      "home_team": {
+        "id": "130",
+        "name": "Michigan Wolverines",
+        "abbr": "MICH",
+        "slug": "michigan-wolverines",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png"
+      },
+      "away_team": {
+        "id": "2294",
+        "name": "Iowa Hawkeyes",
+        "abbr": "IOWA",
+        "slug": "iowa-hawkeyes",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Michigan Stadium",
+        "city": "Ann Arbor",
+        "state": "MI",
+        "indoor": false,
+        "grass": false,
+        "lat": 42.27756,
+        "lon": -83.74088
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Mostly Cloudy",
+        "description": "",
+        "temperatureF": 56,
+        "temp": 56,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 0
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 13.0,
+      "rest_diff_days": 0,
+      "elo_diff": 62.0,
+      "home_elo": 1656.1,
+      "away_elo": 1594.1,
+      "travel_km": 647.4,
+      "power_diff": 7.2,
+      "off_def_mismatch": 8.4,
+      "pace_avg": 44.5,
+      "home_split_edge": 33.0,
+      "momentum_diff": 0.6,
+      "recent_ats_diff": -40.0,
+      "home_margin_stdev": 22.1,
+      "away_margin_stdev": 18.5,
+      "spot_score": -1.0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": true,
+      "divisional": false,
+      "home_streak": 7,
+      "away_streak": -3,
+      "public_pct": 50,
+      "public_side": "",
+      "fade_signal": 0,
+      "public_home_pct": 50,
+      "spread_delta": 0,
+      "total_delta": 0,
+      "spread_direction": "stable",
+      "total_direction": "stable",
+      "spread_moves": 0
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401856815",
+      "name": "TCU Horned Frogs at UCF Knights",
+      "shortName": "TCU @ UCF",
+      "date_utc": "2026-09-26T19:30Z",
+      "date_local": "2026-09-26 03:30 PM ET",
+      "home_team": {
+        "id": "2116",
+        "name": "UCF Knights",
+        "abbr": "UCF",
+        "slug": "ucf-knights",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2116.png"
+      },
+      "away_team": {
+        "id": "2628",
+        "name": "TCU Horned Frogs",
+        "abbr": "TCU",
+        "slug": "tcu-horned-frogs",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": null,
+      "venue": {
+        "name": "Acrisure Bounce House",
+        "city": "Orlando",
+        "state": "FL",
+        "indoor": false,
+        "grass": true,
+        "lat": 28.53834,
+        "lon": -81.37924
+      },
+      "officials": [],
+      "weather": {
+        "summary": "Partly Cloudy",
+        "description": "",
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 0.0,
+        "wind": 0.0,
+        "rainChancePct": 6
+      },
+      "weatherRisk": {
+        "risk": 0
+      },
+      "home_injuries": [],
+      "away_injuries": [],
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "injury_questionable_home": 0,
+      "injury_questionable_away": 0,
+      "injury_recent_home": 0,
+      "injury_recent_away": 0,
+      "ref_home_bias": 0.0,
+      "ref_over_bias": 0.0,
+      "ref_consistency": 11.0,
+      "h2h_margin_avg": 1.0,
+      "rest_diff_days": 0,
+      "elo_diff": -32.4,
+      "home_elo": 1524.3,
+      "away_elo": 1556.7,
+      "travel_km": 1594.6,
+      "power_diff": 0.2,
+      "off_def_mismatch": -4.4,
+      "pace_avg": 60.0,
+      "home_split_edge": 12.2,
+      "momentum_diff": 24.6,
+      "recent_ats_diff": 0.0,
+      "home_margin_stdev": 26.3,
+      "away_margin_stdev": 19.1,
+      "spot_score": -1.0,
+      "home_b2b": false,
+      "away_b2b": false,
+      "revenge_home": false,
+      "revenge_away": true,
+      "divisional": false,
+      "home_streak": -1,
+      "away_streak": -5,
       "public_pct": 50,
       "public_side": "",
       "fade_signal": 0,
@@ -9302,14 +9274,14 @@
       "spread": -3.0,
       "favorite": "BUF -3.0",
       "underdog": "LAC +3.0",
-      "tagged_at": "2026-09-14T21:11:08.071786+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313070+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 67,
-        "temp": 67,
-        "windSpeedMph": 8.0,
-        "wind": 8.0,
+        "temperatureF": 54,
+        "temp": 54,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -9324,25 +9296,11 @@
           "reported_at": "2026-09-14T20:16Z"
         },
         {
-          "player": "Terrel Bernard",
-          "status": "Questionable",
-          "position": "LB",
-          "unavailable": false,
-          "reported_at": "2026-09-14T20:13Z"
-        },
-        {
           "player": "T.J. Sanders",
           "status": "Out",
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-14T19:28Z"
-        },
-        {
-          "player": "Jedrick Wills Jr.",
-          "status": "Questionable",
-          "position": "OT",
-          "unavailable": false,
-          "reported_at": "2026-09-08T20:42Z"
         },
         {
           "player": "Tyrell Shavers",
@@ -9357,13 +9315,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Zane Durant",
-          "status": "Injured Reserve",
-          "position": "DT",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
       "away_injuries": [
@@ -9372,14 +9323,21 @@
           "status": "Doubtful",
           "position": "WR",
           "unavailable": true,
-          "reported_at": "2026-09-14T20:55Z"
+          "reported_at": "2026-09-15T01:22Z"
+        },
+        {
+          "player": "Elijah Molden",
+          "status": "Questionable",
+          "position": "CB",
+          "unavailable": false,
+          "reported_at": "2026-09-15T01:12Z"
         },
         {
           "player": "Derius Davis",
           "status": "Questionable",
           "position": "WR",
           "unavailable": false,
-          "reported_at": "2026-09-14T20:54Z"
+          "reported_at": "2026-09-15T01:09Z"
         },
         {
           "player": "Ladd McConkey",
@@ -9394,13 +9352,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-14T19:29Z"
-        },
-        {
-          "player": "Elijah Molden",
-          "status": "Questionable",
-          "position": "CB",
-          "unavailable": false,
-          "reported_at": "2026-09-13T22:37Z"
         },
         {
           "player": "Isaiah World",
@@ -9422,18 +9373,11 @@
           "position": "FB",
           "unavailable": true,
           "reported_at": "2026-08-31T17:56Z"
-        },
-        {
-          "player": "Branson Taylor",
-          "status": "Injured Reserve",
-          "position": "G",
-          "unavailable": true,
-          "reported_at": "2026-08-30T22:49Z"
         }
       ],
-      "injury_count_home": 5,
-      "injury_count_away": 6,
-      "injury_questionable_home": 2,
+      "injury_count_home": 4,
+      "injury_count_away": 5,
+      "injury_questionable_home": 0,
       "injury_questionable_away": 3,
       "injury_recent_home": 2,
       "injury_recent_away": 2,
@@ -9521,12 +9465,12 @@
       "spread": -1.5,
       "favorite": "CAR -1.5",
       "underdog": "CLE +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071788+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313076+00:00",
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 69,
-        "temp": 69,
+        "temperatureF": 60,
+        "temp": 60,
         "windSpeedMph": 7.0,
         "wind": 7.0,
         "rainChancePct": 0
@@ -9535,6 +9479,13 @@
         "risk": 0
       },
       "home_injuries": [
+        {
+          "player": "Dylan Sampson",
+          "status": "Out",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-15T02:13Z"
+        },
         {
           "player": "Teven Jenkins",
           "status": "Out",
@@ -9548,13 +9499,6 @@
           "position": "C",
           "unavailable": true,
           "reported_at": "2026-09-14T19:28Z"
-        },
-        {
-          "player": "Dylan Sampson",
-          "status": "Questionable",
-          "position": "RB",
-          "unavailable": false,
-          "reported_at": "2026-09-14T18:19Z"
         },
         {
           "player": "Jeremiah Owusu-Koramoah",
@@ -9597,13 +9541,6 @@
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-01T01:04Z"
-        },
-        {
-          "player": "Joe Royer",
-          "status": "Out",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-30T21:32Z"
         }
       ],
       "away_injuries": [
@@ -9620,41 +9557,13 @@
           "position": "WR",
           "unavailable": false,
           "reported_at": "2026-09-14T18:33Z"
-        },
-        {
-          "player": "Trevor Etienne",
-          "status": "Injured Reserve",
-          "position": "RB",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Brady Christensen",
-          "status": "Injured Reserve",
-          "position": "G",
-          "unavailable": true,
-          "reported_at": "2026-09-01T23:48Z"
-        },
-        {
-          "player": "Bam Martin-Scott",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:05Z"
-        },
-        {
-          "player": "Taylor Moton",
-          "status": "Out",
-          "position": "OT",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:00Z"
         }
       ],
       "injury_count_home": 9,
-      "injury_count_away": 5,
-      "injury_questionable_home": 1,
+      "injury_count_away": 1,
+      "injury_questionable_home": 0,
       "injury_questionable_away": 1,
-      "injury_recent_home": 2,
+      "injury_recent_home": 3,
       "injury_recent_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -9681,10 +9590,10 @@
       "divisional": false,
       "home_streak": 2,
       "away_streak": -2,
-      "public_pct": 63,
+      "public_pct": 65,
       "public_side": "CAR",
-      "fade_signal": 0,
-      "public_home_pct": 37,
+      "fade_signal": 1,
+      "public_home_pct": 35,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -9740,8 +9649,22 @@
       "spread": -9.5,
       "favorite": "DET -9.5",
       "underdog": "NYJ +9.5",
-      "tagged_at": "2026-09-14T21:11:08.071790+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313082+00:00",
       "home_injuries": [
+        {
+          "player": "Christian Mahogany",
+          "status": "Questionable",
+          "position": "G",
+          "unavailable": false,
+          "reported_at": "2026-09-14T23:24Z"
+        },
+        {
+          "player": "Isiah Pacheco",
+          "status": "Injured Reserve",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T21:35Z"
+        },
         {
           "player": "Blake Miller",
           "status": "Questionable",
@@ -9755,13 +9678,6 @@
           "position": "G",
           "unavailable": false,
           "reported_at": "2026-09-14T20:18Z"
-        },
-        {
-          "player": "Christian Mahogany",
-          "status": "Questionable",
-          "position": "G",
-          "unavailable": false,
-          "reported_at": "2026-09-13T18:58Z"
         },
         {
           "player": "Cade Mays",
@@ -9841,20 +9757,13 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-08-31T23:57Z"
-        },
-        {
-          "player": "Tyler Baron",
-          "status": "Out",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:53Z"
         }
       ],
-      "injury_count_home": 2,
-      "injury_count_away": 8,
+      "injury_count_home": 3,
+      "injury_count_away": 7,
       "injury_questionable_home": 3,
       "injury_questionable_away": 2,
-      "injury_recent_home": 0,
+      "injury_recent_home": 1,
       "injury_recent_away": 3,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
@@ -9940,7 +9849,7 @@
       "spread": -1.5,
       "favorite": "HOU -1.5",
       "underdog": "IND +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071791+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313088+00:00",
       "home_injuries": [
         {
           "player": "Austin Ajiake",
@@ -9991,14 +9900,14 @@
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-13T21:21Z"
+          "reported_at": "2026-09-14T23:58Z"
         },
         {
           "player": "Jake Hummel",
           "status": "Doubtful",
           "position": "LB",
           "unavailable": true,
-          "reported_at": "2026-09-13T19:43Z"
+          "reported_at": "2026-09-14T23:57Z"
         },
         {
           "player": "Kayden McDonald",
@@ -10020,17 +9929,10 @@
           "position": "WR",
           "unavailable": true,
           "reported_at": "2026-09-04T15:55Z"
-        },
-        {
-          "player": "Sam Hagen",
-          "status": "Injured Reserve",
-          "position": "G",
-          "unavailable": true,
-          "reported_at": "2026-09-02T00:13Z"
         }
       ],
       "injury_count_home": 4,
-      "injury_count_away": 5,
+      "injury_count_away": 4,
       "injury_questionable_home": 2,
       "injury_questionable_away": 1,
       "injury_recent_home": 1,
@@ -10060,10 +9962,10 @@
       "divisional": true,
       "home_streak": -7,
       "away_streak": 9,
-      "public_pct": 60,
+      "public_pct": 62,
       "public_side": "HOU",
       "fade_signal": 0,
-      "public_home_pct": 40,
+      "public_home_pct": 38,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10119,26 +10021,26 @@
       "spread": -7.5,
       "favorite": "KC -7.5",
       "underdog": "MIA +7.5",
-      "tagged_at": "2026-09-14T21:11:08.071793+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313093+00:00",
       "weather": {
-        "summary": "Chance Showers And Thunderstorms",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 85,
-        "temp": 85,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
-        "rainChancePct": 29
+        "temperatureF": 81,
+        "temp": 81,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
+        "rainChancePct": 5
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [
         {
           "player": "Kyle Louis",
-          "status": "Questionable",
+          "status": "Out",
           "position": "LB",
-          "unavailable": false,
-          "reported_at": "2026-09-13T23:19Z"
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:51Z"
         },
         {
           "player": "Ronnie Harrison Jr.",
@@ -10160,36 +10062,71 @@
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Storm Duck",
-          "status": "Out",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T18:22Z"
-        },
-        {
-          "player": "Darrell Baker Jr.",
-          "status": "Out",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T18:10Z"
         }
       ],
       "away_injuries": [
+        {
+          "player": "Cooper McDonald",
+          "status": "Questionable",
+          "position": "LB",
+          "unavailable": false,
+          "reported_at": "2026-09-15T02:07Z"
+        },
+        {
+          "player": "Mansoor Delane",
+          "status": "Out",
+          "position": "CB",
+          "unavailable": true,
+          "reported_at": "2026-09-15T02:03Z"
+        },
+        {
+          "player": "Garrett Nussmeier",
+          "status": "Out",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:05Z"
+        },
         {
           "player": "Josh Simmons",
           "status": "Out",
           "position": "OT",
           "unavailable": true,
-          "reported_at": "2026-09-12T18:14Z"
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Jared Wiley",
+          "status": "Out",
+          "position": "TE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Diego Pounds",
+          "status": "Out",
+          "position": "OT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Jack Pyburn",
+          "status": "Out",
+          "position": "LB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
         },
         {
           "player": "Chamarri Conner",
           "status": "Out",
           "position": "S",
           "unavailable": true,
-          "reported_at": "2026-09-12T18:12Z"
+          "reported_at": "2026-09-14T22:59Z"
+        },
+        {
+          "player": "Bryson Eason",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:59Z"
         },
         {
           "player": "Omarr Norman-Lott",
@@ -10206,20 +10143,20 @@
           "reported_at": "2026-08-31T17:40Z"
         }
       ],
-      "injury_count_home": 4,
-      "injury_count_away": 4,
-      "injury_questionable_home": 2,
-      "injury_questionable_away": 0,
-      "injury_recent_home": 0,
-      "injury_recent_away": 0,
+      "injury_count_home": 3,
+      "injury_count_away": 10,
+      "injury_questionable_home": 1,
+      "injury_questionable_away": 1,
+      "injury_recent_home": 1,
+      "injury_recent_away": 8,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -7.0,
-      "rest_diff_days": 0,
-      "elo_diff": -95.0,
+      "rest_diff_days": 14,
+      "elo_diff": -105.5,
       "home_elo": 1480.8,
-      "away_elo": 1575.8,
+      "away_elo": 1586.3,
       "travel_km": 1981.4,
       "power_diff": -4.8,
       "off_def_mismatch": 0.4,
@@ -10237,10 +10174,10 @@
       "divisional": false,
       "home_streak": -1,
       "away_streak": -6,
-      "public_pct": 60,
+      "public_pct": 61,
       "public_side": "KC",
       "fade_signal": 0,
-      "public_home_pct": 40,
+      "public_home_pct": 39,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10296,14 +10233,14 @@
       "spread": -3.0,
       "favorite": "NYG -3.0",
       "underdog": "TEN +3.0",
-      "tagged_at": "2026-09-14T21:11:08.071795+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313099+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 12.0,
-        "wind": 12.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -10316,13 +10253,6 @@
           "position": "DT",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Korie Black",
-          "status": "Injured Reserve",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:50Z"
         }
       ],
       "away_injuries": [
@@ -10331,7 +10261,7 @@
           "status": "Out",
           "position": "LB",
           "unavailable": true,
-          "reported_at": "2026-09-14T19:30Z"
+          "reported_at": "2026-09-14T23:15Z"
         },
         {
           "player": "Milo Eifler",
@@ -10374,24 +10304,10 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-01T00:19Z"
-        },
-        {
-          "player": "Jaylen Harrell",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
-        },
-        {
-          "player": "Jaren Kanak",
-          "status": "Injured Reserve",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
         }
       ],
-      "injury_count_home": 2,
-      "injury_count_away": 8,
+      "injury_count_home": 1,
+      "injury_count_away": 6,
       "injury_questionable_home": 0,
       "injury_questionable_away": 1,
       "injury_recent_home": 0,
@@ -10421,10 +10337,10 @@
       "divisional": false,
       "home_streak": 2,
       "away_streak": -2,
-      "public_pct": 80,
+      "public_pct": 81,
       "public_side": "NYG",
       "fade_signal": 3,
-      "public_home_pct": 80,
+      "public_home_pct": 81,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10480,14 +10396,14 @@
       "spread": -1.5,
       "favorite": "CIN -1.5",
       "underdog": "PIT +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071797+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313105+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 6.0,
-        "wind": 6.0,
+        "temperatureF": 61,
+        "temp": 61,
+        "windSpeedMph": 1.0,
+        "wind": 1.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -10577,10 +10493,10 @@
       "divisional": true,
       "home_streak": 1,
       "away_streak": -1,
-      "public_pct": 61,
+      "public_pct": 63,
       "public_side": "CIN",
       "fade_signal": 0,
-      "public_home_pct": 39,
+      "public_home_pct": 37,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10636,14 +10552,14 @@
       "spread": -3.5,
       "favorite": "SEA -3.5",
       "underdog": "WSH +3.5",
-      "tagged_at": "2026-09-14T21:11:08.071799+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313111+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 75,
-        "temp": 75,
-        "windSpeedMph": 12.0,
-        "wind": 12.0,
+        "temperatureF": 62,
+        "temp": 62,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -10681,6 +10597,13 @@
       ],
       "away_injuries": [
         {
+          "player": "Sam Darnold",
+          "status": "Doubtful",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:26Z"
+        },
+        {
           "player": "Ty Okada",
           "status": "Out",
           "position": "S",
@@ -10700,13 +10623,6 @@
           "position": "S",
           "unavailable": true,
           "reported_at": "2026-09-14T19:29Z"
-        },
-        {
-          "player": "Sam Darnold",
-          "status": "Doubtful",
-          "position": "QB",
-          "unavailable": true,
-          "reported_at": "2026-09-13T14:08Z"
         }
       ],
       "injury_count_home": 0,
@@ -10719,7 +10635,7 @@
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -13.5,
-      "rest_diff_days": 10,
+      "rest_diff_days": 9,
       "elo_diff": -157.1,
       "home_elo": 1459.0,
       "away_elo": 1616.1,
@@ -10740,10 +10656,10 @@
       "divisional": false,
       "home_streak": 1,
       "away_streak": 8,
-      "public_pct": 57,
+      "public_pct": 59,
       "public_side": "SEA",
       "fade_signal": 0,
-      "public_home_pct": 43,
+      "public_home_pct": 41,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -10799,18 +10715,18 @@
       "spread": -1.5,
       "favorite": "JAX -1.5",
       "underdog": "NE +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071800+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313116+00:00",
       "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 88,
-        "temp": 88,
-        "windSpeedMph": 9.0,
-        "wind": 9.0,
-        "rainChancePct": 16
+        "temperatureF": 81,
+        "temp": 81,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [
         {
@@ -10840,13 +10756,6 @@
           "position": "G",
           "unavailable": true,
           "reported_at": "2026-08-31T23:21Z"
-        },
-        {
-          "player": "Zach Durfee",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-30T23:11Z"
         }
       ],
       "away_injuries": [
@@ -10879,7 +10788,7 @@
           "reported_at": "2026-09-08T20:42Z"
         }
       ],
-      "injury_count_home": 3,
+      "injury_count_home": 2,
       "injury_count_away": 4,
       "injury_questionable_home": 2,
       "injury_questionable_away": 0,
@@ -10889,7 +10798,7 @@
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -12.0,
-      "rest_diff_days": 10,
+      "rest_diff_days": 9,
       "elo_diff": 7.0,
       "home_elo": 1511.1,
       "away_elo": 1504.1,
@@ -10969,14 +10878,14 @@
       "spread": -11.5,
       "favorite": "SF -11.5",
       "underdog": "ARI +11.5",
-      "tagged_at": "2026-09-14T21:11:08.071802+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313122+00:00",
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 81,
-        "temp": 81,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
+        "temperatureF": 67,
+        "temp": 67,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
         "rainChancePct": 0
       },
       "weatherRisk": {
@@ -11094,10 +11003,10 @@
       "divisional": true,
       "home_streak": -1,
       "away_streak": -9,
-      "public_pct": 53,
+      "public_pct": 52,
       "public_side": "SF",
       "fade_signal": 0,
-      "public_home_pct": 53,
+      "public_home_pct": 52,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -11153,20 +11062,27 @@
       "spread": -1.5,
       "favorite": "TB -1.5",
       "underdog": "MIN +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071805+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313128+00:00",
       "weather": {
-        "summary": "Scattered Showers And Thunderstorms",
+        "summary": "Mostly Cloudy",
         "description": "",
-        "temperatureF": 88,
-        "temp": 88,
-        "windSpeedMph": 5.0,
-        "wind": 5.0,
-        "rainChancePct": 37
+        "temperatureF": 79,
+        "temp": 79,
+        "windSpeedMph": 2.0,
+        "wind": 2.0,
+        "rainChancePct": 9
       },
       "weatherRisk": {
-        "risk": 1
+        "risk": 0
       },
       "home_injuries": [
+        {
+          "player": "Jacob Parrish",
+          "status": "Questionable",
+          "position": "CB",
+          "unavailable": false,
+          "reported_at": "2026-09-14T23:52Z"
+        },
         {
           "player": "Justin Skule",
           "status": "Out",
@@ -11187,13 +11103,6 @@
           "position": "WR",
           "unavailable": true,
           "reported_at": "2026-09-14T19:30Z"
-        },
-        {
-          "player": "Jacob Parrish",
-          "status": "Questionable",
-          "position": "CB",
-          "unavailable": false,
-          "reported_at": "2026-09-13T18:49Z"
         },
         {
           "player": "Josh Hayes",
@@ -11344,21 +11253,21 @@
       "spread": -2.5,
       "favorite": "BAL -2.5",
       "underdog": "DAL +2.5",
-      "tagged_at": "2026-09-14T21:11:08.071807+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313134+00:00",
       "home_injuries": [
-        {
-          "player": "Malik Hooker",
-          "status": "Doubtful",
-          "position": "S",
-          "unavailable": true,
-          "reported_at": "2026-09-14T03:13Z"
-        },
         {
           "player": "DeMarvion Overshown",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-14T03:10Z"
+          "reported_at": "2026-09-15T01:19Z"
+        },
+        {
+          "player": "Malik Hooker",
+          "status": "Doubtful",
+          "position": "S",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:21Z"
         },
         {
           "player": "Malik Davis",
@@ -11380,27 +11289,6 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Matt Hennessy",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "DJ Rogers",
-          "status": "Injured Reserve",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-31T22:59Z"
-        },
-        {
-          "player": "Marist Liufau",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T16:40Z"
         }
       ],
       "away_injuries": [
@@ -11459,17 +11347,10 @@
           "position": "RB",
           "unavailable": true,
           "reported_at": "2026-08-31T03:52Z"
-        },
-        {
-          "player": "Danny Pinter",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-08-26T23:36Z"
         }
       ],
-      "injury_count_home": 7,
-      "injury_count_away": 7,
+      "injury_count_home": 4,
+      "injury_count_away": 6,
       "injury_questionable_home": 1,
       "injury_questionable_away": 2,
       "injury_recent_home": 1,
@@ -11558,7 +11439,7 @@
       "spread": -3.5,
       "favorite": "NO -3.5",
       "underdog": "LV +3.5",
-      "tagged_at": "2026-09-14T21:11:08.071809+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313143+00:00",
       "home_injuries": [
         {
           "player": "Cameron Jordan",
@@ -11601,20 +11482,6 @@
           "position": "G",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Jaylan Ford",
-          "status": "Injured Reserve",
-          "position": "LB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:48Z"
-        },
-        {
-          "player": "David Long Jr.",
-          "status": "Injured Reserve",
-          "position": "CB",
-          "unavailable": true,
-          "reported_at": "2026-08-31T23:41Z"
         }
       ],
       "away_injuries": [
@@ -11652,10 +11519,17 @@
           "position": "DE",
           "unavailable": true,
           "reported_at": "2026-08-31T00:50Z"
+        },
+        {
+          "player": "Chigozie Anusiem",
+          "status": "Injured Reserve",
+          "position": "CB",
+          "unavailable": true,
+          "reported_at": "2026-08-22T20:31Z"
         }
       ],
-      "injury_count_home": 8,
-      "injury_count_away": 4,
+      "injury_count_home": 6,
+      "injury_count_away": 5,
       "injury_questionable_home": 0,
       "injury_questionable_away": 1,
       "injury_recent_home": 3,
@@ -11744,20 +11618,62 @@
       "spread": -3.0,
       "favorite": "LAR -3.0",
       "underdog": "DEN +3.0",
-      "tagged_at": "2026-09-14T21:11:08.071811+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313149+00:00",
       "weather": {
-        "summary": "Slight Chance Showers And Thunderstorms",
+        "summary": "Chance Rain Showers",
         "description": "",
-        "temperatureF": 87,
-        "temp": 87,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 24
+        "temperatureF": 74,
+        "temp": 74,
+        "windSpeedMph": 6.0,
+        "wind": 6.0,
+        "rainChancePct": 25
       },
       "weatherRisk": {
         "risk": 1
       },
       "home_injuries": [
+        {
+          "player": "Tyler Badie",
+          "status": "Out",
+          "position": "RB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:57Z"
+        },
+        {
+          "player": "Sam Ehlinger",
+          "status": "Out",
+          "position": "QB",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:55Z"
+        },
+        {
+          "player": "Tyler Onyedim",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Jordan Jackson",
+          "status": "Out",
+          "position": "DT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Dallen Bentley",
+          "status": "Out",
+          "position": "TE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
+        {
+          "player": "Kage Casey",
+          "status": "Out",
+          "position": "OT",
+          "unavailable": true,
+          "reported_at": "2026-09-14T22:51Z"
+        },
         {
           "player": "Jonathon Cooper",
           "status": "Out",
@@ -11792,58 +11708,51 @@
           "position": "LB",
           "unavailable": true,
           "reported_at": "2026-08-22T00:29Z"
-        },
-        {
-          "player": "Matt Henningsen",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
-        },
-        {
-          "player": "Michael Deiter",
-          "status": "Injured Reserve",
-          "position": "C",
-          "unavailable": true,
-          "reported_at": "2026-08-19T12:07Z"
         }
       ],
       "away_injuries": [
-        {
-          "player": "Myles Garrett",
-          "status": "Out",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-09-14T18:16Z"
-        },
         {
           "player": "Omar Speights",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-14T16:26Z"
+          "reported_at": "2026-09-14T23:50Z"
         },
         {
           "player": "Nate Landman",
           "status": "Questionable",
           "position": "LB",
           "unavailable": false,
-          "reported_at": "2026-09-14T16:24Z"
+          "reported_at": "2026-09-14T23:45Z"
+        },
+        {
+          "player": "Kam Curl",
+          "status": "Questionable",
+          "position": "S",
+          "unavailable": false,
+          "reported_at": "2026-09-14T23:35Z"
+        },
+        {
+          "player": "Myles Garrett",
+          "status": "Out",
+          "position": "DE",
+          "unavailable": true,
+          "reported_at": "2026-09-14T18:16Z"
         }
       ],
-      "injury_count_home": 7,
+      "injury_count_home": 11,
       "injury_count_away": 1,
       "injury_questionable_home": 0,
-      "injury_questionable_away": 2,
-      "injury_recent_home": 0,
+      "injury_questionable_away": 3,
+      "injury_recent_home": 6,
       "injury_recent_away": 1,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
       "h2h_margin_avg": -37.0,
-      "rest_diff_days": 0,
-      "elo_diff": 5.6,
-      "home_elo": 1592.1,
+      "rest_diff_days": -14,
+      "elo_diff": -4.9,
+      "home_elo": 1581.6,
       "away_elo": 1586.5,
       "travel_km": 1349.8,
       "power_diff": -1.4,
@@ -11921,18 +11830,18 @@
       "spread": -1.5,
       "favorite": "CHI -1.5",
       "underdog": "PHI +1.5",
-      "tagged_at": "2026-09-14T21:11:08.071812+00:00",
+      "tagged_at": "2026-09-15T03:17:33.313155+00:00",
       "weather": {
-        "summary": "Mostly Cloudy",
+        "summary": "Partly Cloudy",
         "description": "",
-        "temperatureF": 70,
-        "temp": 70,
-        "windSpeedMph": 10.0,
-        "wind": 10.0,
-        "rainChancePct": 14
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 15.0,
+        "wind": 15.0,
+        "rainChancePct": 5
       },
       "weatherRisk": {
-        "risk": 0
+        "risk": 1
       },
       "home_injuries": [
         {
@@ -11976,16 +11885,16 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-09-08T20:42Z"
-        },
-        {
-          "player": "Jonathan Garvin",
-          "status": "Injured Reserve",
-          "position": "DE",
-          "unavailable": true,
-          "reported_at": "2026-09-08T20:42Z"
         }
       ],
       "away_injuries": [
+        {
+          "player": "Landon Dickerson",
+          "status": "Out",
+          "position": "G",
+          "unavailable": true,
+          "reported_at": "2026-09-14T23:45Z"
+        },
         {
           "player": "Jonathan Greenard",
           "status": "Out",
@@ -12013,28 +11922,14 @@
           "position": "CB",
           "unavailable": true,
           "reported_at": "2026-08-31T23:57Z"
-        },
-        {
-          "player": "Grant Calcaterra",
-          "status": "Injured Reserve",
-          "position": "TE",
-          "unavailable": true,
-          "reported_at": "2026-08-31T18:50Z"
-        },
-        {
-          "player": "Johnny Wilson",
-          "status": "Injured Reserve",
-          "position": "WR",
-          "unavailable": true,
-          "reported_at": "2026-08-22T21:59Z"
         }
       ],
-      "injury_count_home": 7,
-      "injury_count_away": 6,
+      "injury_count_home": 6,
+      "injury_count_away": 5,
       "injury_questionable_home": 0,
       "injury_questionable_away": 0,
       "injury_recent_home": 3,
-      "injury_recent_away": 1,
+      "injury_recent_away": 2,
       "ref_home_bias": 0.0,
       "ref_over_bias": 0.0,
       "ref_consistency": 10.0,
@@ -12060,10 +11955,10 @@
       "divisional": false,
       "home_streak": -2,
       "away_streak": -1,
-      "public_pct": 62,
+      "public_pct": 63,
       "public_side": "PHI",
       "fade_signal": 0,
-      "public_home_pct": 38,
+      "public_home_pct": 37,
       "spread_delta": 0,
       "total_delta": 0,
       "spread_direction": "stable",
@@ -12106,13 +12001,13 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Mostly Sunny",
+        "summary": "Isolated Showers And Thunderstorms",
         "description": "",
-        "temperatureF": 93,
-        "temp": 93,
-        "windSpeedMph": 7.0,
-        "wind": 7.0,
-        "rainChancePct": 12
+        "temperatureF": 84,
+        "temp": 84,
+        "windSpeedMph": 3.0,
+        "wind": 3.0,
+        "rainChancePct": 23
       },
       "weatherRisk": {
         "risk": 1
@@ -12196,16 +12091,16 @@
       },
       "officials": [],
       "weather": {
-        "summary": "Sunny",
+        "summary": "Clear",
         "description": "",
-        "temperatureF": 97,
-        "temp": 97,
-        "windSpeedMph": 15.0,
-        "wind": 15.0,
-        "rainChancePct": 12
+        "temperatureF": 89,
+        "temp": 89,
+        "windSpeedMph": 10.0,
+        "wind": 10.0,
+        "rainChancePct": 0
       },
       "weatherRisk": {
-        "risk": 2
+        "risk": 0
       },
       "home_injuries": [],
       "away_injuries": [],
@@ -12251,5 +12146,5 @@
       "spread_moves": 0
     }
   ],
-  "weather_merged_at": "2026-09-14T21:13:48.667819"
+  "weather_merged_at": "2026-09-15T03:20:12.708145"
 }
