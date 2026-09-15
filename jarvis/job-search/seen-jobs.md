@@ -29,3 +29,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-14) Chief of Staff — Flourish Health — https://to.indeed.com/aawpggh8pgq7
 - (2026-09-14) Senior Director, Professional Learning — Edmentum — https://to.indeed.com/aax6nq72smd8
 - (2026-09-14) Executive Director — Main Street Senior Living — https://to.indeed.com/aaj67trkclkf
+- (2026-09-15) Associate Director, Learning Solutions & Design — RTX — https://to.indeed.com/aajzbqpfjkkq
+- (2026-09-15) Senior Director, Human Resources Business Partner — Vera Therapeutics — https://to.indeed.com/aa9kd2hy7c2f
