@@ -35,3 +35,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-16) Manager, Production-Assembly Finish — Scout Motors — https://to.indeed.com/aawx49wn694h
 - (2026-09-17) General Manager (Public Transit) — RATP Dev — https://to.indeed.com/aarmpdw9jpjg
 - (2026-09-17) President and CEO — Archery Trade Association — https://to.indeed.com/aa9fc8mqc277
+- (2026-09-18) VP, Facilities Management Ops – K-12 Schools — Can't Miss Talent — https://to.indeed.com/aa7jdljp2szw
+- (2026-09-18) Lead Director, Security Operations Center (SOC) — CVS Health — https://to.indeed.com/aaxwvt8hn4jx

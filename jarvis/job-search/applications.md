@@ -18,3 +18,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-09-14) VP, People Operations & Experience — ABC Fitness — $185,000–$220,000 — https://to.indeed.com/aa4bzw2z6cbc — PREPARED
 - (2026-09-16) Senior Director of Service Operations — Branded Group — $140,000–$210,000 — https://to.indeed.com/aagbyv4scwv4 — PREPARED
 - (2026-09-17) General Manager (Public Transit) — RATP Dev — salary not posted — https://to.indeed.com/aarmpdw9jpjg — PREPARED
+- (2026-09-18) VP, Facilities Management Ops – K-12 Schools (Remote) — via Can't Miss Talent — salary not posted — https://to.indeed.com/aa7jdljp2szw — PREPARED
