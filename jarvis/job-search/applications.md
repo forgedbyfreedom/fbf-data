@@ -19,3 +19,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-09-16) Senior Director of Service Operations — Branded Group — $140,000–$210,000 — https://to.indeed.com/aagbyv4scwv4 — PREPARED
 - (2026-09-17) General Manager (Public Transit) — RATP Dev — salary not posted — https://to.indeed.com/aarmpdw9jpjg — PREPARED
 - (2026-09-18) VP, Facilities Management Ops – K-12 Schools (Remote) — via Can't Miss Talent — salary not posted — https://to.indeed.com/aa7jdljp2szw — PREPARED
+- (2026-09-22) Trauma-Informed Corrections Instructor/SME (part-time contract) — Leading Edge Skills — $125–175/hr — https://to.indeed.com/aazc4pfdsg4h — PREPARED

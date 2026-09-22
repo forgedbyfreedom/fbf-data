@@ -37,3 +37,4 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-17) President and CEO — Archery Trade Association — https://to.indeed.com/aa9fc8mqc277
 - (2026-09-18) VP, Facilities Management Ops – K-12 Schools — Can't Miss Talent — https://to.indeed.com/aa7jdljp2szw
 - (2026-09-18) Lead Director, Security Operations Center (SOC) — CVS Health — https://to.indeed.com/aaxwvt8hn4jx
+- (2026-09-22) Trauma-Informed Corrections Instructor/SME (part-time contract) — Leading Edge Skills — https://to.indeed.com/aazc4pfdsg4h
