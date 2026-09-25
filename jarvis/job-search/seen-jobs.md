@@ -38,3 +38,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-18) VP, Facilities Management Ops – K-12 Schools — Can't Miss Talent — https://to.indeed.com/aa7jdljp2szw
 - (2026-09-18) Lead Director, Security Operations Center (SOC) — CVS Health — https://to.indeed.com/aaxwvt8hn4jx
 - (2026-09-22) Trauma-Informed Corrections Instructor/SME (part-time contract) — Leading Edge Skills — https://to.indeed.com/aazc4pfdsg4h
+- (2026-09-25) Associate Director, Talent Management (Group Functions Talent Partner) — RTX — https://to.indeed.com/aa6zhrffm4jg
+- (2026-09-25) Director of Client Services (Remote SC/NC) — Optum — https://to.indeed.com/aa6nydq4wrgw
