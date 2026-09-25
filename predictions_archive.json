@@ -172017,6 +172017,203 @@
         "ou_suppressed_reason": "model differs from the total by 0.5 pts, under the 3.0 pt bar for a meaningful edge",
         "ats_suppressed": false
       }
+    },
+    {
+      "id": "401869941",
+      "sport": "ncaaf",
+      "matchup": "Liberty Flames at Coastal Carolina Chanticleers",
+      "shortName": "LIB @ CCU",
+      "date_utc": "2026-09-24T23:30Z",
+      "date_local": "2026-09-24 07:30 PM ET",
+      "home": "CCU",
+      "away": "LIB",
+      "home_team": {
+        "id": "324",
+        "name": "Coastal Carolina Chanticleers",
+        "abbr": "CCU",
+        "slug": "coastal-carolina-chanticleers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png"
+      },
+      "away_team": {
+        "id": "2335",
+        "name": "Liberty Flames",
+        "abbr": "LIB",
+        "slug": "liberty-flames",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2335.png"
+      },
+      "odds": {
+        "details": "LIB -1.5",
+        "spread": 1.5,
+        "total": 49.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Brooks Stadium (SC)",
+        "city": "Conway",
+        "state": "SC",
+        "indoor": false,
+        "grass": false,
+        "lat": 33.8360035,
+        "lon": -79.0478143
+      },
+      "weather": {
+        "summary": "Chance Showers And Thunderstorms",
+        "description": "",
+        "temperatureF": 70,
+        "temp": 70,
+        "windSpeedMph": 13.0,
+        "wind": 13.0,
+        "rainChancePct": 38
+      },
+      "risk": {
+        "risk": 1
+      },
+      "fav_team": "Liberty Flames",
+      "dog_team": "Coastal Carolina Chanticleers",
+      "fav_abbr": "LIB",
+      "dog_abbr": "CCU",
+      "fav_spread": -1.5,
+      "dog_spread": 1.5,
+      "injury_count_home": 0,
+      "injury_count_away": 0,
+      "prediction": {
+        "projected_home_score": 22.7,
+        "projected_away_score": 23.7,
+        "projected_total": 46.4,
+        "projected_spread": -1.0,
+        "win_probability_home": 0.472,
+        "confidence": 59
+      },
+      "model_used": "market_anchored",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.4773,
+        "away_win_pct": 0.5227,
+        "home_cover_pct": 0.5143,
+        "over_pct": 0.4112,
+        "avg_simulated_margin": -0.92,
+        "avg_simulated_total": 46.44
+      },
+      "picks": {
+        "su_pick": "Liberty Flames",
+        "su_pick_abbr": "LIB",
+        "su_confidence": 51.3,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": "Under",
+        "ou_line": 49.5,
+        "ou_confidence": 51.6,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true,
+        "model_edge_pts": 0.5,
+        "ats_suppressed": true,
+        "ats_suppressed_reason": "model differs from the line by 0.5 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ou_edge_pts": -3.1,
+        "ou_suppressed": false
+      }
+    },
+    {
+      "id": "401872948",
+      "sport": "nfl",
+      "matchup": "Atlanta Falcons at Green Bay Packers",
+      "shortName": "ATL @ GB",
+      "date_utc": "2026-09-25T00:15Z",
+      "date_local": "2026-09-24 08:15 PM ET",
+      "home": "GB",
+      "away": "ATL",
+      "home_team": {
+        "id": "9",
+        "name": "Green Bay Packers",
+        "abbr": "GB",
+        "slug": "green-bay-packers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png"
+      },
+      "away_team": {
+        "id": "1",
+        "name": "Atlanta Falcons",
+        "abbr": "ATL",
+        "slug": "atlanta-falcons",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png"
+      },
+      "odds": {
+        "details": "GB -4.5",
+        "spread": -4.5,
+        "total": 42.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Lambeau Field",
+        "city": "Green Bay",
+        "state": "WI",
+        "indoor": false,
+        "grass": true,
+        "lat": 44.5126379,
+        "lon": -88.0125794
+      },
+      "weather": {
+        "summary": "Partly Sunny",
+        "description": "",
+        "temperatureF": 67,
+        "temp": 67,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
+      },
+      "risk": {
+        "risk": 0
+      },
+      "fav_team": "Green Bay Packers",
+      "dog_team": "Atlanta Falcons",
+      "fav_abbr": "GB",
+      "dog_abbr": "ATL",
+      "fav_spread": -4.5,
+      "dog_spread": 4.5,
+      "injury_count_home": 4,
+      "injury_count_away": 2,
+      "prediction": {
+        "projected_home_score": 24.2,
+        "projected_away_score": 16.3,
+        "projected_total": 40.5,
+        "projected_spread": 7.8,
+        "win_probability_home": 0.704,
+        "confidence": 84
+      },
+      "model_used": "market_anchored",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.731,
+        "away_win_pct": 0.269,
+        "home_cover_pct": 0.5972,
+        "over_pct": 0.4331,
+        "avg_simulated_margin": 7.76,
+        "avg_simulated_total": 40.3
+      },
+      "picks": {
+        "su_pick": "Green Bay Packers",
+        "su_pick_abbr": "GB",
+        "su_confidence": 62.9,
+        "ats_pick": "Green Bay Packers",
+        "ats_pick_abbr": "GB",
+        "ats_spread": -4.5,
+        "ats_confidence": 52.2,
+        "ats_high_conf": true,
+        "ou_pick": null,
+        "ou_line": 42.5,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true,
+        "model_edge_pts": 3.31,
+        "ou_edge_pts": -2.0,
+        "ou_suppressed": true,
+        "ou_suppressed_reason": "model differs from the total by 2.0 pts, under the 3.0 pt bar for a meaningful edge",
+        "ats_suppressed": false
+      }
     }
   ]
 }
