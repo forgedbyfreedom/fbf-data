@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260927_1513",
+  "timestamp": "20260927_2111",
   "count": 42,
   "data": [
     {
@@ -26,7 +26,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "NMSU -1.5",
+        "spread": -1.5,
+        "total": 53.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Aggie Memorial Stadium",
         "city": "Las Cruces",
@@ -61,10 +66,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "TLSA -1.5",
-        "spread": -1.5,
-        "total": 58.5,
-        "provider": "Draft Kings"
+        "details": "TLSA -2.5",
+        "spread": -2.5,
+        "total": 57.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "H. A. Chapman Stadium",
@@ -100,10 +105,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "VT -5.5",
-        "spread": -5.5,
-        "total": 53.5,
-        "provider": "Draft Kings"
+        "details": "VT -4.5",
+        "spread": -4.5,
+        "total": 52.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Lane Stadium",
@@ -138,7 +143,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "LIB -7",
+        "spread": 7.0,
+        "total": 49.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Delaware Stadium",
         "city": "Newark",
@@ -173,10 +183,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "PSU -4.5",
-        "spread": 4.5,
-        "total": 48.5,
-        "provider": "Draft Kings"
+        "details": "PSU -3",
+        "spread": 3.0,
+        "total": 46.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Ryan Field",
@@ -214,16 +224,10 @@
       "odds": {
         "details": "ND -21.5",
         "spread": 21.5,
-        "total": 49.5,
-        "provider": "Draft Kings"
+        "total": 48.5,
+        "provider": "DraftKings"
       },
-      "venue": {
-        "name": "Kenan Stadium",
-        "city": "Chapel Hill",
-        "state": "NC",
-        "indoor": false,
-        "grass": true
-      },
+      "venue": null,
       "officials": []
     },
     {
@@ -251,10 +255,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "ALA -4.5",
-        "spread": 4.5,
+        "details": "ALA -6",
+        "spread": 6.0,
         "total": 59.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Davis Wade Stadium",
@@ -262,79 +266,6 @@
         "state": "MS",
         "indoor": false,
         "grass": true
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858474",
-      "name": "Michigan Wolverines at Minnesota Golden Gophers",
-      "shortName": "MICH @ MINN",
-      "date_utc": "2026-10-03T16:00Z",
-      "date_local": "2026-10-03 12:00 PM ET",
-      "home_team": {
-        "id": "135",
-        "name": "Minnesota Golden Gophers",
-        "abbr": "MINN",
-        "slug": "minnesota-golden-gophers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png"
-      },
-      "away_team": {
-        "id": "130",
-        "name": "Michigan Wolverines",
-        "abbr": "MICH",
-        "slug": "michigan-wolverines",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": {
-        "details": "MICH -6.5",
-        "spread": 6.5,
-        "total": 44.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "Huntington Bank Stadium",
-        "city": "Minneapolis",
-        "state": "MN",
-        "indoor": false,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858246",
-      "name": "Boston College Eagles at SMU Mustangs",
-      "shortName": "BC @ SMU",
-      "date_utc": "2026-10-03T16:00Z",
-      "date_local": "2026-10-03 12:00 PM ET",
-      "home_team": {
-        "id": "2567",
-        "name": "SMU Mustangs",
-        "abbr": "SMU",
-        "slug": "smu-mustangs",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png"
-      },
-      "away_team": {
-        "id": "103",
-        "name": "Boston College Eagles",
-        "abbr": "BC",
-        "slug": "boston-college-eagles",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/103.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Gerald J. Ford Stadium",
-        "city": "Dallas",
-        "state": "TX",
-        "indoor": false,
-        "grass": false
       },
       "officials": []
     },
@@ -366,11 +297,50 @@
         "details": "HOU -11.5",
         "spread": -11.5,
         "total": 51.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "TDECU Stadium",
         "city": "Houston",
+        "state": "TX",
+        "indoor": false,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858246",
+      "name": "Boston College Eagles at SMU Mustangs",
+      "shortName": "BC @ SMU",
+      "date_utc": "2026-10-03T16:00Z",
+      "date_local": "2026-10-03 12:00 PM ET",
+      "home_team": {
+        "id": "2567",
+        "name": "SMU Mustangs",
+        "abbr": "SMU",
+        "slug": "smu-mustangs",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png"
+      },
+      "away_team": {
+        "id": "103",
+        "name": "Boston College Eagles",
+        "abbr": "BC",
+        "slug": "boston-college-eagles",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/103.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "SMU -20.5",
+        "spread": -20.5,
+        "total": 56.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Gerald J. Ford Stadium",
+        "city": "Dallas",
         "state": "TX",
         "indoor": false,
         "grass": false
@@ -401,7 +371,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "KU -20.5",
+        "spread": -20.5,
+        "total": 51.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "David Booth Kansas Memorial Stadium",
         "city": "Lawrence",
@@ -435,7 +410,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "ISU -1.5",
+        "spread": -1.5,
+        "total": 52.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Jack Trice Stadium",
         "city": "Ames",
@@ -473,7 +453,7 @@
         "details": "WAKE -12.5",
         "spread": -12.5,
         "total": 54.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Allegacy Federal Credit Union Stadium",
@@ -508,13 +488,57 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "SYR -5.5",
+        "spread": 5.5,
+        "total": 52.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Pratt & Whitney Stadium",
         "city": "East Hartford",
         "state": "CT",
         "indoor": false,
         "grass": true
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858474",
+      "name": "Michigan Wolverines at Minnesota Golden Gophers",
+      "shortName": "MICH @ MINN",
+      "date_utc": "2026-10-03T16:00Z",
+      "date_local": "2026-10-03 12:00 PM ET",
+      "home_team": {
+        "id": "135",
+        "name": "Minnesota Golden Gophers",
+        "abbr": "MINN",
+        "slug": "minnesota-golden-gophers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png"
+      },
+      "away_team": {
+        "id": "130",
+        "name": "Michigan Wolverines",
+        "abbr": "MICH",
+        "slug": "michigan-wolverines",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "MICH -6.5",
+        "spread": 6.5,
+        "total": 43.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Huntington Bank Stadium",
+        "city": "Minneapolis",
+        "state": "MN",
+        "indoor": false,
+        "grass": false
       },
       "officials": []
     },
@@ -543,10 +567,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "AF -1.5",
-        "spread": -1.5,
-        "total": 49.5,
-        "provider": "Draft Kings"
+        "details": "AF -2.5",
+        "spread": -2.5,
+        "total": 48.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Falcon Stadium",
@@ -585,7 +609,7 @@
         "details": "WIS -10",
         "spread": -10.0,
         "total": 44.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Camp Randall Stadium",
@@ -621,10 +645,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "UGA -24.5",
-        "spread": -24.5,
-        "total": 54.5,
-        "provider": "Draft Kings"
+        "details": "UGA -25.5",
+        "spread": -25.5,
+        "total": 52.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Sanford Stadium",
@@ -659,7 +683,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "WMU -15.5",
+        "spread": 15.5,
+        "total": 48.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Broadview Stadium",
         "city": "Buffalo",
@@ -694,10 +723,10 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "TOL -17.5",
-        "spread": 17.5,
+        "details": "TOL -19.5",
+        "spread": 19.5,
         "total": 51.5,
-        "provider": "Draft Kings"
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Scheumann Stadium",
@@ -735,13 +764,52 @@
       "odds": {
         "details": "OSU -14",
         "spread": 14.0,
-        "total": 44.5,
-        "provider": "Draft Kings"
+        "total": 45.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Kinnick Stadium",
         "city": "Iowa City",
         "state": "IA",
+        "indoor": false,
+        "grass": false
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401856708",
+      "name": "Florida Gators at Missouri Tigers",
+      "shortName": "FLA @ MIZ",
+      "date_utc": "2026-10-03T19:30Z",
+      "date_local": "2026-10-03 03:30 PM ET",
+      "home_team": {
+        "id": "142",
+        "name": "Missouri Tigers",
+        "abbr": "MIZ",
+        "slug": "missouri-tigers",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png"
+      },
+      "away_team": {
+        "id": "57",
+        "name": "Florida Gators",
+        "abbr": "FLA",
+        "slug": "florida-gators",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "FLA -4",
+        "spread": 4.0,
+        "total": 55.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Memorial Stadium",
+        "city": "Columbia",
+        "state": "MO",
         "indoor": false,
         "grass": false
       },
@@ -774,14 +842,53 @@
       "odds": {
         "details": "TENN -7.5",
         "spread": -7.5,
-        "total": 55.5,
-        "provider": "Draft Kings"
+        "total": 54.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Neyland Stadium",
         "city": "Knoxville",
         "state": "TN",
         "indoor": false,
+        "grass": true
+      },
+      "officials": []
+    },
+    {
+      "sport": "ncaaf",
+      "id": "401858247",
+      "name": "California Golden Bears at UNLV Rebels",
+      "shortName": "CAL @ UNLV",
+      "date_utc": "2026-10-03T19:30Z",
+      "date_local": "2026-10-03 03:30 PM ET",
+      "home_team": {
+        "id": "2439",
+        "name": "UNLV Rebels",
+        "abbr": "UNLV",
+        "slug": "unlv-rebels",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2439.png"
+      },
+      "away_team": {
+        "id": "25",
+        "name": "California Golden Bears",
+        "abbr": "CAL",
+        "slug": "california-golden-bears",
+        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/25.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "UNLV -2.5",
+        "spread": -2.5,
+        "total": 53.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Allegiant Stadium",
+        "city": "Las Vegas",
+        "state": "NV",
+        "indoor": true,
         "grass": true
       },
       "officials": []
@@ -811,89 +918,16 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "LOU -5.5",
-        "spread": 5.5,
-        "total": 59.5,
-        "provider": "Draft Kings"
+        "details": "LOU -6",
+        "spread": 6.0,
+        "total": 60.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Carter-Finley Stadium",
         "city": "Raleigh",
         "state": "NC",
         "indoor": false,
-        "grass": true
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401856708",
-      "name": "Florida Gators at Missouri Tigers",
-      "shortName": "FLA @ MIZ",
-      "date_utc": "2026-10-03T19:30Z",
-      "date_local": "2026-10-03 03:30 PM ET",
-      "home_team": {
-        "id": "142",
-        "name": "Missouri Tigers",
-        "abbr": "MIZ",
-        "slug": "missouri-tigers",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png"
-      },
-      "away_team": {
-        "id": "57",
-        "name": "Florida Gators",
-        "abbr": "FLA",
-        "slug": "florida-gators",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": {
-        "details": "FLA -4.5",
-        "spread": 4.5,
-        "total": 56.5,
-        "provider": "Draft Kings"
-      },
-      "venue": {
-        "name": "Memorial Stadium",
-        "city": "Columbia",
-        "state": "MO",
-        "indoor": false,
-        "grass": false
-      },
-      "officials": []
-    },
-    {
-      "sport": "ncaaf",
-      "id": "401858247",
-      "name": "California Golden Bears at UNLV Rebels",
-      "shortName": "CAL @ UNLV",
-      "date_utc": "2026-10-03T19:30Z",
-      "date_local": "2026-10-03 03:30 PM ET",
-      "home_team": {
-        "id": "2439",
-        "name": "UNLV Rebels",
-        "abbr": "UNLV",
-        "slug": "unlv-rebels",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2439.png"
-      },
-      "away_team": {
-        "id": "25",
-        "name": "California Golden Bears",
-        "abbr": "CAL",
-        "slug": "california-golden-bears",
-        "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/25.png"
-      },
-      "home_score": null,
-      "away_score": null,
-      "total_points": 0,
-      "odds": null,
-      "venue": {
-        "name": "Allegiant Stadium",
-        "city": "Las Vegas",
-        "state": "NV",
-        "indoor": true,
         "grass": true
       },
       "officials": []
@@ -925,8 +959,8 @@
       "odds": {
         "details": "UVA -3",
         "spread": 3.0,
-        "total": 51.5,
-        "provider": "Draft Kings"
+        "total": 50.5,
+        "provider": "DraftKings"
       },
       "venue": {
         "name": "Doak Campbell Stadium",
@@ -961,7 +995,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "MEM -21",
+        "spread": 21.0,
+        "total": 53.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Jerry Richardson Stadium",
         "city": "Charlotte",
@@ -1029,7 +1068,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "NDSU -20.5",
+        "spread": -20.5,
+        "total": 45.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Fargodome",
         "city": "Fargo",
@@ -1063,7 +1107,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "CMU -6",
+        "spread": -6.0,
+        "total": 47.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Kelly/Shorts Stadium",
         "city": "Mount Pleasant",
