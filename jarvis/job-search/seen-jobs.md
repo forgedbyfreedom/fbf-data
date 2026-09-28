@@ -41,3 +41,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-25) Associate Director, Talent Management (Group Functions Talent Partner) — RTX — https://to.indeed.com/aa6zhrffm4jg
 - (2026-09-25) Director of Client Services (Remote SC/NC) — Optum — https://to.indeed.com/aa6nydq4wrgw
 - (2026-09-26) VP, Operations (Chief of Staff to COO) — Radiology Partners — https://to.indeed.com/aalx4wvmxhp7
+- (2026-09-28) Director of BD – UHNW Executive Protection (sales) — 1522 Advisors — https://to.indeed.com/aar9drrpyfgh
+- (2026-09-28) Assistant Director (Program Manager II) — State of SC — https://to.indeed.com/aasqgmtdv8bq
