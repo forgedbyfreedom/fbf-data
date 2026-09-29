@@ -43,3 +43,4 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-26) VP, Operations (Chief of Staff to COO) — Radiology Partners — https://to.indeed.com/aalx4wvmxhp7
 - (2026-09-28) Director of BD – UHNW Executive Protection (sales) — 1522 Advisors — https://to.indeed.com/aar9drrpyfgh
 - (2026-09-28) Assistant Director (Program Manager II) — State of SC — https://to.indeed.com/aasqgmtdv8bq
+- (2026-09-29) Area Manager of Operations — Lucky Strike Entertainment — https://to.indeed.com/aaq876d8lmrb
