@@ -175452,6 +175452,106 @@
         "ou_suppressed": true,
         "ou_suppressed_reason": "model differs from the total by 0.5 pts, under the 3.0 pt bar for a meaningful edge"
       }
+    },
+    {
+      "id": "401872963",
+      "sport": "nfl",
+      "matchup": "Philadelphia Eagles at Chicago Bears",
+      "shortName": "PHI @ CHI",
+      "date_utc": "2026-09-29T00:15Z",
+      "date_local": "2026-09-28 08:15 PM ET",
+      "home": "CHI",
+      "away": "PHI",
+      "home_team": {
+        "id": "3",
+        "name": "Chicago Bears",
+        "abbr": "CHI",
+        "slug": "chicago-bears",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png"
+      },
+      "away_team": {
+        "id": "21",
+        "name": "Philadelphia Eagles",
+        "abbr": "PHI",
+        "slug": "philadelphia-eagles",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png"
+      },
+      "odds": {
+        "details": "PHI -3.5",
+        "spread": 3.5,
+        "total": 41.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Soldier Field",
+        "city": "Chicago",
+        "state": "IL",
+        "indoor": false,
+        "grass": true,
+        "lat": 41.8755616,
+        "lon": -87.6244212
+      },
+      "weather": {
+        "summary": "Sunny",
+        "description": "",
+        "temperatureF": 68,
+        "temp": 68,
+        "windSpeedMph": 5.0,
+        "wind": 5.0,
+        "rainChancePct": 0
+      },
+      "risk": {
+        "risk": 0
+      },
+      "fav_team": "Philadelphia Eagles",
+      "dog_team": "Chicago Bears",
+      "fav_abbr": "PHI",
+      "dog_abbr": "CHI",
+      "fav_spread": -3.5,
+      "dog_spread": 3.5,
+      "injury_count_home": 4,
+      "injury_count_away": 3,
+      "prediction": {
+        "projected_home_score": 17.3,
+        "projected_away_score": 21.7,
+        "projected_total": 39.0,
+        "projected_spread": -4.4,
+        "win_probability_home": 0.379,
+        "confidence": 88
+      },
+      "model_used": "market_anchored",
+      "simulation": {
+        "simulations": 10000,
+        "home_win_pct": 0.3778,
+        "away_win_pct": 0.6222,
+        "home_cover_pct": 0.4775,
+        "over_pct": 0.4391,
+        "avg_simulated_margin": -4.31,
+        "avg_simulated_total": 39.25
+      },
+      "picks": {
+        "su_pick": "Philadelphia Eagles",
+        "su_pick_abbr": "PHI",
+        "su_confidence": 56.8,
+        "ats_pick": null,
+        "ats_pick_abbr": null,
+        "ats_spread": null,
+        "ats_confidence": null,
+        "ats_below_threshold": true,
+        "ats_high_conf": false,
+        "ou_pick": null,
+        "ou_line": 41.5,
+        "ou_confidence": null,
+        "ou_high_conf": false,
+        "has_vegas_spread": true,
+        "has_vegas_total": true,
+        "model_edge_pts": -0.94,
+        "ats_suppressed": true,
+        "ats_suppressed_reason": "model differs from the line by 0.9 pts, under the 2.0 pt bar for a meaningful cover probability",
+        "ou_edge_pts": -2.5,
+        "ou_suppressed": true,
+        "ou_suppressed_reason": "model differs from the total by 2.5 pts, under the 3.0 pt bar for a meaningful edge"
+      }
     }
   ]
 }
