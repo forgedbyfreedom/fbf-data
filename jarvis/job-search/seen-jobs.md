@@ -44,3 +44,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-28) Director of BD – UHNW Executive Protection (sales) — 1522 Advisors — https://to.indeed.com/aar9drrpyfgh
 - (2026-09-28) Assistant Director (Program Manager II) — State of SC — https://to.indeed.com/aasqgmtdv8bq
 - (2026-09-29) Area Manager of Operations — Lucky Strike Entertainment — https://to.indeed.com/aaq876d8lmrb
+- (2026-09-30) Legislative Liaison (Program Manager III) — State of SC — https://to.indeed.com/aavdhrqggmdv
+- (2026-09-30) Procurement Director / Procurement Officer — SC DDSN — https://to.indeed.com/aal7xlvs6g4t
