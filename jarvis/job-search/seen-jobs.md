@@ -46,3 +46,4 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-29) Area Manager of Operations — Lucky Strike Entertainment — https://to.indeed.com/aaq876d8lmrb
 - (2026-09-30) Legislative Liaison (Program Manager III) — State of SC — https://to.indeed.com/aavdhrqggmdv
 - (2026-09-30) Procurement Director / Procurement Officer — SC DDSN — https://to.indeed.com/aal7xlvs6g4t
+- (2026-10-02) Director, Learning Strategy & Operations (Remote) — RTX — https://to.indeed.com/aab7lz9cbwwr
