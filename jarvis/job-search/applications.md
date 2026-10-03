@@ -22,3 +22,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-09-22) Trauma-Informed Corrections Instructor/SME (part-time contract) — Leading Edge Skills — $125–175/hr — https://to.indeed.com/aazc4pfdsg4h — PREPARED
 - (2026-09-29) Area Manager of Operations — Lucky Strike Entertainment — $125,000–$135,000 — https://to.indeed.com/aaq876d8lmrb — PREPARED
 - (2026-10-02) Director, Learning Strategy & Operations (Remote) — RTX — $186,200–$353,800 — https://to.indeed.com/aab7lz9cbwwr — PREPARED
+- (2026-10-03) Managing Director, Operations (Remote) — Learners Edge / K12 Coalition — $150,000–$180,000 — https://to.indeed.com/aaqq4dymcnzg — PREPARED

@@ -47,3 +47,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-09-30) Legislative Liaison (Program Manager III) — State of SC — https://to.indeed.com/aavdhrqggmdv
 - (2026-09-30) Procurement Director / Procurement Officer — SC DDSN — https://to.indeed.com/aal7xlvs6g4t
 - (2026-10-02) Director, Learning Strategy & Operations (Remote) — RTX — https://to.indeed.com/aab7lz9cbwwr
+- (2026-10-03) Managing Director, Operations (Remote) — Learners Edge / K12 Coalition — https://to.indeed.com/aaqq4dymcnzg
+- (2026-10-03) Program Manager II – Government Relations Liaison — State of SC — https://to.indeed.com/aaq4jphv6frl
