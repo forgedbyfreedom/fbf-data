@@ -50,3 +50,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-03) Managing Director, Operations (Remote) — Learners Edge / K12 Coalition — https://to.indeed.com/aaqq4dymcnzg
 - (2026-10-03) Program Manager II – Government Relations Liaison — State of SC — https://to.indeed.com/aaq4jphv6frl
 - (2026-10-05) Executive Director (Remote) — IAAI / Stringfellow Management Group — https://to.indeed.com/aap4zlmjfqlg
+- (2026-10-06) Executive Director, Operations Directorate (SES, Office of Trade) — U.S. Customs and Border Protection — https://to.indeed.com/aavwsh828nhc
+- (2026-10-06) Director, Operations — Covenant Logistics (Batesburg-Leesville, SC) — https://to.indeed.com/aastxwjv6mbl
