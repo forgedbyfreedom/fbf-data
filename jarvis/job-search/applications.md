@@ -24,3 +24,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-10-02) Director, Learning Strategy & Operations (Remote) — RTX — $186,200–$353,800 — https://to.indeed.com/aab7lz9cbwwr — PREPARED
 - (2026-10-03) Managing Director, Operations (Remote) — Learners Edge / K12 Coalition — $150,000–$180,000 — https://to.indeed.com/aaqq4dymcnzg — PREPARED
 - (2026-10-05) Executive Director (Remote) — International Association of Arson Investigators / Stringfellow — $140,000–$150,000 — https://to.indeed.com/aap4zlmjfqlg — PREPARED
+- (2026-10-08) Director of Health, Safety & Environmental (HSE) — The Nuclear Company — $176,000–$210,000 — https://to.indeed.com/aayxytyck72b — PREPARED

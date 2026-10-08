@@ -53,3 +53,7 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-06) Executive Director, Operations Directorate (SES, Office of Trade) — U.S. Customs and Border Protection — https://to.indeed.com/aavwsh828nhc
 - (2026-10-06) Director, Operations — Covenant Logistics (Batesburg-Leesville, SC) — https://to.indeed.com/aastxwjv6mbl
 - (2026-10-07) Sr Director, Housing Disaster Resilience & Recovery (reviewed—international/humanitarian, not a fit) — Habitat for Humanity — https://to.indeed.com/aabb2cvz2ypz
+- (2026-10-08) Director of Health, Safety & Environmental (HSE) — The Nuclear Company — https://to.indeed.com/aayxytyck72b
+- (2026-10-08) Director, Continuous Improvement (Remote, near-miss—Lean/Six Sigma manufacturing, no-equivalency tech degree) — STERIS — https://to.indeed.com/aa2lgnrmngsl
+- (2026-10-08) Strategy & Business Development Director (Remote, near-miss—defense capture/BD sales) — General Dynamics Mission Systems — https://to.indeed.com/aanxd8vyhfgb
+- (2026-10-08) Vice President of Human Resources (Remote, near-miss—career HR generalist role) — 1522 Advisors — https://to.indeed.com/aatvmzp9zpmg
