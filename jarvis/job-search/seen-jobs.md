@@ -57,3 +57,7 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-08) Director, Continuous Improvement (Remote, near-miss—Lean/Six Sigma manufacturing, no-equivalency tech degree) — STERIS — https://to.indeed.com/aa2lgnrmngsl
 - (2026-10-08) Strategy & Business Development Director (Remote, near-miss—defense capture/BD sales) — General Dynamics Mission Systems — https://to.indeed.com/aanxd8vyhfgb
 - (2026-10-08) Vice President of Human Resources (Remote, near-miss—career HR generalist role) — 1522 Advisors — https://to.indeed.com/aatvmzp9zpmg
+- (2026-10-09) Executive Director, GPO Delivery and Optimization (Remote, near-miss—healthcare GPO/supply-chain domain, bachelor's required no equivalency) — Premier Inc. — https://to.indeed.com/aawvkgrzt7wq
+- (2026-10-09) Learning and Development Lead (Remote/DC, near-miss—IC/Lead level, DC-tied) — Honor — https://to.indeed.com/aahgnqspb9sn
+- (2026-10-09) VP of Government Services (Remote, near-miss—debt-collection/AR domain) — Williams & Fudge — https://to.indeed.com/aazq7rcqfphy
+- (2026-10-09) Director, Commercial Lines (Forest Acres, SC, near-miss—insurance brokerage/sales domain) — Insurance Office of America — https://to.indeed.com/aa4hgjcn499b
