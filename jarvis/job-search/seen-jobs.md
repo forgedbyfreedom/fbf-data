@@ -61,3 +61,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-09) Learning and Development Lead (Remote/DC, near-miss—IC/Lead level, DC-tied) — Honor — https://to.indeed.com/aahgnqspb9sn
 - (2026-10-09) VP of Government Services (Remote, near-miss—debt-collection/AR domain) — Williams & Fudge — https://to.indeed.com/aazq7rcqfphy
 - (2026-10-09) Director, Commercial Lines (Forest Acres, SC, near-miss—insurance brokerage/sales domain) — Insurance Office of America — https://to.indeed.com/aa4hgjcn499b
+- (2026-10-10) Senior Program Director, Tolling Operations (Remote, near-miss—requires state-tolling + ~700-agent call-center experience, NY relocation, bachelor's no equivalency) — Maximus — https://to.indeed.com/aahkm2btwyw2
+- (2026-10-10) Program Director, Tolling & Contact Center Operations (Remote, near-miss—same NYS Thruway program; tolling + call-center + NY relocation + PMP) — Maximus — https://to.indeed.com/aa88srhrxlwq
