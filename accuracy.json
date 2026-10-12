@@ -1,29 +1,29 @@
 {
-  "timestamp": "2026-10-11T21:13:41.397140+00:00",
+  "timestamp": "2026-10-12T03:30:47.131944+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 272,
+  "predictions_graded": 276,
   "sports": {
     "ALL": {
-      "SU_pct": 75.7,
-      "SU_record": "202-65",
-      "SU_total": 267,
-      "ATS_pct": 59.1,
-      "ATS_record": "13-9-1",
-      "ATS_total": 22,
-      "OU_pct": 50.0,
-      "OU_record": "14-14-0",
-      "OU_total": 28
+      "SU_pct": 75.6,
+      "SU_record": "204-66",
+      "SU_total": 270,
+      "ATS_pct": 54.2,
+      "ATS_record": "13-11-1",
+      "ATS_total": 24,
+      "OU_pct": 51.7,
+      "OU_record": "15-14-0",
+      "OU_total": 29
     },
     "NFL": {
       "SU_pct": 66.2,
-      "SU_record": "47-24",
-      "SU_total": 71,
-      "ATS_pct": 56.2,
-      "ATS_record": "9-7-1",
-      "ATS_total": 16,
-      "OU_pct": 57.1,
-      "OU_record": "4-3-0",
-      "OU_total": 7
+      "SU_record": "49-25",
+      "SU_total": 74,
+      "ATS_pct": 50.0,
+      "ATS_record": "9-9-1",
+      "ATS_total": 18,
+      "OU_pct": 62.5,
+      "OU_record": "5-3-0",
+      "OU_total": 8
     },
     "NCAAF": {
       "SU_pct": 79.1,
@@ -39,23 +39,23 @@
   },
   "high_confidence": {
     "ALL": {
-      "SU_pct": 83.3,
-      "SU_record": "15-3",
-      "SU_total": 18,
-      "ATS_pct": 61.1,
-      "ATS_record": "11-7-1",
-      "ATS_total": 18,
+      "SU_pct": 84.2,
+      "SU_record": "16-3",
+      "SU_total": 19,
+      "ATS_pct": 55.0,
+      "ATS_record": "11-9-1",
+      "ATS_total": 20,
       "OU_pct": 0,
       "OU_record": "0-0-0",
       "OU_total": 0
     },
     "NFL": {
-      "SU_pct": 86.7,
-      "SU_record": "13-2",
-      "SU_total": 15,
-      "ATS_pct": 60.0,
-      "ATS_record": "9-6-1",
-      "ATS_total": 15,
+      "SU_pct": 87.5,
+      "SU_record": "14-2",
+      "SU_total": 16,
+      "ATS_pct": 52.9,
+      "ATS_record": "9-8-1",
+      "ATS_total": 17,
       "OU_pct": 0,
       "OU_record": "0-0-0",
       "OU_total": 0
@@ -76,11 +76,11 @@
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 21,
-        "record": "13-8",
+        "picks": 23,
+        "record": "13-10",
         "stated_mid": 52.5,
-        "actual_pct": 61.9,
-        "gap": 9.4
+        "actual_pct": 56.5,
+        "gap": 4.0
       },
       {
         "bucket": "55-60%",
@@ -110,11 +110,11 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 23,
-        "record": "11-12",
+        "picks": 24,
+        "record": "12-12",
         "stated_mid": 52.5,
-        "actual_pct": 47.8,
-        "gap": -4.7
+        "actual_pct": 50.0,
+        "gap": -2.5
       },
       {
         "bucket": "55-60%",
@@ -145,34 +145,6 @@
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401856676",
-      "sport": "NCAAF",
-      "date": "2026-09-12T23:45Z",
-      "matchup": "Charlotte 49ers at Ole Miss Rebels",
-      "su": "W"
-    },
-    {
-      "id": "401856789",
-      "sport": "NCAAF",
-      "date": "2026-09-13T00:00Z",
-      "matchup": "Grambling Tigers at TCU Horned Frogs",
-      "su": "W"
-    },
-    {
-      "id": "401856784",
-      "sport": "NCAAF",
-      "date": "2026-09-13T00:08Z",
-      "matchup": "Prairie View A&M Panthers at Baylor Bears",
-      "su": "W"
-    },
-    {
-      "id": "401856671",
-      "sport": "NCAAF",
-      "date": "2026-09-13T00:50Z",
-      "matchup": "Southern Miss Golden Eagles at Auburn Tigers",
-      "su": "W"
-    },
     {
       "id": "401864504",
       "sport": "NCAAF",
@@ -1603,6 +1575,39 @@
       "matchup": "New York Giants at Washington Commanders",
       "ou": "L",
       "ou_best_bet": false
+    },
+    {
+      "id": "401872989",
+      "sport": "NFL",
+      "date": "2026-10-11T20:05Z",
+      "matchup": "Denver Broncos at Los Angeles Chargers",
+      "su": "W"
+    },
+    {
+      "id": "401872991",
+      "sport": "NFL",
+      "date": "2026-10-11T20:25Z",
+      "matchup": "Detroit Lions at Arizona Cardinals",
+      "ats": "L",
+      "ats_best_bet": true,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401872992",
+      "sport": "NFL",
+      "date": "2026-10-11T20:25Z",
+      "matchup": "San Francisco 49ers at Seattle Seahawks",
+      "su": "L"
+    },
+    {
+      "id": "401872993",
+      "sport": "NFL",
+      "date": "2026-10-12T00:20Z",
+      "matchup": "Baltimore Ravens at Atlanta Falcons",
+      "ats": "L",
+      "ats_best_bet": true
     }
   ]
 }
