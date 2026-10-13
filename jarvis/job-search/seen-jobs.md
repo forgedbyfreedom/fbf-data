@@ -68,3 +68,8 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-12) Director, Customer Support (Remote, reviewed—CX/support domain) — Wheel — https://to.indeed.com/aavd2v9mq49b
 - (2026-10-12) Director, Talent Acquisition (Austin, reviewed—recruiting specialist) — Rockbot — https://to.indeed.com/aa76klhzq4mw
 - (2026-10-12) Director of Global Strategic Partnerships, Launch Pad (Remote, reviewed—vague BD/partnerships listing) — Genius Visionary Inc — https://to.indeed.com/aaf4xnxs76l2
+- (2026-10-13) Vice President of Operations (Remote) — Icon Corporate Finance — https://to.indeed.com/aa9zknnfslsm
+- (2026-10-13) VP of Operations (Remote, reviewed—broker-dealer/securities ops) — Montminy Securities — https://to.indeed.com/aavwd9smtbzs
+- (2026-10-13) VP of Project Management (Remote, reviewed—wealth-mgmt PM) — Confidence Wealth Management — https://to.indeed.com/aagczg7qwfc2
+- (2026-10-13) VP of Customer Strategy (Remote, reviewed—finance/customer-strategy) — EDENA Capital Partners — https://to.indeed.com/aaf8mwgd4lzh
+- (2026-10-13) Budget Director (Richland County, SC, State of SC — needs permission, not a fit/below band) — State of South Carolina — https://to.indeed.com/aazyklmw9qd9
