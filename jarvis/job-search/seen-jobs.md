@@ -73,3 +73,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-13) VP of Project Management (Remote, reviewed—wealth-mgmt PM) — Confidence Wealth Management — https://to.indeed.com/aagczg7qwfc2
 - (2026-10-13) VP of Customer Strategy (Remote, reviewed—finance/customer-strategy) — EDENA Capital Partners — https://to.indeed.com/aaf8mwgd4lzh
 - (2026-10-13) Budget Director (Richland County, SC, State of SC — needs permission, not a fit/below band) — State of South Carolina — https://to.indeed.com/aazyklmw9qd9
+- (2026-10-14) Chief Electrical Estimator (Remote, reviewed—construction estimating) — MGI Inc — https://to.indeed.com/aa7hqf726dfv
+- (2026-10-14) Executive Director - Business Development (Brunswick, GA, reviewed—BPO sales/BD) — Concentrix — https://to.indeed.com/aad7pw6kstyy
+- (2026-10-14) Manager of Industrial Relations & Technical Operations (Clinton, SC, reviewed—utility technical ops, ~$60K) — Clinton Newberry Natural Gas Authority — https://to.indeed.com/aa7krdd8n8dl
