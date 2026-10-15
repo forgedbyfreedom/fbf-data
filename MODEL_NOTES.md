@@ -532,3 +532,21 @@ first bettable-lock CLV readings start accumulating this week.
 **Never represent a spread as home/away.** Store and compare the favorite's
 number with the favorite's identity attached. If a raw field's sign depends on
 venue, convert it at ingest and never let it reach grading or the board.
+
+## 2026-10-15 — Every game gets an official pick
+
+Owner's call: the edge gates left ~25 graded ATS picks in five weeks. Now every
+game with a line gets an official ATS side and an official O/U side, graded and
+counted in accuracy.json. The side is where the model's number sits against the
+line (the same lean graded in line_study.json). Confidence is the plain cover
+probability for that edge at the measured SD (NFL 12.9, NCAAF 15.1; totals
+13.2 / 15.6), so most picks honestly read 51-54%.
+
+The old bars were not deleted — they now define the BEST BET tier
+(`ats_high_conf` = edge >= MIN_EDGE_PTS and not clamped; `ou_high_conf` = edge
+>= MIN_TOTAL_EDGE_PTS). The pre-change "official" record therefore continues
+as the best-bet record. `ats_tier` / `ou_tier`: best | lean | model_unreliable.
+
+Expectation, stated up front: on this season's every-game sample the leans ran
+57% NFL and 50% college against the close. Volume does not create edge; it
+gives a readable sample fast. Judge by tier and by CLV, not by the blended total.

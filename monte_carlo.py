@@ -952,84 +952,68 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
     picks["has_vegas_spread"] = spread_line is not None
     picks["has_vegas_total"] = total_line is not None
 
-    # ── SUPPRESS PICKS THE MODEL IS NOT QUALIFIED TO MAKE ────────────
-    # A clamped adjustment means the feature layer wanted to move the market
-    # by more than one score-and-a-half. In practice that never signals a real
-    # edge; it signals inputs outside the range the ratings can represent -
-    # typically an FBS side facing an opponent with almost no game history, so
-    # the ratings cannot express how large the gap truly is. Emitting a pick
-    # there produced a board that faded the favourite in 37 of 37 games priced
-    # at 14 or more. Saying nothing is more accurate than saying that.
-    # ── ONLY SPEAK WHEN THE DISAGREEMENT IS MATERIAL ─────────────────
-    # Replaces an asymmetric "publish only on underdog leans" rule shipped
-    # earlier the same day. That rule came from a sample that had not been
-    # filtered by sport - it was mostly basketball and hockey. Re-run on
-    # football alone, with 2021-2023 for derivation and 2024-2025 held out,
-    # the effect disappeared entirely:
+    # ── EVERY GAME GETS AN OFFICIAL PICK (2026-10-15, owner's call) ─────
+    # Previously ATS picks were withheld unless the model disagreed with the
+    # line by MIN_EDGE_PTS, and O/U picks unless it disagreed with the total
+    # by MIN_TOTAL_EDGE_PTS. That left ~25 graded ATS picks in five weeks.
     #
-    #     leans underdog   dog covers 47.9% train / 45.1% holdout
-    #     leans favourite  fav covers 50.1% train / 50.9% holdout
+    # Now every game with a line gets a side, graded and counted. The side is
+    # simply where the model's number sits relative to the line - the same
+    # lean build_line_study.py grades. The old bars no longer withhold
+    # anything; they define the BEST BET tier, so the previous "official"
+    # record continues unbroken as the best-bet record.
     #
-    # Nothing there. A full scan of candidate splits - spread size, sport,
-    # rest edges, form, season stage, totals - produced no signal whose lower
-    # confidence bound cleared the 52.4% breakeven.
-    #
-    # So there is no validated ATS edge, and the gate makes no directional
-    # claim. It is a magnitude test: with the measured margin SD of 15.1
-    # points in college football, an edge of 2 points is a 55% cover and an
-    # edge of 1 point is 52.6% - barely breakeven. Below MIN_EDGE_PTS the
-    # model is not saying anything a coin does not.
-    #
-    # The remaining live inputs - injuries, weather, line movement, public
-    # betting - could not be tested here because the historical file carries
-    # no snapshot of them. They are unvalidated, not endorsed.
+    # Confidence is the honest cover probability for that edge at the
+    # measured football SD (1 pt ~ 52.6%, 2 pts ~ 55% in college). Small
+    # edges are close to coin flips and are labelled as such ("lean").
+    sd_m = SPORT_STDEV.get(sport, 13.0)
+    sd_t = TOTAL_STDEV.get(sport, 14.0)
+    phi = lambda z: 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
+    clamped = bool(game.get("_margin_adj_clamped"))
+    fav_abbr_g, dog_abbr_g = game.get("fav_abbr"), game.get("dog_abbr")
+
     if spread_line is not None:
+        # spread_line is ESPN's home-relative ingest field; translate the
+        # result straight back to the favorite/underdog number for display.
         edge_vs_line = expected_margin - (-spread_line)
         picks["model_edge_pts"] = round(edge_vs_line, 2)
-        if abs(edge_vs_line) < MIN_EDGE_PTS:
-            picks["ats_pick"] = None
-            picks["ats_pick_abbr"] = None
-            picks["ats_spread"] = None
-            picks["ats_confidence"] = None
-            picks["ats_high_conf"] = False
-            picks["ats_suppressed"] = True
-            picks["ats_suppressed_reason"] = (
-                f"model differs from the line by {abs(edge_vs_line):.1f} pts, "
-                f"under the {MIN_EDGE_PTS} pt bar for a meaningful cover probability")
-    # ── O/U MAGNITUDE GATE ───────────────────────────────────────────
-    # The mirror of the ATS gate above, and for a stronger reason: the totals
-    # market measured 50.0% Over on 3,570 football games, and every opinion
-    # this model used to hold about scoring was measured at zero (see
-    # build_expected_values). Publishing an Over/Under on a total the model
-    # agrees with is publishing a coin flip with a percentage printed on it.
-    #
-    # Before this gate the board carried 63 Unders against 10 Overs, with the
-    # projected total sitting below the market number on 86% of games - not an
-    # opinion, a bias. O/U accuracy over the first graded picks was 47.6%.
-    if total_line is not None and picks.get("ou_pick"):
+        if edge_vs_line > 0:
+            side_abbr, side_name = home_abbr, home_name
+        elif edge_vs_line < 0:
+            side_abbr, side_name = away_abbr, away_name
+        else:   # dead even: fall back to the simulation's side
+            side_abbr = picks.get("ats_pick_abbr") or fav_abbr_g or home_abbr
+            side_name = picks.get("ats_pick") or (home_name if side_abbr == home_abbr else away_name)
+        if fav_abbr_g and side_abbr == fav_abbr_g:
+            side_line = game.get("fav_spread")
+        elif dog_abbr_g and side_abbr == dog_abbr_g:
+            side_line = game.get("dog_spread")
+        else:
+            side_line = None
+        picks["ats_pick"] = side_name
+        picks["ats_pick_abbr"] = side_abbr
+        picks["ats_spread"] = side_line
+        picks["ats_confidence"] = round(phi(abs(edge_vs_line) / sd_m) * 100, 1)
+        picks["ats_high_conf"] = (abs(edge_vs_line) >= MIN_EDGE_PTS) and not clamped
+        picks["ats_tier"] = ("best" if picks["ats_high_conf"]
+                             else ("model_unreliable" if clamped else "lean"))
+        picks.pop("ats_below_threshold", None)
+    picks["ats_suppressed"] = False
+
+    if total_line is not None and expected_total:
         total_edge = expected_total - total_line
         picks["ou_edge_pts"] = round(total_edge, 2)
-        if abs(total_edge) < MIN_TOTAL_EDGE_PTS:
-            picks["ou_pick"] = None
-            picks["ou_confidence"] = None
-            picks["ou_high_conf"] = False
-            picks["ou_suppressed"] = True
-            picks["ou_suppressed_reason"] = (
-                f"model differs from the total by {abs(total_edge):.1f} pts, "
-                f"under the {MIN_TOTAL_EDGE_PTS} pt bar for a meaningful edge")
-    if not picks.get("ou_suppressed"):
-        picks["ou_suppressed"] = False
-
-    if game.get("_margin_adj_clamped"):
-        picks["ats_pick"] = None
-        picks["ats_pick_abbr"] = None
-        picks["ats_spread"] = None
-        picks["ats_confidence"] = None
-        picks["ats_high_conf"] = False
-        picks["ats_suppressed"] = True
-        picks["ats_suppressed_reason"] = "model disagrees with the line by more than it can justify"
-    elif not picks.get("ats_suppressed"):
-        picks["ats_suppressed"] = False
+        if total_edge > 0:
+            picks["ou_pick"] = "Over"
+        elif total_edge < 0:
+            picks["ou_pick"] = "Under"
+        # exactly even: keep the simulation's side
+        if picks.get("ou_pick"):
+            picks["ou_line"] = total_line
+            picks["ou_confidence"] = round(phi(abs(total_edge) / sd_t) * 100, 1)
+            picks["ou_high_conf"] = abs(total_edge) >= MIN_TOTAL_EDGE_PTS
+            picks["ou_tier"] = "best" if picks["ou_high_conf"] else "lean"
+    picks["ou_suppressed"] = False
 
     return {
         "simulation": sim,
