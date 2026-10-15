@@ -7,7 +7,7 @@ Generates predictions.json from combined.json using:
 3. Monte Carlo simulation anchored on the market line
 
 Outputs explicit SU, ATS, O/U picks for every game.
-Locks picks at game time into predictions_locked.json.
+Locks each pick as it stood before kickoff into predictions_locked.json.
 """
 import json, os, pickle, math
 from pathlib import Path
@@ -18,6 +18,7 @@ from monte_carlo import simulate_and_pick
 COMBINED = Path("combined.json")
 OUTFILE = Path("predictions.json")
 LOCKED_FILE = Path("predictions_locked.json")
+PRELOCK_FILE = Path("predictions_prelock.json")   # latest pre-kickoff version of each upcoming game
 ARCHIVE = Path("predictions_archive.json")
 SPREAD_MODEL = Path("models/spread_model.pkl")
 TOTAL_MODEL = Path("models/total_model.pkl")
@@ -76,45 +77,93 @@ def ml_predict(game, spread_model, total_model, feature_cols):
         return None, None
 
 
-def lock_picks(current_predictions, existing_locked):
+def lock_picks(current_predictions, existing_locked, prelock):
     """
-    Lock picks at game time. Once a game's start time has passed,
-    the pick is final and cannot change.
+    Freeze each game's pick as it stood BEFORE kickoff.
+
+    FIXED 2026-10-15: this used to copy the first prediction built AFTER the
+    game started. On a 6-hour cycle that is 0-12 hours past kickoff, so the
+    "locked" line and pick were built on post-kickoff odds - a number nobody
+    could have bet, and one that can already reflect the game in progress.
+    Every football lock from the 2026 season had this problem.
+
+    Now every run stores the latest pre-kickoff prediction for each upcoming
+    game in `prelock`. When the game starts, that stored version is what gets
+    locked, stamped with the time it was actually built. A post-kickoff copy is
+    only used if no pre-kickoff version exists, and it is flagged as such so
+    the grading can exclude it.
     """
     now = datetime.now(timezone.utc)
     locked_by_id = {str(p.get("id")): p for p in existing_locked}
-    new_locks = 0
+    new_locks = fallbacks = 0
 
     for pred in current_predictions:
         pid = str(pred.get("id") or "")
-        if not pid:
+        if not pid or pid in locked_by_id:
             continue
-
-        # Already locked? Keep the locked version
-        if pid in locked_by_id:
-            continue
-
-        # Check if game has started
         date_utc = pred.get("date_utc")
         if not date_utc:
             continue
-
         try:
             game_time = datetime.fromisoformat(date_utc.replace("Z", "+00:00"))
         except Exception:
             continue
 
-        if now >= game_time:
-            # Game has started or passed - lock this pick
+        if now < game_time:
+            # Not started: remember this as the latest bettable version.
+            snap = dict(pred)
+            snap["captured_at"] = now.isoformat()
+            prelock[pid] = snap
+            continue
+
+        # Started: lock the last version built before kickoff.
+        pre = prelock.pop(pid, None)
+        if pre is not None:
+            locked_pred = dict(pre)
+            locked_pred["locked_at"] = pre.get("captured_at") or now.isoformat()
+            locked_pred["lock_source"] = "pre_kickoff"
+        else:
             locked_pred = dict(pred)
             locked_pred["locked_at"] = now.isoformat()
+            locked_pred["lock_source"] = "post_kickoff_fallback"
+            fallbacks += 1
+        locked_pred.pop("captured_at", None)
+        locked_pred["lock_recorded_at"] = now.isoformat()
+        locked_by_id[pid] = locked_pred
+        new_locks += 1
+
+    # A game that has started but dropped out of the feed still gets locked
+    # from its pre-kickoff version.
+    for pid, pre in list(prelock.items()):
+        if pid in locked_by_id:
+            continue
+        try:
+            gt = datetime.fromisoformat(str(pre.get("date_utc")).replace("Z", "+00:00"))
+        except Exception:
+            continue
+        if now >= gt:
+            locked_pred = dict(pre)
+            locked_pred["locked_at"] = pre.get("captured_at") or now.isoformat()
+            locked_pred["lock_source"] = "pre_kickoff"
+            locked_pred.pop("captured_at", None)
+            locked_pred["lock_recorded_at"] = now.isoformat()
             locked_by_id[pid] = locked_pred
             new_locks += 1
 
+    # Drop stale pre-locks (game locked elsewhere, postponed, or long gone).
+    for pid in list(prelock):
+        snap = prelock[pid]
+        try:
+            gt = datetime.fromisoformat(str(snap.get("date_utc")).replace("Z", "+00:00"))
+        except Exception:
+            gt = None
+        if pid in locked_by_id or gt is None or (now - gt).total_seconds() > 3 * 86400:
+            prelock.pop(pid, None)
+
     all_locked = list(locked_by_id.values())
     if new_locks > 0:
-        print(f"[picks] Locked {new_locks} new picks ({len(all_locked)} total locked)")
-
+        print(f"[picks] Locked {new_locks} new picks ({fallbacks} post-kickoff fallbacks, "
+              f"{len(all_locked)} total locked)")
     return all_locked
 
 
@@ -294,7 +343,11 @@ def main():
 
     # Lock picks for games that have started
     existing_locked = load_json(LOCKED_FILE, {"locked": []}).get("locked", [])
-    all_locked = lock_picks(output["predictions"], existing_locked)
+    prelock = (load_json(PRELOCK_FILE, {}) or {}).get("games", {})
+    all_locked = lock_picks(output["predictions"], existing_locked, prelock)
+    with open(PRELOCK_FILE, "w") as f:
+        json.dump({"timestamp": datetime.now(timezone.utc).isoformat(),
+                   "count": len(prelock), "games": prelock}, f, indent=2)
 
     locked_payload = {
         "timestamp": datetime.now(timezone.utc).isoformat(),

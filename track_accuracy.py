@@ -83,16 +83,38 @@ def update(stats, sport, cat, result):
 
 
 def grade_ats(picks, pred, odds, home_score, away_score):
+    """Grade an ATS pick against the line it was published with.
+
+    UPDATED 2026-10-15: picks carry their own number (`ats_spread`, the picked
+    team's line, e.g. ORE -24.5 or OKST +24.5), so grade the picked team's
+    margin against that. The old path graded against ESPN's raw `odds.spread`
+    taken from the final score record - a home-relative number captured after
+    the game, not the line on the pick. It is kept only as a fallback for
+    picks that predate `ats_spread`.
+    """
     ats_pick = picks.get("ats_pick")
-    spread = safe_float(odds.get("spread"))
-    if not ats_pick or spread is None:
+    if not ats_pick:
         return None
 
+    pick_abbr = picks.get("ats_pick_abbr")
+    pick_line = safe_float(picks.get("ats_spread"))
+    home_abbr = pred.get("home")
+    away_abbr = pred.get("away")
+    if pick_line is not None and pick_abbr and pick_abbr in (home_abbr, away_abbr):
+        pick_margin = (home_score - away_score) if pick_abbr == home_abbr else (away_score - home_score)
+        val = pick_margin + pick_line
+        if abs(val) < 0.01:
+            return "P"
+        return "W" if val > 0 else "L"
+
+    # Legacy fallback: ESPN raw field (home-relative by ESPN's convention).
+    spread = safe_float(odds.get("spread"))
+    if spread is None:
+        return None
     margin = home_score - away_score
     home_team = pred.get("home_team") or {}
     home_name = home_team.get("name", "") if isinstance(home_team, dict) else str(home_team)
-    pick_is_home = (ats_pick == home_name) or (picks.get("ats_pick_abbr") == pred.get("home"))
-
+    pick_is_home = (ats_pick == home_name) or (pick_abbr == home_abbr)
     val = margin + spread
     if abs(val) < 0.01:
         return "P"
@@ -104,7 +126,10 @@ def grade_ats(picks, pred, odds, home_score, away_score):
 
 def grade_ou(picks, odds, home_score, away_score, sport=""):
     ou_pick = picks.get("ou_pick")
-    total_line = safe_float(odds.get("total"))
+    # Grade against the total published with the pick, not the post-game record.
+    total_line = safe_float(picks.get("ou_line"))
+    if total_line is None:
+        total_line = safe_float(odds.get("total"))
     if not ou_pick or total_line is None or total_line < 0.5:
         return None
 

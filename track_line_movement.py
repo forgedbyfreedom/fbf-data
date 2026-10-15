@@ -67,9 +67,14 @@ def main():
 
         snap = {
             "timestamp": now,
-            "spread": spread,
+            "spread": spread,          # the FAVORITE's number (tag_favorites.py)
             "total": total,
         }
+        # Lines are quoted favorite vs underdog, so the number alone is
+        # ambiguous: -1.5 means nothing without knowing who is laying it.
+        fav_abbr = g.get("fav_abbr")
+        if fav_abbr:
+            snap["fav_abbr"] = fav_abbr
         if ml_home is not None:
             snap["ml_home"] = ml_home
         if ml_away is not None:
@@ -82,7 +87,8 @@ def main():
         existing = snapshots[game_id]
         if existing:
             last = existing[-1]
-            if last.get("spread") == spread and last.get("total") == total:
+            if (last.get("spread") == spread and last.get("total") == total
+                    and last.get("fav_abbr") == snap.get("fav_abbr")):
                 continue  # no change
 
         snapshots[game_id].append(snap)

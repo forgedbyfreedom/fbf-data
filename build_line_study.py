@@ -28,7 +28,24 @@ readable signal, where ATS results need several hundred.
 CLV is computed for EVERY game the model had an opinion on, not only games
 where a pick was published, so the sample builds as fast as the schedule allows.
 
-Output: line_study.json (append-only; games are never removed)
+EVERYTHING HERE IS ON THE FAVORITE'S NUMBER (rewritten 2026-10-15)
+
+Lines are quoted favorite vs underdog: ORE -24.5 / OKST +24.5. Every line in
+this file is the favorite's number (negative = points laid), every margin is
+the favorite's margin, and every side is "fav" / "dog" plus the team abbr.
+
+The previous version graded against ESPN's raw `odds.spread` field, whose sign
+depends on which team is at home, and compared it to snapshots that hold the
+favorite's number. Whenever the favorite was on the road the two disagreed in
+sign (ND -27.5 recorded as +27.5), which manufactured ~750 points of fake CLV.
+Do not reintroduce a home/away spread anywhere in this file.
+
+Locks built AFTER kickoff (every lock before the 2026-10-15 fix in
+build_predictions.py) carry no bettable number, so they get no CLV and are not
+graded against the lock line. The model's lean is still graded against the
+last pre-kickoff line.
+
+Output: line_study.json (games are never removed)
 """
 
 import json, os
@@ -60,6 +77,24 @@ def parse_ts(v):
         return None
 
 
+def to_fav_line(spread, snap_fav, fav_abbr):
+    """A snapshot's number expressed as the line on OUR favorite."""
+    if spread is None:
+        return None
+    spread = float(spread)
+    if snap_fav and fav_abbr and snap_fav != fav_abbr:
+        return -spread               # the other team was favored at that moment
+    return spread
+
+
+def side_covering(fav_margin, fav_line):
+    """'fav', 'dog' or 'push' against a line on the favorite."""
+    if fav_line is None:
+        return None
+    v = fav_margin + float(fav_line)
+    return "push" if v == 0 else ("fav" if v > 0 else "dog")
+
+
 def main():
     snaps = load(SNAPSHOTS, {})
     locked_raw = load(LOCKED, {})
@@ -69,134 +104,149 @@ def main():
     if not isinstance(study, dict):
         study = {}
 
-    # newest lock per game id
     by_id = {}
     for p in locked_list:
         gid = str(p.get("id") or "")
-        if not gid or (p.get("sport") or "").lower() not in FOOTBALL:
-            continue
-        prev = by_id.get(gid)
-        # Keep the EARLIEST lock. That is the number we could actually have bet,
-        # and the whole point of the study is comparing it to the close.
-        if prev is None or str(p.get("locked_at") or "") < str(prev.get("locked_at") or ""):
+        if gid and (p.get("sport") or "").lower() in FOOTBALL:
             by_id[gid] = p
 
     added = updated = 0
     for gid, pred in by_id.items():
         final = scores.get(gid)
         if not final:
-            continue  # not played yet; recorded once it completes
-
+            continue
         hs, aws = final.get("home_score"), final.get("away_score")
-        if hs is None or aws is None:
-            continue
-
         kickoff = parse_ts(pred.get("date_utc"))
-        lock_odds = pred.get("odds") or {}
-        lock_spread = lock_odds.get("spread")
-        if lock_spread is None or kickoff is None:
+        fav = pred.get("fav_abbr")
+        dog = pred.get("dog_abbr")
+        lock_fav_line = pred.get("fav_spread")
+        if hs is None or aws is None or kickoff is None or not fav or lock_fav_line is None:
             continue
+        lock_fav_line = float(lock_fav_line)
+        lock_odds = pred.get("odds") or {}
 
-        # closing line = last snapshot strictly before kickoff
-        series = snaps.get(gid) or []
-        closing_spread = closing_total = None
-        closing_ts = None
-        n_snaps = 0
-        for s in series:
+        fav_is_home = fav == pred.get("home")
+        home_margin = float(hs) - float(aws)
+        fav_margin = home_margin if fav_is_home else -home_margin
+
+        locked_at = parse_ts(pred.get("locked_at"))
+        bettable = (pred.get("lock_source") == "pre_kickoff"
+                    and locked_at is not None and locked_at < kickoff)
+
+        # pre-kickoff market, on our favorite's number
+        series = []
+        assumed = False
+        for s in snaps.get(gid) or []:
             ts = parse_ts(s.get("timestamp"))
-            if ts is None or ts >= kickoff:
+            if ts is None or ts >= kickoff or s.get("spread") is None:
                 continue
-            n_snaps += 1
-            if closing_ts is None or ts > closing_ts:
-                closing_ts, closing_spread, closing_total = ts, s.get("spread"), s.get("total")
-        if closing_spread is None:
-            closing_spread = lock_spread          # never saw it move
-            closing_total = lock_odds.get("total")
-            closing_ts = parse_ts(pred.get("locked_at"))
+            if not s.get("fav_abbr"):
+                assumed = True        # legacy snapshot: favorite not recorded
+            series.append((ts, to_fav_line(s["spread"], s.get("fav_abbr"), fav), s.get("total")))
+        series.sort(key=lambda r: r[0])
+        open_line = series[0][1] if series else None
+        close_line = series[-1][1] if series else (lock_fav_line if bettable else None)
+        close_total = series[-1][2] if series else (lock_odds.get("total") if bettable else None)
+        close_ts = series[-1][0] if series else None
 
-        margin = float(hs) - float(aws)
-        proj = ((pred.get("prediction") or {}).get("projected_spread"))
-        picks = pred.get("picks") or {}
-
-        # Which side did the model lean, relative to the line it SAW?
-        model_edge = None
-        lean = None
+        # the model's opinion, relative to the line it was looking at
+        proj = (pred.get("prediction") or {}).get("projected_spread")   # home minus away
+        edge = lean = lean_abbr = None
         if proj is not None:
-            model_edge = round(float(proj) - (-float(lock_spread)), 2)
-            lean = "home" if model_edge > 0 else ("away" if model_edge < 0 else None)
+            proj_fav_margin = float(proj) if fav_is_home else -float(proj)
+            edge = round(proj_fav_margin + lock_fav_line, 2)
+            lean = "fav" if edge > 0 else ("dog" if edge < 0 else None)
+            lean_abbr = {"fav": fav, "dog": dog}.get(lean)
 
-        # CLV: did the number we saw beat where it closed, for the side we leaned?
-        # Home side: lower (more negative) closing spread than ours = we got the
-        # better number. Away side: the reverse.
         clv = None
-        if lean:
-            move = float(closing_spread) - float(lock_spread)
-            clv = round(-move if lean == "home" else move, 2)
+        if bettable and lean and close_line is not None:
+            move = close_line - lock_fav_line            # negative = favorite got pricier
+            clv = round(-move if lean == "fav" else move, 2)
 
+        picks = pred.get("picks") or {}
+        pick_abbr = picks.get("ats_pick_abbr")
+        pick_side = "fav" if pick_abbr == fav else ("dog" if pick_abbr == dog else None)
+        cover_lock = side_covering(fav_margin, lock_fav_line) if bettable else None
+        cover_close = side_covering(fav_margin, close_line)
+
+        def res(side, cover):
+            if not side or not cover:
+                return None
+            return "P" if cover == "push" else ("W" if side == cover else "L")
+
+        lock_total = lock_odds.get("total")
+        tp = float(hs) + float(aws)
         rec = {
             "id": gid,
             "sport": pred.get("sport"),
             "matchup": pred.get("shortName") or pred.get("matchup"),
             "kickoff_utc": pred.get("date_utc"),
             "locked_at": pred.get("locked_at"),
-            "lock_spread": lock_spread,
-            "lock_total": lock_odds.get("total"),
-            "closing_spread": closing_spread,
-            "closing_total": closing_total,
-            "closing_seen_at": closing_ts.isoformat() if closing_ts else None,
-            "snapshots_before_kickoff": n_snaps,
-            "home_score": hs, "away_score": aws, "margin": margin,
-            "total_points": float(hs) + float(aws),
-            "model_projected_spread": proj,
-            "model_edge_vs_lock": model_edge,
-            "model_lean": lean,
+            "lock_source": pred.get("lock_source") or "post_kickoff_legacy",
+            "bettable_lock": bettable,
+            "fav": fav, "dog": dog, "fav_is_home": fav_is_home,
+            "lock_fav_line": lock_fav_line if bettable else None,
+            "open_fav_line": open_line,
+            "close_fav_line": close_line,
+            "close_seen_at": close_ts.isoformat() if close_ts else None,
+            "snapshots_before_kickoff": len(series),
+            "fav_identity_assumed": assumed,
+            "home_score": hs, "away_score": aws,
+            "fav_margin": fav_margin,
+            "model_projected_fav_margin": None if proj is None else (float(proj) if fav_is_home else -float(proj)),
+            "model_edge_pts": edge,
+            "model_lean": lean, "model_lean_abbr": lean_abbr,
             "clv_points": clv,
-            "ats_pick": picks.get("ats_pick_abbr"),
+            "cover_vs_lock": cover_lock,
+            "cover_vs_close": cover_close,
+            "lean_result_vs_lock": res(lean, cover_lock),
+            "lean_result_vs_close": res(lean, cover_close),
+            "ats_pick": pick_abbr, "ats_pick_side": pick_side,
+            "ats_pick_line": picks.get("ats_spread"),
+            "ats_pick_result_vs_close": res(pick_side, cover_close),
             "ou_pick": picks.get("ou_pick"),
-            # Wind at lock time. The one input still allowed to move a total is
-            # not validated anywhere in this repo - the historical file carries
-            # no weather - so record it against the result and it becomes
-            # measurable within a season instead of staying an assumption.
+            "lock_total": lock_total if bettable else None,
+            "close_total": close_total,
+            "total_points": tp,
+            "total_result_vs_close": None if close_total is None else (
+                "over" if tp > float(close_total) else ("under" if tp < float(close_total) else "push")),
             "wind_mph": (pred.get("weather") or {}).get("windSpeedMph"),
             "indoor": (pred.get("venue") or {}).get("indoor"),
             "model_projected_total": (pred.get("prediction") or {}).get("projected_total"),
-            "total_result_vs_lock": (
-                None if lock_odds.get("total") is None else
-                ("over" if float(hs) + float(aws) > float(lock_odds["total"])
-                 else ("under" if float(hs) + float(aws) < float(lock_odds["total"]) else "push"))),
-            # graded both ways: against the number we saw, and against the close
-            "cover_vs_lock": None if lean is None else (
-                ("home" if margin + float(lock_spread) > 0 else "away")
-                if margin + float(lock_spread) != 0 else "push"),
-            "cover_vs_close": None if closing_spread is None else (
-                ("home" if margin + float(closing_spread) > 0 else "away")
-                if margin + float(closing_spread) != 0 else "push"),
         }
-        if gid in study:
-            if study[gid] != rec:
-                study[gid] = rec; updated += 1
-        else:
-            study[gid] = rec; added += 1
+        if study.get(gid) != rec:
+            if gid in study:
+                updated += 1
+            else:
+                added += 1
+            study[gid] = rec
 
     with open(OUTPUT, "w") as f:
         json.dump(study, f, indent=2, sort_keys=True)
 
-    graded = [r for r in study.values() if r.get("clv_points") is not None]
-    print(f"[line_study] {len(study)} games recorded ({added} new, {updated} updated)")
-    if graded:
-        avg = sum(r["clv_points"] for r in graded) / len(graded)
-        beat = sum(1 for r in graded if r["clv_points"] > 0)
-        push = sum(1 for r in graded if r["clv_points"] == 0)
-        wins = sum(1 for r in graded if r["model_lean"] == r["cover_vs_lock"])
-        losses = sum(1 for r in graded if r["cover_vs_lock"] not in (None, "push")
-                     and r["model_lean"] != r["cover_vs_lock"])
-        print(f"[line_study] CLV: mean {avg:+.2f} pts | beat the close {beat}/{len(graded)} "
-              f"({beat/len(graded)*100:.0f}%), unmoved {push}")
-        if wins + losses:
-            print(f"[line_study] model lean ATS vs the number we saw: "
-                  f"{wins}-{losses} ({wins/(wins+losses)*100:.1f}%)  [breakeven 52.4%]")
-        print("[line_study] NOTE: a few dozen games is not a verdict. Positive mean CLV "
-              "sustained over 50+ games is the first real evidence of an edge.")
+    print(f"[line_study] {len(study)} games recorded ({added} new, {updated} updated) "
+          f"- all lines on the favorite's number")
+    rows = list(study.values())
+
+    def tally(key):
+        w = sum(1 for r in rows if r.get(key) == "W")
+        l = sum(1 for r in rows if r.get(key) == "L")
+        p = sum(1 for r in rows if r.get(key) == "P")
+        return w, l, p
+
+    w, l, p = tally("lean_result_vs_close")
+    if w + l:
+        print(f"[line_study] model lean ATS vs pre-kickoff close: {w}-{l}-{p} "
+              f"({w/(w+l)*100:.1f}%)  [breakeven 52.4%]")
+    clv = [r["clv_points"] for r in rows if r.get("clv_points") is not None]
+    if clv:
+        print(f"[line_study] CLV on bettable locks: mean {sum(clv)/len(clv):+.2f} pts over "
+              f"{len(clv)} games | beat the close {sum(c > 0 for c in clv)}, "
+              f"unmoved {sum(c == 0 for c in clv)}")
+    else:
+        print("[line_study] CLV: no bettable (pre-kickoff) locks graded yet")
+    print("[line_study] NOTE: positive mean CLV sustained over 50+ games is the first "
+          "real evidence of an edge.")
 
 
 if __name__ == "__main__":

@@ -488,3 +488,47 @@ better one — 47.6% on a biased model is a slow loss; no pick is zero.
 `abs()` inside an adjustment, a penalty that is only ever subtracted, a lean
 that only fires for one side — check the sign structure before checking the
 coefficient. Three of the five totals terms failed on structure alone.
+
+---
+
+## 2026-10-15 — Locks were post-kickoff, and the line study mixed spread conventions
+
+### Spreads are favorite vs underdog
+Every line on this board is the favorite's number: ORE -24.5 / OKST +24.5.
+`fav_abbr`, `fav_spread` (always negative) and `dog_spread` are the fields to
+use. ESPN's raw `odds.spread` has a sign that depends on which team is at home;
+it is an ingest field for `tag_favorites.py` and the simulator, nothing else.
+`build_line_study.py` graded with it while comparing to snapshots that store
+the favorite's number, so every road favorite flipped sign (ND -27.5 recorded
+as +27.5). Those 49 games produced ~750 of the ~920 points of reported CLV —
+the +1.02 mean CLV was an artifact.
+
+### Picks were locked after kickoff
+`lock_picks()` froze the first prediction built after the game started — 0 to
+11.6 hours late, median 2.6 h, on every football lock this season. That line
+was never bettable. Fixed: each run now stores the latest pre-kickoff version
+in `predictions_prelock.json` and that is what gets locked
+(`lock_source: pre_kickoff`, `locked_at` = when it was built). Pre-fix locks are
+`post_kickoff_legacy` and get no CLV.
+
+### Other changes
+- `track_line_movement.py` now stores `fav_abbr` on each snapshot, so a number
+  is never ambiguous when the favorite flips.
+- `track_accuracy.py` grades ATS against the pick's own `ats_spread` and O/U
+  against `ou_line`. Season records were unchanged by the switch.
+
+### Corrected season read (through 2026-10-14)
+| | NFL | NCAAF |
+|---|---|---|
+| Official ATS picks | 9-9-1 | 4-2 |
+| Model lean, every game, vs pre-kickoff close | 40-30-5 (57.1%) | 69-68 (50.4%) |
+| Model SU vs "always take the favorite" | 65.3% vs 62.7% | 78.3% vs 76.8% |
+
+NFL lean records do not improve with edge size (0-1 pt 60.7%, 2+ pts 54.5%),
+which is what noise looks like. Nothing here is evidence of an edge yet; the
+first bettable-lock CLV readings start accumulating this week.
+
+### Design rule added
+**Never represent a spread as home/away.** Store and compare the favorite's
+number with the favorite's identity attached. If a raw field's sign depends on
+venue, convert it at ingest and never let it reach grading or the board.

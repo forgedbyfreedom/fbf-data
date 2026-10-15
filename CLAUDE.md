@@ -28,3 +28,11 @@ Besides being Jarvis's home, this repo contains the owner's sports data
 pipeline (Python scripts that fetch/build betting prediction data, published
 via GitHub Pages) and `jarvis/jarvis.py`, the standalone voice-assistant app
 that runs on the owner's own computer (see `jarvis/README.md`).
+
+## Betting conventions (do not get these wrong)
+
+- Spreads are quoted **favorite vs underdog** (ORE -24.5 / OKST +24.5), never
+  home/away. Use `fav_abbr` / `fav_spread` / `dog_spread`. ESPN's raw
+  `odds.spread` is home-relative and is an ingest field only.
+- A pick is only meaningful against a line that existed before kickoff.
+  See MODEL_NOTES.md (2026-10-15).
