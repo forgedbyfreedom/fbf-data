@@ -26,3 +26,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-10-05) Executive Director (Remote) — International Association of Arson Investigators / Stringfellow — $140,000–$150,000 — https://to.indeed.com/aap4zlmjfqlg — PREPARED
 - (2026-10-08) Director of Health, Safety & Environmental (HSE) — The Nuclear Company — $176,000–$210,000 — https://to.indeed.com/aayxytyck72b — PREPARED
 - (2026-10-13) Vice President of Operations (Remote) — Icon Corporate Finance — $165,000–$210,000 — https://to.indeed.com/aa9zknnfslsm — PREPARED
+- (2026-10-15) Chief Operating Officer (Remote) — Positive Coaching Alliance — $210,000–$225,000 — https://to.indeed.com/aa468rb77gpt — PREPARED

@@ -76,3 +76,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-14) Chief Electrical Estimator (Remote, reviewed—construction estimating) — MGI Inc — https://to.indeed.com/aa7hqf726dfv
 - (2026-10-14) Executive Director - Business Development (Brunswick, GA, reviewed—BPO sales/BD) — Concentrix — https://to.indeed.com/aad7pw6kstyy
 - (2026-10-14) Manager of Industrial Relations & Technical Operations (Clinton, SC, reviewed—utility technical ops, ~$60K) — Clinton Newberry Natural Gas Authority — https://to.indeed.com/aa7krdd8n8dl
+- (2026-10-15) Chief Operating Officer (Remote) — Positive Coaching Alliance — https://to.indeed.com/aa468rb77gpt
+- (2026-10-15) Income Tax Audit Administrator (Lexington County, SC, State of SC — not a fit/tax specialist, not tailored) — State of South Carolina — https://to.indeed.com/aa7ggvkv4jmp
