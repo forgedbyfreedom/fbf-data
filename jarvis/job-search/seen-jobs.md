@@ -78,6 +78,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-14) Manager of Industrial Relations & Technical Operations (Clinton, SC, reviewed—utility technical ops, ~$60K) — Clinton Newberry Natural Gas Authority — https://to.indeed.com/aa7krdd8n8dl
 - (2026-10-15) Chief Operating Officer (Remote) — Positive Coaching Alliance — https://to.indeed.com/aa468rb77gpt
 - (2026-10-15) Income Tax Audit Administrator (Lexington County, SC, State of SC — not a fit/tax specialist, not tailored) — State of South Carolina — https://to.indeed.com/aa7ggvkv4jmp
-- (2026-10-16) Director, Organizational Effectiveness & Culture (Remote) — Latham Pool Products — https://to.indeed.com/aa8j69tncpwx
+- (2026-10-16) Director, Organizational Effectiveness & Culture (Remote) — Latham Pool Products — https://to.indeed.com/aa8j69tncpwx — owner declined 2026-10-16, do not pursue/re-surface
 - (2026-10-16) Director of Internal Operations (Remote, near-miss—disaster-response mission fit but $90-110K below floor) — Nechama: Jewish Response to Disaster — https://to.indeed.com/aa7ssknwbgzw
 - (2026-10-16) Senior Vice President of Operations (Remote, near-miss—crypto-exchange ops domain) — Independent Reserve — https://to.indeed.com/aac6ygnzysvm

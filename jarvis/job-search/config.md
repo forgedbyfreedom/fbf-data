@@ -24,7 +24,7 @@ Set up: 2026-07-05
 
 ## Criteria
 
-- **Minimum salary:** $125,000/year (flag roles slightly below only if exceptional fit)
+- **Minimum salary:** $100,000/year (lowered from $125k on 2026-10-16 at owner's request to surface more results; still prioritize $125k+ roles and note when a match is in the $100k–$125k band)
 - **Location:** Remote, OR within ~45 min drive of Chapin, SC
   (Columbia, Lexington, Irmo, Ballentine, Newberry, Blythewood, West Columbia)
 - **Job type:** Full-time preferred

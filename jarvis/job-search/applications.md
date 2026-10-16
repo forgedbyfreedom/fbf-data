@@ -27,4 +27,3 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-10-08) Director of Health, Safety & Environmental (HSE) — The Nuclear Company — $176,000–$210,000 — https://to.indeed.com/aayxytyck72b — PREPARED
 - (2026-10-13) Vice President of Operations (Remote) — Icon Corporate Finance — $165,000–$210,000 — https://to.indeed.com/aa9zknnfslsm — PREPARED
 - (2026-10-15) Chief Operating Officer (Remote) — Positive Coaching Alliance — $210,000–$225,000 — https://to.indeed.com/aa468rb77gpt — PREPARED
-- (2026-10-16) Director, Organizational Effectiveness & Culture (Remote) — Latham Pool Products — $125,000–$215,000 — https://to.indeed.com/aa8j69tncpwx — PREPARED
