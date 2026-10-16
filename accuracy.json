@@ -1,40 +1,40 @@
 {
-  "timestamp": "2026-10-15T21:15:26.518294+00:00",
+  "timestamp": "2026-10-16T03:16:05.186497+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 280,
+  "predictions_graded": 284,
   "sports": {
     "ALL": {
-      "SU_pct": 74.7,
-      "SU_record": "204-69",
-      "SU_total": 273,
-      "ATS_pct": 54.2,
-      "ATS_record": "13-11-1",
-      "ATS_total": 24,
-      "OU_pct": 51.7,
-      "OU_record": "15-14-0",
-      "OU_total": 29
+      "SU_pct": 74.4,
+      "SU_record": "206-71",
+      "SU_total": 277,
+      "ATS_pct": 57.1,
+      "ATS_record": "16-12-1",
+      "ATS_total": 28,
+      "OU_pct": 57.6,
+      "OU_record": "19-14-0",
+      "OU_total": 33
     },
     "NFL": {
-      "SU_pct": 65.3,
-      "SU_record": "49-26",
-      "SU_total": 75,
-      "ATS_pct": 50.0,
-      "ATS_record": "9-9-1",
-      "ATS_total": 18,
-      "OU_pct": 62.5,
-      "OU_record": "5-3-0",
-      "OU_total": 8
+      "SU_pct": 64.5,
+      "SU_record": "49-27",
+      "SU_total": 76,
+      "ATS_pct": 52.6,
+      "ATS_record": "10-9-1",
+      "ATS_total": 19,
+      "OU_pct": 66.7,
+      "OU_record": "6-3-0",
+      "OU_total": 9
     },
     "NCAAF": {
-      "SU_pct": 78.3,
-      "SU_record": "155-43",
-      "SU_total": 198,
+      "SU_pct": 78.1,
+      "SU_record": "157-44",
+      "SU_total": 201,
       "ATS_pct": 66.7,
-      "ATS_record": "4-2-0",
-      "ATS_total": 6,
-      "OU_pct": 47.6,
-      "OU_record": "10-11-0",
-      "OU_total": 21
+      "ATS_record": "6-3-0",
+      "ATS_total": 9,
+      "OU_pct": 54.2,
+      "OU_record": "13-11-0",
+      "OU_total": 24
     }
   },
   "high_confidence": {
@@ -76,19 +76,19 @@
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 23,
-        "record": "13-10",
+        "picks": 26,
+        "record": "15-11",
         "stated_mid": 52.5,
-        "actual_pct": 56.5,
-        "gap": 4.0
+        "actual_pct": 57.7,
+        "gap": 5.2
       },
       {
         "bucket": "55-60%",
-        "picks": 1,
-        "record": "0-1",
+        "picks": 2,
+        "record": "1-1",
         "stated_mid": 57.5,
-        "actual_pct": 0.0,
-        "gap": -57.5
+        "actual_pct": 50.0,
+        "gap": -7.5
       },
       {
         "bucket": "60-70%",
@@ -110,19 +110,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 24,
-        "record": "12-12",
+        "picks": 25,
+        "record": "13-12",
         "stated_mid": 52.5,
-        "actual_pct": 50.0,
-        "gap": -2.5
+        "actual_pct": 52.0,
+        "gap": -0.5
       },
       {
         "bucket": "55-60%",
-        "picks": 5,
-        "record": "3-2",
+        "picks": 8,
+        "record": "6-2",
         "stated_mid": 57.5,
-        "actual_pct": 60.0,
-        "gap": 2.5
+        "actual_pct": 75.0,
+        "gap": 17.5
       },
       {
         "bucket": "60-70%",
@@ -145,36 +145,6 @@
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401872924",
-      "sport": "NFL",
-      "date": "2026-09-13T17:00Z",
-      "matchup": "New York Jets at Tennessee Titans",
-      "su": "L"
-    },
-    {
-      "id": "401872659",
-      "sport": "NFL",
-      "date": "2026-09-13T17:00Z",
-      "matchup": "Baltimore Ravens at Indianapolis Colts",
-      "su": "W"
-    },
-    {
-      "id": "401872658",
-      "sport": "NFL",
-      "date": "2026-09-13T17:00Z",
-      "matchup": "Atlanta Falcons at Pittsburgh Steelers",
-      "su": "W"
-    },
-    {
-      "id": "401872661",
-      "sport": "NFL",
-      "date": "2026-09-13T17:00Z",
-      "matchup": "Chicago Bears at Carolina Panthers",
-      "ats": "L",
-      "ats_best_bet": true,
-      "su": "W"
-    },
     {
       "id": "401872922",
       "sport": "NFL",
@@ -1604,6 +1574,50 @@
       "sport": "NCAAF",
       "date": "2026-10-14T23:30Z",
       "matchup": "Kennesaw State Owls at Missouri State Bears",
+      "su": "L"
+    },
+    {
+      "id": "401862800",
+      "sport": "NCAAF",
+      "date": "2026-10-15T23:30Z",
+      "matchup": "East Carolina Pirates at UAB Blazers",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401869950",
+      "sport": "NCAAF",
+      "date": "2026-10-15T23:30Z",
+      "matchup": "Georgia Southern Eagles at Old Dominion Monarchs",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401860923",
+      "sport": "NCAAF",
+      "date": "2026-10-16T00:00Z",
+      "matchup": "Colorado State Rams at Texas State Bobcats",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401872995",
+      "sport": "NFL",
+      "date": "2026-10-16T00:15Z",
+      "matchup": "Seattle Seahawks at Denver Broncos",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
       "su": "L"
     }
   ]
