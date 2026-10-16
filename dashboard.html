@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FBF Picks Dashboard</title>
+<meta name="description" content="Live NFL and college football picks, best bets and parlay builder from the FBF prediction engine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090a; --panel:#0e1416; --panel2:#121b1e; --line:#1d2a2e; --line2:#26363b;
+  --text:#e6f0ee; --muted:#7f9894; --dim:#566a67;
+  --teal:#2fd3b5; --teal-d:#12463d; --amber:#f5a524; --amber-d:#3d2a08;
+  --win:#3ddc84; --loss:#ff5c5c; --blue:#5aa9ff;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(1200px 500px at 50% -200px,#0f2a27 0%,transparent 70%),var(--bg);min-height:100vh}
+a{color:var(--teal)}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 80px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(145deg,#1b4f47,#0b2522);display:grid;place-items:center;border:1px solid #2a5f56}
+.mark svg{width:20px;height:20px}
+.brand h1{font-size:18px;letter-spacing:.18em;font-weight:700;margin:0}
+.brand small{display:block;color:var(--muted);font-size:12px;letter-spacing:.02em;margin-top:2px}
+.updated{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--win);box-shadow:0 0 10px var(--win)}
+.dot.stale{background:var(--amber);box-shadow:0 0 10px var(--amber)}
+
+nav.tabs{position:sticky;top:0;z-index:20;margin:18px -16px 0;padding:10px 16px;background:rgba(7,9,10,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:8px 14px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--muted);font:600 13px Inter;cursor:pointer}
+.tab.on{background:var(--teal-d);color:var(--teal);border-color:#1f6d5f}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+.chip{padding:6px 12px;border-radius:8px;border:1px solid var(--line2);background:var(--panel);color:var(--muted);font:600 12px Inter;cursor:pointer}
+.chip.on{color:var(--text);border-color:var(--teal);background:#0f2724}
+
+section{margin-top:26px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.sec-h h2{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin:0;font-weight:700}
+.sec-h p{margin:0;color:var(--muted);font-size:12.5px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.kpi .val{font-family:var(--mono);font-size:26px;font-weight:700;margin-top:6px}
+.kpi .sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:2px}
+.bar{height:4px;border-radius:4px;background:var(--line2);margin-top:10px;position:relative;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--teal)}
+.bar b{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--amber)}
+.good{color:var(--win)} .bad{color:var(--loss)} .amber{color:var(--amber)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;position:relative}
+.card.best{border-color:#6b4a12;background:linear-gradient(180deg,#17130b,var(--panel) 60%)}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lg{font:700 10.5px Inter;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.when{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.mu{font-size:16px;font-weight:700;margin:8px 0 2px}
+.mu span{color:var(--dim);font-weight:500}
+.line{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.legs{display:grid;gap:6px;margin-top:12px}
+.pick{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:var(--panel2);border:1px solid var(--line)}
+.pick .k{font:700 10px Inter;letter-spacing:.12em;color:var(--dim)}
+.pick .v{font-family:var(--mono);font-weight:700;font-size:14px}
+.pick .p{font-family:var(--mono);font-size:13px;text-align:right}
+.pick .p small{display:block;color:var(--dim);font-size:10px;letter-spacing:.08em}
+.pick.isbest{border-color:#6b4a12;background:var(--amber-d)}
+.pick.isbest .p{color:var(--amber)}
+.tag{font:700 10px Inter;letter-spacing:.12em;padding:3px 7px;border-radius:6px;text-transform:uppercase}
+.tag.best{background:var(--amber);color:#1a1205}
+.tag.live{background:#3b1414;color:#ff8f8f}
+.addbtn{border:1px solid var(--line2);background:transparent;color:var(--muted);border-radius:8px;width:28px;height:28px;font:700 16px Inter;cursor:pointer;line-height:1}
+.addbtn.on{background:var(--teal);color:#04231e;border-color:var(--teal)}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:var(--dim)}
+
+.parlays{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.parlay{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+.parlay h3{margin:0;font-size:14px;font-weight:700}
+.parlay .why{color:var(--muted);font-size:12px;margin:4px 0 12px}
+.pl-leg{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px dashed var(--line2);font-size:13px}
+.pl-leg b{font-family:var(--mono)}
+.pl-leg .pp{font-family:var(--mono);color:var(--muted)}
+.pl-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.pl-sum > div{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.pl-sum .lab{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.pl-sum .num{font-family:var(--mono);font-weight:700;font-size:17px;margin-top:2px}
+.hitring{display:flex;align-items:center;gap:12px}
+.note{color:var(--dim);font-size:11.5px;margin-top:10px;line-height:1.45}
+
+#slip{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:30;width:min(560px,calc(100% - 24px));background:#0c1b19;border:1px solid #1f6d5f;border-radius:16px;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.6);display:none}
+#slip.show{display:block}
+#slip .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#slip .legs-s{font-size:12px;color:var(--muted);margin-top:6px;max-height:84px;overflow:auto}
+#slip .nums{display:flex;gap:14px;font-family:var(--mono);font-size:13px}
+#slip button{background:transparent;border:1px solid var(--line2);color:var(--muted);border-radius:8px;padding:5px 10px;font:600 12px Inter;cursor:pointer}
+.empty{color:var(--muted);font-size:13px;padding:18px;border:1px dashed var(--line2);border-radius:14px;text-align:center}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+footer{margin-top:40px;color:var(--dim);font-size:11.5px;line-height:1.6}
+@media (max-width:520px){.mu{font-size:15px}.kpi .val{font-size:22px}.grid,.parlays{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#2fd3b5" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div><h1>FBF PICKS</h1><small>NFL &middot; College Football &middot; Prediction Engine</small></div>
+    </div>
+    <div class="updated"><span class="dot" id="dot"></span><span id="updated">Loading…</span></div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-go="best">Best Bets</button>
+    <button class="tab" data-go="parlays">Parlays</button>
+    <button class="tab" data-go="all">All Picks</button>
+    <button class="tab" data-go="record">Record</button>
+  </nav>
+
+  <div class="filters" id="filters">
+    <button class="chip on" data-win="7">Next 7 days</button>
+    <button class="chip" data-win="999">All upcoming</button>
+    <span style="width:8px"></span>
+    <button class="chip on" data-sport="all">All</button>
+    <button class="chip" data-sport="nfl">NFL</button>
+    <button class="chip" data-sport="ncaaf">College</button>
+  </div>
+
+  <section id="record">
+    <div class="sec-h"><h2>Season Record</h2><p>Graded against the line on each pick. Breakeven at standard -110 is 52.4%.</p></div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section id="best">
+    <div class="sec-h"><h2>Best Bets</h2><p>The model's edge clears the bar: 2+ points vs the spread, 3+ points vs the total.</p></div>
+    <div class="grid" id="bestGrid"></div>
+  </section>
+
+  <section id="parlays">
+    <div class="sec-h"><h2>Parlay Suggestions</h2><p>Built from this slate, no two legs from the same game. Tap + on any pick to build your own.</p></div>
+    <div class="parlays" id="parlayGrid"></div>
+    <p class="note">Hit chance multiplies the model's probability for each leg. Spread and total legs are priced at standard -110. Moneyline payouts are <b>estimated</b> from the spread with a typical book margin, so check your book's actual price. "Model EV" is the expected return per $1 if the model's probabilities are right. The model's edge is not yet proven, so treat EV as the model's opinion, not a guarantee.</p>
+  </section>
+
+  <section id="all">
+    <div class="sec-h"><h2>All Picks</h2>
+      <div class="legend"><span><i style="background:var(--amber)"></i>Best Bet</span><span><i style="background:var(--teal)"></i>Lean</span></div>
+    </div>
+    <div class="grid" id="allGrid"></div>
+  </section>
+
+  <footer>Data refreshes with every pipeline run (about every 6 hours). Spreads are shown as each team's own number (favorite laying points, underdog getting them). Picks lock at the last update before kickoff. For entertainment and research. Bet responsibly.</footer>
+</div>
+
+<div id="slip">
+  <div class="row"><b style="font-size:13px">Your parlay · <span id="slipN">0</span> legs</b><div class="nums"><span>Hit <b id="slipHit">–</b></span><span>Pays <b id="slipPay">–</b></span><span>EV <b id="slipEV">–</b></span></div><button id="slipClear">Clear</button></div>
+  <div class="legs-s" id="slipLegs"></div>
+</div>
+
+<script>
+(() => {
+const SD = { nfl: 12.9, ncaaf: 15.1 };          // measured margin SD vs the line
+const DEC_110 = 1 + 100 / 110;                   // standard -110 price
+const BOOK_MARGIN = 1.045;                       // typical moneyline overround
+const ML_LEG_CAP = 0.97;                         // legs above this pay almost nothing
+
+let PRED = [], ACC = null, win = 7, sport = 'all';
+const slip = new Map();                          // key -> leg
+
+const erf = x => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; };
+const phi = z => 0.5 * (1 + erf(z / Math.SQRT2));
+const pct = (p, d = 1) => (p * 100).toFixed(d) + '%';
+const american = dec => dec >= 2 ? '+' + Math.round((dec - 1) * 100) : '-' + Math.round(100 / (dec - 1));
+const line = n => n == null ? '' : (Number(n) === 0 ? 'PK' : (n > 0 ? '+' : '') + Number(n).toFixed(1).replace(/\.0$/, ''));
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const kick = g => new Date(g.date_utc);
+const fmtWhen = d => d.toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+
+// Build every leg for a game. All spreads are on the picked team's own number.
+function legsFor(g) {
+  const k = g.picks || {}, out = [], sp = (g.sport || '').toLowerCase();
+  const started = kick(g) <= new Date();
+  if (k.ats_pick_abbr && k.ats_spread != null && k.ats_confidence != null) {
+    out.push({ key: g.id + ':ats', gid: g.id, type: 'ATS', label: `${k.ats_pick_abbr} ${line(k.ats_spread)}`,
+      p: k.ats_confidence / 100, dec: DEC_110, best: !!k.ats_high_conf, started, g });
+  }
+  if (k.ou_pick && k.ou_line != null && k.ou_confidence != null) {
+    out.push({ key: g.id + ':ou', gid: g.id, type: 'O/U', label: `${k.ou_pick} ${k.ou_line}`,
+      p: k.ou_confidence / 100, dec: DEC_110, best: !!k.ou_high_conf, started, g });
+  }
+  const wh = g.prediction && g.prediction.win_probability_home;
+  if (wh != null && g.fav_abbr && g.fav_spread != null && SD[sp]) {
+    const side = wh >= 0.5 ? g.home : g.away, p = Math.max(wh, 1 - wh);
+    const favFair = phi(Math.abs(g.fav_spread) / SD[sp]);              // market's view, no vig
+    const mkt = side === g.fav_abbr ? favFair : 1 - favFair;
+    const dec = 1 / Math.min(0.995, mkt * BOOK_MARGIN);
+    out.push({ key: g.id + ':ml', gid: g.id, type: 'ML', label: `${side} to win`, p, dec, est: true, best: false, started, g });
+  }
+  return out;
+}
+
+function inView(g) {
+  const d = kick(g), now = new Date();
+  if (sport !== 'all' && (g.sport || '').toLowerCase() !== sport) return false;
+  const hours = (d - now) / 36e5;
+  return hours > -4 && hours <= win * 24;          // keep games that kicked off in the last 4h visible
+}
+
+function combo(legs) {
+  const p = legs.reduce((a, l) => a * l.p, 1), dec = legs.reduce((a, l) => a * l.dec, 1);
+  return { p, dec, ev: p * dec - 1 };
+}
+
+function pickRow(l) {
+  const on = slip.has(l.key);
+  return `<div class="pick ${l.best ? 'isbest' : ''}">
+    <span class="k">${l.type}</span>
+    <span class="v">${esc(l.label)} ${l.best ? '<span class="tag best">Best</span>' : ''}</span>
+    <span style="display:flex;align-items:center;gap:8px"><span class="p">${pct(l.p)}<small>${l.type === 'ML' ? 'WIN' : 'COVER'}</small></span>
+    ${l.started ? '' : `<button class="addbtn ${on ? 'on' : ''}" data-add="${l.key}" aria-label="Add to parlay">${on ? '✓' : '+'}</button>`}</span>
+  </div>`;
+}
+
+function gameCard(g, onlyBest) {
+  const legs = legsFor(g).filter(l => !onlyBest || l.best);
+  if (!legs.length) return '';
+  const anyBest = legs.some(l => l.best), started = kick(g) <= new Date();
+  const total = (g.odds || {}).total;
+  const w = g.weather || {}, wind = w.windSpeedMph;
+  return `<div class="card ${anyBest ? 'best' : ''}">
+    <div class="top"><span class="lg">${esc((g.sport || '').toUpperCase() === 'NCAAF' ? 'College' : 'NFL')}</span>
+      <span class="when">${started ? '<span class="tag live">Started</span>' : fmtWhen(kick(g))}</span></div>
+    <div class="mu">${esc(g.away)} <span>@</span> ${esc(g.home)}</div>
+    <div class="line">${g.fav_abbr ? `${esc(g.fav_abbr)} ${line(g.fav_spread)}` : 'No line yet'}${total != null ? ` · O/U ${total}` : ''}</div>
+    <div class="legs">${legs.map(pickRow).join('')}</div>
+    <div class="meta">${g.prediction && g.prediction.projected_home_score != null ? `<span>Proj ${esc(g.away)} ${g.prediction.projected_away_score} – ${esc(g.home)} ${g.prediction.projected_home_score}</span>` : ''}
+      ${wind != null && !(g.venue || {}).indoor ? `<span>Wind ${Math.round(wind)} mph</span>` : ''}
+      ${(g.injury_count_home || g.injury_count_away) ? `<span>Injuries ${g.injury_count_away || 0}/${g.injury_count_home || 0}</span>` : ''}</div>
+  </div>`;
+}
+
+function renderKPIs() {
+  const el = document.getElementById('kpis');
+  if (!ACC) { el.innerHTML = '<div class="empty">Record unavailable.</div>'; return; }
+  const s = ACC.sports || {}, hb = (ACC.high_confidence || {}).ALL || {};
+  const sel = sport === 'all' ? 'ALL' : sport.toUpperCase();
+  const a = s[sel] || {}, hsel = (ACC.high_confidence || {})[sel] || hb;
+  const tile = (lab, rec, p, n, note) => {
+    const v = Number(p) || 0, cls = !n ? '' : (v >= 52.4 ? 'good' : 'bad');
+    return `<div class="kpi"><div class="lab"><span>${lab}</span><span>${n || 0}</span></div>
+      <div class="val ${cls}">${n ? v.toFixed(1) + '%' : '—'}</div><div class="sub">${rec || '0-0'}${note ? ' · ' + note : ''}</div>
+      <div class="bar"><i style="width:${Math.min(100, v)}%"></i><b style="left:52.4%"></b></div></div>`;
+  };
+  el.innerHTML =
+    tile('Best Bets · Spread', hsel.ATS_record, hsel.ATS_pct, hsel.ATS_total) +
+    tile('Best Bets · Total', hsel.OU_record, hsel.OU_pct, hsel.OU_total) +
+    tile('All · Spread', a.ATS_record, a.ATS_pct, a.ATS_total) +
+    tile('All · Total', a.OU_record, a.OU_pct, a.OU_total) +
+    tile('Straight Up', a.SU_record, a.SU_pct, a.SU_total, 'winners');
+}
+
+function suggestions(games) {
+  const pool = games.filter(g => kick(g) > new Date()).flatMap(legsFor);
+  const pickDistinct = (legs, n) => { const used = new Set(), out = [];
+    for (const l of legs) { if (used.has(l.gid)) continue; used.add(l.gid); out.push(l); if (out.length === n) break; } return out; };
+  const byP = (a, b) => b.p - a.p;
+  const ml = pool.filter(l => l.type === 'ML' && l.p <= ML_LEG_CAP).sort(byP);
+  const bestAts = pool.filter(l => l.type === 'ATS' && l.best).sort(byP);
+  const bestOu = pool.filter(l => l.type === 'O/U' && l.best).sort(byP);
+  const bestAll = pool.filter(l => l.best).sort(byP);
+  const s = [];
+  const add = (title, why, legs) => { if (legs.length >= 2) s.push({ title, why, legs }); };
+  add('Highest hit rate · 3-leg moneyline', 'The three winners the model is most sure of (each under 97%, so the parlay still pays something).', pickDistinct(ml, 3));
+  add('Two-leg moneyline lock', 'The two strongest favorites. Low payout, highest chance of cashing.', pickDistinct(ml, 2));
+  add('Best Bets · spreads', 'The top Best Bet spread picks, each 2+ points off the line.', pickDistinct(bestAts, 2));
+  add('Best Bets · totals', 'The top Best Bet over/unders, each 3+ points off the total.', pickDistinct(bestOu, 2));
+  add('Best Bets · 3-leg mix', 'The three strongest Best Bets on the slate, from different games.', pickDistinct(bestAll, 3));
+  const mlTop = pickDistinct(ml, 1), bestTop = pickDistinct(bestAll.filter(l => !mlTop.some(m => m.gid === l.gid)), 2);
+  add('Anchor + edges', 'One strong moneyline favorite plus the two best edges on the board.', [...mlTop, ...bestTop]);
+  return s;
+}
+
+function parlayCard(s) {
+  const c = combo(s.legs), est = s.legs.some(l => l.est);
+  return `<div class="parlay"><h3>${esc(s.title)}</h3><div class="why">${esc(s.why)}</div>
+    ${s.legs.map(l => `<div class="pl-leg"><span><span class="lg" style="margin-right:8px">${l.type}</span><b>${esc(l.label)}</b> <span style="color:var(--dim)">· ${esc(l.g.away)} @ ${esc(l.g.home)}</span></span><span class="pp">${pct(l.p)}</span></div>`).join('')}
+    <div class="pl-sum">
+      <div><div class="lab">Hit chance</div><div class="num ${c.p >= 0.5 ? 'good' : ''}">${pct(c.p)}</div></div>
+      <div><div class="lab">Pays${est ? ' (est.)' : ''}</div><div class="num">${american(c.dec)}</div></div>
+      <div><div class="lab">Model EV</div><div class="num ${c.ev >= 0 ? 'good' : 'bad'}">${(c.ev >= 0 ? '+' : '') + (c.ev * 100).toFixed(1)}%</div></div>
+    </div>
+    <div style="margin-top:10px"><button class="chip" data-load="${s.legs.map(l => l.key).join(',')}">Load into my parlay</button></div>
+  </div>`;
+}
+
+function renderSlip() {
+  const el = document.getElementById('slip'), legs = [...slip.values()];
+  el.classList.toggle('show', legs.length > 0);
+  document.getElementById('slipN').textContent = legs.length;
+  const sameGame = new Set(legs.map(l => l.gid)).size !== legs.length;
+  if (legs.length) {
+    const c = combo(legs);
+    document.getElementById('slipHit').textContent = pct(c.p);
+    document.getElementById('slipPay').textContent = american(c.dec) + (legs.some(l => l.est) ? '*' : '');
+    const ev = document.getElementById('slipEV'); ev.textContent = (c.ev >= 0 ? '+' : '') + (c.ev * 100).toFixed(1) + '%'; ev.className = c.ev >= 0 ? 'good' : 'bad';
+  }
+  document.getElementById('slipLegs').innerHTML = legs.map(l => `${l.type} ${esc(l.label)} (${esc(l.g.away)} @ ${esc(l.g.home)}) · ${pct(l.p)}`).join('<br>') +
+    (sameGame ? '<br><span class="amber">Two legs from the same game are correlated, and most books block or reprice them.</span>' : '') +
+    (legs.some(l => l.est) ? '<br><span style="color:var(--dim)">* moneyline price estimated from the spread</span>' : '');
+}
+
+function render() {
+  const games = PRED.filter(inView).sort((a, b) => kick(a) - kick(b));
+  renderKPIs();
+  const bestGames = games.filter(g => legsFor(g).some(l => l.best))
+    .sort((a, b) => Math.max(...legsFor(b).filter(l => l.best).map(l => l.p)) - Math.max(...legsFor(a).filter(l => l.best).map(l => l.p)));
+  document.getElementById('bestGrid').innerHTML = bestGames.map(g => gameCard(g, true)).join('') || '<div class="empty">No Best Bets in this window yet. They appear as lines settle through the week.</div>';
+  const sug = suggestions(games);
+  document.getElementById('parlayGrid').innerHTML = sug.map(parlayCard).join('') || '<div class="empty">Not enough priced games in this window to build parlays.</div>';
+  document.getElementById('allGrid').innerHTML = games.map(g => gameCard(g, false)).join('') || '<div class="empty">No games in this window.</div>';
+  renderSlip();
+}
+
+function legByKey(key) {
+  for (const g of PRED) for (const l of legsFor(g)) if (l.key === key) return l;
+  return null;
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-add],[data-load],[data-go],[data-win],[data-sport],#slipClear');
+  if (!t) return;
+  if (t.dataset.add) { const k = t.dataset.add; if (slip.has(k)) slip.delete(k); else { const l = legByKey(k); if (l) slip.set(k, l); } render(); }
+  else if (t.dataset.load) { slip.clear(); t.dataset.load.split(',').forEach(k => { const l = legByKey(k); if (l) slip.set(k, l); }); render(); }
+  else if (t.id === 'slipClear') { slip.clear(); render(); }
+  else if (t.dataset.go) { document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b === t));
+    const y = document.getElementById(t.dataset.go).getBoundingClientRect().top + scrollY - 70; scrollTo({ top: y, behavior: 'smooth' }); }
+  else if (t.dataset.win) { win = Number(t.dataset.win); document.querySelectorAll('[data-win]').forEach(b => b.classList.toggle('on', b === t)); render(); }
+  else if (t.dataset.sport) { sport = t.dataset.sport; document.querySelectorAll('[data-sport]').forEach(b => b.classList.toggle('on', b === t)); render(); }
+});
+
+async function load() {
+  const bust = '?t=' + Date.now();
+  try {
+    const [p, a] = await Promise.all([fetch('predictions.json' + bust).then(r => r.json()), fetch('accuracy.json' + bust).then(r => r.json()).catch(() => null)]);
+    PRED = (p.predictions || []).filter(g => ['nfl', 'ncaaf'].includes((g.sport || '').toLowerCase()));
+    ACC = a;
+    const ts = p.timestamp && /^\d{8}_\d{4}$/.test(p.timestamp)
+      ? new Date(Date.UTC(+p.timestamp.slice(0, 4), +p.timestamp.slice(4, 6) - 1, +p.timestamp.slice(6, 8), +p.timestamp.slice(9, 11), +p.timestamp.slice(11, 13)))
+      : (a && a.timestamp ? new Date(a.timestamp) : null);
+    const hrs = ts ? (Date.now() - ts) / 36e5 : null;
+    document.getElementById('updated').textContent = ts ? `Updated ${ts.toLocaleString(undefined, { weekday: 'short', hour: 'numeric', minute: '2-digit' })}` : 'Live';
+    document.getElementById('dot').classList.toggle('stale', hrs != null && hrs > 8);
+    render();
+  } catch (err) {
+    document.getElementById('updated').textContent = 'Could not load picks';
+    document.getElementById('allGrid').innerHTML = '<div class="empty">Picks failed to load. Refresh in a minute.</div>';
+  }
+}
+load();
+setInterval(load, 15 * 60 * 1000);
+})();
+</script>
+</body>
+</html>
