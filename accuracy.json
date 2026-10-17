@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-10-17T15:15:00.409090+00:00",
+  "timestamp": "2026-10-17T21:13:02.882866+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 287,
+  "predictions_graded": 304,
   "sports": {
     "ALL": {
-      "SU_pct": 73.9,
-      "SU_record": "207-73",
-      "SU_total": 280,
-      "ATS_pct": 54.8,
-      "ATS_record": "17-14-1",
-      "ATS_total": 31,
-      "OU_pct": 52.8,
-      "OU_record": "19-17-0",
-      "OU_total": 36
+      "SU_pct": 73.4,
+      "SU_record": "218-79",
+      "SU_total": 297,
+      "ATS_pct": 55.3,
+      "ATS_record": "26-21-2",
+      "ATS_total": 47,
+      "OU_pct": 49.1,
+      "OU_record": "26-27-0",
+      "OU_total": 53
     },
     "NFL": {
       "SU_pct": 64.5,
@@ -26,28 +26,28 @@
       "OU_total": 9
     },
     "NCAAF": {
-      "SU_pct": 77.5,
-      "SU_record": "158-46",
-      "SU_total": 204,
-      "ATS_pct": 58.3,
-      "ATS_record": "7-5-0",
-      "ATS_total": 12,
-      "OU_pct": 48.1,
-      "OU_record": "13-14-0",
-      "OU_total": 27
+      "SU_pct": 76.5,
+      "SU_record": "169-52",
+      "SU_total": 221,
+      "ATS_pct": 57.1,
+      "ATS_record": "16-12-1",
+      "ATS_total": 28,
+      "OU_pct": 45.5,
+      "OU_record": "20-24-0",
+      "OU_total": 44
     }
   },
   "high_confidence": {
     "ALL": {
-      "SU_pct": 84.2,
-      "SU_record": "16-3",
-      "SU_total": 19,
-      "ATS_pct": 55.0,
-      "ATS_record": "11-9-1",
-      "ATS_total": 20,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "SU_pct": 81.0,
+      "SU_record": "17-4",
+      "SU_total": 21,
+      "ATS_pct": 57.1,
+      "ATS_record": "12-9-1",
+      "ATS_total": 21,
+      "OU_pct": 0.0,
+      "OU_record": "0-1-0",
+      "OU_total": 1
     },
     "NFL": {
       "SU_pct": 87.5,
@@ -61,34 +61,34 @@
       "OU_total": 0
     },
     "NCAAF": {
-      "SU_pct": 66.7,
-      "SU_record": "2-1",
-      "SU_total": 3,
-      "ATS_pct": 66.7,
-      "ATS_record": "2-1-0",
-      "ATS_total": 3,
-      "OU_pct": 0,
-      "OU_record": "0-0-0",
-      "OU_total": 0
+      "SU_pct": 60.0,
+      "SU_record": "3-2",
+      "SU_total": 5,
+      "ATS_pct": 75.0,
+      "ATS_record": "3-1-0",
+      "ATS_total": 4,
+      "OU_pct": 0.0,
+      "OU_record": "0-1-0",
+      "OU_total": 1
     }
   },
   "calibration": {
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 29,
-        "record": "16-13",
+        "picks": 44,
+        "record": "24-20",
         "stated_mid": 52.5,
-        "actual_pct": 55.2,
-        "gap": 2.7
+        "actual_pct": 54.5,
+        "gap": 2.0
       },
       {
         "bucket": "55-60%",
-        "picks": 2,
-        "record": "1-1",
+        "picks": 3,
+        "record": "2-1",
         "stated_mid": 57.5,
-        "actual_pct": 50.0,
-        "gap": -7.5
+        "actual_pct": 66.7,
+        "gap": 9.2
       },
       {
         "bucket": "60-70%",
@@ -110,19 +110,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 28,
-        "record": "13-15",
+        "picks": 44,
+        "record": "20-24",
         "stated_mid": 52.5,
-        "actual_pct": 46.4,
-        "gap": -6.1
+        "actual_pct": 45.5,
+        "gap": -7.0
       },
       {
         "bucket": "55-60%",
-        "picks": 8,
-        "record": "6-2",
+        "picks": 9,
+        "record": "6-3",
         "stated_mid": 57.5,
-        "actual_pct": 75.0,
-        "gap": 17.5
+        "actual_pct": 66.7,
+        "gap": 9.2
       },
       {
         "bucket": "60-70%",
@@ -145,129 +145,6 @@
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401872927",
-      "sport": "NFL",
-      "date": "2026-09-13T20:25Z",
-      "matchup": "Green Bay Packers at Minnesota Vikings",
-      "su": "W"
-    },
-    {
-      "id": "401872929",
-      "sport": "NFL",
-      "date": "2026-09-13T20:25Z",
-      "matchup": "Washington Commanders at Philadelphia Eagles",
-      "su": "W"
-    },
-    {
-      "id": "401872926",
-      "sport": "NFL",
-      "date": "2026-09-13T20:25Z",
-      "matchup": "Arizona Cardinals at Los Angeles Chargers",
-      "su": "L"
-    },
-    {
-      "id": "401872930",
-      "sport": "NFL",
-      "date": "2026-09-14T00:20Z",
-      "matchup": "Dallas Cowboys at New York Giants",
-      "su": "L"
-    },
-    {
-      "id": "401872931",
-      "sport": "NFL",
-      "date": "2026-09-15T00:15Z",
-      "matchup": "Denver Broncos at Kansas City Chiefs",
-      "ats": "W",
-      "ats_best_bet": true,
-      "su": "W"
-    },
-    {
-      "id": "401858225",
-      "sport": "NCAAF",
-      "date": "2026-09-17T23:30Z",
-      "matchup": "Syracuse Orange at Pittsburgh Panthers",
-      "ou": "W",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401872932",
-      "sport": "NFL",
-      "date": "2026-09-18T00:15Z",
-      "matchup": "Detroit Lions at Buffalo Bills",
-      "su": "W"
-    },
-    {
-      "id": "401858226",
-      "sport": "NCAAF",
-      "date": "2026-09-18T23:30Z",
-      "matchup": "Miami Hurricanes at Wake Forest Demon Deacons",
-      "su": "W"
-    },
-    {
-      "id": "401856811",
-      "sport": "NCAAF",
-      "date": "2026-09-19T00:00Z",
-      "matchup": "Houston Cougars at Texas Tech Red Raiders",
-      "su": "W"
-    },
-    {
-      "id": "401869940",
-      "sport": "NCAAF",
-      "date": "2026-09-19T15:30Z",
-      "matchup": "Coastal Carolina Chanticleers at Delaware Blue Hens",
-      "su": "W"
-    },
-    {
-      "id": "401858229",
-      "sport": "NCAAF",
-      "date": "2026-09-19T16:00Z",
-      "matchup": "North Carolina Tar Heels at Clemson Tigers",
-      "su": "L"
-    },
-    {
-      "id": "401856686",
-      "sport": "NCAAF",
-      "date": "2026-09-19T16:00Z",
-      "matchup": "Georgia Bulldogs at Arkansas Razorbacks",
-      "su": "W"
-    },
-    {
-      "id": "401858454",
-      "sport": "NCAAF",
-      "date": "2026-09-19T16:00Z",
-      "matchup": "Kent State Golden Flashes at Ohio State Buckeyes",
-      "su": "W"
-    },
-    {
-      "id": "401858456",
-      "sport": "NCAAF",
-      "date": "2026-09-19T16:00Z",
-      "matchup": "Buffalo Bulls at Penn State Nittany Lions",
-      "su": "W"
-    },
-    {
-      "id": "401856792",
-      "sport": "NCAAF",
-      "date": "2026-09-19T16:00Z",
-      "matchup": "Tulane Green Wave at Kansas State Wildcats",
-      "su": "W"
-    },
-    {
-      "id": "401856798",
-      "sport": "NCAAF",
-      "date": "2026-09-19T16:00Z",
-      "matchup": "Bowling Green Falcons at Iowa State Cyclones",
-      "su": "W"
-    },
-    {
-      "id": "401858227",
-      "sport": "NCAAF",
-      "date": "2026-09-19T18:00Z",
-      "matchup": "Maine Black Bears at Boston College Eagles",
-      "su": "W"
-    },
     {
       "id": "401858448",
       "sport": "NCAAF",
@@ -1625,6 +1502,193 @@
       "date": "2026-10-17T00:00Z",
       "matchup": "App State Mountaineers at Coastal Carolina Chanticleers",
       "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858488",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Ohio State Buckeyes at Indiana Hoosiers",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401856724",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Florida Gators at Texas Longhorns",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401858268",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Virginia Cavaliers at SMU Mustangs",
+      "ats": "P",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858491",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Northwestern Wildcats at Michigan State Spartans",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401856829",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Cincinnati Bearcats at West Virginia Mountaineers",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401856830",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Kansas Jayhawks at Kansas State Wildcats",
+      "ats": "W",
+      "ats_best_bet": true,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858267",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Pittsburgh Panthers at Boston College Eagles",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": true,
+      "su": "L"
+    },
+    {
+      "id": "401862802",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Florida Atlantic Owls at Army Black Knights",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401866441",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Ball State Cardinals at Bowling Green Falcons",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401869957",
+      "sport": "NCAAF",
+      "date": "2026-10-17T16:00Z",
+      "matchup": "Georgia State Panthers at James Madison Dukes",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401856719",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "Auburn Tigers at Georgia Bulldogs",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401856828",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "Arizona State Sun Devils at Texas Tech Red Raiders",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401858266",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "North Carolina Tar Heels at Duke Blue Devils",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401864522",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "Northern Illinois Huskies at Wyoming Cowboys",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401864524",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "UNLV Rebels at Air Force Falcons",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401866444",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "Toledo Rockets at Eastern Michigan Eagles",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401866478",
+      "sport": "NCAAF",
+      "date": "2026-10-17T19:30Z",
+      "matchup": "Akron Zips at Miami (OH) RedHawks",
+      "ats": "W",
       "ats_best_bet": false,
       "ou": "L",
       "ou_best_bet": false,
