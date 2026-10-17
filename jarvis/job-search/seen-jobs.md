@@ -81,3 +81,8 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-16) Director, Organizational Effectiveness & Culture (Remote) — Latham Pool Products — https://to.indeed.com/aa8j69tncpwx — owner declined 2026-10-16, do not pursue/re-surface
 - (2026-10-16) Director of Internal Operations (Remote, near-miss—disaster-response mission fit but $90-110K below floor) — Nechama: Jewish Response to Disaster — https://to.indeed.com/aa7ssknwbgzw
 - (2026-10-16) Senior Vice President of Operations (Remote, near-miss—crypto-exchange ops domain) — Independent Reserve — https://to.indeed.com/aac6ygnzysvm
+- (2026-10-17) Area Manager of Operations (Cayce, SC — local posting of the 9/29 prepared role) — Lucky Strike Entertainment — https://to.indeed.com/aajgznxkmsvr
+- (2026-10-17) Manager, Talent Development (Remote, near-miss—under-leveled Manager/IC, L&D function fits) — Stitch Fix — https://to.indeed.com/aaznjbw8rtzy
+- (2026-10-17) Regional Director Health & Wellness (Remote, reviewed—requires FL RN license + FL residency) — Evergreen Senior Living — https://to.indeed.com/aa2gryzyg68b
+- (2026-10-17) Clinical Director ASO Treatment Program (Remote, reviewed—requires clinical treatment license) — Medlin Treatment Center — https://to.indeed.com/aazcxc77j79v
+- (2026-10-17) Director of Information Technology (Columbia, SC, reviewed—IT leadership, outside lane; US Bankruptcy Court) — https://to.indeed.com/aab4tjvdvgqf
