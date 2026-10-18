@@ -86,3 +86,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-17) Regional Director Health & Wellness (Remote, reviewed—requires FL RN license + FL residency) — Evergreen Senior Living — https://to.indeed.com/aa2gryzyg68b
 - (2026-10-17) Clinical Director ASO Treatment Program (Remote, reviewed—requires clinical treatment license) — Medlin Treatment Center — https://to.indeed.com/aazcxc77j79v
 - (2026-10-17) Director of Information Technology (Columbia, SC, reviewed—IT leadership, outside lane; US Bankruptcy Court) — https://to.indeed.com/aab4tjvdvgqf
+- (2026-10-18) Executive Director of Operations (Remote, $97.7k-$127k band) — Thalle Construction Co. — https://to.indeed.com/aa9k8tk92n67
+- (2026-10-18) Senior Director, Assessment Exceptions & Integrity (Remote, reviewed—digital/product-ops role: Salesforce/JIRA/SQL/Tableau, not a fit) — College Board — https://to.indeed.com/aa8ggth6xjcd
+- (2026-10-18) Chief Learning Officer for AI and Ed Tech (San Francisco, near-miss—ed-sector CLO, SF-tied, not remote) — Teach For All — https://to.indeed.com/aa6s4kkd72fc
