@@ -90,3 +90,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-18) Senior Director, Assessment Exceptions & Integrity (Remote, reviewed—digital/product-ops role: Salesforce/JIRA/SQL/Tableau, not a fit) — College Board — https://to.indeed.com/aa8ggth6xjcd
 - (2026-10-18) Chief Learning Officer for AI and Ed Tech (San Francisco, near-miss—ed-sector CLO, SF-tied, not remote) — Teach For All — https://to.indeed.com/aa6s4kkd72fc
 - (2026-10-19) "Senior Director" (Remote, CAUTION—disguised unicode company name, generic boilerplate, no real employer identity; likely low-quality/scam; not tailored) — "Conclave" — https://to.indeed.com/aacdt8fm9fsn
+- (2026-10-20) Associate Director - Change Management (Columbus, OH, reviewed—onsite + under-leveled; OCM/defense context) — Raytheon — https://to.indeed.com/aab8tm6kghbx
+- (2026-10-20) Chief of Staff, Office of Chief Security Sales Officer (NYC, reviewed—sales CoS, onsite) — Wiz — https://to.indeed.com/aadm2wbxz82c
