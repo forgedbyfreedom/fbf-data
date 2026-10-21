@@ -92,3 +92,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-19) "Senior Director" (Remote, CAUTION—disguised unicode company name, generic boilerplate, no real employer identity; likely low-quality/scam; not tailored) — "Conclave" — https://to.indeed.com/aacdt8fm9fsn
 - (2026-10-20) Associate Director - Change Management (Columbus, OH, reviewed—onsite + under-leveled; OCM/defense context) — Raytheon — https://to.indeed.com/aab8tm6kghbx
 - (2026-10-20) Chief of Staff, Office of Chief Security Sales Officer (NYC, reviewed—sales CoS, onsite) — Wiz — https://to.indeed.com/aadm2wbxz82c
+- (2026-10-21) Regional Operations Director, DC Metro & N. Virginia (Remote, near-miss—multi-site ops fits but region-tied to DC/NoVA, vet industry) — VCA Animal Hospitals — https://to.indeed.com/aa4vgmdczr88
+- (2026-10-21) Corporate Development Director (Remote, reviewed—M&A/corp dev, not a fit) — GitLab — https://to.indeed.com/aapkt6m8qvqw
+- (2026-10-21) Director BD for Command Center (Remote, reviewed—healthcare BD/sales, not a fit) — GE HealthCare — https://to.indeed.com/aaskd4j48z6l
