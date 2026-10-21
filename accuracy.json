@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-10-20T21:15:20.983537+00:00",
+  "timestamp": "2026-10-21T03:18:59.374414+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 325,
+  "predictions_graded": 327,
   "sports": {
     "ALL": {
-      "SU_pct": 72.3,
-      "SU_record": "230-88",
-      "SU_total": 318,
-      "ATS_pct": 51.5,
-      "ATS_record": "35-33-2",
-      "ATS_total": 68,
-      "OU_pct": 51.4,
-      "OU_record": "38-36-0",
-      "OU_total": 74
+      "SU_pct": 72.2,
+      "SU_record": "231-89",
+      "SU_total": 320,
+      "ATS_pct": 51.4,
+      "ATS_record": "36-34-2",
+      "ATS_total": 70,
+      "OU_pct": 51.3,
+      "OU_record": "39-37-0",
+      "OU_total": 76
     },
     "NFL": {
       "SU_pct": 64.0,
@@ -26,15 +26,15 @@
       "OU_total": 22
     },
     "NCAAF": {
-      "SU_pct": 75.5,
-      "SU_record": "173-56",
-      "SU_total": 229,
-      "ATS_pct": 52.8,
-      "ATS_record": "19-17-1",
-      "ATS_total": 36,
-      "OU_pct": 46.2,
-      "OU_record": "24-28-0",
-      "OU_total": 52
+      "SU_pct": 75.3,
+      "SU_record": "174-57",
+      "SU_total": 231,
+      "ATS_pct": 52.6,
+      "ATS_record": "20-18-1",
+      "ATS_total": 38,
+      "OU_pct": 46.3,
+      "OU_record": "25-29-0",
+      "OU_total": 54
     }
   },
   "high_confidence": {
@@ -76,8 +76,8 @@
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 59,
-        "record": "30-29",
+        "picks": 61,
+        "record": "31-30",
         "stated_mid": 52.5,
         "actual_pct": 50.8,
         "gap": -1.7
@@ -110,19 +110,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 55,
-        "record": "25-30",
+        "picks": 56,
+        "record": "26-30",
         "stated_mid": 52.5,
-        "actual_pct": 45.5,
-        "gap": -7.0
+        "actual_pct": 46.4,
+        "gap": -6.1
       },
       {
         "bucket": "55-60%",
-        "picks": 18,
-        "record": "13-5",
+        "picks": 19,
+        "record": "13-6",
         "stated_mid": 57.5,
-        "actual_pct": 72.2,
-        "gap": 14.7
+        "actual_pct": 68.4,
+        "gap": 10.9
       },
       {
         "bucket": "60-70%",
@@ -145,20 +145,6 @@
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401872936",
-      "sport": "NFL",
-      "date": "2026-09-20T17:00Z",
-      "matchup": "Green Bay Packers at New York Jets",
-      "su": "W"
-    },
-    {
-      "id": "401872938",
-      "sport": "NFL",
-      "date": "2026-09-20T17:00Z",
-      "matchup": "New Orleans Saints at Baltimore Ravens",
-      "su": "L"
-    },
     {
       "id": "401872934",
       "sport": "NFL",
@@ -1775,6 +1761,28 @@
       "ats": "W",
       "ats_best_bet": false,
       "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401871055",
+      "sport": "NCAAF",
+      "date": "2026-10-20T23:00Z",
+      "matchup": "Middle Tennessee Blue Raiders at Florida International Panthers",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401871069",
+      "sport": "NCAAF",
+      "date": "2026-10-20T23:00Z",
+      "matchup": "Missouri State Bears at Delaware Blue Hens",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
       "ou_best_bet": false,
       "su": "W"
     }
