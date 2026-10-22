@@ -95,3 +95,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-21) Regional Operations Director, DC Metro & N. Virginia (Remote, near-miss—multi-site ops fits but region-tied to DC/NoVA, vet industry) — VCA Animal Hospitals — https://to.indeed.com/aa4vgmdczr88
 - (2026-10-21) Corporate Development Director (Remote, reviewed—M&A/corp dev, not a fit) — GitLab — https://to.indeed.com/aapkt6m8qvqw
 - (2026-10-21) Director BD for Command Center (Remote, reviewed—healthcare BD/sales, not a fit) — GE HealthCare — https://to.indeed.com/aaskd4j48z6l
+- (2026-10-22) Director, Global Safety Standards & Compliance (Remote, near-miss—EHS/occupational-safety specialist; hard safety-degree req no equivalency, CSP preferred; adjacent to security/EM background) — Oak View Group — https://to.indeed.com/aa8c8xhgzs9z
+- (2026-10-22) Franchise Development Director (Remote/US, near-miss—fitness-mission but franchise-sales role) — Special Strong — https://to.indeed.com/aafzfwwdjpss
+- (2026-10-22) Leadership Development / Workforce Resilience Partner (Remote, near-miss—in-lane but $90-100k below floor, IC level) — Next Gen Neuro — https://to.indeed.com/aat78jw8p6gx
