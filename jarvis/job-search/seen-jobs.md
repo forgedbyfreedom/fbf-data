@@ -98,3 +98,4 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-22) Director, Global Safety Standards & Compliance (Remote, near-miss—EHS/occupational-safety specialist; hard safety-degree req no equivalency, CSP preferred; adjacent to security/EM background) — Oak View Group — https://to.indeed.com/aa8c8xhgzs9z
 - (2026-10-22) Franchise Development Director (Remote/US, near-miss—fitness-mission but franchise-sales role) — Special Strong — https://to.indeed.com/aafzfwwdjpss
 - (2026-10-22) Leadership Development / Workforce Resilience Partner (Remote, near-miss—in-lane but $90-100k below floor, IC level) — Next Gen Neuro — https://to.indeed.com/aat78jw8p6gx
+- (2026-10-23) Chief of Staff, Client Services & Implementation - Evernorth (Remote, near-miss—healthcare client-implementation domain, support CoS) — The Cigna Group — https://to.indeed.com/aa6zvvlchv9z
