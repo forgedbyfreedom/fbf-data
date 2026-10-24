@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-10-23T21:15:46.659501+00:00",
+  "timestamp": "2026-10-24T03:17:57.080304+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 332,
+  "predictions_graded": 336,
   "sports": {
     "ALL": {
-      "SU_pct": 72.3,
-      "SU_record": "235-90",
-      "SU_total": 325,
-      "ATS_pct": 50.7,
-      "ATS_record": "38-37-2",
-      "ATS_total": 75,
-      "OU_pct": 51.9,
-      "OU_record": "42-39-0",
-      "OU_total": 81
+      "SU_pct": 72.0,
+      "SU_record": "236-92",
+      "SU_total": 328,
+      "ATS_pct": 50.6,
+      "ATS_record": "40-39-2",
+      "ATS_total": 79,
+      "OU_pct": 51.8,
+      "OU_record": "44-41-0",
+      "OU_total": 85
     },
     "NFL": {
       "SU_pct": 64.4,
@@ -26,15 +26,15 @@
       "OU_total": 23
     },
     "NCAAF": {
-      "SU_pct": 75.3,
-      "SU_record": "177-58",
-      "SU_total": 235,
+      "SU_pct": 74.8,
+      "SU_record": "178-60",
+      "SU_total": 238,
       "ATS_pct": 50.0,
-      "ATS_record": "21-21-1",
-      "ATS_total": 42,
-      "OU_pct": 46.6,
-      "OU_record": "27-31-0",
-      "OU_total": 58
+      "ATS_record": "23-23-1",
+      "ATS_total": 46,
+      "OU_pct": 46.8,
+      "OU_record": "29-33-0",
+      "OU_total": 62
     }
   },
   "high_confidence": {
@@ -76,8 +76,8 @@
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 66,
-        "record": "33-33",
+        "picks": 70,
+        "record": "35-35",
         "stated_mid": 52.5,
         "actual_pct": 50.0,
         "gap": -2.5
@@ -110,19 +110,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 61,
-        "record": "29-32",
+        "picks": 64,
+        "record": "31-33",
         "stated_mid": 52.5,
-        "actual_pct": 47.5,
-        "gap": -5.0
+        "actual_pct": 48.4,
+        "gap": -4.1
       },
       {
         "bucket": "55-60%",
-        "picks": 19,
-        "record": "13-6",
+        "picks": 20,
+        "record": "13-7",
         "stated_mid": 57.5,
-        "actual_pct": 68.4,
-        "gap": 10.9
+        "actual_pct": 65.0,
+        "gap": 7.5
       },
       {
         "bucket": "60-70%",
@@ -145,39 +145,6 @@
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401872942",
-      "sport": "NFL",
-      "date": "2026-09-20T20:25Z",
-      "matchup": "Miami Dolphins at San Francisco 49ers",
-      "ats": "W",
-      "ats_best_bet": true,
-      "su": "W"
-    },
-    {
-      "id": "401872945",
-      "sport": "NFL",
-      "date": "2026-09-21T00:20Z",
-      "matchup": "Indianapolis Colts at Kansas City Chiefs",
-      "ats": "L",
-      "ats_best_bet": true
-    },
-    {
-      "id": "401872947",
-      "sport": "NFL",
-      "date": "2026-09-22T00:15Z",
-      "matchup": "New York Giants at Los Angeles Rams",
-      "ats": "W",
-      "ats_best_bet": true,
-      "su": "W"
-    },
-    {
-      "id": "401869941",
-      "sport": "NCAAF",
-      "date": "2026-09-24T23:30Z",
-      "matchup": "Liberty Flames at Coastal Carolina Chanticleers",
-      "su": "W"
-    },
     {
       "id": "401872948",
       "sport": "NFL",
@@ -1801,6 +1768,49 @@
       "ou": "W",
       "ou_best_bet": false,
       "su": "W"
+    },
+    {
+      "id": "401858271",
+      "sport": "NCAAF",
+      "date": "2026-10-23T23:00Z",
+      "matchup": "Duke Blue Devils at Virginia Cavaliers",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401861965",
+      "sport": "NCAAF",
+      "date": "2026-10-23T23:00Z",
+      "matchup": "Massachusetts Minutemen at UConn Huskies",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401862808",
+      "sport": "NCAAF",
+      "date": "2026-10-24T00:30Z",
+      "matchup": "Army Black Knights at Tulsa Golden Hurricane",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false
+    },
+    {
+      "id": "401864525",
+      "sport": "NCAAF",
+      "date": "2026-10-24T01:00Z",
+      "matchup": "Air Force Falcons at Wyoming Cowboys",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
     }
   ]
 }
