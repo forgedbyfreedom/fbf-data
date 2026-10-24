@@ -28,3 +28,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-10-13) Vice President of Operations (Remote) — Icon Corporate Finance — $165,000–$210,000 — https://to.indeed.com/aa9zknnfslsm — PREPARED
 - (2026-10-15) Chief Operating Officer (Remote) — Positive Coaching Alliance — $210,000–$225,000 — https://to.indeed.com/aa468rb77gpt — PREPARED
 - (2026-10-18) Executive Director of Operations (Remote) — Thalle Construction — $97,700–$127,000 — https://to.indeed.com/aa9k8tk92n67 — PREPARED
+- (2026-10-24) VP of Operations (Remote) — Rhythmic — $105,000–$130,600 — https://to.indeed.com/aafdk2ft2pmy — PREPARED

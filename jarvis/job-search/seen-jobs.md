@@ -99,3 +99,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-22) Franchise Development Director (Remote/US, near-miss—fitness-mission but franchise-sales role) — Special Strong — https://to.indeed.com/aafzfwwdjpss
 - (2026-10-22) Leadership Development / Workforce Resilience Partner (Remote, near-miss—in-lane but $90-100k below floor, IC level) — Next Gen Neuro — https://to.indeed.com/aat78jw8p6gx
 - (2026-10-23) Chief of Staff, Client Services & Implementation - Evernorth (Remote, near-miss—healthcare client-implementation domain, support CoS) — The Cigna Group — https://to.indeed.com/aa6zvvlchv9z
+- (2026-10-24) VP of Operations (Remote) — Rhythmic — https://to.indeed.com/aafdk2ft2pmy
+- (2026-10-24) Executive Director, Northwest & Ballentine YMCA (Irmo, SC — LOCAL, your-call; genuine wellness/ops fit but $80-85k below floor, not tailored) — YMCA — https://to.indeed.com/aalvkhnz9yj8
+- (2026-10-24) Senior Director of 4K Operations (Richland Co., State of SC — needs permission, not a fit) — State of South Carolina — https://to.indeed.com/aaydhvnszxjp
