@@ -102,3 +102,5 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-24) VP of Operations (Remote) — Rhythmic — https://to.indeed.com/aafdk2ft2pmy
 - (2026-10-24) Executive Director, Northwest & Ballentine YMCA (Irmo, SC — LOCAL, your-call; genuine wellness/ops fit but $80-85k below floor, not tailored) — YMCA — https://to.indeed.com/aalvkhnz9yj8
 - (2026-10-24) Senior Director of 4K Operations (Richland Co., State of SC — needs permission, not a fit) — State of South Carolina — https://to.indeed.com/aaydhvnszxjp
+- (2026-10-25) Chief of Staff (Remote) — Vetcove — https://to.indeed.com/aagh724b4m4h
+- (2026-10-25) Director of Leadership Development (Media, PA, near-miss—L&D fit but on-site + low band) — Xanitos — https://to.indeed.com/aawnydt9pyty
