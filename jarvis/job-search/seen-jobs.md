@@ -104,3 +104,7 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-24) Senior Director of 4K Operations (Richland Co., State of SC — needs permission, not a fit) — State of South Carolina — https://to.indeed.com/aaydhvnszxjp
 - (2026-10-25) Chief of Staff (Remote) — Vetcove — https://to.indeed.com/aagh724b4m4h
 - (2026-10-25) Director of Leadership Development (Media, PA, near-miss—L&D fit but on-site + low band) — Xanitos — https://to.indeed.com/aawnydt9pyty
+- (2026-10-26) Director, Field Operations (Remote, reviewed—pharma field-force ops) — Satsuma Pharmaceuticals — https://to.indeed.com/aavvfdqsk769
+- (2026-10-26) VP, People Operations (Remote, reviewed—HR/people-ops specialist) — Pindrop — https://to.indeed.com/aayrjhf2wh7p
+- (2026-10-26) Capital Originations Director, LIHTC Equity (Remote, reviewed—affordable-housing capital raising/finance) — Enterprise Community Partners — https://to.indeed.com/aa4l8ybs22pr
+- (2026-10-26) Chief of Staff (Remote, reviewed—small AI-recruiting startup, $80-120k) — micro1 — https://to.indeed.com/aasb8gzyl964
