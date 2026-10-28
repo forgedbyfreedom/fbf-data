@@ -109,3 +109,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-26) Capital Originations Director, LIHTC Equity (Remote, reviewed—affordable-housing capital raising/finance) — Enterprise Community Partners — https://to.indeed.com/aa4l8ybs22pr
 - (2026-10-26) Chief of Staff (Remote, reviewed—small AI-recruiting startup, $80-120k) — micro1 — https://to.indeed.com/aasb8gzyl964
 - (2026-10-27) "Managing Director" (Remote, $225-285k, CAUTION—education-admin JD posted under "Robinson Helicopter Company"; company/role mismatch, likely mislabeled/low-quality; not a fit, not tailored) — Robinson Helicopter Company — https://to.indeed.com/aah8scqh984q
+- (2026-10-28) Director of Affiliates (Remote, near-miss—fitness+ops+exec mission fit but HARD-gated: requires current CrossFit affiliate ownership + active CF-L4 cert + CrossFit Open participation) — CrossFit, Inc. — https://to.indeed.com/aa9n2smw7tty
+- (2026-10-28) Assistant Director of Operations (Remote, reviewed—part-time, hospitality; odd high-comp part-time listing) — Pavilion Collection — https://to.indeed.com/aadqdjyy84lw
+- (2026-10-28) Sr. Director, Information Security (Remote, reviewed—cyber/infosec, not a fit) — Ancestry — https://to.indeed.com/aa8jwzrf7wr4
