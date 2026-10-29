@@ -112,3 +112,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-28) Director of Affiliates (Remote, near-miss—fitness+ops+exec mission fit but HARD-gated: requires current CrossFit affiliate ownership + active CF-L4 cert + CrossFit Open participation) — CrossFit, Inc. — https://to.indeed.com/aa9n2smw7tty
 - (2026-10-28) Assistant Director of Operations (Remote, reviewed—part-time, hospitality; odd high-comp part-time listing) — Pavilion Collection — https://to.indeed.com/aadqdjyy84lw
 - (2026-10-28) Sr. Director, Information Security (Remote, reviewed—cyber/infosec, not a fit) — Ancestry — https://to.indeed.com/aa8jwzrf7wr4
+- (2026-10-29) VP, Operations (Digital Solutions) (Remote, reviewed—payments/card-processing domain, 12yr payments + 10yr card-processing required; not a fit) — Velera — https://to.indeed.com/aasjqpq6qwm6
+- (2026-10-29) Chief Operating Officer (Remote, reviewed—intl trauma-care nonprofit, $85-95k below floor) — Tutapona — https://to.indeed.com/aagp2lpc7l22
+- (2026-10-29) Regional Field Director, Mid-Atlantic (Remote, reviewed—faith-based field/ministry ops) — Collision Ministries — https://to.indeed.com/aa7t8ddncs2r
