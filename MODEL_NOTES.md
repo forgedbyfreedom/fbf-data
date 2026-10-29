@@ -550,3 +550,86 @@ as the best-bet record. `ats_tier` / `ou_tier`: best | lean | model_unreliable.
 Expectation, stated up front: on this season's every-game sample the leans ran
 57% NFL and 50% college against the close. Volume does not create edge; it
 gives a readable sample fast. Judge by tier and by CLV, not by the blended total.
+
+## 2026-10-29 — Performance audit: one inverted sign, two broken yardsticks
+
+Bryan flagged the program as "not as successful lately". Season graded totals
+at audit time: ATS 50.0% (60-60-3), NFL ATS 44.4% (20-25-2), Best Bets ATS
+48.3% (14-15-1), and the 55-60% stated-confidence bucket hitting 42.9% over 14
+picks. O/U is the one bright spot: 54.3% (69-58), NFL O/U 61.1% (22-14), with
+good calibration.
+
+### Finding 1: the "sharp money" feature was fading the sharps
+
+`line_shift = spread_delta * w` in `build_expected_values()`. `spread_delta`
+is home-relative (current − open), so a move toward home makes it negative —
+and adding it to the home expected margin shades the projection AWAY from the
+side the market moved toward. The feature was built to follow steam and its
+sign made it fade steam, on every game with a moved line, since the feature
+shipped.
+
+Measured on this season's `line_study.json` (3+ pre-kickoff snapshots):
+
+```
+side the market moved toward, vs the close:
+  move >= 0.5   122-112  52.1%   n=234
+  move >= 1.0   104-93   52.8%   n=197
+  move >= 1.5    67-59   53.2%   n=126
+model lean when it AGREED with a 1+ pt move:    51-42  55%
+model lean when it DISAGREED with a 1+ pt move: 47-50  48%
+```
+
+**Fixed: `line_shift = -spread_delta * w`.** Same weight, correct direction.
+
+### Finding 2: disagreement size is not pick quality — Best Bets inverted
+
+The Best Bet tier was `|edge| >= 2`. Graded: Best Bets 48.9% (22-23) against
+52.7% for plain leans, and the 2-3 pt edge bucket hit 44.4%. When this model
+disagrees with the market by a lot, the market has been right — consistent
+with every holdout test in this file. A large edge is more often a bad input
+than a found inefficiency.
+
+**Changed: `ats_high_conf` now requires the edge AND the market's agreement**
+— the pre-kickoff line must have moved 0.5+ points toward the model's side
+(`ats_market_agrees`). On the graded sample that combination hit 55% vs 48.9%
+for the old rule. Fewer Best Bets, better ones. O/U best-bet rule unchanged.
+
+### Finding 3: stated ATS confidence assumed the edge was fully real
+
+phi(edge/SD) is the cover probability IF the model's number is right. The
+calibration block says it is about half right: 50-55% stated hit 50.9% (106
+picks), 55-60% stated hit 42.9% (14). **ATS confidence now uses half the edge:
+phi(0.5·|edge|/SD)**, which reproduces both measured buckets (52.5 → 51.2,
+57.5 → 53.8). A 3-pt NFL edge now prints 54.6% instead of 59.2%. Totals
+calibration measured fine (52.5 stated → 52.9 actual; 57.5 → 62.5) and keeps
+the full edge.
+
+### Finding 4: CLV read zero on 84 of 84 locks — by construction
+
+The 2026-10-15 lock fix stores the LAST pre-kickoff run, which on a 6-hour
+cycle is the close. So `clv = close − lock` was comparing the close to itself:
+every graded value was exactly 0.000, and `close_seen_at` predated `locked_at`
+by a median of 12 hours. The one experiment this file says can still find an
+edge was measuring nothing.
+
+**Fixed: `build_predictions.py` now stamps `early_lock`** — the first
+pre-kickoff run that saw a line (line, total, and the model's projection at
+that moment, never overwritten). `build_line_study.py` computes CLV as the
+move from that first bettable number to the close, signed by the lean the
+model held AT THAT TIME, and grades `early_lean_result_vs_close` separately.
+Locks recorded before today carry no early stamp and keep `clv_points` null,
+so the metric starts clean. The proxy computed retroactively (close-time lean
+applied to the earliest snapshot) read **−0.12 pts over 283 games** — not
+evidence of edge, and mildly the wrong side of the market's own moves, which
+is what Finding 1 predicts.
+
+### What to expect
+
+The blended ATS record should drift up modestly (the inverted term was active
+on every moved line), Best Bets become rare and should stop losing, stated
+confidence stops promising 57% and delivering 43%, and in 4-6 weeks
+`line_study.json` will say — for the first time with a working instrument —
+whether the early number this model actually sees carries positive CLV. If
+mean CLV over 50+ games is not clearly positive, the honest next step is the
+one this file already names: weight the remaining opinion terms to zero and
+run the board as a projection tool.

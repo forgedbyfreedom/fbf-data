@@ -113,6 +113,26 @@ def lock_picks(current_predictions, existing_locked, prelock):
             # Not started: remember this as the latest bettable version.
             snap = dict(pred)
             snap["captured_at"] = now.isoformat()
+            # ── EARLY LOCK (2026-10-29) ──────────────────────────────
+            # The lock above is the LAST pre-kickoff run, which on a 6-hour
+            # cycle is effectively the closing line - so CLV measured from it
+            # is zero by construction (84 of 84 graded locks matched the
+            # close exactly). The CLV experiment needs the model's opinion at
+            # the FIRST moment it saw a line, hours or days earlier. Keep
+            # that first sighting alongside the lock and never overwrite it.
+            prev = prelock.get(pid) or {}
+            early = prev.get("early_lock")
+            if not early and pred.get("fav_spread") is not None:
+                early = {
+                    "captured_at": now.isoformat(),
+                    "fav_abbr": pred.get("fav_abbr"),
+                    "fav_spread": pred.get("fav_spread"),
+                    "total": (pred.get("odds") or {}).get("total"),
+                    "projected_spread": (pred.get("prediction") or {}).get("projected_spread"),
+                    "projected_total": (pred.get("prediction") or {}).get("projected_total"),
+                }
+            if early:
+                snap["early_lock"] = early
             prelock[pid] = snap
             continue
 

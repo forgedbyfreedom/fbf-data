@@ -51,15 +51,25 @@ function renderCoverage(rows){
     `and no factor in this pipeline beat that, so the bar on totals is the higher of the two.`;
 }
 
+// Team names, abbreviations and city strings all count, so "chiefs", "KC"
+// and "kansas" each find the same game. Every typed word must hit.
+function matchesQuery(p,q){
+  if(!q) return true;
+  const h=p.home_team||{},a=p.away_team||{};
+  const hay=[h.name,h.abbr,a.name,a.abbr,p.home,p.away,p.name,p.shortName].filter(Boolean).join(' ').toLowerCase();
+  return q.split(/[\s@]+/).filter(Boolean).every(w=>hay.includes(w));
+}
 function render(){
   const sp=SPORTS.find(s=>s.k===active);
   let rows=(DATA.predictions||[]).filter(p=>sp.match(p.sport));
+  const q=(document.getElementById('q').value||'').trim().toLowerCase();
+  if(q) rows=rows.filter(p=>matchesQuery(p,q));
   if(document.getElementById('hiOnly').checked) rows=rows.filter(isHi);
   const sort=document.getElementById('sort').value;
   rows.sort((a,b)=> sort==='date'?String(a.date_local).localeCompare(String(b.date_local)) : sort==='edge'?edge(b)-edge(a) : ((b.prediction&&b.prediction.confidence||0)-(a.prediction&&a.prediction.confidence||0)));
   document.getElementById('cnt').textContent = rows.length+' game'+(rows.length===1?'':'s');
   renderCoverage(rows);
-  document.getElementById('board').innerHTML = rows.length?rows.map(card).join(''):`<div class="empty">No ${sp.label} games in the latest run.${active==='nfl'?' NFL is between slates right now — check back in-season.':''}</div>`;
+  document.getElementById('board').innerHTML = rows.length?rows.map(card).join(''):`<div class="empty">${q?`No ${sp.label} games match "${q}".`:`No ${sp.label} games in the latest run.${active==='nfl'?' NFL is between slates right now — check back in-season.':''}`}</div>`;
 }
 function buildTabs(){
   const counts={}; (DATA.predictions||[]).forEach(p=>{counts[p.sport]=(counts[p.sport]||0)+1;});
@@ -78,6 +88,7 @@ function boot(){
   buildTabs(); render();
   document.getElementById('hiOnly').onchange=render;
   document.getElementById('sort').onchange=render;
+  document.getElementById('q').oninput=render;
 }
 // ── ACCURACY PANEL ────────────────────────────────────────────────
 // Sample size is shown as loudly as the percentage, on purpose. On

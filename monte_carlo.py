@@ -394,10 +394,20 @@ def build_expected_values(game):
         elif public_home_pct < 35:
             public_shift = fade_size
 
-    # Line movement (sharp money)
+    # Line movement (sharp money) — FOLLOW the move, never fade it.
+    #
+    # SIGN FIX 2026-10-29. spread_delta is home-relative (current - open), so a
+    # market move TOWARD the home side makes it more negative. The old code
+    # added `spread_delta * w` to the home expected margin, which shaded the
+    # projection AGAINST the side the market had just moved toward - it faded
+    # steam while the comment claimed to follow it. Measured on 197 graded
+    # games in line_study.json with a 1+ point pre-kickoff move, the side the
+    # market moved toward covered the CLOSE 52.8% (53.2% at 1.5+ pts over 126),
+    # while the model's leans that disagreed with the move hit 48%. The close
+    # is sharper than the open; the move is the market correcting itself.
     spread_delta = safe_float(game.get("spread_delta"), 0)
     line_w = 0.15 if is_nhl else (0.15 if is_nba else 0.3)  # NHL/NBA: line moves mostly noise
-    line_shift = spread_delta * line_w
+    line_shift = -spread_delta * line_w
 
     # Starting pitcher / goalie quality
     starter_shift = 0.0
@@ -993,8 +1003,32 @@ def simulate_and_pick(game, n_sims=DEFAULT_SIMS):
         picks["ats_pick"] = side_name
         picks["ats_pick_abbr"] = side_abbr
         picks["ats_spread"] = side_line
-        picks["ats_confidence"] = round(phi(abs(edge_vs_line) / sd_m) * 100, 1)
-        picks["ats_high_conf"] = (abs(edge_vs_line) >= MIN_EDGE_PTS) and not clamped
+
+        # ── CONFIDENCE SHRINK (2026-10-29) ───────────────────────────
+        # phi(edge/SD) assumes the model's edge is fully real. The graded
+        # calibration says it is about half real: picks stated at 50-55%
+        # hit 50.9% (106 picks) and picks stated at 55-60% hit 42.9%
+        # (14 picks). Halving the edge inside phi reproduces both buckets
+        # (52.5 stated -> 51.2, 57.5 stated -> 53.8). Totals calibration
+        # measured fine (52.9 and 62.5 actual) and is left alone.
+        picks["ats_confidence"] = round(phi(0.5 * abs(edge_vs_line) / sd_m) * 100, 1)
+
+        # ── BEST BET NEEDS THE MARKET'S AGREEMENT (2026-10-29) ───────
+        # Size of disagreement with the line is NOT a quality signal: graded
+        # Best Bets under the old |edge| >= MIN_EDGE_PTS rule hit 48.9%
+        # (22-23) while plain leans hit 52.7%, and leans with a 2-3 point
+        # edge hit 44.4%. When this model disagrees with the market by a
+        # lot, the market has been right. What did grade out: when the
+        # pre-kickoff line MOVED toward the model's side by 0.5+ points,
+        # the lean hit 55% (63-51) against 48-51% when the market moved
+        # the other way. So a Best Bet now requires the edge AND the move.
+        # spread_delta is home-relative: negative = market moved toward home.
+        move = safe_float(game.get("spread_delta"), 0)
+        market_agrees = ((move <= -0.5 and side_abbr == home_abbr) or
+                         (move >= 0.5 and side_abbr == away_abbr))
+        picks["ats_market_agrees"] = market_agrees
+        picks["ats_high_conf"] = ((abs(edge_vs_line) >= MIN_EDGE_PTS)
+                                  and not clamped and market_agrees)
         picks["ats_tier"] = ("best" if picks["ats_high_conf"]
                              else ("model_unreliable" if clamped else "lean"))
         picks.pop("ats_below_threshold", None)

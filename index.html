@@ -243,6 +243,29 @@
       color: var(--text-muted);
     }
 
+    .filter-search {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 5px 14px;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      min-width: 200px;
+      flex: 1 1 200px;
+      max-width: 320px;
+      outline: none;
+      transition: all 0.16s ease-out;
+    }
+
+    .filter-search::placeholder {
+      color: var(--text-muted);
+    }
+
+    .filter-search:focus {
+      border-color: #f97316;
+      box-shadow: 0 0 14px rgba(249, 115, 22, 0.35);
+    }
+
     /* ── GRID + CARDS ── */
     .grid {
       display: grid;
@@ -877,13 +900,14 @@
       <button class="filter-pill active" data-sport="all">ALL</button>
       <button class="filter-pill" data-sport="nfl">NFL</button>
       <button class="filter-pill" data-sport="ncaaf">NCAAF</button>
+      <input type="search" id="game-search" class="filter-search" placeholder="Search teams or games&hellip;" autocomplete="off">
       <div class="filters-meta" id="last-updated"></div>
     </section>
 
     <!-- GAME CARDS GRID -->
     <section id="games-grid" class="grid"></section>
     <div id="no-games" class="no-games" style="display:none;">
-      No games available for this filter. Check back after the next 30-minute update.
+      No games match this filter or search. Clear the search box or check back after the next 30-minute update.
     </div>
 
     <!-- BOTTOM DISCLAIMER -->
@@ -931,6 +955,7 @@
     const state = {
       allGames: [],
       activeSport: "all",
+      searchQuery: "",
       lastUpdated: null,
       refTrends: {},
       accuracy: {
@@ -1636,6 +1661,7 @@
           const odds = g.odds || {};
           return typeof odds.spread === "number" || typeof odds.total === "number";
         })
+        .filter(g => matchesSearch(g, state.searchQuery))
         .sort(gameSort);
 
       grid.innerHTML = "";
@@ -1904,6 +1930,24 @@
       }
     }
 
+    // Match a game against the search box: team names, abbreviations, and the
+    // event name all count, so "chiefs", "KC" and "Kansas City" each work.
+    function matchesSearch(g, query) {
+      const q = String(query || "").trim().toLowerCase();
+      if (!q) return true;
+      const home = g.raw.home_team || {};
+      const away = g.raw.away_team || {};
+      const haystack = [
+        g.homeTeam, g.awayTeam,
+        home.abbr, away.abbr,
+        home.name, away.name,
+        g.raw.shortName, g.raw.name,
+        g.sport
+      ].filter(Boolean).join(" ").toLowerCase();
+      // every word typed must appear somewhere, so "kc @ buf" style queries work
+      return q.split(/[\s@]+/).filter(Boolean).every(w => haystack.includes(w));
+    }
+
     function setActiveFilter(sport) {
       state.activeSport = sport;
       document.querySelectorAll(".filter-pill").forEach(btn => {
@@ -2043,6 +2087,14 @@
           setActiveFilter(btn.dataset.sport);
         });
       });
+
+      const searchBox = document.getElementById("game-search");
+      if (searchBox) {
+        searchBox.addEventListener("input", () => {
+          state.searchQuery = searchBox.value;
+          renderGames();
+        });
+      }
 
       loadData();
     });

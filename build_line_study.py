@@ -158,10 +158,29 @@ def main():
             lean = "fav" if edge > 0 else ("dog" if edge < 0 else None)
             lean_abbr = {"fav": fav, "dog": dog}.get(lean)
 
+        # ── TRUE CLV: the model's FIRST pre-kickoff opinion vs the close ──
+        # (2026-10-29) The lock is the LAST run before kickoff, which on a
+        # 6-hour cycle sits at the close - CLV measured from it was zero on
+        # all 84 bettable locks, by construction. build_predictions.py now
+        # stamps `early_lock`, the first run that saw a line, and CLV is the
+        # move from that bettable number to the close, signed by the lean the
+        # model held AT THAT TIME. Locks recorded before the early stamp
+        # existed have no early_lock and keep clv_points = null.
+        early = pred.get("early_lock") or {}
+        early_line = to_fav_line(early.get("fav_spread"), early.get("fav_abbr"), fav)
+        early_ts = parse_ts(early.get("captured_at"))
+        early_edge = early_lean = None
+        e_proj = early.get("projected_spread")               # home minus away
+        if e_proj is not None and early_line is not None:
+            e_fav_margin = float(e_proj) if fav_is_home else -float(e_proj)
+            early_edge = round(e_fav_margin + early_line, 2)
+            early_lean = "fav" if early_edge > 0 else ("dog" if early_edge < 0 else None)
+
         clv = None
-        if bettable and lean and close_line is not None:
-            move = close_line - lock_fav_line            # negative = favorite got pricier
-            clv = round(-move if lean == "fav" else move, 2)
+        if (early_lean and early_line is not None and close_line is not None
+                and early_ts is not None and early_ts < kickoff):
+            move = close_line - early_line               # negative = favorite got pricier
+            clv = round(-move if early_lean == "fav" else move, 2)
 
         picks = pred.get("picks") or {}
         pick_abbr = picks.get("ats_pick_abbr")
@@ -196,6 +215,11 @@ def main():
             "model_projected_fav_margin": None if proj is None else (float(proj) if fav_is_home else -float(proj)),
             "model_edge_pts": edge,
             "model_lean": lean, "model_lean_abbr": lean_abbr,
+            "early_fav_line": early_line,
+            "early_seen_at": early.get("captured_at"),
+            "early_lean": early_lean,
+            "early_edge_pts": early_edge,
+            "early_lean_result_vs_close": res(early_lean, cover_close),
             "clv_points": clv,
             "cover_vs_lock": cover_lock,
             "cover_vs_close": cover_close,
@@ -240,11 +264,11 @@ def main():
               f"({w/(w+l)*100:.1f}%)  [breakeven 52.4%]")
     clv = [r["clv_points"] for r in rows if r.get("clv_points") is not None]
     if clv:
-        print(f"[line_study] CLV on bettable locks: mean {sum(clv)/len(clv):+.2f} pts over "
+        print(f"[line_study] CLV, first sighting vs close: mean {sum(clv)/len(clv):+.2f} pts over "
               f"{len(clv)} games | beat the close {sum(c > 0 for c in clv)}, "
               f"unmoved {sum(c == 0 for c in clv)}")
     else:
-        print("[line_study] CLV: no bettable (pre-kickoff) locks graded yet")
+        print("[line_study] CLV: no early (first-sighting) locks graded yet")
     print("[line_study] NOTE: positive mean CLV sustained over 50+ games is the first "
           "real evidence of an edge.")
 

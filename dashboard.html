@@ -59,6 +59,9 @@ nav.tabs::-webkit-scrollbar{display:none}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px;justify-content:center}
 .chip{padding:7px 14px;border-radius:8px;border:1px solid var(--border2);background:var(--card);color:var(--muted);font-family:var(--raj);font-weight:700;font-size:13px;letter-spacing:.06em;cursor:pointer}
 .chip.on{color:#fff;border-color:var(--fire);background:rgba(255,106,0,.12)}
+.search-box{padding:7px 14px;border-radius:8px;border:1px solid var(--border2);background:var(--card);color:#fff;font-family:var(--raj);font-weight:700;font-size:13px;letter-spacing:.06em;min-width:170px;outline:none}
+.search-box::placeholder{color:var(--muted)}
+.search-box:focus{border-color:var(--fire);box-shadow:0 0 10px rgba(255,106,0,.25)}
 
 section{margin-top:30px}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:10px}
@@ -243,6 +246,7 @@ footer p{max-width:560px;margin:0 auto}
     <button class="chip on" data-sport="all">All</button>
     <button class="chip" data-sport="nfl">NFL</button>
     <button class="chip" data-sport="ncaaf">College</button>
+    <input type="search" id="q" class="search-box" placeholder="Search teams&hellip;" autocomplete="off">
   </div>
 
   <section id="best">
@@ -289,7 +293,7 @@ const DEC_110 = 1 + 100 / 110;                   // standard -110 price
 const BOOK_MARGIN = 1.045;                       // typical moneyline overround
 const ML_LEG_CAP = 0.97;                         // legs above this pay almost nothing
 
-let PRED = [], ACC = null, win = 7, sport = 'all';
+let PRED = [], ACC = null, win = 7, sport = 'all', query = '';
 const slip = new Map();                          // key -> leg
 
 const erf = x => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; };
@@ -327,8 +331,20 @@ function legsFor(g) {
 function inView(g) {
   const d = kick(g), now = new Date();
   if (sport !== 'all' && (g.sport || '').toLowerCase() !== sport) return false;
+  if (!matchesQuery(g)) return false;
   const hours = (d - now) / 36e5;
   return hours > -4 && hours <= win * 24;          // keep games that kicked off in the last 4h visible
+}
+
+// Team names and abbreviations both count, so "chiefs", "KC" and "Kansas City"
+// each find the same game. Every typed word must hit.
+function matchesQuery(g) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  const h = g.home_team || {}, a = g.away_team || {};
+  const hay = [g.home, g.away, h.name, h.abbr, a.name, a.abbr, g.name, g.shortName]
+    .filter(Boolean).join(' ').toLowerCase();
+  return q.split(/[\s@]+/).filter(Boolean).every(w => hay.includes(w));
 }
 
 function combo(legs) {
@@ -513,6 +529,8 @@ document.addEventListener('click', e => {
   else if (t.dataset.win) { win = Number(t.dataset.win); document.querySelectorAll('[data-win]').forEach(b => b.classList.toggle('on', b === t)); render(); }
   else if (t.dataset.sport) { sport = t.dataset.sport; document.querySelectorAll('[data-sport]').forEach(b => b.classList.toggle('on', b === t)); render(); }
 });
+
+document.getElementById('q').addEventListener('input', e => { query = e.target.value; render(); });
 
 async function load() {
   const bust = '?t=' + Date.now();
