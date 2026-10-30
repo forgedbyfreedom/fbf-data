@@ -441,30 +441,40 @@ def build_ufc_records(ev):
 # ------------------------------------------------------------
 #  EVENT FETCHERS
 # ------------------------------------------------------------
-def events_for_date(path, d):
-    idx = get_json(f"{BASE}/{path}/events?dates={yyyymmdd(d)}&lang=en&region=us")
-    if not idx:
-        return []
+def _events_from_index(url):
+    """Resolve every event in a paginated ESPN event index.
+
+    The index defaults to 25 items per page; a full Saturday CFB slate is
+    ~50+, so anything past page one used to be silently dropped (this is
+    how South Carolina games went missing). Ask for a big page AND walk
+    pageCount in case the slate ever exceeds it.
+    """
     out = []
-    for it in idx.get("items") or []:
-        ev = get_json(it.get("$ref"))
-        if ev:
-            out.append(ev)
+    page = 1
+    while True:
+        idx = get_json(f"{url}&limit=500&page={page}")
+        if not idx:
+            break
+        for it in idx.get("items") or []:
+            ev = get_json(it.get("$ref"))
+            if ev:
+                out.append(ev)
+        if page >= (idx.get("pageCount") or 1):
+            break
+        page += 1
     return out
+
+
+def events_for_date(path, d):
+    return _events_from_index(
+        f"{BASE}/{path}/events?dates={yyyymmdd(d)}&lang=en&region=us"
+    )
 
 
 def events_for_range(path, start, end):
-    idx = get_json(
+    return _events_from_index(
         f"{BASE}/{path}/events?dates={yyyymmdd(start)}-{yyyymmdd(end)}&lang=en&region=us"
     )
-    if not idx:
-        return []
-    out = []
-    for it in idx.get("items") or []:
-        ev = get_json(it.get("$ref"))
-        if ev:
-            out.append(ev)
-    return out
 
 
 # ------------------------------------------------------------
