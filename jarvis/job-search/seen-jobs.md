@@ -115,3 +115,6 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-29) VP, Operations (Digital Solutions) (Remote, reviewed—payments/card-processing domain, 12yr payments + 10yr card-processing required; not a fit) — Velera — https://to.indeed.com/aasjqpq6qwm6
 - (2026-10-29) Chief Operating Officer (Remote, reviewed—intl trauma-care nonprofit, $85-95k below floor) — Tutapona — https://to.indeed.com/aagp2lpc7l22
 - (2026-10-29) Regional Field Director, Mid-Atlantic (Remote, reviewed—faith-based field/ministry ops) — Collision Ministries — https://to.indeed.com/aa7t8ddncs2r
+- (2026-10-30) Director - Corporate Security Center of Excellence (Remote-NC) — First Citizens Bank — https://to.indeed.com/aaf8xp9swhhl
+- (2026-10-30) Director, Training & Development (Remote, near-miss—automotive/SaaS technical-enablement specialization, Salesforce/LMS) — DealerOn — https://to.indeed.com/aabt6dzqdgj6
+- (2026-10-30) Senior Operations Manager (West Columbia, SC — LOCAL your-call; manager-level, $100-110k) — Streamline Business Solutions — https://to.indeed.com/aatbmsdwspfv
