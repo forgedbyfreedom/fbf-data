@@ -118,3 +118,7 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-30) Director - Corporate Security Center of Excellence (Remote-NC) — First Citizens Bank — https://to.indeed.com/aaf8xp9swhhl
 - (2026-10-30) Director, Training & Development (Remote, near-miss—automotive/SaaS technical-enablement specialization, Salesforce/LMS) — DealerOn — https://to.indeed.com/aabt6dzqdgj6
 - (2026-10-30) Senior Operations Manager (West Columbia, SC — LOCAL your-call; manager-level, $100-110k) — Streamline Business Solutions — https://to.indeed.com/aatbmsdwspfv
+- (2026-10-31) Head of Security Portfolio Strategy, Google Cloud Security (Remote, reviewed—cloud/cyber product strategy) — Google — https://to.indeed.com/aark6w468dfq
+- (2026-10-31) Director, Commercial Onboarding and Enablement (Remote, reviewed—sales/commercial enablement) — Talkiatry — https://to.indeed.com/aacbzk2sxxdg
+- (2026-10-31) VP of Operations Strategy (Remote, reviewed—finance/strategy advisory) — TMT Partners — https://to.indeed.com/aahld9hbztdr
+- (2026-10-31) Senior Director, Franchise Strategy & Transformation (Remote, reviewed—CPG franchise strategy, no comp) — The Coca-Cola Company — https://to.indeed.com/aa2hm9zpp8qs
