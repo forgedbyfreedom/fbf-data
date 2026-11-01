@@ -31,3 +31,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-10-24) VP of Operations (Remote) — Rhythmic — $105,000–$130,600 — https://to.indeed.com/aafdk2ft2pmy — PREPARED
 - (2026-10-25) Chief of Staff (Remote) — Vetcove — $180,000–$270,000 — https://to.indeed.com/aagh724b4m4h — PREPARED
 - (2026-10-30) Director - Corporate Security Center of Excellence (Remote-NC) — First Citizens Bank — $119,235–$180,374 — https://to.indeed.com/aaf8xp9swhhl — PREPARED
+- (2026-11-01) Vice President of Operations (Remote) — Career TEAM — $127,061–$196,673 — https://to.indeed.com/aa2fj2rgh846 — PREPARED

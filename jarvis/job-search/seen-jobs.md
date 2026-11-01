@@ -122,3 +122,11 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-10-31) Director, Commercial Onboarding and Enablement (Remote, reviewed—sales/commercial enablement) — Talkiatry — https://to.indeed.com/aacbzk2sxxdg
 - (2026-10-31) VP of Operations Strategy (Remote, reviewed—finance/strategy advisory) — TMT Partners — https://to.indeed.com/aahld9hbztdr
 - (2026-10-31) Senior Director, Franchise Strategy & Transformation (Remote, reviewed—CPG franchise strategy, no comp) — The Coca-Cola Company — https://to.indeed.com/aa2hm9zpp8qs
+- (2026-11-01) Vice President of Operations (Remote — tailored MATCH; workforce-development org, multi-unit/regional ops, degree-equivalency language) — Career TEAM — https://to.indeed.com/aa2fj2rgh846
+- (2026-11-01) VP of Service Excellence (Remote, your-call/not-tailored — customer-support/call-center/client-services leadership, off-lane) — Focus Business Capital — https://to.indeed.com/aaqss6hp2wzt
+- (2026-11-01) "Regional Executive Vice President" (Remote, $150-240k, CAUTION — generic boilerplate, no real company identity, heavy sales/revenue/M&A focus, hard degree req; likely aggregator/low-quality; not tailored) — "Liquid" — https://to.indeed.com/aadfgd2dypbf
+- (2026-11-01) Director, Security Technology Operations (Colorado Springs, CO, reviewed — cyber/tech security ops, onsite) — Deloitte — https://to.indeed.com/aa6sl4674xyg
+- (2026-11-01) Vice President of Operations (Remote, reviewed — finance-domain ops) — Porta Finance — https://to.indeed.com/aasp6hwpph2d
+- (2026-11-01) Vice President of Business Development Operations (Remote, reviewed — BD/sales ops) — Ironlight — https://to.indeed.com/aahmn4tpmyd4
+- (2026-11-01) Senior Director, AI Productivity & LCNC AI (Washington, DC, reviewed — AI/tech, onsite) — Centene — https://to.indeed.com/aa6qhnmcnqlw
+- (2026-11-01) Director of Health Optimization MO/IA (Remote-in-MO, reviewed — requires Missouri residency, clinical/health ops) — UnitedHealthcare — https://to.indeed.com/aaztksgpz9jz
