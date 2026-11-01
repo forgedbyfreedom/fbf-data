@@ -39,16 +39,6 @@
     "lat": 42.3315509,
     "lon": -83.0466403
   },
-  "metlife stadium": {
-    "name": "MetLife Stadium",
-    "norm": "metlife stadium",
-    "city": "East Rutherford",
-    "state": "NJ",
-    "indoor": false,
-    "grass": false,
-    "lat": 40.833989,
-    "lon": -74.0970865
-  },
   "acrisure stadium": {
     "name": "Acrisure Stadium",
     "norm": "acrisure stadium",
@@ -58,6 +48,16 @@
     "grass": true,
     "lat": 40.4406968,
     "lon": -80.0025666
+  },
+  "metlife stadium": {
+    "name": "MetLife Stadium",
+    "norm": "metlife stadium",
+    "city": "East Rutherford",
+    "state": "NJ",
+    "indoor": false,
+    "grass": false,
+    "lat": 40.833989,
+    "lon": -74.0970865
   },
   "raymond james stadium": {
     "name": "Raymond James Stadium",
@@ -249,26 +249,6 @@
     "lat": null,
     "lon": null
   },
-  "tdecu stadium": {
-    "name": "TDECU Stadium",
-    "norm": "tdecu stadium",
-    "city": "Houston",
-    "state": "TX",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
-  "mclane stadium": {
-    "name": "McLane Stadium",
-    "norm": "mclane stadium",
-    "city": "Waco",
-    "state": "TX",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
   "riceeccles stadium": {
     "name": "Rice-Eccles Stadium",
     "norm": "riceeccles stadium",
@@ -299,11 +279,11 @@
     "lat": null,
     "lon": null
   },
-  "bill snyder family stadium": {
-    "name": "Bill Snyder Family Stadium",
-    "norm": "bill snyder family stadium",
-    "city": "Manhattan",
-    "state": "KS",
+  "mclane stadium": {
+    "name": "McLane Stadium",
+    "norm": "mclane stadium",
+    "city": "Waco",
+    "state": "TX",
     "indoor": false,
     "grass": false,
     "lat": null,
@@ -379,6 +359,16 @@
     "lat": null,
     "lon": null
   },
+  "bill snyder family stadium": {
+    "name": "Bill Snyder Family Stadium",
+    "norm": "bill snyder family stadium",
+    "city": "Manhattan",
+    "state": "KS",
+    "indoor": false,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
   "brooks stadium sc": {
     "name": "Brooks Stadium (SC)",
     "norm": "brooks stadium sc",
@@ -429,16 +419,6 @@
     "lat": null,
     "lon": null
   },
-  "ohio stadium": {
-    "name": "Ohio Stadium",
-    "norm": "ohio stadium",
-    "city": "Columbus",
-    "state": "OH",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
   "tiger stadium la": {
     "name": "Tiger Stadium (LA)",
     "norm": "tiger stadium la",
@@ -449,11 +429,31 @@
     "lat": null,
     "lon": null
   },
+  "ohio stadium": {
+    "name": "Ohio Stadium",
+    "norm": "ohio stadium",
+    "city": "Columbus",
+    "state": "OH",
+    "indoor": false,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
   "allegacy federal credit union stadium": {
     "name": "Allegacy Federal Credit Union Stadium",
     "norm": "allegacy federal credit union stadium",
     "city": "Winston-Salem",
     "state": "NC",
+    "indoor": false,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "tdecu stadium": {
+    "name": "TDECU Stadium",
+    "norm": "tdecu stadium",
+    "city": "Houston",
+    "state": "TX",
     "indoor": false,
     "grass": false,
     "lat": null,
@@ -559,16 +559,6 @@
     "lat": null,
     "lon": null
   },
-  "camp randall stadium": {
-    "name": "Camp Randall Stadium",
-    "norm": "camp randall stadium",
-    "city": "Madison",
-    "state": "WI",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
   "davis wade stadium": {
     "name": "Davis Wade Stadium",
     "norm": "davis wade stadium",
@@ -576,6 +566,16 @@
     "state": "MS",
     "indoor": false,
     "grass": true,
+    "lat": null,
+    "lon": null
+  },
+  "camp randall stadium": {
+    "name": "Camp Randall Stadium",
+    "norm": "camp randall stadium",
+    "city": "Madison",
+    "state": "WI",
+    "indoor": false,
+    "grass": false,
     "lat": null,
     "lon": null
   },
@@ -649,16 +649,6 @@
     "lat": null,
     "lon": null
   },
-  "michigan stadium": {
-    "name": "Michigan Stadium",
-    "norm": "michigan stadium",
-    "city": "Ann Arbor",
-    "state": "MI",
-    "indoor": false,
-    "grass": false,
-    "lat": null,
-    "lon": null
-  },
   "mountain america stadium": {
     "name": "Mountain America Stadium",
     "norm": "mountain america stadium",
@@ -674,6 +664,16 @@
     "norm": "bobby dodd stadium",
     "city": "Atlanta",
     "state": "GA",
+    "indoor": false,
+    "grass": false,
+    "lat": null,
+    "lon": null
+  },
+  "michigan stadium": {
+    "name": "Michigan Stadium",
+    "norm": "michigan stadium",
+    "city": "Ann Arbor",
+    "state": "MI",
     "indoor": false,
     "grass": false,
     "lat": null,
@@ -776,8 +776,8 @@
     "state": "IN",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 39.7683331,
+    "lon": -86.1583502
   },
   "arrowhead stadium": {
     "name": "Arrowhead Stadium",
@@ -796,8 +796,8 @@
     "state": "LA",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 29.9574657,
+    "lon": -90.0629493
   },
   "lincoln financial field": {
     "name": "Lincoln Financial Field",
@@ -806,8 +806,8 @@
     "state": "PA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 39.9527237,
+    "lon": -75.1635262
   },
   "bank of america stadium": {
     "name": "Bank of America Stadium",
@@ -816,8 +816,8 @@
     "state": "NC",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 35.2272086,
+    "lon": -80.8430827
   },
   "gillette stadium": {
     "name": "Gillette Stadium",
@@ -826,8 +826,8 @@
     "state": "MA",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 42.0653768,
+    "lon": -71.2478308
   },
   "levis stadium": {
     "name": "Levi's Stadium",
@@ -836,8 +836,8 @@
     "state": "CA",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 37.2333253,
+    "lon": -121.6846349
   },
   "soldier field": {
     "name": "Soldier Field",
@@ -846,8 +846,8 @@
     "state": "IL",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 41.8755616,
+    "lon": -87.6244212
   },
   "us bank stadium": {
     "name": "U.S. Bank Stadium",
@@ -856,8 +856,8 @@
     "state": "MN",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 44.9772995,
+    "lon": -93.2654692
   },
   "doyt l perry stadium": {
     "name": "Doyt L. Perry Stadium",
@@ -866,8 +866,8 @@
     "state": "OH",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 41.3747744,
+    "lon": -83.6513229
   },
   "fc bayern munich stadium": {
     "name": "FC Bayern Munich Stadium",
@@ -886,8 +886,8 @@
     "state": "GA",
     "indoor": true,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 33.7544657,
+    "lon": -84.3898151
   },
   "huntington bank field": {
     "name": "Huntington Bank Field",
@@ -896,8 +896,8 @@
     "state": "OH",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 41.4996574,
+    "lon": -81.6936772
   },
   "lambeau field": {
     "name": "Lambeau Field",
@@ -906,8 +906,8 @@
     "state": "WI",
     "indoor": false,
     "grass": true,
-    "lat": null,
-    "lon": null
+    "lat": 44.5126379,
+    "lon": -88.0125794
   },
   "nissan stadium": {
     "name": "Nissan Stadium",
@@ -916,8 +916,8 @@
     "state": "TN",
     "indoor": false,
     "grass": false,
-    "lat": null,
-    "lon": null
+    "lat": 36.1622767,
+    "lon": -86.7742984
   },
   "state farm stadium": {
     "name": "State Farm Stadium",
