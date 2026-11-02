@@ -130,3 +130,14 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-01) Vice President of Business Development Operations (Remote, reviewed — BD/sales ops) — Ironlight — https://to.indeed.com/aahmn4tpmyd4
 - (2026-11-01) Senior Director, AI Productivity & LCNC AI (Washington, DC, reviewed — AI/tech, onsite) — Centene — https://to.indeed.com/aa6qhnmcnqlw
 - (2026-11-01) Director of Health Optimization MO/IA (Remote-in-MO, reviewed — requires Missouri residency, clinical/health ops) — UnitedHealthcare — https://to.indeed.com/aaztksgpz9jz
+- (2026-11-02) Senior Director, Strategic Partnerships & Development (Remote, $120-150/hr PART-TIME, your-call/not-tailored — veterans recovery nonprofit but fundraising/development role, part-time contract) — Project New Day — https://to.indeed.com/aakwfbvlx86n
+- (2026-11-02) Chief Operating Officer (Texas City, TX, reviewed — lending/finance, onsite) — World Business Lenders — https://to.indeed.com/aadtrp2rdlhl
+- (2026-11-02) Chief Operating Officer, New Business Vertical (Bergen Point, NJ, reviewed — facilities-maintenance, onsite) — Abco Maintenance — https://to.indeed.com/aarjtxvgmcmy
+- (2026-11-02) Chief Operating Officer (Nashville, TN, reviewed — onsite, $100-120k) — CMOco — https://to.indeed.com/aag4cgcll9md
+- (2026-11-02) VP of Operations (Hamel, MN, reviewed — manufacturing, onsite) — C-Axis Inc — https://to.indeed.com/aa4sq2c7v6zd
+- (2026-11-02) VP of Operations (Myrtle Point, OR, reviewed — advisory, onsite/low band) — Embarc Advisors — https://to.indeed.com/aa9xssrl9rjr
+- (2026-11-02) Director of Operations (Minneapolis, MN, reviewed — digital agency, onsite) — Creed Interactive — https://to.indeed.com/aanlt77lq7zw
+- (2026-11-02) Senior Director, US Field Medical Excellence (Berkeley Heights, NJ, reviewed — pharma/clinical/medical-affairs) — BioNTech — https://to.indeed.com/aa77vrsp8jlt
+- (2026-11-02) Director of ABA Services (Columbia, SC, reviewed — clinical ABA, license-gated, $89-90k) — Talera Healthcare — https://to.indeed.com/aaglzp6kg4ch
+- (2026-11-02) EPPS Program Director (Richland Co., State of SC — needs permission, $40/hr) — State of South Carolina — https://to.indeed.com/aavcxfh6bg9h
+- (2026-11-02) Public Information Director I (Richland Co., State of SC — needs permission, $61.8-94.9k) — State of South Carolina — https://to.indeed.com/aa9d7c4gwjh9
