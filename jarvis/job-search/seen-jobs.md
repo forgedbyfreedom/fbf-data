@@ -141,3 +141,37 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-02) Director of ABA Services (Columbia, SC, reviewed — clinical ABA, license-gated, $89-90k) — Talera Healthcare — https://to.indeed.com/aaglzp6kg4ch
 - (2026-11-02) EPPS Program Director (Richland Co., State of SC — needs permission, $40/hr) — State of South Carolina — https://to.indeed.com/aavcxfh6bg9h
 - (2026-11-02) Public Information Director I (Richland Co., State of SC — needs permission, $61.8-94.9k) — State of South Carolina — https://to.indeed.com/aa9d7c4gwjh9
+- (2026-11-03) Director, Global Corporate Learning Management Systems (Remote, reviewed — learning-technology platform role, hard-requires Workday Learning admin + pharma GxP systems; not L&D leadership) — Revolution Medicines — https://to.indeed.com/aasf4nz62x6y
+- (2026-11-03) "Chief Consultant for Core Projects" (Remote, $225-291k, CAUTION — employer returns "Company: None", generic consulting/enterprise-tech boilerplate; anonymous-aggregator pattern; not tailored) — unnamed — https://to.indeed.com/aa8tydn9dd88
+- (2026-11-03) Head of Security & Network Operations (Alpharetta, GA, reviewed — cyber/network security, onsite) — PDI Technologies — https://to.indeed.com/aaskpbw7hkgc
+- (2026-11-03) Chief Operating Officer (Remote, reviewed — part-time, $103-125k) — LIYAN McAteer — https://to.indeed.com/aa7n72cqv94m
+- (2026-11-03) Chief Experience Officer (Remote, reviewed — fintech CX) — GLMX Technologies — https://to.indeed.com/aagkgsx8d4ym
+- (2026-11-03) Senior Director, Agile Delivery (Remote, reviewed — IT/Agile delivery) — Vibrant Emotional Health — https://to.indeed.com/aazmp8wtlvvx
+- (2026-11-03) Senior Director, Development (Washington, DC, reviewed — fundraising) — America's Promise Alliance — https://to.indeed.com/aazzmjsh6dym
+- (2026-11-03) Senior Director Strategic Philanthropy (Goleta, CA, reviewed — fundraising) — Vitamin Angel Alliance — https://to.indeed.com/aalxkj6s4jrt
+- (2026-11-03) Foundation Senior Director (Orlando, FL, reviewed — fundraising) — Orlando Health / Baptist Health — https://to.indeed.com/aamsbmkyfbfv
+- (2026-11-03) Managing Director, Head of Philippines (Bloomfield, CT, reviewed — onsite/international) — The Cigna Group — https://to.indeed.com/aa99nkcxcv9z
+- (2026-11-04) Director of Internal Operations (Remote, $90-110k, your-call — national Jewish disaster-response org; STRONG mission fit but core is back-office finance/bookkeeping/QuickBooks/GAAP/990/payroll + hard degree req; offered to tailor on request) — NECHAMA (Jewish Response to Disaster) — https://to.indeed.com/aahxptwfqnqc
+- (2026-11-04) Director of Public Safety, Business Development (Remote, $140-160k, your-call — drone company, public-safety domain but BD/sales role) — Draganfly — https://to.indeed.com/aass4gdlk7xz
+- (2026-11-04) Director, Fleet Safety & Compliance (Remote, reviewed — DOT/fleet-safety compliance specialist) — ASPCA — https://to.indeed.com/aahl4grz2srz
+- (2026-11-04) Director, Advanced Capabilities, Commercial L&D (Remote, reviewed — pharma commercial/sales L&D) — Gilead Sciences — https://to.indeed.com/aajfvy9f9jc6
+- (2026-11-04) Senior Director, HR Business Partner (Remote, reviewed — HR, pharma) — Vera Therapeutics — https://to.indeed.com/aahsqv68qdwd
+- (2026-11-04) Floating General Manager (Remote, reviewed — $84-102k below floor) — USAA — https://to.indeed.com/aatnv7b8p9sp
+- (2026-11-04) General Manager for multiple sites (Lincoln Park, NJ, reviewed — hardware distribution, onsite) — Richelieu Hardware — https://to.indeed.com/aa9cdgxmbl7n
+- (2026-11-04) Regional Operations Director (Nashville, TN, reviewed — healthcare, onsite) — Upperline Health — https://to.indeed.com/aazyc2srf4rm
+- (2026-11-04) Director, Learning Technology Strategy & Innovation (Denver, CO, reviewed — learning-tech, onsite) — DaVita — https://to.indeed.com/aas28vxwjw6g
+- (2026-11-04) Director of Training (Pharmaceutical Sales) (Yardley, PA, reviewed — pharma sales training) — EVERSANA — https://to.indeed.com/aa4fl8c4d6sn
+- (2026-11-05) Executive Vice President of Regional Operations (Remote, $150-185k, CAUTION/your-call — named "Signature Investment Advisors" but generic BD/market-expansion boilerplate matching the "Liquid" pattern; finance sales core, hard degree) — Signature Investment Advisors — https://to.indeed.com/aa648yg6d4hd
+- (2026-11-05) Vice President of Operations (Remote, reviewed — finance/ERC domain) — Finance ERC — https://to.indeed.com/aanf4yg6nf7n
+- (2026-11-05) Vice President of Operational Excellence (Remote, reviewed — financial-exchange ops) — Nasdaq ISE — https://to.indeed.com/aapf7rggj92h
+- (2026-11-05) Vice President of Field Operations (Seattle/PNW, reviewed — veterinary, region-tied) — PetVet Care Centers — https://to.indeed.com/aad4gfxn9smw
+- (2026-11-05) Vice President, Claims Integrity & Operations (Remote, reviewed — insurance claims) — Tango — https://to.indeed.com/aa7lqsgnlyw9
+- (2026-11-05) Director of Learning Design (Madison, WI, reviewed — instructional design, below floor) — Tergar International — https://to.indeed.com/aa4mbnhg2qll
+- (2026-11-06) Regional Director of Operations (Southeast) (Columbia, SC — LOCAL, your-call — genuine multi-site ops leadership fit but hard-requires NC & SC senior-living administrator licenses + proven senior-living management track record; $90-143k) — Navion Senior Solutions — https://to.indeed.com/aaxjt8nvh2jg
+- (2026-11-06) Director, Continuous Improvement (Mentor, OH, reviewed — manufacturing CI/Lean, onsite) — STERIS — https://to.indeed.com/aakj6q4ndkk2
+- (2026-11-06) Director, Continuous Improvement (Downers Grove, IL, reviewed — manufacturing CI, onsite) — Regal Rexnord — https://to.indeed.com/aa6rr42rz49y
+- (2026-11-06) Senior Director, R&D Strategy Execution & Transformation (Remote, reviewed — pharma R&D strategy) — BeOne Medicines — https://to.indeed.com/aatyxsgbcnhs
+- (2026-11-06) Senior Director CVO Operations (St. Louis, MO, reviewed — healthcare credentialing, onsite) — Ascension — https://to.indeed.com/aacwylfj872g
+- (2026-11-06) Director - Human Resources, KBA Sales (Kohler, WI, reviewed — HR, onsite) — Kohler Co. — https://to.indeed.com/aaqjn7n82bgq
+- (2026-11-06) Regional Director Health & Wellness - PA & Northeast (Remote, reviewed — senior-living clinical wellness, likely RN/license-gated) — Evergreen Management — https://to.indeed.com/aazwjtgyj88n
+- (2026-11-06) "Personal Development & Leadership: Business Director" (New York, NY, CAUTION — MLM/"personal development" gig pattern, part-time, $1.8k-20k/mo) — Know How 4 Life — https://to.indeed.com/aaf6zhmb4dss
