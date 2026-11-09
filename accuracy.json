@@ -1,29 +1,29 @@
 {
-  "timestamp": "2026-11-08T21:11:24.839685+00:00",
+  "timestamp": "2026-11-09T03:14:00.270740+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 491,
+  "predictions_graded": 494,
   "sports": {
     "ALL": {
       "SU_pct": 73.8,
-      "SU_record": "353-125",
-      "SU_total": 478,
-      "ATS_pct": 50.2,
-      "ATS_record": "116-115-5",
-      "ATS_total": 231,
-      "OU_pct": 54.2,
-      "OU_record": "130-110-0",
-      "OU_total": 240
+      "SU_record": "355-126",
+      "SU_total": 481,
+      "ATS_pct": 49.6,
+      "ATS_record": "116-118-5",
+      "ATS_total": 234,
+      "OU_pct": 53.9,
+      "OU_record": "131-112-0",
+      "OU_total": 243
     },
     "NFL": {
-      "SU_pct": 68.9,
-      "SU_record": "84-38",
-      "SU_total": 122,
-      "ATS_pct": 48.5,
-      "ATS_record": "32-34-2",
-      "ATS_total": 66,
-      "OU_pct": 56.1,
-      "OU_record": "32-25-0",
-      "OU_total": 57
+      "SU_pct": 68.8,
+      "SU_record": "86-39",
+      "SU_total": 125,
+      "ATS_pct": 46.4,
+      "ATS_record": "32-37-2",
+      "ATS_total": 69,
+      "OU_pct": 55.0,
+      "OU_record": "33-27-0",
+      "OU_total": 60
     },
     "NCAAF": {
       "SU_pct": 75.6,
@@ -76,11 +76,11 @@
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 217,
-        "record": "110-107",
+        "picks": 220,
+        "record": "110-110",
         "stated_mid": 52.5,
-        "actual_pct": 50.7,
-        "gap": -1.8
+        "actual_pct": 50.0,
+        "gap": -2.5
       },
       {
         "bucket": "55-60%",
@@ -110,19 +110,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 199,
-        "record": "105-94",
+        "picks": 201,
+        "record": "106-95",
         "stated_mid": 52.5,
-        "actual_pct": 52.8,
-        "gap": 0.3
+        "actual_pct": 52.7,
+        "gap": 0.2
       },
       {
         "bucket": "55-60%",
-        "picks": 39,
-        "record": "24-15",
+        "picks": 40,
+        "record": "24-16",
         "stated_mid": 57.5,
-        "actual_pct": 61.5,
-        "gap": 4.0
+        "actual_pct": 60.0,
+        "gap": 2.5
       },
       {
         "bucket": "60-70%",
@@ -145,39 +145,6 @@
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401856829",
-      "sport": "NCAAF",
-      "date": "2026-10-17T16:00Z",
-      "matchup": "Cincinnati Bearcats at West Virginia Mountaineers",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "W",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401856830",
-      "sport": "NCAAF",
-      "date": "2026-10-17T16:00Z",
-      "matchup": "Kansas Jayhawks at Kansas State Wildcats",
-      "ats": "W",
-      "ats_best_bet": true,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401858267",
-      "sport": "NCAAF",
-      "date": "2026-10-17T16:00Z",
-      "matchup": "Pittsburgh Panthers at Boston College Eagles",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": true,
-      "su": "L"
-    },
     {
       "id": "401862802",
       "sport": "NCAAF",
@@ -2336,6 +2303,39 @@
       "ats": "L",
       "ats_best_bet": false,
       "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401873046",
+      "sport": "NFL",
+      "date": "2026-11-08T21:05Z",
+      "matchup": "Houston Texans at Los Angeles Chargers",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401873049",
+      "sport": "NFL",
+      "date": "2026-11-08T21:25Z",
+      "matchup": "Green Bay Packers at New England Patriots",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401873047",
+      "sport": "NFL",
+      "date": "2026-11-08T21:25Z",
+      "matchup": "Las Vegas Raiders at San Francisco 49ers",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
       "ou_best_bet": false,
       "su": "W"
     }
