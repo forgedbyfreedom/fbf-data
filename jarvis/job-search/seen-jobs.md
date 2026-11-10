@@ -200,3 +200,16 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-09) Supply Chain Safety Manager, RDC (Lugoff, SC — local-ish, your-call — occupational/DC safety specialist, OSHA; $73-132k) — Target — https://to.indeed.com/aajh69jqlmzf
 - (2026-11-09) Assistant Security & Safety Director (Columbia, SC, reviewed — below floor, $60-65k) — RecSol Recovery Solutions — https://to.indeed.com/aapvs62mlfks
 - (2026-11-09) Fire Safety Officer / Security Specialist roles (Richland Co., State of SC — needs permission, below floor) — State of South Carolina — https://to.indeed.com/aah9426sv4p7
+- (2026-11-10) Director, Public Safety Operations (Remote, $130-150k, your-call — drone/UAS company; public-safety + ops-leadership fit but HARD-requires FAA Part 107 / Transport Canada remote-pilot cert + 10yr UAS operations/DFR/MAVLink experience; senior-LE leadership only "preferred") — Draganfly — https://to.indeed.com/aa9lnb9wf4h4
+- (2026-11-10) Chief of Staff & Director of the Executive Office (Remote, $150-160k, your-call — strong CoS/org-development/change-mgmt/exec-partnership/union-environment skills fit; but domestic-workers'/immigrant-women advocacy mission alignment is central and a genuine gap; offered to tailor) — NDWA (National Domestic Workers Alliance) — https://to.indeed.com/aa2gtsfbsnyj
+- (2026-11-10) Senior Director of Operations & Finance (COO) (Washington, DC, reviewed — election-admin nonprofit, DC-located, finance-heavy) — Partnership for Large Election Jurisdictions — https://to.indeed.com/aa7qk4j4v9z9
+- (2026-11-10) Director of Environmental Health & Safety (Remote, $170-180k, reviewed — wind-energy EHS specialist, likely CSP/industrial-safety-degree gated) — Zephyr Winds — https://to.indeed.com/aa9d2f8xy2ft
+- (2026-11-10) Director of Human Resources (Remote, reviewed — HR, $100-150k) — Managed Resources — https://to.indeed.com/aajjx76kddx9
+- (2026-11-10) Regional Director - Ops Mgmt (Columbus, OH, reviewed — last-mile logistics, onsite) — OnTrac — https://to.indeed.com/aab62w4nywtt
+- (2026-11-10) Senior Director, Special Programs & Cognitive Security Growth (Remote, reviewed — defense/intel influence-ops, clearance+BD) — Core4ce — https://to.indeed.com/aapxnzk6zwxf
+- (2026-11-10) Senior Director, Research and Analysis (Remote, reviewed — drone/UAS research) — Draganfly — https://to.indeed.com/aasbwz2kz7fn
+- (2026-11-10) Senior Manager - Learning Facilitator (Nashville remote, reviewed — L&D facilitator, mgr-level) — RTX — https://to.indeed.com/aaxjhngpzpjr
+- (2026-11-10) VP, Enterprise Transformation & Delivery (Durham, NC, reviewed — ed nonprofit) — EdReports — https://to.indeed.com/aavft7qxqty7
+- (2026-11-10) Chief Executive Officer - Powerback (Kennett Square, PA, reviewed — rehab healthcare, onsite) — Powerback Rehabilitation — https://to.indeed.com/aa7sx6nkyl64
+- (2026-11-10) RN Associate Director of Operations (Columbia, SC, reviewed — requires RN license, home health) — BAYADA Home Health Care — https://to.indeed.com/aa7cs72ccqts
+- (2026-11-10) Director of Finance and Budget Ops (Richland Co., State of SC — needs permission, $90-137k) — State of South Carolina — https://to.indeed.com/aa9ygqd7wl6n
