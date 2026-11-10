@@ -175,3 +175,28 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-06) Director - Human Resources, KBA Sales (Kohler, WI, reviewed — HR, onsite) — Kohler Co. — https://to.indeed.com/aaqjn7n82bgq
 - (2026-11-06) Regional Director Health & Wellness - PA & Northeast (Remote, reviewed — senior-living clinical wellness, likely RN/license-gated) — Evergreen Management — https://to.indeed.com/aazwjtgyj88n
 - (2026-11-06) "Personal Development & Leadership: Business Director" (New York, NY, CAUTION — MLM/"personal development" gig pattern, part-time, $1.8k-20k/mo) — Know How 4 Life — https://to.indeed.com/aaf6zhmb4dss
+- (2026-11-07) Director of Operations (Remote, TAILORED — facilities/multi-site service-delivery ops, vendor governance, equivalency language; SALARY NOT POSTED, confirm floor) — Seamless FM — https://to.indeed.com/aaskyytj2bx9
+- (2026-11-07) Director of Operations (Remote, $119-130k, CAUTION — "Company: None" anonymous boilerplate, BD-heavy; Liquid pattern) — Novis Technologies — https://to.indeed.com/aacjdml6gkfl
+- (2026-11-07) Chief Executive Officer (Missouri, your-call — rural community/utility-assistance nonprofit; MO-based, not remote) — Midwest Assistance Program — https://to.indeed.com/aalyzxfdjf2p
+- (2026-11-07) VP, Operations Enablement - Aetna (Hartford, CT, reviewed — health-insurance ops, onsite) — CVS Health — https://to.indeed.com/aan8fldcbm2j
+- (2026-11-07) VP, Public Power – Operations & Growth (Minnesota, reviewed — utility, onsite) — Sparus Holdings — https://to.indeed.com/aan7ds8mc9pj
+- (2026-11-07) Senior Director-Community Integration & Transition Services (NC-based remote, reviewed — behavioral-health managed care, NC residency) — Alliance Health Plan — https://to.indeed.com/aabzxxtpqy2y
+- (2026-11-07) Director, Customer Support (Remote, reviewed — customer-support leadership) — Wheel — https://to.indeed.com/aaxmgn6brkn4
+- (2026-11-08) Director of Operations - Online Education (Remote, $105-115k, your-call — online-ed COO/integrator; general-mgmt/accountability fit but HARD-requires online-marketing-funnel/launch/webinar/ROAS experience Bryan lacks; EOS/Traction) — The Scholarship System — https://to.indeed.com/aawrzrksyqv4
+- (2026-11-08) Director of Business Operations (Remote, $115-135k, reviewed — software/consulting contracts/SOW/PMO; requires SaaS/IT-services + commercial-contract drafting + MS Project/Smartsheet) — Project Widgets — https://to.indeed.com/aam4c4whnmk6
+- (2026-11-08) Engineering & Facilities Maintenance Manager, RDC (Lugoff, SC — local-ish, your-call — technical DC maintenance-engineering, $73-132k) — Target — https://to.indeed.com/aamlttdh4qyn
+- (2026-11-08) Director Fleet Maintenance & Systems Optimization (Remote, reviewed — fleet/vehicle maintenance specialist) — Dycom Industries — https://to.indeed.com/aar7jvmnzmhp
+- (2026-11-08) Category Director - MRO/Consumables (Falls Church, VA, reviewed — procurement/category mgmt, onsite) — BAE Systems — https://to.indeed.com/aaq7b7swvm6x
+- (2026-11-08) Senior Design Director - Mission Critical Facilities (Philadelphia, PA, reviewed — data-center design engineering, onsite) — AECOM — https://to.indeed.com/aabxssy9dplc
+- (2026-11-08) Executive Director of Operations (Remote, reviewed — part-time, $86.8-105k below floor) — Maryland Nat'l Capital Park & Planning — https://to.indeed.com/aarsztvx6v87
+- (2026-11-08) Regional Manager, Manufacturing Excellence (Remote, reviewed — manufacturing/lean) — Eaton — https://to.indeed.com/aazpjw7kjstm
+- (2026-11-08) Vice President – Information Technology (Remote, reviewed — IT, cannabis sector) — Ascend Wellness — https://to.indeed.com/aafrcmwrdrdm
+- (2026-11-09) Senior Vice President of Operations (Remote, reviewed — crypto/web3) — Consensys Mesh — https://to.indeed.com/aam2djvlw6gh
+- (2026-11-09) Vice President of Operations (San Francisco, CA, reviewed — tech, onsite) — CloudApp — https://to.indeed.com/aap2ts4p2vbj
+- (2026-11-09) Vice President of Operations (Florham Park, NJ, reviewed — tech, onsite) — DataMotion — https://to.indeed.com/aanzmhm7y4yc
+- (2026-11-09) Director of Data Center & Site Operations (Remote, reviewed — specialized data-center/critical-facilities ops) — STN Incorporated — https://to.indeed.com/aad7zxynlhnv
+- (2026-11-09) Senior Director, Proposal Operations (Rosslyn, VA, reviewed — federal proposal/capture mgmt, onsite) — Gardaworld Federal — https://to.indeed.com/aa2pcqd2lngn
+- (2026-11-09) Director, Security Compliance and Trust (Seattle, WA, reviewed — cyber/compliance) — Motive — https://to.indeed.com/aanyjbw6wxrg
+- (2026-11-09) Supply Chain Safety Manager, RDC (Lugoff, SC — local-ish, your-call — occupational/DC safety specialist, OSHA; $73-132k) — Target — https://to.indeed.com/aajh69jqlmzf
+- (2026-11-09) Assistant Security & Safety Director (Columbia, SC, reviewed — below floor, $60-65k) — RecSol Recovery Solutions — https://to.indeed.com/aapvs62mlfks
+- (2026-11-09) Fire Safety Officer / Security Specialist roles (Richland Co., State of SC — needs permission, below floor) — State of South Carolina — https://to.indeed.com/aah9426sv4p7
