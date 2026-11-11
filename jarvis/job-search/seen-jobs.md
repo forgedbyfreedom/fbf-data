@@ -213,3 +213,9 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-10) Chief Executive Officer - Powerback (Kennett Square, PA, reviewed — rehab healthcare, onsite) — Powerback Rehabilitation — https://to.indeed.com/aa7sx6nkyl64
 - (2026-11-10) RN Associate Director of Operations (Columbia, SC, reviewed — requires RN license, home health) — BAYADA Home Health Care — https://to.indeed.com/aa7cs72ccqts
 - (2026-11-10) Director of Finance and Budget Ops (Richland Co., State of SC — needs permission, $90-137k) — State of South Carolina — https://to.indeed.com/aa9ygqd7wl6n
+- (2026-11-11) Vice President People Operations (Dallas, TX, reviewed — HR/people-ops, home health, onsite) — Elara Caring — https://to.indeed.com/aaqnbscmb9mf
+- (2026-11-11) Executive Vice President of Digital Assets (Remote, reviewed — crypto/digital-assets) — Coinflow Labs — https://to.indeed.com/aa7ysgqgsg2k
+- (2026-11-11) Vice President, Marketplace Delivery (Remote, reviewed — healthcare-data marketplace/tech delivery) — MacroHealth — https://to.indeed.com/aa48pvt2r97b
+- (2026-11-11) Vice President of Business Development (Springfield, OR, reviewed — hospitality sales) — Merete Hotel Management — https://to.indeed.com/aaddg6cpyjp9
+- (2026-11-11) VP, Growth (Remote, reviewed — sales/growth) — Motive — https://to.indeed.com/aagc6dd994c8
+- (2026-11-11) Head, Commercial Training & Development (Remote, $240k, reviewed — pharma/ophthalmology commercial & sales training) — Harrow — https://to.indeed.com/aajb7dxszx9v
