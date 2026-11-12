@@ -219,3 +219,9 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-11) Vice President of Business Development (Springfield, OR, reviewed — hospitality sales) — Merete Hotel Management — https://to.indeed.com/aaddg6cpyjp9
 - (2026-11-11) VP, Growth (Remote, reviewed — sales/growth) — Motive — https://to.indeed.com/aagc6dd994c8
 - (2026-11-11) Head, Commercial Training & Development (Remote, $240k, reviewed — pharma/ophthalmology commercial & sales training) — Harrow — https://to.indeed.com/aajb7dxszx9v
+- (2026-11-12) Director, Hotel Operations (Remote, reviewed — hospitality/hotel ops) — North Star Lodging Management — https://to.indeed.com/aayjgxp7wrsr
+- (2026-11-12) Executive Director, ACO Operations (Lakewood, NJ, reviewed — healthcare accountable-care-org ops) — Apex Healthcare — https://to.indeed.com/aax7brn4krm4
+- (2026-11-12) Associate Director, Formulary Operations Management (Remote, reviewed — pharmacy-benefit/formulary, healthcare) — Humana — https://to.indeed.com/aa8py2wm6chy
+- (2026-11-12) Director of Clinical Operations, MSP (Remote, reviewed — clinical ops, healthcare/nephrology) — Monogram Health — https://to.indeed.com/aaksnqv4vtwp
+- (2026-11-12) VP Revenue Operations (Columbia, SC, reviewed — revenue/claims ops, insurance-services) — Sedgwick — https://to.indeed.com/aayhjc26c9dt
+- (2026-11-12) Director of Client Accounting Services (Clinton, SC, reviewed — accounting/wealth-mgmt) — Savant Wealth Management — https://to.indeed.com/aacwf467nfb2
