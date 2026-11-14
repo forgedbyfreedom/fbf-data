@@ -232,3 +232,14 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-13) [USAJOBS] Cluster of GS-13-equiv (IC-13) FEMA supervisory EM/recovery/program roles (Chicago/Harrisburg/DC, $106k-$122k, mostly temp NTE 2yr, relocation) — FEMA/DHS — reviewed, see digest
 - (2026-11-13) [USAJOBS] Correctional/security-administration federal search — only 2 results, BOTH clinical (BOP Clinical Psychologist MN; VA Senior Social Worker AK) — no fit; will broaden to BOP/series-0006 next run
 - (2026-11-13) NOTE: Indeed MCP connector failed to connect this run; standard Indeed board sweep not performed — used USAJOBS/web engine instead (per owner "let's see what you come up with")
+- (2026-11-14) Director, Foundation Operations (Remote, $120-130k, reviewed — USOPC/Team USA Development-division FP&A/strategic-planning + fundraising-ops; hard bachelor's required, no equivalency; off-lane) — Team USA — https://to.indeed.com/aafk9mchg7zk
+- (2026-11-14) Director of Operations, Service Delivery (Charlotte, NC, reviewed — lawn-care gig-marketplace service-delivery ops, onsite-ish) — LawnStarter — https://to.indeed.com/aa8rfczcxxx2
+- (2026-11-14) Lead Director - Security Operations Center / SOC (Columbia, SC — LOCAL, reviewed — CYBERsecurity SOC, not physical security; $144-288k) — CVS Health — https://to.indeed.com/aajyhp4vwjlm
+- (2026-11-14) Lead Director, Agile Practice Management (Columbia, SC — LOCAL, reviewed — IT/Agile; $144-288k) — CVS Health — https://to.indeed.com/aam6jtjrltrz
+- (2026-11-14) Multiple "Chief Vice President" listings (Indigo Mortgage/Monarch Money/Bloom Wealth/Dechtman/United Capital, CAUTION — generic finance/mortgage/wealth boilerplate pattern, $124-177k) — reviewed, not a fit
+- (2026-11-14) Executive Vice President (Remote, $290-340k, reviewed — fintech/banking platform) — Finzly — https://to.indeed.com/aa7j4m642gp8
+- (2026-11-14) Executive Vice President of Regional Operations (Remote, reviewed — crypto) — Coinme — https://to.indeed.com/aapddpdqjr9s
+- (2026-11-14) VP of Program Operations (Remote, $268-276k, reviewed — BD/program ops, Ironlight; same pattern as prior Ironlight listing) — Ironlight — https://to.indeed.com/aa4khwklyfh7
+- (2026-11-14) Director, Research & Data Strategy (Remote, reviewed — research/data analytics) — FranklinCovey — https://to.indeed.com/aawpgwt42gtt
+- (2026-11-14) Program Manager (Remote, $150-178k, reviewed — GovCon program management, Koniag) — Koniag Government Services — https://to.indeed.com/aazznmbht6fz
+- (2026-11-14) Deputy Director of Budget / Deputy Director of Archives (Richland Co., State of SC — needs permission) — State of South Carolina — https://to.indeed.com/aaqmn7r774f2
