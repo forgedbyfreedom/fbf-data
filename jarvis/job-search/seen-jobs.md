@@ -243,3 +243,9 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-14) Director, Research & Data Strategy (Remote, reviewed — research/data analytics) — FranklinCovey — https://to.indeed.com/aawpgwt42gtt
 - (2026-11-14) Program Manager (Remote, $150-178k, reviewed — GovCon program management, Koniag) — Koniag Government Services — https://to.indeed.com/aazznmbht6fz
 - (2026-11-14) Deputy Director of Budget / Deputy Director of Archives (Richland Co., State of SC — needs permission) — State of South Carolina — https://to.indeed.com/aaqmn7r774f2
+- (2026-11-15) [USAJOBS federal corrections sweep] "warden / correctional administrator / correctional program" open-to-public = ZERO results — BOP leadership roles are posted internal/status (merit-promotion), not open to public; external applicants can't apply. Noted; will try agency-direct (BOP) + SCDC-peer states if owner opens relocation.
+- (2026-11-15) Executive Director, Head of Learning Strategy (Tallahassee, FL, reviewed — L&D, onsite FL; $131-303k) — CVS Health — https://to.indeed.com/aa2pl6pw9vm9
+- (2026-11-15) Senior Director, Strategic Consulting (Washington, DC, reviewed — child-welfare consulting, DC) — Casey Family Programs — https://to.indeed.com/aalrgqnjpn7s
+- (2026-11-15) Chief of Staff to the CEO (Remote, $170-231k, reviewed — L&D SaaS tech CoS; similar to Vetcove already PREPARED) — Axonify — https://to.indeed.com/aagkl9ttw8y8
+- (2026-11-15) Country Director, Ukraine (Remote, reviewed — intl humanitarian, Ukraine-based) — Save the Children — https://to.indeed.com/aa2n2lrdlssj
+- (2026-11-15) Chief of Staff (Legal) / to CMO / fractional / Autism Diagnosis Group (Remote various, reviewed — off-lane or below-floor CoS variants) — multiple — n/a
