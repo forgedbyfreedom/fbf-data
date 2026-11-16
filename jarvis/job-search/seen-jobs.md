@@ -249,3 +249,8 @@ Format: `- (date) Job Title — Company — job URL`
 - (2026-11-15) Chief of Staff to the CEO (Remote, $170-231k, reviewed — L&D SaaS tech CoS; similar to Vetcove already PREPARED) — Axonify — https://to.indeed.com/aagkl9ttw8y8
 - (2026-11-15) Country Director, Ukraine (Remote, reviewed — intl humanitarian, Ukraine-based) — Save the Children — https://to.indeed.com/aa2n2lrdlssj
 - (2026-11-15) Chief of Staff (Legal) / to CMO / fractional / Autism Diagnosis Group (Remote various, reviewed — off-lane or below-floor CoS variants) — multiple — n/a
+- (2026-11-16) Director of Security Engineering (Remote, $130-180k, reviewed — cybersecurity engineering, not physical security) — Digital Harbor — https://to.indeed.com/aavk2pxzxtgt
+- (2026-11-16) Director Chief Operating Officer (Remote, part-time $96.6-117k, reviewed — part-time, below floor) — Dooley Center — https://to.indeed.com/aarsfhstbbwq
+- (2026-11-16) Chief Operating Officer (Remote, from $110k, reviewed — small events/ticketing co) — BookMyGroup — https://to.indeed.com/aartk444gzvd
+- (2026-11-16) Head of Business Operations (Remote, reviewed — tech/SaaS) — Sophus Technology — https://to.indeed.com/aa4k7ybytrph
+- (2026-11-16) More "Chief Vice President" finance-boilerplate listings (Dynasty Financial/Versant Capital) + Columbia-area GM roles (7-Eleven/McDonald's/Twin Peaks/Pizza Hut, all below floor) — reviewed, not fits
