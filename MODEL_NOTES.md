@@ -633,3 +633,71 @@ whether the early number this model actually sees carries positive CLV. If
 mean CLV over 50+ games is not clearly positive, the honest next step is the
 one this file already names: weight the remaining opinion terms to zero and
 run the board as a projection tool.
+
+## 2026-11-16 — The board was a home-team picker
+
+Bryan: "we have been VERY bad against the spread lately." Graded at audit time:
+ATS 48.3% (144-154-6), NFL 42.7% (35-47-2), NCAAF 50.5%. Since the 2026-10-29
+audit the every-game lean vs the close went **81-89 (47.6%)**, NFL **14-22**.
+
+### Finding: ~0.7 pts on the home side of every game
+
+Per-factor breakdown on the 81 priced football games on today's board:
+
+```
+travel           +0.33 mean   pointed HOME on 76 of 76 games
+home_away_split  +0.36 mean   pointed HOME on 73 of 80
+everything else  ~0 mean, symmetric (line move +0.16, 36 home / 19 away)
+total raw adj    +0.79 mean   HOME on 73 of 81
+```
+
+`travel_km` is away travel minus home travel, and the home team travels ~0,
+so it can only push home. `home_split_edge` is home-team home win% minus
+away-team road win% — team quality plus home field, both priced by the line
+(quality itself was zeroed on holdout evidence 2026-09-03). Most edges on this
+board are under 1 point, so a 0.7-point home shove decided the side:
+
+```
+graded leans this season (vs close)     lean HOME          lean AWAY
+NFL                                     50-61  45.0%       15-6  71.4%
+NCAAF                                   137-133 50.7%      29-27 51.8%
+share of picks on the home team         NFL 84%, NCAAF 83%
+```
+
+Home teams covered only 42% in the NFL this season, and the board was on them
+five times out of six. Historically a blanket home lean is worth nothing
+(2021-2025 vs close: NFL 50.8%, NCAAF 50.1%), so at best these terms add zero.
+
+**Fixed: travel weight and home/away-split weight set to 0.** Same rule as
+2026-09-05: a term that can only move the number one way is a bias.
+Today's board after the change: NFL 7 home / 7 away, NCAAF 34 / 31.
+
+Rough replay (subtracting a flat 0.69 home shove from each graded edge; the
+real per-game value varied, so treat as directional): season NFL 49.2 → 52.3%,
+NCAAF 50.9 → 52.8%; post-10/29 NFL 38.9 → 50.0%, NCAAF 50.0 → 59.7%. In-sample,
+not a forecast — the change was chosen on structure, not fitted to this.
+
+### Things checked and NOT changed (no evidence)
+
+Pre-registered base-rate rules, 2021-23 train / 2024-25 holdout / 2026 live:
+
+```
+NFL favorite              52.0 / 50.8 / 51.1
+NCAAF underdog            51.7 / 50.6 / 47.9
+NFL home, |spread|>=7.5   61.9 / 57.6 / 33.3 (8-16)
+NFL away, |spread|<7.5    50.7 / 52.6 / 55.8
+```
+
+None clears 52.4% on all three. The last one is the closest thing to a
+consistent pattern and is noted for re-checking at season end, not shipped.
+Line-move following: steam side vs close 52.2% before 10/29, 46.0% after,
+50.0% pooled (n=350) — noise; left at current weight. Early-lock CLV:
++0.25 pts mean over 175 games, t=1.47 — not yet significant.
+
+### Honest read
+
+The 47.6% stretch is partly variance (±3.8% at n=170) and partly a real,
+structural home lean the market was already charging for. Removing it should
+pull the board back toward ~50% and stop the bleeding; it does not create an
+edge. Nothing in this pipeline has yet shown a spread edge that survives a
+holdout.

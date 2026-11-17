@@ -359,7 +359,14 @@ def build_expected_values(game):
 
     # Travel fatigue — zeroed on neutral sites (both teams travel)
     travel_km = safe_float(game.get("travel_km"), 0)
-    travel_w = 0.0002 if is_nhl else (0.0002 if is_nba else 0.0003)  # Reduced — Vegas prices travel
+    # ── ZEROED 2026-11-16: ONE-DIRECTIONAL HOME PUSH ─────────────────
+    # travel_km = away_travel - home_travel, and the home team travels ~0 km,
+    # so this term was positive (toward HOME) on 76 of 76 non-neutral games on
+    # the 2026-11-16 board - mean +0.33 pts. It is home-field advantage by
+    # another name, and the closing line already prices home field. Per the
+    # design rule in MODEL_NOTES.md (2026-09-05): a term that can only move
+    # the number one way is a bias, not a feature. See 2026-11-16 notes.
+    travel_w = 0.0
     travel_shift = travel_km * travel_w
     if is_neutral:
         travel_shift = 0.0  # Both teams traveling to neutral site
@@ -372,7 +379,14 @@ def build_expected_values(game):
 
     # Home/away splits — zeroed on neutral sites
     home_split_edge = safe_float(game.get("home_split_edge"), 0)
-    split_shift = home_split_edge * 0.015  # Reduced from 0.02 — correlated with quality
+    # ZEROED 2026-11-16. home_split_edge = home team's HOME win% minus the
+    # away team's ROAD win%: team quality plus home field, both already in the
+    # line. Quality was zeroed on holdout evidence 2026-09-03; this was the
+    # same signal through a side door, and it pointed home on 73 of 80 games
+    # (mean +0.36 pts). Together with travel it put ~0.7 pts on the home side
+    # of every game - bigger than most edges - so the board leaned HOME on
+    # 84% of NFL picks and 83% of NCAAF picks.
+    split_shift = home_split_edge * 0.0
     if is_neutral:
         split_shift = 0.0  # No home/away when neutral
 
