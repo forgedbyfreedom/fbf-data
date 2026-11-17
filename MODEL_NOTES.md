@@ -701,3 +701,34 @@ structural home lean the market was already charging for. Removing it should
 pull the board back toward ~50% and stop the bleeding; it does not create an
 edge. Nothing in this pipeline has yet shown a spread edge that survives a
 holdout.
+
+## 2026-11-16 (later) — Referee call history tested: no edge
+
+Bryan asked for referee penalty/call history to be tested properly. Sample:
+1,132 NFL games 2021-2025 with a named referee; every feature uses ONLY the
+referee's prior season (nflpenalties.com, 2020-2024) or his prior games, so
+nothing peeks. Split 2021-23 train / 2024-25 holdout.
+
+```
+                                          train        holdout
+high-flag ref (z>+1) -> DOG               55.4%        40.5%
+low-flag ref (z<-1)  -> FAV               53.5%        53.3%   (z<-0.5: 55.3 / 49.7)
+high-flag ref (z>+1) -> OVER              41.9%        56.8%
+ref flags AWAY team more -> HOME          48.8%        56.1%
+crew-chief home-cover history (min 15)    52.8%        39.8%  (51-77)
+high-holding ref -> UNDER by season       50.0 54.4 37.9 45.8 52.8
+correlations vs total / home margin residual (flags, DPI, holding,
+home-away flag gap):                      all |r| <= 0.11, signs flip
+```
+
+Every candidate flips between train and holdout, or is threshold-fragile with
+no mirror on the other side (low-flag → FAV holds only at one cutoff, and
+high-flag → DOG reverses). Refs do shape games, but crews are announced
+midweek and the closing number is set after that. College: the historical
+file carries no officials, so there is nothing to test yet.
+
+**Changed:** `ref_home_bias` forced to 0 in `build_expected_values`. It was
+already 0 on every board game (officials aren't attached before kickoff), but
+the crew home-cover history it is built from measured 39.8% on holdout, so it
+should never switch on. Penalty data keeps being scraped; re-test once 2025
+and 2026 seasons are in nfl_ref_penalties.json (the scraper stops at 2024).

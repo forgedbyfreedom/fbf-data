@@ -356,6 +356,17 @@ def build_expected_values(game):
     ref_home_bias = safe_float(game.get("ref_home_bias"), 0)
     if is_neutral:
         ref_home_bias = 0.0  # No home court = no home ref bias
+    # ── ZEROED 2026-11-16 ON EVIDENCE ────────────────────────────────
+    # Tested on 1,132 NFL games (2021-2025), each using only the referee's
+    # PRIOR-season record (nflpenalties.com) or prior games:
+    #   crew-chief home-cover history  train 52.8% -> holdout 39.8% (51-77)
+    #   ref flags away team more       train 48.8% -> holdout 56.1%
+    #   penalty-count/holding/DPI vs spread or total: |r| <= 0.11, signs flip
+    # Every signal reversed between 2021-23 and 2024-25. Crews are announced
+    # midweek and the closing line already reflects them. It was 0 on every
+    # board game anyway (officials are not attached pre-kickoff); this stops a
+    # measured-harmful term switching itself on if they ever are.
+    ref_home_bias = 0.0
 
     # Travel fatigue — zeroed on neutral sites (both teams travel)
     travel_km = safe_float(game.get("travel_km"), 0)
