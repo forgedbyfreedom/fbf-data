@@ -14,7 +14,7 @@ Each record includes:
 - favorite, ATS result, OU result
 """
 
-import json, os, time, math, datetime as dt
+import json, os, re, time, math, datetime as dt
 from typing import Dict, Any, List, Optional
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
@@ -379,7 +379,10 @@ def normalize_records(records):
     print(f"[normalize] {fixed_sign} spread signs repaired, {regraded} records re-graded")
     return records
 
-def fetch_events_for_season(sport_key: str, season_year: int) -> List[Dict[str, Any]]:
+def fetch_events_for_season(sport_key: str, season_year: int, skip_ids=None) -> List[Dict[str, Any]]:
+    """skip_ids: event ids already stored as final - not fetched again, so the
+    nightly refresh of the current season only pays for new games."""
+    skip_ids = skip_ids or set()
     sport = SPORTS[sport_key]
     all_refs = []
 
@@ -403,11 +406,23 @@ def fetch_events_for_season(sport_key: str, season_year: int) -> List[Dict[str, 
             if items:
                 print(f"    page {page_num}: {len(items)} event refs collected ({len(all_refs)} total)")
 
-            nxt = page.get("next", {})
-            url = nxt.get("$ref")
-            if url:
-                url = url.replace("http://", "https://")
+            # ESPN's core API pages with pageIndex/pageCount and has NO "next"
+            # link. The old code looked for "next", so it stopped after page 1:
+            # college seasons have ~918 events at 500 per page, so ~45% of every
+            # college season (2021-2025) was silently never fetched. NFL fit on
+            # one page and was unaffected. Fixed 2026-11-17.
+            nxt = (page.get("next") or {}).get("$ref")
+            if not nxt and page.get("pageIndex", 1) < page.get("pageCount", 1):
+                base = sport["events_url"].format(season=season_year, type=season_type)
+                nxt = f"{base}&page={page.get('pageIndex', 1) + 1}"
+            url = nxt.replace("http://", "https://") if nxt else None
             time.sleep(0.15)
+
+    if skip_ids:
+        before = len(all_refs)
+        all_refs = [r for r in all_refs
+                    if (re.search(r"/events/(\d+)", r) or [None, None])[1] not in skip_ids]
+        print(f"    {before - len(all_refs)} already stored, {len(all_refs)} to fetch")
 
     if not all_refs:
         return []
@@ -462,18 +477,55 @@ def main():
         except Exception as e:
             print(f"[historical] Error loading existing file: {e} — starting fresh")
 
+    # A stored season is only skipped if it is COMPLETE. Before 2026-11-17 a
+    # season was skipped as soon as any row existed, which froze two bugs in
+    # place: (1) college seasons truncated at 500 events by the paging bug were
+    # never revisited, and (2) the CURRENT season was fetched once early on and
+    # never again (2026 held 1 college game in November). Now: the current
+    # season is always refetched, and a past season is refetched if it holds
+    # fewer than 80% of the events ESPN lists for it.
+    stored = {}
+    for r in existing_rows:
+        k = (r.get("sport"), r.get("season"))
+        stored[k] = stored.get(k, 0) + 1
+
+    def espn_event_count(sport_key, season):
+        n = 0
+        for t in SPORTS[sport_key].get("types", [2]):
+            page = get_json(SPORTS[sport_key]["events_url"].format(season=season, type=t))
+            n += (page or {}).get("count", 0)
+        return n
+
     new_rows = []
+    refetched = set()
     for sport_key in SPORTS.keys():
         for season in range(start_year, end_year + 1):
-            if season in existing.get(sport_key, set()):
-                print(f"  [skip] {sport_key} {season} (already fetched)")
-                continue
+            have = stored.get((sport_key, season), 0)
+            if have and season < end_year:
+                listed = espn_event_count(sport_key, season)
+                if listed and have >= 0.8 * listed:
+                    print(f"  [skip] {sport_key} {season} ({have} of {listed} stored)")
+                    continue
+                print(f"  [refetch] {sport_key} {season}: only {have} of {listed} stored")
 
             print(f"  [fetch] {sport_key} {season} ...")
+            if season == end_year and have:
+                # current season, already partly stored: fetch only new games
+                known = {str(r.get("event_id")) for r in existing_rows
+                         if r.get("sport") == sport_key and r.get("season") == season}
+                rows = fetch_events_for_season(sport_key, season, skip_ids=known)
+                print(f"    -> {len(rows)} new final games")
+                new_rows.extend(rows)
+                continue
             rows = fetch_events_for_season(sport_key, season)
             print(f"    -> {len(rows)} final games")
-            new_rows.extend(rows)
+            if rows:
+                new_rows.extend(rows)
+                refetched.add((sport_key, season))
 
+    # Replace, never duplicate, any season that was fetched again.
+    existing_rows = [r for r in existing_rows
+                     if (r.get("sport"), r.get("season")) not in refetched]
     all_rows = existing_rows + new_rows
 
     # Applied to every record, not just the newly fetched ones - the fetch is

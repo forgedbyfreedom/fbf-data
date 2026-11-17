@@ -732,3 +732,60 @@ already 0 on every board game (officials aren't attached before kickoff), but
 the crew home-cover history it is built from measured 39.8% on holdout, so it
 should never switch on. Penalty data keeps being scraped; re-test once 2025
 and 2026 seasons are in nfl_ref_penalties.json (the scraper stops at 2024).
+
+## 2026-11-17 — College officials, and the historical file was missing 45% of college football
+
+### Two data bugs fixed in build_historical_results.py
+
+1. **Paging.** ESPN's core API pages with `pageIndex/pageCount` and has no
+   `next` link. The code looked for `next`, so it stopped at page 1: 500 of
+   ~960 college events per season. 2021-2025 college went from 2,555 stored
+   games to 4,836 (4,774 lined). NFL fit on one page and was unaffected.
+2. **Frozen seasons.** A season was skipped once ANY row existed, so the
+   truncated seasons were never repaired and the current season was fetched
+   once and never again (2026 held 1 college and 1 NFL game in November).
+   Now: past seasons are refetched if under 80% complete; the current season
+   is refreshed nightly, fetching only events not already stored.
+
+Every model measurement that used historical_results.json for college before
+today was on a 53% sample of games. Re-run anything that matters on the full file.
+
+### College officiating crews: new source
+
+ESPN has no college officials (its `/officials` list is empty for every FBS
+game). New `cfb_officials/scrape_cfb_officials.py` reads the official NCAA box
+score from school athletics sites on the SIDEARM platform (both the current
+Nuxt template and the legacy HTML one): full 8-person crew plus each team's
+penalties and yards. A game is covered if either school runs SIDEARM.
+
+- 5,098 unique games with a named referee, 2021-2026; 420 referees
+- attached to 5,053 of 5,588 completed college rows in historical_results.json
+  (~90%; misses are mostly games between two schools on the WMT platform)
+- runs nightly in build_historical.yml (current season, incremental)
+
+### Test: does the college referee's call history predict the line?
+
+Walk-forward only — each game sees only that referee's earlier games (min 10).
+2021-23 n=951, 2024-25 n=1437, live 2026 n=577.
+
+```
+                                         2021-23   2024-25   2026
+low-flag ref (<-0.5 SD) -> OVER           52.7      55.1     46.8   dead in 2026
+high-flag ref (>+1 SD)  -> OVER           52.7      51.5     42.0
+high-flag ref (>+1 SD)  -> DOG            49.5      53.4     41.8
+ref flags road team more -> HOME          45.7      54.7     59.7   fails train
+ref home-cover history >=57% -> HOME      42.3      55.2     56.5   fails train (NFL: 39.8 holdout)
+ref's games went under by 3+ -> UNDER     48.8      63.3     58.3   fails train, no mirror
+corr(flag rate, total / spread residual)  all |r| <= 0.06
+```
+
+What IS real: flag rate is a stable referee trait (prior-season vs this-season
+flags per game, r = 0.28 over 298 referee-seasons). What is NOT: the home-vs-
+road flag gap (r = 0.02 year to year — that "bias" is noise), and neither
+predicts results against the closing line. Nothing shipped.
+
+Watch list (re-check after the 2026 bowls): "ref flags road team more → home"
+and "ref's games run under → under" each held in the two most recent periods
+but failed 2021-23. Practical limit even if one firms up: college crews are
+not published before kickoff, so a crew signal could only be used on the few
+games whose assignment leaks.

@@ -33,6 +33,13 @@ jobs:
       - name: Build historical results
         run: python3 build_historical_results.py
 
+      - name: Scrape college officiating crews + penalties (current season)
+        # ESPN has no college officials; this reads the official NCAA box score
+        # from school athletics sites. Incremental: only new box scores fetched.
+        run: |
+          python3 cfb_officials/scrape_cfb_officials.py $(python3 -c "import datetime as d;t=d.date.today();y=t.year if t.month>=7 else t.year-1;print(y,y)") || echo "CFB officials scrape skipped"
+          python3 cfb_officials/attach_cfb_officials.py || echo "CFB officials attach skipped"
+
       - name: Scrape NFL referee penalties
         run: python3 scrape_nfl_penalties.py || echo "NFL penalty scrape skipped"
       - name: Build referee trends from historical data
