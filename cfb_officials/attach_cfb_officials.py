@@ -59,7 +59,7 @@ def main():
             "source": "official box score",
         }
         n_hit += 1
-    json.dump(hist, open(HIST, "w"), indent=2)
+    json.dump(hist, open(HIST, "w"), separators=(",", ":"))
     print(f"[attach_cfb_officials] crews attached to {n_hit} of {n_rows} completed college games")
 
 

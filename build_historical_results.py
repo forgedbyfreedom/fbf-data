@@ -542,7 +542,7 @@ def main():
     }
 
     with open(OUTFILE, "w") as f:
-        json.dump(payload, f, indent=2)
+        json.dump(payload, f, separators=(",", ":"))  # compact: ~30% smaller, read by many steps
 
     print(f"[historical] Wrote {OUTFILE}: {len(all_rows)} total ({len(new_rows)} new)")
 

@@ -57,7 +57,7 @@ SCORES = "completed_scores.json"
 COMBINED = "combined.json"
 OUTPUT = "line_study.json"
 
-FOOTBALL = {"nfl", "ncaaf"}
+FOOTBALL = {"nfl", "ncaaf", "ncaab", "ncaaw"}  # name kept; basketball added 2026-11-17
 
 
 def load(path, default=None):

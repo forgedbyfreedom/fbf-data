@@ -33,6 +33,11 @@ jobs:
       - name: Build historical results
         run: python3 build_historical_results.py
 
+      - name: College basketball results + pre-game lines (current season)
+        # One file per league-season in cbb_history/; finished seasons are
+        # skipped, the current season only fetches newly completed games.
+        run: python3 build_cbb_history.py || echo "CBB history skipped"
+
       - name: Scrape college officiating crews + penalties (current season)
         # ESPN has no college officials; this reads the official NCAA box score
         # from school athletics sites. Incremental: only new box scores fetched.

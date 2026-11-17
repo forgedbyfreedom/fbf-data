@@ -36,10 +36,14 @@ ARCHIVE_FILE = "predictions_archive.json"
 
 # Minimum realistic final-game totals (reject partial scores)
 MIN_TOTAL = {
-    "NFL": 6, "NCAAF": 10,
+    "NFL": 6, "NCAAF": 10, "NCAAB": 100, "NCAAW": 90,
 }
 
-SPORTS = ["ALL", "NFL", "NCAAF"]
+# "ALL" stays FOOTBALL ONLY (2026-11-17). College basketball was added as a
+# separate trial; its records live under NCAAB / NCAAW and never mix into the
+# football record that has been tracked since the model start.
+SPORTS = ["ALL", "NFL", "NCAAF", "NCAAB", "NCAAW"]
+ALL_SPORTS = {"NFL", "NCAAF"}
 
 
 def safe_float(x, default=None):
@@ -70,16 +74,16 @@ def make_bucket():
 
 
 def update(stats, sport, cat, result):
-    if result == "W":
-        stats["ALL"][cat]["wins"] += 1
-        stats[sport][cat]["wins"] += 1
-    elif result == "L":
-        stats["ALL"][cat]["losses"] += 1
-        stats[sport][cat]["losses"] += 1
-    elif result == "P":
-        if "pushes" in stats["ALL"][cat]:
-            stats["ALL"][cat]["pushes"] += 1
-            stats[sport][cat]["pushes"] += 1
+    if sport not in stats:
+        return
+    keys = [sport] + (["ALL"] if sport in ALL_SPORTS else [])
+    for k in keys:
+        if result == "W":
+            stats[k][cat]["wins"] += 1
+        elif result == "L":
+            stats[k][cat]["losses"] += 1
+        elif result == "P" and "pushes" in stats[k][cat]:
+            stats[k][cat]["pushes"] += 1
 
 
 def grade_ats(picks, pred, odds, home_score, away_score):

@@ -25,7 +25,15 @@ NY_TZ = ZoneInfo("America/New_York")
 LEAGUES = {
     "nfl":   "football/leagues/nfl",
     "ncaaf": "football/leagues/college-football",
+    # College basketball re-added 2026-11-17 (owner's call). ~70-150 D1 games
+    # a day per league, so only today + tomorrow are fetched, and groups=50
+    # (Division I) is REQUIRED: without it ESPN's core index returns only the
+    # handful of featured games (11 of 68 men's games on 2026-11-17).
+    "ncaab": "basketball/leagues/mens-college-basketball",
+    "ncaaw": "basketball/leagues/womens-college-basketball",
 }
+LEAGUE_QUERY = {"ncaab": "&groups=50", "ncaaw": "&groups=50"}
+DAYS_AHEAD = {"ncaab": 2, "ncaaw": 2}   # days fetched, counting today; default: next 7 slate dates
 
 # Sports where each event has multiple competitions (bouts/fights)
 MULTI_COMP_SPORTS = {"ufc"}
@@ -367,6 +375,11 @@ def build_game_record(sport_key, ev):
         "total_points": (home_score or 0) + (away_score or 0),
         "odds": odds,
         "venue": venue,
+        # ESPN flags neutral sites on the competition. Never recorded before
+        # 2026-11-17, so every "zeroed on neutral sites" rule in monte_carlo
+        # only ever fired for bowl games caught by name.
+        "neutral_site": bool(comp.get("neutralSite")),
+        "conference_game": bool(comp.get("conferenceCompetition")),
         "officials": officials,
     }
 
@@ -465,9 +478,9 @@ def _events_from_index(url):
     return out
 
 
-def events_for_date(path, d):
+def events_for_date(path, d, extra=""):
     return _events_from_index(
-        f"{BASE}/{path}/events?dates={yyyymmdd(d)}&lang=en&region=us"
+        f"{BASE}/{path}/events?dates={yyyymmdd(d)}&lang=en&region=us{extra}"
     )
 
 
@@ -500,11 +513,19 @@ def main():
     for key, path in LEAGUES.items():
         print(f"[fetch] {key}...")
 
-        # whitelist dates preferred
-        wl = get_next_7_whitelist_dates(path, today_local)
-
+        extra = LEAGUE_QUERY.get(key, "")
         evs = []
-        if wl:
+        if key in DAYS_AHEAD:
+            for k in range(DAYS_AHEAD[key]):
+                evs.extend(events_for_date(path, today_local + timedelta(days=k), extra))
+            wl = None
+        else:
+            # whitelist dates preferred
+            wl = get_next_7_whitelist_dates(path, today_local)
+
+        if key in DAYS_AHEAD:
+            pass
+        elif wl:
             for d in wl:
                 evs.extend(events_for_date(path, d))
         else:
@@ -517,11 +538,13 @@ def main():
             for ev in evs:
                 games.extend(build_ufc_records(ev))
         else:
-            # Team sports: one game per event
-            for ev in evs:
-                rec = build_game_record(key, ev)
-                if rec:
-                    games.append(rec)
+            # Team sports: one game per event. Built in parallel - a college
+            # basketball day is 100+ events, each with several nested lookups.
+            from concurrent.futures import ThreadPoolExecutor
+            with ThreadPoolExecutor(8) as ex:
+                for rec in ex.map(lambda ev: build_game_record(key, ev), evs):
+                    if rec:
+                        games.append(rec)
 
         games.sort(key=lambda g: g.get("date_utc") or "")
         write_latest_file(key, games)

@@ -2,7 +2,12 @@ const SPORTS = [
   {k:'FB', label:'Football', match:x=>x==='ncaaf'||x==='nfl'},
   {k:'nfl', label:'NFL', match:x=>x==='nfl'},
   {k:'ncaaf', label:'CFB', match:x=>x==='ncaaf'},
+  {k:'ncaab', label:"Men's CBB", match:x=>x==='ncaab'},
+  {k:'ncaaw', label:"Women's CBB", match:x=>x==='ncaaw'},
 ];
+// Accuracy panel follows the tab. "ALL" in accuracy.json is football only.
+const ACC_KEY = {FB:'ALL', nfl:'NFL', ncaaf:'NCAAF', ncaab:'NCAAB', ncaaw:'NCAAW'};
+let ACC = null;
 let DATA={predictions:[]}, active='FB';
 function stampFmt(ts){ if(!ts) return ''; const m=String(ts).match(/(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})/); if(!m) return ts; return `updated ${m[2]}/${m[3]} ${m[4]}:${m[5]} · latest run`; }
 function num(v,d=1){ return (v==null||isNaN(v))?'—':Number(v).toFixed(d); }
@@ -79,7 +84,7 @@ function buildTabs(){
     if(s.k!=='FB'&&s.k!=='nfl'&&s.k!=='ncaaf'&&n===0) return;
     const el=document.createElement('div'); el.className='tab'+(s.k===active?' active':'');
     el.innerHTML=`${s.label} <span class="n">${n}</span>`;
-    el.onclick=()=>{active=s.k;buildTabs();render();};
+    el.onclick=()=>{active=s.k;buildTabs();render();try{renderAccuracy(ACC);}catch(e){}};
     t.appendChild(el);
   });
 }
@@ -125,9 +130,11 @@ function accCell(label, pct, record, n, isAts){
 }
 
 function renderAccuracy(a){
+  ACC = a;
   const el = document.getElementById("acc");
-  if(!a || !a.sports || !a.sports.ALL){ el.hidden = true; return; }
-  const s = a.sports.ALL;
+  const key = ACC_KEY[active] || 'ALL';
+  if(!a || !a.sports || !a.sports[key]){ el.hidden = true; return; }
+  const s = a.sports[key];
   const parse = r => { const p=String(r||"0-0").split("-"); return (parseInt(p[0])||0)+(parseInt(p[1])||0); };
   const nSU = parse(s.SU_record), nATS = parse(s.ATS_record), nOU = parse(s.OU_record);
   document.getElementById("accGrid").innerHTML =

@@ -789,3 +789,64 @@ and "ref's games run under → under" each held in the two most recent periods
 but failed 2021-23. Practical limit even if one firms up: college crews are
 not published before kickoff, so a crew signal could only be used on the few
 games whose assignment leaks.
+
+## 2026-11-17 — Men's and women's college basketball added (trial)
+
+Owner's call: scope reopened to NCAAB and NCAAW alongside football.
+
+### Data
+
+- `build_cbb_history.py`: every completed D1 game with ESPN's pre-game line
+  (in-game "Live Odds" entries ignored), seasons 2022-2027 (ESPN numbering:
+  2026 = 2025-26). One file per league-season in `cbb_history/`; finished
+  seasons are never rewritten, so only the small current-season file changes
+  nightly. Runs nightly in build_historical.yml.
+- Men's: 31,932 games, 29,104 lined (~92%).
+- Women's: 30,162 games, 14,948 lined - and ESPN's women's coverage has
+  collapsed: 5,136 lines in 2022-23, 921 in 2025-26, 89 of 894 so far this
+  season. **Women's picks will be sparse because the lines aren't there.**
+- Live: fetch_espn_all.py pulls today + tomorrow for both leagues with
+  `groups=50` (Division I). Without groups=50 ESPN's core index returns only
+  featured games (11 of 68 men's games on 2026-11-17). Adds ~2-3 minutes.
+- fetch_espn_all.py now records ESPN's `neutralSite` flag. It never did, so
+  every "zeroed on neutral sites" rule had only ever fired for bowl games
+  caught by name.
+- historical_results.json and the new files are written compact (no indent).
+
+### Baseline: is there anything to find? (2022-24 train / 2025-26 holdout / 2027 live)
+
+```
+men's                         train          holdout        live
+home team (non-neutral)       50.1           49.4           48.9
+favorite                      49.9           48.9           46.1
+dog +12-20                    53.7           51.8           51.1
+over                          51.1           49.7           45.7
+walk-forward margin rating    50.5 (16,819)  50.8 (11,469)  51.6 (659)
+women's
+favorite                      51.6           49.8           51.7
+home dog                      46.5           51.0           66.7 (n=15)
+walk-forward margin rating    49.8           51.2           46.1
+```
+
+The basketball spread market is as efficient as football's. The rating
+looked like the one consistent >50% signal for men's, but it picked the
+underdog ~80% of the time (a K=0.05 rating is compressed, so big lines look
+too big) - its dog picks hit 50.4/51.2/53.1, which is just the mild dog
+lean (pure "take the dog": 50.1/51.1/53.9). A less-compressed rating picks
+dogs 63% and hits 50.1/50.4/47.6. So it measures as a disguised dog lean, not
+skill, and was NOT wired in (it would also have turned the men's board ~85%
+underdog). Same standard as football: nothing under 52.4% in every period ships.
+
+### What the board does for basketball
+
+Every game with a line gets an ATS and O/U pick (standing rule), from the same
+engine as football. On the 2026-11-17 slate the opinion terms were near zero
+and balanced (men's raw adjustment: 16 home / 19 away / 20 zero), so expect
+roughly coin-flip results. Records are tracked separately (accuracy.json
+NCAAB / NCAAW); `ALL` stays football-only so the football record isn't mixed.
+The board's record panel now follows the active tab. Basketball leans are also
+graded against the close in line_study.json - mean CLV there is the first
+thing to watch.
+
+Power ratings for basketball came from the legacy capped rows, which were
+removed; the (unvalidated) mismatch term is therefore 0 for basketball.
