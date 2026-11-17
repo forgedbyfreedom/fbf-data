@@ -238,6 +238,10 @@ def main():
         if not gid:
             continue
 
+        # Weather is a football input only; basketball is played indoors.
+        if (g.get("sport") or "").lower() not in ("nfl", "ncaaf"):
+            continue
+
         # Skip non-US / indoor
         if not is_us_outdoor(venue):
             continue
