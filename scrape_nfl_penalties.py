@@ -19,7 +19,7 @@ import requests
 
 OUTPUT = "nfl_ref_penalties.json"
 BASE_URL = "https://www.nflpenalties.com"
-YEARS = list(range(2020, 2025))  # 5 seasons
+YEARS = list(range(2020, datetime.now(timezone.utc).year + 1))  # through the current season
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
