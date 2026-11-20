@@ -1,105 +1,7 @@
 {
-  "timestamp": "20261120_0309",
+  "timestamp": "20261120_0909",
   "count": 28,
   "data": [
-    {
-      "sport": "nfl",
-      "id": "401873066",
-      "name": "Indianapolis Colts at Houston Texans",
-      "shortName": "IND @ HOU",
-      "date_utc": "2026-11-20T01:15Z",
-      "date_local": "2026-11-19 08:15 PM ET",
-      "home_team": {
-        "id": "34",
-        "name": "Houston Texans",
-        "abbr": "HOU",
-        "slug": "houston-texans",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png"
-      },
-      "away_team": {
-        "id": "11",
-        "name": "Indianapolis Colts",
-        "abbr": "IND",
-        "slug": "indianapolis-colts",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png"
-      },
-      "home_score": 17.0,
-      "away_score": 3.0,
-      "total_points": 20.0,
-      "odds": {
-        "details": "HOU -12.5",
-        "spread": -12.5,
-        "total": 44.5,
-        "provider": "DraftKings"
-      },
-      "venue": {
-        "name": "Reliant Stadium",
-        "city": "Houston",
-        "state": "TX",
-        "indoor": true,
-        "grass": false
-      },
-      "neutral_site": false,
-      "conference_game": false,
-      "officials": [
-        {
-          "name": "Dino Paganelli",
-          "role": {
-            "name": "Back Judge",
-            "displayName": "Back Judge",
-            "id": "110"
-          }
-        },
-        {
-          "name": "Dyrol Prioleau",
-          "role": {
-            "name": "Field Judge",
-            "displayName": "Field Judge",
-            "id": "111"
-          }
-        },
-        {
-          "name": "Jeff Seeman",
-          "role": {
-            "name": "Line Judge",
-            "displayName": "Line Judge",
-            "id": "113"
-          }
-        },
-        {
-          "name": "Keith Parham",
-          "role": {
-            "name": "Side Judge",
-            "displayName": "Side Judge",
-            "id": "115"
-          }
-        },
-        {
-          "name": "Shawn Smith",
-          "role": {
-            "name": "Referee",
-            "displayName": "Referee",
-            "id": "114"
-          }
-        },
-        {
-          "name": "Tra Blake",
-          "role": {
-            "name": "Umpire",
-            "displayName": "Umpire",
-            "id": "116"
-          }
-        },
-        {
-          "name": "Jay Bilbo",
-          "role": {
-            "name": "Down Judge",
-            "displayName": "Down Judge",
-            "id": "112"
-          }
-        }
-      ]
-    },
     {
       "sport": "nfl",
       "id": "401873070",
@@ -209,7 +111,7 @@
       "odds": {
         "details": "DAL -8.5",
         "spread": -8.5,
-        "total": 55.5,
+        "total": 54.5,
         "provider": "DraftKings"
       },
       "venue": {
@@ -330,8 +232,8 @@
       "away_score": null,
       "total_points": 0,
       "odds": {
-        "details": "PIT -4.5",
-        "spread": 4.5,
+        "details": "PIT -3.5",
+        "spread": 3.5,
         "total": 38.5,
         "provider": "DraftKings"
       },
@@ -862,7 +764,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "NYG -5.5",
+        "spread": 5.5,
+        "total": 43.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Lucas Oil Stadium",
         "city": "Indianapolis",
@@ -1021,7 +928,12 @@
       "home_score": null,
       "away_score": null,
       "total_points": 0,
-      "odds": null,
+      "odds": {
+        "details": "HOU -6.5",
+        "spread": -6.5,
+        "total": 44.5,
+        "provider": "DraftKings"
+      },
       "venue": {
         "name": "Reliant Stadium",
         "city": "Houston",
@@ -1190,6 +1102,47 @@
         "name": "Huntington Bank Field",
         "city": "Cleveland",
         "state": "OH",
+        "indoor": false,
+        "grass": true
+      },
+      "neutral_site": false,
+      "conference_game": false,
+      "officials": []
+    },
+    {
+      "sport": "nfl",
+      "id": "401873094",
+      "name": "Carolina Panthers at Tampa Bay Buccaneers",
+      "shortName": "CAR @ TB",
+      "date_utc": "2026-12-01T01:15Z",
+      "date_local": "2026-11-30 08:15 PM ET",
+      "home_team": {
+        "id": "27",
+        "name": "Tampa Bay Buccaneers",
+        "abbr": "TB",
+        "slug": "tampa-bay-buccaneers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png"
+      },
+      "away_team": {
+        "id": "29",
+        "name": "Carolina Panthers",
+        "abbr": "CAR",
+        "slug": "carolina-panthers",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/car.png"
+      },
+      "home_score": null,
+      "away_score": null,
+      "total_points": 0,
+      "odds": {
+        "details": "TB -2.5",
+        "spread": -2.5,
+        "total": 43.5,
+        "provider": "DraftKings"
+      },
+      "venue": {
+        "name": "Raymond James Stadium",
+        "city": "Tampa",
+        "state": "FL",
         "indoor": false,
         "grass": true
       },
