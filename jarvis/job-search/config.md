@@ -21,6 +21,13 @@ Set up: 2026-07-05
   Prefer postings that say "or equivalent experience." When tailoring,
   counter with 31 years of experience, SES rank (federal executive
   certification), published books, and specialized certifications.
+- **NO RELOCATION (owner confirmed 2026-11-22).** Bryan is not relocating.
+  Only surface roles that are (a) remote, or (b) within ~45 min of Chapin, SC.
+  Exclude anything that requires relocation or is tied to a fixed out-of-area
+  duty station — INCLUDING federal SES / agency roles pinned to a specific
+  city (e.g., FEMA regional offices, out-of-state BOP facilities). A federal
+  role qualifies ONLY if it is remote / telework-eligible or at a SC-area
+  duty station. Do not re-surface relocation roles or ask about relocation.
 
 ## Criteria
 
@@ -55,6 +62,37 @@ Local (search location "Columbia, SC"):
 - "corporate wellness"
 - "emergency management"
 - "operations director"
+
+## Additional channels — run EVERY day alongside Indeed (owner confirmed 2026-11-22)
+
+These are permanent, not experimental. Apply the SAME criteria to all of them
+(≥$100k, NO RELOCATION — remote or SC-area only, genuine fit, skip seen-jobs).
+
+**1. USAJOBS (federal) — https://www.usajobs.gov/**
+- Search the federal board (via the web/scrape engine; there is no Indeed-style
+  MCP tool) for executive roles in Bryan's lanes:
+  emergency management (series 0089), training (1712), program management
+  (0340), security administration (0080), correctional institution admin
+  (0006), and leadership/organizational-development roles.
+- HARD FILTER to no-relocation: only keep postings that are remote /
+  telework-eligible OR have a SC-area duty station. A specific out-of-area
+  duty station (e.g., FEMA regional HQ, out-of-state BOP) is an automatic
+  SKIP — do not surface, do not ask about relocation.
+- SES roles are fine on the degree bar (ECQ-based, no degree needed) but still
+  must pass the no-relocation filter.
+- Note learned 2026-11-15: BOP warden/correctional-administrator roles post
+  internal/status (merit-promotion), not open to the public — external
+  applicants can't apply; don't keep re-surfacing them.
+
+**2. Employer-direct (private corrections / public-safety / services operators)**
+- Check careers pages for remote/corporate/regional executive roles (NOT
+  facility-based roles that require relocation): GEO Group, CoreCivic,
+  Management & Training Corp (MTC), and similar. Also national
+  training/leadership-development and wellness employers as they come up.
+- Same no-relocation filter: remote or SC-area only.
+
+Tailor genuine matches from any channel exactly as for Indeed; list the apply
+link (USAJOBS announcement URL or employer careers URL) in the digest.
 
 ## Résumé source
 
