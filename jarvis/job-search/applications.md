@@ -34,3 +34,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-11-01) Vice President of Operations (Remote) — Career TEAM — $127,061–$196,673 — https://to.indeed.com/aa2fj2rgh846 — PREPARED
 - (2026-11-07) Director of Operations (Remote) — Seamless FM — salary not posted (confirm $100k+) — https://to.indeed.com/aaskyytj2bx9 — PREPARED
 - (2026-11-22) Managing Director, Internal Learning, Culture & Development (Remote) — Instruction Partners — $166,000 — https://to.indeed.com/aag2m92nystz — PREPARED
+- (2026-11-24) Site Director (Columbia, SC — local) — DCM Services — $110,000–$120,000 — https://to.indeed.com/aanmwbmsnmrd — PREPARED
