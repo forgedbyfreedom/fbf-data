@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-25T15:11:38.039531+00:00",
+  "timestamp": "2026-11-25T21:10:10.821413+00:00",
   "model_start": "2025-12-22",
-  "predictions_graded": 1013,
+  "predictions_graded": 1031,
   "sports": {
     "ALL": {
       "SU_pct": 73.9,
@@ -37,26 +37,26 @@
       "OU_total": 294
     },
     "NCAAB": {
-      "SU_pct": 69.8,
-      "SU_record": "229-99",
-      "SU_total": 328,
-      "ATS_pct": 45.7,
-      "ATS_record": "150-178-0",
-      "ATS_total": 328,
-      "OU_pct": 51.8,
-      "OU_record": "170-158-0",
-      "OU_total": 328
+      "SU_pct": 70.0,
+      "SU_record": "240-103",
+      "SU_total": 343,
+      "ATS_pct": 46.2,
+      "ATS_record": "159-185-0",
+      "ATS_total": 344,
+      "OU_pct": 51.2,
+      "OU_record": "176-168-0",
+      "OU_total": 344
     },
     "NCAAW": {
-      "SU_pct": 87.0,
-      "SU_record": "47-7",
-      "SU_total": 54,
-      "ATS_pct": 66.0,
-      "ATS_record": "33-17-0",
-      "ATS_total": 50,
-      "OU_pct": 62.0,
-      "OU_record": "31-19-0",
-      "OU_total": 50
+      "SU_pct": 87.5,
+      "SU_record": "49-7",
+      "SU_total": 56,
+      "ATS_pct": 67.3,
+      "ATS_record": "35-17-0",
+      "ATS_total": 52,
+      "OU_pct": 61.5,
+      "OU_record": "32-20-0",
+      "OU_total": 52
     }
   },
   "high_confidence": {
@@ -94,15 +94,15 @@
       "OU_total": 12
     },
     "NCAAB": {
-      "SU_pct": 50.0,
-      "SU_record": "2-2",
-      "SU_total": 4,
+      "SU_pct": 60.0,
+      "SU_record": "3-2",
+      "SU_total": 5,
       "ATS_pct": 0,
       "ATS_record": "0-0-0",
       "ATS_total": 0,
       "OU_pct": 100.0,
-      "OU_record": "4-0-0",
-      "OU_total": 4
+      "OU_record": "5-0-0",
+      "OU_total": 5
     },
     "NCAAW": {
       "SU_pct": 0,
@@ -120,11 +120,11 @@
     "ATS": [
       {
         "bucket": "50-55%",
-        "picks": 731,
-        "record": "351-380",
+        "picks": 749,
+        "record": "362-387",
         "stated_mid": 52.5,
-        "actual_pct": 48.0,
-        "gap": -4.5
+        "actual_pct": 48.3,
+        "gap": -4.2
       },
       {
         "bucket": "55-60%",
@@ -154,19 +154,19 @@
     "OU": [
       {
         "bucket": "50-55%",
-        "picks": 554,
-        "record": "307-247",
+        "picks": 569,
+        "record": "311-258",
         "stated_mid": 52.5,
-        "actual_pct": 55.4,
-        "gap": 2.9
+        "actual_pct": 54.7,
+        "gap": 2.2
       },
       {
         "bucket": "55-60%",
-        "picks": 168,
-        "record": "87-81",
+        "picks": 170,
+        "record": "89-81",
         "stated_mid": 57.5,
-        "actual_pct": 51.8,
-        "gap": -5.7
+        "actual_pct": 52.4,
+        "gap": -5.1
       },
       {
         "bucket": "60-70%",
@@ -178,215 +178,17 @@
       },
       {
         "bucket": "70-100%",
-        "picks": 0,
-        "record": "0-0",
+        "picks": 1,
+        "record": "1-0",
         "stated_mid": 85.0,
-        "actual_pct": null,
-        "gap": null
+        "actual_pct": 100.0,
+        "gap": 15.0
       }
     ],
     "note": "actual_pct below stated_mid means published confidence is overstated",
     "breakeven_pct": 52.4
   },
   "results": [
-    {
-      "id": "401917918",
-      "sport": "NCAAB",
-      "date": "2026-11-21T21:00Z",
-      "matchup": "Central Arkansas Bears at Jacksonville Dolphins",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401923322",
-      "sport": "NCAAB",
-      "date": "2026-11-21T21:00Z",
-      "matchup": "UAlbany Great Danes at Canisius Golden Griffins",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "L"
-    },
-    {
-      "id": "401917538",
-      "sport": "NCAAB",
-      "date": "2026-11-21T21:30Z",
-      "matchup": "UC Irvine Anteaters at San Diego Toreros",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "W",
-      "ou_best_bet": true,
-      "su": "W"
-    },
-    {
-      "id": "401925709",
-      "sport": "NCAAB",
-      "date": "2026-11-21T22:00Z",
-      "matchup": "Winthrop Eagles at Wofford Terriers",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401925065",
-      "sport": "NCAAB",
-      "date": "2026-11-21T22:00Z",
-      "matchup": "Southern Miss Golden Eagles at Nicholls Colonels",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401919849",
-      "sport": "NCAAB",
-      "date": "2026-11-21T22:00Z",
-      "matchup": "Northeastern Huskies at Stonehill Skyhawks",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "L"
-    },
-    {
-      "id": "401911337",
-      "sport": "NCAAB",
-      "date": "2026-11-21T22:00Z",
-      "matchup": "Air Force Falcons at UTSA Roadrunners",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401906093",
-      "sport": "NCAAW",
-      "date": "2026-11-21T22:00Z",
-      "matchup": "Alabama Crimson Tide at North Carolina Tar Heels",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401920570",
-      "sport": "NCAAB",
-      "date": "2026-11-21T22:30Z",
-      "matchup": "Southern Illinois Salukis at East Carolina Pirates",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "W",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401860920",
-      "sport": "NCAAF",
-      "date": "2026-11-21T23:00Z",
-      "matchup": "Washington State Cougars at Texas State Bobcats",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401925897",
-      "sport": "NCAAB",
-      "date": "2026-11-21T23:00Z",
-      "matchup": "UNC Wilmington Seahawks at Norfolk State Spartans",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401911023",
-      "sport": "NCAAB",
-      "date": "2026-11-21T23:00Z",
-      "matchup": "Maine Black Bears at Massachusetts Minutemen",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401909517",
-      "sport": "NCAAB",
-      "date": "2026-11-21T23:00Z",
-      "matchup": "Coppin State Eagles at Georgetown Hoyas",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "W",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401858534",
-      "sport": "NCAAF",
-      "date": "2026-11-21T23:15Z",
-      "matchup": "Maryland Terrapins at USC Trojans",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "W",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401858302",
-      "sport": "NCAAF",
-      "date": "2026-11-22T00:00Z",
-      "matchup": "Virginia Tech Hokies at Miami Hurricanes",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "W",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401856865",
-      "sport": "NCAAF",
-      "date": "2026-11-22T00:00Z",
-      "matchup": "Arizona Wildcats at Kansas State Wildcats",
-      "ats": "W",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "L"
-    },
-    {
-      "id": "401864544",
-      "sport": "NCAAF",
-      "date": "2026-11-22T00:00Z",
-      "matchup": "UNLV Rebels at San Jos\u00e9 State Spartans",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
-    {
-      "id": "401869938",
-      "sport": "NCAAF",
-      "date": "2026-11-22T00:00Z",
-      "matchup": "Arkansas State Red Wolves at Louisiana Tech Bulldogs",
-      "ats": "L",
-      "ats_best_bet": false,
-      "ou": "L",
-      "ou_best_bet": false,
-      "su": "W"
-    },
     {
       "id": "401921776",
       "sport": "NCAAB",
@@ -2379,6 +2181,203 @@
       "ats_best_bet": false,
       "ou": "L",
       "ou_best_bet": false
+    },
+    {
+      "id": "401927399",
+      "sport": "NCAAB",
+      "date": "2026-11-25T15:00Z",
+      "matchup": "St. Bonaventure Bonnies at Belmont Bruins",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401928845",
+      "sport": "NCAAB",
+      "date": "2026-11-25T16:00Z",
+      "matchup": "Rice Owls at Ohio Bobcats",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401921702",
+      "sport": "NCAAB",
+      "date": "2026-11-25T16:00Z",
+      "matchup": "Northern Iowa Panthers at Charlotte 49ers",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401921428",
+      "sport": "NCAAW",
+      "date": "2026-11-25T16:00Z",
+      "matchup": "Navy Midshipmen at Iowa Hawkeyes",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401920428",
+      "sport": "NCAAB",
+      "date": "2026-11-25T17:00Z",
+      "matchup": "Virginia Cavaliers at Marquette Golden Eagles",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401920547",
+      "sport": "NCAAB",
+      "date": "2026-11-25T17:30Z",
+      "matchup": "Northern Colorado Bears at Detroit Mercy Titans",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401928831",
+      "sport": "NCAAB",
+      "date": "2026-11-25T17:31Z",
+      "matchup": "Yale Bulldogs at Wright State Raiders",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401926835",
+      "sport": "NCAAB",
+      "date": "2026-11-25T18:00Z",
+      "matchup": "Lindenwood Lions at Stony Brook Seawolves",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401924268",
+      "sport": "NCAAB",
+      "date": "2026-11-25T18:00Z",
+      "matchup": "Southern Utah Thunderbirds at Long Beach State Beach",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401911029",
+      "sport": "NCAAB",
+      "date": "2026-11-25T18:00Z",
+      "matchup": "Eastern Kentucky Colonels at Miami (OH) RedHawks",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401919007",
+      "sport": "NCAAB",
+      "date": "2026-11-25T18:30Z",
+      "matchup": "Tulane Green Wave at Davidson Wildcats",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401927070",
+      "sport": "NCAAW",
+      "date": "2026-11-25T18:30Z",
+      "matchup": "Toledo Rockets at Michigan Wolverines",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401921669",
+      "sport": "NCAAB",
+      "date": "2026-11-25T19:00Z",
+      "matchup": "Arizona State Sun Devils at LSU Tigers",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false
+    },
+    {
+      "id": "401920868",
+      "sport": "NCAAB",
+      "date": "2026-11-25T19:00Z",
+      "matchup": "Manhattan Jaspers at NJIT Highlanders",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401917967",
+      "sport": "NCAAB",
+      "date": "2026-11-25T19:00Z",
+      "matchup": "Abilene Christian Wildcats at South Dakota State Jackrabbits",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "L"
+    },
+    {
+      "id": "401929406",
+      "sport": "NCAAB",
+      "date": "2026-11-25T19:00Z",
+      "matchup": "Arkansas-Pine Bluff Golden Lions at South Dakota Coyotes",
+      "ats": "W",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": true,
+      "su": "W"
+    },
+    {
+      "id": "401924705",
+      "sport": "NCAAB",
+      "date": "2026-11-25T19:00Z",
+      "matchup": "Saint Peter's Peacocks at Columbia Lions",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "L",
+      "ou_best_bet": false,
+      "su": "W"
+    },
+    {
+      "id": "401921715",
+      "sport": "NCAAB",
+      "date": "2026-11-25T19:30Z",
+      "matchup": "Ole Miss Rebels at Arizona Wildcats",
+      "ats": "L",
+      "ats_best_bet": false,
+      "ou": "W",
+      "ou_best_bet": false,
+      "su": "W"
     }
   ]
 }
