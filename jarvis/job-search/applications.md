@@ -35,3 +35,4 @@ INTERVIEW / REJECTED / OFFER.
 - (2026-11-07) Director of Operations (Remote) — Seamless FM — salary not posted (confirm $100k+) — https://to.indeed.com/aaskyytj2bx9 — PREPARED
 - (2026-11-22) Managing Director, Internal Learning, Culture & Development (Remote) — Instruction Partners — $166,000 — https://to.indeed.com/aag2m92nystz — PREPARED
 - (2026-11-24) Site Director (Columbia, SC — local) — DCM Services — $110,000–$120,000 — https://to.indeed.com/aanmwbmsnmrd — PREPARED
+- (2026-11-28) Director of Education & Enablement (Remote, Eastern-pref) — Vision Government Solutions — $140,000–$165,000 — https://to.indeed.com/aam6hk8jnd44 — PREPARED
